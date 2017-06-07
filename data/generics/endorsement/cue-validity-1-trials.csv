@@ -1,0 +1,1601 @@
+"workerid","category","trial_type","property","trial_num","rt","response"
+0,"shark","cue_validity","lays eggs",1,2622,0.05
+0,"lion","cue_validity","has wings",2,5019,0.05
+0,"tiger","cue_validity","doesn&quotechart eat people",3,2768,0.04
+0,"shark","cue_validity","is juvenile",4,4064,0.48
+0,"tick","cue_validity","doesn&quotechart carry Lyme disease",5,3281,0.04
+0,"robin","cue_validity","is female",6,2438,0.5
+0,"lion","cue_validity","has a mane",7,2320,0.84
+0,"peacock","cue_validity","carries Lyme disease",8,2553,0.08
+0,"duck","cue_validity","has wings",9,2688,0.28
+0,"peacock","cue_validity","doesn&quotechart have beautiful feathers",10,2778,0.03
+0,"mosquito","cue_validity","doesn&quotechart carry malaria",11,7098,0.11
+0,"tiger","cue_validity","has a pouch",12,2676,0.06
+0,"kangaroo","cue_validity","has spots",13,2559,0.06
+0,"cardinal","cue_validity","is white",14,3005,0
+0,"mosquito","cue_validity","has beautiful feathers",15,2937,0
+0,"mosquito","cue_validity","carries malaria",16,2535,0.86
+0,"robin","cue_validity","has a pouch",17,2388,0
+0,"robin","cue_validity","lays eggs",18,2623,0.31
+0,"leopard","cue_validity","has wings",19,2112,0.04
+0,"tiger","cue_validity","is female",20,2247,0.52
+0,"shark","cue_validity","is white",21,3165,0.3
+0,"shark","cue_validity","has a mane",22,2311,0.05
+0,"leopard","cue_validity","has spots",23,2252,0.72
+0,"kangaroo","cue_validity","is juvenile",24,1907,0.06
+0,"leopard","cue_validity","is red",25,2321,0.09
+0,"swan","cue_validity","eats people",26,3234,0
+0,"shark","cue_validity","doesn&quotechart attack swimmers",27,2199,0.21
+0,"peacock","cue_validity","has beautiful feathers",28,2656,0.64
+0,"tick","cue_validity","has spots",29,2458,0.01
+0,"tick","cue_validity","carries Lyme disease",30,5941,0.81
+0,"cardinal","cue_validity","is red",31,2324,0.61
+0,"kangaroo","cue_validity","has a pouch",32,1849,0.75
+0,"leopard","cue_validity","is full-grown",33,3069,0.35
+0,"mosquito","cue_validity","attacks swimmers",34,3746,0
+0,"lion","cue_validity","is male",35,6090,0.4
+0,"swan","cue_validity","is white",36,2130,0.35
+0,"robin","cue_validity","carries malaria",37,2206,0.04
+0,"lion","cue_validity","lays eggs",38,2268,0
+0,"shark","cue_validity","attacks swimmers",39,2453,0.62
+0,"tiger","cue_validity","eats people",40,1911,0.5
+1,"kangaroo","cue_validity","is juvenile",1,7673,0.19
+1,"mosquito","cue_validity","attacks swimmers",2,3952,0.95
+1,"tiger","cue_validity","has a pouch",3,3526,0
+1,"mosquito","cue_validity","doesn&quotechart carry malaria",4,5515,0.05
+1,"shark","cue_validity","has a mane",5,3424,0
+1,"tiger","cue_validity","eats people",6,5283,0.65
+1,"mosquito","cue_validity","is white",7,3304,0.02
+1,"shark","cue_validity","is white",8,6257,0.78
+1,"swan","cue_validity","has beautiful feathers",9,4076,0.98
+1,"swan","cue_validity","is white",10,2945,0.98
+1,"cardinal","cue_validity","is red",11,2692,0.98
+1,"tiger","cue_validity","doesn&quotechart eat people",12,5697,0.67
+1,"robin","cue_validity","has spots",13,5040,0.15
+1,"leopard","cue_validity","has spots",14,3625,1
+1,"peacock","cue_validity","is full-grown",15,3525,0.99
+1,"shark","cue_validity","has a mane",16,3257,0
+1,"robin","cue_validity","is female",17,6163,0.7
+1,"peacock","cue_validity","doesn&quotechart have beautiful feathers",18,6635,0.23
+1,"kangaroo","cue_validity","has a pouch",19,3069,1
+1,"leopard","cue_validity","is juvenile",20,3606,0.66
+1,"leopard","cue_validity","is full-grown",21,2786,0.68
+1,"tick","cue_validity","carries Lyme disease",22,3960,1
+1,"lion","cue_validity","is male",23,3757,0.68
+1,"leopard","cue_validity","has wings",24,4436,0
+1,"shark","cue_validity","attacks swimmers",25,3393,0.96
+1,"duck","cue_validity","has wings",26,3737,1
+1,"mosquito","cue_validity","carries malaria",27,3462,1
+1,"lion","cue_validity","carries Lyme disease",28,2639,0
+1,"kangaroo","cue_validity","is female",29,2619,0.79
+1,"peacock","cue_validity","has beautiful feathers",30,8979,0.99
+1,"lion","cue_validity","has a mane",31,3897,1
+1,"tick","cue_validity","has wings",32,4250,0
+1,"shark","cue_validity","doesn&quotechart attack swimmers",33,5265,0.61
+1,"tick","cue_validity","doesn&quotechart carry Lyme disease",34,3754,0.26
+1,"lion","cue_validity","lays eggs",35,8951,0
+1,"tiger","cue_validity","attacks swimmers",36,4019,0.08
+1,"robin","cue_validity","carries malaria",37,3652,0
+1,"kangaroo","cue_validity","has spots",38,3944,0.04
+1,"shark","cue_validity","lays eggs",39,6029,0.94
+1,"robin","cue_validity","lays eggs",40,4691,0.94
+2,"duck","cue_validity","has wings",1,8133,0.73
+2,"mosquito","cue_validity","doesn&quotechart carry malaria",2,5397,0.1
+2,"lion","cue_validity","has a mane",3,3064,1
+2,"mosquito","cue_validity","attacks swimmers",4,6544,0.65
+2,"tick","cue_validity","carries Lyme disease",5,2837,1
+2,"leopard","cue_validity","has spots",6,3469,0.84
+2,"swan","cue_validity","has wings",7,2027,0.69
+2,"shark","cue_validity","has a mane",8,2248,0
+2,"robin","cue_validity","is female",9,2735,0.51
+2,"peacock","cue_validity","is female",10,1890,0.51
+2,"kangaroo","cue_validity","has a pouch",11,2427,0.82
+2,"kangaroo","cue_validity","has spots",12,2781,0.08
+2,"leopard","cue_validity","has wings",13,1809,0
+2,"mosquito","cue_validity","carries malaria",14,3441,0.93
+2,"kangaroo","cue_validity","has a pouch",15,2095,0.9
+2,"shark","cue_validity","doesn&quotechart attack swimmers",16,4868,0.06
+2,"lion","cue_validity","is red",17,2761,0.05
+2,"peacock","cue_validity","doesn&quotechart have beautiful feathers",18,6864,0.16
+2,"tiger","cue_validity","has a pouch",19,1907,0.04
+2,"shark","cue_validity","is male",20,2104,0.52
+2,"mosquito","cue_validity","carries malaria",21,2860,0.93
+2,"duck","cue_validity","attacks swimmers",22,6047,0.23
+2,"shark","cue_validity","attacks swimmers",23,2549,0.86
+2,"kangaroo","cue_validity","is juvenile",24,5044,0.64
+2,"cardinal","cue_validity","is red",25,2380,0.98
+2,"shark","cue_validity","is white",26,3261,0.6
+2,"lion","cue_validity","is male",27,4122,0.53
+2,"lion","cue_validity","lays eggs",28,2092,0
+2,"shark","cue_validity","lays eggs",29,2197,0
+2,"leopard","cue_validity","is full-grown",30,3230,0.58
+2,"swan","cue_validity","is white",31,3252,0.94
+2,"tiger","cue_validity","doesn&quotechart eat people",32,3275,0.27
+2,"robin","cue_validity","lays eggs",33,2216,1
+2,"peacock","cue_validity","has beautiful feathers",34,2287,0.94
+2,"leopard","cue_validity","is full-grown",35,2168,0.64
+2,"robin","cue_validity","carries malaria",36,2511,0.06
+2,"cardinal","cue_validity","is juvenile",37,2018,0.42
+2,"tick","cue_validity","doesn&quotechart carry Lyme disease",38,2507,0.08
+2,"tiger","cue_validity","eats people",39,2537,0.87
+2,"tick","cue_validity","is white",40,2595,0.62
+3,"kangaroo","cue_validity","has a pouch",1,7191,1
+3,"tiger","cue_validity","doesn&quotechart eat people",2,3828,0
+3,"mosquito","cue_validity","has a mane",3,3439,0
+3,"tick","cue_validity","carries Lyme disease",4,3882,0.98
+3,"duck","cue_validity","has wings",5,2463,0.97
+3,"shark","cue_validity","lays eggs",6,3169,0.49
+3,"leopard","cue_validity","has wings",7,2782,0.01
+3,"robin","cue_validity","lays eggs",8,3734,0.97
+3,"tiger","cue_validity","eats people",9,1983,0.96
+3,"leopard","cue_validity","lays eggs",10,2516,0.03
+3,"duck","cue_validity","is red",11,3103,0
+3,"lion","cue_validity","lays eggs",12,3098,0.05
+3,"kangaroo","cue_validity","has spots",13,2982,0.02
+3,"robin","cue_validity","carries malaria",14,2950,0.77
+3,"shark","cue_validity","has a mane",15,28403,0.04
+3,"lion","cue_validity","is male",16,21073,0.56
+3,"mosquito","cue_validity","doesn&quotechart carry malaria",17,6072,0.55
+3,"cardinal","cue_validity","carries Lyme disease",18,5720,0.22
+3,"lion","cue_validity","has a mane",19,10535,0.96
+3,"robin","cue_validity","is full-grown",20,3655,0.96
+3,"tiger","cue_validity","has a pouch",21,4176,0.05
+3,"robin","cue_validity","is female",22,2616,0.74
+3,"peacock","cue_validity","has beautiful feathers",23,2223,1
+3,"kangaroo","cue_validity","has a pouch",24,1792,0.94
+3,"shark","cue_validity","doesn&quotechart attack swimmers",25,2615,0.25
+3,"cardinal","cue_validity","is red",26,2575,1
+3,"mosquito","cue_validity","attacks swimmers",27,3409,0
+3,"peacock","cue_validity","doesn&quotechart have beautiful feathers",28,6623,0
+3,"shark","cue_validity","is white",29,4103,0.84
+3,"kangaroo","cue_validity","is juvenile",30,3064,0.32
+3,"tick","cue_validity","doesn&quotechart carry Lyme disease",31,2672,0.15
+3,"shark","cue_validity","has spots",32,4903,0.09
+3,"mosquito","cue_validity","carries malaria",33,2296,0.93
+3,"shark","cue_validity","attacks swimmers",34,3415,0.57
+3,"swan","cue_validity","is white",35,3175,0.95
+3,"leopard","cue_validity","is full-grown",36,4521,0.74
+3,"tiger","cue_validity","attacks swimmers",37,4567,0.13
+3,"swan","cue_validity","carries malaria",38,2351,0.47
+3,"lion","cue_validity","is female",39,1919,0.81
+3,"leopard","cue_validity","has spots",40,4207,0.96
+4,"leopard","cue_validity","has beautiful feathers",1,4138,0
+4,"swan","cue_validity","is white",2,1982,1
+4,"tiger","cue_validity","doesn&quotechart eat people",3,2103,0.49
+4,"robin","cue_validity","has wings",4,2192,0.59
+4,"lion","cue_validity","is male",5,2603,0.63
+4,"tick","cue_validity","is female",6,2592,0.03
+4,"mosquito","cue_validity","doesn&quotechart carry malaria",7,6118,0.08
+4,"kangaroo","cue_validity","has spots",8,2239,0
+4,"kangaroo","cue_validity","is juvenile",9,2005,0.25
+4,"robin","cue_validity","lays eggs",10,1604,0.76
+4,"leopard","cue_validity","has wings",11,1453,0
+4,"cardinal","cue_validity","is red",12,2018,0.8
+4,"shark","cue_validity","is white",13,2034,0.52
+4,"shark","cue_validity","attacks swimmers",14,1848,0.83
+4,"robin","cue_validity","is female",15,1909,0.69
+4,"tiger","cue_validity","eats people",16,1456,0.75
+4,"leopard","cue_validity","is full-grown",17,1442,0.47
+4,"shark","cue_validity","carries malaria",18,1740,0
+4,"robin","cue_validity","carries malaria",19,2148,0
+4,"kangaroo","cue_validity","lays eggs",20,1758,0
+4,"tick","cue_validity","doesn&quotechart carry Lyme disease",21,2623,0.18
+4,"mosquito","cue_validity","carries malaria",22,2691,0.89
+4,"lion","cue_validity","is white",23,1829,0
+4,"peacock","cue_validity","doesn&quotechart have beautiful feathers",24,2648,0.03
+4,"shark","cue_validity","has a mane",25,1963,0
+4,"shark","cue_validity","lays eggs",26,1562,0
+4,"cardinal","cue_validity","has a mane",27,5378,0
+4,"lion","cue_validity","has a mane",28,1414,1
+4,"shark","cue_validity","doesn&quotechart attack swimmers",29,1505,0
+4,"duck","cue_validity","has wings",30,3431,0.65
+4,"duck","cue_validity","attacks swimmers",31,1733,0
+4,"tiger","cue_validity","has a pouch",32,1692,0
+4,"tiger","cue_validity","has spots",33,1449,0.58
+4,"peacock","cue_validity","has beautiful feathers",34,1902,1
+4,"swan","cue_validity","is juvenile",35,6619,0.44
+4,"leopard","cue_validity","has spots",36,1551,0.69
+4,"kangaroo","cue_validity","has a pouch",37,1479,0.88
+4,"lion","cue_validity","lays eggs",38,1297,0
+4,"mosquito","cue_validity","attacks swimmers",39,2211,0.42
+4,"tick","cue_validity","carries Lyme disease",40,1647,0.8
+5,"shark","cue_validity","attacks swimmers",1,6469,0.5
+5,"leopard","cue_validity","is juvenile",2,4471,0.05
+5,"mosquito","cue_validity","doesn&quotechart carry malaria",3,3368,0.02
+5,"leopard","cue_validity","has wings",4,2336,0.01
+5,"tick","cue_validity","lays eggs",5,2454,0.5
+5,"tick","cue_validity","carries Lyme disease",6,2962,1
+5,"peacock","cue_validity","carries malaria",7,2704,0.34
+5,"tiger","cue_validity","eats people",8,10456,0.4
+5,"kangaroo","cue_validity","is juvenile",9,1887,0
+5,"kangaroo","cue_validity","has a pouch",10,1705,1
+5,"robin","cue_validity","carries malaria",11,1840,0.14
+5,"swan","cue_validity","carries Lyme disease",12,1704,0.48
+5,"cardinal","cue_validity","attacks swimmers",13,1424,0.19
+5,"peacock","cue_validity","has beautiful feathers",14,1728,1
+5,"swan","cue_validity","is white",15,1728,1
+5,"shark","cue_validity","is white",16,2055,0.42
+5,"shark","cue_validity","has a mane",17,1968,0
+5,"mosquito","cue_validity","has beautiful feathers",18,2508,0.01
+5,"leopard","cue_validity","has spots",19,4124,1
+5,"duck","cue_validity","has wings",20,11916,0.49
+5,"tiger","cue_validity","doesn&quotechart eat people",21,2103,0.01
+5,"lion","cue_validity","is male",22,1601,1
+5,"robin","cue_validity","lays eggs",23,2504,1
+5,"shark","cue_validity","lays eggs",24,1600,0.52
+5,"leopard","cue_validity","is full-grown",25,1961,1
+5,"shark","cue_validity","doesn&quotechart attack swimmers",26,1846,1
+5,"peacock","cue_validity","doesn&quotechart have beautiful feathers",27,1616,0.55
+5,"robin","cue_validity","is female",28,2552,0.51
+5,"lion","cue_validity","lays eggs",29,1472,0.53
+5,"kangaroo","cue_validity","has spots",30,2184,0.08
+5,"lion","cue_validity","has a mane",31,2112,1
+5,"cardinal","cue_validity","is red",32,1615,1
+5,"mosquito","cue_validity","carries malaria",33,2112,1
+5,"shark","cue_validity","is white",34,1736,1
+5,"mosquito","cue_validity","attacks swimmers",35,1903,0.55
+5,"tiger","cue_validity","has a pouch",36,2296,0.22
+5,"robin","cue_validity","is full-grown",37,2585,1
+5,"duck","cue_validity","is female",38,1872,1
+5,"kangaroo","cue_validity","has wings",39,1855,0
+5,"tick","cue_validity","doesn&quotechart carry Lyme disease",40,5192,0
+6,"leopard","cue_validity","has wings",1,4911,0
+6,"cardinal","cue_validity","is red",2,5658,0.78
+6,"robin","cue_validity","lays eggs",3,7488,0.5
+6,"tiger","cue_validity","carries Lyme disease",4,4323,0.03
+6,"shark","cue_validity","has a mane",5,3344,0
+6,"robin","cue_validity","is female",6,3720,0.52
+6,"kangaroo","cue_validity","has spots",7,3613,0.04
+6,"peacock","cue_validity","lays eggs",8,4962,0.49
+6,"duck","cue_validity","has beautiful feathers",9,5015,0.51
+6,"robin","cue_validity","has a pouch",10,2840,0
+6,"duck","cue_validity","has wings",11,3877,0.51
+6,"shark","cue_validity","lays eggs",12,5850,0.33
+6,"mosquito","cue_validity","carries malaria",13,4315,0.94
+6,"cardinal","cue_validity","is white",14,2740,0
+6,"shark","cue_validity","is white",15,4167,0.34
+6,"mosquito","cue_validity","attacks swimmers",16,4107,0.08
+6,"shark","cue_validity","attacks swimmers",17,4441,0.96
+6,"tick","cue_validity","doesn&quotechart carry Lyme disease",18,9629,0.06
+6,"tiger","cue_validity","doesn&quotechart eat people",19,5528,0.19
+6,"tick","cue_validity","is male",20,4787,0.07
+6,"kangaroo","cue_validity","has a pouch",21,3412,0.82
+6,"mosquito","cue_validity","is full-grown",22,10940,0.08
+6,"tiger","cue_validity","eats people",23,3850,0.32
+6,"kangaroo","cue_validity","is juvenile",24,3980,0.12
+6,"leopard","cue_validity","is full-grown",25,4291,0.11
+6,"peacock","cue_validity","has beautiful feathers",26,5188,0.89
+6,"lion","cue_validity","lays eggs",27,2620,0
+6,"swan","cue_validity","is white",28,2868,0.79
+6,"lion","cue_validity","attacks swimmers",29,4116,0.1
+6,"leopard","cue_validity","carries malaria",30,3140,0
+6,"tiger","cue_validity","has a pouch",31,2327,0
+6,"kangaroo","cue_validity","is female",32,3600,0.1
+6,"tick","cue_validity","carries Lyme disease",33,3350,0.98
+6,"shark","cue_validity","doesn&quotechart attack swimmers",34,6584,0.08
+6,"lion","cue_validity","has a mane",35,3450,0.96
+6,"lion","cue_validity","is male",36,2300,0.14
+6,"robin","cue_validity","carries malaria",37,2637,0
+6,"leopard","cue_validity","has spots",38,2329,0.82
+6,"peacock","cue_validity","doesn&quotechart have beautiful feathers",39,3065,0.04
+6,"mosquito","cue_validity","doesn&quotechart carry malaria",40,5857,0.04
+7,"swan","cue_validity","is white",1,6451,0.52
+7,"shark","cue_validity","attacks swimmers",2,3458,0.7
+7,"peacock","cue_validity","carries Lyme disease",3,3436,0.27
+7,"kangaroo","cue_validity","is juvenile",4,2807,0.27
+7,"tick","cue_validity","doesn&quotechart carry Lyme disease",5,5113,0.19
+7,"kangaroo","cue_validity","has spots",6,3288,0.13
+7,"lion","cue_validity","is male",7,3976,0.38
+7,"kangaroo","cue_validity","has a pouch",8,2638,0.78
+7,"mosquito","cue_validity","is juvenile",9,6320,0.39
+7,"peacock","cue_validity","doesn&quotechart have beautiful feathers",10,5120,0.26
+7,"tiger","cue_validity","is red",11,5423,0
+7,"shark","cue_validity","doesn&quotechart attack swimmers",12,3551,0.18
+7,"mosquito","cue_validity","doesn&quotechart carry malaria",13,3557,0.3
+7,"lion","cue_validity","has a mane",14,4919,0.87
+7,"swan","cue_validity","is male",15,2751,0.38
+7,"shark","cue_validity","is white",16,3018,0.42
+7,"leopard","cue_validity","is full-grown",17,2530,0.39
+7,"robin","cue_validity","is white",18,5439,0.67
+7,"peacock","cue_validity","has beautiful feathers",19,3828,0.63
+7,"duck","cue_validity","has beautiful feathers",20,3008,0.7
+7,"leopard","cue_validity","has spots",21,3821,0.72
+7,"mosquito","cue_validity","carries malaria",22,2019,0.56
+7,"tiger","cue_validity","eats people",23,2437,0.34
+7,"lion","cue_validity","carries malaria",24,2653,0.22
+7,"tiger","cue_validity","doesn&quotechart eat people",25,2991,0.64
+7,"shark","cue_validity","lays eggs",26,3723,0.29
+7,"robin","cue_validity","is female",27,1755,0.58
+7,"tiger","cue_validity","has a pouch",28,2768,0.19
+7,"mosquito","cue_validity","attacks swimmers",29,2560,0.21
+7,"duck","cue_validity","has wings",30,2407,0.59
+7,"shark","cue_validity","has a pouch",31,2165,0.21
+7,"robin","cue_validity","carries malaria",32,2034,0.19
+7,"leopard","cue_validity","has wings",33,2646,0.26
+7,"cardinal","cue_validity","is red",34,2846,0.63
+7,"cardinal","cue_validity","attacks swimmers",35,2188,0.17
+7,"tick","cue_validity","is female",36,2282,0.09
+7,"robin","cue_validity","lays eggs",37,1912,0.11
+7,"shark","cue_validity","has a mane",38,2466,0.18
+7,"lion","cue_validity","lays eggs",39,1764,0.2
+7,"tick","cue_validity","carries Lyme disease",40,3101,0.7
+8,"tick","cue_validity","doesn&quotechart carry Lyme disease",1,20080,0.28
+8,"cardinal","cue_validity","is red",2,13394,0.61
+8,"shark","cue_validity","eats people",3,13507,0.66
+8,"tick","cue_validity","has wings",4,13232,0.03
+8,"lion","cue_validity","is male",5,11501,0.19
+8,"shark","cue_validity","lays eggs",6,9169,0.02
+8,"kangaroo","cue_validity","has a pouch",7,6306,0.7
+8,"peacock","cue_validity","is juvenile",8,5332,0.14
+8,"lion","cue_validity","is red",9,4182,0.03
+8,"tiger","cue_validity","has spots",10,4368,0.03
+8,"duck","cue_validity","has wings",11,16581,0.6
+8,"mosquito","cue_validity","carries malaria",12,12277,0.62
+8,"robin","cue_validity","carries malaria",13,6891,0
+8,"tiger","cue_validity","has a pouch",14,6835,0
+8,"tiger","cue_validity","eats people",15,7699,0.61
+8,"tick","cue_validity","carries Lyme disease",16,7939,0.78
+8,"leopard","cue_validity","lays eggs",17,5860,0
+8,"cardinal","cue_validity","carries Lyme disease",18,5966,0
+8,"kangaroo","cue_validity","is juvenile",19,9521,0.24
+8,"shark","cue_validity","attacks swimmers",20,7625,0.8
+8,"shark","cue_validity","has a mane",21,6002,0
+8,"kangaroo","cue_validity","has spots",22,3830,0
+8,"leopard","cue_validity","has spots",23,5840,0.81
+8,"mosquito","cue_validity","attacks swimmers",24,11389,0.17
+8,"swan","cue_validity","is female",25,4027,0.15
+8,"lion","cue_validity","lays eggs",26,5643,0
+8,"robin","cue_validity","lays eggs",27,31113,0.36
+8,"swan","cue_validity","is white",28,7559,0.51
+8,"lion","cue_validity","has a mane",29,7997,0.32
+8,"leopard","cue_validity","has wings",30,4007,0
+8,"mosquito","cue_validity","doesn&quotechart carry malaria",31,8856,0.05
+8,"peacock","cue_validity","doesn&quotechart have beautiful feathers",32,6314,0
+8,"shark","cue_validity","doesn&quotechart attack swimmers",33,5712,0
+8,"peacock","cue_validity","has beautiful feathers",34,5933,0.73
+8,"robin","cue_validity","has a pouch",35,4054,0
+8,"shark","cue_validity","is white",36,10779,0
+8,"duck","cue_validity","is white",37,4313,0.4
+8,"leopard","cue_validity","is full-grown",38,5666,0.12
+8,"robin","cue_validity","is female",39,7256,0.11
+8,"tiger","cue_validity","doesn&quotechart eat people",40,4881,0
+9,"tiger","cue_validity","doesn&quotechart eat people",1,7340,0.07
+9,"kangaroo","cue_validity","is juvenile",2,7655,0.22
+9,"tick","cue_validity","is juvenile",3,5996,0.04
+9,"leopard","cue_validity","is full-grown",4,5164,0.13
+9,"shark","cue_validity","lays eggs",5,6152,0.04
+9,"kangaroo","cue_validity","eats people",6,4583,0.01
+9,"tiger","cue_validity","has a pouch",7,2984,0.01
+9,"robin","cue_validity","is female",8,3200,0.5
+9,"lion","cue_validity","is male",9,5840,0.41
+9,"shark","cue_validity","doesn&quotechart attack swimmers",10,12976,0.33
+9,"tick","cue_validity","carries Lyme disease",11,3872,0.88
+9,"shark","cue_validity","lays eggs",12,6144,0.29
+9,"swan","cue_validity","is white",13,3880,0.41
+9,"shark","cue_validity","attacks swimmers",14,2424,0.66
+9,"shark","cue_validity","is white",15,4687,0.11
+9,"robin","cue_validity","lays eggs",16,5630,0.51
+9,"lion","cue_validity","has beautiful feathers",17,3488,0.01
+9,"cardinal","cue_validity","has wings",18,3696,0.51
+9,"lion","cue_validity","lays eggs",19,3128,0.01
+9,"leopard","cue_validity","has wings",20,3400,0.01
+9,"shark","cue_validity","has a mane",21,3392,0.02
+9,"mosquito","cue_validity","carries malaria",22,3368,0.93
+9,"peacock","cue_validity","doesn&quotechart have beautiful feathers",23,3447,0.03
+9,"kangaroo","cue_validity","has a pouch",24,5320,0.92
+9,"cardinal","cue_validity","is red",25,4819,0.88
+9,"mosquito","cue_validity","doesn&quotechart carry malaria",26,5235,0.36
+9,"duck","cue_validity","attacks swimmers",27,4752,0.12
+9,"swan","cue_validity","has spots",28,4424,0.12
+9,"lion","cue_validity","has a mane",29,14375,0.43
+9,"mosquito","cue_validity","attacks swimmers",30,6464,0.57
+9,"leopard","cue_validity","has spots",31,3184,0.73
+9,"tiger","cue_validity","eats people",32,3639,0.6
+9,"peacock","cue_validity","has beautiful feathers",33,2488,0.87
+9,"robin","cue_validity","is female",34,2695,0.52
+9,"tick","cue_validity","doesn&quotechart carry Lyme disease",35,4143,0.25
+9,"duck","cue_validity","has wings",36,4256,0.24
+9,"kangaroo","cue_validity","has spots",37,3177,0.07
+9,"robin","cue_validity","carries malaria",38,3230,0.05
+9,"leopard","cue_validity","has a pouch",39,2975,0.03
+9,"peacock","cue_validity","is red",40,3159,0.03
+10,"robin","cue_validity","lays eggs",1,12205,0.51
+10,"peacock","cue_validity","doesn&quotechart have beautiful feathers",2,3633,0.02
+10,"peacock","cue_validity","is red",3,3521,0.03
+10,"kangaroo","cue_validity","has spots",4,3882,0.12
+10,"mosquito","cue_validity","doesn&quotechart carry malaria",5,7053,0.02
+10,"mosquito","cue_validity","carries malaria",6,3432,0.95
+10,"tick","cue_validity","carries Lyme disease",7,3577,0.97
+10,"shark","cue_validity","is white",8,4725,0.16
+10,"shark","cue_validity","attacks swimmers",9,7797,0.9
+10,"robin","cue_validity","carries malaria",10,4309,0.02
+10,"duck","cue_validity","has wings",11,3340,0.23
+10,"leopard","cue_validity","is white",12,4117,0.09
+10,"tiger","cue_validity","doesn&quotechart eat people",13,14119,0.04
+10,"mosquito","cue_validity","lays eggs",14,7515,0.04
+10,"tiger","cue_validity","is male",15,5344,0.25
+10,"duck","cue_validity","is juvenile",16,36417,0.51
+10,"tiger","cue_validity","eats people",17,4532,0.24
+10,"tiger","cue_validity","has a pouch",18,3195,0.01
+10,"shark","cue_validity","doesn&quotechart attack swimmers",19,7988,0.02
+10,"cardinal","cue_validity","is red",20,4769,0.55
+10,"lion","cue_validity","is female",21,5052,0.22
+10,"kangaroo","cue_validity","is juvenile",22,5703,0.1
+10,"shark","cue_validity","has a mane",23,2690,0.01
+10,"swan","cue_validity","is white",24,3003,0.36
+10,"leopard","cue_validity","has wings",25,3644,0.01
+10,"leopard","cue_validity","has spots",26,3769,0.28
+10,"mosquito","cue_validity","attacks swimmers",27,3588,0
+10,"shark","cue_validity","lays eggs",28,2947,0
+10,"robin","cue_validity","has wings",29,4691,0.23
+10,"lion","cue_validity","is male",30,4872,0.18
+10,"lion","cue_validity","has a mane",31,3928,0.77
+10,"swan","cue_validity","carries Lyme disease",32,4745,0.01
+10,"robin","cue_validity","is female",33,5343,0.12
+10,"tick","cue_validity","eats people",34,3026,0.01
+10,"lion","cue_validity","lays eggs",35,3239,0.01
+10,"leopard","cue_validity","is full-grown",36,3330,0.27
+10,"tick","cue_validity","doesn&quotechart carry Lyme disease",37,8381,0.05
+10,"kangaroo","cue_validity","has a pouch",38,3748,0.85
+10,"peacock","cue_validity","has beautiful feathers",39,6028,0.9
+10,"kangaroo","cue_validity","attacks swimmers",40,3184,0.01
+11,"tiger","cue_validity","eats people",1,4099,0.98
+11,"tiger","cue_validity","doesn&quotechart eat people",2,4308,0.01
+11,"shark","cue_validity","lays eggs",3,6605,0.5
+11,"leopard","cue_validity","has spots",4,4274,0.89
+11,"lion","cue_validity","attacks swimmers",5,4023,0.02
+11,"lion","cue_validity","lays eggs",6,3655,0.01
+11,"duck","cue_validity","has a pouch",7,4391,0.21
+11,"shark","cue_validity","has a mane",8,5323,0.01
+11,"tiger","cue_validity","is full-grown",9,5019,0.5
+11,"robin","cue_validity","eats people",10,3297,0.02
+11,"kangaroo","cue_validity","has spots",11,3656,0.02
+11,"peacock","cue_validity","has beautiful feathers",12,4391,0.85
+11,"cardinal","cue_validity","is female",13,10031,0.49
+11,"leopard","cue_validity","is full-grown",14,5119,0.5
+11,"robin","cue_validity","carries malaria",15,4980,0.14
+11,"shark","cue_validity","is white",16,9994,0.49
+11,"shark","cue_validity","attacks swimmers",17,6501,0.92
+11,"tick","cue_validity","is juvenile",18,3998,0.5
+11,"kangaroo","cue_validity","has a pouch",19,3784,0.93
+11,"shark","cue_validity","has a mane",20,3794,0.01
+11,"leopard","cue_validity","has wings",21,3583,0.01
+11,"shark","cue_validity","doesn&quotechart attack swimmers",22,5480,0.11
+11,"leopard","cue_validity","has spots",23,3284,0.9
+11,"mosquito","cue_validity","attacks swimmers",24,7049,0.98
+11,"swan","cue_validity","has beautiful feathers",25,7156,0.75
+11,"mosquito","cue_validity","doesn&quotechart carry malaria",26,4845,0.05
+11,"tick","cue_validity","doesn&quotechart carry Lyme disease",27,4528,0.03
+11,"peacock","cue_validity","doesn&quotechart have beautiful feathers",28,3917,0.01
+11,"tick","cue_validity","carries Lyme disease",29,4102,0.98
+11,"lion","cue_validity","has a mane",30,3691,0.99
+11,"duck","cue_validity","has wings",31,4043,0.49
+11,"kangaroo","cue_validity","is juvenile",32,3477,0.48
+11,"cardinal","cue_validity","is red",33,4203,0.8
+11,"tiger","cue_validity","has a pouch",34,3370,0.03
+11,"robin","cue_validity","is female",35,3303,0.5
+11,"mosquito","cue_validity","carries malaria",36,3700,0.97
+11,"swan","cue_validity","is white",37,3374,0.76
+11,"lion","cue_validity","is male",38,3201,0.5
+11,"peacock","cue_validity","is red",39,3441,0.01
+11,"robin","cue_validity","lays eggs",40,3711,0.78
+12,"lion","cue_validity","is male",1,4617,0.5
+12,"kangaroo","cue_validity","is juvenile",2,6463,0.56
+12,"tick","cue_validity","doesn&quotechart carry Lyme disease",3,4146,0.06
+12,"tiger","cue_validity","eats people",4,2867,0.61
+12,"leopard","cue_validity","has spots",5,2163,0.75
+12,"mosquito","cue_validity","attacks swimmers",6,2457,0.86
+12,"robin","cue_validity","lays eggs",7,28067,0.49
+12,"cardinal","cue_validity","carries malaria",8,3085,0.2
+12,"tiger","cue_validity","doesn&quotechart eat people",9,3298,0.08
+12,"leopard","cue_validity","has wings",10,2199,0
+12,"kangaroo","cue_validity","eats people",11,1977,0
+12,"kangaroo","cue_validity","has spots",12,8699,0.12
+12,"tiger","cue_validity","is female",13,2099,0.5
+12,"shark","cue_validity","lays eggs",14,2541,0.16
+12,"swan","cue_validity","is white",15,14621,0.64
+12,"cardinal","cue_validity","is red",16,1563,0.67
+12,"leopard","cue_validity","is full-grown",17,7687,0.49
+12,"duck","cue_validity","has wings",18,2445,0.5
+12,"kangaroo","cue_validity","has a pouch",19,4278,0.84
+12,"duck","cue_validity","has a pouch",20,1842,0
+12,"tiger","cue_validity","has a pouch",21,1938,0
+12,"peacock","cue_validity","has beautiful feathers",22,2001,0.75
+12,"lion","cue_validity","has wings",23,2983,0
+12,"tick","cue_validity","carries Lyme disease",24,2538,1
+12,"lion","cue_validity","lays eggs",25,6762,0
+12,"tick","cue_validity","has a mane",26,3452,0
+12,"peacock","cue_validity","has beautiful feathers",27,2340,1
+12,"lion","cue_validity","has a mane",28,24790,0.8
+12,"shark","cue_validity","attacks swimmers",29,2310,0.9
+12,"shark","cue_validity","is white",30,2418,0.5
+12,"peacock","cue_validity","doesn&quotechart have beautiful feathers",31,3559,0.39
+12,"shark","cue_validity","doesn&quotechart attack swimmers",32,5848,0.16
+12,"robin","cue_validity","is female",33,14758,0.5
+12,"robin","cue_validity","carries malaria",34,2815,0.04
+12,"mosquito","cue_validity","doesn&quotechart carry malaria",35,4236,0.19
+12,"shark","cue_validity","has a mane",36,2973,0
+12,"shark","cue_validity","carries Lyme disease",37,5216,0
+12,"swan","cue_validity","lays eggs",38,2550,0.69
+12,"robin","cue_validity","has spots",39,2057,0.18
+12,"mosquito","cue_validity","carries malaria",40,1940,0.78
+13,"shark","cue_validity","is white",1,9190,0.09
+13,"leopard","cue_validity","has a pouch",2,3361,0
+13,"peacock","cue_validity","has spots",3,5784,0.18
+13,"mosquito","cue_validity","has beautiful feathers",4,3099,0
+13,"kangaroo","cue_validity","is juvenile",5,4068,0.21
+13,"swan","cue_validity","is white",6,6280,0.69
+13,"swan","cue_validity","is white",7,3482,0.74
+13,"duck","cue_validity","carries malaria",8,3684,0
+13,"mosquito","cue_validity","doesn&quotechart carry malaria",9,6634,0.11
+13,"robin","cue_validity","lays eggs",10,5465,0.77
+13,"cardinal","cue_validity","is red",11,7532,0.87
+13,"peacock","cue_validity","has beautiful feathers",12,2802,0.69
+13,"leopard","cue_validity","has spots",13,2920,0.27
+13,"tick","cue_validity","doesn&quotechart carry Lyme disease",14,3611,0.13
+13,"kangaroo","cue_validity","has spots",15,3028,0
+13,"cardinal","cue_validity","has wings",16,3535,0.62
+13,"peacock","cue_validity","doesn&quotechart have beautiful feathers",17,2463,0.01
+13,"shark","cue_validity","has a mane",18,2391,0
+13,"robin","cue_validity","carries malaria",19,3077,0
+13,"leopard","cue_validity","has wings",20,2440,0
+13,"tick","cue_validity","carries Lyme disease",21,2955,0.23
+13,"lion","cue_validity","is male",22,4023,0.38
+13,"tiger","cue_validity","has a pouch",23,2342,0
+13,"tick","cue_validity","lays eggs",24,3746,0.21
+13,"tiger","cue_validity","eats people",25,3010,0.16
+13,"tiger","cue_validity","doesn&quotechart eat people",26,3246,0.35
+13,"kangaroo","cue_validity","has a pouch",27,4368,1
+13,"mosquito","cue_validity","carries malaria",28,2413,0.18
+13,"mosquito","cue_validity","attacks swimmers",29,1800,0
+13,"duck","cue_validity","has wings",30,3572,0.69
+13,"shark","cue_validity","doesn&quotechart attack swimmers",31,3329,0.2
+13,"robin","cue_validity","carries Lyme disease",32,1936,0
+13,"leopard","cue_validity","is full-grown",33,3801,0.38
+13,"lion","cue_validity","is female",34,1767,0.52
+13,"lion","cue_validity","lays eggs",35,2021,0
+13,"shark","cue_validity","attacks swimmers",36,2189,0.23
+13,"lion","cue_validity","has a mane",37,2575,0.69
+13,"shark","cue_validity","lays eggs",38,3120,0
+13,"shark","cue_validity","is red",39,2051,0
+13,"robin","cue_validity","is female",40,1644,0.44
+14,"kangaroo","cue_validity","is juvenile",1,17190,0.02
+14,"mosquito","cue_validity","carries malaria",2,7710,0.83
+14,"shark","cue_validity","attacks swimmers",3,8652,0.81
+14,"robin","cue_validity","lays eggs",4,4351,0.8
+14,"shark","cue_validity","lays eggs",5,8174,0.06
+14,"swan","cue_validity","is white",6,11440,0.62
+14,"robin","cue_validity","has beautiful feathers",7,12839,0.6
+14,"tiger","cue_validity","doesn&quotechart eat people",8,5587,0.02
+14,"cardinal","cue_validity","is white",9,3123,0
+14,"shark","cue_validity","doesn&quotechart attack swimmers",10,7042,0.03
+14,"leopard","cue_validity","has wings",11,6855,0.03
+14,"swan","cue_validity","is juvenile",12,8675,0.16
+14,"lion","cue_validity","is male",13,5875,0.01
+14,"tiger","cue_validity","eats people",14,5838,0.09
+14,"shark","cue_validity","has a mane",15,3844,0.01
+14,"lion","cue_validity","has wings",16,3797,0
+14,"robin","cue_validity","is female",17,6095,0.49
+14,"tiger","cue_validity","is red",18,4798,0.01
+14,"kangaroo","cue_validity","has spots",19,3390,0.01
+14,"shark","cue_validity","is white",20,6487,0
+14,"peacock","cue_validity","has beautiful feathers",21,11531,0.67
+14,"kangaroo","cue_validity","has a mane",22,2943,0.01
+14,"mosquito","cue_validity","attacks swimmers",23,6448,0.02
+14,"peacock","cue_validity","doesn&quotechart have beautiful feathers",24,6698,0.14
+14,"tick","cue_validity","carries Lyme disease",25,5009,0.99
+14,"leopard","cue_validity","is full-grown",26,4805,0.05
+14,"robin","cue_validity","carries malaria",27,3172,0.01
+14,"kangaroo","cue_validity","has a pouch",28,10263,0.94
+14,"duck","cue_validity","has wings",29,3826,0.61
+14,"tiger","cue_validity","has a pouch",30,3046,0
+14,"mosquito","cue_validity","doesn&quotechart carry malaria",31,9064,0.11
+14,"lion","cue_validity","has a mane",32,8971,0.81
+14,"leopard","cue_validity","has spots",33,11950,0.25
+14,"lion","cue_validity","lays eggs",34,2765,0
+14,"tick","cue_validity","doesn&quotechart carry Lyme disease",35,12230,0.04
+14,"cardinal","cue_validity","is red",36,7659,1
+14,"mosquito","cue_validity","has a pouch",37,4220,0
+14,"leopard","cue_validity","is female",38,6284,0.04
+14,"peacock","cue_validity","eats people",39,3898,0.01
+14,"tick","cue_validity","is male",40,5722,0.04
+15,"tick","cue_validity","is juvenile",1,4430,0.03
+15,"tiger","cue_validity","eats people",2,4571,0.22
+15,"tiger","cue_validity","has a pouch",3,2908,0
+15,"shark","cue_validity","attacks swimmers",4,3420,0.87
+15,"peacock","cue_validity","doesn&quotechart have beautiful feathers",5,5901,0.02
+15,"shark","cue_validity","doesn&quotechart attack swimmers",6,6113,0.14
+15,"swan","cue_validity","is white",7,3646,0.24
+15,"leopard","cue_validity","has wings",8,4600,0
+15,"robin","cue_validity","is female",9,4808,0.03
+15,"robin","cue_validity","lays eggs",10,3289,0.36
+15,"kangaroo","cue_validity","has a pouch",11,2876,0.87
+15,"leopard","cue_validity","is full-grown",12,3652,0.04
+15,"shark","cue_validity","has a mane",13,4587,0
+15,"tiger","cue_validity","attacks swimmers",14,5775,0
+15,"swan","cue_validity","is red",15,3430,0
+15,"lion","cue_validity","is male",16,4038,0.04
+15,"duck","cue_validity","is white",17,4983,0.04
+15,"shark","cue_validity","is white",18,4961,0.04
+15,"leopard","cue_validity","has spots",19,4791,0.29
+15,"lion","cue_validity","lays eggs",20,7441,0
+15,"kangaroo","cue_validity","has spots",21,3119,0
+15,"shark","cue_validity","lays eggs",22,5963,0
+15,"mosquito","cue_validity","doesn&quotechart carry malaria",23,9958,0.05
+15,"lion","cue_validity","has wings",24,10639,0
+15,"leopard","cue_validity","is male",25,99561,0.03
+15,"peacock","cue_validity","has beautiful feathers",26,4697,0.64
+15,"mosquito","cue_validity","attacks swimmers",27,3249,0.04
+15,"lion","cue_validity","has a mane",28,3304,0.73
+15,"tick","cue_validity","doesn&quotechart carry Lyme disease",29,8244,0.03
+15,"shark","cue_validity","eats people",30,4098,0.56
+15,"mosquito","cue_validity","carries malaria",31,5637,0.91
+15,"robin","cue_validity","carries malaria",32,3515,0
+15,"tick","cue_validity","carries Lyme disease",33,4354,0.83
+15,"robin","cue_validity","carries malaria",34,3352,0
+15,"duck","cue_validity","has wings",35,3574,0.17
+15,"tiger","cue_validity","doesn&quotechart eat people",36,6258,0.06
+15,"mosquito","cue_validity","has spots",37,3928,0
+15,"kangaroo","cue_validity","is female",38,3980,0.04
+15,"cardinal","cue_validity","is red",39,3025,0.36
+15,"kangaroo","cue_validity","is juvenile",40,4859,0.03
+16,"mosquito","cue_validity","attacks swimmers",1,278877,0.5
+16,"robin","cue_validity","lays eggs",2,6278,0.52
+16,"leopard","cue_validity","has wings",3,3984,0.02
+16,"cardinal","cue_validity","is red",4,4872,0.54
+16,"shark","cue_validity","has a mane",5,3744,0.49
+16,"shark","cue_validity","is full-grown",6,2023,0.51
+16,"lion","cue_validity","carries Lyme disease",7,3039,0.53
+16,"tiger","cue_validity","eats people",8,6232,0.98
+16,"tick","cue_validity","doesn&quotechart carry Lyme disease",9,3992,0.02
+16,"mosquito","cue_validity","doesn&quotechart carry malaria",10,70631,0.02
+16,"tiger","cue_validity","doesn&quotechart eat people",11,9232,0.5
+16,"tick","cue_validity","carries Lyme disease",12,3623,0
+16,"mosquito","cue_validity","attacks swimmers",13,4456,0.51
+16,"robin","cue_validity","carries malaria",14,4263,0.03
+16,"leopard","cue_validity","has spots",15,3456,0.98
+16,"shark","cue_validity","is white",16,2255,0.99
+16,"lion","cue_validity","has a mane",17,41223,1
+16,"shark","cue_validity","lays eggs",18,3688,0.03
+16,"tick","cue_validity","has beautiful feathers",19,4143,0.03
+16,"kangaroo","cue_validity","has a pouch",20,5073,0.96
+16,"swan","cue_validity","is white",21,26775,1
+16,"peacock","cue_validity","has a mane",22,68041,0.03
+16,"mosquito","cue_validity","carries malaria",23,4454,0.98
+16,"cardinal","cue_validity","is white",24,40256,0
+16,"swan","cue_validity","has a pouch",25,4935,0.02
+16,"kangaroo","cue_validity","is juvenile",26,4409,0.51
+16,"peacock","cue_validity","has beautiful feathers",27,4311,0.97
+16,"shark","cue_validity","doesn&quotechart attack swimmers",28,5487,0.02
+16,"kangaroo","cue_validity","has spots",29,3048,0.03
+16,"duck","cue_validity","has wings",30,4015,0.97
+16,"tiger","cue_validity","has spots",31,4087,0.02
+16,"robin","cue_validity","lays eggs",32,5439,0.97
+16,"lion","cue_validity","is male",33,4664,0.98
+16,"shark","cue_validity","attacks swimmers",34,3520,0.96
+16,"lion","cue_validity","lays eggs",35,4032,0
+16,"tiger","cue_validity","has a pouch",36,3328,0
+16,"peacock","cue_validity","doesn&quotechart have beautiful feathers",37,8784,0.01
+16,"duck","cue_validity","is juvenile",38,3759,0.48
+16,"leopard","cue_validity","is full-grown",39,4584,0.97
+16,"robin","cue_validity","is female",40,3440,0.96
+17,"kangaroo","cue_validity","is juvenile",1,6947,0
+17,"robin","cue_validity","is female",2,1857,0.47
+17,"tiger","cue_validity","doesn&quotechart eat people",3,2535,0
+17,"lion","cue_validity","is male",4,3120,0.71
+17,"cardinal","cue_validity","is red",5,2463,0.58
+17,"mosquito","cue_validity","carries malaria",6,3625,1
+17,"leopard","cue_validity","has spots",7,2078,0.87
+17,"robin","cue_validity","carries malaria",8,1884,0
+17,"peacock","cue_validity","has spots",9,2300,0.53
+17,"tick","cue_validity","carries Lyme disease",10,2341,0.86
+17,"shark","cue_validity","is white",11,1695,0.54
+17,"leopard","cue_validity","is red",12,1924,0
+17,"lion","cue_validity","lays eggs",13,1844,0
+17,"peacock","cue_validity","has beautiful feathers",14,2112,0.75
+17,"kangaroo","cue_validity","has a pouch",15,2090,0.82
+17,"mosquito","cue_validity","doesn&quotechart carry malaria",16,2115,0.01
+17,"swan","cue_validity","is white",17,3251,0.99
+17,"kangaroo","cue_validity","eats people",18,1637,0
+17,"shark","cue_validity","doesn&quotechart attack swimmers",19,1839,0.53
+17,"peacock","cue_validity","doesn&quotechart have beautiful feathers",20,3117,0.09
+17,"swan","cue_validity","is male",21,2560,0.67
+17,"duck","cue_validity","carries Lyme disease",22,2097,0
+17,"shark","cue_validity","lays eggs",23,2103,0
+17,"robin","cue_validity","lays eggs",24,3284,0.62
+17,"shark","cue_validity","has a mane",25,3059,0
+17,"kangaroo","cue_validity","has spots",26,2270,0
+17,"tiger","cue_validity","has a pouch",27,1757,0
+17,"tiger","cue_validity","has wings",28,1728,0
+17,"leopard","cue_validity","is full-grown",29,1531,0.48
+17,"lion","cue_validity","attacks swimmers",30,1951,0
+17,"tick","cue_validity","is female",31,3028,0.37
+17,"mosquito","cue_validity","attacks swimmers",32,2778,0.33
+17,"tick","cue_validity","doesn&quotechart carry Lyme disease",33,2262,0.19
+17,"tiger","cue_validity","eats people",34,2666,0.5
+17,"shark","cue_validity","is white",35,1502,0.49
+17,"lion","cue_validity","has a mane",36,2676,0.87
+17,"duck","cue_validity","has wings",37,1786,0.85
+17,"mosquito","cue_validity","carries malaria",38,1854,0.88
+17,"leopard","cue_validity","has wings",39,1539,0.18
+17,"shark","cue_validity","attacks swimmers",40,2480,0.52
+18,"robin","cue_validity","is female",1,5635,0.13
+18,"shark","cue_validity","attacks swimmers",2,2817,0.77
+18,"shark","cue_validity","has a pouch",3,5917,0.1
+18,"mosquito","cue_validity","attacks swimmers",4,2807,0.06
+18,"peacock","cue_validity","is red",5,2208,0.03
+18,"tick","cue_validity","carries Lyme disease",6,2506,0.85
+18,"robin","cue_validity","lays eggs",7,2090,0.59
+18,"lion","cue_validity","eats people",8,2308,0.58
+18,"cardinal","cue_validity","is red",9,2589,0.8
+18,"tiger","cue_validity","has a pouch",10,2268,0.09
+18,"tick","cue_validity","doesn&quotechart carry Lyme disease",11,3577,0.17
+18,"tick","cue_validity","carries Lyme disease",12,1994,0.86
+18,"shark","cue_validity","doesn&quotechart attack swimmers",13,2890,0.11
+18,"leopard","cue_validity","has wings",14,3160,0.02
+18,"duck","cue_validity","is white",15,8814,0.31
+18,"robin","cue_validity","is full-grown",16,2327,0.11
+18,"kangaroo","cue_validity","is juvenile",17,2148,0.09
+18,"mosquito","cue_validity","doesn&quotechart carry malaria",18,2674,0.17
+18,"leopard","cue_validity","is full-grown",19,2469,0.12
+18,"swan","cue_validity","is white",20,2034,0.8
+18,"peacock","cue_validity","doesn&quotechart have beautiful feathers",21,2384,0.05
+18,"lion","cue_validity","lays eggs",22,2492,0.02
+18,"mosquito","cue_validity","carries malaria",23,1838,0.6
+18,"swan","cue_validity","has spots",24,2156,0.02
+18,"kangaroo","cue_validity","has a pouch",25,1852,0.87
+18,"tiger","cue_validity","doesn&quotechart eat people",26,2184,0.07
+18,"tiger","cue_validity","eats people",27,6242,0.51
+18,"shark","cue_validity","is white",28,2056,0.57
+18,"peacock","cue_validity","has beautiful feathers",29,2255,0.83
+18,"duck","cue_validity","has wings",30,1932,0.57
+18,"robin","cue_validity","carries malaria",31,2504,0.05
+18,"cardinal","cue_validity","carries malaria",32,2082,0.03
+18,"shark","cue_validity","lays eggs",33,2018,0.05
+18,"lion","cue_validity","has a mane",34,2114,0.76
+18,"lion","cue_validity","is male",35,2334,0.15
+18,"tiger","cue_validity","has a mane",36,2885,0.12
+18,"kangaroo","cue_validity","has spots",37,1947,0.03
+18,"leopard","cue_validity","is female",38,2212,0.12
+18,"leopard","cue_validity","has spots",39,3655,0.64
+18,"shark","cue_validity","has a mane",40,2419,0.02
+19,"lion","cue_validity","lays eggs",1,4753,0
+19,"robin","cue_validity","is female",2,6406,0.49
+19,"mosquito","cue_validity","doesn&quotechart carry malaria",3,4506,0
+19,"tick","cue_validity","carries Lyme disease",4,15105,1
+19,"leopard","cue_validity","has wings",5,4523,0
+19,"leopard","cue_validity","has wings",6,3555,0.01
+19,"robin","cue_validity","carries malaria",7,2970,0.01
+19,"cardinal","cue_validity","is red",8,2640,0.98
+19,"leopard","cue_validity","is full-grown",9,2813,0.98
+19,"tick","cue_validity","doesn&quotechart carry Lyme disease",10,3374,0.01
+19,"kangaroo","cue_validity","is juvenile",11,2266,0.99
+19,"mosquito","cue_validity","attacks swimmers",12,2752,0.01
+19,"peacock","cue_validity","carries malaria",13,2219,0.03
+19,"shark","cue_validity","lays eggs",14,4479,0.02
+19,"duck","cue_validity","eats people",15,4545,0.01
+19,"swan","cue_validity","is white",16,3607,0.97
+19,"leopard","cue_validity","has spots",17,2564,0.99
+19,"robin","cue_validity","lays eggs",18,2355,0.98
+19,"shark","cue_validity","has a mane",19,2580,0.01
+19,"cardinal","cue_validity","attacks swimmers",20,2159,0.02
+19,"kangaroo","cue_validity","has spots",21,4522,0.01
+19,"peacock","cue_validity","has beautiful feathers",22,2805,0.99
+19,"duck","cue_validity","has wings",23,2099,0.97
+19,"shark","cue_validity","is full-grown",24,2377,0.98
+19,"tiger","cue_validity","eats people",25,2812,0.5
+19,"shark","cue_validity","is white",26,4950,0.77
+19,"mosquito","cue_validity","carries malaria",27,2655,0.98
+19,"shark","cue_validity","attacks swimmers",28,3479,0.49
+19,"tiger","cue_validity","lays eggs",29,2985,0
+19,"shark","cue_validity","doesn&quotechart attack swimmers",30,11437,0.4
+19,"lion","cue_validity","has a mane",31,2084,0.97
+19,"tiger","cue_validity","has a pouch",32,2664,0.02
+19,"tiger","cue_validity","doesn&quotechart eat people",33,4162,0.56
+19,"robin","cue_validity","has a pouch",34,2805,0.01
+19,"lion","cue_validity","is male",35,3674,0.98
+19,"tick","cue_validity","is red",36,2242,0.03
+19,"peacock","cue_validity","doesn&quotechart have beautiful feathers",37,2954,0.02
+19,"swan","cue_validity","is male",38,4215,0.95
+19,"kangaroo","cue_validity","has a pouch",39,2468,0.97
+19,"lion","cue_validity","has beautiful feathers",40,2639,0.02
+20,"shark","cue_validity","has a mane",1,10521,0
+20,"swan","cue_validity","is juvenile",2,40465,0.11
+20,"tick","cue_validity","doesn&quotechart carry Lyme disease",3,10219,0
+20,"kangaroo","cue_validity","is juvenile",4,5539,0.06
+20,"lion","cue_validity","is female",5,12175,0.04
+20,"shark","cue_validity","lays eggs",6,5382,0
+20,"leopard","cue_validity","is full-grown",7,4773,0.04
+20,"mosquito","cue_validity","doesn&quotechart carry malaria",8,3905,0
+20,"tiger","cue_validity","attacks swimmers",9,7613,0
+20,"shark","cue_validity","is full-grown",10,5035,0.04
+20,"kangaroo","cue_validity","has a pouch",11,11584,0.75
+20,"kangaroo","cue_validity","has spots",12,30714,0
+20,"tiger","cue_validity","has a pouch",13,2770,0
+20,"leopard","cue_validity","has spots",14,7061,0.73
+20,"shark","cue_validity","doesn&quotechart attack swimmers",15,2780,0
+20,"tiger","cue_validity","eats people",16,10463,0.5
+20,"lion","cue_validity","is male",17,3863,0.03
+20,"robin","cue_validity","carries malaria",18,3680,0
+20,"tick","cue_validity","carries Lyme disease",19,7982,0.94
+20,"robin","cue_validity","is female",20,3943,0.02
+20,"tick","cue_validity","carries Lyme disease",21,8539,0.95
+20,"leopard","cue_validity","has wings",22,7945,0
+20,"shark","cue_validity","is white",23,7953,0.04
+20,"cardinal","cue_validity","has a pouch",24,2390,0
+20,"swan","cue_validity","is white",25,8549,0.5
+20,"peacock","cue_validity","doesn&quotechart have beautiful feathers",26,6547,0
+20,"mosquito","cue_validity","attacks swimmers",27,3595,0
+20,"tiger","cue_validity","doesn&quotechart eat people",28,4750,0
+20,"shark","cue_validity","attacks swimmers",29,9470,0.89
+20,"mosquito","cue_validity","lays eggs",30,5366,0.08
+20,"duck","cue_validity","has wings",31,6431,0.17
+20,"lion","cue_validity","has a mane",32,3544,0.78
+20,"peacock","cue_validity","has beautiful feathers",33,3739,0.81
+20,"duck","cue_validity","has wings",34,5009,0.26
+20,"robin","cue_validity","lays eggs",35,3593,0.09
+20,"lion","cue_validity","lays eggs",36,1601,0
+20,"cardinal","cue_validity","is red",37,10210,0.76
+20,"mosquito","cue_validity","carries malaria",38,3279,0.93
+20,"kangaroo","cue_validity","has spots",39,2402,0
+20,"peacock","cue_validity","carries malaria",40,2190,0
+21,"leopard","cue_validity","has spots",1,8208,0.46
+21,"swan","cue_validity","is juvenile",2,5787,0.04
+21,"mosquito","cue_validity","attacks swimmers",3,7203,0.24
+21,"tick","cue_validity","carries Lyme disease",4,17040,0.44
+21,"duck","cue_validity","has wings",5,3431,0.35
+21,"swan","cue_validity","is white",6,5504,0.25
+21,"kangaroo","cue_validity","is juvenile",7,5493,0.04
+21,"kangaroo","cue_validity","has a pouch",8,4219,0.69
+21,"leopard","cue_validity","has beautiful feathers",9,4591,0
+21,"lion","cue_validity","lays eggs",10,3946,0
+21,"tiger","cue_validity","doesn&quotechart eat people",11,9655,0.03
+21,"lion","cue_validity","has a mane",12,5826,0.06
+21,"mosquito","cue_validity","carries malaria",13,2966,0.56
+21,"leopard","cue_validity","has wings",14,4165,0
+21,"lion","cue_validity","is male",15,4926,0.17
+21,"lion","cue_validity","has a pouch",16,2928,0
+21,"kangaroo","cue_validity","has spots",17,4606,0
+21,"tick","cue_validity","has wings",18,28231,0
+21,"kangaroo","cue_validity","is female",19,2246,0.33
+21,"tick","cue_validity","doesn&quotechart carry Lyme disease",20,5168,0.11
+21,"mosquito","cue_validity","has a mane",21,3651,0.05
+21,"tiger","cue_validity","has a pouch",22,17494,0
+21,"shark","cue_validity","is white",23,4566,0.25
+21,"duck","cue_validity","carries Lyme disease",24,23709,0
+21,"robin","cue_validity","carries malaria",25,4072,0
+21,"peacock","cue_validity","doesn&quotechart have beautiful feathers",26,11833,0.4
+21,"shark","cue_validity","lays eggs",27,2952,0
+21,"leopard","cue_validity","is full-grown",28,11430,0.48
+21,"tiger","cue_validity","eats people",29,5089,0.38
+21,"robin","cue_validity","is female",30,2686,0.31
+21,"robin","cue_validity","lays eggs",31,3670,0.75
+21,"cardinal","cue_validity","is red",32,2521,0.72
+21,"shark","cue_validity","carries malaria",33,7986,0
+21,"tiger","cue_validity","eats people",34,2004,0.72
+21,"mosquito","cue_validity","doesn&quotechart carry malaria",35,4964,0.08
+21,"shark","cue_validity","attacks swimmers",36,6928,0.93
+21,"peacock","cue_validity","has beautiful feathers",37,17890,0.64
+21,"robin","cue_validity","has spots",38,2553,0.17
+21,"shark","cue_validity","doesn&quotechart attack swimmers",39,2543,0
+21,"shark","cue_validity","has a mane",40,4581,0.02
+22,"leopard","cue_validity","has spots",1,8041,0.23
+22,"peacock","cue_validity","doesn&quotechart have beautiful feathers",2,6815,0.05
+22,"shark","cue_validity","attacks swimmers",3,8125,0.47
+22,"peacock","cue_validity","has beautiful feathers",4,10579,0.39
+22,"lion","cue_validity","lays eggs",5,7085,0
+22,"duck","cue_validity","is white",6,5610,0.23
+22,"tick","cue_validity","doesn&quotechart carry Lyme disease",7,5414,0
+22,"leopard","cue_validity","has wings",8,4770,0
+22,"kangaroo","cue_validity","is juvenile",9,6745,0.17
+22,"mosquito","cue_validity","has spots",10,4926,0
+22,"robin","cue_validity","carries malaria",11,20106,0.04
+22,"lion","cue_validity","is male",12,6370,0.13
+22,"kangaroo","cue_validity","has spots",13,5812,0
+22,"shark","cue_validity","has a mane",14,3263,0
+22,"mosquito","cue_validity","doesn&quotechart carry malaria",15,4329,0
+22,"shark","cue_validity","lays eggs",16,22701,0
+22,"swan","cue_validity","is white",17,4387,0.26
+22,"robin","cue_validity","is female",18,10733,0.17
+22,"kangaroo","cue_validity","has a pouch",19,12141,0.8
+22,"tiger","cue_validity","doesn&quotechart eat people",20,9119,0
+22,"kangaroo","cue_validity","eats people",21,5886,0
+22,"swan","cue_validity","has a mane",22,3333,0
+22,"shark","cue_validity","is white",23,5356,0.19
+22,"tiger","cue_validity","eats people",24,3651,0.29
+22,"leopard","cue_validity","is full-grown",25,11287,0.15
+22,"shark","cue_validity","is red",26,12590,0
+22,"lion","cue_validity","has a mane",27,8451,0.68
+22,"cardinal","cue_validity","is red",28,30129,0.13
+22,"tiger","cue_validity","has a pouch",29,4278,0
+22,"duck","cue_validity","has wings",30,6712,0.27
+22,"mosquito","cue_validity","carries malaria",31,3188,1
+22,"peacock","cue_validity","has beautiful feathers",32,4239,0.47
+22,"robin","cue_validity","lays eggs",33,4938,0.35
+22,"shark","cue_validity","doesn&quotechart attack swimmers",34,4479,0.05
+22,"robin","cue_validity","is juvenile",35,7436,0.05
+22,"leopard","cue_validity","is full-grown",36,3992,0.1
+22,"tick","cue_validity","carries Lyme disease",37,4684,1
+22,"lion","cue_validity","attacks swimmers",38,3091,0
+22,"tiger","cue_validity","carries malaria",39,2857,0
+22,"mosquito","cue_validity","attacks swimmers",40,17009,0
+23,"tiger","cue_validity","doesn&quotechart eat people",1,6042,0.01
+23,"tick","cue_validity","is male",2,4789,0.54
+23,"tiger","cue_validity","is juvenile",3,6009,0.35
+23,"lion","cue_validity","is male",4,298627,0.33
+23,"leopard","cue_validity","is full-grown",5,3257,0.67
+23,"peacock","cue_validity","doesn&quotechart have beautiful feathers",6,3505,0.17
+23,"kangaroo","cue_validity","is juvenile",7,3092,0.54
+23,"lion","cue_validity","is female",8,3012,0.83
+23,"cardinal","cue_validity","lays eggs",9,77000,0.37
+23,"mosquito","cue_validity","attacks swimmers",10,2321,0.22
+23,"kangaroo","cue_validity","has wings",11,2439,0
+23,"shark","cue_validity","has a mane",12,2539,0
+23,"robin","cue_validity","lays eggs",13,42213,0.51
+23,"swan","cue_validity","is white",14,3486,0.67
+23,"peacock","cue_validity","has beautiful feathers",15,1564,1
+23,"mosquito","cue_validity","carries malaria",16,2242,1
+23,"cardinal","cue_validity","is red",17,2918,0.66
+23,"mosquito","cue_validity","doesn&quotechart carry malaria",18,5967,0
+23,"duck","cue_validity","has wings",19,2198,0.5
+23,"lion","cue_validity","lays eggs",20,2248,0
+23,"lion","cue_validity","has a mane",21,1883,1
+23,"shark","cue_validity","doesn&quotechart attack swimmers",22,2656,0
+23,"leopard","cue_validity","has spots",23,2620,0.47
+23,"shark","cue_validity","attacks swimmers",24,3838,1
+23,"shark","cue_validity","lays eggs",25,2679,0
+23,"robin","cue_validity","eats people",26,2830,0
+23,"robin","cue_validity","is female",27,3235,0.5
+23,"kangaroo","cue_validity","has a pouch",28,4179,1
+23,"leopard","cue_validity","is full-grown",29,1928,0.49
+23,"tiger","cue_validity","has a pouch",30,1869,0
+23,"kangaroo","cue_validity","has spots",31,4854,0
+23,"peacock","cue_validity","has spots",32,5126,0.54
+23,"tick","cue_validity","carries Lyme disease",33,2261,1
+23,"leopard","cue_validity","has wings",34,1812,0
+23,"shark","cue_validity","is white",35,2180,0.51
+23,"shark","cue_validity","is white",36,1485,0.5
+23,"swan","cue_validity","is red",37,2163,0
+23,"robin","cue_validity","carries malaria",38,2445,0
+23,"tiger","cue_validity","eats people",39,2681,1
+23,"tick","cue_validity","doesn&quotechart carry Lyme disease",40,2336,0
+24,"lion","cue_validity","lays eggs",1,5066,0.01
+24,"shark","cue_validity","lays eggs",2,294444,0.01
+24,"mosquito","cue_validity","is red",3,32151,0.01
+24,"robin","cue_validity","lays eggs",4,67376,0.49
+24,"kangaroo","cue_validity","has a pouch",5,2675,0.83
+24,"lion","cue_validity","is male",6,8132,0.26
+24,"robin","cue_validity","carries malaria",7,2360,0.02
+24,"duck","cue_validity","has wings",8,2373,0.24
+24,"kangaroo","cue_validity","has spots",9,1957,0.05
+24,"leopard","cue_validity","has wings",10,3662,0.01
+24,"tiger","cue_validity","is female",11,2616,0.08
+24,"leopard","cue_validity","is full-grown",12,2245,0.07
+24,"lion","cue_validity","has a mane",13,2637,0.8
+24,"tick","cue_validity","is white",14,2239,0.04
+24,"tick","cue_validity","carries Lyme disease",15,4579,0.84
+24,"peacock","cue_validity","doesn&quotechart have beautiful feathers",16,4383,0.14
+24,"robin","cue_validity","has a pouch",17,1997,0.03
+24,"swan","cue_validity","is white",18,3150,0.56
+24,"leopard","cue_validity","has a mane",19,2838,0.02
+24,"cardinal","cue_validity","carries malaria",20,1856,0.03
+24,"duck","cue_validity","has beautiful feathers",21,2889,0.53
+24,"peacock","cue_validity","has beautiful feathers",22,4263,0.7
+24,"leopard","cue_validity","has spots",23,3726,0.68
+24,"shark","cue_validity","is white",24,2287,0.16
+24,"mosquito","cue_validity","carries malaria",25,2952,0.97
+24,"mosquito","cue_validity","attacks swimmers",26,3307,0.22
+24,"shark","cue_validity","has a mane",27,2252,0.03
+24,"swan","cue_validity","attacks swimmers",28,3522,0.49
+24,"mosquito","cue_validity","doesn&quotechart carry malaria",29,3975,0.25
+24,"tick","cue_validity","doesn&quotechart carry Lyme disease",30,2593,0.21
+24,"peacock","cue_validity","lays eggs",31,3356,0.47
+24,"cardinal","cue_validity","is red",32,3665,0.61
+24,"kangaroo","cue_validity","is juvenile",33,3906,0.19
+24,"tiger","cue_validity","has a pouch",34,2165,0.03
+24,"shark","cue_validity","attacks swimmers",35,2821,0.59
+24,"tiger","cue_validity","doesn&quotechart eat people",36,3604,0.48
+24,"shark","cue_validity","doesn&quotechart attack swimmers",37,3005,0.57
+24,"tiger","cue_validity","eats people",38,2305,0.48
+24,"robin","cue_validity","is female",39,2682,0.48
+24,"shark","cue_validity","has spots",40,5100,0.51
+25,"cardinal","cue_validity","is red",1,7160,0.03
+25,"lion","cue_validity","has a mane",2,6148,0.83
+25,"shark","cue_validity","has a mane",3,9458,0
+25,"lion","cue_validity","lays eggs",4,5993,0.01
+25,"lion","cue_validity","is male",5,5490,0.01
+25,"leopard","cue_validity","has spots",6,3633,0.67
+25,"peacock","cue_validity","doesn&quotechart have beautiful feathers",7,4807,0
+25,"kangaroo","cue_validity","has a pouch",8,2730,0.86
+25,"peacock","cue_validity","is male",9,3115,0.01
+25,"shark","cue_validity","lays eggs",10,2481,0.01
+25,"shark","cue_validity","is white",11,2830,0
+25,"mosquito","cue_validity","doesn&quotechart carry malaria",12,4226,0.01
+25,"tiger","cue_validity","eats people",13,4685,0.48
+25,"tick","cue_validity","lays eggs",14,4311,0
+25,"mosquito","cue_validity","carries malaria",15,3842,0.81
+25,"robin","cue_validity","carries malaria",16,3757,0.01
+25,"tiger","cue_validity","doesn&quotechart eat people",17,4521,0.01
+25,"tick","cue_validity","doesn&quotechart carry Lyme disease",18,3633,0
+25,"leopard","cue_validity","has wings",19,2632,0
+25,"duck","cue_validity","has a pouch",20,3657,0
+25,"kangaroo","cue_validity","is juvenile",21,3658,0
+25,"shark","cue_validity","carries Lyme disease",22,2853,0
+25,"swan","cue_validity","has wings",23,3881,0.14
+25,"leopard","cue_validity","is full-grown",24,2817,0
+25,"robin","cue_validity","is female",25,3324,0
+25,"mosquito","cue_validity","is female",26,2533,0
+25,"shark","cue_validity","doesn&quotechart attack swimmers",27,3211,0
+25,"swan","cue_validity","is white",28,5351,0.06
+25,"tiger","cue_validity","has a pouch",29,2298,0
+25,"tick","cue_validity","carries Lyme disease",30,4485,0.98
+25,"robin","cue_validity","lays eggs",31,3213,0.5
+25,"robin","cue_validity","carries malaria",32,3101,0
+25,"tiger","cue_validity","is red",33,2792,0
+25,"mosquito","cue_validity","attacks swimmers",34,2322,0
+25,"lion","cue_validity","is full-grown",35,1992,0
+25,"kangaroo","cue_validity","has spots",36,1912,0
+25,"shark","cue_validity","attacks swimmers",37,3199,0.8
+25,"leopard","cue_validity","is white",38,2324,0
+25,"duck","cue_validity","has wings",39,3275,0.08
+25,"peacock","cue_validity","has beautiful feathers",40,2854,0.9
+26,"swan","cue_validity","is red",1,5359,0.07
+26,"tick","cue_validity","carries Lyme disease",2,4199,0.76
+26,"tick","cue_validity","is white",3,4095,0.16
+26,"shark","cue_validity","attacks swimmers",4,46506,0.6
+26,"duck","cue_validity","is full-grown",5,6216,0.35
+26,"shark","cue_validity","is white",6,4527,0.36
+26,"leopard","cue_validity","is full-grown",7,8104,0.24
+26,"robin","cue_validity","lays eggs",8,27248,0.34
+26,"mosquito","cue_validity","attacks swimmers",9,4018,0.14
+26,"cardinal","cue_validity","has spots",10,18264,0.06
+26,"lion","cue_validity","has a mane",11,4015,0.65
+26,"robin","cue_validity","lays eggs",12,3800,0.43
+26,"mosquito","cue_validity","eats people",13,3087,0.02
+26,"swan","cue_validity","is white",14,3881,0.48
+26,"leopard","cue_validity","has spots",15,2352,0.61
+26,"tick","cue_validity","doesn&quotechart carry Lyme disease",16,5199,0.3
+26,"kangaroo","cue_validity","has spots",17,16793,0.15
+26,"leopard","cue_validity","has wings",18,3056,0.01
+26,"mosquito","cue_validity","doesn&quotechart carry malaria",19,6344,0.36
+26,"robin","cue_validity","carries malaria",20,4424,0.33
+26,"duck","cue_validity","has wings",21,3488,0.53
+26,"kangaroo","cue_validity","has a pouch",22,2807,0.87
+26,"peacock","cue_validity","is juvenile",23,4343,0.15
+26,"shark","cue_validity","is male",24,2985,0.49
+26,"lion","cue_validity","lays eggs",25,2576,0
+26,"leopard","cue_validity","carries malaria",26,3575,0.11
+26,"shark","cue_validity","has a mane",27,2959,0
+26,"tiger","cue_validity","eats people",28,2552,0.51
+26,"shark","cue_validity","doesn&quotechart attack swimmers",29,16807,0.41
+26,"peacock","cue_validity","doesn&quotechart have beautiful feathers",30,4434,0.14
+26,"tiger","cue_validity","doesn&quotechart eat people",31,5656,0.37
+26,"cardinal","cue_validity","is red",32,4768,0.52
+26,"robin","cue_validity","is female",33,3391,0.42
+26,"lion","cue_validity","is male",34,2944,0.48
+26,"shark","cue_validity","lays eggs",35,5168,0
+26,"mosquito","cue_validity","carries malaria",36,2183,0.61
+26,"tiger","cue_validity","has a pouch",37,2224,0
+26,"kangaroo","cue_validity","is juvenile",38,2624,0.39
+26,"peacock","cue_validity","has beautiful feathers",39,3296,0.76
+26,"lion","cue_validity","is female",40,2383,0.49
+27,"shark","cue_validity","lays eggs",1,7748,0.09
+27,"mosquito","cue_validity","attacks swimmers",2,4755,0.1
+27,"peacock","cue_validity","is full-grown",3,2980,0.13
+27,"shark","cue_validity","is white",4,2802,0.64
+27,"tiger","cue_validity","doesn&quotechart eat people",5,1946,0.16
+27,"kangaroo","cue_validity","has a pouch",6,2568,0.78
+27,"tick","cue_validity","is red",7,1982,0.13
+27,"kangaroo","cue_validity","has spots",8,1660,0.06
+27,"lion","cue_validity","lays eggs",9,1968,0.16
+27,"cardinal","cue_validity","is white",10,1434,0.07
+27,"swan","cue_validity","is white",11,3264,0.46
+27,"cardinal","cue_validity","is red",12,2676,0.49
+27,"lion","cue_validity","is male",13,3494,0.51
+27,"tiger","cue_validity","has a pouch",14,2090,0.13
+27,"mosquito","cue_validity","carries malaria",15,3023,0.85
+27,"kangaroo","cue_validity","is juvenile",16,1766,0.06
+27,"leopard","cue_validity","has spots",17,2208,0.5
+27,"lion","cue_validity","carries Lyme disease",18,1882,0.08
+27,"peacock","cue_validity","doesn&quotechart have beautiful feathers",19,2391,0.09
+27,"leopard","cue_validity","is full-grown",20,2331,0.11
+27,"tick","cue_validity","carries Lyme disease",21,3625,0.53
+27,"shark","cue_validity","has a mane",22,1789,0.08
+27,"duck","cue_validity","carries malaria",23,1875,0.09
+27,"lion","cue_validity","has a mane",24,2121,0.12
+27,"tiger","cue_validity","eats people",25,2763,0.07
+27,"robin","cue_validity","is female",26,1821,0.08
+27,"robin","cue_validity","lays eggs",27,2528,0.49
+27,"shark","cue_validity","lays eggs",28,1935,0.13
+27,"robin","cue_validity","carries malaria",29,1967,0.14
+27,"tick","cue_validity","doesn&quotechart carry Lyme disease",30,2206,0.49
+27,"tiger","cue_validity","is female",31,2500,0.48
+27,"shark","cue_validity","attacks swimmers",32,3156,0.79
+27,"kangaroo","cue_validity","is juvenile",33,1804,0.13
+27,"leopard","cue_validity","has wings",34,1844,0.09
+27,"swan","cue_validity","attacks swimmers",35,2269,0.11
+27,"shark","cue_validity","doesn&quotechart attack swimmers",36,2383,0.12
+27,"mosquito","cue_validity","doesn&quotechart carry malaria",37,3509,0.13
+27,"duck","cue_validity","has wings",38,2445,0.49
+27,"robin","cue_validity","eats people",39,14187,0.47
+27,"peacock","cue_validity","has beautiful feathers",40,3455,0.14
+28,"swan","cue_validity","is white",1,6082,0.6
+28,"tiger","cue_validity","has a pouch",2,3212,0.01
+28,"duck","cue_validity","has wings",3,6499,0.58
+28,"swan","cue_validity","is juvenile",4,5604,0.03
+28,"peacock","cue_validity","has beautiful feathers",5,4678,0.73
+28,"kangaroo","cue_validity","is juvenile",6,3602,0.03
+28,"kangaroo","cue_validity","has a pouch",7,2163,0.94
+28,"shark","cue_validity","has a mane",8,3273,0.07
+28,"mosquito","cue_validity","doesn&quotechart carry malaria",9,6358,0.08
+28,"tick","cue_validity","carries Lyme disease",10,5969,0.85
+28,"peacock","cue_validity","doesn&quotechart have beautiful feathers",11,5930,0.26
+28,"tiger","cue_validity","doesn&quotechart eat people",12,5109,0.04
+28,"kangaroo","cue_validity","has beautiful feathers",13,3904,0.02
+28,"shark","cue_validity","is white",14,3776,0.5
+28,"robin","cue_validity","is female",15,3866,0.3
+28,"tiger","cue_validity","is white",16,4616,0.42
+28,"leopard","cue_validity","is full-grown",17,2602,0.52
+28,"tick","cue_validity","doesn&quotechart carry Lyme disease",18,3605,0.08
+28,"duck","cue_validity","carries malaria",19,2624,0.07
+28,"robin","cue_validity","lays eggs",20,3214,0.34
+28,"shark","cue_validity","lays eggs",21,2601,0.41
+28,"shark","cue_validity","attacks swimmers",22,2167,0.48
+28,"lion","cue_validity","has a mane",23,10349,0.49
+28,"mosquito","cue_validity","carries malaria",24,2370,0.85
+28,"lion","cue_validity","lays eggs",25,3738,0.01
+28,"cardinal","cue_validity","is red",26,2422,0.62
+28,"shark","cue_validity","eats people",27,4513,0.58
+28,"leopard","cue_validity","lays eggs",28,3224,0.02
+28,"leopard","cue_validity","has wings",29,13311,0
+28,"mosquito","cue_validity","has a pouch",30,2661,0.02
+28,"mosquito","cue_validity","attacks swimmers",31,4360,0.47
+28,"robin","cue_validity","carries malaria",32,2768,0.03
+28,"leopard","cue_validity","has spots",33,3743,0.64
+28,"lion","cue_validity","is male",34,2747,0.23
+28,"shark","cue_validity","doesn&quotechart attack swimmers",35,2838,0.33
+28,"tick","cue_validity","has wings",36,7499,0.04
+28,"tiger","cue_validity","eats people",37,2381,0.49
+28,"robin","cue_validity","carries Lyme disease",38,2468,0
+28,"cardinal","cue_validity","has spots",39,2525,0.03
+28,"kangaroo","cue_validity","has spots",40,2119,0.06
+29,"lion","cue_validity","lays eggs",1,3722,0
+29,"lion","cue_validity","has a mane",2,2501,0.95
+29,"leopard","cue_validity","is full-grown",3,3886,0.36
+29,"leopard","cue_validity","is full-grown",4,3231,0.29
+29,"mosquito","cue_validity","doesn&quotechart carry malaria",5,4407,0.5
+29,"peacock","cue_validity","has wings",6,10609,0.25
+29,"mosquito","cue_validity","carries malaria",7,3496,0.86
+29,"tick","cue_validity","carries Lyme disease",8,3294,0.84
+29,"lion","cue_validity","is male",9,2835,0.2
+29,"tick","cue_validity","doesn&quotechart carry Lyme disease",10,3550,0.06
+29,"robin","cue_validity","is female",11,2736,0.24
+29,"duck","cue_validity","has wings",12,2486,0.31
+29,"peacock","cue_validity","doesn&quotechart have beautiful feathers",13,2620,0.01
+29,"tiger","cue_validity","eats people",14,3628,0.59
+29,"shark","cue_validity","has a mane",15,2518,0.02
+29,"robin","cue_validity","lays eggs",16,2090,0.59
+29,"tiger","cue_validity","has a pouch",17,2122,0
+29,"leopard","cue_validity","has wings",18,2012,0.01
+29,"kangaroo","cue_validity","has a pouch",19,2402,0.76
+29,"kangaroo","cue_validity","is juvenile",20,2890,0.25
+29,"tiger","cue_validity","carries malaria",21,2620,0
+29,"shark","cue_validity","lays eggs",22,8315,0.04
+29,"cardinal","cue_validity","is white",23,2052,0.02
+29,"tiger","cue_validity","doesn&quotechart eat people",24,3870,0.3
+29,"shark","cue_validity","is white",25,2534,0.06
+29,"swan","cue_validity","is white",26,2718,0.61
+29,"mosquito","cue_validity","has spots",27,2191,0
+29,"kangaroo","cue_validity","is male",28,2246,0.15
+29,"cardinal","cue_validity","is red",29,3038,0.38
+29,"swan","cue_validity","attacks swimmers",30,5338,0.17
+29,"robin","cue_validity","carries malaria",31,2636,0
+29,"leopard","cue_validity","has spots",32,2564,0.55
+29,"kangaroo","cue_validity","has spots",33,1825,0.14
+29,"mosquito","cue_validity","attacks swimmers",34,2190,0
+29,"shark","cue_validity","doesn&quotechart attack swimmers",35,4080,0.33
+29,"shark","cue_validity","attacks swimmers",36,3240,0.84
+29,"shark","cue_validity","has a mane",37,2021,0
+29,"peacock","cue_validity","has beautiful feathers",38,3014,0.61
+29,"lion","cue_validity","carries Lyme disease",39,7404,0
+29,"robin","cue_validity","lays eggs",40,1804,0.29
+30,"lion","cue_validity","lays eggs",1,6121,0
+30,"robin","cue_validity","lays eggs",2,16823,0.82
+30,"swan","cue_validity","is white",3,3738,0.84
+30,"mosquito","cue_validity","attacks swimmers",4,4367,0.07
+30,"tiger","cue_validity","eats people",5,4560,0.74
+30,"mosquito","cue_validity","doesn&quotechart carry malaria",6,4639,0
+30,"kangaroo","cue_validity","is juvenile",7,3723,0.5
+30,"leopard","cue_validity","has wings",8,4414,0
+30,"lion","cue_validity","is male",9,5716,0.5
+30,"duck","cue_validity","has wings",10,3056,0.67
+30,"shark","cue_validity","is white",11,5408,0.42
+30,"mosquito","cue_validity","carries malaria",12,3658,1
+30,"leopard","cue_validity","carries malaria",13,3010,0
+30,"tick","cue_validity","has beautiful feathers",14,4512,0
+30,"peacock","cue_validity","carries Lyme disease",15,6632,0.04
+30,"shark","cue_validity","has a mane",16,12762,0
+30,"shark","cue_validity","lays eggs",17,16684,0.46
+30,"leopard","cue_validity","is full-grown",18,3591,0.5
+30,"leopard","cue_validity","has spots",19,4158,0.92
+30,"mosquito","cue_validity","has spots",20,4236,0.01
+30,"tick","cue_validity","carries Lyme disease",21,16163,0.98
+30,"shark","cue_validity","attacks swimmers",22,6190,0.88
+30,"robin","cue_validity","is male",23,3712,0.5
+30,"tiger","cue_validity","has a pouch",24,3195,0.01
+30,"shark","cue_validity","has a pouch",25,2892,0
+30,"peacock","cue_validity","doesn&quotechart have beautiful feathers",26,6977,0.5
+30,"cardinal","cue_validity","is red",27,2931,0.79
+30,"swan","cue_validity","eats people",28,4094,0
+30,"kangaroo","cue_validity","has spots",29,3744,0
+30,"cardinal","cue_validity","is red",30,2419,0.77
+30,"robin","cue_validity","carries malaria",31,12171,0.01
+30,"tick","cue_validity","doesn&quotechart carry Lyme disease",32,3891,0.01
+30,"duck","cue_validity","is juvenile",33,4759,0.48
+30,"robin","cue_validity","is female",34,2635,0.57
+30,"peacock","cue_validity","has beautiful feathers",35,4335,0.51
+30,"tiger","cue_validity","is female",36,4045,0.51
+30,"tiger","cue_validity","doesn&quotechart eat people",37,7291,0.25
+30,"kangaroo","cue_validity","has a pouch",38,3254,1
+30,"shark","cue_validity","doesn&quotechart attack swimmers",39,3134,0.24
+30,"lion","cue_validity","has a mane",40,3507,0.97
+31,"robin","cue_validity","is female",1,11498,0.04
+31,"lion","cue_validity","has a mane",2,8069,0.66
+31,"tiger","cue_validity","eats people",3,5351,0.22
+31,"peacock","cue_validity","has beautiful feathers",4,6096,0.2
+31,"shark","cue_validity","has a mane",5,8130,0.15
+31,"tiger","cue_validity","has a pouch",6,4303,0
+31,"leopard","cue_validity","has wings",7,1992,0
+31,"shark","cue_validity","lays eggs",8,9305,0.04
+31,"mosquito","cue_validity","attacks swimmers",9,6591,0.1
+31,"leopard","cue_validity","has spots",10,12646,0.43
+31,"robin","cue_validity","has wings",11,6722,0.08
+31,"tick","cue_validity","doesn&quotechart carry Lyme disease",12,12268,0.04
+31,"duck","cue_validity","has wings",13,3875,0.11
+31,"leopard","cue_validity","is female",14,6658,0.05
+31,"mosquito","cue_validity","carries Lyme disease",15,7688,0.63
+31,"kangaroo","cue_validity","is juvenile",16,4219,0.04
+31,"mosquito","cue_validity","carries malaria",17,3285,0.83
+31,"shark","cue_validity","is white",18,5022,0.08
+31,"lion","cue_validity","lays eggs",19,2149,0
+31,"kangaroo","cue_validity","has a pouch",20,5590,0.89
+31,"swan","cue_validity","is white",21,4060,0.1
+31,"kangaroo","cue_validity","has spots",22,2177,0
+31,"shark","cue_validity","lays eggs",23,4022,0.03
+31,"leopard","cue_validity","is full-grown",24,7419,0.04
+31,"peacock","cue_validity","eats people",25,1977,0
+31,"kangaroo","cue_validity","is full-grown",26,2828,0.04
+31,"robin","cue_validity","carries malaria",27,2987,0
+31,"lion","cue_validity","has a mane",28,11740,0.38
+31,"cardinal","cue_validity","is white",29,2386,0.08
+31,"swan","cue_validity","has spots",30,2258,0
+31,"lion","cue_validity","is male",31,92780,0.03
+31,"tiger","cue_validity","doesn&quotechart eat people",32,5511,0
+31,"cardinal","cue_validity","is red",33,3056,0.09
+31,"peacock","cue_validity","doesn&quotechart have beautiful feathers",34,2812,0
+31,"robin","cue_validity","lays eggs",35,3477,0.07
+31,"shark","cue_validity","doesn&quotechart attack swimmers",36,3064,0
+31,"duck","cue_validity","is juvenile",37,4404,0.04
+31,"tick","cue_validity","carries Lyme disease",38,7829,0.84
+31,"shark","cue_validity","attacks swimmers",39,18545,0.96
+31,"mosquito","cue_validity","doesn&quotechart carry malaria",40,5736,0.14
+32,"kangaroo","cue_validity","has spots",1,8400,0.01
+32,"mosquito","cue_validity","attacks swimmers",2,8292,0.28
+32,"tiger","cue_validity","eats people",3,10240,0.86
+32,"mosquito","cue_validity","carries malaria",4,4736,0.97
+32,"kangaroo","cue_validity","is juvenile",5,4366,0.47
+32,"shark","cue_validity","lays eggs",6,5171,0.01
+32,"lion","cue_validity","is male",7,4256,0.48
+32,"tiger","cue_validity","has a pouch",8,4102,0.01
+32,"lion","cue_validity","has beautiful feathers",9,5681,0
+32,"peacock","cue_validity","has beautiful feathers",10,4791,0.98
+32,"peacock","cue_validity","has wings",11,6513,0.62
+32,"tick","cue_validity","carries Lyme disease",12,5303,0.98
+32,"lion","cue_validity","has a mane",13,5314,0.84
+32,"robin","cue_validity","carries malaria",14,3547,0.01
+32,"mosquito","cue_validity","has a pouch",15,3417,0
+32,"cardinal","cue_validity","is male",16,3000,0.48
+32,"shark","cue_validity","doesn&quotechart attack swimmers",17,5549,0.1
+32,"lion","cue_validity","lays eggs",18,4600,0
+32,"kangaroo","cue_validity","has a pouch",19,3966,0.99
+32,"duck","cue_validity","has wings",20,10184,0.55
+32,"peacock","cue_validity","doesn&quotechart have beautiful feathers",21,4349,0.02
+32,"tick","cue_validity","lays eggs",22,12311,0.22
+32,"swan","cue_validity","is white",23,4923,0.46
+32,"kangaroo","cue_validity","is full-grown",24,5613,0.47
+32,"leopard","cue_validity","has wings",25,3291,0.01
+32,"swan","cue_validity","is white",26,7377,0.5
+32,"shark","cue_validity","has a mane",27,3301,0.01
+32,"robin","cue_validity","lays eggs",28,3517,0.64
+32,"cardinal","cue_validity","is red",29,5676,0.84
+32,"leopard","cue_validity","is full-grown",30,2749,0.46
+32,"leopard","cue_validity","carries Lyme disease",31,3222,0.02
+32,"tiger","cue_validity","is red",32,2932,0.02
+32,"robin","cue_validity","has a mane",33,3422,0.01
+32,"robin","cue_validity","is female",34,2627,0.5
+32,"tick","cue_validity","doesn&quotechart carry Lyme disease",35,4285,0.11
+32,"mosquito","cue_validity","doesn&quotechart carry malaria",36,3121,0.12
+32,"tiger","cue_validity","doesn&quotechart eat people",37,4664,0.16
+32,"shark","cue_validity","is white",38,3644,0.47
+32,"leopard","cue_validity","has spots",39,10255,0.79
+32,"shark","cue_validity","attacks swimmers",40,4037,0.79
+33,"tick","cue_validity","is male",1,4682,0.56
+33,"lion","cue_validity","has a mane",2,5109,0.85
+33,"kangaroo","cue_validity","has a pouch",3,2361,0.76
+33,"robin","cue_validity","lays eggs",4,36813,0.45
+33,"tiger","cue_validity","doesn&quotechart eat people",5,3925,0.41
+33,"cardinal","cue_validity","is red",6,2416,0.7
+33,"kangaroo","cue_validity","is full-grown",7,2710,0.5
+33,"shark","cue_validity","has a mane",8,11526,0
+33,"shark","cue_validity","attacks swimmers",9,8891,0.69
+33,"leopard","cue_validity","has wings",10,20929,0.19
+33,"duck","cue_validity","has a mane",11,2898,0.06
+33,"mosquito","cue_validity","doesn&quotechart carry malaria",12,3206,0.1
+33,"tick","cue_validity","carries Lyme disease",13,2245,0.17
+33,"shark","cue_validity","doesn&quotechart attack swimmers",14,3191,0.24
+33,"peacock","cue_validity","doesn&quotechart have beautiful feathers",15,2661,0.13
+33,"duck","cue_validity","has wings",16,2657,0.58
+33,"shark","cue_validity","has beautiful feathers",17,3855,0
+33,"kangaroo","cue_validity","has spots",18,2117,0.3
+33,"tiger","cue_validity","has a pouch",19,3742,0
+33,"leopard","cue_validity","is full-grown",20,2401,0.61
+33,"kangaroo","cue_validity","is juvenile",21,1898,0.5
+33,"shark","cue_validity","lays eggs",22,2436,0
+33,"leopard","cue_validity","has spots",23,3542,0.58
+33,"tiger","cue_validity","is red",24,9336,0.15
+33,"tiger","cue_validity","eats people",25,3984,0.42
+33,"lion","cue_validity","is male",26,12422,0.71
+33,"tick","cue_validity","doesn&quotechart carry Lyme disease",27,2595,0
+33,"peacock","cue_validity","lays eggs",28,3826,0.44
+33,"robin","cue_validity","is female",29,1660,0.52
+33,"mosquito","cue_validity","attacks swimmers",30,2884,0.19
+33,"swan","cue_validity","is white",31,3593,0.63
+33,"mosquito","cue_validity","carries malaria",32,1972,0.66
+33,"lion","cue_validity","lays eggs",33,2069,0
+33,"swan","cue_validity","eats people",34,2922,0
+33,"peacock","cue_validity","has beautiful feathers",35,2977,0.79
+33,"cardinal","cue_validity","is white",36,2973,0.09
+33,"robin","cue_validity","is female",37,1691,0.58
+33,"shark","cue_validity","is white",38,6405,0.48
+33,"leopard","cue_validity","has wings",39,2554,0.12
+33,"robin","cue_validity","carries malaria",40,1998,0.18
+34,"tiger","cue_validity","has a pouch",1,5771,0
+34,"cardinal","cue_validity","is white",2,3246,0.33
+34,"tiger","cue_validity","has spots",3,3395,0
+34,"leopard","cue_validity","is full-grown",4,2617,0.19
+34,"shark","cue_validity","attacks swimmers",5,2374,0.27
+34,"shark","cue_validity","is female",6,4059,0.11
+34,"leopard","cue_validity","has spots",7,2987,0.67
+34,"leopard","cue_validity","lays eggs",8,1754,0
+34,"mosquito","cue_validity","doesn&quotechart carry malaria",9,5766,0.66
+34,"mosquito","cue_validity","attacks swimmers",10,2780,0.66
+34,"tick","cue_validity","doesn&quotechart carry Lyme disease",11,9792,0.38
+34,"peacock","cue_validity","has beautiful feathers",12,3540,0.3
+34,"mosquito","cue_validity","carries malaria",13,6296,0.72
+34,"shark","cue_validity","doesn&quotechart attack swimmers",14,7672,0.11
+34,"lion","cue_validity","has a mane",15,5578,0.31
+34,"robin","cue_validity","lays eggs",16,3225,0.25
+34,"lion","cue_validity","is male",17,3910,0.4
+34,"kangaroo","cue_validity","has spots",18,4749,0
+34,"shark","cue_validity","has a mane",19,2646,0
+34,"tiger","cue_validity","doesn&quotechart eat people",20,4941,0.31
+34,"robin","cue_validity","has beautiful feathers",21,4019,0.27
+34,"peacock","cue_validity","doesn&quotechart have beautiful feathers",22,4489,0.7
+34,"peacock","cue_validity","is juvenile",23,3501,0.12
+34,"duck","cue_validity","has wings",24,5135,0.21
+34,"shark","cue_validity","is white",25,4186,0.14
+34,"cardinal","cue_validity","is red",26,2939,0.19
+34,"tick","cue_validity","carries Lyme disease",27,3877,0.61
+34,"kangaroo","cue_validity","has a pouch",28,4999,0.73
+34,"lion","cue_validity","carries malaria",29,3705,0.08
+34,"shark","cue_validity","lays eggs",30,3667,0
+34,"robin","cue_validity","is female",31,2818,0.15
+34,"leopard","cue_validity","has wings",32,2180,0
+34,"tiger","cue_validity","eats people",33,3112,0.17
+34,"kangaroo","cue_validity","is red",34,4099,0.06
+34,"duck","cue_validity","is full-grown",35,4098,0.1
+34,"lion","cue_validity","lays eggs",36,2161,0
+34,"mosquito","cue_validity","attacks swimmers",37,3847,0.36
+34,"robin","cue_validity","carries malaria",38,2754,0.12
+34,"kangaroo","cue_validity","is juvenile",39,2155,0.36
+34,"swan","cue_validity","is white",40,3536,0.13
+35,"shark","cue_validity","lays eggs",1,2463,0
+35,"peacock","cue_validity","has beautiful feathers",2,1692,0.6
+35,"robin","cue_validity","lays eggs",3,2192,0.62
+35,"duck","cue_validity","has wings",4,1422,0.64
+35,"duck","cue_validity","carries Lyme disease",5,1993,0
+35,"swan","cue_validity","is white",6,1336,0.65
+35,"robin","cue_validity","carries malaria",7,1828,0
+35,"mosquito","cue_validity","lays eggs",8,2216,0.68
+35,"tick","cue_validity","doesn&quotechart carry Lyme disease",9,1839,0
+35,"tiger","cue_validity","has a pouch",10,2761,0
+35,"lion","cue_validity","lays eggs",11,1780,0
+35,"leopard","cue_validity","is full-grown",12,1427,0.56
+35,"mosquito","cue_validity","doesn&quotechart carry malaria",13,2313,0
+35,"cardinal","cue_validity","is red",14,1891,0.69
+35,"mosquito","cue_validity","carries malaria",15,2011,1
+35,"lion","cue_validity","is white",16,2684,0
+35,"peacock","cue_validity","attacks swimmers",17,2451,0.22
+35,"tick","cue_validity","carries Lyme disease",18,2204,1
+35,"mosquito","cue_validity","attacks swimmers",19,2792,0.45
+35,"shark","cue_validity","doesn&quotechart attack swimmers",20,2608,0.16
+35,"kangaroo","cue_validity","is juvenile",21,1724,0
+35,"leopard","cue_validity","has spots",22,2933,0.7
+35,"kangaroo","cue_validity","is juvenile",23,1710,0
+35,"lion","cue_validity","is male",24,1629,0.51
+35,"lion","cue_validity","has a mane",25,1915,0.74
+35,"leopard","cue_validity","has spots",26,1769,0.79
+35,"tick","cue_validity","has a mane",27,2392,0
+35,"shark","cue_validity","has a mane",28,1524,0
+35,"swan","cue_validity","is full-grown",29,2096,0.54
+35,"kangaroo","cue_validity","has spots",30,2160,0
+35,"leopard","cue_validity","has wings",31,1828,0
+35,"kangaroo","cue_validity","has a pouch",32,1584,1
+35,"tiger","cue_validity","doesn&quotechart eat people",33,2160,0.24
+35,"cardinal","cue_validity","has a pouch",34,3555,0
+35,"shark","cue_validity","attacks swimmers",35,2312,0.56
+35,"robin","cue_validity","is female",36,1912,0.53
+35,"peacock","cue_validity","doesn&quotechart have beautiful feathers",37,1664,0.49
+35,"shark","cue_validity","is red",38,2369,0
+35,"shark","cue_validity","is white",39,1714,0.63
+35,"tiger","cue_validity","eats people",40,1720,0.56
+36,"tiger","cue_validity","eats people",1,6018,0.77
+36,"duck","cue_validity","has wings",2,29591,0.33
+36,"shark","cue_validity","attacks swimmers",3,4688,0.29
+36,"mosquito","cue_validity","attacks swimmers",4,3772,0.02
+36,"leopard","cue_validity","carries Lyme disease",5,5302,0.45
+36,"duck","cue_validity","eats people",6,4524,0.01
+36,"lion","cue_validity","lays eggs",7,3416,0
+36,"swan","cue_validity","lays eggs",8,4164,0.84
+36,"mosquito","cue_validity","doesn&quotechart carry malaria",9,3674,0.04
+36,"tiger","cue_validity","has spots",10,7094,0.01
+36,"tiger","cue_validity","doesn&quotechart eat people",11,3926,0.1
+36,"peacock","cue_validity","doesn&quotechart have beautiful feathers",12,10318,0.01
+36,"shark","cue_validity","has a mane",13,5456,0.02
+36,"mosquito","cue_validity","attacks swimmers",14,3052,0.01
+36,"tiger","cue_validity","has a pouch",15,2939,0.01
+36,"robin","cue_validity","lays eggs",16,3100,0.93
+36,"swan","cue_validity","is white",17,2797,0.53
+36,"kangaroo","cue_validity","is juvenile",18,5773,0.02
+36,"shark","cue_validity","lays eggs",19,4652,0.02
+36,"lion","cue_validity","has a mane",20,5089,0.97
+36,"robin","cue_validity","carries malaria",21,17078,0.06
+36,"robin","cue_validity","is juvenile",22,2794,0.05
+36,"shark","cue_validity","is white",23,4345,0.37
+36,"kangaroo","cue_validity","is female",24,3980,0.79
+36,"tick","cue_validity","has wings",25,4808,0.09
+36,"peacock","cue_validity","has a mane",26,3296,0
+36,"leopard","cue_validity","has spots",27,3504,0.97
+36,"lion","cue_validity","has a pouch",28,18704,0.01
+36,"peacock","cue_validity","has beautiful feathers",29,9379,0.96
+36,"tick","cue_validity","doesn&quotechart carry Lyme disease",30,50574,0.08
+36,"leopard","cue_validity","is full-grown",31,12901,0.82
+36,"cardinal","cue_validity","is red",32,2795,0.72
+36,"leopard","cue_validity","has wings",33,2258,0
+36,"tick","cue_validity","carries Lyme disease",34,2833,0.71
+36,"mosquito","cue_validity","carries malaria",35,2515,0.95
+36,"robin","cue_validity","is female",36,2511,0.87
+36,"kangaroo","cue_validity","has a pouch",37,3689,0.98
+36,"lion","cue_validity","is male",38,3613,0.84
+36,"kangaroo","cue_validity","has spots",39,3197,0.01
+36,"shark","cue_validity","doesn&quotechart attack swimmers",40,4101,0.16
+37,"kangaroo","cue_validity","has a pouch",1,5550,0.66
+37,"leopard","cue_validity","has spots",2,3743,0.31
+37,"peacock","cue_validity","has wings",3,3697,0.05
+37,"robin","cue_validity","is female",4,3688,0.02
+37,"lion","cue_validity","is red",5,2231,0
+37,"lion","cue_validity","is male",6,3654,0.03
+37,"mosquito","cue_validity","attacks swimmers",7,3697,0.02
+37,"robin","cue_validity","carries malaria",8,2559,0
+37,"duck","cue_validity","is juvenile",9,2289,0
+37,"shark","cue_validity","lays eggs",10,3360,0.05
+37,"kangaroo","cue_validity","has spots",11,2151,0
+37,"robin","cue_validity","lays eggs",12,3727,0.05
+37,"cardinal","cue_validity","has spots",13,6201,0
+37,"tick","cue_validity","carries Lyme disease",14,3696,0.18
+37,"kangaroo","cue_validity","is juvenile",15,3472,0.02
+37,"swan","cue_validity","is white",16,3824,0.14
+37,"leopard","cue_validity","carries malaria",17,2255,0
+37,"lion","cue_validity","lays eggs",18,1976,0
+37,"swan","cue_validity","has a mane",19,2000,0
+37,"tiger","cue_validity","eats people",20,2073,0.04
+37,"mosquito","cue_validity","carries malaria",21,2568,0.97
+37,"tiger","cue_validity","eats people",22,4511,0.11
+37,"shark","cue_validity","doesn&quotechart attack swimmers",23,5303,0.04
+37,"peacock","cue_validity","has beautiful feathers",24,3650,0.28
+37,"lion","cue_validity","has a mane",25,3367,0.83
+37,"leopard","cue_validity","has wings",26,1991,0
+37,"mosquito","cue_validity","doesn&quotechart carry malaria",27,2367,0
+37,"shark","cue_validity","is white",28,4107,0.12
+37,"leopard","cue_validity","is full-grown",29,2589,0
+37,"peacock","cue_validity","doesn&quotechart have beautiful feathers",30,5065,0.04
+37,"shark","cue_validity","attacks swimmers",31,5543,0.2
+37,"shark","cue_validity","has a mane",32,2367,0
+37,"tiger","cue_validity","has a pouch",33,2055,0
+37,"duck","cue_validity","has wings",34,2307,0.04
+37,"cardinal","cue_validity","is red",35,3773,0.49
+37,"mosquito","cue_validity","attacks swimmers",36,1912,0
+37,"tiger","cue_validity","doesn&quotechart eat people",37,4120,0.04
+37,"shark","cue_validity","has a pouch",38,2103,0
+37,"robin","cue_validity","is female",39,2424,0.02
+37,"tick","cue_validity","doesn&quotechart carry Lyme disease",40,2320,0
+38,"lion","cue_validity","is male",1,3791,0.59
+38,"kangaroo","cue_validity","has a pouch",2,2664,0.82
+38,"swan","cue_validity","attacks swimmers",3,3104,0.2
+38,"tiger","cue_validity","is full-grown",4,2839,0.52
+38,"mosquito","cue_validity","attacks swimmers",5,3089,0.3
+38,"shark","cue_validity","has a mane",6,2336,0.05
+38,"leopard","cue_validity","is white",7,2520,0.32
+38,"leopard","cue_validity","has wings",8,1808,0
+38,"tick","cue_validity","carries Lyme disease",9,3055,0.74
+38,"tiger","cue_validity","doesn&quotechart eat people",10,4095,0.27
+38,"shark","cue_validity","attacks swimmers",11,3716,0.78
+38,"shark","cue_validity","doesn&quotechart attack swimmers",12,1912,0.02
+38,"kangaroo","cue_validity","has a pouch",13,4176,0.75
+38,"lion","cue_validity","lays eggs",14,2087,0
+38,"peacock","cue_validity","has spots",15,5520,0.5
+38,"peacock","cue_validity","doesn&quotechart have beautiful feathers",16,3185,0
+38,"robin","cue_validity","carries malaria",17,2328,0.12
+38,"robin","cue_validity","lays eggs",18,1815,1
+38,"kangaroo","cue_validity","is juvenile",19,1727,0.33
+38,"robin","cue_validity","has beautiful feathers",20,1639,0.62
+38,"kangaroo","cue_validity","has spots",21,1751,0.19
+38,"tick","cue_validity","doesn&quotechart carry Lyme disease",22,3867,0.27
+38,"leopard","cue_validity","is full-grown",23,1885,0.48
+38,"tiger","cue_validity","has a pouch",24,2033,0.12
+38,"shark","cue_validity","lays eggs",25,1696,0.01
+38,"swan","cue_validity","is white",26,4447,0.85
+38,"leopard","cue_validity","has spots",27,1543,0.81
+38,"lion","cue_validity","carries Lyme disease",28,3456,0.34
+38,"mosquito","cue_validity","doesn&quotechart carry malaria",29,2640,0.17
+38,"peacock","cue_validity","has beautiful feathers",30,1909,0.98
+38,"cardinal","cue_validity","is red",31,2003,0.84
+38,"mosquito","cue_validity","carries malaria",32,1591,0.85
+38,"cardinal","cue_validity","is red",33,1839,0.79
+38,"tick","cue_validity","is female",34,3081,0.5
+38,"lion","cue_validity","has a mane",35,1592,0.9
+38,"duck","cue_validity","has wings",36,1536,0.81
+38,"shark","cue_validity","is white",37,2280,0.33
+38,"tiger","cue_validity","eats people",38,1534,0.57
+38,"duck","cue_validity","has wings",39,1433,0.96
+38,"robin","cue_validity","is female",40,1705,0.55
+39,"shark","cue_validity","has spots",1,5596,0.13
+39,"peacock","cue_validity","has beautiful feathers",2,2871,0.35
+39,"kangaroo","cue_validity","has spots",3,2872,0.04
+39,"leopard","cue_validity","has spots",4,2756,0.4
+39,"shark","cue_validity","lays eggs",5,2910,0.22
+39,"shark","cue_validity","is white",6,2424,0.17
+39,"duck","cue_validity","is male",7,2723,0.1
+39,"tiger","cue_validity","has a pouch",8,2777,0.07
+39,"duck","cue_validity","has wings",9,2000,0.4
+39,"cardinal","cue_validity","is red",10,2436,0.43
+39,"tiger","cue_validity","doesn&quotechart eat people",11,2437,0.1
+39,"kangaroo","cue_validity","has a pouch",12,2427,0.62
+39,"leopard","cue_validity","attacks swimmers",13,4594,0.22
+39,"mosquito","cue_validity","has wings",14,2366,0.51
+39,"swan","cue_validity","has a pouch",15,2094,0.2
+39,"kangaroo","cue_validity","is juvenile",16,2771,0.13
+39,"robin","cue_validity","lays eggs",17,2568,0.36
+39,"swan","cue_validity","is white",18,2365,0.35
+39,"mosquito","cue_validity","attacks swimmers",19,2532,0.21
+39,"leopard","cue_validity","has wings",20,3121,0.01
+39,"peacock","cue_validity","has a mane",21,2188,0.05
+39,"lion","cue_validity","has a mane",22,2162,0.7
+39,"shark","cue_validity","attacks swimmers",23,1883,0.57
+39,"lion","cue_validity","lays eggs",24,3300,0.02
+39,"mosquito","cue_validity","doesn&quotechart carry malaria",25,3206,0.15
+39,"tick","cue_validity","carries Lyme disease",26,2780,0.59
+39,"peacock","cue_validity","doesn&quotechart have beautiful feathers",27,4818,0.02
+39,"robin","cue_validity","is red",28,2475,0.21
+39,"tick","cue_validity","doesn&quotechart carry Lyme disease",29,2855,0.02
+39,"tiger","cue_validity","eats people",30,2514,0.47
+39,"shark","cue_validity","doesn&quotechart attack swimmers",31,2640,0.13
+39,"cardinal","cue_validity","carries malaria",32,2810,0.03
+39,"mosquito","cue_validity","carries malaria",33,3579,0.62
+39,"robin","cue_validity","is female",34,2590,0.1
+39,"lion","cue_validity","is male",35,2085,0.18
+39,"tiger","cue_validity","carries Lyme disease",36,2689,0.03
+39,"tick","cue_validity","has beautiful feathers",37,3278,0.02
+39,"robin","cue_validity","carries malaria",38,2200,0.24
+39,"shark","cue_validity","has a mane",39,2839,0.01
+39,"leopard","cue_validity","is full-grown",40,2414,0.12

@@ -1,0 +1,1251 @@
+"","workerid","trial_num","Category","Property","response"
+"1",0,1,"Sharks","lay eggs",0.05
+"2",0,3,"Tigers","dont eat people",0.04
+"3",0,5,"Ticks","dont carry Lyme disease",0.04
+"4",0,6,"Robins","are female",0.5
+"5",0,7,"Lions","have manes",0.84
+"6",0,9,"Ducks","have wings",0.28
+"7",0,10,"Peacocks","dont have beautiful feathers",0.03
+"8",0,11,"Mosquitos","dont carry malaria",0.11
+"9",0,12,"Tigers","have pouches",0.06
+"10",0,13,"Kangaroos","have spots",0.06
+"11",0,16,"Mosquitos","carry malaria",0.86
+"12",0,18,"Robins","lay eggs",0.31
+"13",0,19,"Leopards","have wings",0.04
+"14",0,21,"Sharks","are white",0.3
+"15",0,22,"Sharks","have manes",0.05
+"16",0,23,"Leopards","have spots",0.72
+"17",0,24,"Kangaroos","are juvenile",0.06
+"18",0,27,"Sharks","dont attack swimmers",0.21
+"19",0,28,"Peacocks","have beautiful feathers",0.64
+"20",0,30,"Ticks","carry Lyme disease",0.81
+"21",0,31,"Cardinals","are red",0.61
+"22",0,32,"Kangaroos","have pouches",0.75
+"23",0,33,"Leopards","are full-grown",0.35
+"24",0,34,"Mosquitos","attack swimmers",0
+"25",0,35,"Lions","are male",0.4
+"26",0,36,"Swans","are white",0.35
+"27",0,37,"Robins","carry malaria",0.04
+"28",0,38,"Lions","lay eggs",0
+"29",0,39,"Sharks","attack swimmers",0.62
+"30",0,40,"Tigers","eat people",0.5
+"31",1,1,"Kangaroos","are juvenile",0.19
+"32",1,2,"Mosquitos","attack swimmers",0.95
+"33",1,3,"Tigers","have pouches",0
+"34",1,4,"Mosquitos","dont carry malaria",0.05
+"35",1,5,"Sharks","have manes",0
+"36",1,6,"Tigers","eat people",0.65
+"37",1,8,"Sharks","are white",0.78
+"38",1,10,"Swans","are white",0.98
+"39",1,11,"Cardinals","are red",0.98
+"40",1,12,"Tigers","dont eat people",0.67
+"41",1,14,"Leopards","have spots",1
+"42",1,16,"Sharks","have manes",0
+"43",1,17,"Robins","are female",0.7
+"44",1,18,"Peacocks","dont have beautiful feathers",0.23
+"45",1,19,"Kangaroos","have pouches",1
+"46",1,21,"Leopards","are full-grown",0.68
+"47",1,22,"Ticks","carry Lyme disease",1
+"48",1,23,"Lions","are male",0.68
+"49",1,24,"Leopards","have wings",0
+"50",1,25,"Sharks","attack swimmers",0.96
+"51",1,26,"Ducks","have wings",1
+"52",1,27,"Mosquitos","carry malaria",1
+"53",1,30,"Peacocks","have beautiful feathers",0.99
+"54",1,31,"Lions","have manes",1
+"55",1,33,"Sharks","dont attack swimmers",0.61
+"56",1,34,"Ticks","dont carry Lyme disease",0.26
+"57",1,35,"Lions","lay eggs",0
+"58",1,37,"Robins","carry malaria",0
+"59",1,38,"Kangaroos","have spots",0.04
+"60",1,39,"Sharks","lay eggs",0.94
+"61",1,40,"Robins","lay eggs",0.94
+"62",2,1,"Ducks","have wings",0.73
+"63",2,2,"Mosquitos","dont carry malaria",0.1
+"64",2,3,"Lions","have manes",1
+"65",2,4,"Mosquitos","attack swimmers",0.65
+"66",2,5,"Ticks","carry Lyme disease",1
+"67",2,6,"Leopards","have spots",0.84
+"68",2,8,"Sharks","have manes",0
+"69",2,9,"Robins","are female",0.51
+"70",2,11,"Kangaroos","have pouches",0.82
+"71",2,12,"Kangaroos","have spots",0.08
+"72",2,13,"Leopards","have wings",0
+"73",2,14,"Mosquitos","carry malaria",0.93
+"74",2,15,"Kangaroos","have pouches",0.9
+"75",2,16,"Sharks","dont attack swimmers",0.06
+"76",2,18,"Peacocks","dont have beautiful feathers",0.16
+"77",2,19,"Tigers","have pouches",0.04
+"78",2,21,"Mosquitos","carry malaria",0.93
+"79",2,23,"Sharks","attack swimmers",0.86
+"80",2,24,"Kangaroos","are juvenile",0.64
+"81",2,25,"Cardinals","are red",0.98
+"82",2,26,"Sharks","are white",0.6
+"83",2,27,"Lions","are male",0.53
+"84",2,28,"Lions","lay eggs",0
+"85",2,29,"Sharks","lay eggs",0
+"86",2,30,"Leopards","are full-grown",0.58
+"87",2,31,"Swans","are white",0.94
+"88",2,32,"Tigers","dont eat people",0.27
+"89",2,33,"Robins","lay eggs",1
+"90",2,34,"Peacocks","have beautiful feathers",0.94
+"91",2,35,"Leopards","are full-grown",0.64
+"92",2,36,"Robins","carry malaria",0.06
+"93",2,38,"Ticks","dont carry Lyme disease",0.08
+"94",2,39,"Tigers","eat people",0.87
+"95",3,1,"Kangaroos","have pouches",1
+"96",3,2,"Tigers","dont eat people",0
+"97",3,4,"Ticks","carry Lyme disease",0.98
+"98",3,5,"Ducks","have wings",0.97
+"99",3,6,"Sharks","lay eggs",0.49
+"100",3,7,"Leopards","have wings",0.01
+"101",3,8,"Robins","lay eggs",0.97
+"102",3,9,"Tigers","eat people",0.96
+"103",3,12,"Lions","lay eggs",0.05
+"104",3,13,"Kangaroos","have spots",0.02
+"105",3,14,"Robins","carry malaria",0.77
+"106",3,15,"Sharks","have manes",0.04
+"107",3,16,"Lions","are male",0.56
+"108",3,17,"Mosquitos","dont carry malaria",0.55
+"109",3,19,"Lions","have manes",0.96
+"110",3,21,"Tigers","have pouches",0.05
+"111",3,22,"Robins","are female",0.74
+"112",3,23,"Peacocks","have beautiful feathers",1
+"113",3,24,"Kangaroos","have pouches",0.94
+"114",3,25,"Sharks","dont attack swimmers",0.25
+"115",3,26,"Cardinals","are red",1
+"116",3,27,"Mosquitos","attack swimmers",0
+"117",3,28,"Peacocks","dont have beautiful feathers",0
+"118",3,29,"Sharks","are white",0.84
+"119",3,30,"Kangaroos","are juvenile",0.32
+"120",3,31,"Ticks","dont carry Lyme disease",0.15
+"121",3,33,"Mosquitos","carry malaria",0.93
+"122",3,34,"Sharks","attack swimmers",0.57
+"123",3,35,"Swans","are white",0.95
+"124",3,36,"Leopards","are full-grown",0.74
+"125",3,40,"Leopards","have spots",0.96
+"126",4,2,"Swans","are white",1
+"127",4,3,"Tigers","dont eat people",0.49
+"128",4,5,"Lions","are male",0.63
+"129",4,7,"Mosquitos","dont carry malaria",0.08
+"130",4,8,"Kangaroos","have spots",0
+"131",4,9,"Kangaroos","are juvenile",0.25
+"132",4,10,"Robins","lay eggs",0.76
+"133",4,11,"Leopards","have wings",0
+"134",4,12,"Cardinals","are red",0.8
+"135",4,13,"Sharks","are white",0.52
+"136",4,14,"Sharks","attack swimmers",0.83
+"137",4,15,"Robins","are female",0.69
+"138",4,16,"Tigers","eat people",0.75
+"139",4,17,"Leopards","are full-grown",0.47
+"140",4,19,"Robins","carry malaria",0
+"141",4,21,"Ticks","dont carry Lyme disease",0.18
+"142",4,22,"Mosquitos","carry malaria",0.89
+"143",4,24,"Peacocks","dont have beautiful feathers",0.03
+"144",4,25,"Sharks","have manes",0
+"145",4,26,"Sharks","lay eggs",0
+"146",4,28,"Lions","have manes",1
+"147",4,29,"Sharks","dont attack swimmers",0
+"148",4,30,"Ducks","have wings",0.65
+"149",4,32,"Tigers","have pouches",0
+"150",4,34,"Peacocks","have beautiful feathers",1
+"151",4,36,"Leopards","have spots",0.69
+"152",4,37,"Kangaroos","have pouches",0.88
+"153",4,38,"Lions","lay eggs",0
+"154",4,39,"Mosquitos","attack swimmers",0.42
+"155",4,40,"Ticks","carry Lyme disease",0.8
+"156",5,1,"Sharks","attack swimmers",0.5
+"157",5,3,"Mosquitos","dont carry malaria",0.02
+"158",5,4,"Leopards","have wings",0.01
+"159",5,6,"Ticks","carry Lyme disease",1
+"160",5,8,"Tigers","eat people",0.4
+"161",5,9,"Kangaroos","are juvenile",0
+"162",5,10,"Kangaroos","have pouches",1
+"163",5,11,"Robins","carry malaria",0.14
+"164",5,14,"Peacocks","have beautiful feathers",1
+"165",5,15,"Swans","are white",1
+"166",5,16,"Sharks","are white",0.42
+"167",5,17,"Sharks","have manes",0
+"168",5,19,"Leopards","have spots",1
+"169",5,20,"Ducks","have wings",0.49
+"170",5,21,"Tigers","dont eat people",0.01
+"171",5,22,"Lions","are male",1
+"172",5,23,"Robins","lay eggs",1
+"173",5,24,"Sharks","lay eggs",0.52
+"174",5,25,"Leopards","are full-grown",1
+"175",5,26,"Sharks","dont attack swimmers",1
+"176",5,27,"Peacocks","dont have beautiful feathers",0.55
+"177",5,28,"Robins","are female",0.51
+"178",5,29,"Lions","lay eggs",0.53
+"179",5,30,"Kangaroos","have spots",0.08
+"180",5,31,"Lions","have manes",1
+"181",5,32,"Cardinals","are red",1
+"182",5,33,"Mosquitos","carry malaria",1
+"183",5,34,"Sharks","are white",1
+"184",5,35,"Mosquitos","attack swimmers",0.55
+"185",5,36,"Tigers","have pouches",0.22
+"186",5,40,"Ticks","dont carry Lyme disease",0
+"187",6,1,"Leopards","have wings",0
+"188",6,2,"Cardinals","are red",0.78
+"189",6,3,"Robins","lay eggs",0.5
+"190",6,5,"Sharks","have manes",0
+"191",6,6,"Robins","are female",0.52
+"192",6,7,"Kangaroos","have spots",0.04
+"193",6,11,"Ducks","have wings",0.51
+"194",6,12,"Sharks","lay eggs",0.33
+"195",6,13,"Mosquitos","carry malaria",0.94
+"196",6,15,"Sharks","are white",0.34
+"197",6,16,"Mosquitos","attack swimmers",0.08
+"198",6,17,"Sharks","attack swimmers",0.96
+"199",6,18,"Ticks","dont carry Lyme disease",0.06
+"200",6,19,"Tigers","dont eat people",0.19
+"201",6,21,"Kangaroos","have pouches",0.82
+"202",6,23,"Tigers","eat people",0.32
+"203",6,24,"Kangaroos","are juvenile",0.12
+"204",6,25,"Leopards","are full-grown",0.11
+"205",6,26,"Peacocks","have beautiful feathers",0.89
+"206",6,27,"Lions","lay eggs",0
+"207",6,28,"Swans","are white",0.79
+"208",6,31,"Tigers","have pouches",0
+"209",6,33,"Ticks","carry Lyme disease",0.98
+"210",6,34,"Sharks","dont attack swimmers",0.08
+"211",6,35,"Lions","have manes",0.96
+"212",6,36,"Lions","are male",0.14
+"213",6,37,"Robins","carry malaria",0
+"214",6,38,"Leopards","have spots",0.82
+"215",6,39,"Peacocks","dont have beautiful feathers",0.04
+"216",6,40,"Mosquitos","dont carry malaria",0.04
+"217",7,1,"Swans","are white",0.52
+"218",7,2,"Sharks","attack swimmers",0.7
+"219",7,4,"Kangaroos","are juvenile",0.27
+"220",7,5,"Ticks","dont carry Lyme disease",0.19
+"221",7,6,"Kangaroos","have spots",0.13
+"222",7,7,"Lions","are male",0.38
+"223",7,8,"Kangaroos","have pouches",0.78
+"224",7,10,"Peacocks","dont have beautiful feathers",0.26
+"225",7,12,"Sharks","dont attack swimmers",0.18
+"226",7,13,"Mosquitos","dont carry malaria",0.3
+"227",7,14,"Lions","have manes",0.87
+"228",7,16,"Sharks","are white",0.42
+"229",7,17,"Leopards","are full-grown",0.39
+"230",7,19,"Peacocks","have beautiful feathers",0.63
+"231",7,21,"Leopards","have spots",0.72
+"232",7,22,"Mosquitos","carry malaria",0.56
+"233",7,23,"Tigers","eat people",0.34
+"234",7,25,"Tigers","dont eat people",0.64
+"235",7,26,"Sharks","lay eggs",0.29
+"236",7,27,"Robins","are female",0.58
+"237",7,28,"Tigers","have pouches",0.19
+"238",7,29,"Mosquitos","attack swimmers",0.21
+"239",7,30,"Ducks","have wings",0.59
+"240",7,32,"Robins","carry malaria",0.19
+"241",7,33,"Leopards","have wings",0.26
+"242",7,34,"Cardinals","are red",0.63
+"243",7,37,"Robins","lay eggs",0.11
+"244",7,38,"Sharks","have manes",0.18
+"245",7,39,"Lions","lay eggs",0.2
+"246",7,40,"Ticks","carry Lyme disease",0.7
+"247",8,1,"Ticks","dont carry Lyme disease",0.28
+"248",8,2,"Cardinals","are red",0.61
+"249",8,5,"Lions","are male",0.19
+"250",8,6,"Sharks","lay eggs",0.02
+"251",8,7,"Kangaroos","have pouches",0.7
+"252",8,11,"Ducks","have wings",0.6
+"253",8,12,"Mosquitos","carry malaria",0.62
+"254",8,13,"Robins","carry malaria",0
+"255",8,14,"Tigers","have pouches",0
+"256",8,15,"Tigers","eat people",0.61
+"257",8,16,"Ticks","carry Lyme disease",0.78
+"258",8,19,"Kangaroos","are juvenile",0.24
+"259",8,20,"Sharks","attack swimmers",0.8
+"260",8,21,"Sharks","have manes",0
+"261",8,22,"Kangaroos","have spots",0
+"262",8,23,"Leopards","have spots",0.81
+"263",8,24,"Mosquitos","attack swimmers",0.17
+"264",8,26,"Lions","lay eggs",0
+"265",8,27,"Robins","lay eggs",0.36
+"266",8,28,"Swans","are white",0.51
+"267",8,29,"Lions","have manes",0.32
+"268",8,30,"Leopards","have wings",0
+"269",8,31,"Mosquitos","dont carry malaria",0.05
+"270",8,32,"Peacocks","dont have beautiful feathers",0
+"271",8,33,"Sharks","dont attack swimmers",0
+"272",8,34,"Peacocks","have beautiful feathers",0.73
+"273",8,36,"Sharks","are white",0
+"274",8,38,"Leopards","are full-grown",0.12
+"275",8,39,"Robins","are female",0.11
+"276",8,40,"Tigers","dont eat people",0
+"277",9,1,"Tigers","dont eat people",0.07
+"278",9,2,"Kangaroos","are juvenile",0.22
+"279",9,4,"Leopards","are full-grown",0.13
+"280",9,5,"Sharks","lay eggs",0.04
+"281",9,7,"Tigers","have pouches",0.01
+"282",9,8,"Robins","are female",0.5
+"283",9,9,"Lions","are male",0.41
+"284",9,10,"Sharks","dont attack swimmers",0.33
+"285",9,11,"Ticks","carry Lyme disease",0.88
+"286",9,12,"Sharks","lay eggs",0.29
+"287",9,13,"Swans","are white",0.41
+"288",9,14,"Sharks","attack swimmers",0.66
+"289",9,15,"Sharks","are white",0.11
+"290",9,16,"Robins","lay eggs",0.51
+"291",9,19,"Lions","lay eggs",0.01
+"292",9,20,"Leopards","have wings",0.01
+"293",9,21,"Sharks","have manes",0.02
+"294",9,22,"Mosquitos","carry malaria",0.93
+"295",9,23,"Peacocks","dont have beautiful feathers",0.03
+"296",9,24,"Kangaroos","have pouches",0.92
+"297",9,25,"Cardinals","are red",0.88
+"298",9,26,"Mosquitos","dont carry malaria",0.36
+"299",9,29,"Lions","have manes",0.43
+"300",9,30,"Mosquitos","attack swimmers",0.57
+"301",9,31,"Leopards","have spots",0.73
+"302",9,32,"Tigers","eat people",0.6
+"303",9,33,"Peacocks","have beautiful feathers",0.87
+"304",9,34,"Robins","are female",0.52
+"305",9,35,"Ticks","dont carry Lyme disease",0.25
+"306",9,36,"Ducks","have wings",0.24
+"307",9,37,"Kangaroos","have spots",0.07
+"308",9,38,"Robins","carry malaria",0.05
+"309",10,1,"Robins","lay eggs",0.51
+"310",10,2,"Peacocks","dont have beautiful feathers",0.02
+"311",10,4,"Kangaroos","have spots",0.12
+"312",10,5,"Mosquitos","dont carry malaria",0.02
+"313",10,6,"Mosquitos","carry malaria",0.95
+"314",10,7,"Ticks","carry Lyme disease",0.97
+"315",10,8,"Sharks","are white",0.16
+"316",10,9,"Sharks","attack swimmers",0.9
+"317",10,10,"Robins","carry malaria",0.02
+"318",10,11,"Ducks","have wings",0.23
+"319",10,13,"Tigers","dont eat people",0.04
+"320",10,17,"Tigers","eat people",0.24
+"321",10,18,"Tigers","have pouches",0.01
+"322",10,19,"Sharks","dont attack swimmers",0.02
+"323",10,20,"Cardinals","are red",0.55
+"324",10,22,"Kangaroos","are juvenile",0.1
+"325",10,23,"Sharks","have manes",0.01
+"326",10,24,"Swans","are white",0.36
+"327",10,25,"Leopards","have wings",0.01
+"328",10,26,"Leopards","have spots",0.28
+"329",10,27,"Mosquitos","attack swimmers",0
+"330",10,28,"Sharks","lay eggs",0
+"331",10,30,"Lions","are male",0.18
+"332",10,31,"Lions","have manes",0.77
+"333",10,33,"Robins","are female",0.12
+"334",10,35,"Lions","lay eggs",0.01
+"335",10,36,"Leopards","are full-grown",0.27
+"336",10,37,"Ticks","dont carry Lyme disease",0.05
+"337",10,38,"Kangaroos","have pouches",0.85
+"338",10,39,"Peacocks","have beautiful feathers",0.9
+"339",11,1,"Tigers","eat people",0.98
+"340",11,2,"Tigers","dont eat people",0.01
+"341",11,3,"Sharks","lay eggs",0.5
+"342",11,4,"Leopards","have spots",0.89
+"343",11,6,"Lions","lay eggs",0.01
+"344",11,8,"Sharks","have manes",0.01
+"345",11,11,"Kangaroos","have spots",0.02
+"346",11,12,"Peacocks","have beautiful feathers",0.85
+"347",11,14,"Leopards","are full-grown",0.5
+"348",11,15,"Robins","carry malaria",0.14
+"349",11,16,"Sharks","are white",0.49
+"350",11,17,"Sharks","attack swimmers",0.92
+"351",11,19,"Kangaroos","have pouches",0.93
+"352",11,20,"Sharks","have manes",0.01
+"353",11,21,"Leopards","have wings",0.01
+"354",11,22,"Sharks","dont attack swimmers",0.11
+"355",11,23,"Leopards","have spots",0.9
+"356",11,24,"Mosquitos","attack swimmers",0.98
+"357",11,26,"Mosquitos","dont carry malaria",0.05
+"358",11,27,"Ticks","dont carry Lyme disease",0.03
+"359",11,28,"Peacocks","dont have beautiful feathers",0.01
+"360",11,29,"Ticks","carry Lyme disease",0.98
+"361",11,30,"Lions","have manes",0.99
+"362",11,31,"Ducks","have wings",0.49
+"363",11,32,"Kangaroos","are juvenile",0.48
+"364",11,33,"Cardinals","are red",0.8
+"365",11,34,"Tigers","have pouches",0.03
+"366",11,35,"Robins","are female",0.5
+"367",11,36,"Mosquitos","carry malaria",0.97
+"368",11,37,"Swans","are white",0.76
+"369",11,38,"Lions","are male",0.5
+"370",11,40,"Robins","lay eggs",0.78
+"371",12,1,"Lions","are male",0.5
+"372",12,2,"Kangaroos","are juvenile",0.56
+"373",12,3,"Ticks","dont carry Lyme disease",0.06
+"374",12,4,"Tigers","eat people",0.61
+"375",12,5,"Leopards","have spots",0.75
+"376",12,6,"Mosquitos","attack swimmers",0.86
+"377",12,7,"Robins","lay eggs",0.49
+"378",12,9,"Tigers","dont eat people",0.08
+"379",12,10,"Leopards","have wings",0
+"380",12,12,"Kangaroos","have spots",0.12
+"381",12,14,"Sharks","lay eggs",0.16
+"382",12,15,"Swans","are white",0.64
+"383",12,16,"Cardinals","are red",0.67
+"384",12,17,"Leopards","are full-grown",0.49
+"385",12,18,"Ducks","have wings",0.5
+"386",12,19,"Kangaroos","have pouches",0.84
+"387",12,21,"Tigers","have pouches",0
+"388",12,22,"Peacocks","have beautiful feathers",0.75
+"389",12,24,"Ticks","carry Lyme disease",1
+"390",12,25,"Lions","lay eggs",0
+"391",12,27,"Peacocks","have beautiful feathers",1
+"392",12,28,"Lions","have manes",0.8
+"393",12,29,"Sharks","attack swimmers",0.9
+"394",12,30,"Sharks","are white",0.5
+"395",12,31,"Peacocks","dont have beautiful feathers",0.39
+"396",12,32,"Sharks","dont attack swimmers",0.16
+"397",12,33,"Robins","are female",0.5
+"398",12,34,"Robins","carry malaria",0.04
+"399",12,35,"Mosquitos","dont carry malaria",0.19
+"400",12,36,"Sharks","have manes",0
+"401",12,40,"Mosquitos","carry malaria",0.78
+"402",13,1,"Sharks","are white",0.09
+"403",13,5,"Kangaroos","are juvenile",0.21
+"404",13,6,"Swans","are white",0.69
+"405",13,7,"Swans","are white",0.74
+"406",13,9,"Mosquitos","dont carry malaria",0.11
+"407",13,10,"Robins","lay eggs",0.77
+"408",13,11,"Cardinals","are red",0.87
+"409",13,12,"Peacocks","have beautiful feathers",0.69
+"410",13,13,"Leopards","have spots",0.27
+"411",13,14,"Ticks","dont carry Lyme disease",0.13
+"412",13,15,"Kangaroos","have spots",0
+"413",13,17,"Peacocks","dont have beautiful feathers",0.01
+"414",13,18,"Sharks","have manes",0
+"415",13,19,"Robins","carry malaria",0
+"416",13,20,"Leopards","have wings",0
+"417",13,21,"Ticks","carry Lyme disease",0.23
+"418",13,22,"Lions","are male",0.38
+"419",13,23,"Tigers","have pouches",0
+"420",13,25,"Tigers","eat people",0.16
+"421",13,26,"Tigers","dont eat people",0.35
+"422",13,27,"Kangaroos","have pouches",1
+"423",13,28,"Mosquitos","carry malaria",0.18
+"424",13,29,"Mosquitos","attack swimmers",0
+"425",13,30,"Ducks","have wings",0.69
+"426",13,31,"Sharks","dont attack swimmers",0.2
+"427",13,33,"Leopards","are full-grown",0.38
+"428",13,35,"Lions","lay eggs",0
+"429",13,36,"Sharks","attack swimmers",0.23
+"430",13,37,"Lions","have manes",0.69
+"431",13,38,"Sharks","lay eggs",0
+"432",13,40,"Robins","are female",0.44
+"433",14,1,"Kangaroos","are juvenile",0.02
+"434",14,2,"Mosquitos","carry malaria",0.83
+"435",14,3,"Sharks","attack swimmers",0.81
+"436",14,4,"Robins","lay eggs",0.8
+"437",14,5,"Sharks","lay eggs",0.06
+"438",14,6,"Swans","are white",0.62
+"439",14,8,"Tigers","dont eat people",0.02
+"440",14,10,"Sharks","dont attack swimmers",0.03
+"441",14,11,"Leopards","have wings",0.03
+"442",14,13,"Lions","are male",0.01
+"443",14,14,"Tigers","eat people",0.09
+"444",14,15,"Sharks","have manes",0.01
+"445",14,17,"Robins","are female",0.49
+"446",14,19,"Kangaroos","have spots",0.01
+"447",14,20,"Sharks","are white",0
+"448",14,21,"Peacocks","have beautiful feathers",0.67
+"449",14,23,"Mosquitos","attack swimmers",0.02
+"450",14,24,"Peacocks","dont have beautiful feathers",0.14
+"451",14,25,"Ticks","carry Lyme disease",0.99
+"452",14,26,"Leopards","are full-grown",0.05
+"453",14,27,"Robins","carry malaria",0.01
+"454",14,28,"Kangaroos","have pouches",0.94
+"455",14,29,"Ducks","have wings",0.61
+"456",14,30,"Tigers","have pouches",0
+"457",14,31,"Mosquitos","dont carry malaria",0.11
+"458",14,32,"Lions","have manes",0.81
+"459",14,33,"Leopards","have spots",0.25
+"460",14,34,"Lions","lay eggs",0
+"461",14,35,"Ticks","dont carry Lyme disease",0.04
+"462",14,36,"Cardinals","are red",1
+"463",15,2,"Tigers","eat people",0.22
+"464",15,3,"Tigers","have pouches",0
+"465",15,4,"Sharks","attack swimmers",0.87
+"466",15,5,"Peacocks","dont have beautiful feathers",0.02
+"467",15,6,"Sharks","dont attack swimmers",0.14
+"468",15,7,"Swans","are white",0.24
+"469",15,8,"Leopards","have wings",0
+"470",15,9,"Robins","are female",0.03
+"471",15,10,"Robins","lay eggs",0.36
+"472",15,11,"Kangaroos","have pouches",0.87
+"473",15,12,"Leopards","are full-grown",0.04
+"474",15,13,"Sharks","have manes",0
+"475",15,16,"Lions","are male",0.04
+"476",15,18,"Sharks","are white",0.04
+"477",15,19,"Leopards","have spots",0.29
+"478",15,20,"Lions","lay eggs",0
+"479",15,21,"Kangaroos","have spots",0
+"480",15,22,"Sharks","lay eggs",0
+"481",15,23,"Mosquitos","dont carry malaria",0.05
+"482",15,26,"Peacocks","have beautiful feathers",0.64
+"483",15,27,"Mosquitos","attack swimmers",0.04
+"484",15,28,"Lions","have manes",0.73
+"485",15,29,"Ticks","dont carry Lyme disease",0.03
+"486",15,31,"Mosquitos","carry malaria",0.91
+"487",15,32,"Robins","carry malaria",0
+"488",15,33,"Ticks","carry Lyme disease",0.83
+"489",15,34,"Robins","carry malaria",0
+"490",15,35,"Ducks","have wings",0.17
+"491",15,36,"Tigers","dont eat people",0.06
+"492",15,39,"Cardinals","are red",0.36
+"493",15,40,"Kangaroos","are juvenile",0.03
+"494",16,1,"Mosquitos","attack swimmers",0.5
+"495",16,2,"Robins","lay eggs",0.52
+"496",16,3,"Leopards","have wings",0.02
+"497",16,4,"Cardinals","are red",0.54
+"498",16,5,"Sharks","have manes",0.49
+"499",16,8,"Tigers","eat people",0.98
+"500",16,9,"Ticks","dont carry Lyme disease",0.02
+"501",16,10,"Mosquitos","dont carry malaria",0.02
+"502",16,11,"Tigers","dont eat people",0.5
+"503",16,12,"Ticks","carry Lyme disease",0
+"504",16,13,"Mosquitos","attack swimmers",0.51
+"505",16,14,"Robins","carry malaria",0.03
+"506",16,15,"Leopards","have spots",0.98
+"507",16,16,"Sharks","are white",0.99
+"508",16,17,"Lions","have manes",1
+"509",16,18,"Sharks","lay eggs",0.03
+"510",16,20,"Kangaroos","have pouches",0.96
+"511",16,21,"Swans","are white",1
+"512",16,23,"Mosquitos","carry malaria",0.98
+"513",16,26,"Kangaroos","are juvenile",0.51
+"514",16,27,"Peacocks","have beautiful feathers",0.97
+"515",16,28,"Sharks","dont attack swimmers",0.02
+"516",16,29,"Kangaroos","have spots",0.03
+"517",16,30,"Ducks","have wings",0.97
+"518",16,32,"Robins","lay eggs",0.97
+"519",16,33,"Lions","are male",0.98
+"520",16,34,"Sharks","attack swimmers",0.96
+"521",16,35,"Lions","lay eggs",0
+"522",16,36,"Tigers","have pouches",0
+"523",16,37,"Peacocks","dont have beautiful feathers",0.01
+"524",16,39,"Leopards","are full-grown",0.97
+"525",16,40,"Robins","are female",0.96
+"526",17,1,"Kangaroos","are juvenile",0
+"527",17,2,"Robins","are female",0.47
+"528",17,3,"Tigers","dont eat people",0
+"529",17,4,"Lions","are male",0.71
+"530",17,5,"Cardinals","are red",0.58
+"531",17,6,"Mosquitos","carry malaria",1
+"532",17,7,"Leopards","have spots",0.87
+"533",17,8,"Robins","carry malaria",0
+"534",17,10,"Ticks","carry Lyme disease",0.86
+"535",17,11,"Sharks","are white",0.54
+"536",17,13,"Lions","lay eggs",0
+"537",17,14,"Peacocks","have beautiful feathers",0.75
+"538",17,15,"Kangaroos","have pouches",0.82
+"539",17,16,"Mosquitos","dont carry malaria",0.01
+"540",17,17,"Swans","are white",0.99
+"541",17,19,"Sharks","dont attack swimmers",0.53
+"542",17,20,"Peacocks","dont have beautiful feathers",0.09
+"543",17,23,"Sharks","lay eggs",0
+"544",17,24,"Robins","lay eggs",0.62
+"545",17,25,"Sharks","have manes",0
+"546",17,26,"Kangaroos","have spots",0
+"547",17,27,"Tigers","have pouches",0
+"548",17,29,"Leopards","are full-grown",0.48
+"549",17,32,"Mosquitos","attack swimmers",0.33
+"550",17,33,"Ticks","dont carry Lyme disease",0.19
+"551",17,34,"Tigers","eat people",0.5
+"552",17,35,"Sharks","are white",0.49
+"553",17,36,"Lions","have manes",0.87
+"554",17,37,"Ducks","have wings",0.85
+"555",17,38,"Mosquitos","carry malaria",0.88
+"556",17,39,"Leopards","have wings",0.18
+"557",17,40,"Sharks","attack swimmers",0.52
+"558",18,1,"Robins","are female",0.13
+"559",18,2,"Sharks","attack swimmers",0.77
+"560",18,4,"Mosquitos","attack swimmers",0.06
+"561",18,6,"Ticks","carry Lyme disease",0.85
+"562",18,7,"Robins","lay eggs",0.59
+"563",18,9,"Cardinals","are red",0.8
+"564",18,10,"Tigers","have pouches",0.09
+"565",18,11,"Ticks","dont carry Lyme disease",0.17
+"566",18,12,"Ticks","carry Lyme disease",0.86
+"567",18,13,"Sharks","dont attack swimmers",0.11
+"568",18,14,"Leopards","have wings",0.02
+"569",18,17,"Kangaroos","are juvenile",0.09
+"570",18,18,"Mosquitos","dont carry malaria",0.17
+"571",18,19,"Leopards","are full-grown",0.12
+"572",18,20,"Swans","are white",0.8
+"573",18,21,"Peacocks","dont have beautiful feathers",0.05
+"574",18,22,"Lions","lay eggs",0.02
+"575",18,23,"Mosquitos","carry malaria",0.6
+"576",18,25,"Kangaroos","have pouches",0.87
+"577",18,26,"Tigers","dont eat people",0.07
+"578",18,27,"Tigers","eat people",0.51
+"579",18,28,"Sharks","are white",0.57
+"580",18,29,"Peacocks","have beautiful feathers",0.83
+"581",18,30,"Ducks","have wings",0.57
+"582",18,31,"Robins","carry malaria",0.05
+"583",18,33,"Sharks","lay eggs",0.05
+"584",18,34,"Lions","have manes",0.76
+"585",18,35,"Lions","are male",0.15
+"586",18,37,"Kangaroos","have spots",0.03
+"587",18,39,"Leopards","have spots",0.64
+"588",18,40,"Sharks","have manes",0.02
+"589",19,1,"Lions","lay eggs",0
+"590",19,2,"Robins","are female",0.49
+"591",19,3,"Mosquitos","dont carry malaria",0
+"592",19,4,"Ticks","carry Lyme disease",1
+"593",19,5,"Leopards","have wings",0
+"594",19,6,"Leopards","have wings",0.01
+"595",19,7,"Robins","carry malaria",0.01
+"596",19,8,"Cardinals","are red",0.98
+"597",19,9,"Leopards","are full-grown",0.98
+"598",19,10,"Ticks","dont carry Lyme disease",0.01
+"599",19,11,"Kangaroos","are juvenile",0.99
+"600",19,12,"Mosquitos","attack swimmers",0.01
+"601",19,14,"Sharks","lay eggs",0.02
+"602",19,16,"Swans","are white",0.97
+"603",19,17,"Leopards","have spots",0.99
+"604",19,18,"Robins","lay eggs",0.98
+"605",19,19,"Sharks","have manes",0.01
+"606",19,21,"Kangaroos","have spots",0.01
+"607",19,22,"Peacocks","have beautiful feathers",0.99
+"608",19,23,"Ducks","have wings",0.97
+"609",19,25,"Tigers","eat people",0.5
+"610",19,26,"Sharks","are white",0.77
+"611",19,27,"Mosquitos","carry malaria",0.98
+"612",19,28,"Sharks","attack swimmers",0.49
+"613",19,30,"Sharks","dont attack swimmers",0.4
+"614",19,31,"Lions","have manes",0.97
+"615",19,32,"Tigers","have pouches",0.02
+"616",19,33,"Tigers","dont eat people",0.56
+"617",19,35,"Lions","are male",0.98
+"618",19,37,"Peacocks","dont have beautiful feathers",0.02
+"619",19,39,"Kangaroos","have pouches",0.97
+"620",20,1,"Sharks","have manes",0
+"621",20,3,"Ticks","dont carry Lyme disease",0
+"622",20,4,"Kangaroos","are juvenile",0.06
+"623",20,6,"Sharks","lay eggs",0
+"624",20,7,"Leopards","are full-grown",0.04
+"625",20,8,"Mosquitos","dont carry malaria",0
+"626",20,11,"Kangaroos","have pouches",0.75
+"627",20,12,"Kangaroos","have spots",0
+"628",20,13,"Tigers","have pouches",0
+"629",20,14,"Leopards","have spots",0.73
+"630",20,15,"Sharks","dont attack swimmers",0
+"631",20,16,"Tigers","eat people",0.5
+"632",20,17,"Lions","are male",0.03
+"633",20,18,"Robins","carry malaria",0
+"634",20,19,"Ticks","carry Lyme disease",0.94
+"635",20,20,"Robins","are female",0.02
+"636",20,21,"Ticks","carry Lyme disease",0.95
+"637",20,22,"Leopards","have wings",0
+"638",20,23,"Sharks","are white",0.04
+"639",20,25,"Swans","are white",0.5
+"640",20,26,"Peacocks","dont have beautiful feathers",0
+"641",20,27,"Mosquitos","attack swimmers",0
+"642",20,28,"Tigers","dont eat people",0
+"643",20,29,"Sharks","attack swimmers",0.89
+"644",20,31,"Ducks","have wings",0.17
+"645",20,32,"Lions","have manes",0.78
+"646",20,33,"Peacocks","have beautiful feathers",0.81
+"647",20,34,"Ducks","have wings",0.26
+"648",20,35,"Robins","lay eggs",0.09
+"649",20,36,"Lions","lay eggs",0
+"650",20,37,"Cardinals","are red",0.76
+"651",20,38,"Mosquitos","carry malaria",0.93
+"652",20,39,"Kangaroos","have spots",0
+"653",21,1,"Leopards","have spots",0.46
+"654",21,3,"Mosquitos","attack swimmers",0.24
+"655",21,4,"Ticks","carry Lyme disease",0.44
+"656",21,5,"Ducks","have wings",0.35
+"657",21,6,"Swans","are white",0.25
+"658",21,7,"Kangaroos","are juvenile",0.04
+"659",21,8,"Kangaroos","have pouches",0.69
+"660",21,10,"Lions","lay eggs",0
+"661",21,11,"Tigers","dont eat people",0.03
+"662",21,12,"Lions","have manes",0.06
+"663",21,13,"Mosquitos","carry malaria",0.56
+"664",21,14,"Leopards","have wings",0
+"665",21,15,"Lions","are male",0.17
+"666",21,17,"Kangaroos","have spots",0
+"667",21,20,"Ticks","dont carry Lyme disease",0.11
+"668",21,22,"Tigers","have pouches",0
+"669",21,23,"Sharks","are white",0.25
+"670",21,25,"Robins","carry malaria",0
+"671",21,26,"Peacocks","dont have beautiful feathers",0.4
+"672",21,27,"Sharks","lay eggs",0
+"673",21,28,"Leopards","are full-grown",0.48
+"674",21,29,"Tigers","eat people",0.38
+"675",21,30,"Robins","are female",0.31
+"676",21,31,"Robins","lay eggs",0.75
+"677",21,32,"Cardinals","are red",0.72
+"678",21,34,"Tigers","eat people",0.72
+"679",21,35,"Mosquitos","dont carry malaria",0.08
+"680",21,36,"Sharks","attack swimmers",0.93
+"681",21,37,"Peacocks","have beautiful feathers",0.64
+"682",21,39,"Sharks","dont attack swimmers",0
+"683",21,40,"Sharks","have manes",0.02
+"684",22,1,"Leopards","have spots",0.23
+"685",22,2,"Peacocks","dont have beautiful feathers",0.05
+"686",22,3,"Sharks","attack swimmers",0.47
+"687",22,4,"Peacocks","have beautiful feathers",0.39
+"688",22,5,"Lions","lay eggs",0
+"689",22,7,"Ticks","dont carry Lyme disease",0
+"690",22,8,"Leopards","have wings",0
+"691",22,9,"Kangaroos","are juvenile",0.17
+"692",22,11,"Robins","carry malaria",0.04
+"693",22,12,"Lions","are male",0.13
+"694",22,13,"Kangaroos","have spots",0
+"695",22,14,"Sharks","have manes",0
+"696",22,15,"Mosquitos","dont carry malaria",0
+"697",22,16,"Sharks","lay eggs",0
+"698",22,17,"Swans","are white",0.26
+"699",22,18,"Robins","are female",0.17
+"700",22,19,"Kangaroos","have pouches",0.8
+"701",22,20,"Tigers","dont eat people",0
+"702",22,23,"Sharks","are white",0.19
+"703",22,24,"Tigers","eat people",0.29
+"704",22,25,"Leopards","are full-grown",0.15
+"705",22,27,"Lions","have manes",0.68
+"706",22,28,"Cardinals","are red",0.13
+"707",22,29,"Tigers","have pouches",0
+"708",22,30,"Ducks","have wings",0.27
+"709",22,31,"Mosquitos","carry malaria",1
+"710",22,32,"Peacocks","have beautiful feathers",0.47
+"711",22,33,"Robins","lay eggs",0.35
+"712",22,34,"Sharks","dont attack swimmers",0.05
+"713",22,36,"Leopards","are full-grown",0.1
+"714",22,37,"Ticks","carry Lyme disease",1
+"715",22,40,"Mosquitos","attack swimmers",0
+"716",23,1,"Tigers","dont eat people",0.01
+"717",23,4,"Lions","are male",0.33
+"718",23,5,"Leopards","are full-grown",0.67
+"719",23,6,"Peacocks","dont have beautiful feathers",0.17
+"720",23,7,"Kangaroos","are juvenile",0.54
+"721",23,10,"Mosquitos","attack swimmers",0.22
+"722",23,12,"Sharks","have manes",0
+"723",23,13,"Robins","lay eggs",0.51
+"724",23,14,"Swans","are white",0.67
+"725",23,15,"Peacocks","have beautiful feathers",1
+"726",23,16,"Mosquitos","carry malaria",1
+"727",23,17,"Cardinals","are red",0.66
+"728",23,18,"Mosquitos","dont carry malaria",0
+"729",23,19,"Ducks","have wings",0.5
+"730",23,20,"Lions","lay eggs",0
+"731",23,21,"Lions","have manes",1
+"732",23,22,"Sharks","dont attack swimmers",0
+"733",23,23,"Leopards","have spots",0.47
+"734",23,24,"Sharks","attack swimmers",1
+"735",23,25,"Sharks","lay eggs",0
+"736",23,27,"Robins","are female",0.5
+"737",23,28,"Kangaroos","have pouches",1
+"738",23,29,"Leopards","are full-grown",0.49
+"739",23,30,"Tigers","have pouches",0
+"740",23,31,"Kangaroos","have spots",0
+"741",23,33,"Ticks","carry Lyme disease",1
+"742",23,34,"Leopards","have wings",0
+"743",23,35,"Sharks","are white",0.51
+"744",23,36,"Sharks","are white",0.5
+"745",23,38,"Robins","carry malaria",0
+"746",23,39,"Tigers","eat people",1
+"747",23,40,"Ticks","dont carry Lyme disease",0
+"748",24,1,"Lions","lay eggs",0.01
+"749",24,2,"Sharks","lay eggs",0.01
+"750",24,4,"Robins","lay eggs",0.49
+"751",24,5,"Kangaroos","have pouches",0.83
+"752",24,6,"Lions","are male",0.26
+"753",24,7,"Robins","carry malaria",0.02
+"754",24,8,"Ducks","have wings",0.24
+"755",24,9,"Kangaroos","have spots",0.05
+"756",24,10,"Leopards","have wings",0.01
+"757",24,12,"Leopards","are full-grown",0.07
+"758",24,13,"Lions","have manes",0.8
+"759",24,15,"Ticks","carry Lyme disease",0.84
+"760",24,16,"Peacocks","dont have beautiful feathers",0.14
+"761",24,18,"Swans","are white",0.56
+"762",24,22,"Peacocks","have beautiful feathers",0.7
+"763",24,23,"Leopards","have spots",0.68
+"764",24,24,"Sharks","are white",0.16
+"765",24,25,"Mosquitos","carry malaria",0.97
+"766",24,26,"Mosquitos","attack swimmers",0.22
+"767",24,27,"Sharks","have manes",0.03
+"768",24,29,"Mosquitos","dont carry malaria",0.25
+"769",24,30,"Ticks","dont carry Lyme disease",0.21
+"770",24,32,"Cardinals","are red",0.61
+"771",24,33,"Kangaroos","are juvenile",0.19
+"772",24,34,"Tigers","have pouches",0.03
+"773",24,35,"Sharks","attack swimmers",0.59
+"774",24,36,"Tigers","dont eat people",0.48
+"775",24,37,"Sharks","dont attack swimmers",0.57
+"776",24,38,"Tigers","eat people",0.48
+"777",24,39,"Robins","are female",0.48
+"778",25,1,"Cardinals","are red",0.03
+"779",25,2,"Lions","have manes",0.83
+"780",25,3,"Sharks","have manes",0
+"781",25,4,"Lions","lay eggs",0.01
+"782",25,5,"Lions","are male",0.01
+"783",25,6,"Leopards","have spots",0.67
+"784",25,7,"Peacocks","dont have beautiful feathers",0
+"785",25,8,"Kangaroos","have pouches",0.86
+"786",25,10,"Sharks","lay eggs",0.01
+"787",25,11,"Sharks","are white",0
+"788",25,12,"Mosquitos","dont carry malaria",0.01
+"789",25,13,"Tigers","eat people",0.48
+"790",25,15,"Mosquitos","carry malaria",0.81
+"791",25,16,"Robins","carry malaria",0.01
+"792",25,17,"Tigers","dont eat people",0.01
+"793",25,18,"Ticks","dont carry Lyme disease",0
+"794",25,19,"Leopards","have wings",0
+"795",25,21,"Kangaroos","are juvenile",0
+"796",25,24,"Leopards","are full-grown",0
+"797",25,25,"Robins","are female",0
+"798",25,27,"Sharks","dont attack swimmers",0
+"799",25,28,"Swans","are white",0.06
+"800",25,29,"Tigers","have pouches",0
+"801",25,30,"Ticks","carry Lyme disease",0.98
+"802",25,31,"Robins","lay eggs",0.5
+"803",25,32,"Robins","carry malaria",0
+"804",25,34,"Mosquitos","attack swimmers",0
+"805",25,36,"Kangaroos","have spots",0
+"806",25,37,"Sharks","attack swimmers",0.8
+"807",25,39,"Ducks","have wings",0.08
+"808",25,40,"Peacocks","have beautiful feathers",0.9
+"809",26,2,"Ticks","carry Lyme disease",0.76
+"810",26,4,"Sharks","attack swimmers",0.6
+"811",26,6,"Sharks","are white",0.36
+"812",26,7,"Leopards","are full-grown",0.24
+"813",26,8,"Robins","lay eggs",0.34
+"814",26,9,"Mosquitos","attack swimmers",0.14
+"815",26,11,"Lions","have manes",0.65
+"816",26,12,"Robins","lay eggs",0.43
+"817",26,14,"Swans","are white",0.48
+"818",26,15,"Leopards","have spots",0.61
+"819",26,16,"Ticks","dont carry Lyme disease",0.3
+"820",26,17,"Kangaroos","have spots",0.15
+"821",26,18,"Leopards","have wings",0.01
+"822",26,19,"Mosquitos","dont carry malaria",0.36
+"823",26,20,"Robins","carry malaria",0.33
+"824",26,21,"Ducks","have wings",0.53
+"825",26,22,"Kangaroos","have pouches",0.87
+"826",26,25,"Lions","lay eggs",0
+"827",26,27,"Sharks","have manes",0
+"828",26,28,"Tigers","eat people",0.51
+"829",26,29,"Sharks","dont attack swimmers",0.41
+"830",26,30,"Peacocks","dont have beautiful feathers",0.14
+"831",26,31,"Tigers","dont eat people",0.37
+"832",26,32,"Cardinals","are red",0.52
+"833",26,33,"Robins","are female",0.42
+"834",26,34,"Lions","are male",0.48
+"835",26,35,"Sharks","lay eggs",0
+"836",26,36,"Mosquitos","carry malaria",0.61
+"837",26,37,"Tigers","have pouches",0
+"838",26,38,"Kangaroos","are juvenile",0.39
+"839",26,39,"Peacocks","have beautiful feathers",0.76
+"840",27,1,"Sharks","lay eggs",0.09
+"841",27,2,"Mosquitos","attack swimmers",0.1
+"842",27,4,"Sharks","are white",0.64
+"843",27,5,"Tigers","dont eat people",0.16
+"844",27,6,"Kangaroos","have pouches",0.78
+"845",27,8,"Kangaroos","have spots",0.06
+"846",27,9,"Lions","lay eggs",0.16
+"847",27,11,"Swans","are white",0.46
+"848",27,12,"Cardinals","are red",0.49
+"849",27,13,"Lions","are male",0.51
+"850",27,14,"Tigers","have pouches",0.13
+"851",27,15,"Mosquitos","carry malaria",0.85
+"852",27,16,"Kangaroos","are juvenile",0.06
+"853",27,17,"Leopards","have spots",0.5
+"854",27,19,"Peacocks","dont have beautiful feathers",0.09
+"855",27,20,"Leopards","are full-grown",0.11
+"856",27,21,"Ticks","carry Lyme disease",0.53
+"857",27,22,"Sharks","have manes",0.08
+"858",27,24,"Lions","have manes",0.12
+"859",27,25,"Tigers","eat people",0.07
+"860",27,26,"Robins","are female",0.08
+"861",27,27,"Robins","lay eggs",0.49
+"862",27,28,"Sharks","lay eggs",0.13
+"863",27,29,"Robins","carry malaria",0.14
+"864",27,30,"Ticks","dont carry Lyme disease",0.49
+"865",27,32,"Sharks","attack swimmers",0.79
+"866",27,33,"Kangaroos","are juvenile",0.13
+"867",27,34,"Leopards","have wings",0.09
+"868",27,36,"Sharks","dont attack swimmers",0.12
+"869",27,37,"Mosquitos","dont carry malaria",0.13
+"870",27,38,"Ducks","have wings",0.49
+"871",27,40,"Peacocks","have beautiful feathers",0.14
+"872",28,1,"Swans","are white",0.6
+"873",28,2,"Tigers","have pouches",0.01
+"874",28,3,"Ducks","have wings",0.58
+"875",28,5,"Peacocks","have beautiful feathers",0.73
+"876",28,6,"Kangaroos","are juvenile",0.03
+"877",28,7,"Kangaroos","have pouches",0.94
+"878",28,8,"Sharks","have manes",0.07
+"879",28,9,"Mosquitos","dont carry malaria",0.08
+"880",28,10,"Ticks","carry Lyme disease",0.85
+"881",28,11,"Peacocks","dont have beautiful feathers",0.26
+"882",28,12,"Tigers","dont eat people",0.04
+"883",28,14,"Sharks","are white",0.5
+"884",28,15,"Robins","are female",0.3
+"885",28,17,"Leopards","are full-grown",0.52
+"886",28,18,"Ticks","dont carry Lyme disease",0.08
+"887",28,20,"Robins","lay eggs",0.34
+"888",28,21,"Sharks","lay eggs",0.41
+"889",28,22,"Sharks","attack swimmers",0.48
+"890",28,23,"Lions","have manes",0.49
+"891",28,24,"Mosquitos","carry malaria",0.85
+"892",28,25,"Lions","lay eggs",0.01
+"893",28,26,"Cardinals","are red",0.62
+"894",28,29,"Leopards","have wings",0
+"895",28,31,"Mosquitos","attack swimmers",0.47
+"896",28,32,"Robins","carry malaria",0.03
+"897",28,33,"Leopards","have spots",0.64
+"898",28,34,"Lions","are male",0.23
+"899",28,35,"Sharks","dont attack swimmers",0.33
+"900",28,37,"Tigers","eat people",0.49
+"901",28,40,"Kangaroos","have spots",0.06
+"902",29,1,"Lions","lay eggs",0
+"903",29,2,"Lions","have manes",0.95
+"904",29,3,"Leopards","are full-grown",0.36
+"905",29,4,"Leopards","are full-grown",0.29
+"906",29,5,"Mosquitos","dont carry malaria",0.5
+"907",29,7,"Mosquitos","carry malaria",0.86
+"908",29,8,"Ticks","carry Lyme disease",0.84
+"909",29,9,"Lions","are male",0.2
+"910",29,10,"Ticks","dont carry Lyme disease",0.06
+"911",29,11,"Robins","are female",0.24
+"912",29,12,"Ducks","have wings",0.31
+"913",29,13,"Peacocks","dont have beautiful feathers",0.01
+"914",29,14,"Tigers","eat people",0.59
+"915",29,15,"Sharks","have manes",0.02
+"916",29,16,"Robins","lay eggs",0.59
+"917",29,17,"Tigers","have pouches",0
+"918",29,18,"Leopards","have wings",0.01
+"919",29,19,"Kangaroos","have pouches",0.76
+"920",29,20,"Kangaroos","are juvenile",0.25
+"921",29,22,"Sharks","lay eggs",0.04
+"922",29,24,"Tigers","dont eat people",0.3
+"923",29,25,"Sharks","are white",0.06
+"924",29,26,"Swans","are white",0.61
+"925",29,29,"Cardinals","are red",0.38
+"926",29,31,"Robins","carry malaria",0
+"927",29,32,"Leopards","have spots",0.55
+"928",29,33,"Kangaroos","have spots",0.14
+"929",29,34,"Mosquitos","attack swimmers",0
+"930",29,35,"Sharks","dont attack swimmers",0.33
+"931",29,36,"Sharks","attack swimmers",0.84
+"932",29,37,"Sharks","have manes",0
+"933",29,38,"Peacocks","have beautiful feathers",0.61
+"934",29,40,"Robins","lay eggs",0.29
+"935",30,1,"Lions","lay eggs",0
+"936",30,2,"Robins","lay eggs",0.82
+"937",30,3,"Swans","are white",0.84
+"938",30,4,"Mosquitos","attack swimmers",0.07
+"939",30,5,"Tigers","eat people",0.74
+"940",30,6,"Mosquitos","dont carry malaria",0
+"941",30,7,"Kangaroos","are juvenile",0.5
+"942",30,8,"Leopards","have wings",0
+"943",30,9,"Lions","are male",0.5
+"944",30,10,"Ducks","have wings",0.67
+"945",30,11,"Sharks","are white",0.42
+"946",30,12,"Mosquitos","carry malaria",1
+"947",30,16,"Sharks","have manes",0
+"948",30,17,"Sharks","lay eggs",0.46
+"949",30,18,"Leopards","are full-grown",0.5
+"950",30,19,"Leopards","have spots",0.92
+"951",30,21,"Ticks","carry Lyme disease",0.98
+"952",30,22,"Sharks","attack swimmers",0.88
+"953",30,24,"Tigers","have pouches",0.01
+"954",30,26,"Peacocks","dont have beautiful feathers",0.5
+"955",30,27,"Cardinals","are red",0.79
+"956",30,29,"Kangaroos","have spots",0
+"957",30,30,"Cardinals","are red",0.77
+"958",30,31,"Robins","carry malaria",0.01
+"959",30,32,"Ticks","dont carry Lyme disease",0.01
+"960",30,34,"Robins","are female",0.57
+"961",30,35,"Peacocks","have beautiful feathers",0.51
+"962",30,37,"Tigers","dont eat people",0.25
+"963",30,38,"Kangaroos","have pouches",1
+"964",30,39,"Sharks","dont attack swimmers",0.24
+"965",30,40,"Lions","have manes",0.97
+"966",31,1,"Robins","are female",0.04
+"967",31,2,"Lions","have manes",0.66
+"968",31,3,"Tigers","eat people",0.22
+"969",31,4,"Peacocks","have beautiful feathers",0.2
+"970",31,5,"Sharks","have manes",0.15
+"971",31,6,"Tigers","have pouches",0
+"972",31,7,"Leopards","have wings",0
+"973",31,8,"Sharks","lay eggs",0.04
+"974",31,9,"Mosquitos","attack swimmers",0.1
+"975",31,10,"Leopards","have spots",0.43
+"976",31,12,"Ticks","dont carry Lyme disease",0.04
+"977",31,13,"Ducks","have wings",0.11
+"978",31,16,"Kangaroos","are juvenile",0.04
+"979",31,17,"Mosquitos","carry malaria",0.83
+"980",31,18,"Sharks","are white",0.08
+"981",31,19,"Lions","lay eggs",0
+"982",31,20,"Kangaroos","have pouches",0.89
+"983",31,21,"Swans","are white",0.1
+"984",31,22,"Kangaroos","have spots",0
+"985",31,23,"Sharks","lay eggs",0.03
+"986",31,24,"Leopards","are full-grown",0.04
+"987",31,27,"Robins","carry malaria",0
+"988",31,28,"Lions","have manes",0.38
+"989",31,31,"Lions","are male",0.03
+"990",31,32,"Tigers","dont eat people",0
+"991",31,33,"Cardinals","are red",0.09
+"992",31,34,"Peacocks","dont have beautiful feathers",0
+"993",31,35,"Robins","lay eggs",0.07
+"994",31,36,"Sharks","dont attack swimmers",0
+"995",31,38,"Ticks","carry Lyme disease",0.84
+"996",31,39,"Sharks","attack swimmers",0.96
+"997",31,40,"Mosquitos","dont carry malaria",0.14
+"998",32,1,"Kangaroos","have spots",0.01
+"999",32,2,"Mosquitos","attack swimmers",0.28
+"1000",32,3,"Tigers","eat people",0.86
+"1001",32,4,"Mosquitos","carry malaria",0.97
+"1002",32,5,"Kangaroos","are juvenile",0.47
+"1003",32,6,"Sharks","lay eggs",0.01
+"1004",32,7,"Lions","are male",0.48
+"1005",32,8,"Tigers","have pouches",0.01
+"1006",32,10,"Peacocks","have beautiful feathers",0.98
+"1007",32,12,"Ticks","carry Lyme disease",0.98
+"1008",32,13,"Lions","have manes",0.84
+"1009",32,14,"Robins","carry malaria",0.01
+"1010",32,17,"Sharks","dont attack swimmers",0.1
+"1011",32,18,"Lions","lay eggs",0
+"1012",32,19,"Kangaroos","have pouches",0.99
+"1013",32,20,"Ducks","have wings",0.55
+"1014",32,21,"Peacocks","dont have beautiful feathers",0.02
+"1015",32,23,"Swans","are white",0.46
+"1016",32,25,"Leopards","have wings",0.01
+"1017",32,26,"Swans","are white",0.5
+"1018",32,27,"Sharks","have manes",0.01
+"1019",32,28,"Robins","lay eggs",0.64
+"1020",32,29,"Cardinals","are red",0.84
+"1021",32,30,"Leopards","are full-grown",0.46
+"1022",32,34,"Robins","are female",0.5
+"1023",32,35,"Ticks","dont carry Lyme disease",0.11
+"1024",32,36,"Mosquitos","dont carry malaria",0.12
+"1025",32,37,"Tigers","dont eat people",0.16
+"1026",32,38,"Sharks","are white",0.47
+"1027",32,39,"Leopards","have spots",0.79
+"1028",32,40,"Sharks","attack swimmers",0.79
+"1029",33,2,"Lions","have manes",0.85
+"1030",33,3,"Kangaroos","have pouches",0.76
+"1031",33,4,"Robins","lay eggs",0.45
+"1032",33,5,"Tigers","dont eat people",0.41
+"1033",33,6,"Cardinals","are red",0.7
+"1034",33,8,"Sharks","have manes",0
+"1035",33,9,"Sharks","attack swimmers",0.69
+"1036",33,10,"Leopards","have wings",0.19
+"1037",33,12,"Mosquitos","dont carry malaria",0.1
+"1038",33,13,"Ticks","carry Lyme disease",0.17
+"1039",33,14,"Sharks","dont attack swimmers",0.24
+"1040",33,15,"Peacocks","dont have beautiful feathers",0.13
+"1041",33,16,"Ducks","have wings",0.58
+"1042",33,18,"Kangaroos","have spots",0.3
+"1043",33,19,"Tigers","have pouches",0
+"1044",33,20,"Leopards","are full-grown",0.61
+"1045",33,21,"Kangaroos","are juvenile",0.5
+"1046",33,22,"Sharks","lay eggs",0
+"1047",33,23,"Leopards","have spots",0.58
+"1048",33,25,"Tigers","eat people",0.42
+"1049",33,26,"Lions","are male",0.71
+"1050",33,27,"Ticks","dont carry Lyme disease",0
+"1051",33,29,"Robins","are female",0.52
+"1052",33,30,"Mosquitos","attack swimmers",0.19
+"1053",33,31,"Swans","are white",0.63
+"1054",33,32,"Mosquitos","carry malaria",0.66
+"1055",33,33,"Lions","lay eggs",0
+"1056",33,35,"Peacocks","have beautiful feathers",0.79
+"1057",33,37,"Robins","are female",0.58
+"1058",33,38,"Sharks","are white",0.48
+"1059",33,39,"Leopards","have wings",0.12
+"1060",33,40,"Robins","carry malaria",0.18
+"1061",34,1,"Tigers","have pouches",0
+"1062",34,4,"Leopards","are full-grown",0.19
+"1063",34,5,"Sharks","attack swimmers",0.27
+"1064",34,7,"Leopards","have spots",0.67
+"1065",34,9,"Mosquitos","dont carry malaria",0.66
+"1066",34,10,"Mosquitos","attack swimmers",0.66
+"1067",34,11,"Ticks","dont carry Lyme disease",0.38
+"1068",34,12,"Peacocks","have beautiful feathers",0.3
+"1069",34,13,"Mosquitos","carry malaria",0.72
+"1070",34,14,"Sharks","dont attack swimmers",0.11
+"1071",34,15,"Lions","have manes",0.31
+"1072",34,16,"Robins","lay eggs",0.25
+"1073",34,17,"Lions","are male",0.4
+"1074",34,18,"Kangaroos","have spots",0
+"1075",34,19,"Sharks","have manes",0
+"1076",34,20,"Tigers","dont eat people",0.31
+"1077",34,22,"Peacocks","dont have beautiful feathers",0.7
+"1078",34,24,"Ducks","have wings",0.21
+"1079",34,25,"Sharks","are white",0.14
+"1080",34,26,"Cardinals","are red",0.19
+"1081",34,27,"Ticks","carry Lyme disease",0.61
+"1082",34,28,"Kangaroos","have pouches",0.73
+"1083",34,30,"Sharks","lay eggs",0
+"1084",34,31,"Robins","are female",0.15
+"1085",34,32,"Leopards","have wings",0
+"1086",34,33,"Tigers","eat people",0.17
+"1087",34,36,"Lions","lay eggs",0
+"1088",34,37,"Mosquitos","attack swimmers",0.36
+"1089",34,38,"Robins","carry malaria",0.12
+"1090",34,39,"Kangaroos","are juvenile",0.36
+"1091",34,40,"Swans","are white",0.13
+"1092",35,1,"Sharks","lay eggs",0
+"1093",35,2,"Peacocks","have beautiful feathers",0.6
+"1094",35,3,"Robins","lay eggs",0.62
+"1095",35,4,"Ducks","have wings",0.64
+"1096",35,6,"Swans","are white",0.65
+"1097",35,7,"Robins","carry malaria",0
+"1098",35,9,"Ticks","dont carry Lyme disease",0
+"1099",35,10,"Tigers","have pouches",0
+"1100",35,11,"Lions","lay eggs",0
+"1101",35,12,"Leopards","are full-grown",0.56
+"1102",35,13,"Mosquitos","dont carry malaria",0
+"1103",35,14,"Cardinals","are red",0.69
+"1104",35,15,"Mosquitos","carry malaria",1
+"1105",35,18,"Ticks","carry Lyme disease",1
+"1106",35,19,"Mosquitos","attack swimmers",0.45
+"1107",35,20,"Sharks","dont attack swimmers",0.16
+"1108",35,21,"Kangaroos","are juvenile",0
+"1109",35,22,"Leopards","have spots",0.7
+"1110",35,23,"Kangaroos","are juvenile",0
+"1111",35,24,"Lions","are male",0.51
+"1112",35,25,"Lions","have manes",0.74
+"1113",35,26,"Leopards","have spots",0.79
+"1114",35,28,"Sharks","have manes",0
+"1115",35,30,"Kangaroos","have spots",0
+"1116",35,31,"Leopards","have wings",0
+"1117",35,32,"Kangaroos","have pouches",1
+"1118",35,33,"Tigers","dont eat people",0.24
+"1119",35,35,"Sharks","attack swimmers",0.56
+"1120",35,36,"Robins","are female",0.53
+"1121",35,37,"Peacocks","dont have beautiful feathers",0.49
+"1122",35,39,"Sharks","are white",0.63
+"1123",35,40,"Tigers","eat people",0.56
+"1124",36,1,"Tigers","eat people",0.77
+"1125",36,2,"Ducks","have wings",0.33
+"1126",36,3,"Sharks","attack swimmers",0.29
+"1127",36,4,"Mosquitos","attack swimmers",0.02
+"1128",36,7,"Lions","lay eggs",0
+"1129",36,9,"Mosquitos","dont carry malaria",0.04
+"1130",36,11,"Tigers","dont eat people",0.1
+"1131",36,12,"Peacocks","dont have beautiful feathers",0.01
+"1132",36,13,"Sharks","have manes",0.02
+"1133",36,14,"Mosquitos","attack swimmers",0.01
+"1134",36,15,"Tigers","have pouches",0.01
+"1135",36,16,"Robins","lay eggs",0.93
+"1136",36,17,"Swans","are white",0.53
+"1137",36,18,"Kangaroos","are juvenile",0.02
+"1138",36,19,"Sharks","lay eggs",0.02
+"1139",36,20,"Lions","have manes",0.97
+"1140",36,21,"Robins","carry malaria",0.06
+"1141",36,23,"Sharks","are white",0.37
+"1142",36,27,"Leopards","have spots",0.97
+"1143",36,29,"Peacocks","have beautiful feathers",0.96
+"1144",36,30,"Ticks","dont carry Lyme disease",0.08
+"1145",36,31,"Leopards","are full-grown",0.82
+"1146",36,32,"Cardinals","are red",0.72
+"1147",36,33,"Leopards","have wings",0
+"1148",36,34,"Ticks","carry Lyme disease",0.71
+"1149",36,35,"Mosquitos","carry malaria",0.95
+"1150",36,36,"Robins","are female",0.87
+"1151",36,37,"Kangaroos","have pouches",0.98
+"1152",36,38,"Lions","are male",0.84
+"1153",36,39,"Kangaroos","have spots",0.01
+"1154",36,40,"Sharks","dont attack swimmers",0.16
+"1155",37,1,"Kangaroos","have pouches",0.66
+"1156",37,2,"Leopards","have spots",0.31
+"1157",37,4,"Robins","are female",0.02
+"1158",37,6,"Lions","are male",0.03
+"1159",37,7,"Mosquitos","attack swimmers",0.02
+"1160",37,8,"Robins","carry malaria",0
+"1161",37,10,"Sharks","lay eggs",0.05
+"1162",37,11,"Kangaroos","have spots",0
+"1163",37,12,"Robins","lay eggs",0.05
+"1164",37,14,"Ticks","carry Lyme disease",0.18
+"1165",37,15,"Kangaroos","are juvenile",0.02
+"1166",37,16,"Swans","are white",0.14
+"1167",37,18,"Lions","lay eggs",0
+"1168",37,20,"Tigers","eat people",0.04
+"1169",37,21,"Mosquitos","carry malaria",0.97
+"1170",37,22,"Tigers","eat people",0.11
+"1171",37,23,"Sharks","dont attack swimmers",0.04
+"1172",37,24,"Peacocks","have beautiful feathers",0.28
+"1173",37,25,"Lions","have manes",0.83
+"1174",37,26,"Leopards","have wings",0
+"1175",37,27,"Mosquitos","dont carry malaria",0
+"1176",37,28,"Sharks","are white",0.12
+"1177",37,29,"Leopards","are full-grown",0
+"1178",37,30,"Peacocks","dont have beautiful feathers",0.04
+"1179",37,31,"Sharks","attack swimmers",0.2
+"1180",37,32,"Sharks","have manes",0
+"1181",37,33,"Tigers","have pouches",0
+"1182",37,34,"Ducks","have wings",0.04
+"1183",37,35,"Cardinals","are red",0.49
+"1184",37,36,"Mosquitos","attack swimmers",0
+"1185",37,37,"Tigers","dont eat people",0.04
+"1186",37,39,"Robins","are female",0.02
+"1187",37,40,"Ticks","dont carry Lyme disease",0
+"1188",38,1,"Lions","are male",0.59
+"1189",38,2,"Kangaroos","have pouches",0.82
+"1190",38,5,"Mosquitos","attack swimmers",0.3
+"1191",38,6,"Sharks","have manes",0.05
+"1192",38,8,"Leopards","have wings",0
+"1193",38,9,"Ticks","carry Lyme disease",0.74
+"1194",38,10,"Tigers","dont eat people",0.27
+"1195",38,11,"Sharks","attack swimmers",0.78
+"1196",38,12,"Sharks","dont attack swimmers",0.02
+"1197",38,13,"Kangaroos","have pouches",0.75
+"1198",38,14,"Lions","lay eggs",0
+"1199",38,16,"Peacocks","dont have beautiful feathers",0
+"1200",38,17,"Robins","carry malaria",0.12
+"1201",38,18,"Robins","lay eggs",1
+"1202",38,19,"Kangaroos","are juvenile",0.33
+"1203",38,21,"Kangaroos","have spots",0.19
+"1204",38,22,"Ticks","dont carry Lyme disease",0.27
+"1205",38,23,"Leopards","are full-grown",0.48
+"1206",38,24,"Tigers","have pouches",0.12
+"1207",38,25,"Sharks","lay eggs",0.01
+"1208",38,26,"Swans","are white",0.85
+"1209",38,27,"Leopards","have spots",0.81
+"1210",38,29,"Mosquitos","dont carry malaria",0.17
+"1211",38,30,"Peacocks","have beautiful feathers",0.98
+"1212",38,31,"Cardinals","are red",0.84
+"1213",38,32,"Mosquitos","carry malaria",0.85
+"1214",38,33,"Cardinals","are red",0.79
+"1215",38,35,"Lions","have manes",0.9
+"1216",38,36,"Ducks","have wings",0.81
+"1217",38,37,"Sharks","are white",0.33
+"1218",38,38,"Tigers","eat people",0.57
+"1219",38,39,"Ducks","have wings",0.96
+"1220",38,40,"Robins","are female",0.55
+"1221",39,2,"Peacocks","have beautiful feathers",0.35
+"1222",39,3,"Kangaroos","have spots",0.04
+"1223",39,4,"Leopards","have spots",0.4
+"1224",39,5,"Sharks","lay eggs",0.22
+"1225",39,6,"Sharks","are white",0.17
+"1226",39,8,"Tigers","have pouches",0.07
+"1227",39,9,"Ducks","have wings",0.4
+"1228",39,10,"Cardinals","are red",0.43
+"1229",39,11,"Tigers","dont eat people",0.1
+"1230",39,12,"Kangaroos","have pouches",0.62
+"1231",39,16,"Kangaroos","are juvenile",0.13
+"1232",39,17,"Robins","lay eggs",0.36
+"1233",39,18,"Swans","are white",0.35
+"1234",39,19,"Mosquitos","attack swimmers",0.21
+"1235",39,20,"Leopards","have wings",0.01
+"1236",39,22,"Lions","have manes",0.7
+"1237",39,23,"Sharks","attack swimmers",0.57
+"1238",39,24,"Lions","lay eggs",0.02
+"1239",39,25,"Mosquitos","dont carry malaria",0.15
+"1240",39,26,"Ticks","carry Lyme disease",0.59
+"1241",39,27,"Peacocks","dont have beautiful feathers",0.02
+"1242",39,29,"Ticks","dont carry Lyme disease",0.02
+"1243",39,30,"Tigers","eat people",0.47
+"1244",39,31,"Sharks","dont attack swimmers",0.13
+"1245",39,33,"Mosquitos","carry malaria",0.62
+"1246",39,34,"Robins","are female",0.1
+"1247",39,35,"Lions","are male",0.18
+"1248",39,38,"Robins","carry malaria",0.24
+"1249",39,39,"Sharks","have manes",0.01
+"1250",39,40,"Leopards","are full-grown",0.12
