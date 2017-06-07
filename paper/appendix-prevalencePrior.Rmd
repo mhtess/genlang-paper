@@ -1,0 +1,59 @@
+# Appendix A: Structure in the prevalence prior
+
+
+
+## Extended Analysis of Priors: Conceptual Structure 
+
+The pragmatics model only has a prevalence-based semantics yet it is able to explain the flexibility in truth judgments for a diverse range of generic statements.
+Conceptual accounts of generic statements have looked beyond prevalence, to structured knowledge representations as the critical factor in generic meaning [@Leslie2007; @Prasada2013]. 
+We can interrogate our formal model to see what is driving its predictions, and, in particular, we ask whether structured representations might effect our model after all.
+
+For a given property,  the prior distribution on prevalence $P(x)$ is a single distribution.
+However, the distribution may be structured as the result of deeper conceptual knowledge. 
+For instance, if participants believe that some kinds have a causal mechanism that \emph{could} give rise to the property, while kinds others do not, then we would expect $P(x)$ to be structured as a mixture distribution [cf., @Griffiths2005].
+We know that prior knowledge plays a fundamental role in leading the pragmatics model to endorse or reject generics. 
+We now explore the hypothesis that this is at least partly because these priors are structured into two components: kinds that \emph{can} have the property and other kinds that \emph{cannot}.
+We explore this possibility by formulating a mixture model for the prevalence priors, and exploring how well it fits the prior data elicited in Expt.~1a.
+
+### Data analysis
+
+If a kind can have the property, we assume the prevalence follows a Beta distribution with mean $\gamma$ and concentration $\xi$. 
+If a kind cannot, we assume the prevalence is a Delta distribution, with all probability mass at 0\%. ^[There are other ways to formulate the second component ("the kind doesn't have a causal mechanism that would give rise to  the property") of the prior. 
+It could reflect accidental causes of the property, in which case, the prevalence could be a distribution that allows for non-zero prevalence. 
+While an interesting possibility, its full consideration is beyond the scope of this article.
+]
+The relative contribution of these two components is governed by mixture parameter $\phi$, inferred from the data.^[This is similar in spirit to Hurdle Models of epidemiological data, where the observed count of zeros is often substantially greater than one would expect from standard models, such as the Poisson [e.g., adverse events to vaccines; @hurdleModels])]
+We think of $\phi$ the \emph{potential of a property to be present in a kind} and $\gamma$ is the \emph{mean prevalence of the property among the kinds with the potential to have it}.\footnote{
+We note that $\phi$ is not what other authors have described as \emph{cue validity} [@Beach1964; Khemlani2012], or $P(K \mid F)$. 
+ $\phi$ is a mixture component in the prior distribution over prevalence: $P(F\mid K$). 
+Cue validity and prevalence are related via Bayes Rule': $P(K \mid F) \propto P(F \mid K) \cdot P(K)$. 
+}
+If this model is correct, the prevalences given by participants would then be distributed as: $P(d) = \phi \cdot \text{Beta}(d \mid \gamma,\xi)+ (1 - \phi) \cdot \delta_{d=0}$. 
+
+We performed Bayesian inference over this model, given the observed prevalence data, to examine how well the model's posterior predictive distribution reconstructs the prevalence prior data.
+We put uninformative priors over all the parameters, $\phi \sim \text{Uniform}(0,1)$, 
+$\gamma \sim \text{Uniform}(0,1)$, $\xi \sim \text{Uniform}(0, 50)$, 
+and performed Bayesian inference separately for each property using the Metropolis-Hastings algorithm 
+collecting 50,000 samples removing the first 25,000 iterations for burn-in.
+
+### Results
+
+Estimates of the mixture parameter $\phi$ and the mean of the "has the potential" component $\gamma$ for each property are shown in Figure \ref{fig:commongenerics}a.
+We see significant diversity among our properties in both parameters, corresponding to priors over prevalence with dramatically different shapes (insets). 
+
+Again, we look to the posterior predictive distribution to validate the structured prior model.
+Using the model with its inferred parameters, we generate prevalence judgments for different properties and compare that to the empirical counts. 
+We discretize the prevalence values of both the model and the data to 12 discrete bins: $\{[0-0.01), (0.01-0.05), (0.05-0.15), (0.15-0.25),  ..., (0.75-0.85), (0.85-0.95), (0.95-1]\}$.
+This statistical model reproduces the prior elicitation data very well ($r^2 = 0.94$), while a model that assumes just a single generative component fails ($r^2 = 0.14$). This is strong evidence in support of a structured prior. 
+
+The other test of this hypothesis is to re-examine the truth judgments from Expt.~1b using the pragmatics model with the inferred structured priors (as opposed to bootstrapping the raw empirical counts). 
+We find the same correspondence to the empirical truth judgments data ($r^2 = 0.98$).
+This provides further evidence that the prior distribution over prevalence $P(x)$ is structured.
+The implication of this finding is that conceptual structure may indeed find its way into generic judgments, but via the prevalence prior, rather than directly in the semantics of the generic. We return to this idea in the General Discussion.
+
+\begin{figure}
+\centering
+    \includegraphics[width=0.6\columnwidth]{figs/postPred-priorModel.pdf}
+    \caption{Posterior predictive distribution of the structured, statistical model thought to give rise to the human data in the prior elicitation task. The close alignment between model and data suggests the assumption of a structured prior is warranted.}
+  \label{fig:pp-priorModel}
+\end{figure}

@@ -1,0 +1,237 @@
+```{r echo = F}
+library(langcog)
+library(tidyverse)
+library(ggthemes)
+library(jsonlite)
+theme_set(theme_few())
+project.path <- "~/Documents/research/communicating-generalizations/"
+data.path <- "data/generics/endorsement/"
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+```
+
+# Appendix B: Measuring cue validity
+
+In considering generalizations about categories, or *generic language*, theories try to formalize the truth conditions by analogy to quantified statements (e.g., *some*, *most*, ...).
+Here, the prevalence of the feature, or $P(f \mid k)$, is the important quantity.
+Quantifiers can be described as conditions on prevalence: $\denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}$.
+The question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
+Hard-constraints on $\theta$ are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice.
+
+Some (who?) have noted, however, that the inverse probability, the probability of the kind $k$ given the feature $f$ --- $P(k \mid f)$ --- might be able to save statistical-based approaches [@Leslie2007].
+This inverse probability, referred to as *cue validity*, encodes the diagnosticity of the feature for the kind.
+For example, after learning that an entity *carries malaria*, the probability that the entity is a *mosquito* is very high. 
+
+An approach based only on cue-validity would be insufficient because of cases like *Dogs have four legs*. 
+Tons of animals have four legs, and so the diagnositicity of having four legs for a dog is very low. 
+However, one could argue for some integration of the two probabilities --- prevalence and cue validity.
+This is often tested by measuring prevalence and cue validity and using both measurements as predictors of generic endorsement in a logistic-regression [@Khemlani2012; @Prasada2013].
+
+As noted in the main text, cue validity can be derived from a prevalence prior composed of a finite number of kinds.
+This relationship follows from Bayes' Rule:
+
+$$
+P(x \in k | x \in f) = \frac{P(x \in f \mid x \in k) \cdot P(x \in k)}{\sum_{k'}P(x \in f \mid x \in k') \cdot P(x \in k')}
+$$
+
+where $x$ is an arbitrary entity, $k$ is a kind represented as a collection of entities in the kind, and $f$ is a feature represented as a collection of entities with the feature.
+However, in a generative model composed of a potentially infinite number of kinds, the cue validity of a feature for a particular kind is 0. 
+In our mixture model formulation of the prevalence prior, we explicitly represent the prevalence prior as a generative model with a potentially infinite number of kinds (see Appendix A for more details).
+In this formulation, there is a mixture parameter $\phi$ that we consider the *potential of the property to be present in a kind*. 
+This is generalization of cue validity to the case of an infinite number of kinds. 
+
+## Cue validity is a special case of the prevalence prior structure
+
+## Measuring cue validity
+
+Measuring cue validity involves collecting participants' judgments that rely upon the probability of the kind given the feature.
+There are at least two conceivable ways of trying to measure cue validity.
+One way is ask participants directly about the probability (or likelihood, odds, etc...) of the kind given the feature, using a likert scale or slider.
+This is the paradigm used by @Khemlani2012 and @Prasada2013.
+We'll call this approach the "direct question" approach.
+Another way is to supply participants with the feature alone and have them generate the kind.
+We'll call this approach the "free production" approach. 
+
+What criteria can we use to validate one measurement over the other?
+We propose three boundary cases *a priori* that the measurement should be able to satisfy.
+\begin{enumerate}
+\item{Completely diagnostic features: We contend there are a number of features that only one (or very small) of categories contain. Examples include: \emph{carrying malaria} (mosquitos), \emph{carrying Lyme disease} (ticks), \emph{having manes} (lions), \emph{having pouches} (kangaroos). The cue validity of these features for the corresponding categories should be very high (close to 1).}
+\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{having wings} (leopards), \emph{laying eggs} (lions).}
+\item{Completely undiagnostic features: We contend there are a number of features that almost every category contains. Examples include: \emph{being female / male}, \emph{being juvenile}. The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
+\end{enumerate}
+
+We collected cue validity ratings by running both a direct question and a free production experiment.
+For the free production experiment, the cue validity is the proportion of responses of the target category (e.g., "mosquitos") for the property (e.g., "carries malaria").
+Of primary interest is the measurement for the boundary conditions described above.
+
+
+## Experimental materials
+
+Materials were the same for both experiments.
+They were a collection of familiar properties and animal categories used in Expt. X (endorsement of generalizations about categories) described in the main text.
+There were twenty-one properties in total.
+
+## Direct question experiment
+
+### Method
+#### Participants
+
+We recruited 40 participants from Amazon's Mechanical Turk.
+Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
+The experiment took on average 5 minutes and participants were compensated \$0.75 for their work.
+
+#### Procedure
+
+Following the procedure in @Khemlani2012 and @Prasada2013, participants were presented with prompts of the following form:
+
+\begin{quotation}
+Imagine you come across a thing that \textsc{f}.
+What are the odds that it is a \textsc{k}?
+\end{quotation}
+
+Participants responded using a slider bar with endpoints labeled "unlikely" and "likely". 
+The slider appeared with no handle present; participants had to click on the slider for the slider handle to appear.
+The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/generics/speaker_familiar-kinds/cue-validity-1.html}
+
+Participants completed the thirty target trials (corresponding to the thirty generic statements used in Expt. X) in addition to ten filler trials (total number of trials = 40).
+The filler trials were made up of random category -- property pairings.
+All trials were presented in a randomized order.
+
+## Free production experiment
+
+### Method
+#### Participants
+
+We recruited 50 participants from Amazon's Mechanical Turk.
+Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
+The experiment took on average 3 minutes and participants were compensated \$0.40 for their work.
+
+
+#### Procedure
+
+On each trial, participants were presented with prompts of the following form:
+
+\begin{quotation}
+Imagine you come across a thing (animal or insect) that \textsc{f}.
+What do you think it is?
+\end{quotation}
+
+Participants responded by filling in a text box with their response.
+There were twenty-one trials in total, one for each property.
+Trials were presented in a randomized order.
+The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/generics/speaker_familiar-kinds/cue-validity-2-freeProduction.html}
+
+## Results
+
+To process the free production, we forced all characters to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
+As well, "mosquito" was a commonly mispelled label; we counted anything that started with "mosqu", "mesqu", "misqu", "mosiq" as "mosquito". 
+
+
+
+```{r directQuestion, echo = F}
+d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
+
+diagnostic.props <- data.frame(
+  item = c("kangaroo has a pouch", "lion has a mane", 
+           "mosquito carries malaria", "tick carries Lyme disease"),
+  type = "diagnostic"
+)
+
+undiagnostic.props <- data.frame(
+  item = c("kangaroo is juvenile", "lion is male", "robin is female", "leopard is full-grown"),
+  type = "undiagnostic"
+)
+
+false.props <- data.frame(
+  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
+  type = "false"
+)
+
+target.items <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
+
+d.cv.targets <- left_join(
+  d.cv.dq %>%
+    mutate(property = gsub("&quotechar", "'", property), 
+         item = paste(category, property)),
+  target.items) %>%
+  filter(!is.na(type)) %>%
+  mutate(type = factor(type, levels = c("diagnostic", "undiagnostic", "false")))
+
+d.cv.summary <- d.cv.targets %>%
+  group_by(item, type) %>%
+  multi_boot_standard(column = "response")
+
+
+ggplot(d.cv.summary, aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_bar(stat = 'identity', position = position_dodge())+
+  geom_errorbar(position = position_dodge())+
+  facet_wrap(~type, scales = 'free')+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  theme(axis.text.x = element_text(angle = 90))+
+  xlab("")+
+  ylab("Probability rating of cue validity")+
+  ggtitle("Direct question paradigm")
+
+```
+
+
+
+
+
+
+```{r freeProduction, echo = F}
+d.cv.fp <- read.csv(paste(project.path, 
+                          data.path, "cue-validity-2-freeProduction-trials.csv", sep = ""))
+
+mosquito.mispellings <- c("mosqu", "mesqu", "misqu", "mosiq")
+
+d.cv.fp <- left_join(
+  d.cv.fp %>%
+ # rename(property = category) %>%
+  mutate(response = tolower(response),
+         response = gsub(" ", "", response),
+         response = ifelse(substr(response, 1, 5) %in% mosquito.mispellings, "mosquito", response),
+         response = ifelse(response == "deertick", "tick", response),
+         response = ifelse(substrRight(response, 1) == "s",
+                           substr(response, 1, nchar(response)-1), response),
+         property = gsub("&quotechar", "'", property),
+         item = paste(response, property)),
+    target.items)
+
+d.cv.fp.summary <- left_join(
+  target.items,
+  d.cv.fp %>%
+    rename(category = response) %>%
+    group_by(property) %>%
+    mutate(n = n()) %>%
+    filter(!(is.na(type))) %>%
+    group_by(category, property, item) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials)
+  ) %>%
+  mutate(prop = ifelse(is.na(prop), 0.01, prop)) %>%
+  mutate(type = factor(type, levels = c("diagnostic", "undiagnostic", "false")))
+
+ggplot(d.cv.fp.summary, aes ( x = item, y = prop))+
+  geom_bar(stat = 'identity', position = position_dodge())+
+  facet_wrap(~type, scales = 'free')+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  theme(axis.text.x = element_text(angle = 90))+
+  xlab("")+
+  ylab("Proportion produced target category")+
+  ggtitle("Free production paradigm")
+
+```
+
+
+
+
+```{r dq.histogram, fig.height = 4, eval = F}
+ggplot(d.cv.targets, aes( x = response ))+
+  geom_histogram() + 
+  facet_wrap(~type) + 
+  scale_x_continuous(breaks = c(0, 0.5, 1))
+```
+

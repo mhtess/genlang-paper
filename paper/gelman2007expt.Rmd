@@ -1,0 +1,161 @@
+
+# Prevalence is a Predictive Probability
+
+So far, we have shown that property prevalence is sufficient to formalize the semantics of generic statements as an underspecified scalar denotation.
+But what is property prevalence?
+If generic language is truly conveying generalizations, it would be useful for it to reflect expectations, not just the current statistics in the world.
+The current frequency of a property is often a good indicator of future frequency, yet statistics can be distorted by spurious events.
+The causal history of a property may be more or less important for implying the property will be present in future situations.
+Does generic language communicate prevalence in terms of past frequency or future expectations?
+
+To answer this, we adopt an experimental paradigm used by @Gelman2007 to show that generic language is sensitive to theory-based considerations.
+In the original paradigm, participants are told a story about a novel creature (e.g. \emph{dobles}) and a property of that kind (e.g., \emph{having claws}).
+Participants are then either told that the creature was born with the property or that it acquired the property through extrinsic means (e.g., by finding claws and putting them on). 
+Then, participants are told about an event that either causes the property to disappear (e.g., they drank a chemical and their claws fell off) or that leaves the property intact, and are asked whether or not the generic (e.g. \emph{Dobles have claws}) applies.
+The original finding was that adult judgments were sensitive to the origins of the property (i.e., born vs. acquired), and insensitive to the outcome of the event (i.e., property maintained vs. lost): Participants fully-endorsed the generic when it was inborn, and rejected it when it was acquired, regardless of the current prevalence of the property.
+
+In Experiment 3a, we use the same basic paradigm to measure \emph{predictive prevalence}: participants' expectations about future instances of the kind.
+We explore the predictions of our truth judgments model, assuming that \emph{predictive prevalence} is what is being communicated.
+In Experiment 3b, we use a truth judgment task similar to @Gelman2007 and compare participants' judgments to the model's predicted endorsements.
+
+## Experiment 3a: Predictive Prevalence Elicitation
+
+The design of this experiment is based on a study reported in @Gelman2007 with some slight modification.
+%The original study was done on 14 undergraduates.
+
+### Method
+
+#### Participants
+We recruited 80 participants over MTurk.  
+The experiment took about 3 minutes and participants were compensated \$0.35.
+
+#### Procedure and materials
+
+On each trial, participants read a vignette about a novel creature. For instance,
+\begin{quote}
+These are dobles. [picture of 10 dobles with claws] Here is how they grew. They grew up with claws. First they were born, then they got bigger, then they were full size. [picture of a doble with claws, getting bigger and bigger; in some vignettes, the animal was first shown hatching out of an egg with the relevant property already visible] Then one day they drank a bad chemical. They got very sick and this is how they looked. [picture of 10 dobles without claws]
+\end{quote}
+The trial proceeded by participants reading the text, and clicking a button to continue to the next part of the story (at which time, the images changed according to the example above).
+
+Participants saw 4 trials: 2 in which the creatures are born with the property (\textbf{intrinsic origins}), and 2 in which the creatures are shown discovering and acquiring the property (\textbf{extrinsic origins} e.g., painting themselves brown).
+This was crossed with either the creatures drinking a "bad chemical" and losing the feature, or drinking a "yummy drink" and maintaining the feature.
+The outcome of this event determined the final presentation of images that the participant saw (e.g., either 10 dobles with claws or 10 without).
+
+While this final screen was present, we measured \emph{predictive prevalence} by telling participants: "A new doble was born today. When it becomes full grown, how likely is it that it would have claws?"
+Participants responded using sliders ranging from "very unlikely" to "very likely".
+
+We used 2 different types of properties: colors (e.g. \emph{Lorches are green.}) and body parts (e.g. \emph{Dobles have claws}).
+For each type of property, there were approximately 8 different exemplars (different colors or different body parts for different creatures).
+The creatures were either birds, bugs, or fish, with randomly sampled physical dimensions (e.g., sizes of body or tail).
+The experiment in full can be viewed at \url{http://stanford.edu/~mtessler/generics/experiments/predictive/predictive-elicitation-1-elicitation.html}.
+
+
+### Results and truth judgment predictions
+
+The average predicted prevalences for the 4 experimental conditions are shown in Table \ref{tab:predictive}.
+We observe a main effect of origins, such that when participants read that the creatures had the property from birth, future creatures  are much more likely to have the property as compared to when the property is acquired.
+We see that, in our paradigm, participants are also sensitive to the outcome of the event. %This is surprising because @Gelman2007 observed no effect of the event outcome on generic endorsement.
+When participants observe a creature who loses the property by drinking a chemical, they report future members of the category are less likely to have the property.
+This inference may be driven by inferences about the property (e.g., that the property could be an unstable property, if you can lose it simply by drinking something) or by inferences about the event (e.g., participants may believe this "chemical drinking" event is a relatively normal event, and thus it could happen in the future).
+
+\begin{table}
+\centering
+\begin{tabular}{l|l|r|r|r}
+\hline
+Origins & Event Outcome & Collapsed Mean [95\% CI]  & Color  [95\% CI] & Body Part [95\% CI] \\
+\hline
+Extrinsic & Lost  & 0.15 [0.10, 0.21]& 0.13 [0.07, 0.21] & 0.17 [0.09, 0.26] \\
+\hline
+Extrinsic & Maintained & 0.32 [0.24, 0.39] & 0.24 [0.16, 0.35] & 0.38 [0.27, 0.50] \\
+\hline
+Intrinsic & Lost  & 0.69 [0.62, 0.76] & 0.73 [0.63, 0.83] & 0.66 [0.56, 0.75] \\
+\hline
+Intrinsic & Maintained  &0.95 [0.94, 0.97] & 0.96 [0.94, 0.98] & 0.94 [0.91, 0.97] \\
+\hline
+\end{tabular}
+\caption{Predicted prevalence for the four experimental conditions of Expt.~3a. Right two columns show the summaries broken down by the two types of properties used in the experiment.}
+\label{tab:predictive}
+\end{table}
+
+We use these predicted probabilities as the prevalence $x$ that the speaker model is trying to communicate: $S_2(u\mid x)$, and examine the model's predicted truth judgments.
+We explore the model's predictions for each origin and event outcome, as well as when the data is split by property type (color vs. body parts). 
+For priors $P(x)$, we use the body part and color priors elicited in Expt.~2a.
+We see that the model predictions track closely the predicted prevalence (Figure \ref{fig:dobles}a, top, compare with predicted prevalence in Table \ref{tab:predictive}).
+This is because both color and body part priors are relatively broad, and hence when the property is (predicted to be) more prevalent, the generic has a higher probability of applying (see schematic predictions from Figure \ref{fig:schematic-unif} "have wings" for comparison).
+We also see that the model predicts a subtle by-item difference, such that the influence of the event outcome (lost or maintained) on generic endorsement is predicted to be stronger for body parts than for color terms (Figure \ref{fig:dobles}a, bottom).
+This prediction is mostly due to the predicted prevalence for the conflict conditions (intrinsic-lost and extrinsic-maintained) being subtly different (Table \ref{tab:predictive}, right-most columns).
+
+<!--
+%\footnote{Note that our model's predictions do not deviate substantially from the predicted prevalence because there are only two different priors being used, and the shapes of those distributions do not vary appreciably (see Figure \ref{fig:prior2}). \ndg{huh? two priors does not explain why the model tracks predicted prevalence. instead it's that the priors are broad and unimodal or something right?}
+%}.
+-->
+
+Our model thus makes two novel predictions for generic endorsement in the paradigm by @Gelman2007.
+We predict that in addition to the main effect of origins, we should see a second main effect of event outcome.
+Second, we predict that this effect should be slightly stronger in the case of color properties than in the case of body part properties.
+
+
+## Experiment 3b: Truth Judgment Task
+
+In this experiment, we test the predictions of our model using a truth judgment measure in the same paradigm.
+
+### Method
+
+#### Participants
+We recruited 80 participants over MTurk.  
+The experiment took about 3 minutes and participants were compensated \$0.35.
+None of the participants completed Experiment 3a as well.
+
+#### Procedure and materials
+The procedure and materials are exactly the same as in Expt.~3a, with the exception of the dependent measure.
+After reading each vignette, participants were asked: "Do you agree or disagree that: \textsc{generic statement} (e.g. Dobles have claws)".
+Participants responded by choosing one of two radio buttons corresponding to agree or disagree.
+
+### Results and discussion
+
+<!--
+%                                         Estimate Std. Error z value        Pr(>|z|)    
+%(Intercept)                               -2.9444     0.5130  -5.740 0.0000000094624 ***
+%event_outcomemaintained                    2.6931     0.5603   4.807 0.0000015342262 ***
+%originsintrinsic                           3.6753     0.5658   6.496 0.0000000000824 ***
+%event_outcomemaintained:originsintrinsic   0.2396     0.9400   0.255           0.799    
+-->
+
+Our pragmatics model with the elicited predicted prevalence from Expt.~3a made two novel predictions for this experiment: (1) in addition to a main effect of origins, we would find a main effect of event outcome; (2) this effect would be stronger for body part properties than for color properties.
+As predicted, we found two main effects (Figure \ref{fig:dobles}b, top).
+The main effect of property origins replicated ($\beta=3.6, SE=0.57, z=6.5, p<1\text{e}10$): participants were more likely to endorse the generic when it was about a property that the creature was born with.
+In addition, we find a second main effect of event outcome 
+ ($\beta = 2.69, SE = 0.56, z=4.8, p<1\text{e}5$): participants were more likely to endorse the generic when the property was maintained than when it was lost.\footnote{The fact that we find a second main effect of event outcome in addition to origins, whereas the original only found a main effect of origins, makes it worth noting the differences between our paradigm and the original study by Gelman \& Bloom.
+In the original study, the first sentence of each vignette used the possessive "my": "These are my dobles.".
+At the end of each vignette, the original study had participants judge two statements in counterbalanced order: "Do my dobles have claws?" and "Do dobles have claws?"
+Finally, the original sample size was 14; ours was 80. 
+}
+
+
+When we break down the results by item, we see that this effect is  stronger for body part properties than for color properties (Figure \ref{fig:dobles}b, bottom).
+The endorsement of a generic for color properties (e.g. \emph{Lorches are green}) seems to be less sensitive to the outcome of the event (i.e. Lorches losing their color as a result of drinking a chemical).
+This may be due to participants' intuitive theories of properties and their stability (skin color is more stable than body parts like feathers).
+Indeed this difference is apparent in the predictive prevalence task (Expt.~3a).
+For the 8 data points of generic endorsement based on origins, outcome, and property type, our model's predictions match the data well ($r^2(8) = 0.96$).
+We, thus, elaborate our theory:
+The semantics of generics can be understood as a threshold on property prevalence, and this prevalence is a speaker's subjective belief about what is likely to be the case in the future.
+
+\begin{figure*}
+\begin{tabular}{l l}
+(a) $S_2$ model predictions & (b) Human endorsement of generic statements \\
+\\
+\centering
+    \includegraphics[width=0.5\columnwidth]{figs/dobles-model.pdf} & 
+        \includegraphics[width=0.5\columnwidth]{figs/dobles-results.pdf} \\
+      \includegraphics[width=0.5\columnwidth]{figs/dobles-model-byItem.pdf} & 
+      \includegraphics[width=0.5\columnwidth]{figs/dobles-byItem-results.pdf} \\
+
+\end{tabular}
+    \caption{
+    Prevalence is a predictive probability.
+    (a) Truth judgment model predictions given the predicted prevalence elicited in Expt.~3a.
+    (b) Average endorsement of the generic statement in Expt.~3b (replication of Gelman and Bloom, 2007).  
+    Bottom row shows data and predictions broken down by property type.
+  }
+  \label{fig:dobles}
+\end{figure*}
