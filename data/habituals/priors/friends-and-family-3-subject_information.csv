@@ -1,0 +1,51 @@
+"workerid","city","region_code","region_name","language","enjoyment","gender","age","problems","time_zone","comments","metro_code","country_name","asses","fairprice","longitude","country_code","ip","latitude","education","zip_code"
+0,"Pueblo","CO","Colorado","english",1,"Female",28,"","America/Denver","",752,"United States","Yes","$2",-104.5204,"US","2601:283:c101:3bf5::be23",38.3403,3,81001
+1,NA,NA,NA,"",1,"",30,"",NA,"",NA,NA,"Yes","2",NA,NA,NA,NA,-1,NA
+2,"Jay","ME","Maine","English",1,"Male",37,"no","America/New_York","",500,"United States","Yes","2.00",-70.2164,"US","67.253.96.35",44.5317,2,4239
+3,NA,NA,NA,"English",1,"Male",36,"No",NA,"",NA,NA,"Yes","Yes",NA,NA,NA,NA,2,NA
+4,"Chico","CA","California","English",2,"Male",31,"No problems or bugs. ","America/Los_Angeles","Interesting study. ",868,"United States","Yes","1.25",-121.8306,"US","2602:303:fcfe:e930:856b:aa80:ffb:1a10",39.901,2,95973
+5,"Florence","OR","Oregon","",-1,"",NA,"","America/Los_Angeles","",801,"United States","Yes","",-124.0023,"US","97.94.245.51",44.1213,-1,97439
+6,"Grandville","MI","Michigan","english",0,"Male",52,"","America/Detroit","",563,"United States","Yes","2",-85.7828,"US","2601:404:c003:d940:893c:cf17:efba:88b7",42.8828,3,49418
+7,"Gardendale","AL","Alabama","english",1,"Female",48,"","America/Chicago","",630,"United States","Yes","sure",-86.8238,"US","68.113.100.115",33.7061,3,35071
+8,"Bethlehem","PA","Pennsylvania","English",1,"Male",25,"no","America/New_York","",504,"United States","Yes","2.00",-75.3547,"US","64.121.102.112",40.5902,3,18015
+9,"Roswell","GA","Georgia","english",0,"Female",56,"no","America/New_York","",524,"United States","Yes","2",-84.3152,"US","71.90.205.15",34.0266,2,30076
+10,"Bonne Terre","MO","Missouri","English",2,"Male",42,"No.","America/Chicago","Thank you.",609,"United States","Yes","1.25",-90.5218,"US","24.217.177.205",37.945,3,63628
+11,"","TX","Texas","eNGLISH",2,"Male",43,"NO","America/Chicago","Thanks!",0,"United States","Yes",NA,-96.8218,"US","67.44.192.77",32.7787,3,NA
+12,"Lakeland","FL","Florida","English",0,"Female",28,"no","America/New_York","",539,"United States","Yes",NA,-81.9337,"US","68.200.40.49",28.0098,4,33803
+13,"Greenville","SC","South Carolina","English",2,"Female",25,"","America/New_York","I completely forgot that Lydia has written a novel, sorry about that! The correct number should have been 1 for her for that activity.",567,"United States","Yes","1.25",-82.3222,"US","71.85.12.98",34.8004,2,29607
+14,"Hamtramck","MI","Michigan","English",1,"Female",31,"No","America/Detroit","Thanks!",505,"United States","Yes","2",-83.0531,"US","68.59.11.73",42.4056,2,48212
+15,"Lockport","NY","New York","English",2,"Male",32,"No issues","America/New_York","No concerns",514,"United States","Yes","1.25",-78.7378,"US","98.4.26.222",43.1751,3,14094
+16,"New Castle","PA","Pennsylvania","English",2,"Male",58,"no","America/New_York","",508,"United States","Yes","1.25",-80.3348,"US","2601:546:8201:e3d0:1cae:97a1:71a0:9ced",41.0586,2,16105
+17,"Los Angeles","CA","California","English",2,"Female",49,"none","America/Los_Angeles","Interesting hit, nice change from the usual, good pay for the time. Thanks.",803,"United States","Yes","1.25",-118.244,"US","107.77.230.126",34.0544,2,90009
+18,"Kansas City","MO","Missouri","English",2,"Female",44,"no","America/Chicago","Interesting HIT. Thank you!",616,"United States","Yes","1.25",-94.5933,"US","2605:a601:a17:ff00:d90b:80d5:e09f:8302",39.1058,3,64105
+19,"Alto","MI","Michigan","English",2,"Male",36,"No","America/Detroit","Interesting experiment to take part in. Thanks.",563,"United States","Yes","1.25",-85.3988,"US","40.139.94.147",42.8237,2,49302
+20,"","","","english",2,"Female",28,"no problems","","No Comments.",0,"United States","Yes","yes",-97.822,"US","2601:800:8181:c330:502a:25c0:36bc:1ecd",37.751,1,NA
+21,"Kansas City","MO","Missouri","English",0,"Female",55,"no","America/Chicago","",616,"United States","Yes","$2",-94.5735,"US","63.141.254.13",39.1472,3,64116
+22,"Denver","CO","Colorado","English",2,"Male",46,"No.","America/Denver","",751,"United States","Yes","1.25",-104.4083,"US","174.16.249.193",39.7388,2,80263
+23,"","","","English",1,"Male",45,"no","","",0,"United States","Yes","yes",-97.822,"US","2603:4011:800::8",37.751,4,NA
+24,"Dayton","OH","Ohio","English",2,"Male",54,"no","America/New_York","",542,"United States","Yes","1.50",-84.246,"US","24.209.229.22",39.752,3,45417
+25,"Spokane","WA","Washington","English",2,"Male",31,"","America/Los_Angeles","",881,"United States","Yes","1.25",-117.4291,"US","73.239.183.160",47.6597,2,99209
+26,"Dallas","TX","Texas","English",2,"Female",27,"","America/Chicago","",623,"United States","Yes","1.25",-96.8441,"US","2605:6001:e188:c900:ede1:673a:7d5c:7fcd",33.0017,4,75287
+27,"Benton","AR","Arkansas","english",1,"Female",48,"I thought it said 15 names but I must have been mistaken as it would only allow me to list 8 I believe","America/Chicago","",693,"United States","Yes","1.25",-92.6742,"US","2602:306:b8dc:a760:8025:96a5:c0e2:b191",34.5852,1,72015
+28,"Westminster","CO","Colorado","english",1,"Male",47,"no","America/Denver","",751,"United States","Yes","1.50",-105.0437,"US","65.101.254.170",39.8781,3,80031
+29,"","","","english",1,"Female",35,"no","","",0,"United States","Yes","1.00",-97.822,"US","64.139.75.51",37.751,2,NA
+30,"Walkertown","NC","North Carolina","english",1,"Male",53,"no","America/New_York","na",518,"United States","Yes","yes",-80.1531,"US","2602:306:b8f8:2430:c44d:8442:ef74:c519",36.1754,2,27051
+31,"Brooklyn","NY","New York","English",1,"Male",30,"","America/New_York","Some actions seem to be very gender specific. Other actions are not particularly common, such as writing a novel...",501,"United States","Yes","1.25",-73.9979,"US","108.6.11.84",40.5975,3,11214
+32,"Eau Claire","WI","Wisconsin","English",2,"Male",24,"No","America/Chicago","",702,"United States","Yes","1.25",-91.5132,"US","66.188.248.239",44.7457,3,54701
+33,"Dagsboro","DE","Delaware","English",1,"Female",52,"","America/New_York","",576,"United States","Yes","1.25",-75.244,"US","50.81.102.36",38.5528,3,19939
+34,"White Plains","NY","New York","english",2,"Male",33,"no","America/New_York","",501,"United States","Yes","1.25",-73.7437,"US","148.74.16.168",41.0057,3,10605
+35,"Manzanita","OR","Oregon","English",1,"Male",68,"","America/Los_Angeles","",820,"United States","Yes","little low",-123.9635,"US","137.118.193.128",45.7701,2,97130
+36,NA,NA,NA,"english",1,"Male",33,"none",NA,"",NA,NA,"Yes","2",NA,NA,NA,NA,3,NA
+37,"Halethorpe","MD","Maryland","English",1,"Male",40,"na","America/New_York","na",512,"United States","Yes","1.25",-76.6803,"US","76.114.194.86",39.2434,3,21227
+38,"Gilbert","AZ","Arizona","English",1,"Male",34,"no","America/Phoenix","no",753,"United States","Yes","1.25",-111.8153,"US","71.209.196.161",33.3462,2,85233
+39,"East Setauket","NY","New York","english",1,"Female",25,"no","America/New_York","n/a",501,"United States","Yes","2.00",-73.1142,"US","69.112.207.56",40.9317,3,11733
+40,"Aurora","IL","Illinois","English",1,"Male",63,"not that I am aware of","America/Chicago","The poem one was problematic. I&quotecharm sure my children were required to write at least one poem in school, but that&quotechars been well over 5 years ago. Actually, I guess most all of us were required to write one a long time ago in school.",602,"United States","Yes","Yes",-88.2957,"US","67.173.150.150",41.7647,4,60505
+41,"Arlington","VA","Virginia","English",2,"Male",30,"No","America/New_York","",511,"United States","Yes","$5.00",-77.0969,"US","173.73.153.142",38.8865,3,22201
+42,"Carrollton","TX","Texas","English ",2,"Male",29,"No","America/Chicago","",623,"United States","Yes","Yes",-96.8903,"US","2600:387:1:817::9e",32.9537,2,75011
+43,"Los Angeles","CA","California","English",1,"Female",38,"It all seemed to work correctly.","America/Los_Angeles","none",803,"United States","Yes","1.50",-118.3993,"US","64.183.114.58",34.0291,2,90034
+44,"Oak Harbor","WA","Washington","English",1,"Female",55,"N/A","America/Los_Angeles","Thank you.",819,"United States","Yes","2.00",-122.6305,"US","2601:601:4300:9bba:cdac:d1fd:8ab:b1f9",48.3218,3,98277
+45,"Sykesville","MD","Maryland","english",1,"Female",32,"None","America/New_York","Thanks for letting me participate! ",512,"United States","Yes","1.25",-76.9695,"US","2601:154:c101:d90:818e:663a:be32:cd06",39.3941,3,21784
+46,"","","","english",0,"Male",25,"no","","none",0,"United States","Yes","2.00",-97.822,"US","2601:4c4:201:4ea0:f9db:89a2:f4c2:3441",37.751,2,NA
+47,"Waretown","NJ","New Jersey","english",2,"Male",44,"no problems","America/New_York","fun Hit",501,"United States","Yes","$1.25",-74.2559,"US","73.194.189.44",39.7978,2,8758
+48,"Baltimore","MD","Maryland","English",2,"Female",32,"no","America/New_York","none",512,"United States","Yes","1.25",-76.6858,"US","2601:14d:4101:74f0:30e9:952:4e96:2c87",39.343,4,21215
+49,"Milford","MI","Michigan","English",1,"Female",47,"no.","America/Detroit","",505,"United States","Yes","1.50",-83.6722,"US","50.108.18.117",42.5797,3,48380
