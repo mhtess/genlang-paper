@@ -1162,7 +1162,7 @@ var model = function(){
   })
 
   var marginalPrevalence = sample(flip(phi) ? stableComponent : transientComponent)
-  return {g, d,phi, marginalPrevalence}
+  return {g, d, phi, marginalPrevalence}
 }
 '
 marginal.prevalence <- data.frame()
@@ -1190,8 +1190,9 @@ for (p in gen.endorse.properties){
 }
 
 ```
-```{r, eval = F}
 
+
+```{r, eval = F}
 ggplot(m.gen.endorse.priors.summary %>% filter(Parameter == 'phi') %>%
          mutate(Property = factor(Property, levels = Property[order(MAP)]) ),
        aes( x = Property, y = MAP, ymin = cred_lower, ymax = cred_upper))+
@@ -1199,7 +1200,6 @@ ggplot(m.gen.endorse.priors.summary %>% filter(Parameter == 'phi') %>%
   geom_errorbar(position = position_dodge())+
   coord_flip()+
   ylab("MAP estimate and 95% HDI of Mixture parameter")
-  
 ```
 
 
@@ -1792,13 +1792,13 @@ In our second case study, we extend our theory to a new domain and provide the f
 In this case study, we focus on a particular class of events: people doing actions.
 We focus on present-tense habitual sentences of the form \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., \emph{Mary smokes cigarettes.}). 
 
-Habituals about people are of particularly importance because they are likely central to intuitive theories of personality and behavior. 
-@McGuire1986 explored 5th to 12th graders' responses to open ended probes such as ``Tell us about your school / family''. 
-A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g. ``My brother works part-time at the restaurant.''). 
+Habituals about people are of particular importance because they are likely central to intuitive theories of personality and behavior. 
 Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013].
+@McGuire1986 explored 5th to 12th graders' responses to open ended probes such as ``Tell us about your school / family''. 
+A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g. ``My brother works part-time at the restaurant.'').
 Habitual language may be a more conservative form of trait language (e.g. \emph{Bill is a smoker.}) and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-Habituals are a particularly amenable domain to manipulating the target propensity that a speaker aims to communicate.
+From a methodological standpoint, habituals are a particularly amenable domain to manipulating the target propensity that a speaker aims to communicate.
 People are often in the situation of being introduced to new people and learning new information about them.
 In addition, the propensity information can be expressed in an easily-interpretable frequency with which a person does an action (e.g., "Last month, Mary smoked cigarettes 3 times.").^[
 While target probability can be manipulated for generalizations about categories (generic language) (e.g., by stating the prevalence of feature in a kind), this may interact with domain knowledge in complex ways (e.g., it's *a priori* very unlikely that 90% of a hypothetical novel kind---lorches---have broken wings).
@@ -2035,12 +2035,11 @@ We make the simplifying assumption that people who have not done the action befo
 
 Figure \ref{fig:priorScatter} (right) shows example inferred priors.
 
-Some items show substantial differences between the genders (e.g. \emph{wears a bra}) and some show subtle differences (e.g. \emph{watches professional football}). 
-%It is \emph{a priori} unclear whether or not $P(x)$ in Eqs.~\ref{eq:L1}, \ref{eq:L0} is the distribution over frequency of action with respect to \emph{all people}, or if it is restricted to be gender specific.
-%For example, are the frequency conditions by which a man would qualify to ``wear a bra'' (habitually) different than those by which a woman would qualify to ``wear a bra''?
-We will explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2, for select items with priors that differ substantially by gender.
-%In order to explore this possibility, we will select items with priors that differ by gender to explore more closely in Experiment 2.
-
+Some items show substantial differences between the genders (e.g. \emph{wears a bra}) and some show subtle differences (e.g. \emph{watches professional football}).
+Our prior distributions $P(h)$ are with respect to an alternative class of entities (e.g., other individuals). 
+It's possible that when evaluating habitual statements, $P(h)$ is with respect to either *all people* or *people of the same gender*. 
+For example, are the frequency conditions by which a man would qualify to "watch professional football" (habitually) different than those by which a woman would qualify to "watch professional football"?
+We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2, for select items with priors that differ substantially by gender.
 
 
 <!-- We analyze the data using a Bayesian approach to allow for a consistent integration into the computational model. -->
@@ -2119,15 +2118,12 @@ The particular intervals used (\{weeks, months, years\}) were selected after exa
 The items were the same as in the prior elicitation task.
 
 Participants were asked whether they agreed or disagreed with the corresponding habitual sentence: "\textsc{person does x}" (e.g., \emph{Bill smokes cigarettes}).
-Participants completed 37 trials, which were composed of the 27 items from the prior elicitation task and 4 additional filler items not in the prior elicitation task randomly paired with either a male or female character name.
+Participants completed 37 trials, which were composed of the 31 items from the prior elicitation task randomly paired with either a male or female character name.
 6 of these items were then also paired with a name of the opposite gender (e.g., participants saw both a female character and a male character who watched professional football).
 These were used for an exploratory analysis on gender differences.
-The 4 filler items were not used in the prior elicitation because they described illegal activities (e.g., "doing cocaine", "stealing cars").
 The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-2.html}.
 
 ### Results
-
-
 
 ```{r habituals-endorsement}
 d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsement/", 
