@@ -1,5 +1,5 @@
 ---
-title             : "Communicating generalizations about categories, events, and causes"
+title             : "Communicating generalizations"
 shorttitle        : "Communicating generalizations"
 
 author: 
@@ -378,7 +378,7 @@ The *generics as default* view must then be supplemented with the principle that
 How do we make sense of this panoply of conditions?
 Is there some more general, unified principle that explains what makes generic statements true or false?
 
-Bayesian cognitive models are used to represent flexible, structured knowledge of the world and formalize the inferences that people draw using such conceptual representations [e.g., @Kemp2008; @Goodman2015Chapter].
+Bayesian cognitive models are used to represent flexible, structured knowledge of the world and formalize the inferences that people draw using such conceptual representations [e.g., @Kemp2008; @Goodmanconcepts].
 The basic currency of inference in these models is probability.
 In the case of generic language, we posit that conceptual factors may influence the meaning of a generic statement via its influence on subjective probability.
 If that's true, a simple, semantic theory (e.g., a threshold on subjective probability) may be enough to formalize the core meaning of a generic statement $u_{gen}$:
@@ -708,7 +708,7 @@ for (p in priorNames){
 }
 ```
 
-```{r simulations, fig.width = 8, fig.height=5}
+```{r simulations, fig.width = 9, fig.height=5}
 all.simulations %>%
   mutate(Distribution = paste(Distribution, utterance, sep = "_")) %>%
   filter(Distribution != "Some", Distribution != "Most", Distribution != "Prior_generic") %>%
@@ -968,6 +968,11 @@ mht: is it possible to construct priors in causals that would reflect the qualit
 
 Generalizations about categories (i.e., *generic language*) have received substantial interest in psychology for their role in concept formation [@Gelman2004] and stereotype propogation [@Rhodes2012].
 Generic language (e.g., *Birds fly.*) exhibits substantial flexibility in meaning and truth conditions as described above.
+As a first test of our theory, we wish to explain the flexibility in endorsements of generics (e.g., "Birds lay eggs" vs. "Birds are female"; "Mosquitos carry malaria") in terms of the relevant prior knowledge about properties.
+We do this by measuring the prior belief distribution over the relevant probabilities $P(h)$ used in Eq. \ref{eq:L0} as well as the target probabilitiy that the speaker model seeks to convey $h$ in Eq. \ref{eq:S1}.
+We show how these measurements systematically predict, via our model, endorsements of generic statements about familiar categories (Expt. 1b).
+
+
 <!-- At first glance, generics feel like universally-quantified statements as in *All* birds fly.  -->
 <!-- Unlike universals, however, generics are resilient to counter-examples (e.g., *Birds fly* seems true even in the face of flightless birds like kiwis or penguins). -->
 <!-- *Most* birds fly seems more reasonable, and yet most mosquitos *do not* carry malaria while *Mosquitos carry malaria* seems like a true statement. -->
@@ -979,9 +984,6 @@ Generic language (e.g., *Birds fly.*) exhibits substantial flexibility in meanin
 <!-- This characteristically strong interpretation interacts with the indeterminacy in truth conditions, resulting in an *asymmetry* between endorsement and interpretation. -->
 <!-- For a variety of features, both children and adults infer that a property is *more* prevalent when told the generalizations than when judging it true or not [@Cimpian2010; @Brandone2014]. -->
 
-
-As a first test of our theory, we wish to explain the flexibility in endorsements of generics in terms of the relevant prior knowledge about properties and show how it systematically predicts endorsements of familiar generic statements (Expt. 1).
-In Experiment 3, we replicate and extend a paradigm used by @Cimpian2010 to demonstrate the asymmetry between endorsements and interpretations and find that a similar pattern is predicted by our model.
 
 We evaluate our family of RSA models, in addition to some ad-hoc non-Bayesian models, on these experimental data.
 Because the ad-hoc models do not comprise a formalized alternative theory of endorsement and interpretation, but rather statistical descriptions of the data, we compare the ad-hoc models to the simplest RSA model on endorsement and interpretation, separately.
@@ -1032,9 +1034,9 @@ In additional to the canonical cases from the linguistics literature, we selecte
 
 To compare the model to empirical truth judgments, we first measure the prior distribution over prevalence of these properties (Expt. 1a).
 We hypothesize that this prior distribution encodes probabilities associated with deeper conceptual knowledge [e.g., of the kind discussed by @Prasada2013].
-This would be one way in which our theory touches upon other psychological accounts of generic language [cf., @Prasada; @Gelman; @Leslie].
+This would be one way in which our theory touches upon other psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007].
 If, indeed, there are such things as different types of kind--property relations (e.g., *principled* v. *accidental relations*), we would expect the prevalence prior data to follow a multi-modal, mixture distribution where different modes or components of the prior are the results of the different types of relations.
-As a simple of this hypothesis, we compare a structured (i.e., mixture) model of the prior data to an unstructured one.
+As a simple test of this hypothesis, we compare a structured (i.e., mixture) model of the prior data to an unstructured one.
 
 After exploring the prevalence prior, we move on to the issue of primary theoretical interest: How well our *simple but underspecified* hypothesis accounts for endorsements of generic sentences (Expt. 1b).
 
@@ -1584,9 +1586,9 @@ generics.endorsement.models <- bind_rows(
                                       "regression_Prev_Cuevalidity"
                                      ),
                       labels = c(
-                                 "Speaker model - uncertain semantics",
-                                 "Speaker model - fixed semantics",
-                                 "Prevalence alone", "Prevalence & Cue validity"
+                                 "Uncertain semantics model",
+                                 "Fixed semantics model",
+                                 "Prevalence alone", "Prevalence + Cue validity"
                                  ))) %>%
   ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = prevalence ))+
@@ -1716,7 +1718,7 @@ generics.endorsement.insets <- gen.inset.distributions %>%
 ```
 
 
-```{r generics-endorsement-figure, fig.width=7, fig.height=5}
+```{r generics-endorsement-figure, fig.width=11, fig.height=8}
 grid.arrange(generics.endorsement.spectrum, 
              generics.endorsement.models,
              generics.endorsement.insets, ncol = 2,
@@ -2464,14 +2466,14 @@ In our final case study, we extend our theory to communicating generlizations ab
 
 # Case Study 3: Causal Language
 
-Learning that an event consistently tends to result in another event serves as a foundation for an intuitive theory of causality (CITE noah's and kemp's causality and causal models papers?).
+Learning that an event consistently tends to result in another event serves as a foundation for an intuitive theory of causality [@Goodman2011; @Kemp2010a].
 Communicating generalizations about causally related events is potentially highly useful because no one individual can run all the experiments that she wants to run in a life time. 
 The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone. 
 
 Our framework for communicating generalizations makes predictions about statements conveying genericty about a category of causal events. 
 In this domain, an instance of the category is a single causal event (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough at a particular time of the day). 
-@Gerstenberg
-The study of *elemental causal induction* is itself very subtle, depending on an observer's background theory of causality. [@Griffiths2005; @Schulz].
+[Gerstenberg]
+The study of *elemental causal induction* is itself very subtle, depending on an observer's background theory of causality. [@Griffiths2005; @Schulz2008a].
 
 We design this last experiment with the goal of testing whether background knowledge that gives rise to the prevalence priors is causally related to the endorsement of causal statements.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
@@ -2647,8 +2649,8 @@ The theory we present here has a number of desirable features that go beyond alt
 The first is that our theory is accompanied by a formal model, which makes precise quantitative predictions about endorsments of statements that convey generalizations.
 The formal Bayesian model provides a clean separation of the semantics of a generalization from background, world knowledge.
 This is critical to understanding the contribution of a generalization in language above and beyond background knowledge.
-We believe this has been a stumbling block for formal semantic models that try to argue in one or another way for a statistical or probabilty based approach [@Pelletier; @Cohen1999; @Nickel].
-As @Nickel2013 notes, genericity is particularly difficult to study because it intersects with many other phenomena in language (e.g., gradable adjectives in *Giraffes are tall*).
+We believe this has been a stumbling block for formal semantic models that try to argue in one or another way for a statistical or probabilty based approach [@Cohen1999; @Nickel2008].
+As @Nickel2016 notes, genericity is particularly difficult to study because it intersects with many other phenomena in language (e.g., gradable adjectives in *Giraffes are tall*).
 We argue that it also intersects with world knowledge in subtle ways, and it is critical to accurately measure and describe world knowledge before making claims about the implications of a generalization *per se*.
 
 Our separation of world knowledge from the semantics of generics allows a way for conceptual structure to influence generic production and comprehension, without having to posit conceptual structure and semantics are one in the same.
@@ -2793,11 +2795,11 @@ In fact, quantified statements, whose formal meaning is much more straight-forwa
 This has led some to conclude that the normal tools for describing the semantics of quantified utterances (namely, a truth-functional threshold) will not work for generic language [@Leslie2008].
 
 This may be throwing out the baby with the bathwater.
-When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance: (1) that the meaning is a threshold-function (i.e., $\denote{u}(p, \theta) = \{p :p > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
+When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance: (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
 If there is no fixed value of the threshold, then a uniform prior over the threshold in the truth-functional threshold semantics is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is *the degree itself*, normalized by the prior distribution over the degree (i.e., the comparison class). 
 
 $$
-\int_{0}^{1} \delta_{p > \theta} \diff \theta =  p
+\int_{0}^{1} \delta_{h > \theta} \diff \theta =  h
 $$
 
 Given this mathematical equivalence, we can imagine the *more is better* soft semantics is what is acquired early.
@@ -2979,7 +2981,7 @@ When the model then hears "Elephants live in Asia", the model updates its belief
 This is a nice feature of the uncertain threshold semantics: flexibility in accomodating new evidence that might otherwise contradict previous statements.
 
 Finally, (4) is used to argue that even if the property is widespread (perhaps in a soft sense, as in our model, relative to other kinds or groups), we might find it avervise to actually assert the generic.
-That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive, we might still not want to say *Women are submissive* [@Haslanger]. 
+That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive, we might still not want to say *Women are submissive* [@Haslanger2011]. 
 In our Model Simulations section, we showed that the generic often can imply the property is widespread, even with uninformed prior beliefs about the property. 
 If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth [cf., @Cimpian2010].
 The current formulation of the model is relatively ambivalent the deviations of the listener's beliefs from the speaker's beliefa.
