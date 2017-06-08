@@ -410,7 +410,7 @@ We assume this prior is uninformed: $\theta \sim \text{Uniform}(0, 1)$.
 L(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-This is a Bayesian model of interpreting a statement conveying a generalization whose meaning is simple (a threshold function) but underspecified.
+This is a Bayesian model of interpreting a statement conveying a generalization whose meaning is simple (i.e., a threshold function) but underspecified.
 Figure \ref{fig:simulations} shows model $L$'s posterior distribution on $h$ upon hearing utterances corresponding to the uncertain threhsold (Eq. \ref{eq:L0}) as well as a comparison model using a fixed threshold at 0 (intuitively, corresponding to the quantifier "some").
 The differences in the semantics are easily seen when considering a uniform distribution over $h$ (top left facet).
 "Some" rules out only the lowest possible state and returns a posterior very similar to the prior.
@@ -759,72 +759,9 @@ all.simulations %>%
 <!-- $S_1$ thus seeks to minimize the surprisal of $s$ given $u$ for the naive listener, while bearing in the mind the utterance cost $C(u)$. -->
 
 
-## Alternative formulation
-
-The pair of speaker-listener models presented above correspond to the simplest possible communicative models with an underspecified threshold meaning for a generalization. 
-The Rational Speech Act framework defines a class of models with potentially more levels of recursion (e.g., a listener who thinks about a speaker who thinks about a listener).
-For the most basic formulation of an RSA model, the level of recursion for a model can be unidentifiable from the 
-"speaker optimality" model parameter in Eq. \ref{eq:S1} [@FrankEtAlUnderReview].
-For our model, with an uncertain threshold variable, theoretically meaningful different models can be formulated in the pragmatic framework.
-
-For example, @Lassiter2013 modeled vagueness and the context-sensitivity of gradable adjectives using a similar underspecified threshold semantics. 
-In that work, the authors argued that understanding adjectives required a "pragmatic listener" [i.e., a listener who thinks about a speaker who thinks about a listener; @Lassiter2015]. 
-In their model, the threshold variable was "pragmatically lifted", meaning the uncertainty over the threshold variable was resolved using pragmatic reasoning [a so-called uRSA model; @Goodman2016].
-In the case of our model of generalizations, we can compare the simple model we described above to a more sophisticated model that resolves the threshold using pragmatic principles.
-
-### Listener models
-
-Eq. \ref{eq:L0} describes how a naive Bayesian agent should update her beliefs about the probability after hearing an utterance conveying a generalization. 
-This listener model is not pragmatic because it doesn't reason about the generative process of the utterance (i.e., it doesn't reason about a speaker). 
-Eq. \ref{eq:L1u} extends this model adding a level of recursion, modeling a pragmatic listener who reasons about the Gricean speaker in Eq. \ref{eq:S1} who reasons about the literal listener in Eq. \ref{eq:L0}.
-
-\begin{eqnarray}
-L_{1}(h \mid u) &\propto& S_{1}(u \mid h) \cdot P(h) \label{eq:L1u}
-\end{eqnarray}
-
-This $L_1$ model reasons about the conditions under which the speaker $S_1$ would produce one or another speech act (here, the generalization or staying silent), described above.
-Still, the threshold variable gets resolved by $L_0$ (and marginalized out by $S_1$): The posterior distribution over thresholds is arrived at by $L_0$ trying to make the generalization true.
-<!-- \mht{How does this posterior on states differ?} -->
-
-Truthfulness is not the only process that could help set $\theta$.
-If the listener were to reason about what threshold was likely to be *used by the speaker*, informativity would also help set $\theta$.
-This can be modeled by a pragmatic listener who reasons about the threshold, but assumes the speaker had a particular threshold in mind (Eq. \ref{eq:S1l}). 
-
-\begin{eqnarray}
-L_{1}(h, \theta \mid u) &\propto& S_{1}(u \mid h, \theta) \cdot P(h) \cdot P(\theta) \label{eq:L1l} \\
-S_{1}(u \mid h) &\propto &\exp{(\lambda \cdot U(u; h; \theta)  } \label{eq:S1l} \\
-U(u; h; \theta)& =& \ln{  L_0(h \mid u, \theta) } - C(u) \label{eq:utilS1nomarginalization} \\
-L_{0}(h \mid u, \theta) &\propto& {\delta_{\denote{u}(h, \theta)}} \cdot P(h) \label{eq:L0l}
-\end{eqnarray}
-
-Eq. \ref{eq:L1} is mathematically equivalent to the gradable adjectives model of @Lassiter2013, with the modification that states of the world are defined with respect to the probability $h$ under discussion.
-In this model, the listener's posterior distribution on thresholds is arrived at by trying to make the utterance conveying the generalization to be both truthful and informative. That is, the listener must believe the threshold used by the speaker is both true and informative; very low thresholds could only be informative in contexts when the listener believes most probabilities are all very low *a priori*.
-
-These alternative pragmatic listener $L_1$ models give rise to corresponding alternative pragmatic speaker models.
-
-### Speaker models
-
-We can define two speaker models who reason about the two different pragmatic listeners.
-
-The speaker who reasons about the pragmatic listener in Eq. \ref{eq:L1u} is defined by a utility function similar to Eq. \ref{eq:utilS1nomarginalization}, but with informativity computed with respect to $L_1$'s posterior distribution rather than $L_0$. 
-
-\begin{eqnarray}
-S_{1}(u \mid h) \propto \exp{(\lambda \cdot U(u; h; \theta)  } \label{eq:S1li} \\
-U(u; h; \theta) = \ln{  L_1(h \mid u) } - C(u) \label{eq:utilS2nomarginalization} \\
-\end{eqnarray}
-
-The model who reasons about the pragmatic listener in Eq. \ref{eq:L1l} marginalizes over $L_1$'s posterior distribution on the threshold $\theta$ in order to decide which utterance to produce (similar to \ref{eq:utilS1marginalization}).
-
-\begin{eqnarray}
-S_{2}(u \mid k) \propto \exp{(\lambda_2 \cdot U_{S_2}(u; k)  } \\ 
-U_{S_2}(u; h) = \ln{ \int_{\theta} L_1(h, \theta \mid u)}  \diff \theta - C(u) \label{eq:S2l}
-\end{eqnarray}
-
+## Model simulations
 
 All models were implemented in the probabilisitic programming language WebPPL [@dippl], and a complete, runable versions of the models in the following section can be found at \url{http://forestdb.org/models/generics.html}
-
-
-## Model simulations
 
 All of the RSA models defined in the previous section predict that the interpretation and endorsement of a generalization depends listener's *a priori* beliefs about the probabilty in question $P(h)$.
 Qualitatively, the predictions of the different formulations of the RSA models for understanding generalizations are not appreciably different (though their quantitative predictive flexibility is).
@@ -1552,20 +1489,27 @@ d.gen.endorse.regression <- bind_rows(
 
 
 ```{r generic-fullmodel, fig.width = 8}
-n_chains <- 1
-n_samples <- 50000
-burn <- n_samples
+# n_chains <- 1
+# n_samples <- 50000
+# burn <- n_samples
+# 
+# model_prefix <- "results-fullModel-s1-allowUPriors-refinedPriors-fixedNull-prevPriorFactorBugFixed-smtncsgeneric-"
+# 
+# m.samp <- data.frame()
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/generics/results/", model_prefix, 
+#                     n_samples, "_burn", burn, "_chain", i, ".csv", sep = ""))
+#   m.samp.i <- mi %>% mutate(chain = i)
+#   m.samp <- bind_rows(m.samp, m.samp.i)
+#   #print(i)
+# }
 
-model_prefix <- "results-fullModel-s1-allowUPriors-refinedPriors-fixedNull-prevPriorFactorBugFixed-smtncsgeneric-"
 
-m.samp <- data.frame()
-for (i in seq(1, n_chains)){
-  mi <- fread(paste(project.path,  "models/generics/results/", model_prefix, 
-                    n_samples, "_burn", burn, "_chain", i, ".csv", sep = ""))
-  m.samp.i <- mi %>% mutate(chain = i)
-  m.samp <- bind_rows(m.samp, m.samp.i)
-  #print(i)
-}
+m.samp <- fread(
+  paste(project.path,"models/generics/results/", 
+        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain1.csv",
+        sep = "")
+  ) %>% mutate(chain = 1)
 
 m.gen.somemodel.endorsement <- fread(
   paste(project.path,"models/generics/results/", 
@@ -3068,7 +3012,8 @@ The theory presented here gives one explanation of how we do so, providing a com
 
 <div id = 'refs'></div>
 
-```{r child = 'appendix-prevalencePrior.Rmd'}
+
+```{r child = 'appendix-alternativeRSAmodels.Rmd'}
 ```
 
 ```{r child = 'appendix-cueValidity.Rmd'}

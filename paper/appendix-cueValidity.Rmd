@@ -14,7 +14,7 @@ substrRight <- function(x, n){
 # Appendix B: Measuring cue validity
 
 In considering generalizations about categories, or *generic language*, theories try to formalize the truth conditions by analogy to quantified statements (e.g., *some*, *most*, ...).
-Here, the prevalence of the feature, or $P(f \mid k)$, is the important quantity.
+Here, the prevalence of the feature, or $P(f \mid k)$, is the central quantity.
 Quantifiers can be described as conditions on prevalence: $\denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}$.
 The question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
 Hard-constraints on $\theta$ are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice.

@@ -1,0 +1,151 @@
+# Appendix C: Full model posteriors
+
+
+```{r libraries}
+library(rwebppl)
+library(xtable)
+library(tidyverse)
+library(forcats)
+library(langcog)
+library(data.table)
+library(coda)
+library(ggthemes)
+library(ggrepel)
+library(jsonlite)
+theme_set(theme_few())
+estimate_mode <- function(s) {
+  d <- density(s)
+  return(d$x[which.max(d$y)])
+}
+hdi_upper<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","upper"])
+}
+hdi_lower<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","lower"])
+}
+project.path <- "~/Documents/research/comgen-paper/"
+data.path <- "data/generics/endorsement/"
+model.path <- "models/generics/results/"
+options("scipen"=10) 
+```
+
+## Case Study 1: Generic language
+
+### Uncertain threshold RSA 
+
+```{r}
+m.samp <- fread(
+  paste(project.path,"models/generics/results/", 
+        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain1.csv",
+        sep = "")
+  ) %>% mutate(chain = 1)
+```
+
+
+### Parameter posteriors
+
+#### Speaker optimality parameter
+
+```{r}
+m.samp %>% 
+  filter(type == "param") %>%
+  ggplot(., aes(x = val, fill = factor(chain)))+
+  geom_histogram(position = position_dodge())+
+  facet_wrap(~param + property, scales = 'free')
+```
+
+#### Posterior predictive distribution on target prevalence
+
+
+```{r}
+d.prior <- read.csv(paste(project.path, data.path, 
+                    "naturalGenerics-prior-trials-n57.csv", sep = ""))
+
+full_sentences <- mutate(md, sentence = paste(category, property, sep = "_"))$sentence
+
+d.prior.summary <- d.prior %>% 
+  mutate(sentence = paste(Category, Property, sep = "_")) %>%
+  filter(sentence %in% full_sentences) %>%
+  mutate(prevalence = prevalence / 100) %>%
+  group_by(Category, Property) %>%
+  multi_boot_standard(column = "prevalence")
+```
+
+#### Posterior predictive distribution on prevalance priors
+
+
+Forward sample from posterior on parameters
+```{r}
+
+
+m.samp.prior.params <- m.samp %>%
+    filter(type == "prior") %>%
+    mutate(parameter = paste(param, category, sep = "_")) %>%
+    select(-param, -category, -chain, -type) %>%
+    mutate(item = paste(parameter, property, sep = "_")) %>%
+    group_by(item) %>%
+    mutate(iteration = ave(item==item, item, FUN=cumsum)) %>%
+    ungroup() %>%
+    select(-item)
+  
+  m.samp.prevalence.prior <- m.samp.prior.params %>%
+                              group_by(parameter, property, iteration) %>%
+                              spread(parameter, val) %>%
+                              rowwise() %>%
+                              mutate(isPresent = rbinom(1, 1, prob = isPresent_na),
+                                     prevalence = ifelse(isPresent == 1, 
+                                                         rbeta(n = 1, 
+                                                               shape1 = prevalenceGivenPresent_mean* prevalenceGivenPresent_sampleSize,
+                                                               shape2 = (1-prevalenceGivenPresent_mean)*prevalenceGivenPresent_sampleSize),
+                                                         rbeta(n = 1,
+                                                               shape1 = 1,
+                                                               shape2 = 100))) %>%
+                              ungroup() %>%
+                              select(property, prevalence)
+```
+
+Marginal distributions on prevalence
+```{r}
+
+```
+
+CDFs
+
+
+```{r}  
+  
+  bind_rows(
+    d.prior %>% 
+    mutate(prevalence = prevalence / 100) %>%
+    rename(property = Property) %>% 
+    select(property, prevalence) %>%
+    mutate(src = 'data'),
+     m.samp.prevalence.prior %>%
+      mutate(src = 'model')
+  ) %>% ggplot(., aes( x = prevalence, color = src))+
+    stat_ecdf()+
+    facet_wrap(~property)+
+    scale_color_solarized()+
+    scale_x_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+    scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+    theme(strip.text.y = element_text(angle = 0))
+```
+
+
+
+```{r}
+m.gen.somemodel.endorsement <- fread(
+  paste(project.path,"models/generics/results/", 
+        #"results-fullModel-s1-smtncssome-20000_burn10000_chain1.csv", 
+        "results-fullModel-s1-lowestTheta-smtncssome-1000_burn500_lag10_chain1.csv",
+        sep = "")
+  ) %>% mutate(chain = 1) %>%
+  filter(type == 'predictive') %>%
+  group_by(type, param, property, category) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+```
+

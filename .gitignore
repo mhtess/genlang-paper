@@ -1,0 +1,12 @@
+packrat/src/
+packrat/lib-R/
+packrat/lib/
+paper/figs/
+paper/*.html
+*.fff
+*.tex
+*.ttt
+*_cache
+.Rprofile
+.Rproj.user
+comgen-paper.Rproj
