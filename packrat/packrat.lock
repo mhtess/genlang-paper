@@ -13,6 +13,11 @@ Source: CRAN
 Version: 0.6
 Hash: c1a897fa11e50c1f70258830fc50b1f3
 
+Package: Matrix
+Source: CRAN
+Version: 1.2-10
+Hash: 7db92f569e4b8d50a6c86ed54cf481d0
+
 Package: R6
 Source: CRAN
 Version: 2.2.0
@@ -27,6 +32,11 @@ Package: Rcpp
 Source: CRAN
 Version: 0.12.11
 Hash: 2ee22f3b5e75dec80b1d8eca61cd96d8
+
+Package: RcppEigen
+Source: CRAN
+Version: 0.3.3.3.0
+Requires: Matrix, Rcpp
 
 Package: assertthat
 Source: CRAN
@@ -235,6 +245,12 @@ Source: CRAN
 Version: 0.2.0
 Hash: 3d6e7608e65bbf5cb170dab1e3c9ed8b
 
+Package: lme4
+Source: CRAN
+Version: 1.1-13
+Hash: 0bedc9fc3bdb317a32d89c46754ee90d
+Requires: Matrix, Rcpp, RcppEigen, minqa, nlme, nloptr
+
 Package: lubridate
 Source: CRAN
 Version: 1.6.0
@@ -257,6 +273,12 @@ Source: CRAN
 Version: 0.5
 Hash: 463550cf44fb6f0a2359368f42eebe62
 
+Package: minqa
+Source: CRAN
+Version: 1.2.4
+Hash: 11e591554653c8a2878fea1470768b56
+Requires: Rcpp
+
 Package: mnormt
 Source: CRAN
 Version: 1.5-5
@@ -278,6 +300,11 @@ Package: nlme
 Source: CRAN
 Version: 3.1-131
 Hash: 7f5580f9c481d6921298f224c391b308
+
+Package: nloptr
+Source: CRAN
+Version: 1.0.4
+Hash: 8053df240a4635aeb54fc68c6de67709
 
 Package: openssl
 Source: CRAN

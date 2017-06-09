@@ -88,6 +88,7 @@ library(ggthemes)
 library(ggrepel)
 library(jsonlite)
 library(gridExtra)
+library(lme4)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -2391,10 +2392,72 @@ This allows us to test whether habituals are best explained by a speaker $S_1$ w
 
 ### Experiment 3a: Prediction elicitation
 
+
+```{r habituals-predictive-elicitation}
+d.hab.predictive <- read.csv(paste(
+  project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
+
+n.subj.hab.pred < - length(unique(d.hab.predictive$workerid))
+ave.seconds.hab.pred <-  d.hab.predictive %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+
+# participant reported this in the comments section (it was recorded as a symbol)
+d.hab.predictive[
+  (d.hab.predictive$workerid==44 & 
+     d.hab.predictive$item=="smokes cigarettes"),"response"] <- 5
+d.hab.predictive <- d.hab.predictive %>% mutate(response = as.numeric(as.character((response))))
+
+
+d.hab.predictive<- d.hab.predictive %>%
+  rowwise() %>%
+  mutate(
+    annualPredictiveRate =
+           annualRates[[as.character(past_interval)]]*response,
+    annualPastRate =
+           annualRates[[as.character(past_interval)]]*past_freq,
+    annualPredictiveRate = ifelse(
+      annualPredictiveRate == 0, 0.05, 
+      annualPredictiveRate),
+    logAnnualPredictiveRate = log(annualPredictiveRate),
+    logAnnualPastRate = log(annualPastRate)
+    )
+
+
+d.hab.predictive.summary <- d.hab.predictive %>%
+  group_by(condition, item, logAnnualPastRate) %>%
+  multi_boot_standard(column = "logAnnualPredictiveRate")
+
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary, 
+       aes(x=logAnnualPastRate, 
+                              y = mean, 
+                              ymin = ci_lower, ymax = ci_upper, 
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-3,6), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-3,6), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency (log scale)")+
+  theme(axis.text.x = element_text(angle = 90))
+
+```
+
+
+
 #### Methods
 
-We recruited 120 participants from MTurk, using the same criterion as Expt. 2b.
-The experiment took 4 minutes on average and participants were compensated \$0.40.
+We recruited `r n.subj.hab.pred` participants from MTurk, using the same criterion as Expt. 2b.
+The experiment took `r round(ave.seconds.hab.pred/60,1)` minutes on average and participants were compensated \$0.40.
 
 The procedure was identical to Expt. 2b except for the inclusion of a second sentence on a subset of trials and the use of a different dependent measure. 
 On all trials, participants were presented with a \emph{past frequency sentence} (same as Expt. 2b).
@@ -2412,42 +2475,182 @@ The experiment in full can be viewed at \url{http://stanford.edu/~mtessler/habit
 
 #### Results
 
-Figure \ref{fig:tj3} (left) shows the predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
-We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g. participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
+Figure \ref{fig:habituals-predictive-figure} (left) shows the predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
+We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
 This means that our model makes identical predictions for Expt. 2 whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
-Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:tj3} left; blue and green dots).
+Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
 
-+ MHT: Add some regression analysis here
+
+```{r habituals-predictive-elicitation-predictions}
+lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
+     logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
+       (1 + condition | workerid) + 
+       (1 + condition | item)
+)
+lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
+```
+
+
+We confirm these observations using a linear mixed-effects model, predicting the log-transformed responses from the log-transormed past frequency and the experimental condition (baseline, preventative, enabling).
+To account for participants and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
+Confirming our predictions, the preventative information led to significantly lower predictions for future frequency, relative to the baseline condition (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","t value"],2)`$
+).
+There was also tendency for the enabling information to lead to higher predictions for future frequency, relative to baseline (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","t value"],2)`$
+).
+Finally, past frequency was a significant predictor of predicted future frequency (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","t value"],2)`$
+).
+
 
 
 ### Experiment 3b: Felicity judgments
 
+```{r habituals-predictive-endorsement}
+d.hab.predictive.endorsment <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives.csv", sep = ""))
+d.hab.predictive.endorsment.catch <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives-catch_trials.csv", sep = ""))
+
+
+n.subj.hab.pred.endorse <- length(unique(d.hab.predictive.endorsment$workerid))
+ave.seconds.hab.pred.endorse <-  d.hab.predictive.endorsment %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+d.hab.predictive.endorsment.condition.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0)) %>%
+  rename(item = habitual) %>%
+  group_by(condition) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.baseline.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'baseline')
+
+d.hab.predictive.endorsment.preventative.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'preventative')
+
+d.hab.predictive.endorsment.enabling.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'enabling')
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0),
+         time_period = factor(time_period,
+                              levels=c("month",
+                                       "2 months",
+                                       "year",
+                                       "2 years",
+                                       "5 years")),
+         condition = factor(condition,
+                            levels=c("enabling", "baseline", "preventative")),
+         hab_time = paste(habitual, time_period, sep='-')) %>%
+  rename(item = habitual) %>%
+  group_by(item, condition, hab_time, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment.summary,
+  d.hab.predictive.summary %>% select(condition, item, logAnnualPastRate, mean, ci_lower, ci_upper) %>%
+    rename(logAnnualFutureRate = mean,
+         future_lower = ci_lower, future_upper = ci_upper)
+)
+
+fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
+  ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
+                 fill=condition, shape=condition,
+                 xmin = future_lower, xmax=future_upper,
+                 ymin=low, ymax = high))+
+  geom_errorbar(alpha=0.3)+
+  geom_errorbarh(alpha=0.3)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  geom_point(alpha = 0.7)+
+  xlab("Predicted frequency (log scale)")+
+  ylab("Endorsement probability")+
+  scale_x_continuous(limits = c(-3,6), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  coord_fixed(ratio=9)+
+  scale_fill_solarized()+
+  theme(
+    axis.text.x = element_text(angle = 90),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    )
+
+```
+
+```{r habituals-predictive-figure, fig.cap="Left: Results of Expt 3a. Right: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a"}
+grid.arrange(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, nrow = 1)
+```
+
+
 #### Methods
 
-We recruited 150 participants from MTurk, using the same criterion as Expt. 2b.
-The experiment took 4 minutes on average on participants were compensated \$0.40 for their work.
+We recruited `r n.subj.hab.pred.endorse` participants from MTurk, using the same criterion as Expt. 2b.
+The experiment took `r round(ave.seconds.hab.pred.endorse / 60)` minutes on average on participants were compensated \$0.40 for their work.
 None of the participants had completed Expt. 3a.
-%\subsubsection{Procedure and materials}
 The only difference from Expt. 3a is the dependent measure. 
 On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2).
 The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-3-preventative.html}.
+
 #### Results
 
-There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:tj3}, middle; blue points).
-When collapsing across items and subjecting the data to a generalized mixed-effects model with random by-participant effects of intercept and random by-item effects of intercept and conditions, we find evidence for a small effect of \emph{enabling} conditions on endorsements (M =  0.89; 95\% Bootstrapped CI [0.88, 0.91]) as compared to baseline (M = 0.85 [0.83, 0.87]) [$\beta = 0.42; SE = 0.15; z = 2.8$]
-, and a large effect of \emph{preventative} conditions on endorsements (M = 0.29 [0.26, 0.31]) [$\beta = -3.22; SE = 0.21; z = -15.2$]. 
-<!-- %\mht{should I add points from Expt. 2 to left-most scatter, or maybe there is a better plot?} -->
+There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure}, middle; blue points).
+When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\% highest probability density interval for the true endorsement probabilities per condition are: baseline = 
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"MAP_h"]], 2)` [
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"high"]], 2)`
+], enabling = 
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"MAP_h"]], 2)` [
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"high"]], 2)`
+], preventative = `r round(d.hab.predictive.endorsment.preventative.summary[[1,"MAP_h"]], 2)` [
+`r round(d.hab.predictive.endorsment.preventative.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.preventative.summary[[1,"high"]], 2)`
+]
 
-We use the mean predicted log frequency from Expt. 3a as the input to the speaker $S_1$ model to predict the felicity judgments measured in Expt. 3b.
-We infer the two model parameters using the same analysis approach in Expt. 2. 
-The model matches the data well ($r^2(63) = 0.91$; Figure \ref{fig:tj3}, right).
-The same model using the past frequency as the object of communication does not match the data at all ($r^2(63) = 0.02$).
-These results suggest that the felicity of habituals is based on an underlying scale of predicted future propensity, not merely the observed frequency in the past.
+... ADD REGRESSION MODEL RESULTS ...
 
-Interestingly, we observe endorsements in this experiment that are appreciably higher than in Expt. 2 for the same items (Figure \ref{fig:tj3}, middle; red vs. purple points). 
-This may be due, in part, to an effect of the experimental context on participants: 
-in this experiment the overall population of frequencies is much lower (both because we selected moderate frequencies from Expt. 2 and because of the preventative information) and participants may infer that the experimenter believes this to be a representative range and adjust judgments accordingly.
-Future investigation into this issue is warranted.
+... ADD RSA RESULTS ...
+<!-- We use the mean predicted log frequency from Expt. 3a as the input to the speaker $S_1$ model to predict the felicity judgments measured in Expt. 3b. -->
+<!-- We infer the two model parameters using the same analysis approach in Expt. 2.  -->
+<!-- The model matches the data well ($r^2(63) = 0.91$; Figure \ref{fig:tj3}, right). -->
+<!-- The same model using the past frequency as the object of communication does not match the data at all ($r^2(63) = 0.02$). -->
+<!-- These results suggest that the felicity of habituals is based on an underlying scale of predicted future propensity, not merely the observed frequency in the past. -->
+
+<!-- Interestingly, we observe endorsements in this experiment that are appreciably higher than in Expt. 2 for the same items (Figure \ref{fig:tj3}, middle; red vs. purple points).  -->
+<!-- This may be due, in part, to an effect of the experimental context on participants:  -->
+<!-- in this experiment the overall population of frequencies is much lower (both because we selected moderate frequencies from Expt. 2 and because of the preventative information) and participants may infer that the experimenter believes this to be a representative range and adjust judgments accordingly. -->
+<!-- Future investigation into this issue is warranted. -->
 
 ## Discussion
 
