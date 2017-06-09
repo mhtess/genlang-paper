@@ -1917,18 +1917,18 @@ The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/exp
 <!-- Participants completed these elicitation trials for a random subset of 15 items, presented in a randomized order. -->
 <!-- The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/habituals/priors/friends-and-family-1.html} -->
 
-\begin{figure*}[t]
-\centering
-  \includegraphics[width=0.84\textwidth]{figs/tj-scatters-3}
-  \caption{
-  Human acceptability judgments as a function of the log frequency of action (left) and speaker $S_2$ model predictions (right) for ninety-three unique items (event \textsc{x} frequency). 
-  Color denotes target-individual frequency of action (log scale), with lighter colors indicating more frequent actions. 
-  Actual frequency noted on x-axis for examples (left).
-  Error bars correspond to 95\% bootstrapped confidence intervals for the participant data and 95\% Bayesian credible intervals for the model predictions. 
-  Error bars suppressed and points jittered on left facet for visual clarity.
-  }
-  \label{fig:tjScatters}
-\end{figure*}
+<!-- \begin{figure*}[t] -->
+<!-- \centering -->
+<!--   \includegraphics[width=0.84\textwidth]{figs/tj-scatters-3} -->
+<!--   \caption{ -->
+<!--   Human acceptability judgments as a function of the log frequency of action (left) and speaker $S_2$ model predictions (right) for ninety-three unique items (event \textsc{x} frequency).  -->
+<!--   Color denotes target-individual frequency of action (log scale), with lighter colors indicating more frequent actions.  -->
+<!--   Actual frequency noted on x-axis for examples (left). -->
+<!--   Error bars correspond to 95\% bootstrapped confidence intervals for the participant data and 95\% Bayesian credible intervals for the model predictions.  -->
+<!--   Error bars suppressed and points jittered on left facet for visual clarity. -->
+<!--   } -->
+<!--   \label{fig:tjScatters} -->
+<!-- \end{figure*} -->
 
 <!-- #### Data preprocessing -->
 
@@ -2344,15 +2344,15 @@ We find no differences between endorsements of the habitual of characters with m
 This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women). 
 Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
 
-\begin{figure*}[t]
-\centering
-  \includegraphics[width=\textwidth]{figs/expt3-4-scatters-camera.pdf}
-  \caption{Left: Predicted log frequency as a function of past log frequency given to the participant (Expt. 3a; CIs suppressed and jitter added for visual clarity).
-  Middle: Human endorsements of habitual sentences (Expt. 3b) vs. Predicted log frequency (Expt. 3a), with data for corresponding items from Expt. 2 (assumed to have the same predictive log frequency as baseline). 
-  Right: Endorsements (Expt. 3b) vs. Speaker $S_2$ model predictions using empirically elicited predictive frequencies (Expt. 3a).}
-  \label{fig:tj3}
-  \vspace{-7pt}
-\end{figure*}
+<!-- \begin{figure*}[t] -->
+<!-- \centering -->
+<!--   \includegraphics[width=\textwidth]{figs/expt3-4-scatters-camera.pdf} -->
+<!--   \caption{Left: Predicted log frequency as a function of past log frequency given to the participant (Expt. 3a; CIs suppressed and jitter added for visual clarity). -->
+<!--   Middle: Human endorsements of habitual sentences (Expt. 3b) vs. Predicted log frequency (Expt. 3a), with data for corresponding items from Expt. 2 (assumed to have the same predictive log frequency as baseline).  -->
+<!--   Right: Endorsements (Expt. 3b) vs. Speaker $S_2$ model predictions using empirically elicited predictive frequencies (Expt. 3a).} -->
+<!--   \label{fig:tj3} -->
+<!--   \vspace{-7pt} -->
+<!-- \end{figure*} -->
 
 #### Model criticism and comparison
 
