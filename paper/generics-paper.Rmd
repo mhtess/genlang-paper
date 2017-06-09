@@ -105,7 +105,7 @@ options("scipen"=10)
 # Introduction 
 
 Figuring out that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect is crucial knowledge in an uncertain world.
-We acquire such *generalizations* early in life, simply by observing instances and drawing inductive inferences [@Xu2008; @Dewar2010].
+We acquire such *generalizations* early in life, simply by observing instances and drawing inductive inferences [@Baldwin1993; @Xu2008; @Dewar2010].
 Once learners have the capacity to infer the intention of others, social learning can dramatically faciliate inductive reasoning [@Csibra2009; @Tomasello1999; @Butler2012].
 At around the first birthday, a child's mind gains access to a new, human-unique source of data: language.
 
@@ -2467,11 +2467,14 @@ Communicating generalizations about causally related events is potentially highl
 The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone. 
 
 Our framework for communicating generalizations makes predictions about statements conveying genericty about a category of causal events. 
-In this domain, an instance of the category is a single causal event (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough at a particular time of the day). 
-[Gerstenberg]
-The study of *elemental causal induction* is itself very subtle, depending on an observer's background theory of causality. [@Griffiths2005; @Schulz2008a].
+In this domain, an instance of the category is a single causal event, or *token causality* (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough). 
+<!-- [Gerstenberg] -->
+Determining whether or not a singular event itself is causal is challenging, plausibly having to do with counterfactual reasoning [e.g., @Gerstenberg2015how]. 
+Inducing the existence of an abstract cause from observational evidence also depends in complex ways on an observer's background theory of causality [e.g., @Griffiths2005; @Schulz2008a].
 
-We design this last experiment with the goal of testing whether background knowledge that gives rise to the prevalence priors is causally related to the endorsement of causal statements.
+Language provides a way to bypass the observational data needed to make a causal induction.
+Indeed, causal language has been shown to faciliate causal learning for nonobvious causal relations [@Bonawitz2010].
+We design this last experiment with the goal of testing the causal relationship between the prevalence priors that we posit as a mediating representation between abstract conecptual structure and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
 In Experiment 4a, we manipulate participants' beliefs about a causal system and measure their updated beliefs about system, serving a manipulation check.
@@ -2479,68 +2482,182 @@ In Experiment 4b, we test whether these manipulated priors give rise to differen
 
 ## Experiment 4a: Manipulating the Prevalence Prior for Causes
 
-People have theories about how different casusal systems work. 
-Physical causation tends to have a deterministic bend to it: If one billiard ball hits a second with a certain force, the second will respond by moving with a certain force. 
-If the experiment is repeated exactly, we would expect the same results.
-In other domains, probabilistic causes are plausible: Giving a sick animal a certain medication may sometimes make it better and other times it won't. 
-Finally, some events could have multiple possible causes: Testing whether or not a drug makes an animal *blink* might be difficult because animals will tend to *blink* even without intervention. 
+In this experiment, we introduce participants to statistics about novel causal forces and have them make predictions about future instances of those causes.
+This prediction task serves as a manipulation check for our prevalence prior manipulation.
 
-In this experiment, we examine causal domains that vary as to whether or not probabilistic causes are plausible and whether or not a background cause of the event is intuitively present.
-We introduce participants to the results of several experiments about each domain and see how different experimental results update participants' beliefs about causal power in these domains.
+<!-- examine causal domains that vary as to whether or not probabilistic causes are plausible and whether or not a background cause of the event is intuitively present. -->
+<!-- We introduce participants to the results of several experiments about each domain and see how different experimental results update participants' beliefs about causal power in these domains. -->
+
+<!-- People have theories about how different casusal systems work.  -->
+<!-- Physical causation tends to have a deterministic bend to it: If one billiard ball hits a second with a certain force, the second will respond by moving with a certain force.  -->
+<!-- If the experiment is repeated exactly, we would expect the same results. -->
+<!-- In other domains, probabilistic causes are plausible: Giving a sick animal a certain medication may sometimes make it better and other times it won't.  -->
+<!-- Finally, some events could have multiple possible causes: Testing whether or not a drug makes an animal *blink* might be difficult because animals will tend to *blink* even without intervention.  -->
+
 
 
 ### Method
 
+```{r causal-priors-data}
+
+d.cas.priors <- read.csv(paste(project.path,
+                           "data/causals/priors/pilot-causals-7-prior-trials.csv",
+                           sep= ""))
+
+n.subj.cas <- length(unique(d.cas.priors$workerid))
+
+ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60, 1)
+
+```
+
+
 
 #### Participants 
 
-We recruited N participants from Amazon's Mechanical Turk.
+We recruited `r n.subj.cas` participants from Amazon's Mechanical Turk.
 Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
-The experiment took on average N minutes and participants were compensated \$N.NN for their work.
+The experiment took on average `r ave.minutes.cas` minutes and participants were compensated \$0.50 for their work.
 
 
 <!-- The different kinds of system are described in more detail below. -->
 <!-- Participants are then told that the team of scientists is conducting experiments with different possible causes (e.g., different kinds of foods). -->
 
 
-The experiment is a single-trial experiment with 2 phases to the trial.
-In the first phase, participants are given a story about a causal domain in question.
-In the second phase, participants are asked to make a judgment corresponding to the between-subjects condition they are assigned (prior, endorsement, interpretation). 
-
 #### Procedure
 
-Participants are told that they are an astronaut-scientist on a distant planet trying to figure out how some system works (e.g., how to make a certain kind of animal more alert). They are told:
+The experiment is a single-trial experiment with 2 phases to the trial.
+In the first phase, participants are given a story about a causal domain.
+In the second phase, participants are asked to make a judgment corresponding to the between-subjects condition they are assigned (prior, endorsement, interpretation). 
+
+In the first phase, participants are told that they are an astronaut-scientist on a distant planet trying to figure out how some system works (how to make a certain kind of animal sleepy with different herbs or how to make a plant grow tall with different fertilizers). The story for the "sleepy animals" condition read:
 
 \begin{quotation}
 You are an astronaut-scientist exploring a distant planet. 
-On this planet, there are animals called  (e.g., daiths) and your team of scientists wants to figure out what makes daiths's hair turn brown. 
-Your team runs experiments trying to make daiths's hair turn brown with different chemical compounds. 
+On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. 
+Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs.
 The results are shown below:
 \end{quotation}
 
 Participants then must click a button to show the results of the experiments.
-Experiment results appear one at a time (upon a click), and are described verbally (e.g., The team tested Food A on 100 daiths. 30 of them were made more alert.) as well as put into a table showing the number of successes per number of attempts (always 100 per experiment). 
-Eleven "experiments" are shown, though one of the experiments had their results misplaced so they cannot report on the results at that point (the significance of this "missing experiment" will be described in Experiment 6).
+Experiment results appear one at a time (upon a click), and are described verbally (e.g., *Your team gave herb A to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.*) as well as displayed in a table showing the number of successes per number of attempts (always 100 per experiment). 
+Eleven "experiments" are shown, though one of the experiments had their results misplaced so they cannot report on the results at that point (the significance of this "missing experiment" will be described in Experiment 4b).
 After participants view the results of the 10 "experiments" (and 1 missing experiment), they are told to review the results of the experiments before continuing. 
 
-Upon proceeding to phase 2, the results of the "experiments" are removed and participants are told more experiments were conducted.
-Participants were asked to predict the results of the next 4 experiments.
-Participants were given 4 slider bars ranging from 0 - 100, and asked to predict the next four treatments (e.g., foods M, N, P, and Q). 
+Upon proceeding to phase 2, the table of "experiment results" is removed and participants are told more experiments were conducted.
+Participants were asked to predict the results of the next 5 experiments.
+Participants were given 5 slider bars ranging from 0 - 100, and asked to predict the next four treatments (e.g., herbs M, N, P, Q, and R). 
 
-#### Materials 
+#### Materials
 
-The kind of causal events in question were selected to correspond roughly to different positions in a theoretically meaningful space defined by the model.
-Research in elemental causal induction suggests people use causal models that correspond to a mixture probability distributions, where one component of the distribution is a consequence to the intrinsic causal force while the other component is a result of some extrinsic background cause.
-So we designed materials that corresponded to domains where various parameters of that mixture model could be manipulated. 
+Participants were either told a story of trying to make animals sleepy (described above) or trying to make plants grow tall. 
+The cover story for the "tall plants" condition read:
 
-A second dimension of manipulation corresponds to the extent to which *determinism* is expected in the domain. 
-For example, people's theories of physical causation tends to be more deterministic (i.e., favoring probabilities 1 and 0) then causation in the social or psychological domain. 
+\begin{quotation}
+You are an astronaut-scientist exploring a distant planet. 
+On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. 
+Your team runs experiments trying to make feps grow tall with different fertilizers. 
+The results are shown below:
+\end{quotation}
+
+Participants with either cover story were then exposed to one of four distributions of "experiment results", corresponding to our four experimental conditions, shown in Figure \ref{fig:causals-conditions}. 
+In two of the conditions, participants saw results that were all approximately the same across the various experiments. 
+In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the "common deterministic" condition).
+In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the "common weak" condition).
+
+The two other conditions used distributions in which some experiments resulted in either no or very few succeses (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
+These are the "rare deterministic" and "rare weak" conditions, because the very existence of a greater than zero effect was "rare".
+
+```{r causals-conditions, fig.caption = "Four background distributions participants were exposed to in Expt. 4"}
+sample.dists <- bind_rows(
+  data.frame(
+    dist = "rare weak",
+    x = c(rbeta(n = 3000, shape1 = 2, shape2 = 10),
+          rbeta(n = 7000, shape1 = 2, shape2 = 50)
+          )
+  ),
+  data.frame(
+    dist = "common weak",
+    x = rbeta(n = 10000, shape1 = 2, shape2 = 10)
+  ),
+  data.frame(
+    dist = "rare deterministic",
+    x = c(rbeta(n = 3000, shape1 = 50, shape2 = 2),
+          rbeta(n = 7000, shape1 = 2, shape2 = 50)
+          )
+  ),
+  data.frame(
+    dist = "common deterministic",
+    x = rbeta(n = 10000, shape1 = 50, shape2 = 2)
+  )
+) %>%
+    mutate(Distribution = factor(dist, 
+                               levels = c("common deterministic", "rare deterministic", "common weak", "rare weak"),
+         labels = c("Common Deterministic", "Rare Deterministic",
+                    "Common Weak", "Rare Weak")))
+  
+  
+
+ggplot(sample.dists, aes(x = x, fill = Distribution, color = Distribution))+ 
+  geom_density( adjust = 1.3, alpha =0.8, 
+               size = 1.2,
+               aes( y = ..scaled..))+ #
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  scale_fill_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
+  scale_color_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
+  ylab("Scaled Prior Probability")+
+  xlab("Target probability")+
+  facet_wrap(~Distribution, scales = 'free')+
+  guides(fill = F, color = F)
+```
+
+
+
+
+
+<!-- #### Materials  -->
+
+<!-- The kind of causal events in question were selected to correspond roughly to different positions in a theoretically meaningful space defined by the model. -->
+<!-- Research in elemental causal induction suggests people use causal models that correspond to a mixture probability distributions, where one component of the distribution is a consequence to the intrinsic causal force while the other component is a result of some extrinsic background cause. -->
+<!-- So we designed materials that corresponded to domains where various parameters of that mixture model could be manipulated.  -->
+
+<!-- A second dimension of man ipulation corresponds to the extent to which *determinism* is expected in the domain.  -->
+<!-- For example, people's theories of physical causation tends to be more deterministic (i.e., favoring probabilities 1 and 0) then causation in the social or psychological domain.  -->
 
 
 ### Results
 
+The distributions that resulted from participants predicting the causal efficacy of the new herbs / fertilizers are shown in Figure \ref{fig:empirical-causal-prior-densities}.
+These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
+We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
 
-...
+```{r empirical-causal-prior-densities, fig.width = 5, fig.height = 3, fig.caption="Empirical densities from the prediction task in the prior manipulation experiment (Expt. 4a)."}
+
+d.cas.priors %>%
+  filter(distribution %in% c("common_weak", "rare_deterministic", "rare_weak")) %>%
+      mutate(Distribution = factor(distribution, 
+                               levels = c("rare_deterministic", "common_weak", "rare_weak"),
+         labels = c("Rare Deterministic",
+                    "Common Weak", "Rare Weak"))) %>% 
+ggplot(., aes(x = response, fill = Distribution, color = Distribution))+ 
+  geom_density( adjust = 0.8, alpha =0.8, 
+               size = 1.2,
+               aes( y = ..scaled..))+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  scale_fill_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
+  scale_color_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
+  ylab("Scaled Prior Probability")+
+  xlab("Target probability")+
+  facet_wrap(~Distribution, scales = 'free')+
+  guides(fill = F, color = F)
+```
+
+### Model predictions
+
+... run RSA model using fixed parameters and MAP estimates of these priors ...
+
+
 
 ## Experiment 4b: Endorsing Causal Language
 
@@ -2550,28 +2667,8 @@ In this experiment, we tested whether the manipulated priors of Expt. 4a are cau
 
 Most of the experiment was identical to that of Experiment 4a.
 
-#### Participants
 
-We recruited N participants from Amazon's Mechanical Turk.
-Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
-None of the participants had participated in Experiment 4a. 
-The experiment took on average N minutes and participants were compensated \$N.NN for their work.
-
-#### Procedure and materials
-
-The materials were the same as in Experiment 4a.
-Phase 1 of the experiment was identical to that of Experiment 4a.
-In phase 2 of the endorsement task, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
-The results are reported to the participant in terms of how many out of 100 of the attempts were successful. 
-Participants were then asked to judge the causal sentence: "Treatment X makes the effect happen". 
-Partipants responded by either clicking "Yes" or "No". 
-
-Participants saw 1 of 3 frequencies: 20\%, 50\%, or 80\%.
-
-### Results
-
-
-```{r causals-endorsement}
+```{r}
 d.caus.endorse.catch.20 <- read.csv(paste(project.path, 
                                        "data/causals/endorsement/",
                                        "causals-8-20-catch_trials.csv", sep = ""))
@@ -2597,6 +2694,13 @@ d.caus.endorse.70 <- read.csv(paste(project.path,
 
 d.caus.endorse <- bind_rows(d.caus.endorse.20, d.caus.endorse.70)
 
+
+n.subj.cas.endorse <- length(unique(d.caus.endorse$workerid))
+ave.minutes.cas.endorse <- round(mean(unique(d.caus.endorse %>% select(workerid, rt))$rt) / 1000 / 60, 1)
+
+n.subj.cas.endorse.failed <- length(filter(d.caus.endorse.catch, passBoth == 0)$workerid)
+
+
 d.caus.endorse.summary <- left_join(
   d.caus.endorse, 
   d.caus.endorse.catch %>% select(workerid, passBoth)
@@ -2612,6 +2716,33 @@ d.caus.endorse.summary <- left_join(
          MAP_h = (a-1)/(a+b-2),
          mean = a / (a + b))
 
+
+```
+
+#### Participants
+
+We recruited `r n.subj.cas.endorse` participants from Amazon's Mechanical Turk.
+Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
+None of the participants had participated in Experiment 4a. 
+The experiment consisted of one trial and took on average `r ave.minutes.cas.endorse` minutes; participants were compensated \$0.25 for their work.
+
+#### Procedure and materials
+
+The materials were the same as in Experiment 4a.
+Phase 1 of the experiment was identical to that of Experiment 4a.
+In phase 2 of the endorsement task, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
+The results are reported to the participant in terms of how many out of 100 of the attempts were successful. 
+Participants saw 1 of 2 reported frequencies: 20\% or 70\% (randomized between-subjects).
+Participants were then asked to judge the causal sentence (e.g., "Herb X makes the animals sleepy"). 
+Partipants responded by either clicking "Yes" or "No". 
+
+After responding, participants were then asked to recall what the herbs / fertilizers aimed to achieve (e.g., "make animals sleepy") and one of the ten results they saw on the previous page. 
+This attention check served to confirm that participants had encoded some part of both relevant aspects of the experiment (the domain and the frequencies). 
+
+### Results
+
+```{r causals-endorsement, fig.width = 4, fig.height = 3}
+
 ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low, ymax = high, fill = distribution,
                         group = distribution))+
   geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
@@ -2620,9 +2751,12 @@ ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low
   geom_hline(yintercept = 0.5, lty = 3, color = 'black')+
   scale_y_continuous(limits = c(0, 1), breaks = c(0,0.5, 1))+
   scale_fill_solarized()+
-  xlab("Frequency")+
+  xlab("Target frequency")+
   ylab("Proportion Causal Endorsement")
 ```
+
+`r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
+Figure \ref{fig:causals-endorsement} shows the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement for the different experimentally-manipulated priors and target frequencies. 
 
 ## Discussion
 
