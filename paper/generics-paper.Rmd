@@ -68,11 +68,13 @@ knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
 
 
 ```{r include = FALSE}
-library("papaja")
+
 ```
 
 
 ```{r libraries}
+library(papaja)
+library(formatR)
 library(rwebppl)
 library(xtable)
 library(tidyverse)
@@ -2757,9 +2759,29 @@ ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low
 ```
 
 `r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
-Figure \ref{fig:causals-endorsement} shows the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement for the different experimentally-manipulated priors and frequencies. 
+As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior (i.e., a Beta-Binomial model). 
+These are shown for the different experimentally-manipulated priors and frequencies in Figure \ref{fig:causals-endorsement}.
 
 ## Discussion
+
+In our third case study, we applied our same model to generalizations about causal events.
+In this domain, we succesfully manipulated participants' beliefs about the expected causal power in a domain (Expt. 4a).
+We did this for both unstructured distributions (*common weak*, *common strong*) and structured distributions (*rare weak*, *rare strong*). 
+In Expt. 4b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
+In addition to further demonstrating the generality of this theory, these experiments show that the *prevalence prior* $P(h)$ construct that we posit is causally related to endorsement.
+
+In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall. 
+In addition to their plausibility, these causal events could have ambiguous causal power associated with them (e.g., it's plausible that there are herbs that only weakly make animals sleepy and it's also plausible that there are herbs that almost deterministically make animals sleepy).
+These two features of the domains make them particularly amenable to manipulation.
+That is, people's abstract theories about these domains are flexible enough to permit such manipulations.
+
+It's likely that there exist domains for which abstract, intuitive theories might interact with the experimentally-supplied "experimental data" to form a hybrid belief distribution.^[
+If this were happening in our domains, we would expect this to show up in the results of Expt. 4a. Participants' predictions about the likely causal power of new causes would be expected to show a mixture of their abstract, intuitive theories and the experimentally supplied data.
+]
+For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analagous to our "strong" priors conditions. 
+Causal systems that demonstrate surprising or *a priori* unlikely effects (e.g., liquids melting concrete) could induce rarity about the existence of a non-zero causal power, analgous to our "rare" prior conditions. 
+Our theory would predict in these cases that differences in endorsement would be attributable to differences in the belief distribution over causal power. 
+
 
 # General Discussion
 
@@ -2914,27 +2936,33 @@ We convey probabilities to each other using language, but the most basic ways we
 ## Acquiring the Language of Generalizations
 
 The linguistic outlet for generalizations about categories---so called, *generic language*---has received tremendous attention from psychologists, linguists, and philosophers.
-Generic language is one of the earliest emerging forms of complex, compositional language (CITE).
+Generic language is one of the earliest emerging forms of complex, compositional language.
 Somewhere between 2 and 3 years of age, children recognize that generics convey a generalization about a category, not directly tied to concrete instances in a scene [@Cimpian2008].
-More on development.
+...More on development...
 
 What is perhaps surprising from a formal perspective is that generic language is far from trivial to characterize. 
 If generics convey something about the prevalence of feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...).
 Rehash linguistic puzzles.
 The extreme flexibility of generic meaning stands in stark contrast to its early emergence in development.
-In fact, quantified statements, whose formal meaning is much more straight-forward, emerge much *later* in development.
-This has led some to conclude that the normal tools for describing the semantics of quantified utterances (namely, a truth-functional threshold) will not work for generic language [@Leslie2008].
+In fact, quantified statements, whose formal meaning is much more straight-forward, emerge much *later* in development [@Brandone2014; @Gelman2015].
+This has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) will not work for generic language [@Leslie2008].
 
-This may be throwing out the baby with the bathwater.
-When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance: (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
-If there is no fixed value of the threshold, then a uniform prior over the threshold in the truth-functional threshold semantics is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is *the degree itself*, normalized by the prior distribution over the degree (i.e., the comparison class). 
+This would be throwing out the baby with the bathwater.
+When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance (e.g., "some", "most"): (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
+Upon learning the meaning function is a threshold-function (1), a Bayesian language learner would be well-suited to adopt a prior distribution over possible thresholds $\theta$.
+This prior could then be updated with more data to acquire its fixed meaning.
+For the generic statement, the language learner is done once she acquires (1). 
+The rest of the meaning is inferred in context.
 
+There is an alternative reason why our uncertain threshold model makes the acquisition problem easier than quantifiers.
+A uniform prior over the threshold in the truth-functional threshold semantics (as we have assumed in this work) is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the probability degree $h$ *itself*: ^[It is equivalent to the probability degree $h$ normalized by the prior distribution over the degree (i.e., the comparison class)]
 $$
 \int_{0}^{1} \delta_{h > \theta} \diff \theta =  h
 $$
 
-Given this mathematical equivalence, we can imagine the *more is better* soft semantics is what is acquired early.
-The difficulty in acquiring the meaning of quantifiers is then a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* sematnics.
+This *soft semantics* (corresponding intuitively to something like "more is better") is perhaps the simplest semantics one could imagine.
+<!-- Given this mathematical equivalence, we can imagine the *more is better* soft semantics is what is acquired early. -->
+The difficulty in acquiring the meaning of quantifiers is then a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
 This special case involves learning the value of the threshold (aspect 2) and not in recognizing that the utterance conveys something about the quantity (e.g., aspect 1).
 
 ## Relationship to Other Theories
@@ -3010,6 +3038,14 @@ For Leslie, generics are tied to the cognitive system's "default mode of general
 The intuition comes from the fact that infants seem ready to make strong generalizations from small amounts of data [e.g., @Baldwin1993].
 This "default mode" comes equipped with the ability to single-out \emph{striking properties} (e.g., properties which are dangerous or appalling) as particularly useful aspects of the world to know about.
 Hence, \emph{Mosquitos carry malaria} is true because carrying malaria will kill you, which is a striking and a useful bit of information to convey.
+
+This theory thus predicted that generics that convey striking properties would be endorsed even when they are relatively rare (e.g., *Sharks attack swimmers*).
+This prediction was borne out experimentally when participants are supplied information about the dangerousness of a feature, even when the actual prevalence is quite low [e.g., "30\% of lorches have purple feathers that are as sharp as needles and can easily get lodged in you, causing massive bleeding."; @Cimpian2010].
+In pilot work, using paradigms similar to the manipulation check paradigm employed in the causal language experiments (Expt. 4a) and the structured elictation used in habituals (Expt. 2a), we have observed that the prior distribution over the prevalence of the feature $P(h)$ also changes when supplied information about the dangerousness of the feature.
+That is, our pilot work suggests that experiments that experimentally induce beliefs about the dangerousness of a feature also manipulate the prevalence priors. 
+Thus, our model would also predict these effects, but by way of the prevalence prior rather than something special about dangerous features per se.
+However, we do not dispute that extra-linguistic factors can play a role in endorsements of generalizations (e.g., a speaker may not *want* a hearer to believe the generalization, which she herself knows to be true, or visa versa; more on this below).
+
 Of course, not all generics convey striking or appalling information (e.g., *Birds lay eggs*).
 Leslie's default mode can also distinguish "negative counter-instances" of a property  (e.g., a bird that doesn't lay eggs, like male birds) from "positive counter-instances" (e.g., a hypothetical bird that bears live young).
 Generics are much less reasonable when positive counter-instances exist. Hence, \emph{Birds are female} seems weird because "being male" is a positive counter-instance of "being female", but since there are no birds that bear live young,  \emph{Birds lay eggs} is fine.
@@ -3107,17 +3143,22 @@ Instead, the statement should be glossed as *some elephants live in Africa* and 
 This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia."
 Our model is able to flexibly accomodate this statement by having uncertainty about the truth-conditional threshold. 
 
-With reasonable assumptions about the prior (e.g., assuming international elephants are unlikely), upon the hearing "Elephants live in Africa", the moddel infers that most elephants live in Africa.
+With reasonable assumptions about the prior (e.g., assuming international elephants are unlikely), upon the hearing "Elephants live in Africa", the model infers that most elephants live in Africa.
 When the model then hears "Elephants live in Asia", the model updates its beliefs to accomodate this second statement, inferring that some live in Africa and other lives in Asia. 
+A runnable version of the model for this example can be found at [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
 This is a nice feature of the uncertain threshold semantics: flexibility in accomodating new evidence that might otherwise contradict previous statements.
 
 Finally, (4) is used to argue that even if the property is widespread (perhaps in a soft sense, as in our model, relative to other kinds or groups), we might find it avervise to actually assert the generic.
-That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive, we might still not want to say *Women are submissive* [@Haslanger2011]. 
+That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive (more so than men, and many other social categories), we might still not want to say *Women are submissive* [@Haslanger2011]. 
 In our Model Simulations section, we showed that the generic often can imply the property is widespread, even with uninformed prior beliefs about the property. 
-If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth [cf., @Cimpian2010].
-The current formulation of the model is relatively ambivalent the deviations of the listener's beliefs from the speaker's beliefa.
-Other models in the RSA framework have identified states of the world with different subjective values (e.g., how good of a job a listener did on a task), and speakers with utilities that extend beyond conveying information can produce qualitatively different patterns of utterances [e.g., polite speech; @Yoon2016; @Yoon2017].
-If our model believed that states of the world where the prevalence of the feature is high (e.g., a world where many women were submissive) were undesirable, then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such generic claims. 
+If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth. ^[
+Note that this can naturally capture the central phenoman described in @Cimpian2010.
+].
+The current formulation of the model is relatively ambivalent the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence can be exaggerated from the generic statement).
+If states of the world (or, listener's beliefs about states of the world) correspond to different subjective utilities, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
+This kind of extension to the RSA framework has already accounted for a variety of behaviors corresponding to polite speech understanding and production [@Yoon2016; @Yoon2017].
+If our model believed that states of the world where the prevalence of the feature is high (e.g., a world where many women were submissive) were undesirable (either in absolute terms or as a belief), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such generic claims. 
+We find this possibility intruiging for future work.
 
 In sum, we've tried to argue that our information-theoretic communicative model couched in general cognitive framework can be used to formalize a number of interesting and heretofore puzzling avenues in genericity. 
 The precise implementation of these hypotheses we leave for future work.
