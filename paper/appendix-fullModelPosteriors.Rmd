@@ -82,7 +82,7 @@ d.gen.endorse.bayes <- left_join(
 ```{r}
 m.samp <- fread(
   paste(project.path,"models/generics/results/", 
-        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain1.csv",
+        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain2.csv",
         sep = "")
   ) %>% mutate(chain = 1)
 ```
@@ -123,6 +123,32 @@ d.prior.summary <- d.prior %>%
 
 
 
+Forward sample Target Prevalence from posterior on parameters
+```{r}
+m.samp.prev.params <- m.samp %>%
+    filter(type == "targetPrevalence") %>%
+    mutate(parameter = paste(param, property, category, sep = "_")) %>%
+    select(-param, -property, -category, -chain, -type) %>%
+    #mutate(item = paste(parameter, property, sep = "_")) %>%
+    group_by(parameter) %>%
+    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+    ungroup() %>%
+    separate(parameter, into = c("parameter", "property", "category"), sep= "_")
+  
+m.samp.prevalence <- m.samp.prev.params %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(
+      a = mean*sampleSize,
+      b = (1-mean)*sampleSize,
+      prevalence = rbeta(n = 1, shape1 = a, shape2 = b)
+      ) %>%
+    ungroup()
+```
+
+
+
 ```{r fig.width = 6, fig.height = 6}
 bind_rows(
   d.prior %>% 
@@ -131,10 +157,9 @@ bind_rows(
   mutate(prevalence = prevalence / 100,
          src = 'data') %>% 
     select(-workerid, -trial_type),
-  m.samp %>% 
-    filter(type == "withinKind") %>%
-    select(property, category, val) %>%
-    rename(Category = category, Property = property, prevalence = val) %>%
+  m.samp.prevalence %>% 
+    select(property, category, prevalence) %>%
+    rename(Category = category, Property = property) %>%
     mutate(src = 'model') 
   ) %>%
 ggplot(. , aes( x = prevalence, color = src))+
@@ -149,18 +174,40 @@ ggplot(. , aes( x = prevalence, color = src))+
 
 ```{r}
 # joint model inferred prevalence 
-m.samp.targetPrev <- m.samp %>% 
-  filter(type == "withinKind") %>% 
+m.samp.targetPrev <- m.samp.prevalence %>% 
   group_by(category, property) %>%
-  summarize(MAP = estimate_mode(val),
-          cred_upper = hdi_upper(val),
-          cred_lower = hdi_lower(val)) %>%
+  summarize(MAP = estimate_mode(prevalence),
+          cred_upper = hdi_upper(prevalence),
+          cred_lower = hdi_lower(prevalence),
+          prevMean = mean(prevalence)) %>%
   ungroup() %>% rename(Category = category, Property = property)
   
 left_join(d.prior.summary, 
           m.samp.targetPrev) %>%
-  ggplot(., aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
+  ggplot(., aes(x = prevMean, xmin = cred_lower, xmax = cred_upper,
                 y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_point()+geom_errorbar(alpha = 0.3)+ geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0, 1))+
+  scale_y_continuous(limits = c(0, 1))+
+  geom_abline(intercept = 0, slope = 1, lty = 3, alpha = 0.3)+
+  coord_fixed()
+```
+
+
+```{r}
+left_join(
+  d.gen.endorse.bayes,
+  m.samp.prevalence %>% 
+  group_by(category, property) %>%
+  summarize(MAP = estimate_mode(prevalence),
+          cred_upper = hdi_upper(prevalence),
+          cred_lower = hdi_lower(prevalence),
+          prevMean = mean(prevalence)) %>%
+  ungroup() %>% rename(Category = category, Property = property) %>%
+  mutate(sentence = paste(Category, " ", Property, ".", sep = ""))
+) %>%
+  ggplot(., aes(x = prevMean, xmin = cred_lower, xmax = cred_upper,
+                y = MAP_h, ymin = low, ymax = high))+
   geom_point()+geom_errorbar(alpha = 0.3)+ geom_errorbarh(alpha = 0.3)+
   scale_x_continuous(limits = c(0, 1))+
   scale_y_continuous(limits = c(0, 1))+
@@ -188,19 +235,19 @@ m.samp.prior.params <- m.samp %>%
     select(-item)
   
   m.samp.prevalence.prior <- m.samp.prior.params %>%
-                              group_by(parameter, property, iteration) %>%
-                              spread(parameter, val) %>%
-                              rowwise() %>%
-                              mutate(isPresent = rbinom(1, 1, prob = isPresent_na),
-                                     prevalence = ifelse(isPresent == 1, 
-                                                         rbeta(n = 1, 
-                                                               shape1 = prevalenceGivenPresent_mean* prevalenceGivenPresent_sampleSize,
-                                                               shape2 = (1-prevalenceGivenPresent_mean)*prevalenceGivenPresent_sampleSize),
-                                                         rbeta(n = 1,
-                                                               shape1 = 1,
-                                                               shape2 = 100))) %>%
-                              ungroup() %>%
-                              select(property, prevalence)
+    group_by(parameter, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(isPresent = rbinom(1, 1, prob = isPresent_na),
+       prevalence = ifelse(isPresent == 1, 
+                           rbeta(n = 1, 
+                                 shape1 = prevalenceGivenPresent_mean* prevalenceGivenPresent_sampleSize,
+                                 shape2 = (1-prevalenceGivenPresent_mean)*prevalenceGivenPresent_sampleSize),
+                           rbeta(n = 1,
+                                 shape1 = 1,
+                                 shape2 = 100))) %>%
+    ungroup() %>%
+    select(property, prevalence)
 ```
 
 Marginal distributions on prevalence

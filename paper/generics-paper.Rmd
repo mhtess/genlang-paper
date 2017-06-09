@@ -1530,7 +1530,7 @@ d.gen.endorse.regression <- bind_rows(
 
 m.samp <- fread(
   paste(project.path,"models/generics/results/", 
-        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain1.csv",
+        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain2.csv",
         sep = "")
   ) %>% mutate(chain = 1)
 
@@ -1608,6 +1608,7 @@ generics.endorsement.models <- bind_rows(
   ylab("Human generic endorsement")+
   facet_wrap(~src, nrow = 2)+
   theme(legend.position = "bottom")
+
 
 ```
 
@@ -2307,21 +2308,6 @@ habituals.endorsement.models <- bind_rows(
 habituals.endorsement.models
 ```
 
-
-
-```{r fig.height = 8, eval = F}
-
-m.samp %>% filter(type == "param") %>%
-  ggplot(., aes( x = val))+geom_histogram()+
-  facet_wrap(~habitual)
-
-
-m.samp %>% filter(type == "prior") %>%
-  ggplot(., aes( x = val, fill = time_period))+geom_histogram() + facet_grid(habitual~cat, scales = 'free')+
-  theme(strip.text.y = element_text(angle = 0))
-
-#tail(m.samp)
-```
 
 #### Behavioral results
 
