@@ -25,7 +25,7 @@ hdi_lower<- function(s){
   m <- HPDinterval(mcmc(s))
   return(m["var1","lower"])
 }
-project.path <- "~/Documents/research/comgen-paper/"
+project.path <- "../"
 data.path <- "data/generics/endorsement/"
 model.path <- "models/generics/results/"
 options("scipen"=10) 

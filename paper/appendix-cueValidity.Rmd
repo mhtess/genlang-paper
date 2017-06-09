@@ -4,7 +4,7 @@ library(tidyverse)
 library(ggthemes)
 library(jsonlite)
 theme_set(theme_few())
-project.path <- "~/Documents/research/communicating-generalizations/"
+project.path <- "../"
 data.path <- "data/generics/endorsement/"
 substrRight <- function(x, n){
   substr(x, nchar(x)-n+1, nchar(x))
