@@ -33,6 +33,50 @@ options("scipen"=10)
 
 ## Case Study 1: Generic language
 
+```{r generic-endorsement}
+d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments_catch-trials.csv", sep = ""))
+
+d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments.csv", sep = ""))
+
+
+d.gen.endorse.summary <- left_join(
+  d.gen.endorse, 
+  d.gen.endorse.catch %>% select(workerid, pass)
+  ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0),
+         sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  group_by(sentence) %>%
+  multi_boot_standard(column = "response") %>%
+  ungroup() %>%
+  mutate(sentence = factor(sentence, levels = sentence[order(mean)]))
+
+d.gen.endorse.bayes <- left_join(
+  d.gen.endorse, 
+  d.gen.endorse.catch %>% select(workerid, pass)
+  ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0),
+         sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  group_by(sentence) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b)) %>% 
+  ungroup() %>%
+  mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))
+```
+
 ### Uncertain threshold RSA 
 
 ```{r}
@@ -64,6 +108,8 @@ d.prior <- read.csv(paste(project.path, data.path,
                     "naturalGenerics-prior-trials-n57.csv", sep = ""))
 
 full_sentences <- mutate(md, sentence = paste(category, property, sep = "_"))$sentence
+
+d.gen.endorse.bayes
 
 d.prior.summary <- d.prior %>% 
   mutate(sentence = paste(Category, Property, sep = "_")) %>%
