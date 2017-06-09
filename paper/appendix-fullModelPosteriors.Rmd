@@ -103,21 +103,72 @@ m.samp %>%
 #### Posterior predictive distribution on target prevalence
 
 
+
+
 ```{r}
 d.prior <- read.csv(paste(project.path, data.path, 
                     "naturalGenerics-prior-trials-n57.csv", sep = ""))
 
-full_sentences <- mutate(md, sentence = paste(category, property, sep = "_"))$sentence
+full_sentences <- d.gen.endorse.bayes$sentence
 
 d.gen.endorse.bayes
 
 d.prior.summary <- d.prior %>% 
-  mutate(sentence = paste(Category, Property, sep = "_")) %>%
+  mutate(sentence = paste(Category," " ,Property, ".", sep = "")) %>%
   filter(sentence %in% full_sentences) %>%
   mutate(prevalence = prevalence / 100) %>%
   group_by(Category, Property) %>%
   multi_boot_standard(column = "prevalence")
 ```
+
+
+
+```{r fig.width = 6, fig.height = 6}
+bind_rows(
+  d.prior %>% 
+  mutate(sentence = paste(Category," " ,Property, ".", sep = "")) %>%
+  filter(sentence %in% full_sentences) %>%
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+    select(-workerid, -trial_type),
+  m.samp %>% 
+    filter(type == "withinKind") %>%
+    select(property, category, val) %>%
+    rename(Category = category, Property = property, prevalence = val) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = prevalence, color = src))+
+  geom_density(size = 1.1, aes( y = ..scaled.. ))+
+  facet_wrap(~Property + Category)+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(0,1)) +
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+
+```{r}
+# joint model inferred prevalence 
+m.samp.targetPrev <- m.samp %>% 
+  filter(type == "withinKind") %>% 
+  group_by(category, property) %>%
+  summarize(MAP = estimate_mode(val),
+          cred_upper = hdi_upper(val),
+          cred_lower = hdi_lower(val)) %>%
+  ungroup() %>% rename(Category = category, Property = property)
+  
+left_join(d.prior.summary, 
+          m.samp.targetPrev) %>%
+  ggplot(., aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
+                y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_point()+geom_errorbar(alpha = 0.3)+ geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0, 1))+
+  scale_y_continuous(limits = c(0, 1))+
+  geom_abline(intercept = 0, slope = 1, lty = 3, alpha = 0.3)+
+  coord_fixed()
+```
+
+
 
 #### Posterior predictive distribution on prevalance priors
 
@@ -153,26 +204,42 @@ m.samp.prior.params <- m.samp %>%
 ```
 
 Marginal distributions on prevalence
-```{r}
-
+```{r fig.width = 8, fig.height = 5}
+bind_rows(
+  d.prior %>% 
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+  select(-workerid, -trial_type, -Category),
+  m.samp.prevalence.prior %>% 
+    rename(Property = property) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = prevalence, color = src))+
+  geom_density(size = 1.1, aes( y = ..scaled.. ))+
+  facet_wrap( ~ Property, nrow = 3)+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(0,1)) +
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
 ```
+
 
 CDFs
 
 
-```{r}  
+```{r fig.width = 8, fig.height = 5}
   
-  bind_rows(
-    d.prior %>% 
-    mutate(prevalence = prevalence / 100) %>%
-    rename(property = Property) %>% 
-    select(property, prevalence) %>%
-    mutate(src = 'data'),
-     m.samp.prevalence.prior %>%
-      mutate(src = 'model')
+bind_rows(
+  d.prior %>% 
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+  select(-workerid, -trial_type, -Category),
+  m.samp.prevalence.prior %>% 
+    rename(Property = property) %>%
+    mutate(src = 'model') 
   ) %>% ggplot(., aes( x = prevalence, color = src))+
     stat_ecdf()+
-    facet_wrap(~property)+
+    facet_wrap(~Property, nrow = 3)+
     scale_color_solarized()+
     scale_x_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
     scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
