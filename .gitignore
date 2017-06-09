@@ -10,3 +10,5 @@ paper/*.html
 .Rprofile
 .Rproj.user
 comgen-paper.Rproj
+paper/generics-paper.pdf
+paper/library.bib
