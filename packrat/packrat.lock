@@ -155,6 +155,12 @@ Version: 3.4.0
 Hash: e9f85417507c5352fc05de654bb6f1ab
 Requires: assertthat, colorspace, ggplot2, scales
 
+Package: gridExtra
+Source: CRAN
+Version: 2.2.1
+Hash: 8f54b57d4b0598ed5b27e0eafe86a670
+Requires: gtable
+
 Package: gtable
 Source: CRAN
 Version: 0.2.0

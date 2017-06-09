@@ -85,6 +85,7 @@ library(coda)
 library(ggthemes)
 library(ggrepel)
 library(jsonlite)
+library(gridExtra)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -98,7 +99,7 @@ hdi_lower<- function(s){
   m <- HPDinterval(mcmc(s))
   return(m["var1","lower"])
 }
-project.path <- "~/Documents/research/comgen-paper/"
+project.path <- "../"
 options("scipen"=10) 
 ```
 
@@ -2756,7 +2757,7 @@ ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low
 ```
 
 `r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
-Figure \ref{fig:causals-endorsement} shows the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement for the different experimentally-manipulated priors and target frequencies. 
+Figure \ref{fig:causals-endorsement} shows the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement for the different experimentally-manipulated priors and frequencies. 
 
 ## Discussion
 
