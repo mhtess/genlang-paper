@@ -1956,7 +1956,7 @@ The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/exp
 
 <!-- #### Data preprocessing -->
 
-```{r habituals-prior}
+```{r habituals-prior-data}
 annualRates = list("5 years" = 1/5, "2 years" = 1/2,
                    "year" = 1, "6 months" = 2, "2 months" = 6,
                    "month" = 12, "2 weeks" = 26 ,"week" = 52)
@@ -1964,51 +1964,248 @@ annualRates = list("5 years" = 1/5, "2 years" = 1/2,
 d.hab.priors <- read.csv(paste(project.path,
                            "data/habituals/priors/friends-and-family-2-trials.csv",
                            sep= ""))
+d.hab.priors <- read.csv("/Users/mht/Documents/research/habituals/data/priors/priors-2.csv")
 
-
-
-d.hab.priors.tidy <- d.hab.priors %>%
+d.hab.priors <- d.hab.priors %>%
+  mutate(comparisonTime_men = as.character(comparisonTime_men),
+         comparisonTime_women = as.character(comparisonTime_women)) %>%
   rowwise() %>%
-  mutate(annualRate = annualRates[[as.character(interval)]]*n_times,
-         never = ifelse(annualRate == 0, 1, 0),
-         action = as.character(action),
-         action = ifelse(action == "sell things on eBay", "sells things on eBay", action))
+  mutate(
+    mixture_male = nPersons_men / comparisonNum_men,
+    mixture_female = nPersons_women / comparisonNum_women,
+    dayRate_male = ifelse(comparisonTime_men == "week", nInstances_men / 7,
+                   ifelse(comparisonTime_men == "month", nInstances_men / 30,
+                   ifelse(comparisonTime_men == "year", nInstances_men / 365,
+                   ifelse(comparisonTime_men == "5 years", 
+                          nInstances_men / (5*365), -99)))),
+    dayRate_female = ifelse(comparisonTime_women == "week", nInstances_women / 7,
+                   ifelse(comparisonTime_women == "month", nInstances_women / 30,
+                   ifelse(comparisonTime_women == "year", nInstances_women / 365,
+                   ifelse(comparisonTime_women == "5 years", 
+                          nInstances_women / (5*365), -99)))),
+    annualRate_male = dayRate_male * 365,
+    annualRate_female = dayRate_female * 365
+  )
 
-d.hab.priors.distinctiveness <- d.hab.priors.tidy %>%
-  group_by(action) %>%
-  multi_boot_standard(column = 'never') %>%
-  ungroup() %>%
-  rename(distinctiveness = mean, 
-         distinct_low = ci_lower, distinct_high = ci_upper)
-#d.hab.priors
-#d.hab.priors.distinctiveness
-# 
-# 
-# df.out <- df.tidy %>%
-#   mutate(annualRate = ifelse(annualRate == 0, 0.15, annualRate),
-#          lograte = log(annualRate),
-#          binned_lograte = round(lograte*2)/2) %>%
-#   group_by(action, binned_lograte) %>%
-#   summarize(counts = n())
-# 
-# 
-# # make sure 0s are represented
-# df.out2 <- left_join(
-#   expand.grid(action = levels(df.out$action), binned_lograte = levels(factor(df.out$binned_lograte))),
-#   df.out %>% mutate(binned_lograte = factor(binned_lograte))) 
-# 
-# df.out2[is.na(df.out2)] <- 0
-# df.out2 <- df.out2 %>%
-#   mutate(binned_lograte = as.numeric(binned_lograte))
-#   
-# ggplot(df.out2, aes( x = binned_lograte, y = counts))+
-#   #geom_histogram()+
-#   geom_bar(stat = 'identity', position = position_dodge())+
-#   #geom_density()+
-#   facet_wrap(~action, scales = 'free')+
-#   xlim(-3.5, 8.5)
-# d.hab.priors.tidy
+
+d.hab.priors.filtered <- filter(d.hab.priors, 
+       !(
+         (mixture_male == 0) ||   (mixture_female == 0) ||   
+           (dayRate_male == 0) ||   (dayRate_female == 0)  )
+       )
+
 ```
+
+
+```{r habituals-prior-forwardsample}
+# this is basically bootstrapping and combining using the structured model
+
+d.hab.priors.samples <- data.frame()
+for (i in 1:10){
+  
+  d.hab.priors.samples <- bind_rows(
+    d.hab.priors.samples,
+    d.hab.priors.filtered %>% 
+    select(workerid, item, starts_with("annualRate"), 
+           starts_with("mixture")) %>%
+    rowwise() %>%
+    mutate(
+      stable_male = rbinom(n = 1, size = 1, prob = mixture_male),
+       freq_male = ifelse(stable_male == 1, annualRate_male, 0.007),
+       stable_female = rbinom(n = 1, size = 1, prob = mixture_female),
+       freq_female = ifelse(stable_female == 1, annualRate_female, 0.007)
+       ) %>%
+    select(item, freq_male, freq_female) %>%
+    gather(gender, val, freq_male, freq_female) %>%
+  mutate(gender = gsub("freq_", "", gender))
+  )
+  print(i)
+}
+
+```
+
+```{r habituals-prior-model}
+hab.prior.bda.model <- '
+var betaShape = function(p){
+  return {a: p.g * p.d, b: (1-p.g) * p.d}
+};
+
+var model = function(){
+	var mixtureParams = {
+		male: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    },
+		female: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    }
+	};
+
+	var mixtureShapes = {
+		male: betaShape(mixtureParams.male),
+		female: betaShape(mixtureParams.female)
+	};
+
+	mapData({data: data.mixture}, function(d){
+    Beta(mixtureShapes[d.gender]).score(d.val) == -Infinity ? display(JSON.stringify(d)) : null
+     // display(Beta(mixtureShapes[d.gender]).score(d.val))
+		observe(Beta(mixtureShapes[d.gender]), d.val)
+	})
+
+	var stableFrequency = {
+		male: {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:5, width: 1})
+		},
+		female: {
+			mu: uniformDrift({a:-5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:5, width: 1})
+		}
+	}
+
+	mapData({data: data.frequency}, function(d){
+    Gaussian(stableFrequency[d.gender]).score(d.logval) == -Infinity ? 
+        display(JSON.stringify(d)) : null
+    // display(Gaussian(stableFrequency[d.gender]).score(d.logval))
+		observe(Gaussian(stableFrequency[d.gender]), d.logval)
+	})
+
+	var existenceProb = {
+		male: beta(mixtureShapes.male),
+		female: beta(mixtureShapes.female)
+	};
+
+	var freqWhenPresent = {
+		male: gaussian(stableFrequency.male),
+		female: gaussian(stableFrequency.female)
+	}
+
+  var marginalFreq = {
+    male: flip(existenceProb.male) ? freqWhenPresent.male : -5,
+    female: flip(existenceProb.female) ? freqWhenPresent.female : -5,
+  }
+
+  return {
+    mix_mean_male : mixtureParams.male.g,
+    mix_mean_female : mixtureParams.female.g,
+    mix_samplesize_male : mixtureParams.male.d,
+    mix_samplesize_female : mixtureParams.female.d,
+    stableFreq_mean_male : stableFrequency.male.mu,
+    stableFreq_mean_female :stableFrequency.female.mu,
+    stableFreq_sd_male : stableFrequency.male.sigma,
+    stableFreq_sd_female :stableFrequency.female.sigma,
+    marginalFreq_NA_male: marginalFreq.male,
+    marginalFreq_NA_female: marginalFreq.female
+  }
+}
+'
+```
+
+
+```{r habituals-prior-model-run}
+items <- levels(d.hab.priors.filtered$item)
+n_samples <- 500
+rs.habituals.bda.prior <- data.frame()
+
+for (it in items){
+  
+ df.prior.toPass <- list(
+   frequency = d.hab.priors.filtered %>%
+      filter(item == it) %>%
+      select(item, starts_with("annualRate")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("annualRate_", "", gender),
+             logval = log(val)),
+   mixture = d.hab.priors.filtered %>% 
+      filter(item == it) %>%
+      select(item, starts_with("mixture")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("mixture_", "", gender)) %>%
+      rowwise() %>%
+      mutate(val = ifelse(val == 1, 0.9999, 
+                          ifelse(val == 0, 0.000001, val)))
+  )
+ 
+  rs <- webppl(program_code = hab.prior.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.prior.toPass,
+       data_var = "data")
+  
+  rs.habituals.bda.prior <- bind_rows(
+    rs.habituals.bda.prior, 
+    rs %>% 
+      mutate(item = it) %>% 
+      separate(Parameter, into = c("Variable", "Parameter", "Gender"))
+  )
+}
+
+rs.habituals.bda.prior %>% 
+  mutate(param = paste(Variable, Parameter, sep = "_")) %>%
+  select(-Variable, -Parameter, -Chain) %>%
+  spread(param, value) 
+```
+
+
+```{r habituals-prior-model-forwardSample}
+rs.habituals.bda.prior.spread <- rs.habituals.bda.prior %>% 
+  mutate(param = paste(Variable, Parameter, sep = "_")) %>%
+  select(-Variable, -Parameter, -Chain) %>%
+  spread(param, value) 
+
+rs.habituals.bda.prior.samples <- data.frame()
+for (i in 1:1){
+  rs.habituals.bda.prior.samples <- bind_rows(
+    rs.habituals.bda.prior.samples,
+    rs.habituals.bda.prior.spread %>%
+    rowwise() %>%
+    mutate(
+      a = mix_mean * mix_samplesize,
+      b = (1 - mix_mean) * mix_samplesize,
+      theta = rbeta(n = 1, shape1 = a, shape2 = b),
+      stable = rbinom(n = 1, size = 1, prob = theta),
+      logannualRate = ifelse(stable == 1, 
+                             rnorm(n = 1, 
+                                   mean = stableFreq_mean, 
+                                   sd = stableFreq_sd), -5),
+       annualRate =  exp(logannualRate)
+    )
+  )
+}
+```
+
+
+
+```{r habituals-prior-fig, fig.width = 8.5, fig.height = 4, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red)."}
+
+bind_rows(
+  d.hab.priors.samples %>% 
+    mutate(src = 'data', 
+           val = log(val)),
+  rs.habituals.bda.prior.samples %>%
+    rename(gender = Gender, val = logannualRate) %>%
+    select(gender, item, val) %>%
+    mutate(src = 'model')
+  ) %>%
+ggplot(. , aes( x = val, color = src))+
+  geom_density(size = 0.8, aes( y = ..scaled.. ))+
+  facet_wrap(~item, nrow = 4)+
+  scale_color_solarized()+
+  xlab("Frequency")+
+  ylab("Scaled prior density")+
+  scale_x_continuous(limits = c(-5,10)) +
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0),
+        legend.position = c(0.95, 0.075),
+        axis.text.x = element_text(angle = 90))+
+    scale_x_continuous(limits = c(-5, 8), 
+                     breaks = c(-5, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+
+```
+
 
 <!-- Every response for a frequency of a person doing an action is a sample from $P_{event}(h)$. -->
 <!-- We first transformed all responses onto the same scale of "times per year" (assuming 52 weeks per year; 12 months per year). -->
