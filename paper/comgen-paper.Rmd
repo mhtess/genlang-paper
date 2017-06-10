@@ -1675,11 +1675,31 @@ m.gen.speakerBeliefs <- m.samp %>%
   mutate(Sentence = paste(category, property)) %>%
   filter(Sentence %in% example.generics) 
 
+m.gen.speakerBeliefs <- m.samp.prev.params <- m.samp %>%
+    filter(type == "targetPrevalence") %>%
+    mutate(Sentence = paste(category, property)) %>%
+    filter(Sentence %in% example.generics) %>%
+    mutate(parameter = paste(param, property, category, sep = "_")) %>%
+    select(-param, -property, -category, -chain, -type) %>%
+    group_by(parameter) %>%
+    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+    ungroup() %>%
+    separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(
+      a = mean*sampleSize,
+      b = (1-mean)*sampleSize,
+      val = rbeta(n = 1, shape1 = a, shape2 = b)
+      ) %>%
+    ungroup()
+
 gen.inset.distributions <- bind_rows(
   gen.listener.predictions %>%
     mutate(category = NA),
   m.gen.speakerBeliefs %>%
-    select(-type, -param, -chain, -Sentence) %>%
+    select(property, val) %>%
     rename(value = val) %>%
     mutate(Parameter = "speakerBeliefs")
 )
