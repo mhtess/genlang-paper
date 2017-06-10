@@ -2383,7 +2383,7 @@ This allows us to test whether habituals are best explained by a speaker $S_1$ w
 d.hab.predictive <- read.csv(paste(
   project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
 
-n.subj.hab.pred < - length(unique(d.hab.predictive$workerid))
+n.subj.hab.pred <- length(unique(d.hab.predictive$workerid))
 ave.seconds.hab.pred <-  d.hab.predictive %>% select(workerid, rt) %>%
       group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
       summarize(total = mean(totalSec))
