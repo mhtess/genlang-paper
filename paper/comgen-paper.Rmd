@@ -1961,14 +1961,13 @@ annualRates = list("5 years" = 1/5, "2 years" = 1/2,
                    "year" = 1, "6 months" = 2, "2 months" = 6,
                    "month" = 12, "2 weeks" = 26 ,"week" = 52)
 
-d.hab.priors <- read.csv(paste(project.path,
-                           "data/habituals/priors/friends-and-family-2-trials.csv",
-                           sep= ""))
 d.hab.priors <- read.csv("/Users/mht/Documents/research/habituals/data/priors/priors-2.csv")
 
 d.hab.priors <- d.hab.priors %>%
   mutate(comparisonTime_men = as.character(comparisonTime_men),
-         comparisonTime_women = as.character(comparisonTime_women)) %>%
+         comparisonTime_women = as.character(comparisonTime_women),
+         item = as.character(item),
+         item = ifelse(item == "sell things on eBay", "sells things on eBay", item)) %>%
   rowwise() %>%
   mutate(
     mixture_male = nPersons_men / comparisonNum_men,
@@ -1993,7 +1992,6 @@ d.hab.priors.filtered <- filter(d.hab.priors,
          (mixture_male == 0) ||   (mixture_female == 0) ||   
            (dayRate_male == 0) ||   (dayRate_female == 0)  )
        )
-
 ```
 
 
@@ -2215,8 +2213,8 @@ ggplot(. , aes( x = val, color = src))+
 
 We built a Bayesian data analysis model for this prior elicitation task.
 In addition to specifying the correct way to combine our two prior-elicitation questions, using this inferred prior resolves two technical difficulties.
-(1) It smooths effects that are clearly results of the response format. For example, a very common rating for certain events is \emph{1 time per year}. Presumably participants would be just as happy reporting \emph{approximately} 1 time per year (e.g., on average, 1.2 times per year); the raw data does not reflect this due to demands of the dependent measure.
-(2) It better captures the tails of the prior distribution (e.g., the probability of a rate of going to the movies two times every five years) which have relatively little data and need to be regularized by the analysis.
+First, it smooths effects that are clearly results of the response format. For example, a very common rating for certain events is \emph{1 time per year}. Presumably participants would be just as happy reporting \emph{approximately} 1 time per year (e.g., on average, 1.2 times per year); the raw data does not reflect this due to demands of the dependent measure.
+Second, this methodology better captures the tails of the prior distribution (i.e., very frequent or very infrequent rates) which have relatively little data and need to be regularized by the analysis.
 
 Question 1 elicits the proportion of people who have done an action before. 
 This number can be interpreted as a probability coming from a Beta distribution: $d_{mixture} \sim \text{Beta}(\gamma_{mixture}, \xi_{mixture})$. 
@@ -2341,6 +2339,15 @@ The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/exp
 
 ### Results
 
+```{r habituals-prior-mixture-summarize}
+d.hab.priors.mixture.summary <- d.hab.priors.filtered %>%
+  select(item, starts_with("mixture_")) %>%
+  gather(key, value, -item) %>%
+  group_by(item) %>%
+  multi_boot_standard( column = 'value' )
+```
+
+
 ```{r habituals-endorsement}
 d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsement/", 
                     "habituals-endorsement-catch_trials.csv", sep = ""))
@@ -2348,20 +2355,26 @@ d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsem
 d.hab.endorsement <- read.csv(paste(project.path, "data/habituals/endorsement/", 
                     "habituals-endorsement.csv", sep = ""))
 
+
+
+
 d.hab.endorsement <- left_join(
   left_join(d.hab.endorsement, 
            d.hab.endorsement.catch %>% 
              select(workerid, pass)
            ) %>%
   filter(pass == 1),
-  d.hab.priors.distinctiveness %>% rename(habitual = action)) %>%
-  mutate(response = as.character(response),
-         response = ifelse(response == "agree-key", 1, 0),
-         roundedFreq = round(log_times * 2) / 2)
+  d.hab.priors.mixture.summary %>% rename(habitual = item, mixture = mean, mix_low = ci_lower, mix_high = ci_upper)) %>%
+  mutate(response = ifelse(as.character(response) == "agree-key", 1, 0)) %>%
+  rowwise() %>%
+  mutate(
+    annualRate = annualRates[[as.character(time_period)]]*n_instances,
+    logAnnualRate = log(annualRate)
+  )
 
 
 d.hab.endorsement.bayes <- d.hab.endorsement %>% 
-  group_by(habitual, time_period, log_times, roundedFreq) %>%
+  group_by(habitual, logAnnualRate) %>%
   summarize(k = sum(response), n = n()) %>%
   ungroup() %>%
   mutate(a = 1 + k,
@@ -2371,24 +2384,31 @@ d.hab.endorsement.bayes <- d.hab.endorsement %>%
          MAP_h = (a-1)/(a+b-2),
          mean = a / (a + b))
 
-ggplot(d.hab.endorsement.bayes, aes( x = roundedFreq, y = MAP_h, ymin = low, ymax = high, fill = roundedFreq))+
-  geom_jitter(width = 0.1, shape = 21)
-
-#d.hab.endorsement.bayes
+fig.habituals.endorsement.vs.freq <- 
+  ggplot(d.hab.endorsement.bayes, aes( x = logAnnualRate, y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
+  geom_jitter(width = 0.1, shape = 21)+
+  ylab("Human endorsement probability")+
+  xlab("Frequency of target")+
+  scale_x_continuous(limits = c(-1,6), 
+                     breaks = c(-1, 0, 0.7, 2.5, 4, 5.9),
+                     labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 0.5, 1))+
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
 ```{r habituals-regression-models}
 
-glm.hab.endorse.freq <- glm(response ~ log_times, 
+glm.hab.endorse.freq <- glm(response ~ logAnnualRate, 
               data = d.hab.endorsement, family = 'binomial')
 
-glm.hab.endorse.freq.distinct <- glm(response ~ log_times + distinctiveness, 
+glm.hab.endorse.freq.distinct <- glm(response ~ logAnnualRate + mixture, 
               data = d.hab.endorsement, family = 'binomial')
 
 d.hab.endorse.regression <- left_join(
   d.hab.endorsement.bayes,
   unique(select(
-    d.hab.endorsement, habitual, log_times, roundedFreq, distinctiveness
+    d.hab.endorsement, habitual, logAnnualRate, mixture
   )) %>%
     mutate(regression_freq = predict(glm.hab.endorse.freq, ., type = "response"), 
            regression_freq_distinct = predict(glm.hab.endorse.freq.distinct, ., type = "response"))
@@ -2397,7 +2417,7 @@ d.hab.endorse.regression <- left_join(
   mutate(sqErr = (MAP_h-prediction)^2)
 
 ggplot(d.hab.endorse.regression,
-       aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = distinctiveness))+
+       aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = mixture))+
   geom_errorbar(alpha = 0.1)+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
   # geom_text_repel(data = d.hab.endorse.regression.freq.distinct %>%
