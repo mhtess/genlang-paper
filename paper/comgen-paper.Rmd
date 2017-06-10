@@ -2019,7 +2019,6 @@ for (i in 1:10){
     gather(gender, val, freq_male, freq_female) %>%
   mutate(gender = gsub("freq_", "", gender))
   )
-  print(i)
 }
 
 ```
@@ -2141,11 +2140,6 @@ for (it in items){
       separate(Parameter, into = c("Variable", "Parameter", "Gender"))
   )
 }
-
-rs.habituals.bda.prior %>% 
-  mutate(param = paste(Variable, Parameter, sep = "_")) %>%
-  select(-Variable, -Parameter, -Chain) %>%
-  spread(param, value) 
 ```
 
 
