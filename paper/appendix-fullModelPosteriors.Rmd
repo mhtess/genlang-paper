@@ -1,7 +1,7 @@
 # Appendix C: Full model posteriors
 
 
-```{r libraries}
+```{r}
 library(rwebppl)
 library(xtable)
 library(tidyverse)
@@ -33,7 +33,7 @@ options("scipen"=10)
 
 ## Case Study 1: Generic language
 
-```{r generic-endorsement}
+```{r}
 d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "truth-judgments_catch-trials.csv", sep = ""))
 
@@ -111,7 +111,7 @@ d.prior <- read.csv(paste(project.path, data.path,
 
 full_sentences <- d.gen.endorse.bayes$sentence
 
-d.gen.endorse.bayes
+#d.gen.endorse.bayes
 
 d.prior.summary <- d.prior %>% 
   mutate(sentence = paste(Category," " ,Property, ".", sep = "")) %>%
@@ -194,7 +194,7 @@ left_join(d.prior.summary,
 ```
 
 
-```{r}
+```{r eval = F}
 left_join(
   d.gen.endorse.bayes,
   m.samp.prevalence %>% 

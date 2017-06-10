@@ -236,7 +236,7 @@ Our theory also opens up a number of new directions for understanding generic la
 
 
 <!-- In this paper, we introduce a formal model for understanding the language of generalizations. -->
-<!-- <!-- The fact that generalizations in language seem to convey something about the propensity but that there seem to be as many interpretations of generalized statements as there are generalizations have confounded formal models aimed to capture their meaning. --> -->
+<!-- <!-- The fact that generalizations in language seem to convey something about the propensity but that there seem to be as many interpretations of generalized statements as there are generalizations have confounded formal models aimed to capture their meaning. -->
 <!-- We take as a starting point the idea that the core meaning of a linguistic generalization is simple (i.e., it conveys something about the propensity), but underspecified (i.e., there is uncertainty in the meaning). -->
 <!-- We extend a rational model of communication --- the Rational Speech Act theory --- to be able to understand general statements that extend beyond the here-and-now. -->
 <!-- We provide a number of stringest tests of this theory to explain generalizations about categories, events, and causal forces.  -->
@@ -3399,3 +3399,5 @@ The theory presented here gives one explanation of how we do so, providing a com
 ```{r child = 'appendix-cueValidity.Rmd'}
 ```
 
+```{r child = 'appendix-fullModelPosteriors.Rmd'}
+```
