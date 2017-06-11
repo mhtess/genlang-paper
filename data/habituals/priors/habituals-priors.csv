@@ -1,0 +1,1241 @@
+"workerid","category","trial_type","comparisonTime_men","trial_num","item","nPersons_men","effectiveExistence_men","nInstances_men","comparisonTime_women","nInstances_women","effectiveDayWait_women","effectiveExistence_women","nPersons_women","comparisonNum_women","rt","comparisonNum_men","effectiveDayWait_men"
+0,"employment","twostep_elicitation","5 years",1,"sells companies",5,0.005,2,"5 years",1,1825,1e-04,1,10000,34213,1000,912.5
+0,"food","twostep_elicitation","month",2,"smokes marijuana",450,0.45,5,"month",5,6,0.4,400,1000,20399,1000,6
+0,"food","twostep_elicitation","year",3,"eats caviar",150,0.15,3,"year",3,121.666666667,0.15,150,1000,15882,1000,121.666666667
+0,"clothing","twostep_elicitation","week",4,"wears socks",1000,1,6,"week",6,1.16666666667,1,1000,1000,16433,1000,1.16666666667
+0,"entertainment","twostep_elicitation","year",5,"listens to live music",900,0.9,5,"year",5,73,0.9,900,1000,15478,1000,73
+0,"clothing","twostep_elicitation","5 years",6,"wears a bra",25,0.025,1,"week",6,1.16666666667,0.975,975,1000,25725,1000,1825
+0,"food","twostep_elicitation","year",7,"does cocaine",200,0.2,10,"year",5,73,0.15,150,1000,88577,1000,36.5
+0,"entertainment","twostep_elicitation","year",8,"goes to the ballet",600,0.6,1,"year",2,182.5,0.75,750,1000,17703,1000,365
+0,"employment","twostep_elicitation","year",9,"sell things on eBay",400,0.4,3,"year",5,73,0.45,450,1000,55068,1000,121.666666667
+0,"employment","twostep_elicitation","year",10,"volunteers for soup kitchens",250,0.25,2,"year",2,182.5,0.2,200,1000,13449,1000,182.5
+0,"entertainment","twostep_elicitation","week",11,"listens to Pandora",550,0.55,5,"week",5,1.4,0.55,550,1000,77821,1000,1.4
+0,"entertainment","twostep_elicitation","year",12,"watches professional football",800,0.8,10,"year",7,52.1428571429,0.6,600,1000,15801,1000,36.5
+0,"food","twostep_elicitation","week",13,"drinks coffee",950,0.95,5,"week",5,1.4,0.95,950,1000,28563,1000,1.4
+0,"employment","twostep_elicitation","year",14,"steals chewing gum",100,0.1,1,"year",1,365,0.05,50,1000,61920,1000,365
+0,"employment","twostep_elicitation","5 years",15,"volunteers for political campaigns",150,0.15,2,"5 years",2,912.5,0.175,175,1000,11473,1000,912.5
+0,"food","twostep_elicitation","month",16,"eats peanut butter",900,0.9,2,"month",2,15,0.9,900,1000,12071,1000,15
+0,"entertainment","twostep_elicitation","year",17,"goes to the movies",975,0.975,5,"year",5,73,0.975,975,1000,36903,1000,73
+0,"hobby","twostep_elicitation","month",18,"plays the banjo",200,0.2,10,"month",10,3,0.15,150,1000,19251,1000,3
+0,"entertainment","twostep_elicitation","year",19,"watches space launches",450,0.45,2,"year",2,182.5,0.4,400,1000,9963,1000,182.5
+0,"food","twostep_elicitation","week",20,"smokes cigarettes",375,0.375,15,"week",15,0.466666666667,0.35,350,1000,20049,1000,0.466666666667
+0,"employment","twostep_elicitation","5 years",21,"writes novels",100,0.1,2,"5 years",1,1825,0.075,75,1000,46278,1000,912.5
+0,"hobby","twostep_elicitation","year",22,"hikes",750,0.75,3,"year",3,121.666666667,0.7,700,1000,9979,1000,121.666666667
+0,"clothing","twostep_elicitation","week",23,"wears a suit",800,0.8,4,"week",3,2.33333333333,0.45,450,1000,40178,1000,1.75
+0,"clothing","twostep_elicitation","week",24,"wears a watch",850,0.85,6,"week",6,1.16666666667,0.85,850,1000,18108,1000,1.16666666667
+0,"hobby","twostep_elicitation","week",25,"runs",750,0.75,3,"week",3,2.33333333333,0.7,700,1000,20121,1000,2.33333333333
+0,"employment","twostep_elicitation","5 years",26,"writes poems",850,0.85,1,"5 years",1,1825,0.875,875,1000,46192,1000,1825
+0,"hobby","twostep_elicitation","year",27,"plays tennis",650,0.65,4,"year",4,91.25,0.675,675,1000,31722,1000,91.25
+0,"employment","twostep_elicitation","5 years",28,"steals cars",25,0.025,1,"5 years",1,1825,0.01,10,1000,9121,1000,1825
+0,"food","twostep_elicitation","week",29,"drinks beer",800,0.8,3,"week",2,3.5,0.775,775,1000,12703,1000,2.33333333333
+0,"hobby","twostep_elicitation","year",30,"climbs mountains",450,0.45,1,"year",1,365,0.25,250,1000,8742,1000,365
+0,"clothing","twostep_elicitation","week",31,"wears slacks",850,0.85,4,"week",4,1.75,0.825,825,1000,12388,1000,1.75
+1,"food","twostep_elicitation","year",1,"eats caviar",100,0.1,5,"5 years",1,1825,0.02,20,1000,74092,1000,73
+1,"employment","twostep_elicitation","year",2,"steals cars",1,0.001,15,"year",5,73,0.001,1,1000,67203,1000,24.3333333333
+1,"hobby","twostep_elicitation","year",3,"plays tennis",300,0.3,15,"year",10,36.5,0.25,250,1000,58373,1000,24.3333333333
+1,"employment","twostep_elicitation","5 years",4,"sells companies",15,0.015,1,"5 years",1,1825,0.005,5,1000,16141,1000,1825
+1,"entertainment","twostep_elicitation","5 years",5,"goes to the ballet",15,0.015,1,"year",2,182.5,0.025,25,1000,11015,1000,1825
+1,"clothing","twostep_elicitation","year",6,"wears socks",1000,1,365,"year",365,1,1,1000,1000,41368,1000,1
+1,"food","twostep_elicitation","year",7,"eats peanut butter",950,0.95,50,"year",50,7.3,0.95,950,1000,19077,1000,7.3
+1,"food","twostep_elicitation","year",8,"smokes marijuana",300,0.3,60,"year",40,9.125,0.2,200,1000,43961,1000,6.08333333333
+1,"employment","twostep_elicitation","year",9,"volunteers for political campaigns",100,0.1,1,"year",1,365,0.035,35,1000,12364,1000,365
+1,"food","twostep_elicitation","year",10,"does cocaine",60,0.06,15,"year",3,121.666666667,0.025,25,1000,13567,1000,24.3333333333
+1,"clothing","twostep_elicitation","year",11,"wears a bra",15,0.015,200,"year",365,1,1,1000,1000,32055,1000,1.825
+1,"entertainment","twostep_elicitation","year",12,"watches space launches",800,0.8,1,"year",1,365,0.5,500,1000,63909,1000,365
+1,"employment","twostep_elicitation","year",13,"writes poems",500,0.5,3,"year",3,121.666666667,0.5,500,1000,8214,1000,121.666666667
+1,"entertainment","twostep_elicitation","year",14,"goes to the movies",900,0.9,8,"year",5,73,0.8,800,1000,10111,1000,45.625
+1,"clothing","twostep_elicitation","year",15,"wears a suit",800,0.8,240,"year",150,2.43333333333,0.15,150,1000,29423,1000,1.52083333333
+1,"food","twostep_elicitation","year",16,"drinks beer",990,0.99,100,"year",60,6.08333333333,0.9,900,1000,20399,1000,3.65
+1,"entertainment","twostep_elicitation","year",17,"watches professional football",975,0.975,12,"year",3,121.666666667,0.8,800,1000,20232,1000,30.4166666667
+1,"hobby","twostep_elicitation","year",18,"climbs mountains",150,0.15,2,"year",1,365,0.08,80,1000,12239,1000,182.5
+1,"entertainment","twostep_elicitation","year",19,"listens to live music",750,0.75,1,"year",1,365,0.5,500,1000,8543,1000,365
+1,"hobby","twostep_elicitation","year",20,"hikes",700,0.7,12,"year",8,45.625,0.6,600,1000,16303,1000,30.4166666667
+1,"employment","twostep_elicitation","year",21,"sell things on eBay",200,0.2,12,"year",12,30.4166666667,0.1,100,1000,15143,1000,30.4166666667
+1,"food","twostep_elicitation","week",22,"smokes cigarettes",600,0.6,70,"week",50,0.14,0.5,500,1000,54721,1000,0.1
+1,"food","twostep_elicitation","week",23,"drinks coffee",975,0.975,12,"week",12,0.583333333333,0.975,975,1000,42448,1000,0.583333333333
+1,"clothing","twostep_elicitation","year",24,"wears slacks",950,0.95,150,"year",30,12.1666666667,0.5,500,1000,22566,1000,2.43333333333
+1,"entertainment","twostep_elicitation","year",25,"listens to Pandora",400,0.4,75,"year",75,4.86666666667,0.3,300,1000,35646,1000,4.86666666667
+1,"employment","twostep_elicitation","year",26,"writes novels",25,0.025,2,"year",2,182.5,0.01,10,1000,9855,1000,182.5
+1,"hobby","twostep_elicitation","year",27,"runs",1000,1,75,"year",75,4.86666666667,1,1000,1000,16225,1000,4.86666666667
+1,"clothing","twostep_elicitation","year",28,"wears a watch",950,0.95,200,"year",150,2.43333333333,0.9,900,1000,32461,1000,1.825
+1,"employment","twostep_elicitation","year",29,"volunteers for soup kitchens",15,0.015,12,"year",12,30.4166666667,0.015,15,1000,9126,1000,30.4166666667
+1,"employment","twostep_elicitation","5 years",30,"steals chewing gum",1,0.001,1,"5 years",1,1825,0.001,1,1000,14352,1000,1825
+1,"hobby","twostep_elicitation","year",31,"plays the banjo",8,0.008,60,"year",30,12.1666666667,0.005,5,1000,14102,1000,6.08333333333
+2,"entertainment","twostep_elicitation","month",1,"listens to Pandora",150,0.15,5,"month",3,10,0.091,91,1000,28079,1000,6
+2,"entertainment","twostep_elicitation","year",2,"goes to the movies",890,0.89,4,"year",2,182.5,0.875,875,1000,72428,1000,91.25
+2,"entertainment","twostep_elicitation","5 years",3,"listens to live music",770,0.77,3,"5 years",2,912.5,0.68,680,1000,63699,1000,608.333333333
+2,"hobby","twostep_elicitation","year",4,"runs",900,0.9,2,"year",2,182.5,0.91,910,1000,15530,1000,182.5
+2,"food","twostep_elicitation","month",5,"drinks beer",700,0.7,3,"year",4,91.25,0.6,600,1000,48012,1000,10
+2,"food","twostep_elicitation","5 years",6,"does cocaine",100,0.1,1,"5 years",1,1825,0.06,60,1000,18854,1000,1825
+2,"clothing","twostep_elicitation","year",7,"wears a suit",800,0.8,3,"5 years",3,608.333333333,0.1,100,1000,27358,1000,121.666666667
+2,"employment","twostep_elicitation","5 years",8,"volunteers for political campaigns",70,0.07,1,"5 years",1,1825,0.03,30,1000,22351,1000,1825
+2,"food","twostep_elicitation","week",9,"eats peanut butter",900,0.9,1,"week",2,3.5,0.91,910,1000,16605,1000,7
+2,"employment","twostep_elicitation","5 years",10,"steals chewing gum",30,0.03,1,"5 years",1,1825,0.011,11,1000,34715,1000,1825
+2,"hobby","twostep_elicitation","year",11,"climbs mountains",120,0.12,2,"year",1,365,0.045,45,1000,43812,1000,182.5
+2,"food","twostep_elicitation","year",12,"eats caviar",100,0.1,2,"year",1,365,0.105,105,1000,12554,1000,182.5
+2,"employment","twostep_elicitation","year",13,"sell things on eBay",60,0.06,5,"year",8,45.625,0.08,80,1000,32161,1000,73
+2,"employment","twostep_elicitation","5 years",14,"writes novels",11,0.011,1,"5 years",1,1825,0.017,17,1000,13921,1000,1825
+2,"clothing","twostep_elicitation","week",15,"wears a watch",900,0.9,2,"month",2,15,0.7,700,1000,32661,1000,3.5
+2,"entertainment","twostep_elicitation","month",16,"watches professional football",900,0.9,2,"year",3,121.666666667,0.4,400,1000,26590,1000,15
+2,"employment","twostep_elicitation","year",17,"writes poems",100,0.1,1,"year",2,182.5,0.25,250,1000,11531,1000,365
+2,"food","twostep_elicitation","month",18,"smokes marijuana",600,0.6,2,"year",1,365,0.4,400,1000,143194,1000,15
+2,"food","twostep_elicitation","week",19,"smokes cigarettes",300,0.3,100,"week",20,0.35,0.12,120,1000,30407,1000,0.07
+2,"hobby","twostep_elicitation","year",20,"plays tennis",130,0.13,4,"year",3,121.666666667,0.09,90,1000,12141,1000,91.25
+2,"hobby","twostep_elicitation","month",21,"hikes",899,0.899,2,"month",1,30,0.901,901,1000,23165,1000,15
+2,"clothing","twostep_elicitation","5 years",22,"wears a bra",7,0.007,1,"week",6,1.16666666667,0.93,930,1000,21572,1000,1825
+2,"food","twostep_elicitation","week",23,"drinks coffee",900,0.9,6,"week",6,1.16666666667,0.9,900,1000,15216,1000,1.16666666667
+2,"employment","twostep_elicitation","year",24,"volunteers for soup kitchens",130,0.13,2,"year",3,121.666666667,0.35,350,1000,22301,1000,182.5
+2,"entertainment","twostep_elicitation","5 years",25,"watches space launches",77,0.077,1,"5 years",1,1825,0.04,40,1000,16068,1000,1825
+2,"clothing","twostep_elicitation","week",26,"wears slacks",890,0.89,5,"week",2,3.5,0.6,600,1000,30628,1000,1.4
+2,"clothing","twostep_elicitation","week",27,"wears socks",990,0.99,6,"week",5,1.4,0.97,970,1000,14409,1000,1.16666666667
+2,"employment","twostep_elicitation","5 years",28,"sells companies",21,0.021,1,"5 years",1,1825,0.004,4,1000,15071,1000,1825
+2,"entertainment","twostep_elicitation","5 years",29,"goes to the ballet",111,0.111,1,"5 years",2,912.5,0.18,180,1000,13530,1000,1825
+2,"hobby","twostep_elicitation","week",30,"plays the banjo",65,0.065,2,"week",1,7,0.007,7,1000,14726,1000,3.5
+2,"employment","twostep_elicitation","year",31,"steals cars",59,0.059,2,"year",1,365,0.003,3,1000,14772,1000,182.5
+3,"hobby","twostep_elicitation","year",1,"plays the banjo",36,0.036,8,"year",5,73,0.08,80,1000,67742,1000,45.625
+3,"clothing","twostep_elicitation","month",2,"wears a suit",814,0.814,18,"month",12,2.5,0.742,742,1000,76895,1000,1.66666666667
+3,"hobby","twostep_elicitation","week",3,"plays tennis",1213,0.01213,2,"week",2,3.5,0.01,1000,100000,42725,100000,3.5
+3,"hobby","twostep_elicitation","month",4,"climbs mountains",7,0.007,4,"month",3,10,0.005,5,1000,67329,1000,7.5
+3,"employment","twostep_elicitation","year",5,"volunteers for soup kitchens",45,0.045,2,"year",4,91.25,0.06,60,1000,34345,1000,182.5
+3,"employment","twostep_elicitation","5 years",6,"sells companies",700,0.007,2,"5 years",1,1825,5e-04,5000,10000000,89438,100000,912.5
+3,"employment","twostep_elicitation","5 years",7,"steals chewing gum",85,0.085,1,"5 years",1,1825,0.08,80,1000,31621,1000,1825
+3,"food","twostep_elicitation","year",8,"eats caviar",50,0.05,2,"year",1,365,0.04,40,1000,21447,1000,182.5
+3,"clothing","twostep_elicitation","5 years",9,"wears a bra",350,0.35,1,"week",7,1,1,1000,1000,45296,1000,1825
+3,"food","twostep_elicitation","year",10,"smokes marijuana",400,0.4,5,"year",1,365,0.3,300,1000,53477,1000,73
+3,"employment","twostep_elicitation","5 years",11,"volunteers for political campaigns",80,0.08,1,"5 years",1,1825,0.05,50,1000,26733,1000,1825
+3,"entertainment","twostep_elicitation","year",12,"goes to the ballet",200,0.2,1,"year",2,182.5,0.475,475,1000,27245,1000,365
+3,"clothing","twostep_elicitation","year",13,"wears a watch",762,0.762,5,"week",3,2.33333333333,0.66,660,1000,24138,1000,73
+3,"entertainment","twostep_elicitation","week",14,"watches professional football",980,0.98,3,"month",3,10,0.92,920,1000,41989,1000,2.33333333333
+3,"food","twostep_elicitation","week",15,"eats peanut butter",990,0.99,3,"week",2,3.5,0.98,980,1000,42838,1000,2.33333333333
+3,"hobby","twostep_elicitation","month",16,"hikes",230,0.23,4,"month",3,10,0.2,200,1000,32558,1000,7.5
+3,"entertainment","twostep_elicitation","year",17,"watches space launches",180,0.18,2,"year",2,182.5,0.115,115,1000,22509,1000,182.5
+3,"entertainment","twostep_elicitation","month",18,"goes to the movies",992,0.992,1,"month",1,30,0.99,990,1000,24480,1000,30
+3,"employment","twostep_elicitation","5 years",19,"writes poems",82,0.082,2,"year",4,91.25,0.1,1000,10000,36563,1000,912.5
+3,"clothing","twostep_elicitation","week",20,"wears socks",1000,1,5,"week",3,2.33333333333,1,1000,1000,15341,1000,1.4
+3,"food","twostep_elicitation","week",21,"smokes cigarettes",90,0.09,6,"week",4,1.75,0.088,88,1000,21659,1000,1.16666666667
+3,"hobby","twostep_elicitation","month",22,"runs",996,0.996,5,"month",3,10,0.995,995,1000,23397,1000,6
+3,"clothing","twostep_elicitation","week",23,"wears slacks",900,0.9,4,"week",2,3.5,0.89,890,1000,18905,1000,1.75
+3,"employment","twostep_elicitation","5 years",24,"steals cars",15,0.015,2,"5 years",1,1825,0.01,10,1000,30079,1000,912.5
+3,"entertainment","twostep_elicitation","week",25,"listens to Pandora",980,0.98,6,"week",4,1.75,0.923,923,1000,27682,1000,1.16666666667
+3,"food","twostep_elicitation","week",26,"drinks beer",1000,1,4,"month",3,10,0.8,800,1000,18078,1000,1.75
+3,"entertainment","twostep_elicitation","week",27,"listens to live music",995,0.995,4,"month",8,3.75,0.995,995,1000,16262,1000,1.75
+3,"employment","twostep_elicitation","5 years",28,"writes novels",8,0.008,1,"5 years",2,912.5,0.005,5,1000,17597,1000,1825
+3,"food","twostep_elicitation","5 years",29,"does cocaine",50,0.05,2,"5 years",2,912.5,0.03,30,1000,18846,1000,912.5
+3,"food","twostep_elicitation","week",30,"drinks coffee",748,0.748,3,"week",5,1.4,0.8,800,1000,16750,1000,2.33333333333
+3,"employment","twostep_elicitation","week",31,"sell things on eBay",120,0.12,2,"month",3,10,0.08,80,1000,27173,1000,3.5
+4,"entertainment","twostep_elicitation","year",1,"listens to Pandora",150,0.15,25,"year",30,12.1666666667,0.2,200,1000,31401,1000,14.6
+4,"food","twostep_elicitation","year",2,"smokes marijuana",800,0.8,7,"year",5,73,0.6,600,1000,19982,1000,52.1428571429
+4,"food","twostep_elicitation","week",3,"smokes cigarettes",450,0.45,100,"week",100,0.07,0.4,400,1000,37358,1000,0.07
+4,"hobby","twostep_elicitation","year",4,"hikes",800,0.8,2,"year",1,365,0.75,750,1000,15614,1000,182.5
+4,"entertainment","twostep_elicitation","year",5,"listens to live music",700,0.7,4,"year",3,121.666666667,0.7,700,1000,32189,1000,91.25
+4,"entertainment","twostep_elicitation","year",6,"watches space launches",125,0.125,1,"year",1,365,0.1,100,1000,13735,1000,365
+4,"employment","twostep_elicitation","year",7,"writes novels",50,0.05,1,"year",1,365,0.025,25,1000,13917,1000,365
+4,"clothing","twostep_elicitation","year",8,"wears a watch",900,0.9,300,"year",300,1.21666666667,0.9,900,1000,14211,1000,1.21666666667
+4,"hobby","twostep_elicitation","year",9,"plays tennis",400,0.4,4,"year",5,73,0.4,400,1000,27763,1000,91.25
+4,"clothing","twostep_elicitation","year",10,"wears a bra",1,0.001,0,"year",360,1.01388888889,0.9,900,1000,15417,1000,NA
+4,"employment","twostep_elicitation","5 years",11,"writes poems",600,0.6,1,"year",1,365,0.4,400,1000,29559,1000,1825
+4,"employment","twostep_elicitation","5 years",12,"steals chewing gum",10,0.01,1,"5 years",1,1825,0.005,5,1000,18262,1000,1825
+4,"employment","twostep_elicitation","5 years",13,"sells companies",2,0.002,1,"5 years",1,1825,0.001,1,1000,17683,1000,1825
+4,"hobby","twostep_elicitation","year",14,"climbs mountains",300,0.3,1,"year",1,365,0.2,200,1000,11543,1000,365
+4,"employment","twostep_elicitation","5 years",15,"sell things on eBay",300,0.3,1,"5 years",1,1825,0.3,300,1000,16779,1000,1825
+4,"hobby","twostep_elicitation","year",16,"plays the banjo",5,0.005,1,"year",1,365,0.002,2,1000,44317,1000,365
+4,"food","twostep_elicitation","year",17,"does cocaine",300,0.3,1,"year",1,365,0.2,200,1000,9551,1000,365
+4,"employment","twostep_elicitation","year",18,"volunteers for soup kitchens",20,0.02,1,"year",1,365,0.05,50,1000,10931,1000,365
+4,"food","twostep_elicitation","5 years",19,"eats caviar",20,0.02,1,"5 years",1,1825,0.015,15,1000,10557,1000,1825
+4,"employment","twostep_elicitation","5 years",20,"volunteers for political campaigns",50,0.05,1,"5 years",1,1825,0.05,50,1000,58742,1000,1825
+4,"hobby","twostep_elicitation","year",21,"runs",998,0.998,1,"year",1,365,0.998,998,1000,14104,1000,365
+4,"food","twostep_elicitation","month",22,"drinks beer",950,0.95,4,"year",1,365,0.9,900,1000,19756,1000,7.5
+4,"entertainment","twostep_elicitation","year",23,"watches professional football",950,0.95,15,"year",5,73,0.9,900,1000,17031,1000,24.3333333333
+4,"clothing","twostep_elicitation","week",24,"wears socks",998,0.998,7,"week",7,1,0.998,998,1000,14990,1000,1
+4,"employment","twostep_elicitation","5 years",25,"steals cars",5,0.005,1,"5 years",1,1825,0.002,2,1000,8821,1000,1825
+4,"food","twostep_elicitation","year",26,"eats peanut butter",800,0.8,20,"year",20,18.25,0.8,800,1000,13349,1000,18.25
+4,"food","twostep_elicitation","week",27,"drinks coffee",700,0.7,5,"week",5,1.4,0.75,750,1000,15819,1000,1.4
+4,"entertainment","twostep_elicitation","year",28,"goes to the ballet",600,0.6,1,"year",1,365,0.8,800,1000,12053,1000,365
+4,"clothing","twostep_elicitation","week",29,"wears slacks",998,0.998,5,"week",2,3.5,0.95,950,1000,25759,1000,1.4
+4,"clothing","twostep_elicitation","year",30,"wears a suit",900,0.9,5,"year",3,121.666666667,0.7,700,1000,27354,1000,73
+4,"entertainment","twostep_elicitation","year",31,"goes to the movies",950,0.95,3,"year",3,121.666666667,0.95,950,1000,9861,1000,121.666666667
+5,"clothing","twostep_elicitation","week",1,"wears a suit",900,0.9,5,"year",2,182.5,0.4,400,1000,29496,1000,1.4
+5,"entertainment","twostep_elicitation","week",2,"watches professional football",950,0.95,3,"year",4,91.25,0.8,800,1000,38391,1000,2.33333333333
+5,"employment","twostep_elicitation","year",3,"sell things on eBay",100,0.1,4,"year",2,182.5,0.06,60,1000,70116,1000,91.25
+5,"hobby","twostep_elicitation","month",4,"runs",1000,1,5,"month",3,10,1,1000,1000,24580,1000,6
+5,"hobby","twostep_elicitation","year",5,"plays the banjo",5,0.005,2,"year",2,182.5,0.003,3,1000,17220,1000,182.5
+5,"employment","twostep_elicitation","year",6,"sells companies",2,0.002,1,"year",1,365,0.001,1,1000,8867,1000,365
+5,"food","twostep_elicitation","year",7,"does cocaine",500,0.5,5,"year",3,121.666666667,0.2,200,1000,25042,1000,73
+5,"employment","twostep_elicitation","year",8,"volunteers for soup kitchens",150,0.15,2,"year",2,182.5,0.2,200,1000,10523,1000,182.5
+5,"food","twostep_elicitation","year",9,"smokes marijuana",600,0.6,9,"year",5,73,0.45,450,1000,18610,1000,40.5555555556
+5,"food","twostep_elicitation","month",10,"eats peanut butter",980,0.98,7,"month",3,10,0.98,980,1000,51115,1000,4.28571428571
+5,"employment","twostep_elicitation","year",11,"steals chewing gum",20,0.02,1,"year",1,365,0.01,10,1000,10047,1000,365
+5,"employment","twostep_elicitation","year",12,"writes poems",250,0.25,3,"year",5,73,0.3,300,1000,14510,1000,121.666666667
+5,"entertainment","twostep_elicitation","year",13,"goes to the movies",1000,1,5,"year",6,60.8333333333,1,1000,1000,14440,1000,73
+5,"food","twostep_elicitation","year",14,"eats caviar",20,0.02,1,"year",1,365,0.05,50,1000,35133,1000,365
+5,"hobby","twostep_elicitation","year",15,"hikes",600,0.6,6,"year",2,182.5,0.35,350,1000,14988,1000,60.8333333333
+5,"hobby","twostep_elicitation","year",16,"climbs mountains",500,0.5,3,"year",1,365,0.1,100,1000,8985,1000,121.666666667
+5,"entertainment","twostep_elicitation","year",17,"listens to live music",750,0.75,4,"year",3,121.666666667,0.7,700,1000,9454,1000,91.25
+5,"clothing","twostep_elicitation","week",18,"wears a watch",900,0.9,5,"year",2,182.5,0.6,600,1000,22492,1000,1.4
+5,"employment","twostep_elicitation","year",19,"writes novels",30,0.03,1,"year",2,182.5,0.05,50,1000,36615,1000,365
+5,"employment","twostep_elicitation","year",20,"volunteers for political campaigns",100,0.1,1,"year",1,365,0.05,50,1000,44398,1000,365
+5,"clothing","twostep_elicitation","week",21,"wears socks",1000,1,7,"week",7,1,1,1000,1000,14767,1000,1
+5,"food","twostep_elicitation","week",22,"drinks coffee",950,0.95,5,"week",5,1.4,0.9,900,1000,18513,1000,1.4
+5,"entertainment","twostep_elicitation","year",23,"listens to Pandora",400,0.4,7,"year",5,73,0.3,300,1000,19047,1000,52.1428571429
+5,"employment","twostep_elicitation","year",24,"steals cars",10,0.01,1,"year",1,365,0.005,5,1000,11617,1000,365
+5,"food","twostep_elicitation","week",25,"drinks beer",970,0.97,1,"year",8,45.625,0.8,800,1000,26226,1000,7
+5,"clothing","twostep_elicitation","year",26,"wears a bra",150,0.15,1,"week",7,1,1,1000,1000,16994,1000,365
+5,"hobby","twostep_elicitation","month",27,"plays tennis",450,0.45,4,"month",4,7.5,0.55,550,1000,21117,1000,7.5
+5,"food","twostep_elicitation","year",28,"smokes cigarettes",500,0.5,20,"year",10,36.5,0.4,400,1000,113450,1000,18.25
+5,"entertainment","twostep_elicitation","year",29,"watches space launches",4,0.004,1,"year",1,365,0.003,3,1000,6992,1000,365
+5,"clothing","twostep_elicitation","year",30,"wears slacks",600,0.6,30,"year",10,36.5,0.2,200,1000,13040,1000,12.1666666667
+5,"entertainment","twostep_elicitation","year",31,"goes to the ballet",5,0.005,1,"year",1,365,0.01,10,1000,10674,1000,365
+6,"hobby","twostep_elicitation","year",1,"climbs mountains",10,0.01,1,"5 years",1,1825,0.1,100,1000,47730,1000,365
+6,"employment","twostep_elicitation","5 years",2,"writes poems",700,0.7,1,"year",2,182.5,0.8,800,1000,33788,1000,1825
+6,"food","twostep_elicitation","week",3,"does cocaine",300,0.3,2,"week",1,7,0.2,200,1000,47299,1000,3.5
+6,"clothing","twostep_elicitation","week",4,"wears socks",1000,1,7,"week",3,2.33333333333,1,1000,1000,23627,1000,1
+6,"employment","twostep_elicitation","5 years",5,"sells companies",15,0.015,1,"5 years",1,1825,0.005,5,1000,27026,1000,1825
+6,"entertainment","twostep_elicitation","5 years",6,"goes to the ballet",20,0.02,1,"5 years",1,1825,0.1,100,1000,17947,1000,1825
+6,"entertainment","twostep_elicitation","week",7,"watches professional football",1000,1,2,"month",1,30,0.95,950,1000,31410,1000,3.5
+6,"food","twostep_elicitation","week",8,"smokes cigarettes",700,0.7,7,"week",7,1,0.5,500,1000,26726,1000,1
+6,"employment","twostep_elicitation","year",9,"sell things on eBay",700,0.7,6,"year",1,365,0.5,500,1000,24803,1000,60.8333333333
+6,"employment","twostep_elicitation","year",10,"steals cars",20,0.02,2,"5 years",1,1825,0.005,5,1000,30188,1000,182.5
+6,"entertainment","twostep_elicitation","month",11,"goes to the movies",1000,1,1,"month",2,15,1,1000,1000,23938,1000,30
+6,"employment","twostep_elicitation","5 years",12,"steals chewing gum",5,0.005,1,"5 years",1,1825,0.001,1,1000,222227,1000,1825
+6,"hobby","twostep_elicitation","year",13,"hikes",400,0.4,3,"year",1,365,0.3,300,1000,13528,1000,121.666666667
+6,"food","twostep_elicitation","month",14,"smokes marijuana",800,0.8,4,"month",3,10,0.6,600,1000,27053,1000,7.5
+6,"clothing","twostep_elicitation","year",15,"wears a suit",1000,1,6,"5 years",1,1825,0.2,200,1000,25950,1000,60.8333333333
+6,"entertainment","twostep_elicitation","month",16,"listens to Pandora",600,0.6,4,"week",3,2.33333333333,0.8,800,1000,30220,1000,7.5
+6,"food","twostep_elicitation","week",17,"eats peanut butter",900,0.9,1,"month",2,15,0.9,900,1000,36941,1000,7
+6,"entertainment","twostep_elicitation","year",18,"listens to live music",800,0.8,6,"year",6,60.8333333333,0.8,800,1000,29568,1000,60.8333333333
+6,"employment","twostep_elicitation","5 years",19,"volunteers for soup kitchens",200,0.2,1,"5 years",1,1825,0.4,400,1000,52350,1000,1825
+6,"employment","twostep_elicitation","5 years",20,"volunteers for political campaigns",75,0.075,1,"5 years",1,1825,0.1,100,1000,24842,1000,1825
+6,"entertainment","twostep_elicitation","5 years",21,"watches space launches",1000,1,1,"5 years",1,1825,1,1000,1000,20652,1000,1825
+6,"hobby","twostep_elicitation","week",22,"plays the banjo",75,0.075,2,"week",2,3.5,0.05,50,1000,28110,1000,3.5
+6,"food","twostep_elicitation","year",23,"eats caviar",150,0.15,2,"year",4,91.25,0.25,250,1000,19526,1000,182.5
+6,"hobby","twostep_elicitation","month",24,"plays tennis",200,0.2,4,"week",2,3.5,0.3,300,1000,22510,1000,7.5
+6,"food","twostep_elicitation","week",25,"drinks beer",1000,1,4,"week",2,3.5,0.9,900,1000,17659,1000,1.75
+6,"clothing","twostep_elicitation","week",26,"wears a watch",500,0.5,7,"week",7,1,0.2,200,1000,18136,1000,1
+6,"clothing","twostep_elicitation","month",27,"wears a bra",1,0.001,1,"week",7,1,1,1000,1000,24088,1000,30
+6,"hobby","twostep_elicitation","year",28,"runs",1000,1,4,"year",6,60.8333333333,1,1000,1000,39805,1000,91.25
+6,"clothing","twostep_elicitation","week",29,"wears slacks",1000,1,5,"week",1,7,0.8,800,1000,23454,1000,1.4
+6,"employment","twostep_elicitation","5 years",30,"writes novels",100,0.1,1,"year",1,365,0.25,250,1000,20236,1000,1825
+6,"food","twostep_elicitation","week",31,"drinks coffee",1000,1,5,"week",7,1,1,1000,1000,24658,1000,1.4
+7,"entertainment","twostep_elicitation","year",1,"listens to live music",500,0.5,2,"year",1,365,0.5,500,1000,64018,1000,182.5
+7,"employment","twostep_elicitation","5 years",2,"steals chewing gum",1,0.001,1,"5 years",1,1825,0.001,1,1000,26684,1000,1825
+7,"employment","twostep_elicitation","5 years",3,"sells companies",5,5e-05,1,"5 years",1,1825,5e-05,5,100000,46200,100000,1825
+7,"entertainment","twostep_elicitation","5 years",4,"goes to the ballet",5,0.005,1,"year",1,365,0.03,30,1000,56554,1000,1825
+7,"entertainment","twostep_elicitation","year",5,"watches professional football",800,0.8,20,"year",5,73,0.5,500,1000,44548,1000,18.25
+7,"employment","twostep_elicitation","5 years",6,"writes novels",10,1e-04,1,"5 years",1,1825,1e-04,10,100000,36621,100000,1825
+7,"food","twostep_elicitation","week",7,"smokes cigarettes",50,0.05,5,"week",5,1.4,0.025,25,1000,42784,1000,1.4
+7,"hobby","twostep_elicitation","week",8,"plays the banjo",10,1e-04,2,"week",1,7,4e-05,4,100000,44151,100000,3.5
+7,"clothing","twostep_elicitation","week",9,"wears a suit",900,0.9,5,"week",5,1.4,0.9,900,1000,31418,1000,1.4
+7,"clothing","twostep_elicitation","week",10,"wears slacks",400,0.4,1,"week",1,7,0.2,200,1000,41466,1000,7
+7,"entertainment","twostep_elicitation","week",11,"listens to Pandora",500,0.5,5,"week",5,1.4,0.5,500,1000,18678,1000,1.4
+7,"food","twostep_elicitation","week",12,"smokes marijuana",50,0.05,4,"week",1,7,0.025,25,1000,31466,1000,1.75
+7,"food","twostep_elicitation","week",13,"eats peanut butter",900,0.9,2,"week",2,3.5,0.9,900,1000,21329,1000,3.5
+7,"entertainment","twostep_elicitation","year",14,"watches space launches",20,0.02,1,"year",1,365,0.02,20,1000,27201,1000,365
+7,"food","twostep_elicitation","year",15,"eats caviar",10,0.01,2,"year",2,182.5,0.01,10,1000,13735,1000,182.5
+7,"employment","twostep_elicitation","month",16,"sell things on eBay",600,0.6,3,"month",3,10,0.6,600,1000,23153,1000,10
+7,"hobby","twostep_elicitation","year",17,"hikes",100,0.1,5,"year",5,73,0.1,100,1000,17835,1000,73
+7,"food","twostep_elicitation","week",18,"does cocaine",20,2e-04,1,"week",1,7,1e-04,10,100000,41497,100000,7
+7,"employment","twostep_elicitation","month",19,"writes poems",700,0.7,2,"month",2,15,0.8,800,1000,30570,1000,15
+7,"employment","twostep_elicitation","week",20,"volunteers for soup kitchens",10,0.001,3,"week",3,2.33333333333,0.001,10,10000,48132,10000,2.33333333333
+7,"entertainment","twostep_elicitation","month",21,"goes to the movies",900,0.9,2,"month",2,15,0.9,900,1000,20018,1000,15
+7,"clothing","twostep_elicitation","week",22,"wears socks",950,0.95,4,"week",4,1.75,0.95,950,1000,33185,1000,1.75
+7,"food","twostep_elicitation","week",23,"drinks coffee",950,0.95,5,"week",5,1.4,0.95,950,1000,16985,1000,1.4
+7,"hobby","twostep_elicitation","month",24,"runs",980,0.98,2,"month",2,15,0.98,980,1000,26337,1000,15
+7,"hobby","twostep_elicitation","week",25,"plays tennis",100,0.1,2,"week",2,3.5,0.2,200,1000,26145,1000,3.5
+7,"clothing","twostep_elicitation","week",26,"wears a watch",900,0.9,7,"week",7,1,0.85,850,1000,20368,1000,1
+7,"hobby","twostep_elicitation","year",27,"climbs mountains",5,5e-04,1,"year",1,365,5e-04,5,10000,27469,10000,365
+7,"food","twostep_elicitation","week",28,"drinks beer",950,0.95,4,"week",2,3.5,0.85,850,1000,33099,1000,1.75
+7,"employment","twostep_elicitation","year",29,"steals cars",1,1e-05,1,"year",1,365,1e-05,1,100000,26536,100000,365
+7,"employment","twostep_elicitation","5 years",30,"volunteers for political campaigns",1,1e-04,1,"5 years",1,1825,1e-04,1,10000,24668,10000,1825
+7,"clothing","twostep_elicitation","week",31,"wears a bra",0,0,0,"week",7,1,0.99,990,1000,57570,1000,NA
+8,"entertainment","twostep_elicitation","5 years",1,"watches space launches",400,0.4,2,"5 years",2,912.5,0.3,300,1000,37992,1000,912.5
+8,"hobby","twostep_elicitation","year",2,"hikes",150,0.15,5,"year",7,52.1428571429,0.2,200,1000,30021,1000,73
+8,"clothing","twostep_elicitation","week",3,"wears slacks",450,0.45,5,"week",5,1.4,0.45,450,1000,28181,1000,1.4
+8,"clothing","twostep_elicitation","5 years",4,"wears a bra",10,0.01,0,"week",7,1,0.99,990,1000,65935,1000,NA
+8,"entertainment","twostep_elicitation","week",5,"watches professional football",850,0.85,1,"month",2,15,0.2,200,1000,24280,1000,7
+8,"hobby","twostep_elicitation","year",6,"plays the banjo",75,0.075,3,"year",1,365,0.025,25,1000,26485,1000,121.666666667
+8,"entertainment","twostep_elicitation","5 years",7,"listens to live music",500,0.5,1,"5 years",1,1825,0.5,500,1000,19232,1000,1825
+8,"clothing","twostep_elicitation","week",8,"wears socks",975,0.975,6,"week",5,1.4,0.975,975,1000,22273,1000,1.16666666667
+8,"employment","twostep_elicitation","5 years",9,"steals cars",10,0.01,1,"5 years",1,1825,0.005,5,1000,19670,1000,1825
+8,"entertainment","twostep_elicitation","week",10,"listens to Pandora",600,0.6,2,"week",2,3.5,0.6,600,1000,15647,1000,3.5
+8,"hobby","twostep_elicitation","year",11,"plays tennis",400,0.4,7,"year",10,36.5,0.5,500,1000,41136,1000,52.1428571429
+8,"employment","twostep_elicitation","5 years",12,"volunteers for soup kitchens",1,0.001,1,"5 years",1,1825,0.005,5,1000,31198,1000,1825
+8,"food","twostep_elicitation","week",13,"drinks beer",800,0.8,2,"week",1,7,0.7,700,1000,24510,1000,3.5
+8,"employment","twostep_elicitation","5 years",14,"sells companies",1,1e-04,0,"5 years",0,NA,1e-04,1,10000,18239,10000,NA
+8,"food","twostep_elicitation","5 years",15,"smokes cigarettes",100,0.1,1,"5 years",1,1825,0.075,75,1000,27838,1000,1825
+8,"hobby","twostep_elicitation","5 years",16,"climbs mountains",50,0.005,1,"5 years",1,1825,0.001,10,10000,37862,10000,1825
+8,"employment","twostep_elicitation","5 years",17,"writes novels",100,0.01,4,"year",4,91.25,0.015,150,10000,77021,10000,456.25
+8,"employment","twostep_elicitation","5 years",18,"steals chewing gum",10,0.001,1,"5 years",1,1825,8e-04,8,10000,20887,10000,1825
+8,"food","twostep_elicitation","month",19,"eats peanut butter",850,0.85,2,"month",2,15,0.85,850,1000,16380,1000,15
+8,"food","twostep_elicitation","week",20,"drinks coffee",800,0.8,6,"week",6,1.16666666667,0.825,825,1000,16560,1000,1.16666666667
+8,"employment","twostep_elicitation","year",21,"sell things on eBay",100,0.1,2,"year",2,182.5,0.05,50,1000,19232,1000,182.5
+8,"food","twostep_elicitation","5 years",22,"eats caviar",350,0.35,1,"5 years",1,1825,0.375,375,1000,21262,1000,1825
+8,"employment","twostep_elicitation","5 years",23,"volunteers for political campaigns",50,0.05,1,"5 years",1,1825,0.075,75,1000,17744,1000,1825
+8,"employment","twostep_elicitation","year",24,"writes poems",300,0.3,2,"year",4,91.25,0.4,400,1000,26166,1000,182.5
+8,"food","twostep_elicitation","5 years",25,"does cocaine",75,0.075,1,"5 years",1,1825,0.035,35,1000,25509,1000,1825
+8,"entertainment","twostep_elicitation","year",26,"goes to the movies",800,0.8,2,"year",2,182.5,0.8,800,1000,15095,1000,182.5
+8,"entertainment","twostep_elicitation","5 years",27,"goes to the ballet",125,0.125,1,"5 years",2,912.5,0.2,200,1000,19584,1000,1825
+8,"clothing","twostep_elicitation","week",28,"wears a watch",700,0.7,6,"week",6,1.16666666667,0.7,700,1000,23087,1000,1.16666666667
+8,"clothing","twostep_elicitation","5 years",29,"wears a suit",600,0.6,1,"5 years",1,1825,0.025,25,1000,19231,1000,1825
+8,"food","twostep_elicitation","week",30,"smokes marijuana",500,0.5,2,"week",1,7,0.4,400,1000,14184,1000,3.5
+8,"hobby","twostep_elicitation","week",31,"runs",950,0.95,4,"week",4,1.75,0.95,950,1000,14863,1000,1.75
+9,"food","twostep_elicitation","year",1,"smokes cigarettes",240,0.24,200,"year",120,3.04166666667,0.098,98,1000,37397,1000,1.825
+9,"employment","twostep_elicitation","year",2,"sell things on eBay",50,0.05,12,"year",12,30.4166666667,0.052,52,1000,14862,1000,30.4166666667
+9,"hobby","twostep_elicitation","year",3,"runs",150,0.15,22,"year",20,18.25,0.12,120,1000,19031,1000,16.5909090909
+9,"food","twostep_elicitation","year",4,"drinks coffee",700,0.7,50,"year",50,7.3,0.7,700,1000,10642,1000,7.3
+9,"hobby","twostep_elicitation","year",5,"hikes",200,0.2,2,"year",2,182.5,0.12,120,1000,16177,1000,182.5
+9,"hobby","twostep_elicitation","year",6,"plays tennis",65,0.065,1,"year",1,365,0.05,50,1000,9045,1000,365
+9,"entertainment","twostep_elicitation","year",7,"listens to Pandora",300,0.3,50,"year",50,7.3,0.3,300,1000,10751,1000,7.3
+9,"employment","twostep_elicitation","year",8,"writes novels",7,0.007,0,"year",0,NA,0.008,8,1000,15946,1000,NA
+9,"entertainment","twostep_elicitation","year",9,"watches professional football",800,0.8,12,"year",4,91.25,0.46,460,1000,11471,1000,30.4166666667
+9,"employment","twostep_elicitation","year",10,"writes poems",34,0.034,0,"year",1,365,0.12,120,1000,60316,1000,NA
+9,"employment","twostep_elicitation","year",11,"sells companies",2,0.002,0,"year",0,NA,0.001,1,1000,6644,1000,NA
+9,"clothing","twostep_elicitation","year",12,"wears socks",1000,1,300,"year",300,1.21666666667,1,1000,1000,11628,1000,1.21666666667
+9,"hobby","twostep_elicitation","year",13,"climbs mountains",20,0.02,0,"year",0,NA,0.012,12,1000,8166,1000,NA
+9,"employment","twostep_elicitation","year",14,"volunteers for political campaigns",0,0,0,"year",0,NA,0,0,1000,3606,1000,NA
+9,"food","twostep_elicitation","year",15,"eats caviar",21,0.021,0,"year",0,NA,0.012,12,1000,5388,1000,NA
+9,"employment","twostep_elicitation","year",16,"volunteers for soup kitchens",50,0.05,1,"year",1,365,0.05,50,1000,10544,1000,365
+9,"hobby","twostep_elicitation","year",17,"plays the banjo",2,0.002,0,"year",0,NA,0,0,1000,5522,1000,NA
+9,"entertainment","twostep_elicitation","year",18,"goes to the movies",800,0.8,2,"year",2,182.5,0.8,800,1000,7174,1000,182.5
+9,"employment","twostep_elicitation","year",19,"steals chewing gum",50,0.05,0,"year",0,NA,0.025,25,1000,7466,1000,NA
+9,"clothing","twostep_elicitation","year",20,"wears slacks",200,0.2,2,"year",1,365,0.1,100,1000,14590,1000,182.5
+9,"entertainment","twostep_elicitation","year",21,"watches space launches",120,0.12,0,"year",0,NA,0.08,80,1000,8423,1000,NA
+9,"clothing","twostep_elicitation","year",22,"wears a bra",0,0,0,"year",320,1.140625,1,1000,1000,8741,1000,NA
+9,"food","twostep_elicitation","year",23,"drinks beer",850,0.85,20,"year",10,36.5,0.6,600,1000,16026,1000,18.25
+9,"food","twostep_elicitation","year",24,"eats peanut butter",500,0.5,5,"year",5,73,0.5,500,1000,7203,1000,73
+9,"entertainment","twostep_elicitation","year",25,"goes to the ballet",10,0.01,0,"year",0,NA,0.025,25,1000,9655,1000,NA
+9,"food","twostep_elicitation","year",26,"smokes marijuana",600,0.6,4,"year",2,182.5,0.5,500,1000,7610,1000,91.25
+9,"food","twostep_elicitation","year",27,"does cocaine",75,0.075,0,"year",0,NA,0.05,50,1000,74525,1000,NA
+9,"employment","twostep_elicitation","year",28,"steals cars",0,0,0,"year",0,NA,0,0,1000,3394,1000,NA
+9,"entertainment","twostep_elicitation","year",29,"listens to live music",250,0.25,1,"year",1,365,0.25,250,1000,12679,1000,365
+9,"clothing","twostep_elicitation","year",30,"wears a suit",300,0.3,2,"year",1,365,0.25,250,1000,8458,1000,182.5
+9,"clothing","twostep_elicitation","year",31,"wears a watch",350,0.35,10,"year",4,91.25,0.25,250,1000,9484,1000,36.5
+10,"hobby","twostep_elicitation","year",1,"runs",900,0.9,0,"year",0,NA,0.9,900,1000,26977,1000,NA
+10,"hobby","twostep_elicitation","year",2,"climbs mountains",1,0.001,2,"year",2,182.5,0.001,1,1000,31509,1000,182.5
+10,"food","twostep_elicitation","month",3,"eats peanut butter",900,0.9,2,"month",2,15,0.9,900,1000,25455,1000,15
+10,"food","twostep_elicitation","week",4,"drinks coffee",800,0.8,7,"week",7,1,0.8,800,1000,16008,1000,1
+10,"food","twostep_elicitation","month",5,"smokes marijuana",400,0.4,1,"month",1,30,0.35,350,1000,15060,1000,30
+10,"clothing","twostep_elicitation","week",6,"wears slacks",500,0.5,5,"month",5,6,0.3,300,1000,21196,1000,1.4
+10,"entertainment","twostep_elicitation","year",7,"goes to the movies",700,0.7,5,"year",5,73,0.7,700,1000,12426,1000,73
+10,"hobby","twostep_elicitation","year",8,"hikes",200,0.2,10,"year",10,36.5,0.18,180,1000,17487,1000,36.5
+10,"entertainment","twostep_elicitation","week",9,"watches professional football",950,0.95,1,"year",5,73,0.7,700,1000,43476,1000,7
+10,"food","twostep_elicitation","year",10,"does cocaine",50,0.05,0,"year",0,NA,0.05,50,1000,13381,1000,NA
+10,"clothing","twostep_elicitation","year",11,"wears a suit",800,0.8,6,"year",0,NA,0.1,100,1000,10909,1000,60.8333333333
+10,"employment","twostep_elicitation","year",12,"sells companies",6,0.006,0,"year",0,NA,0.003,3,1000,9962,1000,NA
+10,"employment","twostep_elicitation","year",13,"sell things on eBay",50,0.05,12,"year",12,30.4166666667,0.05,50,1000,11678,1000,30.4166666667
+10,"employment","twostep_elicitation","year",14,"steals chewing gum",5,0.005,1,"year",1,365,0.005,5,1000,9564,1000,365
+10,"clothing","twostep_elicitation","year",15,"wears socks",1000,1,200,"year",200,1.825,1,1000,1000,11881,1000,1.825
+10,"entertainment","twostep_elicitation","year",16,"goes to the ballet",5,0.005,1,"year",2,182.5,0.03,30,1000,26881,1000,365
+10,"employment","twostep_elicitation","year",17,"steals cars",5,0.005,3,"year",1,365,0.002,2,1000,9423,1000,121.666666667
+10,"hobby","twostep_elicitation","year",18,"plays tennis",300,0.3,12,"year",12,30.4166666667,0.25,250,1000,14355,1000,30.4166666667
+10,"clothing","twostep_elicitation","year",19,"wears a bra",3,0.003,0,"year",364,1.00274725275,1,1000,1000,15890,1000,NA
+10,"food","twostep_elicitation","month",20,"drinks beer",800,0.8,4,"month",1,30,0.75,750,1000,15956,1000,7.5
+10,"food","twostep_elicitation","week",21,"smokes cigarettes",200,0.2,10,"week",10,0.7,0.2,200,1000,15453,1000,0.7
+10,"employment","twostep_elicitation","year",22,"volunteers for soup kitchens",100,0.1,3,"year",3,121.666666667,0.1,100,1000,31210,1000,121.666666667
+10,"entertainment","twostep_elicitation","year",23,"listens to Pandora",200,0.2,24,"year",24,15.2083333333,0.2,200,1000,10383,1000,15.2083333333
+10,"employment","twostep_elicitation","year",24,"volunteers for political campaigns",100,0.1,1,"year",1,365,0.1,100,1000,16407,1000,365
+10,"clothing","twostep_elicitation","year",25,"wears a watch",800,0.8,200,"year",10,36.5,0.4,400,1000,11419,1000,1.825
+10,"entertainment","twostep_elicitation","year",26,"listens to live music",500,0.5,2,"year",2,182.5,0.5,500,1000,11090,1000,182.5
+10,"hobby","twostep_elicitation","year",27,"plays the banjo",2,0.002,10,"year",10,36.5,0.001,1,1000,9080,1000,36.5
+10,"entertainment","twostep_elicitation","year",28,"watches space launches",15,0.015,1,"year",1,365,0.015,15,1000,12790,1000,365
+10,"employment","twostep_elicitation","year",29,"writes novels",5,0.005,1,"year",1,365,0.005,5,1000,9770,1000,365
+10,"food","twostep_elicitation","year",30,"eats caviar",10,0.01,1,"year",1,365,0.01,10,1000,9861,1000,365
+10,"employment","twostep_elicitation","year",31,"writes poems",600,0.6,1,"year",1,365,0.6,600,1000,11100,1000,365
+11,"hobby","twostep_elicitation","year",1,"plays the banjo",150,0.15,24,"year",24,15.2083333333,0.1,100,1000,28174,1000,15.2083333333
+11,"entertainment","twostep_elicitation","year",2,"listens to Pandora",500,0.5,300,"year",300,1.21666666667,0.5,500,1000,26053,1000,1.21666666667
+11,"entertainment","twostep_elicitation","year",3,"goes to the ballet",100,0.1,1,"year",2,182.5,0.25,250,1000,14200,1000,365
+11,"entertainment","twostep_elicitation","year",4,"watches professional football",750,0.75,24,"year",20,18.25,0.6,600,1000,14783,1000,15.2083333333
+11,"clothing","twostep_elicitation","year",5,"wears socks",1000,1,350,"year",325,1.12307692308,1,1000,1000,17888,1000,1.04285714286
+11,"food","twostep_elicitation","year",6,"eats peanut butter",900,0.9,30,"year",30,12.1666666667,0.9,900,1000,13271,1000,12.1666666667
+11,"employment","twostep_elicitation","year",7,"volunteers for political campaigns",100,0.1,2,"year",2,182.5,0.1,100,1000,10536,1000,182.5
+11,"clothing","twostep_elicitation","year",8,"wears a watch",999,0.999,360,"year",360,1.01388888889,0.999,999,1000,14831,1000,1.01388888889
+11,"clothing","twostep_elicitation","year",9,"wears slacks",1000,1,300,"year",200,1.825,1,1000,1000,14359,1000,1.21666666667
+11,"entertainment","twostep_elicitation","year",10,"listens to live music",250,0.25,10,"year",10,36.5,0.25,250,1000,19324,1000,36.5
+11,"hobby","twostep_elicitation","year",11,"climbs mountains",50,0.05,1,"year",1,365,0.05,50,1000,26195,1000,365
+11,"employment","twostep_elicitation","year",12,"volunteers for soup kitchens",100,0.1,1,"year",1,365,0.1,100,1000,12151,1000,365
+11,"employment","twostep_elicitation","5 years",13,"steals chewing gum",25,0.025,1,"5 years",1,1825,0.025,25,1000,16472,1000,1825
+11,"food","twostep_elicitation","year",14,"drinks coffee",999,0.999,365,"year",365,1,0.999,999,1000,11855,1000,1
+11,"employment","twostep_elicitation","5 years",15,"steals cars",10,0.01,1,"5 years",1,1825,0.005,5,1000,14047,1000,1825
+11,"food","twostep_elicitation","year",16,"does cocaine",50,0.05,12,"year",12,30.4166666667,0.05,50,1000,16463,1000,30.4166666667
+11,"clothing","twostep_elicitation","5 years",17,"wears a bra",5,0.005,1,"year",365,1,0.999,999,1000,19112,1000,1825
+11,"employment","twostep_elicitation","year",18,"sells companies",10,0.01,2,"year",1,365,0.005,5,1000,13176,1000,182.5
+11,"food","twostep_elicitation","year",19,"smokes marijuana",750,0.75,300,"year",300,1.21666666667,0.75,750,1000,15110,1000,1.21666666667
+11,"employment","twostep_elicitation","year",20,"sell things on eBay",300,0.3,36,"year",30,12.1666666667,0.25,250,1000,14511,1000,10.1388888889
+11,"clothing","twostep_elicitation","year",21,"wears a suit",800,0.8,300,"year",200,1.825,0.4,400,1000,15816,1000,1.21666666667
+11,"entertainment","twostep_elicitation","year",22,"watches space launches",500,0.5,1,"year",1,365,0.4,400,1000,14440,1000,365
+11,"food","twostep_elicitation","year",23,"eats caviar",10,0.01,1,"year",1,365,0.005,5,1000,10024,1000,365
+11,"employment","twostep_elicitation","5 years",24,"writes novels",5,0.005,1,"5 years",2,912.5,0.008,8,1000,15801,1000,1825
+11,"entertainment","twostep_elicitation","year",25,"goes to the movies",900,0.9,6,"year",6,60.8333333333,0.9,900,1000,12046,1000,60.8333333333
+11,"employment","twostep_elicitation","year",26,"writes poems",600,0.6,2,"year",5,73,0.7,700,1000,16088,1000,182.5
+11,"food","twostep_elicitation","year",27,"smokes cigarettes",400,0.4,600,"year",600,0.608333333333,0.4,400,1000,13368,1000,0.608333333333
+11,"hobby","twostep_elicitation","year",28,"hikes",200,0.2,12,"year",6,60.8333333333,0.15,150,1000,10080,1000,30.4166666667
+11,"food","twostep_elicitation","year",29,"drinks beer",700,0.7,24,"year",12,30.4166666667,0.6,600,1000,11152,1000,15.2083333333
+11,"hobby","twostep_elicitation","year",30,"runs",999,0.999,10,"year",5,73,0.999,999,1000,13040,1000,36.5
+11,"hobby","twostep_elicitation","year",31,"plays tennis",400,0.4,5,"year",5,73,0.4,400,1000,8304,1000,73
+12,"employment","twostep_elicitation","year",1,"sell things on eBay",50,0.05,3,"year",6,60.8333333333,0.1,100,1000,53109,1000,121.666666667
+12,"employment","twostep_elicitation","year",2,"volunteers for soup kitchens",100,0.1,2,"year",4,91.25,0.3,300,1000,24581,1000,182.5
+12,"food","twostep_elicitation","week",3,"smokes marijuana",400,0.4,2,"week",2,3.5,0.2,200,1000,40841,1000,3.5
+12,"entertainment","twostep_elicitation","year",4,"goes to the ballet",200,0.2,1,"year",2,182.5,0.4,400,1000,20682,1000,365
+12,"employment","twostep_elicitation","year",5,"steals chewing gum",400,0.4,1,"year",1,365,0.4,400,1000,22492,1000,365
+12,"food","twostep_elicitation","week",6,"drinks beer",800,0.8,8,"week",2,3.5,0.8,800,1000,37408,1000,0.875
+12,"food","twostep_elicitation","year",7,"eats caviar",100,0.1,2,"year",4,91.25,0.3,300,1000,45731,1000,182.5
+12,"food","twostep_elicitation","week",8,"drinks coffee",900,0.9,5,"week",8,0.875,0.9,900,1000,21708,1000,1.4
+12,"hobby","twostep_elicitation","year",9,"hikes",500,0.5,2,"year",5,73,0.7,700,1000,45910,1000,182.5
+12,"entertainment","twostep_elicitation","year",10,"listens to Pandora",850,0.85,200,"year",300,1.21666666667,0.9,900,1000,20685,1000,1.825
+12,"entertainment","twostep_elicitation","month",11,"goes to the movies",950,0.95,3,"month",5,6,0.975,975,1000,27161,1000,10
+12,"clothing","twostep_elicitation","year",12,"wears slacks",975,0.975,300,"year",150,2.43333333333,0.9,900,1000,33193,1000,1.21666666667
+12,"clothing","twostep_elicitation","year",13,"wears a suit",790,0.79,10,"year",10,36.5,0.8,800,1000,24906,1000,36.5
+12,"entertainment","twostep_elicitation","year",14,"watches space launches",100,0.1,1,"year",1,365,0.05,50,1000,23964,1000,365
+12,"entertainment","twostep_elicitation","year",15,"watches professional football",800,0.8,50,"year",20,18.25,0.5,500,1000,28911,1000,7.3
+12,"employment","twostep_elicitation","year",16,"sells companies",50,0.05,11,"year",1,365,0.025,25,1000,20663,1000,33.1818181818
+12,"food","twostep_elicitation","year",17,"does cocaine",200,0.2,10,"year",20,18.25,0.25,250,1000,22011,1000,36.5
+12,"clothing","twostep_elicitation","year",18,"wears a watch",900,0.9,300,"year",275,1.32727272727,0.8,800,1000,46457,1000,1.21666666667
+12,"hobby","twostep_elicitation","year",19,"climbs mountains",500,0.5,2,"year",1,365,0.2,200,1000,11853,1000,182.5
+12,"hobby","twostep_elicitation","year",20,"plays tennis",300,0.3,5,"year",20,18.25,0.8,800,1000,23977,1000,73
+12,"employment","twostep_elicitation","year",21,"writes novels",400,0.4,2,"year",2,182.5,0.5,500,1000,11646,1000,182.5
+12,"food","twostep_elicitation","year",22,"eats peanut butter",600,0.6,10,"year",10,36.5,0.6,600,1000,12344,1000,36.5
+12,"employment","twostep_elicitation","year",23,"volunteers for political campaigns",100,0.1,2,"year",8,45.625,0.3,300,1000,21683,1000,182.5
+12,"hobby","twostep_elicitation","week",24,"plays the banjo",200,0.2,5,"week",3,2.33333333333,0.1,100,1000,23796,1000,1.4
+12,"food","twostep_elicitation","week",25,"smokes cigarettes",800,0.8,7,"week",5,1.4,0.7,700,1000,18771,1000,1
+12,"clothing","twostep_elicitation","week",26,"wears socks",1000,1,5,"week",5,1.4,1,1000,1000,11586,1000,1.4
+12,"entertainment","twostep_elicitation","month",27,"listens to live music",600,0.6,2,"month",4,7.5,0.7,700,1000,31150,1000,15
+12,"employment","twostep_elicitation","year",28,"steals cars",50,0.05,10,"year",8,45.625,0.02,20,1000,16414,1000,36.5
+12,"clothing","twostep_elicitation","year",29,"wears a bra",100,0.1,2,"week",5,1.4,1,1000,1000,22427,1000,182.5
+12,"hobby","twostep_elicitation","week",30,"runs",900,0.9,5,"week",4,1.75,0.9,900,1000,20679,1000,1.4
+12,"employment","twostep_elicitation","week",31,"writes poems",800,0.8,3,"week",5,1.4,0.9,900,1000,22421,1000,2.33333333333
+13,"employment","twostep_elicitation","year",1,"sell things on eBay",175,0.175,4,"year",5,73,0.2,200,1000,26395,1000,91.25
+13,"entertainment","twostep_elicitation","year",2,"watches professional football",900,0.9,20,"year",10,36.5,0.8,800,1000,23606,1000,18.25
+13,"clothing","twostep_elicitation","week",3,"wears a watch",700,0.7,3,"week",3,2.33333333333,0.9,900,1000,29708,1000,2.33333333333
+13,"employment","twostep_elicitation","year",4,"volunteers for soup kitchens",50,0.05,1,"year",1,365,0.05,50,1000,18251,1000,365
+13,"food","twostep_elicitation","week",5,"drinks coffee",800,0.8,5,"week",5,1.4,0.7,700,1000,16285,1000,1.4
+13,"clothing","twostep_elicitation","year",6,"wears a bra",10,0.01,2,"year",360,1.01388888889,1,1000,1000,18711,1000,182.5
+13,"employment","twostep_elicitation","year",7,"writes novels",5,0.005,1,"year",1,365,0.005,5,1000,16240,1000,365
+13,"food","twostep_elicitation","year",8,"eats caviar",300,0.3,6,"year",4,91.25,0.3,300,1000,12098,1000,60.8333333333
+13,"entertainment","twostep_elicitation","year",9,"listens to live music",800,0.8,3,"year",5,73,0.8,800,1000,22087,1000,121.666666667
+13,"food","twostep_elicitation","week",10,"smokes cigarettes",450,0.45,125,"week",100,0.07,0.4,400,1000,29038,1000,0.056
+13,"food","twostep_elicitation","week",11,"drinks beer",550,0.55,3,"week",1,7,0.5,500,1000,21190,1000,2.33333333333
+13,"employment","twostep_elicitation","year",12,"steals cars",1,0.001,1,"year",1,365,1e-04,1,10000,31628,1000,365
+13,"entertainment","twostep_elicitation","year",13,"goes to the ballet",20,0.02,1,"year",2,182.5,0.05,50,1000,21142,1000,365
+13,"employment","twostep_elicitation","year",14,"writes poems",20,0.02,1,"year",2,182.5,0.1,100,1000,14363,1000,365
+13,"food","twostep_elicitation","year",15,"eats peanut butter",600,0.6,30,"year",30,12.1666666667,0.6,600,1000,19503,1000,12.1666666667
+13,"clothing","twostep_elicitation","year",16,"wears socks",1000,1,340,"year",175,2.08571428571,1,1000,1000,30276,1000,1.07352941176
+13,"employment","twostep_elicitation","year",17,"volunteers for political campaigns",10,0.01,1,"year",1,365,0.01,10,1000,9170,1000,365
+13,"clothing","twostep_elicitation","year",18,"wears slacks",600,0.6,200,"year",15,24.3333333333,0.3,300,1000,21144,1000,1.825
+13,"hobby","twostep_elicitation","year",19,"hikes",100,0.1,10,"year",5,73,0.075,75,1000,14406,1000,36.5
+13,"food","twostep_elicitation","year",20,"does cocaine",12,0.012,30,"year",15,24.3333333333,0.007,7,1000,16342,1000,12.1666666667
+13,"entertainment","twostep_elicitation","year",21,"watches space launches",225,0.225,2,"year",1,365,0.175,175,1000,14508,1000,182.5
+13,"hobby","twostep_elicitation","year",22,"climbs mountains",2,0.002,1,"year",1,365,0.001,1,1000,9145,1000,365
+13,"entertainment","twostep_elicitation","year",23,"goes to the movies",375,0.375,5,"year",5,73,0.375,375,1000,14959,1000,73
+13,"employment","twostep_elicitation","year",24,"steals chewing gum",2,2e-04,1,"year",1,365,1e-04,1,10000,12664,10000,365
+13,"hobby","twostep_elicitation","year",25,"plays tennis",60,0.06,20,"year",20,18.25,0.05,50,1000,14555,1000,18.25
+13,"clothing","twostep_elicitation","year",26,"wears a suit",400,0.4,100,"year",3,121.666666667,0.15,150,1000,17684,1000,3.65
+13,"food","twostep_elicitation","year",27,"smokes marijuana",300,0.3,50,"year",50,7.3,0.3,300,1000,10437,1000,7.3
+13,"hobby","twostep_elicitation","year",28,"plays the banjo",10,0.001,150,"year",100,3.65,5e-04,5,10000,21912,10000,2.43333333333
+13,"entertainment","twostep_elicitation","year",29,"listens to Pandora",600,0.6,200,"year",200,1.825,0.6,600,1000,11810,1000,1.825
+13,"employment","twostep_elicitation","year",30,"sells companies",8,8e-04,1,"year",1,365,2e-04,2,10000,13824,10000,365
+13,"hobby","twostep_elicitation","year",31,"runs",200,0.2,125,"year",100,3.65,0.175,175,1000,13655,1000,2.92
+14,"food","twostep_elicitation","year",1,"eats caviar",500,0.5,3,"year",3,121.666666667,0.5,500,1000,26774,1000,121.666666667
+14,"hobby","twostep_elicitation","year",2,"runs",1000,1,40,"year",30,12.1666666667,1,1000,1000,188554,1000,9.125
+14,"entertainment","twostep_elicitation","year",3,"goes to the ballet",300,0.3,1,"year",2,182.5,0.3,300,1000,18047,1000,365
+14,"hobby","twostep_elicitation","year",4,"plays tennis",500,0.5,5,"year",10,36.5,0.8,800,1000,247148,1000,73
+14,"employment","twostep_elicitation","year",5,"steals cars",600,0.6,5,"year",2,182.5,0.15,150,1000,19368,1000,73
+14,"employment","twostep_elicitation","year",6,"writes poems",1000,1,5,"year",10,36.5,1,1000,1000,385989,1000,73
+14,"food","twostep_elicitation","year",7,"does cocaine",800,0.8,60,"year",40,9.125,0.5,500,1000,13876,1000,6.08333333333
+14,"entertainment","twostep_elicitation","year",8,"watches space launches",500,0.5,1,"year",1,365,0.3,300,1000,8319,1000,365
+14,"hobby","twostep_elicitation","year",9,"hikes",900,0.9,5,"year",6,60.8333333333,0.8,800,1000,7663,1000,73
+14,"employment","twostep_elicitation","year",10,"sell things on eBay",500,0.5,8,"year",8,45.625,0.9,900,1000,8567,1000,45.625
+14,"hobby","twostep_elicitation","year",11,"climbs mountains",1000,1,10,"year",8,45.625,0.9,900,1000,9432,1000,36.5
+14,"clothing","twostep_elicitation","year",12,"wears a suit",1000,1,10,"year",5,73,0.8,800,1000,9928,1000,36.5
+14,"employment","twostep_elicitation","year",13,"steals chewing gum",300,0.3,1,"year",2,182.5,0.5,500,1000,8344,1000,365
+14,"food","twostep_elicitation","year",14,"smokes marijuana",800,0.8,10,"year",5,73,0.5,500,1000,44303,1000,36.5
+14,"clothing","twostep_elicitation","year",15,"wears slacks",900,0.9,15,"year",8,45.625,0.8,800,1000,7464,1000,24.3333333333
+14,"entertainment","twostep_elicitation","year",16,"listens to live music",800,0.8,10,"year",5,73,0.9,900,1000,9800,1000,36.5
+14,"food","twostep_elicitation","year",17,"drinks beer",950,0.95,20,"year",10,36.5,0.8,800,1000,10791,1000,18.25
+14,"food","twostep_elicitation","year",18,"drinks coffee",900,0.9,24,"year",24,15.2083333333,0.8,800,1000,10680,1000,15.2083333333
+14,"clothing","twostep_elicitation","year",19,"wears socks",1000,1,300,"year",300,1.21666666667,1,1000,1000,14096,1000,1.21666666667
+14,"employment","twostep_elicitation","year",20,"sells companies",100,0.1,2,"year",2,182.5,0.2,200,1000,8651,1000,182.5
+14,"entertainment","twostep_elicitation","year",21,"listens to Pandora",400,0.4,25,"year",30,12.1666666667,0.5,500,1000,8900,1000,14.6
+14,"food","twostep_elicitation","year",22,"eats peanut butter",700,0.7,10,"year",10,36.5,0.6,600,1000,7647,1000,36.5
+14,"clothing","twostep_elicitation","year",23,"wears a watch",500,0.5,10,"year",6,60.8333333333,0.2,200,1000,23880,1000,36.5
+14,"food","twostep_elicitation","year",24,"smokes cigarettes",200,0.2,20,"year",30,12.1666666667,0.9,900,1000,13765,1000,18.25
+14,"employment","twostep_elicitation","year",25,"volunteers for political campaigns",150,0.15,5,"year",8,45.625,0.2,200,1000,9232,1000,73
+14,"entertainment","twostep_elicitation","year",26,"goes to the movies",400,0.4,6,"year",5,73,0.9,900,1000,6856,1000,60.8333333333
+14,"clothing","twostep_elicitation","year",27,"wears a bra",100,0.1,10,"year",5,73,0.85,850,1000,12264,1000,36.5
+14,"hobby","twostep_elicitation","year",28,"plays the banjo",600,0.6,60,"year",80,4.5625,0.2,200,1000,8695,1000,6.08333333333
+14,"entertainment","twostep_elicitation","year",29,"watches professional football",800,0.8,5,"year",6,60.8333333333,0.4,400,1000,8216,1000,73
+14,"employment","twostep_elicitation","year",30,"writes novels",200,0.2,5,"year",5,73,0.2,200,1000,7985,1000,73
+14,"employment","twostep_elicitation","year",31,"volunteers for soup kitchens",600,0.6,5,"year",5,73,0.8,800,1000,6801,1000,73
+15,"employment","twostep_elicitation","year",1,"writes novels",5,0.005,1,"year",1,365,0.002,2,1000,23897,1000,365
+15,"employment","twostep_elicitation","year",2,"sell things on eBay",750,0.75,8,"year",5,73,0.57,570,1000,30322,1000,45.625
+15,"hobby","twostep_elicitation","year",3,"runs",750,0.75,300,"year",100,3.65,0.45,450,1000,25429,1000,1.21666666667
+15,"entertainment","twostep_elicitation","year",4,"listens to live music",1000,1,2,"year",2,182.5,1,1000,1000,14267,1000,182.5
+15,"clothing","twostep_elicitation","year",5,"wears a suit",850,0.85,50,"year",30,12.1666666667,0.25,250,1000,21419,1000,7.3
+15,"employment","twostep_elicitation","year",6,"writes poems",35,0.035,1,"year",1,365,0.055,55,1000,14891,1000,365
+15,"employment","twostep_elicitation","year",7,"steals chewing gum",450,0.45,4,"year",5,73,0.25,250,1000,12586,1000,91.25
+15,"hobby","twostep_elicitation","year",8,"plays tennis",680,0.68,9,"year",6,60.8333333333,0.45,450,1000,12909,1000,40.5555555556
+15,"clothing","twostep_elicitation","year",9,"wears a watch",900,0.9,100,"year",100,3.65,0.9,900,1000,12417,1000,3.65
+15,"food","twostep_elicitation","year",10,"smokes marijuana",500,0.5,450,"year",250,1.46,0.15,150,1000,16387,1000,0.811111111111
+15,"hobby","twostep_elicitation","year",11,"climbs mountains",45,0.045,1,"year",0,NA,0,0,1000,11067,1000,365
+15,"food","twostep_elicitation","year",12,"smokes cigarettes",550,0.55,45,"year",40,9.125,0.55,550,1000,23772,1000,8.11111111111
+15,"entertainment","twostep_elicitation","year",13,"listens to Pandora",200,0.2,2,"year",4,91.25,0.23,230,1000,15609,1000,182.5
+15,"entertainment","twostep_elicitation","year",14,"goes to the movies",1000,1,4,"year",4,91.25,1,1000,1000,13419,1000,91.25
+15,"employment","twostep_elicitation","year",15,"volunteers for soup kitchens",2,0.002,1,"year",1,365,0.002,2,1000,8945,1000,365
+15,"clothing","twostep_elicitation","year",16,"wears slacks",750,0.75,6,"year",6,60.8333333333,0.45,450,1000,15913,1000,60.8333333333
+15,"food","twostep_elicitation","year",17,"eats peanut butter",700,0.7,9,"year",7,52.1428571429,0.8,800,1000,13740,1000,40.5555555556
+15,"entertainment","twostep_elicitation","year",18,"goes to the ballet",3,0.003,1,"year",1,365,0.007,7,1000,9360,1000,365
+15,"food","twostep_elicitation","year",19,"drinks beer",1000,1,100,"year",100,3.65,0.95,950,1000,21413,1000,3.65
+15,"hobby","twostep_elicitation","year",20,"plays the banjo",2,0.002,2,"year",0,NA,0,0,1000,11058,1000,182.5
+15,"entertainment","twostep_elicitation","year",21,"watches professional football",1000,1,5,"year",1,365,0.45,450,1000,11851,1000,73
+15,"entertainment","twostep_elicitation","year",22,"watches space launches",2,0.002,1,"year",0,NA,0,0,1000,11281,1000,365
+15,"employment","twostep_elicitation","year",23,"sells companies",3,0.003,1,"year",1,365,0.001,1,1000,8689,1000,365
+15,"food","twostep_elicitation","year",24,"drinks coffee",1000,1,900,"year",900,0.405555555556,1,1000,1000,13219,1000,0.405555555556
+15,"clothing","twostep_elicitation","year",25,"wears socks",1000,1,365,"year",365,1,1,1000,1000,12081,1000,1
+15,"employment","twostep_elicitation","year",26,"volunteers for political campaigns",1,0.001,1,"year",1,365,0.001,1,1000,7393,1000,365
+15,"clothing","twostep_elicitation","year",27,"wears a bra",1,0.001,1,"year",365,1,1,1000,1000,12249,1000,365
+15,"food","twostep_elicitation","year",28,"eats caviar",2,0.002,1,"year",1,365,0.002,2,1000,6457,1000,365
+15,"food","twostep_elicitation","year",29,"does cocaine",100,0.1,3,"year",2,182.5,0.1,100,1000,10498,1000,121.666666667
+15,"hobby","twostep_elicitation","year",30,"hikes",670,0.67,3,"year",4,91.25,0.55,550,1000,9299,1000,121.666666667
+15,"employment","twostep_elicitation","year",31,"steals cars",43,0.043,1,"year",1,365,0.013,13,1000,12681,1000,365
+16,"entertainment","twostep_elicitation","year",1,"listens to live music",900,0.9,5,"year",2,182.5,0.8,800,1000,24615,1000,73
+16,"food","twostep_elicitation","year",2,"drinks beer",950,0.95,10,"year",8,45.625,0.85,850,1000,16568,1000,36.5
+16,"hobby","twostep_elicitation","year",3,"climbs mountains",10,0.01,1,"year",1,365,0.005,5,1000,19690,1000,365
+16,"employment","twostep_elicitation","year",4,"steals cars",2,0.002,1,"5 years",1,1825,0.001,1,1000,80071,1000,365
+16,"employment","twostep_elicitation","5 years",5,"writes novels",1,1e-04,1,"5 years",1,1825,5e-04,5,10000,113121,10000,1825
+16,"food","twostep_elicitation","year",6,"eats caviar",1,0.001,2,"year",2,182.5,0.002,2,1000,10927,1000,182.5
+16,"entertainment","twostep_elicitation","week",7,"listens to Pandora",600,0.6,3,"week",3,2.33333333333,0.5,500,1000,20515,1000,2.33333333333
+16,"clothing","twostep_elicitation","month",8,"wears slacks",975,0.975,1,"week",1,7,0.3,300,1000,23561,1000,30
+16,"food","twostep_elicitation","week",9,"smokes cigarettes",500,0.5,100,"week",100,0.07,0.4,400,1000,22616,1000,0.07
+16,"food","twostep_elicitation","week",10,"drinks coffee",800,0.8,5,"week",5,1.4,0.9,900,1000,11702,1000,1.4
+16,"entertainment","twostep_elicitation","week",11,"watches professional football",975,0.975,2,"month",2,15,0.9,900,1000,21070,1000,3.5
+16,"entertainment","twostep_elicitation","5 years",12,"watches space launches",1,0.001,1,"5 years",1,1825,0.001,1,1000,11700,1000,1825
+16,"clothing","twostep_elicitation","year",13,"wears a bra",5,0.005,1,"year",365,1,1,1000,1000,18084,1000,365
+16,"clothing","twostep_elicitation","week",14,"wears a watch",500,0.5,5,"week",5,1.4,0.3,300,1000,16401,1000,1.4
+16,"clothing","twostep_elicitation","week",15,"wears a suit",400,0.4,3,"week",1,7,0.25,250,1000,20663,1000,2.33333333333
+16,"entertainment","twostep_elicitation","year",16,"goes to the movies",950,0.95,5,"year",7,52.1428571429,0.975,975,1000,19160,1000,73
+16,"employment","twostep_elicitation","year",17,"sell things on eBay",50,0.05,5,"year",10,36.5,0.07,70,1000,72511,1000,73
+16,"clothing","twostep_elicitation","year",18,"wears socks",1000,1,350,"year",350,1.04285714286,1,1000,1000,11753,1000,1.04285714286
+16,"employment","twostep_elicitation","year",19,"volunteers for soup kitchens",50,0.05,1,"year",2,182.5,0.1,100,1000,15830,1000,365
+16,"hobby","twostep_elicitation","year",20,"plays the banjo",10,0.01,50,"year",25,14.6,0.003,3,1000,116613,1000,7.3
+16,"employment","twostep_elicitation","year",21,"volunteers for political campaigns",10,0.01,1,"year",1,365,0.02,20,1000,11556,1000,365
+16,"hobby","twostep_elicitation","year",22,"runs",1000,1,300,"year",325,1.12307692308,1,1000,1000,15676,1000,1.21666666667
+16,"food","twostep_elicitation","year",23,"eats peanut butter",800,0.8,20,"year",20,18.25,0.8,800,1000,9162,1000,18.25
+16,"entertainment","twostep_elicitation","year",24,"goes to the ballet",10,0.01,1,"year",3,121.666666667,0.02,20,1000,11013,1000,365
+16,"food","twostep_elicitation","year",25,"does cocaine",200,0.2,30,"year",20,18.25,0.1,100,1000,13295,1000,12.1666666667
+16,"food","twostep_elicitation","year",26,"smokes marijuana",500,0.5,30,"year",30,12.1666666667,0.5,500,1000,7473,1000,12.1666666667
+16,"hobby","twostep_elicitation","year",27,"hikes",300,0.3,10,"year",5,73,0.1,100,1000,13260,1000,36.5
+16,"employment","twostep_elicitation","year",28,"steals chewing gum",20,0.02,3,"year",1,365,0.01,10,1000,18553,1000,121.666666667
+16,"employment","twostep_elicitation","5 years",29,"sells companies",5,0.005,1,"5 years",1,1825,0.002,2,1000,13024,1000,1825
+16,"employment","twostep_elicitation","year",30,"writes poems",300,0.3,3,"year",5,73,0.4,400,1000,12223,1000,121.666666667
+16,"hobby","twostep_elicitation","year",31,"plays tennis",200,0.2,10,"year",20,18.25,0.3,300,1000,17633,1000,36.5
+17,"entertainment","twostep_elicitation","year",1,"listens to Pandora",500,0.5,200,"year",200,1.825,0.6,600,1000,56054,1000,1.825
+17,"employment","twostep_elicitation","year",2,"volunteers for soup kitchens",20,0.02,2,"year",2,182.5,0.02,20,1000,29189,1000,182.5
+17,"food","twostep_elicitation","week",3,"drinks coffee",950,0.95,10,"week",8,0.875,0.95,950,1000,38839,1000,0.7
+17,"entertainment","twostep_elicitation","year",4,"goes to the movies",999,0.999,4,"year",3,121.666666667,0.999,999,1000,26493,1000,91.25
+17,"employment","twostep_elicitation","5 years",5,"sells companies",250,0.25,1,"5 years",1,1825,0.15,150,1000,32087,1000,1825
+17,"hobby","twostep_elicitation","year",6,"hikes",800,0.8,7,"year",5,73,0.7,700,1000,25879,1000,52.1428571429
+17,"hobby","twostep_elicitation","month",7,"runs",700,0.7,5,"month",3,10,0.7,700,1000,23581,1000,6
+17,"food","twostep_elicitation","week",8,"smokes cigarettes",500,0.5,10,"week",10,0.7,0.5,500,1000,27927,1000,0.7
+17,"clothing","twostep_elicitation","week",9,"wears socks",1000,1,7,"week",7,1,1,1000,1000,19565,1000,1
+17,"entertainment","twostep_elicitation","year",10,"listens to live music",900,0.9,5,"year",5,73,0.9,900,1000,26335,1000,73
+17,"employment","twostep_elicitation","year",11,"steals cars",50,0.05,1,"year",1,365,0.025,25,1000,19799,1000,365
+17,"food","twostep_elicitation","month",12,"smokes marijuana",500,0.5,5,"month",3,10,0.4,400,1000,39751,1000,6
+17,"food","twostep_elicitation","week",13,"drinks beer",900,0.9,4,"month",7,4.28571428571,0.7,700,1000,30797,1000,1.75
+17,"clothing","twostep_elicitation","week",14,"wears slacks",1000,1,7,"week",5,1.4,0.9,900,1000,24999,1000,1
+17,"clothing","twostep_elicitation","week",15,"wears a watch",990,0.99,5,"week",5,1.4,0.95,950,1000,21988,1000,1.4
+17,"employment","twostep_elicitation","year",16,"sell things on eBay",300,0.3,2,"year",2,182.5,0.2,200,1000,22879,1000,182.5
+17,"entertainment","twostep_elicitation","5 years",17,"goes to the ballet",150,0.15,1,"year",1,365,0.2,200,1000,21132,1000,1825
+17,"hobby","twostep_elicitation","year",18,"climbs mountains",400,0.4,2,"year",2,182.5,0.3,300,1000,14080,1000,182.5
+17,"entertainment","twostep_elicitation","year",19,"watches professional football",800,0.8,20,"year",10,36.5,0.6,600,1000,27083,1000,18.25
+17,"food","twostep_elicitation","year",20,"eats caviar",200,0.2,3,"year",2,182.5,0.2,200,1000,17691,1000,121.666666667
+17,"entertainment","twostep_elicitation","year",21,"watches space launches",300,0.3,1,"year",1,365,0.3,300,1000,16181,1000,365
+17,"hobby","twostep_elicitation","year",22,"plays tennis",500,0.5,4,"year",4,91.25,0.5,500,1000,18135,1000,91.25
+17,"employment","twostep_elicitation","5 years",23,"volunteers for political campaigns",150,0.15,2,"5 years",2,912.5,0.1,100,1000,22077,1000,912.5
+17,"food","twostep_elicitation","year",24,"does cocaine",150,0.15,7,"year",7,52.1428571429,0.15,150,1000,26854,1000,52.1428571429
+17,"food","twostep_elicitation","year",25,"eats peanut butter",850,0.85,12,"year",12,30.4166666667,0.85,850,1000,22775,1000,30.4166666667
+17,"employment","twostep_elicitation","year",26,"steals chewing gum",5,0.005,1,"year",1,365,0.005,5,1000,14807,1000,365
+17,"hobby","twostep_elicitation","year",27,"plays the banjo",50,0.05,1,"year",1,365,0.05,50,1000,22069,1000,365
+17,"employment","twostep_elicitation","5 years",28,"writes poems",400,0.4,2,"5 years",3,608.333333333,0.6,600,1000,24239,1000,912.5
+17,"clothing","twostep_elicitation","year",29,"wears a suit",950,0.95,9,"5 years",1,1825,0.3,300,1000,32960,1000,40.5555555556
+17,"employment","twostep_elicitation","5 years",30,"writes novels",70,0.07,1,"5 years",1,1825,0.05,50,1000,20653,1000,1825
+17,"clothing","twostep_elicitation","5 years",31,"wears a bra",10,0.01,1,"week",7,1,0.95,950,1000,22839,1000,1825
+18,"employment","twostep_elicitation","year",1,"volunteers for soup kitchens",300,0.3,1,"year",1,365,0.3,300,1000,20231,1000,365
+18,"food","twostep_elicitation","year",2,"smokes marijuana",150,0.15,1,"year",1,365,0.1,100,1000,19687,1000,365
+18,"hobby","twostep_elicitation","year",3,"climbs mountains",15,0.015,2,"year",2,182.5,0.01,10,1000,11840,1000,182.5
+18,"entertainment","twostep_elicitation","5 years",4,"watches space launches",100,0.1,1,"5 years",1,1825,0.1,100,1000,13133,1000,1825
+18,"food","twostep_elicitation","year",5,"does cocaine",15,0.015,2,"year",2,182.5,0.01,10,1000,11278,1000,182.5
+18,"hobby","twostep_elicitation","year",6,"runs",900,0.9,12,"year",10,36.5,0.9,900,1000,18272,1000,30.4166666667
+18,"employment","twostep_elicitation","5 years",7,"sells companies",5,5e-06,1,"5 years",1,1825,1e-06,1,1000000,20360,1000000,1825
+18,"clothing","twostep_elicitation","week",8,"wears slacks",1000,1,3,"month",5,6,0.95,950,1000,17044,1000,2.33333333333
+18,"clothing","twostep_elicitation","week",9,"wears a watch",980,0.98,6,"week",5,1.4,0.98,980,1000,15216,1000,1.16666666667
+18,"employment","twostep_elicitation","year",10,"sell things on eBay",100,0.1,2,"year",2,182.5,0.1,100,1000,8033,1000,182.5
+18,"clothing","twostep_elicitation","year",11,"wears a suit",800,0.8,4,"year",2,182.5,0.2,200,1000,34393,1000,91.25
+18,"hobby","twostep_elicitation","year",12,"plays tennis",600,0.6,5,"year",4,91.25,0.5,500,1000,9586,1000,73
+18,"hobby","twostep_elicitation","year",13,"plays the banjo",10,0.01,20,"year",20,18.25,0.01,10,1000,12738,1000,18.25
+18,"entertainment","twostep_elicitation","year",14,"goes to the movies",990,0.99,4,"year",4,91.25,0.99,990,1000,9443,1000,91.25
+18,"employment","twostep_elicitation","year",15,"steals cars",2,2e-06,2,"year",2,182.5,1e-06,1,1000000,12396,1000000,182.5
+18,"hobby","twostep_elicitation","year",16,"hikes",650,0.65,4,"year",4,91.25,0.6,600,1000,9206,1000,91.25
+18,"employment","twostep_elicitation","5 years",17,"volunteers for political campaigns",15,0.015,1,"5 years",1,1825,0.01,10,1000,12534,1000,1825
+18,"food","twostep_elicitation","month",18,"drinks beer",900,0.9,3,"month",2,15,0.9,900,1000,21002,1000,10
+18,"food","twostep_elicitation","week",19,"smokes cigarettes",250,0.25,10,"week",10,0.7,0.2,200,1000,13404,1000,0.7
+18,"entertainment","twostep_elicitation","year",20,"watches professional football",950,0.95,12,"year",6,60.8333333333,0.9,900,1000,12988,1000,30.4166666667
+18,"employment","twostep_elicitation","year",21,"steals chewing gum",10,0.01,1,"year",1,365,0.01,10,1000,7883,1000,365
+18,"entertainment","twostep_elicitation","month",22,"listens to Pandora",300,0.3,4,"month",4,7.5,0.3,300,1000,22457,1000,7.5
+18,"entertainment","twostep_elicitation","year",23,"goes to the ballet",300,0.3,1,"year",1,365,0.3,300,1000,10793,1000,365
+18,"employment","twostep_elicitation","year",24,"writes novels",1,1e-07,1,"year",1,365,1e-07,1,10000000,10933,10000000,365
+18,"clothing","twostep_elicitation","week",25,"wears socks",995,0.995,5,"week",5,1.4,0.995,995,1000,14340,1000,1.4
+18,"entertainment","twostep_elicitation","year",26,"listens to live music",800,0.8,3,"year",3,121.666666667,0.8,800,1000,8268,1000,121.666666667
+18,"food","twostep_elicitation","year",27,"eats caviar",5,0.005,1,"year",1,365,0.005,5,1000,7441,1000,365
+18,"employment","twostep_elicitation","year",28,"writes poems",60,0.06,1,"year",1,365,0.1,100,1000,9497,1000,365
+18,"clothing","twostep_elicitation","year",29,"wears a bra",1,0.001,5,"week",6,1.16666666667,0.998,998,1000,16044,1000,73
+18,"food","twostep_elicitation","month",30,"eats peanut butter",900,0.9,1,"month",1,30,0.9,900,1000,18213,1000,30
+18,"food","twostep_elicitation","week",31,"drinks coffee",850,0.85,3,"week",3,2.33333333333,0.8,800,1000,13899,1000,2.33333333333
+19,"hobby","twostep_elicitation","year",1,"plays the banjo",1,0.001,4,"year",2,182.5,1e-04,1,10000,45135,1000,91.25
+19,"entertainment","twostep_elicitation","year",2,"watches professional football",600,0.6,4,"year",2,182.5,0.1,100,1000,36552,1000,91.25
+19,"entertainment","twostep_elicitation","year",3,"goes to the movies",900,0.9,5,"year",5,73,0.9,900,1000,17664,1000,73
+19,"hobby","twostep_elicitation","year",4,"runs",600,0.6,20,"year",20,18.25,0.6,600,1000,20951,1000,18.25
+19,"food","twostep_elicitation","week",5,"smokes cigarettes",200,0.2,10,"week",10,0.7,0.2,200,1000,22985,1000,0.7
+19,"clothing","twostep_elicitation","year",6,"wears a bra",1,0.001,1,"week",7,1,0.98,980,1000,33088,1000,365
+19,"clothing","twostep_elicitation","week",7,"wears socks",1000,1,7,"week",7,1,1,1000,1000,15503,1000,1
+19,"food","twostep_elicitation","month",8,"drinks beer",900,0.9,3,"month",3,10,0.9,900,1000,19759,1000,10
+19,"employment","twostep_elicitation","year",9,"writes poems",5,0.005,5,"year",10,36.5,0.01,10,1000,21560,1000,73
+19,"food","twostep_elicitation","year",10,"smokes marijuana",100,0.1,10,"year",10,36.5,0.1,100,1000,20010,1000,36.5
+19,"employment","twostep_elicitation","year",11,"steals cars",2,0.002,1,"year",1,365,0.001,1,1000,17021,1000,365
+19,"hobby","twostep_elicitation","year",12,"climbs mountains",5,0.005,2,"year",1,365,0.001,1,1000,10959,1000,182.5
+19,"clothing","twostep_elicitation","year",13,"wears a suit",600,0.6,12,"year",1,365,0.001,1,1000,16832,1000,30.4166666667
+19,"clothing","twostep_elicitation","year",14,"wears slacks",500,0.5,10,"year",2,182.5,0.01,10,1000,18232,1000,36.5
+19,"entertainment","twostep_elicitation","year",15,"goes to the ballet",10,0.01,1,"year",2,182.5,0.05,50,1000,13239,1000,365
+19,"employment","twostep_elicitation","year",16,"sell things on eBay",100,0.1,4,"year",4,91.25,0.1,100,1000,18736,1000,91.25
+19,"food","twostep_elicitation","week",17,"drinks coffee",700,0.7,5,"week",5,1.4,0.7,700,1000,19848,1000,1.4
+19,"entertainment","twostep_elicitation","year",18,"watches space launches",300,0.3,1,"year",1,365,0.3,300,1000,16880,1000,365
+19,"employment","twostep_elicitation","year",19,"writes novels",5,0.005,1,"year",1,365,0.005,5,1000,15335,1000,365
+19,"entertainment","twostep_elicitation","year",20,"listens to live music",600,0.6,2,"year",2,182.5,0.6,600,1000,11127,1000,182.5
+19,"food","twostep_elicitation","year",21,"eats caviar",1,0.001,2,"year",2,182.5,0.001,1,1000,8303,1000,182.5
+19,"employment","twostep_elicitation","year",22,"sells companies",2,0.002,2,"year",2,182.5,0.001,1,1000,13080,1000,182.5
+19,"employment","twostep_elicitation","year",23,"steals chewing gum",1,0.001,1,"year",1,365,0.001,1,1000,6112,1000,365
+19,"hobby","twostep_elicitation","year",24,"hikes",20,0.02,2,"year",1,365,0.005,5,1000,13784,1000,182.5
+19,"food","twostep_elicitation","year",25,"eats peanut butter",950,0.95,20,"year",20,18.25,0.95,950,1000,12727,1000,18.25
+19,"clothing","twostep_elicitation","week",26,"wears a watch",500,0.5,5,"week",5,1.4,0.5,500,1000,17304,1000,1.4
+19,"employment","twostep_elicitation","year",27,"volunteers for political campaigns",50,0.05,1,"year",1,365,0.05,50,1000,10215,1000,365
+19,"hobby","twostep_elicitation","year",28,"plays tennis",50,0.05,4,"year",4,91.25,0.05,50,1000,13583,1000,91.25
+19,"entertainment","twostep_elicitation","week",29,"listens to Pandora",300,0.3,4,"week",4,1.75,0.3,300,1000,22016,1000,1.75
+19,"food","twostep_elicitation","year",30,"does cocaine",1,0.001,2,"year",2,182.5,0.001,1,1000,9199,1000,182.5
+19,"employment","twostep_elicitation","year",31,"volunteers for soup kitchens",1,0.001,1,"year",1,365,0.001,1,1000,5198,1000,365
+20,"entertainment","twostep_elicitation","year",1,"watches professional football",990,0.99,5,"year",3,121.666666667,0.9,900,1000,30077,1000,73
+20,"employment","twostep_elicitation","year",2,"sell things on eBay",100,0.1,2,"year",2,182.5,0.1,100,1000,15010,1000,182.5
+20,"food","twostep_elicitation","year",3,"does cocaine",50,0.05,0,"year",0,NA,0.05,50,1000,18195,1000,NA
+20,"clothing","twostep_elicitation","year",4,"wears a suit",900,0.9,3,"year",5,73,0.8,800,1000,24522,1000,121.666666667
+20,"clothing","twostep_elicitation","year",5,"wears a bra",50,0.05,0,"year",350,1.04285714286,0.95,950,1000,18269,1000,NA
+20,"clothing","twostep_elicitation","year",6,"wears a watch",950,0.95,300,"year",300,1.21666666667,0.95,950,1000,15647,1000,1.21666666667
+20,"hobby","twostep_elicitation","year",7,"runs",1000,1,24,"year",24,15.2083333333,1,1000,1000,13852,1000,15.2083333333
+20,"employment","twostep_elicitation","year",8,"volunteers for soup kitchens",300,0.3,1,"year",1,365,0.3,300,1000,12117,1000,365
+20,"employment","twostep_elicitation","year",9,"steals cars",25,0.025,0,"year",0,NA,0.01,10,1000,9310,1000,NA
+20,"entertainment","twostep_elicitation","year",10,"watches space launches",200,0.2,1,"year",1,365,0.15,150,1000,11708,1000,365
+20,"employment","twostep_elicitation","year",11,"writes novels",50,0.05,0,"year",0,NA,0.07,70,1000,10274,1000,NA
+20,"food","twostep_elicitation","year",12,"eats peanut butter",900,0.9,20,"year",20,18.25,0.9,900,1000,11504,1000,18.25
+20,"food","twostep_elicitation","year",13,"eats caviar",100,0.1,0,"year",0,NA,0.1,100,1000,8526,1000,NA
+20,"hobby","twostep_elicitation","year",14,"plays tennis",700,0.7,2,"year",10,36.5,0.8,800,1000,16046,1000,182.5
+20,"employment","twostep_elicitation","year",15,"volunteers for political campaigns",50,0.05,1,"year",1,365,0.05,50,1000,9655,1000,365
+20,"employment","twostep_elicitation","year",16,"sells companies",20,0.02,0,"year",0,NA,0.01,10,1000,10186,1000,NA
+20,"clothing","twostep_elicitation","year",17,"wears socks",1000,1,350,"year",300,1.21666666667,1,1000,1000,19478,1000,1.04285714286
+20,"entertainment","twostep_elicitation","year",18,"goes to the movies",999,0.999,2,"year",4,91.25,0.999,999,1000,11761,1000,182.5
+20,"food","twostep_elicitation","week",19,"drinks beer",900,0.9,1,"week",1,7,0.9,900,1000,11626,1000,7
+20,"food","twostep_elicitation","week",20,"smokes cigarettes",800,0.8,5,"week",5,1.4,0.7,700,1000,25013,1000,1.4
+20,"employment","twostep_elicitation","year",21,"writes poems",900,0.9,0,"year",1,365,0.95,950,1000,13413,1000,NA
+20,"clothing","twostep_elicitation","week",22,"wears slacks",950,0.95,4,"week",4,1.75,0.95,950,1000,20876,1000,1.75
+20,"entertainment","twostep_elicitation","5 years",23,"goes to the ballet",25,0.025,0,"5 years",1,1825,0.05,50,1000,14685,1000,NA
+20,"entertainment","twostep_elicitation","year",24,"listens to live music",900,0.9,3,"year",3,121.666666667,0.9,900,1000,13396,1000,121.666666667
+20,"employment","twostep_elicitation","year",25,"steals chewing gum",20,0.02,0,"year",0,NA,0.01,10,1000,11363,1000,NA
+20,"food","twostep_elicitation","year",26,"smokes marijuana",800,0.8,2,"year",2,182.5,0.8,800,1000,12233,1000,182.5
+20,"hobby","twostep_elicitation","5 years",27,"climbs mountains",100,0.1,1,"5 years",1,1825,0.09,90,1000,15167,1000,1825
+20,"hobby","twostep_elicitation","week",28,"plays the banjo",50,0.05,3,"week",3,2.33333333333,0.025,25,1000,15573,1000,2.33333333333
+20,"entertainment","twostep_elicitation","week",29,"listens to Pandora",900,0.9,1,"week",1,7,0.9,900,1000,12153,1000,7
+20,"food","twostep_elicitation","week",30,"drinks coffee",900,0.9,5,"week",5,1.4,0.9,900,1000,10575,1000,1.4
+20,"hobby","twostep_elicitation","year",31,"hikes",600,0.6,2,"year",2,182.5,0.6,600,1000,10322,1000,182.5
+21,"entertainment","twostep_elicitation","year",1,"watches professional football",900,0.9,40,"year",20,18.25,0.4,400,1000,21128,1000,9.125
+21,"entertainment","twostep_elicitation","year",2,"listens to live music",300,0.3,5,"year",5,73,0.3,300,1000,10822,1000,73
+21,"clothing","twostep_elicitation","year",3,"wears slacks",900,0.9,340,"year",300,1.21666666667,0.9,900,1000,15966,1000,1.07352941176
+21,"hobby","twostep_elicitation","week",4,"plays the banjo",5,0.005,5,"week",5,1.4,0.002,2,1000,13578,1000,1.4
+21,"food","twostep_elicitation","week",5,"smokes cigarettes",250,0.25,140,"week",140,0.05,0.25,250,1000,10456,1000,0.05
+21,"employment","twostep_elicitation","year",6,"writes novels",8,8e-04,1,"year",1,365,5e-04,5,10000,20608,10000,365
+21,"hobby","twostep_elicitation","year",7,"plays tennis",400,0.4,15,"year",10,36.5,0.2,200,1000,11593,1000,24.3333333333
+21,"employment","twostep_elicitation","year",8,"volunteers for soup kitchens",5,0.005,2,"year",2,182.5,0.005,5,1000,16728,1000,182.5
+21,"employment","twostep_elicitation","5 years",9,"steals cars",2,2e-04,1,"5 years",1,1825,1e-04,1,10000,14751,10000,1825
+21,"clothing","twostep_elicitation","week",10,"wears a watch",900,0.9,7,"week",7,1,0.9,900,1000,10196,1000,1
+21,"food","twostep_elicitation","year",11,"eats caviar",15,0.015,8,"year",4,91.25,0.01,10,1000,10992,1000,45.625
+21,"hobby","twostep_elicitation","year",12,"climbs mountains",5,0.005,6,"year",3,121.666666667,0.002,2,1000,11870,1000,60.8333333333
+21,"clothing","twostep_elicitation","year",13,"wears a bra",1,1e-04,350,"year",350,1.04285714286,0.98,980,1000,30178,10000,1.04285714286
+21,"food","twostep_elicitation","month",14,"eats peanut butter",900,0.9,2,"month",2,15,0.9,900,1000,11602,1000,15
+21,"employment","twostep_elicitation","year",15,"volunteers for political campaigns",5,0.005,1,"year",1,365,0.005,5,1000,15126,1000,365
+21,"food","twostep_elicitation","week",16,"drinks coffee",900,0.9,7,"week",7,1,0.9,900,1000,7672,1000,1
+21,"employment","twostep_elicitation","5 years",17,"sells companies",5,5e-04,1,"5 years",1,1825,1e-04,1,10000,13804,10000,1825
+21,"entertainment","twostep_elicitation","year",18,"goes to the movies",850,0.85,7,"year",7,52.1428571429,0.85,850,1000,11060,1000,52.1428571429
+21,"employment","twostep_elicitation","year",19,"sell things on eBay",15,0.015,8,"year",12,30.4166666667,0.02,20,1000,12046,1000,45.625
+21,"clothing","twostep_elicitation","year",20,"wears socks",999,0.999,350,"year",350,1.04285714286,0.999,999,1000,14567,1000,1.04285714286
+21,"employment","twostep_elicitation","5 years",21,"writes poems",5,0.005,1,"year",1,365,0.025,25,1000,18031,1000,1825
+21,"food","twostep_elicitation","week",22,"does cocaine",8,8e-04,3,"week",3,2.33333333333,4e-04,4,10000,15785,10000,2.33333333333
+21,"food","twostep_elicitation","week",23,"smokes marijuana",40,0.04,3,"week",3,2.33333333333,0.04,40,1000,10367,1000,2.33333333333
+21,"hobby","twostep_elicitation","year",24,"hikes",350,0.35,24,"year",12,30.4166666667,0.3,300,1000,12207,1000,15.2083333333
+21,"entertainment","twostep_elicitation","week",25,"listens to Pandora",300,0.3,5,"week",5,1.4,0.3,300,1000,7584,1000,1.4
+21,"entertainment","twostep_elicitation","year",26,"goes to the ballet",1,0.001,2,"year",2,182.5,0.001,1,1000,14799,1000,182.5
+21,"employment","twostep_elicitation","5 years",27,"steals chewing gum",1,0.001,1,"5 years",1,1825,0.001,1,1000,7295,1000,1825
+21,"entertainment","twostep_elicitation","5 years",28,"watches space launches",200,0.2,1,"5 years",1,1825,0.2,200,1000,9585,1000,1825
+21,"hobby","twostep_elicitation","month",29,"runs",900,0.9,3,"month",3,10,0.9,900,1000,18201,1000,10
+21,"food","twostep_elicitation","week",30,"drinks beer",400,0.4,2,"week",2,3.5,0.2,200,1000,17791,1000,3.5
+21,"clothing","twostep_elicitation","month",31,"wears a suit",700,0.7,10,"year",4,91.25,0.2,200,1000,16127,1000,3
+22,"food","twostep_elicitation","year",1,"smokes cigarettes",700,0.7,600,"year",400,0.9125,0.5,500,1000,39859,1000,0.608333333333
+22,"employment","twostep_elicitation","year",2,"writes novels",100,0.1,3,"year",5,73,0.15,150,1000,20962,1000,121.666666667
+22,"food","twostep_elicitation","year",3,"drinks beer",800,0.8,150,"year",50,7.3,0.6,600,1000,19349,1000,2.43333333333
+22,"employment","twostep_elicitation","year",4,"sell things on eBay",50,0.05,10,"year",20,18.25,0.1,100,1000,24504,1000,36.5
+22,"hobby","twostep_elicitation","year",5,"plays the banjo",50,0.05,100,"year",100,3.65,0.01,10,1000,67301,1000,3.65
+22,"hobby","twostep_elicitation","year",6,"hikes",900,0.9,30,"year",20,18.25,0.5,500,1000,30205,1000,12.1666666667
+22,"employment","twostep_elicitation","year",7,"writes poems",25,0.025,45,"year",50,7.3,0.1,100,1000,25721,1000,8.11111111111
+22,"clothing","twostep_elicitation","year",8,"wears a bra",5,0.005,2,"year",300,1.21666666667,0.95,950,1000,24782,1000,182.5
+22,"hobby","twostep_elicitation","year",9,"plays tennis",700,0.7,100,"year",100,3.65,0.7,700,1000,23141,1000,3.65
+22,"entertainment","twostep_elicitation","year",10,"watches space launches",125,0.125,5,"year",5,73,0.09,90,1000,45621,1000,73
+22,"entertainment","twostep_elicitation","year",11,"watches professional football",800,0.8,30,"year",10,36.5,0.3,300,1000,39772,1000,12.1666666667
+22,"clothing","twostep_elicitation","year",12,"wears slacks",500,0.5,100,"year",155,2.35483870968,0.75,750,1000,18757,1000,3.65
+22,"food","twostep_elicitation","year",13,"smokes marijuana",250,0.25,50,"year",35,10.4285714286,0.1,100,1000,34513,1000,7.3
+22,"employment","twostep_elicitation","year",14,"volunteers for soup kitchens",50,0.05,3,"year",10,36.5,0.075,75,1000,24114,1000,121.666666667
+22,"food","twostep_elicitation","year",15,"eats caviar",25,0.025,3,"year",4,91.25,0.035,35,1000,28621,1000,121.666666667
+22,"employment","twostep_elicitation","year",16,"steals chewing gum",100,0.1,2,"year",2,182.5,0.05,50,1000,83757,1000,182.5
+22,"employment","twostep_elicitation","year",17,"sells companies",5,0.005,1,"year",1,365,0.003,3,1000,43182,1000,365
+22,"clothing","twostep_elicitation","year",18,"wears a suit",700,0.7,100,"year",50,7.3,0.3,300,1000,28025,1000,3.65
+22,"employment","twostep_elicitation","year",19,"volunteers for political campaigns",50,0.05,2,"year",2,182.5,0.025,25,1000,19283,1000,182.5
+22,"clothing","twostep_elicitation","year",20,"wears a watch",900,0.9,300,"year",300,1.21666666667,0.9,900,1000,15304,1000,1.21666666667
+22,"entertainment","twostep_elicitation","year",21,"goes to the ballet",50,0.05,3,"year",10,36.5,0.175,175,1000,13959,1000,121.666666667
+22,"entertainment","twostep_elicitation","year",22,"listens to live music",600,0.6,20,"year",18,20.2777777778,0.5,500,1000,27418,1000,18.25
+22,"employment","twostep_elicitation","year",23,"steals cars",10,0.01,5,"year",4,91.25,0.007,7,1000,16510,1000,73
+22,"food","twostep_elicitation","year",24,"drinks coffee",850,0.85,175,"year",200,1.825,0.9,900,1000,19342,1000,2.08571428571
+22,"clothing","twostep_elicitation","year",25,"wears socks",1000,1,300,"year",295,1.23728813559,1,1000,1000,16569,1000,1.21666666667
+22,"hobby","twostep_elicitation","year",26,"climbs mountains",450,0.45,20,"year",10,36.5,0.2,200,1000,20972,1000,18.25
+22,"hobby","twostep_elicitation","year",27,"runs",895,0.895,150,"year",125,2.92,0.795,795,1000,17483,1000,2.43333333333
+22,"entertainment","twostep_elicitation","year",28,"listens to Pandora",100,0.1,100,"year",130,2.80769230769,0.115,115,1000,22296,1000,3.65
+22,"food","twostep_elicitation","year",29,"eats peanut butter",900,0.9,50,"year",50,7.3,0.9,900,1000,13199,1000,7.3
+22,"entertainment","twostep_elicitation","year",30,"goes to the movies",900,0.9,20,"year",13,28.0769230769,0.9,900,1000,18085,1000,18.25
+22,"food","twostep_elicitation","year",31,"does cocaine",25,0.025,50,"year",30,12.1666666667,0.015,15,1000,15565,1000,7.3
+23,"hobby","twostep_elicitation","year",1,"climbs mountains",4,0.004,1,"5 years",1,1825,0.001,1,1000,63323,1000,365
+23,"clothing","twostep_elicitation","week",2,"wears slacks",850,0.85,5,"week",3,2.33333333333,0.6,600,1000,44964,1000,1.4
+23,"employment","twostep_elicitation","year",3,"volunteers for political campaigns",1,0.001,1,"year",1,365,0.001,1,1000,36868,1000,365
+23,"food","twostep_elicitation","year",4,"eats caviar",80,0.08,1,"year",2,182.5,0.1,100,1000,25770,1000,365
+23,"clothing","twostep_elicitation","week",5,"wears a suit",900,0.9,4,"week",2,3.5,0.4,400,1000,51967,1000,1.75
+23,"clothing","twostep_elicitation","week",6,"wears socks",1000,1,7,"week",7,1,1,1000,1000,23328,1000,1
+23,"employment","twostep_elicitation","5 years",7,"sells companies",2,2e-04,1,"5 years",1,1825,1e-04,1,10000,46571,10000,1825
+23,"hobby","twostep_elicitation","month",8,"plays the banjo",1,0.001,1,"year",1,365,1e-04,1,10000,32597,1000,30
+23,"food","twostep_elicitation","week",9,"smokes cigarettes",12,0.012,7,"week",7,1,0.01,10,1000,45794,1000,1
+23,"entertainment","twostep_elicitation","month",10,"listens to live music",900,0.9,2,"month",2,15,0.9,900,1000,26492,1000,15
+23,"employment","twostep_elicitation","5 years",11,"steals cars",2,2e-04,1,"5 years",1,1825,1e-05,1,100000,33895,10000,1825
+23,"clothing","twostep_elicitation","year",12,"wears a bra",4,0.004,2,"week",6,1.16666666667,1,1000,1000,51683,1000,182.5
+23,"entertainment","twostep_elicitation","year",13,"goes to the ballet",250,0.25,1,"year",1,365,0.4,400,1000,38996,1000,365
+23,"clothing","twostep_elicitation","week",14,"wears a watch",900,0.9,7,"week",7,1,0.85,850,1000,18065,1000,1
+23,"entertainment","twostep_elicitation","week",15,"watches professional football",950,0.95,4,"week",3,2.33333333333,0.65,650,1000,43678,1000,1.75
+23,"hobby","twostep_elicitation","year",16,"hikes",800,0.8,3,"year",3,121.666666667,0.75,750,1000,18692,1000,121.666666667
+23,"hobby","twostep_elicitation","month",17,"runs",950,0.95,4,"month",4,7.5,0.95,950,1000,26671,1000,7.5
+23,"food","twostep_elicitation","week",18,"smokes marijuana",700,0.7,4,"week",2,3.5,0.55,550,1000,23287,1000,1.75
+23,"food","twostep_elicitation","week",19,"eats peanut butter",700,0.7,1,"week",1,7,0.7,700,1000,40048,1000,7
+23,"hobby","twostep_elicitation","month",20,"plays tennis",350,0.35,3,"month",3,10,0.4,400,1000,25700,1000,10
+23,"employment","twostep_elicitation","year",21,"volunteers for soup kitchens",200,0.2,2,"year",2,182.5,0.25,250,1000,25195,1000,182.5
+23,"food","twostep_elicitation","week",22,"drinks coffee",850,0.85,6,"week",6,1.16666666667,0.9,900,1000,25518,1000,1.16666666667
+23,"entertainment","twostep_elicitation","week",23,"listens to Pandora",250,0.25,4,"week",5,1.4,0.3,300,1000,19944,1000,1.75
+23,"employment","twostep_elicitation","5 years",24,"steals chewing gum",1,0.001,1,"5 years",1,1825,0.001,1,1000,21123,1000,1825
+23,"food","twostep_elicitation","week",25,"drinks beer",850,0.85,2,"week",2,3.5,0.8,800,1000,17607,1000,3.5
+23,"employment","twostep_elicitation","year",26,"writes poems",350,0.35,1,"year",3,121.666666667,0.5,500,1000,18118,1000,365
+23,"entertainment","twostep_elicitation","year",27,"watches space launches",600,0.6,1,"year",1,365,0.6,600,1000,19959,1000,365
+23,"employment","twostep_elicitation","year",28,"sell things on eBay",450,0.45,1,"year",3,121.666666667,0.6,600,1000,24215,1000,365
+23,"food","twostep_elicitation","week",29,"does cocaine",5,0.005,3,"week",2,3.5,0.003,3,1000,29591,1000,2.33333333333
+23,"employment","twostep_elicitation","5 years",30,"writes novels",1,1e-04,1,"5 years",1,1825,1e-04,1,10000,30334,10000,1825
+23,"entertainment","twostep_elicitation","year",31,"goes to the movies",980,0.98,8,"year",8,45.625,0.99,990,1000,29275,1000,45.625
+24,"food","twostep_elicitation","year",1,"does cocaine",200,0.2,5,"year",5,73,0.2,200,1000,49657,1000,73
+24,"employment","twostep_elicitation","5 years",2,"steals chewing gum",100,0.1,1,"5 years",1,1825,0.1,100,1000,52647,1000,1825
+24,"employment","twostep_elicitation","year",3,"volunteers for soup kitchens",10,0.01,8,"year",8,45.625,0.01,10,1000,40656,1000,45.625
+24,"clothing","twostep_elicitation","year",4,"wears socks",1000,1,300,"year",200,1.825,1,1000,1000,42486,1000,1.21666666667
+24,"clothing","twostep_elicitation","year",5,"wears slacks",1000,1,325,"year",275,1.32727272727,1,1000,1000,32984,1000,1.12307692308
+24,"food","twostep_elicitation","year",6,"drinks beer",980,0.98,70,"year",50,7.3,0.95,950,1000,55133,1000,5.21428571429
+24,"hobby","twostep_elicitation","week",7,"runs",100,0.1,2,"week",2,3.5,0.1,100,1000,31914,1000,3.5
+24,"hobby","twostep_elicitation","month",8,"hikes",300,0.3,1,"month",1,30,0.25,250,1000,21091,1000,30
+24,"clothing","twostep_elicitation","week",9,"wears a watch",750,0.75,5,"week",4,1.75,0.65,650,1000,36154,1000,1.4
+24,"entertainment","twostep_elicitation","month",10,"goes to the movies",1000,1,1,"month",1,30,1,1000,1000,30924,1000,30
+24,"hobby","twostep_elicitation","year",11,"climbs mountains",75,0.075,1,"year",1,365,0.05,50,1000,17105,1000,365
+24,"employment","twostep_elicitation","year",12,"steals cars",2,2e-04,1,"year",1,365,1e-04,1,10000,23978,10000,365
+24,"employment","twostep_elicitation","5 years",13,"writes poems",100,0.1,1,"5 years",1,1825,0.1,100,1000,202574,1000,1825
+24,"entertainment","twostep_elicitation","5 years",14,"watches space launches",500,0.5,2,"5 years",2,912.5,0.5,500,1000,42379,1000,912.5
+24,"entertainment","twostep_elicitation","year",15,"listens to live music",950,0.95,6,"year",6,60.8333333333,0.9,900,1000,12683,1000,60.8333333333
+24,"food","twostep_elicitation","week",16,"eats peanut butter",900,0.9,1,"week",1,7,0.9,900,1000,25732,1000,7
+24,"food","twostep_elicitation","month",17,"smokes marijuana",500,0.5,6,"month",3,10,0.4,400,1000,23976,1000,5
+24,"entertainment","twostep_elicitation","month",18,"watches professional football",950,0.95,4,"month",1,30,0.75,750,1000,25683,1000,7.5
+24,"employment","twostep_elicitation","5 years",19,"writes novels",1,0.001,2,"5 years",2,912.5,0.001,1,1000,23718,1000,912.5
+24,"clothing","twostep_elicitation","month",20,"wears a bra",100,0.1,1,"week",6,1.16666666667,1,1000,1000,41032,1000,30
+24,"food","twostep_elicitation","week",21,"drinks coffee",950,0.95,5,"week",5,1.4,0.95,950,1000,18654,1000,1.4
+24,"entertainment","twostep_elicitation","year",22,"goes to the ballet",150,0.15,1,"year",1,365,0.25,250,1000,14670,1000,365
+24,"hobby","twostep_elicitation","month",23,"plays the banjo",10,0.01,1,"month",1,30,0.01,10,1000,19821,1000,30
+24,"hobby","twostep_elicitation","month",24,"plays tennis",350,0.35,2,"month",2,15,0.3,300,1000,22487,1000,15
+24,"employment","twostep_elicitation","5 years",25,"sells companies",1,0.001,1,"5 years",1,1825,0.001,1,1000,42958,1000,1825
+24,"employment","twostep_elicitation","5 years",26,"volunteers for political campaigns",150,0.15,2,"5 years",2,912.5,0.15,150,1000,25263,1000,912.5
+24,"employment","twostep_elicitation","year",27,"sell things on eBay",100,0.1,6,"year",6,60.8333333333,0.1,100,1000,24313,1000,60.8333333333
+24,"food","twostep_elicitation","5 years",28,"eats caviar",80,0.08,2,"5 years",2,912.5,0.08,80,1000,22916,1000,912.5
+24,"entertainment","twostep_elicitation","week",29,"listens to Pandora",500,0.5,1,"week",1,7,0.5,500,1000,17128,1000,7
+24,"food","twostep_elicitation","month",30,"smokes cigarettes",600,0.6,6,"month",5,6,0.5,500,1000,48125,1000,5
+24,"clothing","twostep_elicitation","year",31,"wears a suit",900,0.9,250,"5 years",2,912.5,0.1,100,1000,33672,1000,1.46
+25,"clothing","twostep_elicitation","year",1,"wears a watch",900,0.9,180,"year",80,4.5625,0.8,800,1000,46302,1000,2.02777777778
+25,"employment","twostep_elicitation","year",2,"writes novels",10,0.01,1,"year",1,365,0.01,10,1000,19920,1000,365
+25,"food","twostep_elicitation","year",3,"smokes cigarettes",200,0.2,300,"year",280,1.30357142857,0.18,180,1000,41289,1000,1.21666666667
+25,"hobby","twostep_elicitation","year",4,"runs",980,0.98,100,"year",100,3.65,0.98,980,1000,27288,1000,3.65
+25,"employment","twostep_elicitation","year",5,"volunteers for political campaigns",30,0.03,1,"year",1,365,0.025,25,1000,32664,1000,365
+25,"entertainment","twostep_elicitation","year",6,"goes to the ballet",30,0.03,1,"year",1,365,0.03,30,1000,15851,1000,365
+25,"food","twostep_elicitation","year",7,"drinks beer",850,0.85,60,"year",50,7.3,0.8,800,1000,44941,1000,6.08333333333
+25,"clothing","twostep_elicitation","year",8,"wears socks",1000,1,340,"year",340,1.07352941176,1,1000,1000,16116,1000,1.07352941176
+25,"hobby","twostep_elicitation","year",9,"climbs mountains",50,0.05,2,"year",2,182.5,0.05,50,1000,19560,1000,182.5
+25,"food","twostep_elicitation","year",10,"smokes marijuana",500,0.5,30,"year",30,12.1666666667,0.5,500,1000,26126,1000,12.1666666667
+25,"employment","twostep_elicitation","year",11,"volunteers for soup kitchens",50,0.05,1,"year",1,365,0.05,50,1000,13659,1000,365
+25,"hobby","twostep_elicitation","year",12,"plays tennis",50,0.05,3,"year",3,121.666666667,0.05,50,1000,20830,1000,121.666666667
+25,"employment","twostep_elicitation","year",13,"writes poems",975,0.975,1,"year",1,365,0.975,975,1000,21015,1000,365
+25,"employment","twostep_elicitation","year",14,"steals chewing gum",50,0.05,1,"year",1,365,0.05,50,1000,14624,1000,365
+25,"employment","twostep_elicitation","year",15,"steals cars",10,0.01,1,"year",1,365,0.003,3,1000,21940,1000,365
+25,"employment","twostep_elicitation","5 years",16,"sells companies",5,0.005,1,"5 years",1,1825,0.002,2,1000,25045,1000,1825
+25,"employment","twostep_elicitation","year",17,"sell things on eBay",30,0.03,3,"year",3,121.666666667,0.03,30,1000,16758,1000,121.666666667
+25,"food","twostep_elicitation","year",18,"does cocaine",10,0.01,2,"year",2,182.5,0.01,10,1000,25293,1000,182.5
+25,"food","twostep_elicitation","year",19,"eats peanut butter",900,0.9,60,"year",60,6.08333333333,0.9,900,1000,21982,1000,6.08333333333
+25,"clothing","twostep_elicitation","year",20,"wears a suit",750,0.75,20,"year",50,7.3,0.65,650,1000,33487,1000,18.25
+25,"entertainment","twostep_elicitation","year",21,"watches professional football",1000,1,20,"year",10,36.5,1,1000,1000,23001,1000,18.25
+25,"hobby","twostep_elicitation","year",22,"plays the banjo",10,0.01,30,"year",30,12.1666666667,0.005,5,1000,23059,1000,12.1666666667
+25,"food","twostep_elicitation","year",23,"drinks coffee",900,0.9,300,"year",300,1.21666666667,0.9,900,1000,17245,1000,1.21666666667
+25,"clothing","twostep_elicitation","year",24,"wears slacks",950,0.95,280,"year",280,1.30357142857,0.95,950,1000,18097,1000,1.30357142857
+25,"entertainment","twostep_elicitation","year",25,"goes to the movies",990,0.99,6,"year",6,60.8333333333,0.99,990,1000,21069,1000,60.8333333333
+25,"entertainment","twostep_elicitation","year",26,"listens to live music",900,0.9,2,"year",2,182.5,0.9,900,1000,8456,1000,182.5
+25,"entertainment","twostep_elicitation","year",27,"watches space launches",850,0.85,1,"year",1,365,0.85,850,1000,17134,1000,365
+25,"clothing","twostep_elicitation","year",28,"wears a bra",50,0.05,5,"year",340,1.07352941176,0.98,980,1000,31704,1000,73
+25,"food","twostep_elicitation","year",29,"eats caviar",20,0.02,6,"year",6,60.8333333333,0.02,20,1000,11096,1000,60.8333333333
+25,"entertainment","twostep_elicitation","year",30,"listens to Pandora",150,0.15,60,"year",60,6.08333333333,0.15,150,1000,15486,1000,6.08333333333
+25,"hobby","twostep_elicitation","year",31,"hikes",750,0.75,15,"year",15,24.3333333333,0.75,750,1000,15550,1000,24.3333333333
+26,"employment","twostep_elicitation","year",1,"steals chewing gum",1,0.001,5,"year",3,121.666666667,0.001,1,1000,36005,1000,73
+26,"clothing","twostep_elicitation","year",2,"wears socks",990,0.99,300,"year",300,1.21666666667,0.99,990,1000,39554,1000,1.21666666667
+26,"food","twostep_elicitation","year",3,"smokes cigarettes",300,0.3,356,"year",356,1.02528089888,0.2,200,1000,58316,1000,1.02528089888
+26,"entertainment","twostep_elicitation","year",4,"watches professional football",900,0.9,150,"year",50,7.3,0.5,500,1000,24024,1000,2.43333333333
+26,"entertainment","twostep_elicitation","year",5,"listens to live music",100,0.1,5,"year",5,73,0.1,100,1000,25218,1000,73
+26,"hobby","twostep_elicitation","year",6,"hikes",100,0.1,12,"year",6,60.8333333333,0.05,50,1000,17221,1000,30.4166666667
+26,"hobby","twostep_elicitation","year",7,"plays the banjo",1,0.001,12,"year",12,30.4166666667,0.001,1,1000,13949,1000,30.4166666667
+26,"hobby","twostep_elicitation","year",8,"climbs mountains",1,0.001,4,"year",2,182.5,0.001,1,1000,11997,1000,91.25
+26,"employment","twostep_elicitation","year",9,"writes novels",1,0.001,1,"year",1,365,0.001,1,1000,32510,1000,365
+26,"employment","twostep_elicitation","year",10,"volunteers for political campaigns",5,0.005,2,"year",2,182.5,0.005,5,1000,16486,1000,182.5
+26,"employment","twostep_elicitation","year",11,"writes poems",1,0.001,10,"year",10,36.5,0.001,1,1000,15090,1000,36.5
+26,"food","twostep_elicitation","year",12,"eats caviar",1,0.001,1,"year",1,365,0.001,1,1000,11312,1000,365
+26,"entertainment","twostep_elicitation","year",13,"goes to the ballet",1,0.001,1,"year",2,182.5,0.005,5,1000,14031,1000,365
+26,"food","twostep_elicitation","year",14,"does cocaine",0,0,0,"year",0,NA,0,0,1000,21526,1000,NA
+26,"clothing","twostep_elicitation","year",15,"wears a suit",5,0.005,50,"year",20,18.25,0.002,2,1000,20395,1000,7.3
+26,"clothing","twostep_elicitation","year",16,"wears a watch",2,0.002,200,"year",200,1.825,0.002,2,1000,19019,1000,1.825
+26,"clothing","twostep_elicitation","year",17,"wears slacks",1000,1,356,"year",150,2.43333333333,0.5,500,1000,45999,1000,1.02528089888
+26,"food","twostep_elicitation","year",18,"drinks coffee",600,0.6,356,"year",356,1.02528089888,0.5,500,1000,21198,1000,1.02528089888
+26,"employment","twostep_elicitation","year",19,"volunteers for soup kitchens",1,0.001,6,"year",6,60.8333333333,0.001,1,1000,21120,1000,60.8333333333
+26,"entertainment","twostep_elicitation","year",20,"watches space launches",0,0,1,"year",1,365,0,0,1000,19364,1000,365
+26,"food","twostep_elicitation","year",21,"eats peanut butter",900,0.9,300,"year",300,1.21666666667,0.9,900,1000,19668,1000,1.21666666667
+26,"hobby","twostep_elicitation","year",22,"plays tennis",1,0.001,12,"year",12,30.4166666667,0.001,1,1000,22105,1000,30.4166666667
+26,"food","twostep_elicitation","year",23,"smokes marijuana",1,0.001,24,"year",12,30.4166666667,0.001,1,1000,42945,1000,15.2083333333
+26,"entertainment","twostep_elicitation","year",24,"listens to Pandora",1,0.001,200,"year",100,3.65,0.001,1,1000,12910,1000,1.825
+26,"employment","twostep_elicitation","year",25,"sells companies",1,0.001,0,"year",0,NA,0.001,1,1000,13272,1000,NA
+26,"food","twostep_elicitation","year",26,"drinks beer",1,0.001,52,"year",52,7.01923076923,0.001,1,1000,45672,1000,7.01923076923
+26,"clothing","twostep_elicitation","year",27,"wears a bra",10,0.01,12,"year",356,1.02528089888,0.9,900,1000,28026,1000,30.4166666667
+26,"employment","twostep_elicitation","year",28,"steals cars",0,0,12,"year",6,60.8333333333,0,0,1000,14455,1000,30.4166666667
+26,"entertainment","twostep_elicitation","year",29,"goes to the movies",500,0.5,52,"year",52,7.01923076923,0.5,500,1000,20857,1000,7.01923076923
+26,"hobby","twostep_elicitation","year",30,"runs",5,0.005,112,"year",112,3.25892857143,0.001,1,1000,18601,1000,3.25892857143
+26,"employment","twostep_elicitation","year",31,"sell things on eBay",1,0.001,12,"year",12,30.4166666667,0.001,1,1000,10923,1000,30.4166666667
+27,"hobby","twostep_elicitation","year",1,"plays tennis",500,0.5,40,"year",30,12.1666666667,0.5,500,1000,17308,1000,9.125
+27,"food","twostep_elicitation","year",2,"drinks beer",900,0.9,49,"year",39,9.35897435897,0.7,700,1000,10988,1000,7.44897959184
+27,"employment","twostep_elicitation","year",3,"writes novels",30,0.03,1,"year",1,365,0.05,50,1000,43539,1000,365
+27,"food","twostep_elicitation","year",4,"does cocaine",300,0.3,6,"year",3,121.666666667,0.2,200,1000,9508,1000,60.8333333333
+27,"hobby","twostep_elicitation","year",5,"runs",960,0.96,250,"year",200,1.825,0.9,900,1000,12557,1000,1.46
+27,"entertainment","twostep_elicitation","year",6,"watches space launches",100,0.1,1,"year",1,365,0.05,50,1000,8486,1000,365
+27,"clothing","twostep_elicitation","year",7,"wears a watch",500,0.5,240,"year",200,1.825,0.3,300,1000,10366,1000,1.52083333333
+27,"employment","twostep_elicitation","year",8,"volunteers for political campaigns",180,0.18,2,"year",2,182.5,0.23,230,1000,9257,1000,182.5
+27,"clothing","twostep_elicitation","year",9,"wears slacks",400,0.4,200,"year",200,1.825,0.3,300,1000,8076,1000,1.825
+27,"entertainment","twostep_elicitation","year",10,"listens to Pandora",300,0.3,50,"year",40,9.125,0.1,100,1000,14699,1000,7.3
+27,"entertainment","twostep_elicitation","year",11,"goes to the movies",500,0.5,7,"year",6,60.8333333333,0.6,600,1000,10891,1000,52.1428571429
+27,"hobby","twostep_elicitation","year",12,"hikes",300,0.3,3,"year",2,182.5,0.2,200,1000,6793,1000,121.666666667
+27,"employment","twostep_elicitation","year",13,"steals chewing gum",230,0.23,1,"year",1,365,0.2,200,1000,10253,1000,365
+27,"food","twostep_elicitation","year",14,"eats peanut butter",800,0.8,6,"year",4,91.25,0.6,600,1000,8859,1000,60.8333333333
+27,"employment","twostep_elicitation","year",15,"steals cars",40,0.04,2,"year",1,365,0.02,20,1000,7212,1000,182.5
+27,"clothing","twostep_elicitation","year",16,"wears a bra",200,0.2,1,"year",300,1.21666666667,0.95,950,1000,16273,1000,365
+27,"food","twostep_elicitation","year",17,"drinks coffee",850,0.85,300,"year",300,1.21666666667,0.8,800,1000,17502,1000,1.21666666667
+27,"clothing","twostep_elicitation","year",18,"wears a suit",700,0.7,4,"year",2,182.5,0.5,500,1000,7812,1000,91.25
+27,"entertainment","twostep_elicitation","year",19,"listens to live music",500,0.5,2,"year",2,182.5,0.4,400,1000,6719,1000,182.5
+27,"entertainment","twostep_elicitation","year",20,"watches professional football",700,0.7,14,"year",10,36.5,0.3,300,1000,8780,1000,26.0714285714
+27,"entertainment","twostep_elicitation","year",21,"goes to the ballet",200,0.2,1,"year",1,365,0.5,500,1000,5710,1000,365
+27,"hobby","twostep_elicitation","year",22,"plays the banjo",200,0.2,1,"year",1,365,0.1,100,1000,10787,1000,365
+27,"food","twostep_elicitation","year",23,"eats caviar",30,0.03,2,"year",1,365,0.02,20,1000,5513,1000,182.5
+27,"employment","twostep_elicitation","year",24,"writes poems",200,0.2,1,"year",2,182.5,0.3,300,1000,10091,1000,365
+27,"food","twostep_elicitation","year",25,"smokes marijuana",590,0.59,87,"year",67,5.44776119403,0.6,600,1000,10116,1000,4.19540229885
+27,"employment","twostep_elicitation","year",26,"sells companies",20,0.02,1,"year",1,365,0.01,10,1000,9657,1000,365
+27,"clothing","twostep_elicitation","year",27,"wears socks",980,0.98,300,"year",300,1.21666666667,0.95,950,1000,11004,1000,1.21666666667
+27,"hobby","twostep_elicitation","year",28,"climbs mountains",300,0.3,2,"year",2,182.5,0.2,200,1000,9511,1000,182.5
+27,"employment","twostep_elicitation","year",29,"sell things on eBay",300,0.3,4,"year",3,121.666666667,0.4,400,1000,7335,1000,91.25
+27,"employment","twostep_elicitation","year",30,"volunteers for soup kitchens",200,0.2,2,"year",2,182.5,0.2,200,1000,6648,1000,182.5
+27,"food","twostep_elicitation","year",31,"smokes cigarettes",400,0.4,300,"year",200,1.825,0.25,250,1000,10680,1000,1.21666666667
+28,"entertainment","twostep_elicitation","year",1,"goes to the ballet",10,0.01,10,"year",2,182.5,0.01,10,1000,21401,1000,36.5
+28,"employment","twostep_elicitation","year",2,"volunteers for soup kitchens",50,0.05,3,"year",3,121.666666667,0.05,50,1000,17042,1000,121.666666667
+28,"food","twostep_elicitation","year",3,"drinks coffee",990,0.99,360,"year",350,1.04285714286,0.99,990,1000,24234,1000,1.01388888889
+28,"clothing","twostep_elicitation","year",4,"wears a suit",980,0.98,100,"year",50,7.3,0.4,400,1000,13779,1000,3.65
+28,"clothing","twostep_elicitation","year",5,"wears a watch",980,0.98,300,"year",300,1.21666666667,0.95,950,1000,9533,1000,1.21666666667
+28,"hobby","twostep_elicitation","year",6,"hikes",600,0.6,5,"year",5,73,0.5,500,1000,19641,1000,73
+28,"hobby","twostep_elicitation","year",7,"climbs mountains",30,0.03,3,"year",3,121.666666667,0.03,30,1000,10211,1000,121.666666667
+28,"hobby","twostep_elicitation","year",8,"plays the banjo",10,0.01,30,"year",30,12.1666666667,0.01,10,1000,7772,1000,12.1666666667
+28,"entertainment","twostep_elicitation","year",9,"watches space launches",5,0.005,1,"year",1,365,0.005,5,1000,6502,1000,365
+28,"clothing","twostep_elicitation","year",10,"wears a bra",1,0.001,0,"year",364,1.00274725275,0.99,990,1000,30200,1000,NA
+28,"food","twostep_elicitation","year",11,"eats peanut butter",950,0.95,30,"year",30,12.1666666667,0.95,950,1000,8667,1000,12.1666666667
+28,"entertainment","twostep_elicitation","year",12,"goes to the movies",950,0.95,5,"year",5,73,0.95,950,1000,5766,1000,73
+28,"food","twostep_elicitation","year",13,"smokes marijuana",500,0.5,0,"year",0,NA,0.5,500,1000,7017,1000,NA
+28,"employment","twostep_elicitation","year",14,"steals cars",2,0.002,0,"year",0,NA,0.002,2,1000,4704,1000,NA
+28,"employment","twostep_elicitation","year",15,"writes novels",2,0.002,0,"year",0,NA,0.002,2,1000,5783,1000,NA
+28,"food","twostep_elicitation","year",16,"drinks beer",950,0.95,50,"year",30,12.1666666667,0.95,950,1000,8995,1000,7.3
+28,"entertainment","twostep_elicitation","year",17,"watches professional football",980,0.98,19,"year",5,73,0.98,980,1000,10349,1000,19.2105263158
+28,"employment","twostep_elicitation","year",18,"sells companies",1,0.001,0,"year",0,NA,0.001,1,1000,6005,1000,NA
+28,"clothing","twostep_elicitation","year",19,"wears socks",1000,1,340,"year",340,1.07352941176,1,1000,1000,8594,1000,1.07352941176
+28,"food","twostep_elicitation","year",20,"smokes cigarettes",400,0.4,365,"year",365,1,0.4,400,1000,13597,1000,1
+28,"food","twostep_elicitation","year",21,"does cocaine",100,0.1,0,"year",0,NA,0.1,100,1000,5256,1000,NA
+28,"entertainment","twostep_elicitation","year",22,"listens to Pandora",800,0.8,150,"year",150,2.43333333333,0.8,800,1000,7572,1000,2.43333333333
+28,"employment","twostep_elicitation","year",23,"writes poems",100,0.1,0,"year",0,NA,0.1,100,1000,5099,1000,NA
+28,"hobby","twostep_elicitation","year",24,"runs",1000,1,30,"year",30,12.1666666667,1,1000,1000,6505,1000,12.1666666667
+28,"employment","twostep_elicitation","year",25,"steals chewing gum",10,0.01,0,"year",0,NA,0.01,10,1000,5711,1000,NA
+28,"clothing","twostep_elicitation","year",26,"wears slacks",1000,1,200,"year",100,3.65,0.95,950,1000,12247,1000,1.825
+28,"employment","twostep_elicitation","year",27,"sell things on eBay",500,0.5,5,"year",2,182.5,0.5,500,1000,6154,1000,73
+28,"entertainment","twostep_elicitation","year",28,"listens to live music",900,0.9,5,"year",5,73,0.9,900,1000,6799,1000,73
+28,"food","twostep_elicitation","year",29,"eats caviar",50,0.05,1,"year",1,365,0.05,50,1000,5298,1000,365
+28,"hobby","twostep_elicitation","year",30,"plays tennis",400,0.4,5,"year",5,73,0.4,400,1000,5508,1000,73
+28,"employment","twostep_elicitation","year",31,"volunteers for political campaigns",3,0.003,1,"year",1,365,0.003,3,1000,5472,1000,365
+29,"clothing","twostep_elicitation","year",1,"wears a bra",20,0.02,100,"year",300,1.21666666667,0.6,600,1000,20310,1000,3.65
+29,"entertainment","twostep_elicitation","year",2,"goes to the movies",900,0.9,20,"year",20,18.25,0.9,900,1000,18759,1000,18.25
+29,"entertainment","twostep_elicitation","year",3,"listens to Pandora",300,0.3,30,"year",50,7.3,0.4,400,1000,11291,1000,12.1666666667
+29,"food","twostep_elicitation","year",4,"eats caviar",50,0.05,1,"year",1,365,0.01,10,1000,10960,1000,365
+29,"food","twostep_elicitation","year",5,"eats peanut butter",800,0.8,100,"year",60,6.08333333333,0.7,700,1000,14189,1000,3.65
+29,"employment","twostep_elicitation","year",6,"steals cars",2,0.002,1,"year",0,NA,0,0,1000,12300,1000,365
+29,"clothing","twostep_elicitation","year",7,"wears slacks",500,0.5,100,"year",50,7.3,0.2,200,1000,29162,1000,3.65
+29,"entertainment","twostep_elicitation","year",8,"listens to live music",700,0.7,20,"year",10,36.5,0.5,500,1000,11409,1000,18.25
+29,"hobby","twostep_elicitation","year",9,"plays the banjo",100,0.1,60,"year",2,182.5,0.01,10,1000,21708,1000,6.08333333333
+29,"food","twostep_elicitation","year",10,"does cocaine",50,0.05,70,"year",20,18.25,0.005,5,1000,21560,1000,5.21428571429
+29,"employment","twostep_elicitation","year",11,"volunteers for political campaigns",100,0.1,30,"year",5,73,0.03,30,1000,12104,1000,12.1666666667
+29,"clothing","twostep_elicitation","year",12,"wears socks",950,0.95,300,"year",250,1.46,0.95,950,1000,15582,1000,1.21666666667
+29,"employment","twostep_elicitation","year",13,"steals chewing gum",100,0.1,10,"year",2,182.5,0.01,10,1000,10686,1000,36.5
+29,"hobby","twostep_elicitation","year",14,"climbs mountains",300,0.3,10,"year",10,36.5,0.1,100,1000,15750,1000,36.5
+29,"employment","twostep_elicitation","year",15,"volunteers for soup kitchens",100,0.1,2,"year",2,182.5,0.1,100,1000,13784,1000,182.5
+29,"employment","twostep_elicitation","year",16,"writes poems",100,0.1,5,"year",10,36.5,0.2,200,1000,106508,1000,73
+29,"clothing","twostep_elicitation","year",17,"wears a watch",200,0.2,200,"year",100,3.65,0.005,5,1000,15961,1000,1.825
+29,"food","twostep_elicitation","year",18,"smokes cigarettes",20,0.02,360,"year",350,1.04285714286,0.01,10,1000,52051,1000,1.01388888889
+29,"entertainment","twostep_elicitation","year",19,"goes to the ballet",5,0.005,5,"year",5,73,0.01,10,1000,17462,1000,73
+29,"entertainment","twostep_elicitation","year",20,"watches space launches",50,0.05,1,"year",1,365,0.05,50,1000,9305,1000,365
+29,"employment","twostep_elicitation","year",21,"writes novels",20,0.02,1,"year",1,365,0.05,50,1000,7389,1000,365
+29,"hobby","twostep_elicitation","year",22,"plays tennis",300,0.3,20,"year",20,18.25,0.2,200,1000,12684,1000,18.25
+29,"hobby","twostep_elicitation","year",23,"hikes",400,0.4,10,"year",5,73,0.3,300,1000,11729,1000,36.5
+29,"food","twostep_elicitation","year",24,"drinks beer",100,0.1,30,"year",20,18.25,0.05,50,1000,15036,1000,12.1666666667
+29,"food","twostep_elicitation","year",25,"drinks coffee",200,0.2,20,"year",20,18.25,0.1,100,1000,17360,1000,18.25
+29,"clothing","twostep_elicitation","year",26,"wears a suit",50,0.05,20,"year",10,36.5,0.005,5,1000,56648,1000,18.25
+29,"entertainment","twostep_elicitation","year",27,"watches professional football",800,0.8,80,"year",30,12.1666666667,0.4,400,1000,12901,1000,4.5625
+29,"employment","twostep_elicitation","year",28,"sells companies",1,0.001,1,"year",1,365,0.001,1,1000,8139,1000,365
+29,"food","twostep_elicitation","year",29,"smokes marijuana",200,0.2,30,"year",20,18.25,0.1,100,1000,18037,1000,12.1666666667
+29,"employment","twostep_elicitation","year",30,"sell things on eBay",30,0.03,5,"year",4,91.25,0.01,10,1000,8214,1000,73
+29,"hobby","twostep_elicitation","year",31,"runs",400,0.4,70,"year",90,4.05555555556,0.2,200,1000,13521,1000,5.21428571429
+30,"clothing","twostep_elicitation","week",1,"wears a watch",999,0.999,5,"week",5,1.4,0.998,998,1000,71689,1000,1.4
+30,"food","twostep_elicitation","week",2,"drinks beer",900,0.9,3,"week",2,3.5,0.75,750,1000,34343,1000,2.33333333333
+30,"food","twostep_elicitation","month",3,"does cocaine",250,0.25,5,"month",3,10,0.25,250,1000,57918,1000,6
+30,"food","twostep_elicitation","week",4,"eats peanut butter",900,0.9,2,"week",2,3.5,0.9,900,1000,27040,1000,3.5
+30,"employment","twostep_elicitation","5 years",5,"sells companies",250,0.25,1,"5 years",1,1825,0.2,200,1000,48038,1000,1825
+30,"entertainment","twostep_elicitation","month",6,"goes to the movies",999,0.999,1,"month",1,30,0.999,999,1000,51137,1000,30
+30,"entertainment","twostep_elicitation","year",7,"watches professional football",990,0.99,20,"year",10,36.5,0.975,975,1000,38345,1000,18.25
+30,"employment","twostep_elicitation","5 years",8,"volunteers for political campaigns",500,0.5,1,"5 years",1,1825,0.5,500,1000,28119,1000,1825
+30,"food","twostep_elicitation","week",9,"drinks coffee",999,0.999,14,"week",7,1,0.999,999,1000,23935,1000,0.5
+30,"clothing","twostep_elicitation","week",10,"wears slacks",1000,1,7,"week",4,1.75,0.9,900,1000,40049,1000,1
+30,"employment","twostep_elicitation","year",11,"steals cars",250,0.25,2,"year",1,365,0.1,100,1000,22038,1000,182.5
+30,"employment","twostep_elicitation","year",12,"writes poems",500,0.5,4,"month",1,30,0.75,750,1000,24917,1000,91.25
+30,"clothing","twostep_elicitation","month",13,"wears a bra",100,0.1,1,"week",7,1,1,1000,1000,29113,1000,30
+30,"hobby","twostep_elicitation","year",14,"hikes",900,0.9,12,"year",6,60.8333333333,0.8,800,1000,23055,1000,30.4166666667
+30,"clothing","twostep_elicitation","week",15,"wears socks",1000,1,7,"week",4,1.75,1,1000,1000,17951,1000,1
+30,"entertainment","twostep_elicitation","year",16,"listens to live music",800,0.8,4,"year",4,91.25,0.8,800,1000,23534,1000,91.25
+30,"employment","twostep_elicitation","5 years",17,"writes novels",100,0.1,3,"5 years",3,608.333333333,0.1,100,1000,25231,1000,608.333333333
+30,"hobby","twostep_elicitation","year",18,"climbs mountains",350,0.35,4,"year",2,182.5,0.25,250,1000,111131,1000,91.25
+30,"clothing","twostep_elicitation","week",19,"wears a suit",1000,1,5,"week",2,3.5,0.75,750,1000,42081,1000,1.4
+30,"hobby","twostep_elicitation","month",20,"plays tennis",750,0.75,3,"month",3,10,0.75,750,1000,89426,1000,10
+30,"entertainment","twostep_elicitation","year",21,"goes to the ballet",500,0.5,2,"year",2,182.5,0.5,500,1000,13512,1000,182.5
+30,"food","twostep_elicitation","year",22,"eats caviar",750,0.75,4,"year",4,91.25,0.75,750,1000,17896,1000,91.25
+30,"employment","twostep_elicitation","month",23,"sell things on eBay",250,0.25,1,"month",1,30,0.25,250,1000,28935,1000,30
+30,"hobby","twostep_elicitation","month",24,"plays the banjo",100,0.1,1,"month",1,30,0.1,100,1000,12368,1000,30
+30,"entertainment","twostep_elicitation","year",25,"watches space launches",250,0.25,1,"year",1,365,0.25,250,1000,18728,1000,365
+30,"food","twostep_elicitation","week",26,"smokes cigarettes",500,0.5,14,"week",7,1,0.5,500,1000,25752,1000,0.5
+30,"entertainment","twostep_elicitation","week",27,"listens to Pandora",500,0.5,7,"week",7,1,0.5,500,1000,30752,1000,1
+30,"employment","twostep_elicitation","month",28,"steals chewing gum",200,0.2,2,"month",1,30,0.1,100,1000,20360,1000,15
+30,"food","twostep_elicitation","month",29,"smokes marijuana",750,0.75,4,"month",2,15,0.75,750,1000,13472,1000,7.5
+30,"employment","twostep_elicitation","year",30,"volunteers for soup kitchens",500,0.5,3,"year",4,91.25,0.5,500,1000,13169,1000,121.666666667
+30,"hobby","twostep_elicitation","week",31,"runs",1000,1,2,"week",2,3.5,1,1000,1000,17893,1000,3.5
+31,"hobby","twostep_elicitation","year",1,"climbs mountains",75,0.075,1,"year",1,365,0.05,50,1000,16811,1000,365
+31,"employment","twostep_elicitation","5 years",2,"steals cars",6,0.006,1,"5 years",1,1825,0.004,4,1000,11302,1000,1825
+31,"food","twostep_elicitation","year",3,"eats peanut butter",950,0.95,200,"year",200,1.825,0.95,950,1000,17889,1000,1.825
+31,"employment","twostep_elicitation","5 years",4,"steals chewing gum",1,0.001,1,"5 years",1,1825,0.001,1,1000,9320,1000,1825
+31,"food","twostep_elicitation","week",5,"smokes marijuana",350,0.35,2,"week",2,3.5,0.35,350,1000,49926,1000,3.5
+31,"entertainment","twostep_elicitation","5 years",6,"watches space launches",200,0.2,1,"5 years",1,1825,0.2,200,1000,10590,1000,1825
+31,"hobby","twostep_elicitation","year",7,"plays tennis",325,0.325,6,"year",6,60.8333333333,0.325,325,1000,9836,1000,60.8333333333
+31,"hobby","twostep_elicitation","week",8,"runs",875,0.875,1,"week",1,7,0.875,875,1000,20671,1000,7
+31,"employment","twostep_elicitation","5 years",9,"sells companies",10,0.01,1,"5 years",1,1825,0.01,10,1000,8968,1000,1825
+31,"clothing","twostep_elicitation","week",10,"wears slacks",998,0.998,5,"week",3,2.33333333333,0.998,998,1000,16660,1000,1.4
+31,"entertainment","twostep_elicitation","week",11,"watches professional football",925,0.925,4,"month",2,15,0.9,900,1000,20660,1000,1.75
+31,"entertainment","twostep_elicitation","year",12,"goes to the ballet",175,0.175,1,"year",1,365,0.25,250,1000,55114,1000,365
+31,"entertainment","twostep_elicitation","month",13,"goes to the movies",1000,1,1,"month",1,30,1,1000,1000,9390,1000,30
+31,"food","twostep_elicitation","week",14,"drinks beer",875,0.875,1,"week",1,7,0.8,800,1000,10583,1000,7
+31,"employment","twostep_elicitation","5 years",15,"writes novels",2,2e-04,1,"5 years",1,1825,2e-04,2,10000,24027,10000,1825
+31,"food","twostep_elicitation","year",16,"does cocaine",50,0.05,1,"year",1,365,0.05,50,1000,8996,1000,365
+31,"employment","twostep_elicitation","year",17,"volunteers for political campaigns",75,0.075,1,"year",1,365,0.075,75,1000,8695,1000,365
+31,"clothing","twostep_elicitation","5 years",18,"wears a bra",20,0.02,1,"week",7,1,0.98,980,1000,25787,1000,1825
+31,"employment","twostep_elicitation","5 years",19,"writes poems",150,0.15,1,"5 years",1,1825,0.15,150,1000,10647,1000,1825
+31,"entertainment","twostep_elicitation","week",20,"listens to Pandora",750,0.75,3,"week",3,2.33333333333,0.75,750,1000,32487,1000,2.33333333333
+31,"food","twostep_elicitation","year",21,"eats caviar",125,0.125,2,"year",2,182.5,0.125,125,1000,8554,1000,182.5
+31,"clothing","twostep_elicitation","week",22,"wears socks",980,0.98,6,"week",4,1.75,0.98,980,1000,14186,1000,1.16666666667
+31,"food","twostep_elicitation","week",23,"smokes cigarettes",375,0.375,6,"week",6,1.16666666667,0.375,375,1000,12834,1000,1.16666666667
+31,"entertainment","twostep_elicitation","year",24,"listens to live music",800,0.8,5,"year",5,73,0.8,800,1000,7397,1000,73
+31,"employment","twostep_elicitation","year",25,"volunteers for soup kitchens",25,0.025,1,"year",1,365,0.025,25,1000,6593,1000,365
+31,"hobby","twostep_elicitation","year",26,"hikes",150,0.15,1,"year",1,365,0.15,150,1000,9265,1000,365
+31,"clothing","twostep_elicitation","week",27,"wears a watch",625,0.625,5,"week",5,1.4,0.625,625,1000,12373,1000,1.4
+31,"clothing","twostep_elicitation","year",28,"wears a suit",800,0.8,10,"year",10,36.5,0.65,650,1000,10477,1000,36.5
+31,"hobby","twostep_elicitation","year",29,"plays the banjo",10,0.01,6,"year",6,60.8333333333,0.004,4,1000,13842,1000,60.8333333333
+31,"employment","twostep_elicitation","year",30,"sell things on eBay",125,0.125,1,"year",1,365,0.125,125,1000,6540,1000,365
+31,"food","twostep_elicitation","week",31,"drinks coffee",850,0.85,5,"week",5,1.4,0.85,850,1000,9913,1000,1.4
+32,"employment","twostep_elicitation","year",1,"volunteers for political campaigns",8,0.008,2,"year",2,182.5,0.005,5,1000,68462,1000,182.5
+32,"food","twostep_elicitation","year",2,"does cocaine",12,0.012,5,"year",4,91.25,0.01,10,1000,25513,1000,73
+32,"food","twostep_elicitation","year",3,"smokes marijuana",25,0.025,12,"year",10,36.5,0.02,20,1000,25652,1000,30.4166666667
+32,"entertainment","twostep_elicitation","5 years",4,"watches space launches",40,0.04,1,"5 years",1,1825,0.035,35,1000,477274,1000,1825
+32,"employment","twostep_elicitation","year",5,"writes poems",12,0.012,1,"year",2,182.5,0.015,15,1000,39063,1000,365
+32,"entertainment","twostep_elicitation","5 years",6,"goes to the ballet",6,0.006,1,"year",1,365,0.025,25,1000,34880,1000,1825
+32,"hobby","twostep_elicitation","year",7,"plays tennis",25,0.025,9,"year",5,73,0.02,20,1000,31006,1000,40.5555555556
+32,"hobby","twostep_elicitation","year",8,"plays the banjo",3,0.003,35,"year",30,12.1666666667,0.002,2,1000,34222,1000,10.4285714286
+32,"food","twostep_elicitation","week",9,"drinks coffee",90,0.09,7,"week",7,1,0.09,90,1000,32338,1000,1
+32,"clothing","twostep_elicitation","week",10,"wears slacks",100,0.1,5,"month",10,3,0.099,99,1000,48124,1000,1.4
+32,"entertainment","twostep_elicitation","month",11,"listens to Pandora",35,0.035,10,"month",10,3,0.035,35,1000,36000,1000,3
+32,"food","twostep_elicitation","year",12,"eats peanut butter",99,0.099,35,"year",30,12.1666666667,0.099,99,1000,23400,1000,10.4285714286
+32,"food","twostep_elicitation","week",13,"smokes cigarettes",65,0.065,7,"week",7,1,0.06,60,1000,30626,1000,1
+32,"clothing","twostep_elicitation","year",14,"wears a bra",2,0.002,25,"week",7,1,0.1,100,1000,31521,1000,14.6
+32,"entertainment","twostep_elicitation","year",15,"listens to live music",98,0.098,5,"year",5,73,0.098,98,1000,24061,1000,73
+32,"food","twostep_elicitation","month",16,"drinks beer",99,0.099,20,"month",10,3,0.095,95,1000,36075,1000,1.5
+32,"employment","twostep_elicitation","year",17,"volunteers for soup kitchens",2,0.002,2,"year",6,60.8333333333,0.005,5,1000,27651,1000,182.5
+32,"entertainment","twostep_elicitation","year",18,"goes to the movies",99,0.099,5,"year",5,73,0.099,99,1000,19255,1000,73
+32,"clothing","twostep_elicitation","year",19,"wears a watch",99,0.099,300,"year",300,1.21666666667,0.098,98,1000,29296,1000,1.21666666667
+32,"employment","twostep_elicitation","5 years",20,"steals cars",5,0.005,2,"5 years",1,1825,0.001,1,1000,34516,1000,912.5
+32,"entertainment","twostep_elicitation","year",21,"watches professional football",99,0.099,40,"year",20,18.25,0.09,90,1000,32623,1000,9.125
+32,"employment","twostep_elicitation","month",22,"sell things on eBay",9,0.009,3,"month",2,15,0.008,8,1000,28467,1000,10
+32,"hobby","twostep_elicitation","year",23,"climbs mountains",8,0.008,2,"year",1,365,0.005,5,1000,16297,1000,182.5
+32,"employment","twostep_elicitation","5 years",24,"sells companies",8,0.008,1,"5 years",1,1825,0.005,5,1000,31691,1000,1825
+32,"hobby","twostep_elicitation","year",25,"runs",99,0.099,200,"year",200,1.825,0.099,99,1000,26973,1000,1.825
+32,"employment","twostep_elicitation","5 years",26,"steals chewing gum",3,0.003,1,"5 years",1,1825,0.002,2,1000,15740,1000,1825
+32,"clothing","twostep_elicitation","week",27,"wears socks",100,0.1,6,"week",5,1.4,0.1,100,1000,32243,1000,1.16666666667
+32,"employment","twostep_elicitation","5 years",28,"writes novels",4,0.004,1,"5 years",1,1825,0.003,3,1000,24360,1000,1825
+32,"food","twostep_elicitation","year",29,"eats caviar",50,0.05,5,"year",5,73,0.04,40,1000,16565,1000,73
+32,"clothing","twostep_elicitation","year",30,"wears a suit",99,0.099,100,"year",50,7.3,0.09,90,1000,40458,1000,3.65
+32,"hobby","twostep_elicitation","year",31,"hikes",15,0.015,20,"year",15,24.3333333333,0.01,10,1000,15049,1000,18.25
+33,"hobby","twostep_elicitation","month",1,"runs",975,0.975,20,"month",15,2,0.95,950,1000,47111,1000,1.5
+33,"employment","twostep_elicitation","year",2,"volunteers for political campaigns",500,0.5,10,"year",10,36.5,0.5,500,1000,35729,1000,36.5
+33,"clothing","twostep_elicitation","week",3,"wears a watch",975,0.975,5,"week",6,1.16666666667,0.985,985,1000,28847,1000,1.4
+33,"food","twostep_elicitation","year",4,"eats caviar",450,0.45,10,"year",10,36.5,0.45,450,1000,27706,1000,36.5
+33,"food","twostep_elicitation","month",5,"drinks beer",985,0.985,15,"month",10,3,0.85,850,1000,32961,1000,2
+33,"food","twostep_elicitation","year",6,"does cocaine",500,0.5,10,"year",7,52.1428571429,0.4,400,1000,30496,1000,36.5
+33,"clothing","twostep_elicitation","year",7,"wears socks",990,0.99,360,"year",350,1.04285714286,0.99,990,1000,15759,1000,1.01388888889
+33,"entertainment","twostep_elicitation","year",8,"watches professional football",700,0.7,30,"year",25,14.6,0.6,600,1000,26196,1000,12.1666666667
+33,"entertainment","twostep_elicitation","month",9,"listens to Pandora",500,0.5,20,"month",20,1.5,0.5,500,1000,18182,1000,1.5
+33,"entertainment","twostep_elicitation","year",10,"goes to the movies",900,0.9,15,"year",15,24.3333333333,0.9,900,1000,22849,1000,24.3333333333
+33,"hobby","twostep_elicitation","year",11,"climbs mountains",450,0.45,10,"year",7,52.1428571429,0.4,400,1000,15356,1000,36.5
+33,"employment","twostep_elicitation","year",12,"sell things on eBay",500,0.5,10,"year",25,14.6,0.7,700,1000,19799,1000,36.5
+33,"clothing","twostep_elicitation","year",13,"wears a bra",50,0.05,2,"year",350,1.04285714286,0.995,995,1000,19311,1000,182.5
+33,"clothing","twostep_elicitation","year",14,"wears slacks",995,0.995,360,"year",300,1.21666666667,0.85,850,1000,16843,1000,1.01388888889
+33,"hobby","twostep_elicitation","year",15,"hikes",500,0.5,15,"year",10,36.5,0.5,500,1000,9772,1000,24.3333333333
+33,"food","twostep_elicitation","month",16,"smokes cigarettes",550,0.55,10,"month",7,4.28571428571,0.5,500,1000,15610,1000,3
+33,"employment","twostep_elicitation","month",17,"writes poems",350,0.35,3,"month",5,6,0.5,500,1000,15173,1000,10
+33,"food","twostep_elicitation","year",18,"smokes marijuana",570,0.57,25,"year",20,18.25,0.545,545,1000,17729,1000,14.6
+33,"clothing","twostep_elicitation","year",19,"wears a suit",900,0.9,300,"year",150,2.43333333333,0.5,500,1000,14547,1000,1.21666666667
+33,"employment","twostep_elicitation","year",20,"volunteers for soup kitchens",500,0.5,10,"year",10,36.5,0.5,500,1000,10257,1000,36.5
+33,"employment","twostep_elicitation","year",21,"steals chewing gum",400,0.4,2,"year",2,182.5,0.4,400,1000,13015,1000,182.5
+33,"hobby","twostep_elicitation","year",22,"plays tennis",350,0.35,60,"year",90,4.05555555556,0.4,400,1000,14218,1000,6.08333333333
+33,"entertainment","twostep_elicitation","year",23,"listens to live music",750,0.75,5,"year",5,73,0.75,750,1000,11274,1000,73
+33,"employment","twostep_elicitation","year",24,"steals cars",150,0.15,3,"year",3,121.666666667,0.1,100,1000,12853,1000,121.666666667
+33,"hobby","twostep_elicitation","year",25,"plays the banjo",200,0.2,150,"year",100,3.65,0.1,100,1000,14995,1000,2.43333333333
+33,"food","twostep_elicitation","year",26,"eats peanut butter",800,0.8,50,"year",50,7.3,0.8,800,1000,11777,1000,7.3
+33,"entertainment","twostep_elicitation","year",27,"watches space launches",800,0.8,1,"year",1,365,0.75,750,1000,13187,1000,365
+33,"employment","twostep_elicitation","year",28,"sells companies",500,0.5,2,"year",1,365,0.35,350,1000,11568,1000,182.5
+33,"employment","twostep_elicitation","year",29,"writes novels",350,0.35,1,"year",2,182.5,0.4,400,1000,15965,1000,365
+33,"entertainment","twostep_elicitation","year",30,"goes to the ballet",300,0.3,3,"year",3,121.666666667,0.5,500,1000,12166,1000,121.666666667
+33,"food","twostep_elicitation","month",31,"drinks coffee",700,0.7,25,"month",25,1.2,0.7,700,1000,26259,1000,1.2
+34,"employment","twostep_elicitation","year",1,"sell things on eBay",3,0.003,3,"year",3,121.666666667,0.002,2,1000,28180,1000,121.666666667
+34,"food","twostep_elicitation","year",2,"smokes marijuana",50,0.05,100,"year",75,4.86666666667,0.025,25,1000,33567,1000,3.65
+34,"entertainment","twostep_elicitation","year",3,"watches professional football",600,0.6,50,"year",20,18.25,0.35,350,1000,25102,1000,7.3
+34,"hobby","twostep_elicitation","year",4,"hikes",10,0.01,5,"year",5,73,0.008,8,1000,11670,1000,73
+34,"clothing","twostep_elicitation","year",5,"wears a suit",650,0.65,100,"year",50,7.3,0.2,200,1000,43416,1000,3.65
+34,"clothing","twostep_elicitation","year",6,"wears slacks",700,0.7,150,"year",120,3.04166666667,0.7,700,1000,30159,1000,2.43333333333
+34,"hobby","twostep_elicitation","year",7,"runs",1000,1,50,"year",50,7.3,1,1000,1000,23687,1000,7.3
+34,"employment","twostep_elicitation","year",8,"sells companies",75,0.075,1,"year",1,365,0.02,20,1000,42872,1000,365
+34,"clothing","twostep_elicitation","year",9,"wears a bra",2,2e-05,10,"year",300,1.21666666667,0.975,975,1000,40391,100000,36.5
+34,"employment","twostep_elicitation","year",10,"writes poems",400,0.4,1,"year",1,365,0.4,400,1000,22040,1000,365
+34,"hobby","twostep_elicitation","year",11,"climbs mountains",10,1e-04,2,"year",2,182.5,5e-05,5,100000,29133,100000,182.5
+34,"food","twostep_elicitation","year",12,"eats caviar",20,2e-04,5,"year",5,73,2e-04,20,100000,21262,100000,73
+34,"employment","twostep_elicitation","year",13,"steals chewing gum",1,0.001,1,"year",1,365,1e-05,1,100000,23951,1000,365
+34,"food","twostep_elicitation","year",14,"does cocaine",15,0.00015,300,"year",150,2.43333333333,5e-05,5,100000,32462,100000,1.21666666667
+34,"clothing","twostep_elicitation","year",15,"wears a watch",900,0.9,365,"year",365,1,0.9,900,1000,19086,1000,1
+34,"entertainment","twostep_elicitation","year",16,"listens to Pandora",10,0.01,100,"year",200,1.825,0.025,25,1000,12790,1000,3.65
+34,"employment","twostep_elicitation","year",17,"writes novels",25,0.025,2,"year",1,365,0.005,5,1000,28104,1000,182.5
+34,"food","twostep_elicitation","year",18,"drinks beer",600,0.6,50,"year",30,12.1666666667,0.375,375,1000,16798,1000,7.3
+34,"food","twostep_elicitation","year",19,"smokes cigarettes",200,0.2,300,"year",300,1.21666666667,0.175,175,1000,20776,1000,1.21666666667
+34,"employment","twostep_elicitation","5 years",20,"volunteers for political campaigns",20,0.02,1,"5 years",1,1825,0.03,30,1000,18494,1000,1825
+34,"hobby","twostep_elicitation","year",21,"plays the banjo",7,0.007,75,"year",20,18.25,4e-04,4,10000,31719,1000,4.86666666667
+34,"food","twostep_elicitation","year",22,"drinks coffee",700,0.7,300,"year",300,1.21666666667,0.5,500,1000,14980,1000,1.21666666667
+34,"hobby","twostep_elicitation","month",23,"plays tennis",100,0.1,2,"month",2,15,0.1,100,1000,50835,1000,15
+34,"entertainment","twostep_elicitation","year",24,"watches space launches",150,0.15,3,"year",3,121.666666667,0.15,150,1000,18510,1000,121.666666667
+34,"employment","twostep_elicitation","year",25,"volunteers for soup kitchens",20,2e-04,2,"year",3,121.666666667,4e-04,40,100000,32567,100000,182.5
+34,"clothing","twostep_elicitation","year",26,"wears socks",999,0.999,365,"year",365,1,0.999,999,1000,20758,1000,1
+34,"entertainment","twostep_elicitation","year",27,"goes to the ballet",25,0.025,3,"year",5,73,0.03,30,1000,13126,1000,121.666666667
+34,"employment","twostep_elicitation","5 years",28,"steals cars",2,2e-05,1,"5 years",1,1825,2e-06,2,1000000,19633,100000,1825
+34,"food","twostep_elicitation","month",29,"eats peanut butter",750,0.75,10,"month",10,3,0.75,750,1000,17877,1000,3
+34,"entertainment","twostep_elicitation","year",30,"listens to live music",850,0.85,5,"year",5,73,0.8,800,1000,18320,1000,73
+34,"entertainment","twostep_elicitation","year",31,"goes to the movies",450,0.45,10,"year",10,36.5,0.55,550,1000,24726,1000,36.5
+35,"hobby","twostep_elicitation","year",1,"runs",800,0.8,200,"year",200,1.825,0.8,800,1000,16716,1000,1.825
+35,"employment","twostep_elicitation","year",2,"volunteers for soup kitchens",200,0.2,4,"year",4,91.25,0.1,100,1000,17184,1000,91.25
+35,"hobby","twostep_elicitation","year",3,"climbs mountains",100,0.1,6,"year",2,182.5,0.025,25,1000,11967,1000,60.8333333333
+35,"employment","twostep_elicitation","year",4,"writes novels",10,0.01,1,"year",1,365,0.005,5,1000,15342,1000,365
+35,"employment","twostep_elicitation","year",5,"sell things on eBay",500,0.5,20,"year",20,18.25,0.5,500,1000,12336,1000,18.25
+35,"entertainment","twostep_elicitation","year",6,"goes to the ballet",400,0.4,2,"year",4,91.25,0.6,600,1000,12927,1000,182.5
+35,"employment","twostep_elicitation","year",7,"volunteers for political campaigns",500,0.5,2,"year",2,182.5,0.5,500,1000,16992,1000,182.5
+35,"food","twostep_elicitation","year",8,"smokes cigarettes",500,0.5,600,"year",600,0.608333333333,0.5,500,1000,25554,1000,0.608333333333
+35,"entertainment","twostep_elicitation","year",9,"listens to live music",1000,1,15,"year",15,24.3333333333,1,1000,1000,13468,1000,24.3333333333
+35,"clothing","twostep_elicitation","year",10,"wears slacks",1000,1,300,"year",200,1.825,1,1000,1000,14070,1000,1.21666666667
+35,"food","twostep_elicitation","year",11,"drinks coffee",900,0.9,365,"year",365,1,0.9,900,1000,15309,1000,1
+35,"entertainment","twostep_elicitation","year",12,"watches space launches",500,0.5,1,"year",1,365,0.5,500,1000,13413,1000,365
+35,"food","twostep_elicitation","year",13,"drinks beer",900,0.9,250,"year",50,7.3,0.6,600,1000,16111,1000,1.46
+35,"food","twostep_elicitation","year",14,"eats peanut butter",800,0.8,100,"year",100,3.65,0.8,800,1000,12772,1000,3.65
+35,"clothing","twostep_elicitation","year",15,"wears a watch",1000,1,330,"year",330,1.10606060606,1,1000,1000,13811,1000,1.10606060606
+35,"hobby","twostep_elicitation","year",16,"plays the banjo",100,0.1,50,"year",50,7.3,0.1,100,1000,12045,1000,7.3
+35,"food","twostep_elicitation","year",17,"eats caviar",50,0.05,6,"year",4,91.25,0.025,25,1000,8757,1000,60.8333333333
+35,"hobby","twostep_elicitation","year",18,"hikes",800,0.8,20,"year",16,22.8125,0.8,800,1000,10735,1000,18.25
+35,"employment","twostep_elicitation","year",19,"sells companies",300,0.3,1,"year",1,365,0.015,15,1000,14014,1000,365
+35,"food","twostep_elicitation","year",20,"smokes marijuana",900,0.9,650,"year",650,0.561538461538,0.9,900,1000,11618,1000,0.561538461538
+35,"entertainment","twostep_elicitation","year",21,"goes to the movies",1000,1,12,"year",12,30.4166666667,1,1000,1000,15890,1000,30.4166666667
+35,"entertainment","twostep_elicitation","year",22,"watches professional football",1000,1,30,"year",25,14.6,1,1000,1000,11099,1000,12.1666666667
+35,"clothing","twostep_elicitation","year",23,"wears a suit",950,0.95,365,"year",300,1.21666666667,0.8,800,1000,13710,1000,1
+35,"food","twostep_elicitation","year",24,"does cocaine",600,0.6,150,"year",150,2.43333333333,0.2,200,1000,21195,1000,2.43333333333
+35,"clothing","twostep_elicitation","year",25,"wears a bra",200,0.2,50,"year",365,1,1,1000,1000,13655,1000,7.3
+35,"employment","twostep_elicitation","year",26,"writes poems",500,0.5,10,"year",10,36.5,0.9,900,1000,10634,1000,36.5
+35,"clothing","twostep_elicitation","year",27,"wears socks",1000,1,250,"year",250,1.46,1,1000,1000,13726,1000,1.46
+35,"hobby","twostep_elicitation","year",28,"plays tennis",100,0.1,25,"year",25,14.6,0.1,100,1000,9726,1000,14.6
+35,"employment","twostep_elicitation","year",29,"steals cars",25,0.025,5,"year",5,73,0.025,25,1000,9131,1000,73
+35,"employment","twostep_elicitation","year",30,"steals chewing gum",152,0.152,10,"year",10,36.5,0.152,152,1000,11609,1000,36.5
+35,"entertainment","twostep_elicitation","year",31,"listens to Pandora",800,0.8,300,"year",300,1.21666666667,0.8,800,1000,11259,1000,1.21666666667
+36,"food","twostep_elicitation","year",1,"eats caviar",500,0.5,2,"year",5,73,0.6,600,1000,67790,1000,182.5
+36,"hobby","twostep_elicitation","year",2,"plays the banjo",500,0.5,10,"year",15,24.3333333333,0.65,650,1000,16122,1000,36.5
+36,"entertainment","twostep_elicitation","year",3,"watches space launches",600,0.6,10,"year",10,36.5,0.65,650,1000,11083,1000,36.5
+36,"food","twostep_elicitation","year",4,"smokes cigarettes",900,0.9,50,"year",50,7.3,0.95,950,1000,14487,1000,7.3
+36,"food","twostep_elicitation","year",5,"eats peanut butter",980,0.98,55,"year",100,3.65,0.98,980,1000,21646,1000,6.63636363636
+36,"clothing","twostep_elicitation","year",6,"wears slacks",500,0.5,25,"year",30,12.1666666667,0.75,750,1000,11958,1000,14.6
+36,"food","twostep_elicitation","year",7,"does cocaine",500,0.5,20,"year",20,18.25,0.6,600,1000,10787,1000,18.25
+36,"employment","twostep_elicitation","year",8,"sells companies",300,0.3,2,"year",1,365,0.02,20,1000,12172,1000,182.5
+36,"hobby","twostep_elicitation","year",9,"plays tennis",300,0.3,5,"year",10,36.5,0.65,650,1000,10584,1000,73
+36,"employment","twostep_elicitation","year",10,"writes novels",150,0.15,1,"year",2,182.5,0.2,200,1000,9774,1000,365
+36,"entertainment","twostep_elicitation","month",11,"goes to the ballet",100,0.1,0,"month",1,30,0.5,500,1000,16723,1000,NA
+36,"employment","twostep_elicitation","5 years",12,"writes poems",100,0.1,1,"month",1,30,0.95,950,1000,13245,1000,1825
+36,"food","twostep_elicitation","week",13,"drinks coffee",900,0.9,5,"week",5,1.4,0.95,950,1000,12565,1000,1.4
+36,"employment","twostep_elicitation","year",14,"steals cars",200,0.2,1,"year",1,365,0.1,100,1000,12101,1000,365
+36,"employment","twostep_elicitation","year",15,"sell things on eBay",500,0.5,30,"year",35,10.4285714286,0.65,650,1000,9651,1000,12.1666666667
+36,"entertainment","twostep_elicitation","year",16,"listens to live music",650,0.65,1,"year",1,365,0.9,900,1000,8590,1000,365
+36,"hobby","twostep_elicitation","year",17,"hikes",750,0.75,5,"year",10,36.5,0.8,800,1000,10534,1000,73
+36,"clothing","twostep_elicitation","year",18,"wears a watch",900,0.9,10,"year",15,24.3333333333,0.9,900,1000,7165,1000,36.5
+36,"employment","twostep_elicitation","year",19,"volunteers for political campaigns",100,0.1,5,"year",6,60.8333333333,0.3,300,1000,8157,1000,73
+36,"entertainment","twostep_elicitation","year",20,"goes to the movies",900,0.9,20,"year",20,18.25,0.9,900,1000,6943,1000,18.25
+36,"entertainment","twostep_elicitation","week",21,"watches professional football",950,0.95,1,"month",1,30,0.8,800,1000,12852,1000,7
+36,"entertainment","twostep_elicitation","week",22,"listens to Pandora",900,0.9,5,"week",5,1.4,0.9,900,1000,10085,1000,1.4
+36,"clothing","twostep_elicitation","year",23,"wears a bra",50,0.05,0,"week",7,1,0.98,980,1000,15109,1000,NA
+36,"hobby","twostep_elicitation","year",24,"climbs mountains",100,0.1,1,"year",1,365,0.05,50,1000,7368,1000,365
+36,"hobby","twostep_elicitation","week",25,"runs",900,0.9,3,"week",3,2.33333333333,0.9,900,1000,8634,1000,2.33333333333
+36,"food","twostep_elicitation","week",26,"drinks beer",850,0.85,1,"week",1,7,0.5,500,1000,11148,1000,7
+36,"employment","twostep_elicitation","year",27,"volunteers for soup kitchens",500,0.5,5,"year",5,73,0.6,600,1000,6512,1000,73
+36,"employment","twostep_elicitation","year",28,"steals chewing gum",600,0.6,1,"year",1,365,0.5,500,1000,10068,1000,365
+36,"clothing","twostep_elicitation","week",29,"wears a suit",850,0.85,1,"week",1,7,0.3,300,1000,8632,1000,7
+36,"clothing","twostep_elicitation","week",30,"wears socks",1000,1,7,"week",7,1,1,1000,1000,8445,1000,1
+36,"food","twostep_elicitation","week",31,"smokes marijuana",850,0.85,1,"week",1,7,0.5,500,1000,7784,1000,7
+37,"employment","twostep_elicitation","5 years",1,"writes poems",600,0.6,1,"year",2,182.5,0.85,850,1000,42904,1000,1825
+37,"clothing","twostep_elicitation","year",2,"wears a suit",900,0.9,10,"year",2,182.5,0.7,700,1000,35819,1000,36.5
+37,"food","twostep_elicitation","year",3,"drinks beer",950,0.95,25,"year",2,182.5,0.8,800,1000,26245,1000,14.6
+37,"entertainment","twostep_elicitation","year",4,"goes to the movies",990,0.99,3,"year",3,121.666666667,0.99,990,1000,20780,1000,121.666666667
+37,"entertainment","twostep_elicitation","5 years",5,"goes to the ballet",10,0.01,1,"year",5,73,0.05,50,1000,23920,1000,1825
+37,"food","twostep_elicitation","week",6,"smokes cigarettes",300,0.3,7,"week",7,1,0.25,250,1000,53249,1000,1
+37,"entertainment","twostep_elicitation","5 years",7,"watches space launches",500,0.5,1,"5 years",1,1825,0.5,500,1000,21712,1000,1825
+37,"employment","twostep_elicitation","year",8,"steals cars",2,0.002,1,"5 years",1,1825,0.001,1,1000,21850,1000,365
+37,"food","twostep_elicitation","week",9,"drinks coffee",900,0.9,5,"week",5,1.4,0.9,900,1000,21059,1000,1.4
+37,"employment","twostep_elicitation","5 years",10,"writes novels",1,0.001,1,"5 years",1,1825,0.002,2,1000,28332,1000,1825
+37,"hobby","twostep_elicitation","year",11,"plays the banjo",2,0.002,50,"year",15,24.3333333333,0.001,1,1000,25873,1000,7.3
+37,"clothing","twostep_elicitation","week",12,"wears socks",1000,1,7,"month",5,6,1,1000,1000,34802,1000,1
+37,"hobby","twostep_elicitation","month",13,"runs",990,0.99,5,"month",3,10,0.99,990,1000,25012,1000,6
+37,"employment","twostep_elicitation","year",14,"volunteers for soup kitchens",1,0.001,1,"year",3,121.666666667,0.002,2,1000,24436,1000,365
+37,"clothing","twostep_elicitation","week",15,"wears slacks",100,0.1,7,"month",10,3,0.99,990,1000,23328,1000,1
+37,"hobby","twostep_elicitation","month",16,"plays tennis",450,0.45,5,"month",3,10,0.4,400,1000,21834,1000,6
+37,"employment","twostep_elicitation","year",17,"steals chewing gum",5,0.005,1,"year",1,365,0.005,5,1000,13445,1000,365
+37,"hobby","twostep_elicitation","year",18,"hikes",705,0.705,5,"year",5,73,0.7,700,1000,17845,1000,73
+37,"employment","twostep_elicitation","5 years",19,"sells companies",2,0.002,1,"5 years",1,1825,0.001,1,1000,18310,1000,1825
+37,"entertainment","twostep_elicitation","week",20,"listens to Pandora",100,0.1,2,"week",2,3.5,0.1,100,1000,18508,1000,3.5
+37,"clothing","twostep_elicitation","year",21,"wears a bra",10,0.01,2,"week",7,1,0.98,980,1000,26430,1000,182.5
+37,"employment","twostep_elicitation","year",22,"volunteers for political campaigns",10,0.01,1,"year",1,365,0.01,10,1000,20478,1000,365
+37,"food","twostep_elicitation","year",23,"eats caviar",50,0.05,1,"year",1,365,0.05,50,1000,12907,1000,365
+37,"food","twostep_elicitation","year",24,"smokes marijuana",200,0.2,12,"year",5,73,0.1,100,1000,20932,1000,30.4166666667
+37,"hobby","twostep_elicitation","5 years",25,"climbs mountains",8,0.008,2,"5 years",1,1825,0.005,5,1000,43646,1000,912.5
+37,"food","twostep_elicitation","week",26,"eats peanut butter",999,0.999,2,"week",1,7,0.999,999,1000,22720,1000,3.5
+37,"clothing","twostep_elicitation","week",27,"wears a watch",950,0.95,4,"week",4,1.75,0.95,950,1000,18051,1000,1.75
+37,"employment","twostep_elicitation","month",28,"sell things on eBay",20,0.02,2,"month",2,15,0.02,20,1000,31139,1000,15
+37,"entertainment","twostep_elicitation","year",29,"listens to live music",900,0.9,5,"year",5,73,0.9,900,1000,12518,1000,73
+37,"entertainment","twostep_elicitation","year",30,"watches professional football",700,0.7,12,"year",3,121.666666667,0.3,300,1000,22772,1000,30.4166666667
+37,"food","twostep_elicitation","year",31,"does cocaine",10,0.01,3,"year",2,182.5,0.005,5,1000,14199,1000,121.666666667
+38,"clothing","twostep_elicitation","year",1,"wears socks",1000,1,325,"year",325,1.12307692308,1,1000,1000,77214,1000,1.12307692308
+38,"entertainment","twostep_elicitation","year",2,"listens to live music",950,0.95,3,"year",2,182.5,0.9,900,1000,41429,1000,121.666666667
+38,"employment","twostep_elicitation","year",3,"steals cars",25,0.025,2,"5 years",1,1825,0.005,5,1000,44936,1000,182.5
+38,"hobby","twostep_elicitation","month",4,"runs",1000,1,3,"month",2,15,1,1000,1000,31336,1000,10
+38,"hobby","twostep_elicitation","year",5,"plays tennis",150,0.15,2,"year",3,121.666666667,0.2,200,1000,54180,1000,182.5
+38,"food","twostep_elicitation","month",6,"drinks beer",925,0.925,2,"year",3,121.666666667,0.8,800,1000,33710,1000,15
+38,"food","twostep_elicitation","week",7,"drinks coffee",750,0.75,2,"week",3,2.33333333333,0.85,850,1000,104967,1000,3.5
+38,"employment","twostep_elicitation","year",8,"volunteers for soup kitchens",10,0.01,1,"year",1,365,0.02,20,1000,30438,1000,365
+38,"entertainment","twostep_elicitation","5 years",9,"watches space launches",100,0.1,1,"5 years",1,1825,0.1,100,1000,25058,1000,1825
+38,"food","twostep_elicitation","5 years",10,"eats caviar",30,0.03,1,"5 years",1,1825,0.04,40,1000,31823,1000,1825
+38,"employment","twostep_elicitation","month",11,"sell things on eBay",100,0.1,3,"month",2,15,0.08,80,1000,30662,1000,10
+38,"entertainment","twostep_elicitation","5 years",12,"goes to the ballet",100,0.1,1,"5 years",2,912.5,0.2,200,1000,23616,1000,1825
+38,"employment","twostep_elicitation","5 years",13,"writes poems",800,0.8,2,"year",3,121.666666667,0.95,950,1000,32142,1000,912.5
+38,"food","twostep_elicitation","year",14,"eats peanut butter",975,0.975,12,"year",12,30.4166666667,0.975,975,1000,27407,1000,30.4166666667
+38,"employment","twostep_elicitation","5 years",15,"sells companies",40,0.04,1,"5 years",1,1825,0.02,20,1000,29673,1000,1825
+38,"employment","twostep_elicitation","5 years",16,"volunteers for political campaigns",65,0.065,1,"5 years",1,1825,0.05,50,1000,32685,1000,1825
+38,"employment","twostep_elicitation","5 years",17,"steals chewing gum",75,0.075,1,"5 years",1,1825,0.05,50,1000,27358,1000,1825
+38,"employment","twostep_elicitation","5 years",18,"writes novels",15,0.015,1,"5 years",1,1825,0.01,10,1000,65824,1000,1825
+38,"clothing","twostep_elicitation","year",19,"wears a suit",800,0.8,10,"year",1,365,0.1,100,1000,41718,1000,36.5
+38,"entertainment","twostep_elicitation","year",20,"goes to the movies",980,0.98,6,"year",3,121.666666667,0.97,970,1000,25567,1000,60.8333333333
+38,"entertainment","twostep_elicitation","year",21,"watches professional football",850,0.85,12,"year",1,365,0.6,600,1000,30882,1000,30.4166666667
+38,"hobby","twostep_elicitation","year",22,"hikes",800,0.8,3,"year",2,182.5,0.7,700,1000,20780,1000,121.666666667
+38,"clothing","twostep_elicitation","year",23,"wears a bra",25,0.025,3,"year",300,1.21666666667,1,1000,1000,31752,1000,121.666666667
+38,"hobby","twostep_elicitation","year",24,"plays the banjo",30,0.03,3,"year",3,121.666666667,0.01,10,1000,22623,1000,121.666666667
+38,"clothing","twostep_elicitation","year",25,"wears slacks",850,0.85,40,"year",12,30.4166666667,0.6,600,1000,38895,1000,9.125
+38,"food","twostep_elicitation","week",26,"smokes cigarettes",350,0.35,3,"month",12,2.5,0.3,300,1000,32785,1000,2.33333333333
+38,"food","twostep_elicitation","month",27,"smokes marijuana",500,0.5,3,"month",1,30,0.4,400,1000,30936,1000,10
+38,"hobby","twostep_elicitation","year",28,"climbs mountains",20,0.02,1,"5 years",1,1825,0.01,10,1000,26972,1000,365
+38,"entertainment","twostep_elicitation","week",29,"listens to Pandora",450,0.45,2,"week",3,2.33333333333,0.5,500,1000,88614,1000,3.5
+38,"food","twostep_elicitation","year",30,"does cocaine",150,0.15,3,"5 years",1,1825,0.075,75,1000,32897,1000,121.666666667
+38,"clothing","twostep_elicitation","week",31,"wears a watch",950,0.95,3,"week",2,3.5,0.9,900,1000,19403,1000,2.33333333333
+39,"clothing","twostep_elicitation","year",1,"wears a suit",500,0.5,25,"year",3,121.666666667,0.05,50,1000,68896,1000,14.6
+39,"food","twostep_elicitation","year",2,"smokes cigarettes",500,0.5,30,"year",20,18.25,0.5,500,1000,45985,1000,12.1666666667
+39,"employment","twostep_elicitation","year",3,"steals chewing gum",50,0.05,5,"year",5,73,0.025,25,1000,56723,1000,73
+39,"food","twostep_elicitation","year",4,"drinks beer",900,0.9,30,"year",20,18.25,0.8,800,1000,53853,1000,12.1666666667
+39,"food","twostep_elicitation","year",5,"does cocaine",100,0.1,3,"year",2,182.5,0.1,100,1000,175900,1000,121.666666667
+39,"employment","twostep_elicitation","year",6,"steals cars",2,0.002,1,"year",1,365,0.01,10,1000,274513,1000,365
+39,"clothing","twostep_elicitation","year",7,"wears a bra",10,0.01,1,"year",350,1.04285714286,0.95,950,1000,94994,1000,365
+39,"clothing","twostep_elicitation","year",8,"wears socks",1000,1,350,"year",300,1.21666666667,1,1000,1000,59317,1000,1.04285714286
+39,"entertainment","twostep_elicitation","year",9,"goes to the ballet",50,0.05,1,"year",1,365,0.3,300,1000,144047,1000,365
+39,"employment","twostep_elicitation","year",10,"sells companies",10,0.01,1,"year",1,365,0.01,10,1000,45639,1000,365
+39,"employment","twostep_elicitation","year",11,"volunteers for soup kitchens",25,0.025,5,"year",5,73,0.05,50,1000,45023,1000,73
+39,"employment","twostep_elicitation","year",12,"writes novels",10,0.01,1,"year",1,365,0.01,10,1000,11096,1000,365
+39,"food","twostep_elicitation","year",13,"smokes marijuana",300,0.3,50,"year",50,7.3,0.4,400,1000,33220,1000,7.3
+39,"employment","twostep_elicitation","year",14,"writes poems",150,0.15,10,"year",10,36.5,0.3,300,1000,140969,1000,36.5
+39,"entertainment","twostep_elicitation","year",15,"watches professional football",900,0.9,15,"year",5,73,0.5,500,1000,16633,1000,24.3333333333
+39,"entertainment","twostep_elicitation","year",16,"watches space launches",200,0.2,2,"year",2,182.5,0.1,100,1000,71267,1000,182.5
+39,"clothing","twostep_elicitation","year",17,"wears slacks",800,0.8,20,"year",20,18.25,0.8,800,1000,12793,1000,18.25
+39,"food","twostep_elicitation","year",18,"drinks coffee",750,0.75,250,"year",250,1.46,0.75,750,1000,9799,1000,1.46
+39,"entertainment","twostep_elicitation","year",19,"listens to Pandora",500,0.5,100,"year",100,3.65,0.5,500,1000,11536,1000,3.65
+39,"hobby","twostep_elicitation","year",20,"plays the banjo",50,0.05,45,"year",20,18.25,0.01,10,1000,13623,1000,8.11111111111
+39,"entertainment","twostep_elicitation","year",21,"listens to live music",900,0.9,5,"year",5,73,0.9,900,1000,61212,1000,73
+39,"food","twostep_elicitation","year",22,"eats caviar",50,0.05,2,"year",2,182.5,0.05,50,1000,9485,1000,182.5
+39,"hobby","twostep_elicitation","year",23,"hikes",300,0.3,5,"year",5,73,0.3,300,1000,14319,1000,73
+39,"food","twostep_elicitation","year",24,"eats peanut butter",950,0.95,20,"year",20,18.25,0.95,950,1000,15512,1000,18.25
+39,"hobby","twostep_elicitation","year",25,"runs",980,0.98,15,"year",15,24.3333333333,0.98,980,1000,14360,1000,24.3333333333
+39,"hobby","twostep_elicitation","year",26,"climbs mountains",50,0.05,2,"year",2,182.5,0.05,50,1000,14236,1000,182.5
+39,"clothing","twostep_elicitation","year",27,"wears a watch",900,0.9,100,"year",100,3.65,0.9,900,1000,10538,1000,3.65
+39,"hobby","twostep_elicitation","year",28,"plays tennis",100,0.1,20,"year",20,18.25,0.1,100,1000,6741,1000,18.25
+39,"employment","twostep_elicitation","year",29,"volunteers for political campaigns",50,0.05,5,"year",5,73,0.05,50,1000,8921,1000,73
+39,"entertainment","twostep_elicitation","year",30,"goes to the movies",900,0.9,5,"year",5,73,0.9,900,1000,11183,1000,73
+39,"employment","twostep_elicitation","year",31,"sell things on eBay",50,0.05,2,"year",2,182.5,0.05,50,1000,6823,1000,182.5

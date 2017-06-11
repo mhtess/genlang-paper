@@ -1966,7 +1966,7 @@ annualRates = list("5 years" = 1/5, "2 years" = 1/2,
                    "year" = 1, "6 months" = 2, "2 months" = 6,
                    "month" = 12, "2 weeks" = 26 ,"week" = 52)
 
-d.hab.priors <- read.csv("/Users/mht/Documents/research/habituals/data/priors/priors-2.csv")
+d.hab.priors <- read.csv(paste(project.path, "data/habituals/priors/", "habituals-priors.csv", sep = ""))
 
 d.hab.priors <- d.hab.priors %>%
   mutate(comparisonTime_men = as.character(comparisonTime_men),
