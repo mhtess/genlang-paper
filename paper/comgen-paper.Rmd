@@ -1919,7 +1919,12 @@ Participants responded ``M times in K.'' by entering a number for M and choosing
 
 For example, one set of prompts read: ``How many men have smoked cigarettes before?''; ``For a typical man who has smoked cigarettes before, how frequently does he smoke cigarettes?''
 
-We anticipated there might be different beliefs about the frequency of events depending on whether the actor is male or female, so we asked about both genders. Participants answered both questions for both genders on each slide (4 questions total per slide, order of male / female randomized between-subjects), and every participant completed all 31 items in a randomized order.
+The meaning of these questions were explained to participants on an instructions page before the experimental trials. 
+After reading the instructions, participants were asked to recall the two types of questions asked in the experiment.
+They responded to this attention check by selecting an option from a drop-down menu consisting of four options. 
+They did this to test their understanding and attention for each of the two questions.
+
+For the experimental trials, we anticipated there might be different beliefs about the frequency of events depending on whether the actor is male or female, so we asked about both genders. Participants answered both questions for both genders on each slide (4 questions total per slide, order of male / female randomized between-subjects), and every participant completed all 31 items in a randomized order.
 The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/priors/priors-2.html}.
 
 
@@ -2211,6 +2216,7 @@ ggplot(. , aes( x = val, color = src))+
 
 #### Data analysis and results
 
+All participants responded correctly to both questions in the attention check trial, so all data was used in the analysis.
 We built a Bayesian data analysis model for this prior elicitation task.
 In addition to specifying the correct way to combine our two prior-elicitation questions, using this inferred prior resolves two technical difficulties.
 First, it smooths effects that are clearly results of the response format. For example, a very common rating for certain events is \emph{1 time per year}. Presumably participants would be just as happy reporting \emph{approximately} 1 time per year (e.g., on average, 1.2 times per year); the raw data does not reflect this due to demands of the dependent measure.
