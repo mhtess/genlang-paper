@@ -1,0 +1,242 @@
+// time ~/webppl-fork/webppl habituals-S1.wppl --require utils habitual 1
+
+var chain = last(process.argv) // load index as last command line index
+
+// penultimate argument is the semantics
+// habitual = uncertain threshold
+// some = fixed threshold at lowest threshold value
+var targetUtterance = process.argv[process.argv.length - 2]
+
+var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
+
+// if a person did something N times in a time_window, you can compute
+// the annual Rate by n_times * annualRates[time_window]
+var annualRates = {
+  "5 years": 0.2,
+  "2 years": 0.5,
+  "year": 1,
+  "6 months": 2,
+  "2 months": 6,
+  "month": 12,
+  "2 weeks": 26,
+  "week": 52
+}
+
+var dataPath = "../../data/habituals/"
+
+var prior_file = dataPath + "priors/habituals-priors.csv";
+var endorsement_file = dataPath+"endorsement/habituals-endorsement.csv";
+var endorsement_catch_file = dataPath+"endorsement/habituals-endorsement-catch_trials.csv";
+
+var d_prior = dataFrame(
+	utils.readCSV(prior_file).data,[
+		"nPersons_women", "comparisonNum_women", "nInstances_women",
+		"nPersons_men", "comparisonNum_men", "nInstances_men",
+		"effectiveExistence_men", "effectiveExistence_women"
+	]
+);
+var d_endorsement = dataFrame(
+	utils.readCSV(endorsement_file).data,["n_instances"]
+);
+var d_endorsement_catch = dataFrame(
+	utils.readCSV(endorsement_catch_file).data, ["pass"]
+);
+
+// preprocess data
+var data = {
+	prior: map(function(d){
+			var mix_male = d.nPersons_men / d.comparisonNum_men;
+			var mix_female = d.nPersons_women / d.comparisonNum_women;
+			var annualRate_male = d.nInstances_men * annualRates[d.comparisonTime_men];
+			var annualRate_female = d.nInstances_women * annualRates[d.comparisonTime_women];
+			return extend(d, {
+				mix: {
+					male: avoidEnds(mix_male), female: avoidEnds(mix_female)
+				},
+				logAnnualRate: {
+					male: annualRate_male == 0 ? -5 : Math.log(annualRate_male),
+					female: annualRate_female == 0 ? -5 : Math.log(annualRate_female)
+				}
+			})
+	}, removeExtraRow(d_prior)),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_endorsement_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			var annualRate = d.n_instances * annualRates[d.time_period];
+			var logAnnualRate = Math.log(annualRate);
+				extend(d, {
+					annualRate: Math.log(annualRate),
+					binnedAnnualRate: utils.closest(logAnnualRate, midBins),
+					alignedResponse : responseDictionary[d.response]
+				})
+		}, removeExtraRow(d_endorsement))
+	)
+};
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(removeExtraRow(d_endorsement_catch), "pass"))
+)
+
+var utterancePrior = Infer({model: function(){
+	return uniformDraw([targetUtterance, "silence"])
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt == "habitual" ? state > theta :
+         utt == "habitual is false" ? state <= theta :
+         utt == 'silence' ? true :
+         utt == 'some' ? state > _.min(thetaBins) :
+         true
+}
+
+var items = levels(data.endorsement, "habitual");
+
+var model = function(){
+
+	var speakerOptimality = {
+		s1: uniformDrift({a: 0, b: 20, width:2})
+	}
+
+	var nullDist = Delta({v: _.min(midBins)})
+
+	foreach(items, function(i){
+
+		var itemData = {
+			endorsement: _.filter(data.endorsement, {habitual: i}),
+			prior: _.filter(data.prior, {item: i})
+		};
+
+		// prior parameters
+		/// mixture component
+		var mixtureParams = {
+			male: {
+        g: uniformDrift({a: 0, b: 1, width: 0.2}),
+        d: uniformDrift({a: 0, b: 100, width: 5})
+      },
+			female: {
+        g: uniformDrift({a: 0, b: 1, width: 0.2}),
+        d: uniformDrift({a: 0, b: 100, width: 5})
+      }
+		};
+
+		/// stable frequency distribution parameters
+		var frequencyWhenPresent = {
+			male: {
+				mu: uniformDrift({a: 0, b:10, width: 2}),
+				sigma: uniformDrift({a:0, b:5, width: 1})
+			},
+			female: {
+				mu: uniformDrift({a:0, b:10, width: 2}),
+				sigma: uniformDrift({a:0, b:5, width: 1})
+			}
+		};
+
+
+		var mixtureShapes = {
+			male: betaShape(mixtureParams.male),
+			female: betaShape(mixtureParams.female)
+		};
+
+		mapData({data: itemData.prior}, function(d){
+			// display(Beta(mixtureShapes.male).score(d.mix.male))
+			// display(Beta(mixtureShapes.female).score(d.mix.female))
+			// display(Gaussian(frequencyWhenPresent.male).score(d.logAnnualRate.male))
+			// display(Gaussian(frequencyWhenPresent.female).score(d.logAnnualRate.female))
+			observe(Beta(mixtureShapes.male), d.mix.male)
+			observe(Beta(mixtureShapes.female), d.mix.female)
+			observe(Gaussian(frequencyWhenPresent.male), d.logAnnualRate.male)
+			observe(Gaussian(frequencyWhenPresent.female), d.logAnnualRate.female)
+		})
+
+
+		query.add(["prior", i, "mixture", "male", "mean"], mixtureParams.male.g);
+		query.add(["prior", i, "mixture", "male", "samplesize"], mixtureParams.male.d);
+		query.add(["prior", i, "mixture", "female", "mean"], mixtureParams.female.g);
+		query.add(["prior", i, "mixture", "female", "samplesize"], mixtureParams.female.d);
+
+		query.add(["prior", i, "stableFreq", "male", "mean"], frequencyWhenPresent.male.mu);
+		query.add(["prior", i, "stableFreq", "male", "samplesize"], frequencyWhenPresent.male.sigma);
+		query.add(["prior", i, "stableFreq", "female", "mean"], frequencyWhenPresent.female.mu);
+		query.add(["prior", i, "stableFreq", "female", "samplesize"], frequencyWhenPresent.female.sigma);
+
+
+	var existenceProb = {
+		male: beta(mixtureShapes.male),
+		female: beta(mixtureShapes.female)
+	};
+
+	var statePrior = Infer({model: function(){
+		sample(
+			flip(0.5) ?
+				flip(existenceProb.female) ?
+					DiscretizedGaussian(frequencyWhenPresent.female) :
+					nullDist :
+				flip(existenceProb.male) ?
+					DiscretizedGaussian(frequencyWhenPresent.male) :
+					nullDist
+				)
+			}
+		})
+
+		/// RSA model
+		var listener0 = cache(function(utterance) {
+		  Infer({model: function(){
+		    var state = sample(statePrior)
+				var theta = sample(thetaPrior);
+		    var m = meaning(utterance, state, theta)
+		    condition(m)
+		    return state
+		 }})}, 10000)
+
+		var speaker1 = cache(function(freq) {
+			Infer({model: function(){
+		    var utterance = sample(utterancePrior);
+		    var L0 = listener0(utterance);
+		    factor(speakerOptimality.s1 * L0.score(freq))
+		    return utterance === targetUtterance ? 1 : 0
+			}})}, 10000)
+
+		var observedFrequencies = levels(itemData.endorsement, "binnedAnnualRate");
+
+		foreach(observedFrequencies, function(freq){
+
+			var freqData = _.filter(itemData.endorsement, {binnedAnnualRate: freq});
+			var s1prediction = speaker1(freq);
+
+			mapData({data:freqData}, function(d){
+				// display(d)
+				// display("speaker score = " + s1prediction.score(d.alignedResponse))
+				observe(s1prediction, d.alignedResponse)
+			})
+
+			query.add(["predictive", i, "s1", freqData[0]["time_period"], freq], expectation(s1prediction));
+
+		})
+
+	})
+
+	query.add(["param","speakerOptimality","s1","NA", "NA"], speakerOptimality.s1)
+
+	return query
+}
+
+var totalIterations = 1000, lag = 5;
+var mhiter = totalIterations/lag, burn = totalIterations;
+var outfile = 'results-habituals-jointModel-S1-smtncs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+
+var posterior = Infer({
+  model: model,
+  method: "incrementalMH",
+  samples: mhiter, burn: burn, lag: lag,
+  verbose: T, verboseLag: totalIterations / 100,
+	stream: {
+		path: "results/" + outfile,
+		header: [
+			"type", "B", "C", "D", "E", "val"
+		]
+	}
+})
+
+"written to " + outfile;

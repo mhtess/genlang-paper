@@ -2380,7 +2380,7 @@ d.hab.endorsement <- left_join(
 
 
 d.hab.endorsement.bayes <- d.hab.endorsement %>% 
-  group_by(habitual, logAnnualRate) %>%
+  group_by(habitual, logAnnualRate, time_period) %>%
   summarize(k = sum(response), n = n()) %>%
   ungroup() %>%
   mutate(a = 1 + k,
@@ -2390,17 +2390,27 @@ d.hab.endorsement.bayes <- d.hab.endorsement %>%
          MAP_h = (a-1)/(a+b-2),
          mean = a / (a + b))
 
+example.habituals <- c("climbs mountains_year", "hikes_year", "runs_year",
+                       "goes to the movies_month", "smokes cigarettes_month")
 fig.habituals.endorsement.vs.freq <- 
   ggplot(d.hab.endorsement.bayes, aes( x = logAnnualRate, y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
   geom_jitter(width = 0.1, shape = 21)+
   ylab("Human endorsement probability")+
   xlab("Frequency of target")+
+  geom_label_repel(data = d.hab.endorsement.bayes %>% 
+                    mutate(sentence = paste(habitual, time_period, sep = "_")) %>%
+                    filter(sentence %in% example.habituals), aes( label = habitual ),
+                       fontface = 'bold', color = 'white',
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(0.5, "lines"),
+    segment.color = 'grey50')+
   scale_x_continuous(limits = c(-1,6), 
                      breaks = c(-1, 0, 0.7, 2.5, 4, 5.9),
                      labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
   scale_y_continuous(limits = c(-0.01, 1.01), 
                      breaks = c(0, 0.5, 1))+
   theme(axis.text.x = element_text(angle = 90))
+  
 ```
 
 ```{r habituals-regression-models}
@@ -2414,7 +2424,7 @@ glm.hab.endorse.freq.distinct <- glm(response ~ logAnnualRate + mixture,
 d.hab.endorse.regression <- left_join(
   d.hab.endorsement.bayes,
   unique(select(
-    d.hab.endorsement, habitual, logAnnualRate, mixture
+    d.hab.endorsement, habitual, logAnnualRate, time_period, mixture
   )) %>%
     mutate(regression_freq = predict(glm.hab.endorse.freq, ., type = "response"), 
            regression_freq_distinct = predict(glm.hab.endorse.freq.distinct, ., type = "response"))
@@ -2422,20 +2432,20 @@ d.hab.endorse.regression <- left_join(
   gather(src, prediction, regression_freq, regression_freq_distinct) %>%
   mutate(sqErr = (MAP_h-prediction)^2)
 
-ggplot(d.hab.endorse.regression,
-       aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = mixture))+
-  geom_errorbar(alpha = 0.1)+
-  geom_abline(intercept = 0, slope = 1, lty = 3)+
-  # geom_text_repel(data = d.hab.endorse.regression.freq.distinct %>%
-  #                   filter(sqErr > 0.1),
-  #                 aes(label = paste(habitual, time_period)), force = 5, size = 3)+
-  geom_point()+
-  xlim(0,1)+
-  ylim(0,1)+
-  coord_fixed()+
-  xlab("Logistic model prediction")+
-  ylab("Human habitual endorsement")+
-  facet_wrap(~src)
+# ggplot(d.hab.endorse.regression,
+#        aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = mixture))+
+#   geom_errorbar(alpha = 0.1)+
+#   geom_abline(intercept = 0, slope = 1, lty = 3)+
+#   # geom_text_repel(data = d.hab.endorse.regression.freq.distinct %>%
+#   #                   filter(sqErr > 0.1),
+#   #                 aes(label = paste(habitual, time_period)), force = 5, size = 3)+
+#   geom_point()+
+#   xlim(0,1)+
+#   ylim(0,1)+
+#   coord_fixed()+
+#   xlab("Logistic model prediction")+
+#   ylab("Human habitual endorsement")+
+#   facet_wrap(~src)
 
 
 
@@ -2449,39 +2459,50 @@ ggplot(d.hab.endorse.regression,
 ```
 
 
-
-
 ```{r habituals-fullmodel}
 n_chains <- 1
 n_samples <- 10000
-burn <- n_samples / 2
-lag <- 5
-i <- 2
-model_prefix <- "results-habituals-S1-ffPrior2-3components-normalPrior-silenceAlt-"
+burn <- n_samples
+lg <- 5
+i <- 1
+model_prefix <- "results-habituals-jointModel-S1-"
 
-m.samp <- data.frame()
+m.hab.samp <- data.frame()
 for (i in seq(1, n_chains)){
-  mi <- fread(paste(project.path,  "models/habituals/results/", model_prefix, 
-                    n_samples, "_burn", burn, "_lag", lag, "_chain", i, ".csv", sep = ""))
-  m.samp.i <- mi %>% mutate(chain = i) %>% rename(habitual = item, time_period = param)
-  m.samp <- bind_rows(m.samp, m.samp.i)
-  #print(i)
+  mi <- fread(paste(project.path,  "models/habituals/results/", 
+                    model_prefix, "smtncs_habitual-",
+                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  m.samp.i <- mi %>% mutate(chain = i)
+  m.hab.samp <- bind_rows(m.hab.samp, m.samp.i)
 }
 
-m.hab.somemodel.endorsement <- fread(
-  paste(project.path,"models/habituals/results/", 
-        "results-habituals-fixedThreshold-S1-ffPrior2HyperStructured-silenceAlt-10000_burn5000_lag5_chain1.csv",
-        sep = "")
-  ) %>% mutate(chain = 1) %>% rename(habitual = item, time_period = param) %>%
+n_chains <- 1
+n_samples <- 1000
+burn <- n_samples
+lg <- 5
+i <- 1
+m.hab.fixed.samp <- data.frame()
+for (i in seq(1, n_chains)){
+  mi <- fread(paste(project.path,  "models/habituals/results/", 
+                    model_prefix, "smtncs_some-",
+                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  m.samp.i <- mi %>% mutate(chain = i)
+  m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, m.samp.i)
+}
+
+
+m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
   filter(type == 'predictive') %>%
-  group_by(type, habitual, time_period, cat, gender) %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
-m.hab.fullmodel.endorsement <- m.samp %>%
+m.hab.fullmodel.endorsement <- m.hab.samp %>%
   filter(type == 'predictive') %>%
-  group_by(type, habitual, time_period, cat, gender) %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
@@ -2491,7 +2512,7 @@ m.hab.endorse.rsa <- bind_rows(
     d.hab.endorsement.bayes,
     m.hab.fullmodel.endorsement
   ) %>%
-    mutate(src = "generics_model"),
+    mutate(src = "habituals_model"),
   left_join(
     d.hab.endorsement.bayes,
     m.hab.somemodel.endorsement
@@ -2509,11 +2530,11 @@ habituals.endorsement.models <- bind_rows(
     m.hab.endorse.rsa %>% 
     rename(prediction = MAP, prediction_lower = cred_lower, prediction_upper = cred_upper),
     d.hab.endorse.regression %>% 
-    select(habitual, time_period, log_times, distinctiveness)
+    select(habitual, time_period, logAnnualRate, mixture)
   )
 ) %>%
   mutate(src = factor(src, levels = c( 
-                                      "generics_model",
+                                      "habituals_model",
                                       "some_model",
                                       "regression_freq", 
                                       "regression_freq_distinct"
@@ -2523,9 +2544,8 @@ habituals.endorsement.models <- bind_rows(
                                  "Speaker model - fixed semantics",
                                  "Frequency alone", "Frequency + Distinctiveness"
                                  ))) %>%
-  filter(src == "Speaker model - uncertain semantics") %>%
   ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
-                  y = MAP_h, ymin = low, ymax = high, fill = log_times ))+
+                  y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
   geom_linerange(alpha = 0.7)+
   geom_errorbarh(alpha = 0.7)+
@@ -2539,12 +2559,14 @@ habituals.endorsement.models <- bind_rows(
   facet_wrap(~src, nrow = 2)+
   theme(legend.position = "bottom")
 
-# with(m.hab.endorse.rsa %>% 
-#   filter(src == "generics_model"), cor(MAP_h, MAP, use='pairwise.complete.obs'))^2
 
-habituals.endorsement.models
 ```
-
+```{r habituals-endorsement-figure, fig.width=11, fig.height=8}
+grid.arrange(fig.habituals.endorsement.vs.freq, 
+             habituals.endorsement.models,
+             generics.endorsement.insets, ncol = 2,
+             layout_matrix = cbind(c(1,1,3), c(2,2,3)))
+```
 
 #### Behavioral results
 
