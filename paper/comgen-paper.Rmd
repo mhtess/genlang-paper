@@ -67,11 +67,6 @@ knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
 ```
 
 
-```{r include = FALSE}
-
-```
-
-
 ```{r libraries}
 library(papaja)
 library(formatR)
@@ -2105,8 +2100,8 @@ var model = function(){
 ```
 
 
-```{r habituals-prior-model-run}
-items <- levels(d.hab.priors.filtered$item)
+```{r habituals-prior-model-run, cache = T}
+items <- levels(factor(d.hab.priors.filtered$item))
 n_samples <- 500
 rs.habituals.bda.prior <- data.frame()
 
