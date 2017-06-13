@@ -75,7 +75,6 @@ library(xtable)
 library(tidyverse)
 library(forcats)
 library(langcog)
-# library(tidyr)
 # library(dplyr)
 library(data.table)
 library(coda)
@@ -2556,6 +2555,259 @@ habituals.endorsement.models <- bind_rows(
 
 
 ```
+
+```{r habituals-simulation-model, eval = F}
+l0.hab.model <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var targetUtterance = "habitual";
+
+var lowerBound = -5, upperBound = 10, binWidth = 0.5;
+
+var stateBins =  _.range(
+  lowerBound, upperBound, binWidth
+)
+
+var thetaBins = map2(function(b1, b2){
+  var diff = Math.abs(b2 - b1) / 2;
+  return roundTo3(diff+ b1);
+}, stateBins(0, stateBins.length-1), stateBins.slice(1))
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state> _.min(thetaBins):
+         true
+}
+
+var mixture = data.prior.mix[0];
+var priorParams = data.prior.params[0];
+
+  {
+    "action": "climbs mountains",
+    "mixture_female_mean": 0.0949,
+    "mixture_female_samplesize": 3.7153,
+    "mixture_male_mean": 0.0566,
+    "mixture_male_samplesize": 0.9652,
+    "stableFreq_female_mean": 0.3953,
+    "stableFreq_female_samplesize": 1.6992,
+    "stableFreq_male_mean": 0.8339,
+    "stableFreq_male_samplesize": 1.5171
+  }
+] 
+
+var stable_female = beta({
+  a: mixture_female_mean * mixture_female_samplesize,
+  b: (1 - mixture_female_mean) * mixture_female_samplesize
+})
+
+var stable_male = beta({
+  a: mixture_male_mean * mixture_male_samplesize,
+  b: (1 - mixture_male_mean) * mixture_male_samplesize
+})
+
+var statePrior = Infer({model: function(){
+  var gender = flip(0.5) ? "female" : "male";
+  return gender == "female" ?
+    flip(stable_female) ? 
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: stableFreq_female_mean, 
+                sigma: stableFreq_female_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) :
+    _.min(stateBins) : 
+    flip(stable_male) ? 
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: stableFreq_male_mean, 
+                sigma: stableFreq_male_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) :
+    _.min(stateBins)
+}});
+
+var listener0 = cache(function(utterance) {
+  Infer({model: function(){
+    var state = sample(statePrior)
+    var state_prior = sample(statePrior)
+    var theta = utterance == "generic" ? sample(thetaPrior) : -99
+    condition(meaning(utterance, state, theta))
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }})}, 10000)
+
+
+var continuousListener0 = function(utterance) {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+   var state_prior = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+//     var state = sample(flip(mixture) ? Beta( priorParams) : Delta({v:0}))
+//     var state_prior = sample(flip(mixture) ? Beta( priorParams) : Delta({v:0}))
+//    var theta = uniform(0,1)
+    factor(
+    (utterance == "generic") ? 
+      Math.log(state) : 
+    (state > 0.017) ? 0 : -Infinity
+    )
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+
+
+
+//var out = {generic: listener0("generic"), some: listener0("some")}
+//out
+continuousListener0(data.utt[0])
+'
+```
+
+```{r habituals-model-insets, fig.width = 4.75, fig.height = 1.5, eval = F}
+example.habituals.actions <- separate(data.frame(example.habituals), 
+                                      example.habituals, 
+                                      into=c("action", "time_period"), sep = "_")$action
+
+
+m.hab.fullmodel.prior.parameters <- m.hab.samp %>%
+  filter(type == "prior", B %in% example.habituals.actions) %>%
+  rename(action = B, variable = C, gender = D, parameter = E) %>%
+  group_by(action, variable, gender, parameter) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+# use MAP estimates to generate L(h | generic) & L(h | silence) predictions
+
+m.hab.fullmodel.prior.parameters.tidy <- m.hab.fullmodel.prior.parameters %>%
+  ungroup() %>%
+  select(action, variable, gender, parameter, MAP) %>%
+  mutate(param = paste(variable, gender, parameter, sep = "_")) %>%
+  select(-variable, -gender, -parameter) %>%
+  spread(param, MAP)
+
+hab.listener.predictions <- data.frame()
+  
+for (p in example.habituals.actions){
+ priorParams <- m.hab.fullmodel.prior.parameters.tidy %>% filter(action == p) 
+ 
+ inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
+                                                   b = priorParams[["b"]]),
+                               mix = priorParams[["mix"]]), 
+                  utt = "habitual")
+ 
+ l0.rs <- webppl(l0.hab.model, data = inputData, data_var = "data")
+ 
+ hab.listener.predictions <- bind_rows(
+   hab.listener.predictions, 
+   l0.rs %>% select(Parameter,value) %>% mutate(action = p)
+   )
+ 
+}
+
+m.gen.fullmodel.target.prevalence <- m.samp %>%
+  filter(type == "withinKind") %>%
+  group_by(param, property, category) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+
+
+m.gen.speakerBeliefs <- m.samp %>%
+  filter(type == "withinKind") %>%
+  mutate(Sentence = paste(category, property)) %>%
+  filter(Sentence %in% example.generics) 
+
+m.gen.speakerBeliefs <- m.samp.prev.params <- m.samp %>%
+    filter(type == "targetPrevalence") %>%
+    mutate(Sentence = paste(category, property)) %>%
+    filter(Sentence %in% example.generics) %>%
+    mutate(parameter = paste(param, property, category, sep = "_")) %>%
+    select(-param, -property, -category, -chain, -type) %>%
+    group_by(parameter) %>%
+    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+    ungroup() %>%
+    separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(
+      a = mean*sampleSize,
+      b = (1-mean)*sampleSize,
+      val = rbeta(n = 1, shape1 = a, shape2 = b)
+      ) %>%
+    ungroup()
+
+gen.inset.distributions <- bind_rows(
+  gen.listener.predictions %>%
+    mutate(category = NA),
+  m.gen.speakerBeliefs %>%
+    select(property, val) %>%
+    rename(value = val) %>%
+    mutate(Parameter = "speakerBeliefs")
+)
+
+
+category.text.labels <- data.frame(property = c("dont eat people", 
+                      "carry malaria", "lay eggs",  "are female", "have spots"),
+             category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
+             x = c(0.3, 0.3, 0.47, 0.05, 0.6),
+            y = c(0.45, 0.5, 0.45, 0.5, 0.26))
+
+generics.endorsement.insets <- gen.inset.distributions %>%
+  mutate(Parameter = factor(Parameter, levels = c("state_Prior",
+                                                  "state_Posterior",
+                                                  "speakerBeliefs"),
+                            labels = c("Listener Prior (Posterior given Silence)", 
+                                       "Listener Posterior given Generic", 
+                                       "Speaker Beliefs")),
+         property = fct_relevel(property,
+                                "have spots", "lay eggs","carry malaria", 
+                                "are female", "dont eat people") ) %>%
+  ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
+  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+  facet_wrap(~property, nrow = 1)+
+  geom_text_repel(data = category.text.labels,
+                  aes(label = category, x = x , y = y),
+                  inherit.aes = F, color = "#2b83ba")+
+    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    #scale_linetype_manual(values = c(3, 4, 2, 1))+
+    scale_linetype_manual(values = c(3, 4, 1))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("Scaled probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+
+```
+
+
+
+
 ```{r habituals-endorsement-figure, fig.width=11, fig.height=8}
 grid.arrange(fig.habituals.endorsement.vs.freq, 
              habituals.endorsement.models,
