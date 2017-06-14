@@ -1,4 +1,3 @@
-packrat/src/
 packrat/lib-R/
 packrat/lib/
 paper/figs/
@@ -12,3 +11,7 @@ paper/*.html
 comgen-paper.Rproj
 paper/generics-paper.pdf
 paper/library.bib
+packrat/lib*/
+.Rhistory
+packrat/src/
+paper/comgen-paper.pdf
