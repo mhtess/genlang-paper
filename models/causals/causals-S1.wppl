@@ -1,0 +1,174 @@
+// time ~/webppl-fork/webppl causals-S1.wppl --require utils causal 1
+
+var chain = last(process.argv) // load index as last command line index
+
+// penultimate argument is the semantics
+// causal = uncertain threshold
+// some = fixed threshold at lowest threshold value
+var targetUtterance = process.argv[process.argv.length - 2]
+
+var dataPath = "../../data/causals/",
+ 		priorFile = dataPath + "priors/pilot-causals-7-prior-trials.csv",
+ 	  endorsementFile1 = dataPath + "endorsement/causals-8-20-trials.csv",
+    endorsementFile2 = dataPath + "endorsement/causals-8-70-trials.csv",
+    endorsementCatchFile1 = dataPath + "endorsement/causals-8-20-catch_trials.csv",
+    endorsementCatchFile2 = dataPath + "endorsement/causals-8-70-catch_trials.csv";
+
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["response"]),
+		d_endorsement = _.flatten([
+      map(function(d){return extend(d,
+      {newWorkerid: d.workerid + "a"})},
+      dataFrame(utils.readCSV(endorsementFile1).data, ["frequency", "response"])),
+      map(function(d){return extend(d,
+      {newWorkerid: d.workerid + "b"})},
+      dataFrame(utils.readCSV(endorsementFile2).data, ["frequency", "response"]))
+
+    ]),
+    d_catch = _.flatten([
+      map(function(d){return extend(d,
+      {newWorkerid: d.workerid + "a"})},      dataFrame(utils.readCSV(endorsementCatchFile1).data, ["pass_numeric", "pass_story"])),
+      map(function(d){return extend(d,
+      {newWorkerid: d.workerid + "b"})},
+      dataFrame(utils.readCSV(endorsementCatchFile2).data, ["pass_numeric", "pass_story"])
+    )
+    ]);
+
+var data = {
+	prior: map(function(d){ return extend(d, {
+		avoided_endval: avoidEnds(d.response)
+  })}, d_prior),
+	endorsement: filter(function(di){
+    var catchData = _.filter(d_catch, {newWorkerid: di.newWorkerid});
+    var pass = (catchData[0].pass_numeric + catchData[0].pass_story) == 2;
+    return pass;
+  }, map(function(d){ return extend(d, {
+		binnedFreq:  utils.closest( d.frequency / 100, midBins)
+	})}, d_endorsement))
+};
+//
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "newWorkerid").length == sum(_.map(map(function(d){
+    return extend(d, {pass: (d.pass_numeric + d.pass_story) == 2 ? 1 : 0})
+  }, d_catch), "pass"))
+)
+
+var distributions = levels(data.endorsement, "distribution");
+
+var utterancePrior = Infer({model: function(){
+	return uniformDraw(["causal","silence"])
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt=="causal"? state > theta :
+         utt=="causal is false"? state<=theta :
+         utt=='silence'? true :
+         utt=='some'? state > 0 :
+         true
+}
+
+var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
+
+var model = function(){
+
+	var speakerOptimality = {
+		s1: uniformDrift({a: 0, b: 20, width:2})
+	}
+
+	foreach(distributions, function(dist){
+
+		var distData = {
+			prior: _.filter(data.prior, {distribution: dist}),
+			endorsement: _.filter(data.endorsement, {distribution: dist})
+		};
+    // display(dist + " " + distData.prior.length)
+		var phi = uniformDrift({a: 0, b: 1, width:0.2})
+		var betaParams = {
+			g: uniformDrift({a: 0, b: 1, width: 0.2}),
+			d: uniformDrift({a: 0, b: 100, width: 5})
+		}
+		var priorParams = betaShape(betaParams);
+
+		mapData({data: distData.prior}, function(d){
+			var scr = util.logsumexp([
+					 Math.log(phi) + Beta(priorParams).score(d.avoided_endval),
+					 Math.log(1 - phi) + nullDistribution.score(d.avoided_endval)
+				])
+			// console.log(scr)
+			factor(scr)
+		})
+
+		query.add(["prior","mixture", dist, "NA", "NA"], phi)
+		query.add(["prior","stableFreq", dist, "mean", "NA"], betaParams.g)
+		query.add(["prior","stableFreq", dist, "sampleSize", "NA"], betaParams.d)
+
+		var statePrior = Infer({model: function(){
+			sample(
+				flip(phi) ? DiscretizedBeta(priorParams) : DiscretizedBeta(nullParams)
+		)}});
+
+		/// RSA model
+		var listener0 = cache(function(utterance) {
+		  Infer({model: function(){
+		    var state = sample(statePrior), theta = sample(thetaPrior);
+		    var m = meaning(utterance, state, theta)
+		    condition(m)
+		    return state
+		 }})}, 10000)
+
+		var speaker1 = cache(function(freq) {
+			Infer({model: function(){
+		    var utterance = sample(utterancePrior);
+		    var L0 = listener0(utterance);
+		    factor(speakerOptimality.s1 * L0.score(freq))
+		    return utterance === "causal" ? 1 : 0
+		}})}, 10000)
+
+		var observedFrequencies = levels(distData.endorsement, "binnedFreq");
+
+		foreach(observedFrequencies, function(freq){
+
+			var freqData = _.filter(distData.endorsement, {binnedFreq: freq});
+			var s1prediction = speaker1(freq);
+
+			mapData({data:freqData}, function(d){
+				// display(d)
+				var scr = s1prediction.score(d.response)
+				// scr == -Infinity ? displayObj(d) : null
+        // display(scr)
+				observe(s1prediction, d.response)
+			})
+
+			// display(freqData)
+
+			query.add(["predictive", "S1", dist, freq, freqData[0]["frequency"]], expectation(s1prediction));
+
+		})
+
+	})
+
+	query.add(["param","speakerOptimality","S1","NA", "NA"], speakerOptimality.s1)
+
+	return query
+}
+
+var totalIterations = 5000, lag = 5;
+var mhiter = totalIterations/lag, burn = totalIterations / 2;
+var outfile = 'pilot-results-causals-jointModel-S1-smntcs_'+
+targetUtterance + '-'+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+
+var posterior = Infer({
+  model: model,
+  method: "incrementalMH",
+  samples: mhiter, burn: burn, lag: lag,
+  verbose: T, verboseLag: totalIterations / 20,
+	stream: {
+		path: "results/" + outfile,
+		header: [
+			"type", "item", "dist", "roundedFreq", "frequency", "val"
+		]
+	}
+})
+
+"written to " + outfile;
