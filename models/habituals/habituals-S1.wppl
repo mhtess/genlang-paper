@@ -96,7 +96,7 @@ var items = levels(data.endorsement, "habitual");
 var model = function(){
 
 	var speakerOptimality = {
-		s1: uniformDrift({a: 0, b: 20, width:2})
+		s1: uniformDrift({a: 0, b: 10, width:1})
 	}
 
 	var nullDist = Delta({v: _.min(midBins)})

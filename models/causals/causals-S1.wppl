@@ -54,7 +54,6 @@ assert.ok(
   }, d_catch), "pass"))
 )
 
-var distributions = levels(data.endorsement, "distribution");
 
 var utterancePrior = Infer({model: function(){
 	return uniformDraw(["causal","silence"])
@@ -68,12 +67,13 @@ var meaning = function(utt,state, theta) {
          true
 }
 
+var distributions = levels(data.endorsement, "distribution");
 var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
 
 var model = function(){
 
 	var speakerOptimality = {
-		s1: uniformDrift({a: 0, b: 20, width:2})
+		s1: uniformDrift({a: 0, b: 10, width:1})
 	}
 
 	foreach(distributions, function(dist){
