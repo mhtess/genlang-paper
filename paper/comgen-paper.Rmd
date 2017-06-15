@@ -4200,26 +4200,30 @@ In Expt. 3, we manipulated predictive probability, while keeping fixed past freq
 Our general cognitive modeling framework takes the fundamental currency of a generalization in language to be a subjective predictive probability. 
 Past frequency and actual prevalence in the world often tracks predictive probabilities, but language users' internal models of how the world works can lead them in certain situations to expect something different.
 
-(3) shows a subtle interaction of generic language with another linguistic device: conjunction. 
-(3) sounds true but if one takes the conjunction to apply to the properties, it is not true.
-That is, we don't think there to be international elephants (i.e., individual elephants who live in Africa part time and Asia part time).
-Instead, the statement should be glossed as *some elephants live in Africa* and *some elephants live in Asia*, and perhaps taken collectively, *most elephants live in either Africa or Asia* [@Nickel2008]. 
-This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia."
-Our model is able to flexibly accomodate this statement by having uncertainty about the truth-conditional threshold. 
+(3) shows a subtle interaction of generic language with another linguistic device: conjunction. ^[
+This example was first introduced, to our knowledge, by @Nickel2008.
+]
+@Nickel2008 suggests this statement is semantically equivalent to: *Elephants live in Africa and elephants live in Asia*.
+This example is challenging for many statistical based approaches, since it cannot be the case that most elephants live in Africa and most elephants live in Asia. That is, we should not take the statement to imply that there are international elephants (i.e., individual elephants who live in Africa part time and Asia part time); but that is the only possible interpretation if the generic statement is given a fixed, majority based quantificational account (e.g., if the generic means *most*).
 
-With reasonable assumptions about the prior (e.g., assuming international elephants are unlikely), upon the hearing "Elephants live in Africa", the model infers that most elephants live in Africa.
+<!-- Instead, the statement should be glossed as *some elephants live in Africa* and *some elephants live in Asia*, and perhaps taken collectively, *most elephants live in either Africa or Asia* [@Nickel2008].  -->
+<!-- This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia." -->
+<!-- Our model is able to flexibly accomodate this statement by having uncertainty about the truth-conditional threshold.  -->
+
+With reasonable assumptions about the prior (e.g., that *lives in* is similar to other biological properties from Expt. 1a and assuming international elephants are unlikely *a priori*), upon the hearing "Elephants live in Africa", our model will infer that most elephants live in Africa.
 When the model then hears "Elephants live in Asia", the model updates its beliefs to accomodate this second statement, inferring that some live in Africa and other lives in Asia. 
+This is possible because our model has uncertainty over the semantic thresholds in the generic claim.
+Our model can flexibly accomodate new evidence (e.g., learning that elephants live in Asia) that might otherwise contradict previous statements (e.g., knowing that elephants live in Africa).
 A runnable version of the model for this example can be found at [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
-This is a nice feature of the uncertain threshold semantics: flexibility in accomodating new evidence that might otherwise contradict previous statements.
 
-Finally, (4) is used to argue that even if the property is widespread (perhaps in a soft sense, as in our model, relative to other kinds or groups), we might find it avervise to actually assert the generic.
+Finally, (4) is used to argue that even if the property is widespread (or perhaps in a softer sense, as in our model, widespread relative to other kinds or groups), speakers might find it avervise to actually assert the generic.
 That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive (more so than men, and many other social categories), we might still not want to say *Women are submissive* [@Haslanger2011]. 
 In our Model Simulations section, we showed that the generic often can imply the property is widespread, even with uninformed prior beliefs about the property. 
 If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth. ^[
 Note that this can naturally capture the central phenoman described in @Cimpian2010.
 ].
-The current formulation of the model is relatively ambivalent the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence can be exaggerated from the generic statement).
-If states of the world (or, listener's beliefs about states of the world) correspond to different subjective utilities, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
+The current formulation of the model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated from the generic statement).
+However, if states of the world (or, listener's beliefs about states of the world) correspond to different subjective utilities, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
 This kind of extension to the RSA framework has already accounted for a variety of behaviors corresponding to polite speech understanding and production [@Yoon2016; @Yoon2017].
 If our model believed that states of the world where the prevalence of the feature is high (e.g., a world where many women were submissive) were undesirable (either in absolute terms or as a belief), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such generic claims. 
 We find this possibility intruiging for future work.
