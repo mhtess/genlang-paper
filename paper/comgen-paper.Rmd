@@ -1115,6 +1115,8 @@ To learn about the credible values of the parameters, we ran separate MCMC chain
 
 
 ```{r generic-endorsement-priors}
+# this data set already excludes the 2nd attempt of 3 participants who completed the experiment a second time
+
 d.gen.endorse.priors <- read.csv(paste(project.path, 
                                        "data/generics/endorsement/",
                                        "naturalGenerics-prior-trials-n57.csv", sep = ""))
@@ -1227,13 +1229,36 @@ Having measured the prevalence prior distribution (e.g., the prevalence of layin
 To test these predictions, we collect human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
 
 #### Method
+```{r}
+d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments.csv", sep = ""))
+d2 <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "naturalGenerics-trials-formatted.csv", sep = ""))
+
+head(d1)
+head(d2)
+
+
+
+write.csv(
+  left_join(
+  d1 %>%
+    mutate(sentence = as.character(sentence),
+           sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)),
+  unique(d2 %>%
+    mutate(sentence = paste(Category, " ", Property, ".", sep = "")) %>%
+    select(Category, Property, sentence))
+), file = paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments-n100.csv", sep = ""), row.names = F)
+```
 
 ```{r generic-endorsement}
 d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "truth-judgments_catch-trials.csv", sep = ""))
 
 d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments.csv", sep = ""))
+                    "truth-judgments-n100.csv", sep = ""))
 
 
 d.gen.endorse.summary <- left_join(
@@ -1242,9 +1267,7 @@ d.gen.endorse.summary <- left_join(
   ) %>%
   filter(pass == 1) %>%
   rowwise() %>%
-  mutate(response = ifelse(response == "agree-key", 1, 0),
-         sentence = gsub('&quotechar', '', sentence),
-         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0)) %>%
   group_by(sentence) %>%
   multi_boot_standard(column = "response") %>%
   ungroup() %>%
@@ -1816,9 +1839,9 @@ We focus on present-tense habitual sentences of the form \textsc{singular noun p
 
 Habituals about people are of particular importance because they are likely central to intuitive theories of personality and behavior. 
 Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013].
-@McGuire1986 explored 5th to 12th graders' responses to open ended probes such as ``Tell us about your school / family''. 
-A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g. ``My brother works part-time at the restaurant.'').
-Habitual language may be a more conservative form of trait language (e.g. \emph{Bill is a smoker.}) and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
+@McGuire1986 explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family". 
+A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant.").
+Habitual language may be a more conservative form of trait language (e.g., \emph{Bill is a smoker.}) and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
 From a methodological standpoint, habituals are a particularly amenable domain to manipulating the target propensity that a speaker aims to communicate.
 People are often in the situation of being introduced to new people and learning new information about them.
@@ -3331,7 +3354,7 @@ In the second of these conditions, all causes produced a weak effect (average ef
 The two other conditions used distributions in which some experiments resulted in either no or very few succeses (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
 These are the "rare deterministic" and "rare weak" conditions, because the very existence of a greater than zero effect was "rare".
 
-```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 4 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3}
+```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 4 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3, eval = F}
 sample.dists <- bind_rows(
   data.frame(
     dist = "rare weak",
@@ -3691,8 +3714,7 @@ m.cas.fullmodel.endorsement <- m.cas.samp %>%
 ```
 
 
-```{r causal-model-insets, fig.width = 8, fig.height = 3.5}
-
+```{r causal-model-insets, fig.width = 8, fig.height = 3.5, cache = F}
 m.cas.fullmodel.prior.parameters <- m.cas.samp %>%
   filter(type == "prior") %>%
   rename(variable = item, parameter = roundedFreq) %>%
@@ -3730,11 +3752,12 @@ for (p in m.cas.fullmodel.prior.parameters.tidy$dist){
    )
 }
 
+inset.color.order <- c( "#268bd2", "#dc322f","#d33682","#859900")
+
 
 causals.endorsement.insets <- cas.listener.predictions %>% 
-    mutate(Parameter = factor(Parameter, levels = c("state_Prior",
-                                                  "state_Posterior"
-                                                  ),
+    mutate(Parameter = factor(Parameter, 
+                              levels = c("state_Prior","state_Posterior"),
                             labels = c("Listener Prior (Posterior given Silence)",
                                        "Listener Posterior given Causal")),
     Distribution = factor(distribution, 
@@ -3744,33 +3767,22 @@ causals.endorsement.insets <- cas.listener.predictions %>%
   ggplot(., aes( x = value, fill = Distribution, color = Distribution, lty = Parameter, alpha = Parameter ))+
   geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
   facet_wrap(~Distribution, nrow = 1)+
-  # geom_text_repel(data = category.text.labels,
-  #                 aes(label = category, x = x , y = y),
-  #                 inherit.aes = F, color = "#2b83ba")+
-  scale_fill_solarized()+ scale_color_solarized()+
-  #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-  #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-  #scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
-  #scale_color_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
-  scale_alpha_manual(values = c(0.1, 0.8))+#, 0))+
-  #scale_linetype_manual(values = c(3, 4, 2, 1))+
+  scale_fill_manual(values =inset.color.order )+
+  scale_color_manual(values = inset.color.order)+
+  scale_alpha_manual(values = c(0.1, 0.8))+
   scale_linetype_manual(values = c(2, 1))+
   scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
   scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
   xlab("Prevalence") +
   ylab("Scaled probability density")+
   theme(legend.position = "bottom", legend.title = element_blank())+
-  guides(fill = F, color = F)#,
-  #       axis.text.x = element_text(angle = 90))+
-      # scale_x_continuous(limits = c(-5, 8),
-      #                breaks = c(-5, 0, 2.5, 4, 5.9),
-      #                labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+  guides(fill = F, color = F)
 ```
 
 
 
 
-```{r figure-causals-endorsement, fig.width=7, fig.height=3.5}
+```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = F}
 figure.causals.endorsement <- bind_rows(
   m.cas.fullmodel.endorsement %>%
     mutate(src = "model"),
@@ -3783,9 +3795,9 @@ figure.causals.endorsement <- bind_rows(
   mutate(
     src = factor(src, levels = c( "data", "model")),
     dist = factor(dist, 
-           levels = c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
-           labels = c("Common Deterministic", "Rare Deterministic",
-                      "Common Weak", "Rare Weak"))
+           levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
+           labels = c(
+                       "Rare Weak", "Common Weak","Rare Deterministic","Common Deterministic"))
     ) %>%
   ggplot(., aes( x = dist, y = MAP, ymin = cred_lower, ymax = cred_upper, fill = dist,
                         group = src, alpha = src))+
@@ -3796,7 +3808,8 @@ figure.causals.endorsement <- bind_rows(
   geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
   scale_alpha_manual(values = c(1, 0.3))+
-  scale_fill_solarized()+
+  #scale_fill_solarized()+
+  scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
   xlab("")+
   ylab("Proportion Causal Endorsement")+
   facet_grid(.~frequency)+
@@ -3805,7 +3818,7 @@ figure.causals.endorsement <- bind_rows(
   theme(legend.position = 'bottom', legend.direction = 'horizontal', legend.title = element_blank())
 ```
 
-```{r figure-causals, fig.width=11, fig.height=8}
+```{r figure-causals, fig.width=11, fig.height=8, cache = F}
 grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
              layout_matrix = cbind(c(1,1,2)))
 
