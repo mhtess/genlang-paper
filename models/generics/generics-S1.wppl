@@ -9,26 +9,34 @@ var targetUtterance = process.argv[process.argv.length - 2]
 var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
 
 var dataPath = "../../data/generics/endorsement/"
-var truthJudgmentDataFile = dataPath + "naturalGenerics-trials-formatted.csv"
-var priorDataFile = dataPath + "naturalGenerics-prior-trials-n57.csv"
+var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
 
-var d0 = dataFrame(utils.readCSV(priorDataFile).data, ["prevalence"]);
-var d1 = dataFrame(utils.readCSV(truthJudgmentDataFile).data);
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
+ 		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),
+		d_catch = dataFrame(utils.readCSV(endorsementCatchFile).data, ["pass"]);
 
 var data = {
-	speaker: map(function(d){
-			extend(d, {binaryResponse: responseDictionary[d.response]})
-		}, d1.slice(0, d1.length - 1)),
 	prior: map(function(d){
 		extend(d, {
-			// roundedPrevalence: avoidUpperBound(d.prevalence/100),
-			roundedPrevalence: avoidEnds(d.prevalence/100),
-			counts: Math.round(d.prevalence)
+			avoided_endval: avoidEnds(d.prevalence/100)
 		})
-	}, d0.slice(0, d0.length - 1))
+	}, d_prior),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			extend(d, {
+				binaryResponse: responseDictionary[d.response]
+			})
+	}, d_endorsement))
 };
 
-var properties = levels(data.speaker, "Property")
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(d_catch, "pass"))
+)
 
 var utterancePrior = Infer({model: function(){return uniformDraw([targetUtterance,"silence"])}});
 
@@ -42,17 +50,19 @@ var meaning = function(utt,state, theta) {
          true
 }
 
+var properties = levels(data.endorsement, "Property")
+var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
 
 var model = function(){
 
 	var speakerOptimality = {
-		s1: uniformDrift({a:0,b:5, width:0.5})
+		s1: uniformDrift({a:0, b:10, width:1})
 	};
 
 	foreach(properties, function(p){
 
 		var propertyData = {
-			speaker: _.filter(data.speaker, {Property: p}),
+			endorsement: _.filter(data.endorsement, {Property: p}),
 			prior: _.filter(data.prior, {Property: p})
 		}
 
@@ -66,57 +76,28 @@ var model = function(){
 
 		var priorParams = betaShape(betaParams);
 
-		var nullParams = {a:1,b:100};
-
 		// observe structured prior data
 		mapData({data: propertyData.prior}, function(d){
 			// display(d.roundedPrevalence)
 			// display(Delta({v: 0}).score(d.roundedPrevalence))
 			// display(Beta(priorParams).score(d.roundedPrevalence))
 			var scr = util.logsumexp([
-				 Math.log(theta) + Beta(priorParams).score(d.roundedPrevalence),
-				 Math.log(1-theta) + Beta(nullParams).score(d.roundedPrevalence)
+				 Math.log(theta) + Beta(priorParams).score(d.avoided_endval),
+				 Math.log(1-theta) + nullDistribution.score(d.avoided_endval)
 				//  Math.log(1-theta) + Delta({v: 0}).score(d.roundedPrevalence)
 			 ])
 			//  display(scr)
 			 factor(scr)
 		})
 
-		// observe structured prior data
-		// mapData({data: propertyData.prior}, function(d){
-		// 	var di = d.counts;
-		// 	factor(Math.log(
-		// 		(di==0 ? 1 : 0)*(1-theta)+
-		// 		(di> 0 ? 1 : 0) * theta * probability(Binomial({n:100, p:g}), di)))
-		// })
-
-		query.add(["prior","isPresent", p, "na"], theta)
-		query.add(["prior","prevalenceGivenPresent", p, "mean"], betaParams.g)
-		query.add(["prior","prevalenceGivenPresent", p, "sampleSize"], betaParams.d)
-		// query.add(["prior","nullParamsB", p, "na"], nullParams.b)
-		// query.add(["prior","prevalencePrior", p, "na"],
-		// 	beta ( flip(theta) ? priorParams : nullParams) )
+		query.add(["prior","mixture", p, "NA"], theta)
+		query.add(["prior","stableFreq", p, "mean"], betaParams.g)
+		query.add(["prior","stableFreq", p, "sampleSize"], betaParams.d)
 
 
 		var statePrior = Infer({model: function(){
 			sample(flip(theta) ? DiscretizedBeta(priorParams) : DiscretizedBeta(nullParams))
 		}});
-		// var statePrior = Infer({model: function(){
-		// 	sample(flip(theta) ? DiscretizedBeta(priorParams) : Delta({v: 0}))
-		// }});
-
-		// var statePrior = Infer({model: function(){
-		// 	var component = flip(theta);
-		// 	return component ?
-		// 		categorical({
-		// 			vs: bins,
-		// 			ps:map(function(b) {
-		// 				return probability(Binomial({n:100,
-		// 					p: g}), Math.round(b*100)) +
-    //       Number.EPSILON
-		// 				}, bins )
-		// 		}) : 0
-		// }});
 
 		/// RSA model
 		var listener0 = cache(function(utterance) {
@@ -133,17 +114,17 @@ var model = function(){
 		    var utterance = sample(utterancePrior);
 		    var L0 = listener0(utterance);
 				factor(speakerOptimality.s1 * L0.score(speakerBeliefs))
-				// var _kl = KL(speakerBeliefs, L0, L0.support());
-				// factor(speakerOptimality.s1  * -1 * _kl)
 		    return utterance === targetUtterance ? 1 : 0
 			}})}, 10000)
 
-		var categories = levels(propertyData.speaker, "Category");
+		var categories = levels(propertyData.endorsement, "Category");
 
+		// make sure subsetting works properly
+		assert.ok(categories.length > 0)
 		foreach(categories, function(k){
 
 			var categoryData = {
-				speaker: _.filter(propertyData.speaker, {Category: k}),
+				endorsement: _.filter(propertyData.endorsement, {Category: k}),
 				prior: _.filter(propertyData.prior, {Category: k})
 			};
 
@@ -161,34 +142,14 @@ var model = function(){
 			// };
 
 			mapData({data: categoryData.prior}, function(d){
-				// display(p+k+ "d = " +d.roundedPrevalence + " " + Beta(withinShape).score(d.roundedPrevalence))
-				observe(Beta(withinShape), d.roundedPrevalence)
+				// display(p+k+ "d = " +d.avoided_endval + " " + Beta(withinShape).score(d.avoided_endval))
+				observe(Beta(withinShape), d.avoided_endval)
 			})
 
-
-			// mapData({data: categoryData.prior}, function(d){
-			//
-			// 	var scr = util.logsumexp([
-			// 		 Math.log(theta_target) + Beta(withinShape).score(d.roundedPrevalence),
-			// 		 Math.log(1-theta_target) + Delta({v: 0}).score(d.roundedPrevalence)
-			// 	 ])
-			// 	//  display(scr)
-			// 	 factor(scr)
-			// })
-
-
-			// mapData({data: categoryData.prior}, function(d){
-			// 	var di = d.counts;
-			// 	observe(Binomial({n:100, p: withinKind_prev}), di)
-			// })
-
-			// var speakerBeliefs = flip(theta_target) ? sample(DiscretizedBeta(withinShape)) : 0;
 
 			query.add(["targetPrevalence","mean", p, k], withinParams.g)
 			query.add(["targetPrevalence","sampleSize", p, k], withinParams.d)
 
-			// query.add(["withinKind","prevalence", p, k], withinKind_prev)
-			// displayObj(withinKind_params);
 			var speakerBeliefs = sample(DiscretizedBeta(withinShape));
 
 			// var speakerBeliefs = Infer({model: function(){
@@ -202,13 +163,8 @@ var model = function(){
 			// 		})
 			// }});
 
-			// displayObj(speakerBeliefs)
-			// display(speakerBeliefs)
-			// display(speakerBeliefs)
 			var s1prediction = speaker1(speakerBeliefs);
-			// var s2prediction = noiseLink(speaker2(speakerBeliefs), noise);
-			// display(s2prediction.support())
-			var responseData = _.map(categoryData.speaker, "binaryResponse")
+			var responseData = _.map(categoryData.endorsement, "binaryResponse")
 
 			mapData({data:responseData}, function(d){
 				var scr = s1prediction.score(d)
@@ -227,10 +183,10 @@ var model = function(){
 	return query
 }
 
-var totalIterations = 25000, lag = 20;
+var totalIterations = 5000, lag = 20;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
 
-var outfile = 'results-generics-jointModel-S1-'+'smtncs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
 var posterior = Infer({
   model: model,
@@ -244,4 +200,4 @@ var posterior = Infer({
 	}
 })
 
-display("written to " + outfile)
+"written to " + outfile;
