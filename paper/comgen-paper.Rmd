@@ -1672,7 +1672,7 @@ m.gen.speakerBeliefs <- m.samp %>%
   mutate(Sentence = paste(category, property)) %>%
   filter(Sentence %in% example.generics) 
 
-m.gen.speakerBeliefs <- m.samp.prev.params <- m.samp %>%
+m.samp.prev.params <- m.samp %>%
     filter(type == "targetPrevalence") %>%
     mutate(Sentence = paste(category, property)) %>%
     filter(Sentence %in% example.generics) %>%
@@ -3236,7 +3236,7 @@ n.subj.cas <- length(unique(d.cas.priors$workerid))
 ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60, 1)
 ```
 
-```{r causal-priors-model, cache = T}
+```{r causal-priors-runModel, cache = T}
 causal.distributions <- levels(factor(d.cas.priors$distribution))
 p <- causal.distributions[1]
 m.cas.marginal.prevalence <- data.frame()
@@ -3331,7 +3331,7 @@ In the second of these conditions, all causes produced a weak effect (average ef
 The two other conditions used distributions in which some experiments resulted in either no or very few succeses (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
 These are the "rare deterministic" and "rare weak" conditions, because the very existence of a greater than zero effect was "rare".
 
-```{r causals-conditions, fig.caption = "Four background distributions participants were exposed to in Expt. 4 (stimuli) and priors reconstructed from participants' responses (model). "}
+```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 4 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3}
 sample.dists <- bind_rows(
   data.frame(
     dist = "rare weak",
@@ -3359,7 +3359,7 @@ sample.dists <- bind_rows(
          labels = c("Common Deterministic", "Rare Deterministic",
                     "Common Weak", "Rare Weak")))
   
-bind_rows(
+figure.causals.priors <- bind_rows(
   sample.dists %>%
     mutate(src = "stimuli") %>%
     select(-dist),
@@ -3374,19 +3374,23 @@ bind_rows(
     rename(x = prevalence)
 ) %>%
   mutate(src = factor(src, levels = c("stimuli", "model"))) %>%
-  ggplot(., aes(x = x, fill = src, color = src, alpha = src, lty = src))+ 
+  ggplot(., aes(x = x, fill = Distribution, color = Distribution, alpha = src, lty = src
+                ))+ 
   geom_density( adjust = 1.3, 
                size = 1.2,
                aes( y = ..scaled..))+ #
   scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
-  scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
-  scale_color_manual(values = c("#636363", "#d7191c"))+
-  scale_alpha_manual(values = c(0, 0.4))+
-  scale_linetype_manual(values = c(3, 1))+
+  #scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
+  scale_fill_solarized()+scale_color_solarized()+
+  #scale_color_manual(values = c("#636363", "#d7191c"))+
+  scale_alpha_manual(values = c(0.1, 0.4))+
+  scale_linetype_manual(values = c(2, 1))+
   ylab("Scaled Prior Probability")+
   xlab("Target probability")+
-  facet_wrap(~Distribution, scales = 'free')
+  facet_wrap(~Distribution, scales = 'free', nrow = 1)+
+  guides(fill = F, color = F)+
+  theme(legend.position = 'bottom', legend.direction = 'horizontal')
 ```
 
 
@@ -3494,8 +3498,6 @@ for (p in causal.priorParams$distribution){
   }
   print(p)
 }
-
-causal.endorsement.predictions
 ```
 
 
@@ -3623,7 +3625,7 @@ This attention check served to confirm that participants had encoded some part o
 
 ### Results
 
-```{r causals-endorsement, fig.width = 4, fig.height = 3, eval = F}
+```{r causals-endorsement-fig, fig.width = 4, fig.height = 3, eval = F}
 
 ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low, ymax = high, fill = distribution,
                         group = distribution))+
@@ -3686,11 +3688,90 @@ m.cas.fullmodel.endorsement <- m.cas.samp %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
+```
+
+
+```{r causal-model-insets, fig.width = 8, fig.height = 3.5}
+
+m.cas.fullmodel.prior.parameters <- m.cas.samp %>%
+  filter(type == "prior") %>%
+  rename(variable = item, parameter = roundedFreq) %>%
+  group_by(dist, variable, parameter) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+# use MAP estimates to generate L(h | causal) & L(h | silence) predictions
+
+m.cas.fullmodel.prior.parameters.tidy <- m.cas.fullmodel.prior.parameters %>%
+  ungroup() %>%
+  select(dist, variable, parameter, MAP) %>%
+  mutate(param = paste(variable, parameter, sep = "_")) %>%
+  select(-variable, -parameter) %>%
+  spread(param, MAP) %>%
+  rename(mix = mixture_NA, 
+         stable_mean = stableFreq_mean, 
+         stable_concentration = stableFreq_sampleSize) %>%
+  mutate( a = stable_mean * stable_concentration, 
+          b = (1 - stable_mean) * stable_concentration)
+
+cas.listener.predictions <- data.frame()
+  
+for (p in m.cas.fullmodel.prior.parameters.tidy$dist){
+ priorParams <- m.cas.fullmodel.prior.parameters.tidy %>% filter(dist == p) 
+ inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
+                                                   b = priorParams[["b"]]),
+                               mix = priorParams[["mix"]]), 
+                  utt = "generic")
+ l0.rs <- webppl(l0.model, data = inputData, data_var = "data")
+ cas.listener.predictions <- bind_rows(
+   cas.listener.predictions, 
+   l0.rs %>% select(Parameter,value) %>% mutate(distribution = p)
+   )
+}
+
+
+causals.endorsement.insets <- cas.listener.predictions %>% 
+    mutate(Parameter = factor(Parameter, levels = c("state_Prior",
+                                                  "state_Posterior"
+                                                  ),
+                            labels = c("Listener Prior (Posterior given Silence)",
+                                       "Listener Posterior given Causal")),
+    Distribution = factor(distribution, 
+                               levels = c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
+         labels = c("Common Deterministic", "Rare Deterministic",
+                    "Common Weak", "Rare Weak"))) %>%
+  ggplot(., aes( x = value, fill = Distribution, color = Distribution, lty = Parameter, alpha = Parameter ))+
+  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+  facet_wrap(~Distribution, nrow = 1)+
+  # geom_text_repel(data = category.text.labels,
+  #                 aes(label = category, x = x , y = y),
+  #                 inherit.aes = F, color = "#2b83ba")+
+  scale_fill_solarized()+ scale_color_solarized()+
+  #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+  #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+  #scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
+  #scale_color_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
+  scale_alpha_manual(values = c(0.1, 0.8))+#, 0))+
+  #scale_linetype_manual(values = c(3, 4, 2, 1))+
+  scale_linetype_manual(values = c(2, 1))+
+  scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+  scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+  xlab("Prevalence") +
+  ylab("Scaled probability density")+
+  theme(legend.position = "bottom", legend.title = element_blank())+
+  guides(fill = F, color = F)#,
+  #       axis.text.x = element_text(angle = 90))+
+      # scale_x_continuous(limits = c(-5, 8),
+      #                breaks = c(-5, 0, 2.5, 4, 5.9),
+      #                labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+```
 
 
 
 
-bind_rows(
+```{r figure-causals-endorsement, fig.width=7, fig.height=3.5}
+figure.causals.endorsement <- bind_rows(
   m.cas.fullmodel.endorsement %>%
     mutate(src = "model"),
   d.caus.endorse.summary %>%
@@ -3698,19 +3779,39 @@ bind_rows(
     rename(dist = distribution, MAP = MAP_h, cred_lower = low, cred_upper = high) %>%
     mutate(src = 'data')
 ) %>%
-  mutate(src = factor(src, levels = c("model", "data"))) %>%
+  ungroup() %>%
+  mutate(
+    src = factor(src, levels = c( "data", "model")),
+    dist = factor(dist, 
+           levels = c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
+           labels = c("Common Deterministic", "Rare Deterministic",
+                      "Common Weak", "Rare Weak"))
+    ) %>%
   ggplot(., aes( x = dist, y = MAP, ymin = cred_lower, ymax = cred_upper, fill = dist,
-                        group = dist))+
+                        group = src, alpha = src))+
   geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
-  geom_linerange(width = 0.2, position = position_dodge(0.3))+
+  geom_linerange(position = position_dodge(0.3), alpha = 1)+
   #geom_line(position = position_dodge(0.3))+
-  theme(axis.text.x = element_blank())+
-  geom_hline(yintercept = 0.5, lty = 3, color = 'black')+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0,0.5, 1))+
+  #theme(axis.text.x = element_text(angle = 90))+
+  geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  scale_alpha_manual(values = c(1, 0.3))+
   scale_fill_solarized()+
-  xlab("Background Distribution")+
+  xlab("")+
   ylab("Proportion Causal Endorsement")+
-  facet_grid(frequency~src)
+  facet_grid(.~frequency)+
+  coord_flip()+
+  guides(fill = F)+
+  theme(legend.position = 'bottom', legend.direction = 'horizontal', legend.title = element_blank())
+```
+
+```{r figure-causals, fig.width=11, fig.height=8}
+grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
+             layout_matrix = cbind(c(1,1,2)))
+
+# ,
+#              habituals.endorsement.insets, ncol = 2,
+#              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
 
