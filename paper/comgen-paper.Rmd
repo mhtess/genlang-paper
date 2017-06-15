@@ -4192,12 +4192,13 @@ Such categories may include books of different of different genres or eras, amon
 From the taxonomic relation of the subordinate categories (e.g., types of books) to the target category (i.e., books), the true prevalence of the feature among the target category must be the mean of the prevalence of all subcategories, assuming an equal partitioning of the prior probability of subcategories.
 Thus, if we were to construct a speaker model of the statement "Books are paperbacks", the model would predict a 0.5 endorsement: neither true nor untrue. 
 
-(2) is often used to argue that no actual instances need have occurred to make a generalization true. 
-In this thought experiment, part (or perhaps all) of Mary's job is to handle the mail from Antarctica; to date, however, there has not been any mail from Antarctica [@Cohen1999]. 
-Thus, it is not the case that Mary has handled the mail from Antarctica in the past.
-Our framework takes the fundamental currency of a generalizatoin in language to be a subjective predictive probability. 
-In Expt. 3, we manipulate predictive probability and saw the endorsements for habitual language were affected. 
-This example bears similarity to the *enabling* condition of that experiment, wherein causal events increased the propensity of the event in the future, and also resulted in an increase in endorsements of habitual language.
+(2) is often used to argue that no actual instances need have the property to make a generalization true. 
+Part (or perhaps all) of Mary's job is to handle the mail from Antarctica; in this thought experiment, to date, there has not been any mail from Antarctica [@Cohen1999]. 
+Thus, it is not the case that Mary *has handled* any mail from Antarctica before.
+This example is an extreme case of the phenomenon highlighted by Expt. 3.
+In Expt. 3, we manipulated predictive probability, while keeping fixed past frequency, and saw the endorsements of habitual statements indeed tracked predictive probability (with the linking function being the RSA speaker model). 
+Our general cognitive modeling framework takes the fundamental currency of a generalization in language to be a subjective predictive probability. 
+Past frequency and actual prevalence in the world often tracks predictive probabilities, but language users' internal models of how the world works can lead them in certain situations to expect something different.
 
 (3) shows a subtle interaction of generic language with another linguistic device: conjunction. 
 (3) sounds true but if one takes the conjunction to apply to the properties, it is not true.
