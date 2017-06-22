@@ -1229,9 +1229,9 @@ Having measured the prevalence prior distribution (e.g., the prevalence of layin
 To test these predictions, we collect human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
 
 #### Method
-```{r}
+```{r eval = F}
 d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments.csv", sep = ""))
+                    "truth-judgments-n100.csv", sep = ""))
 d2 <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "naturalGenerics-trials-formatted.csv", sep = ""))
 

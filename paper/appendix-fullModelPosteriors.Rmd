@@ -1,4 +1,8 @@
 # Appendix C: Full model posteriors
+```{r}
+knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
+                      echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
+```
 
 
 ```{r}
@@ -38,7 +42,7 @@ d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/"
                     "truth-judgments_catch-trials.csv", sep = ""))
 
 d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments.csv", sep = ""))
+                    "truth-judgments-n100.csv", sep = ""))
 
 
 d.gen.endorse.summary <- left_join(
