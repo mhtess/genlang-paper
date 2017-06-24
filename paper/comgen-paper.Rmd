@@ -1713,6 +1713,7 @@ d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "truth-judgments-n100.csv", sep = ""))
 
 
+
 d.gen.endorse.summary <- left_join(
   d.gen.endorse, 
   d.gen.endorse.catch %>% select(workerid, pass)
@@ -1783,12 +1784,87 @@ As an attention check, participants were asked at the end of the trials which bu
 
 #### Data and model analysis
 
-As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
-This was a significant predictor of the empirical truth judgments: true generics were significantly more likely to be agreed with than the indeterminate generics ($\beta = 3.14; SE = 0.15; z = 21.5$), as revealed by a mixed-effect logistic regression with random by-participant effects of intercept.
-Indeterminate generics were agreed with \emph{less} likely than chance ($\beta = -0.49; SE = 0.09; z = -5.3$) but significantly more than false generics ($\beta = 2.09; SE = 0.14; z = 14.5$).
+```{r generic-endorsement-manipulationcheck}
+# MHT's truth judgments of sentences
+# t --> true; f --> false; i --> indeterminate/uncertain
+all.sentences <- list("Cardinals are red." = "t",
+ "Ducks have wings." = "t",
+ "Kangaroos have pouches." = "t",
+ "Kangaroos have spots." = "f",
+ "Leopards are juvenile." = "i",
+ "Leopards have spots." = "t",
+ "Leopards have wings." = "f",
+ "Lions are male." = "i",
+ "Lions have manes." = "t",
+ "Lions lay eggs." = "f",
+ "Mosquitos attack swimmers." = "i",
+ "Mosquitos carry malaria." = "t",
+ "Mosquitos dont carry malaria." = "f",
+ "Peacocks dont have beautiful feathers." = "f",
+ "Peacocks have beautiful feathers." = "t",
+ "Robins are female." = "i",
+ "Robins carry malaria." = "f",
+ "Robins lay eggs." = "t",
+ "Sharks are white." = "i",
+ "Sharks attack swimmers." = "t",
+ "Sharks dont attack swimmers." = "f",
+ "Sharks have manes." = "f",
+ "Sharks lay eggs." = "i",
+ "Swans are full-grown." = "i",
+ "Swans are white." = "t",
+ "Ticks carry Lyme disease." = "t",
+ "Ticks dont carry Lyme disease."= "f",
+ "Tigers dont eat people."= "f",
+ "Tigers eat people." = "t",
+ "Tigers have pouches."= "f")
 
-In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generic-endorsement}).
-Such a continuum of judgments is evidence against any theory that only predicts whether a generic statement is true or false.
+mht.truth.judgments <- data.frame(sentence = names(all.sentences),
+           truth_judgment = as.vector(unlist(all.sentences)))
+
+d.gen.endorse.manipulation.check.bayes <- left_join(
+  left_join(
+    d.gen.endorse, 
+    d.gen.endorse.catch %>% select(workerid, pass)
+    ),
+  mht.truth.judgments ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0),
+         sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  group_by(truth_judgment) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b)) %>% 
+  ungroup() %>%
+  mutate(truth_judgment = factor(truth_judgment, levels = truth_judgment[order(MAP_h)]))
+
+true_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"MAP_h"]]
+true_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"low"]]
+true_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"high"]]
+
+false_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"MAP_h"]]
+false_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"low"]]
+false_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"high"]]
+
+uncertain_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"MAP_h"]]
+uncertain_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"low"]]
+uncertain_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"high"]]
+
+```
+
+
+As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
+As one would expect, there were substantial differencesin empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP` [`r true_low`, `r true_high`])$;
+indeterminate generics were agreed with \emph{less} likely than chance ($`r uncertain_MAP` [`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP` [`r false_low`, `r false_high`])$).
+
+In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generics-endorsement-figure}).
+Such a continuum of judgments is already evidence against any theory that only predicts whether a generic statement is true or false.
 Ideally, a complete theory of genericity should be able to explain statements that are endorsed completely, unendorsed completely, and all shades in between.
 
 To try to understand this endorsement data, we articulate a set of simple models that have been proposed in the literature and a reduced-form of our proposed RSA model. 
