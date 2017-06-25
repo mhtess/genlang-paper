@@ -1860,10 +1860,10 @@ uncertain_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment 
 
 
 As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
-As one would expect, there were substantial differencesin empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP` [`r true_low`, `r true_high`])$;
-indeterminate generics were agreed with \emph{less} likely than chance ($`r uncertain_MAP` [`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP` [`r false_low`, `r false_high`])$).
+As one would expect, there were substantial differencesin empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP`$ $[`r true_low`, `r true_high`])$;
+indeterminate generics were agreed with \emph{less} likely than chance ($`r uncertain_MAP`$ $[`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP`$ $[`r false_low`, `r false_high`])$).
 
-In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generics-endorsement-figure}).
+In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generics-endorsement-figure} top left).
 Such a continuum of judgments is already evidence against any theory that only predicts whether a generic statement is true or false.
 Ideally, a complete theory of genericity should be able to explain statements that are endorsed completely, unendorsed completely, and all shades in between.
 
@@ -1879,7 +1879,7 @@ As a control model, we use the same infrastructure but assign a fixed semantics 
 This control model has both features (i) and (ii) but lacks the uncertainty over the threshold.
 This provides a strict test of our *simple but underspecified* hypothesis.
 
-```{r generic-regression-models}
+```{r generic-regression-models, cache = T}
 d.cv <- read.csv(paste(project.path, "data/generics/endorsement/", "cue-validity-2-freeProduction-trials.csv", sep = ""))
 
 d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "originalStims_wrongDeployment.json", sep = "")) %>%
@@ -1916,21 +1916,77 @@ d.prev.summary <- d.prev %>%
   group_by(Category, Property, item) %>%
   multi_boot_standard(column = "prevalence")
 
-# need to filter by items specified with endorsement
-d.gen.cv.summary <- left_join(
-  d.target.items %>% select(-sentence),
-  d.cv %>%
-    rename(category = response) %>%
-    group_by(property) %>%
+d.cv.bootstrapped <- data.frame()
+resample_n <- length(levels(factor(d.cv$workerid)))
+for (i in 1:1000){
+  
+  d.cv.bsample <- d.cv %>% 
+    select(workerid, property, response) %>% 
+    spread(property, response) %>% 
+    sample_n(resample_n, replace = TRUE) %>%
+    gather(property, category, -workerid) %>% 
+        group_by(property) %>%
     mutate(n = n(),
            item = paste(category, property)) %>%
     filter(item %in% d.target.items$item) %>%
     group_by(category, property) %>%
     summarize(mentions = n(),
               trials = mean(n), # mean(n) == n, because it's just the number of subjects
-              prop = mentions / trials)
-  ) %>%
-  mutate(prop = ifelse(is.na(prop), 0.01, prop))
+              prop = mentions / trials,
+              prop = ifelse(is.na(prop), 0.01, prop),
+              iteration = i)
+  
+  d.cv.bootstrapped <- bind_rows(d.cv.bootstrapped, d.cv.bsample)
+}
+
+empiricalLower = function(dist){
+  xi <- quantile(dist, 0.025)
+  return (xi[["2.5%"]])
+}
+empiricalUpper = function(dist){
+  xi <- quantile(dist, 0.975)
+  return (xi[["97.5%"]])
+}
+empiricalMean = function(dist){
+  xi <- quantile(dist, 0.5)
+  return (xi[["50%"]])
+}
+
+
+d.gen.cv.summary <- left_join(
+    d.target.items %>% select(-sentence),
+    d.cv.bootstrapped %>%
+      group_by(property) %>%
+      summarize(cv_mean = empiricalMean(prop),
+                cv_ci_lower = empiricalLower(prop),
+                cv_ci_upper = empiricalUpper(prop))
+) %>%
+  mutate(
+    cv_ci_lower = ifelse(is.na(cv_mean), 0.01, cv_ci_lower),
+    cv_ci_upper = ifelse(is.na(cv_mean), 0.01, cv_ci_upper),
+    cv_mean = ifelse(is.na(cv_mean), 0.01, cv_mean)
+  )
+  
+# quantile(filter(d.cv.bootstrapped, property == "is red")$prop, c(0.025, 0.5, 0.975))
+# 
+# d.cv.bootstrapped %>%
+#   group_b
+
+# need to filter by items specified with endorsement
+# d.gen.cv.summary <- left_join(
+#   d.target.items %>% select(-sentence),
+#   d.cv %>%
+#     rename(category = response) %>%
+#     group_by(property) %>%
+#     mutate(n = n(),
+#            item = paste(category, property)) %>%
+#     filter(item %in% d.target.items$item) %>%
+#     group_by(category, property) %>%
+#     summarize(mentions = n(),
+#               trials = mean(n), # mean(n) == n, because it's just the number of subjects
+#               prop = mentions / trials)
+#   ) %>%
+#   mutate(prop = ifelse(is.na(prop), 0.01, prop))
 
 d.gen.endorse.prev.cue <- left_join(
   left_join(
@@ -1946,37 +2002,56 @@ d.gen.endorse.prev.cue <- left_join(
           sentence = gsub('[.]', '', sentence)
     ),
     d.prev.summary %>% 
-      rename(prevalence = mean,
-             sentence = item) %>% 
-      select(-ci_lower, -ci_upper)
+      rename(prev_mean = mean,
+             sentence = item,
+             prev_ci_lower = ci_lower,
+             prev_ci_upper = ci_upper)
     ),
   d.gen.cv.summary %>% select(-item))
 
-glm.gen.endorse.prev <- glm(response ~ prevalence, 
+glm.gen.endorse.prev <- glm(response ~ prev_mean, 
               data = d.gen.endorse.prev.cue, family = 'binomial')
 
-glm.gen.endorse.prev.cv <- glm(response ~ prevalence + prop, 
+glm.gen.endorse.prev.cv <- glm(response ~ prev_mean + cv_mean, 
               data = d.gen.endorse.prev.cue, family = 'binomial')
+
+d.gen.endorse.prev.cue.uniq <- unique(select(
+    d.gen.endorse.prev.cue, Property, Category, sentence, 
+    prev_mean, prev_ci_lower, prev_ci_upper, cv_mean, cv_ci_lower, cv_ci_upper
+  ))
+
+d.gen.endorse.prev.cue.uniq.lower <- d.gen.endorse.prev.cue.uniq %>% 
+  select(-prev_mean, -cv_mean) %>% 
+  rename(prev_mean = prev_ci_lower,
+         cv_mean = cv_ci_lower)
+d.gen.endorse.prev.cue.uniq.upper <- d.gen.endorse.prev.cue.uniq %>% 
+  select(-prev_mean, -cv_mean) %>% 
+  rename(prev_mean = prev_ci_upper,
+         cv_mean = cv_ci_upper)
 
 d.gen.endorse.regression.prevalence <- left_join(
   d.gen.endorse.bayes,
-  unique(select(
-    d.gen.endorse.prev.cue, Property, Category, sentence, prevalence, prop
-  )) %>%
-    mutate(prediction = predict(glm.gen.endorse.prev, ., type = "response")) %>%
+  d.gen.endorse.prev.cue.uniq %>%
+    mutate(
+      prediction_mean = predict(glm.gen.endorse.prev, ., type = "response"),
+      prediction_ci_lower = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
+      prediction_ci_upper = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.upper, type = "response")
+    ) %>%
     mutate(sentence = paste(Category, " ", Property, ".", sep = ""))
-) %>% mutate(sqErr = (mean - prediction) ^ 2,
-             cuevalidity = prop)
+) %>% mutate(
+  sqErr = (MAP_h - prediction_mean) ^ 2
+)
 
 d.gen.endorse.regression.prevalence.cuevalidity <- left_join(
   d.gen.endorse.bayes,
-   unique(select(
-    d.gen.endorse.prev.cue, Property, Category, sentence, prevalence, prop
-    )) %>% 
-    mutate(prediction = predict(glm.gen.endorse.prev.cv, ., type = "response"),
-           sentence = paste(Category, " ", Property, ".", sep = ""))
-) %>% mutate(sqErr = (mean - prediction) ^ 2,
-             cuevalidity = prop)
+  d.gen.endorse.prev.cue.uniq %>%
+    mutate(
+      prediction_mean = predict(glm.gen.endorse.prev.cv, ., type = "response"),
+      prediction_ci_lower = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
+      prediction_ci_upper = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.upper, type = "response"),
+      sentence = paste(Category, " ", Property, ".", sep = "")
+      )
+) %>% mutate(sqErr = (MAP_h - prediction_mean) ^ 2)
 
 d.gen.endorse.regression <- bind_rows(
   d.gen.endorse.regression.prevalence.cuevalidity %>%
@@ -1999,15 +2074,35 @@ d.gen.endorse.regression <- bind_rows(
 #   xlab("Logistic model prediction")+
 #   ylab("Human generic endorsement")+
 #   facet_wrap(~src)
+
+r2.gen.n <- length(d.gen.endorse.bayes$sentence)
+r2.gen.regression.prev <- round(with(d.gen.endorse.regression.prevalence, cor(MAP_h, prediction_mean))^2,2)
+mse.gen.regression.prev <-  round(mean(d.gen.endorse.regression.prevalence$sqErr), 3)
+
+r2.gen.regression.prev.cv <- round(with(d.gen.endorse.regression.prevalence.cuevalidity, cor(MAP_h, prediction_mean))^2, 3)
+mse.gen.regression.prev.cv <- round(mean(d.gen.endorse.regression.prevalence.cuevalidity$sqErr), 3)
+
+intermediate.prev.quantiles <-  quantile(d.gen.endorse.regression.prevalence$prev_mean, c(0.25, 0.76))
+
+
+d.gen.endorse.regression.prevalence.intermediateprev <- d.gen.endorse.regression.prevalence %>%
+  filter(
+    (prev_mean > intermediate.prev.quantiles[["25%"]]) &
+    (prev_mean < intermediate.prev.quantiles[["76%"]])
+)
+r2.gen.n.intermedprev <- length(d.gen.endorse.regression.prevalence.intermediateprev$sentence)
+
+r2.gen.regression.prev.intermedprev <- round(with(d.gen.endorse.regression.prevalence.intermediateprev, cor(MAP_h, prediction_mean))^2,2)
+mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.prevalence.intermediateprev$sqErr), 3)
 ```
 
 
 ##### Prevalence baseline
 
 From the prevalence prior data (Expt. 1a), we estimate participants' beliefs about the prevalence of a property for the target categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}.
-We find a little over half of the variance in the endorsement data is explained this way ($r^2 = 0.599$; MSE=0.065; Figure \ref{fig:commongenerics}b, right). 
+We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:commongenerics}b, right). 
 This is because our stimulus set includes generics that are true with high-prevalence properties (e.g., *Leopards have spots.*) and generics that are false with low prevalence properties (e.g., *Leopards have wings.*). 
-However, large deviations from an account based purely on target-category prevalence remain: Generics in which the target-category has intermediate prevalence (prevalence quartiles 2 and 3: $20\% < \text{prevalence} < 64\%$), are not at all explained by prevalence within those categories ($r_{Q2,3}^2 = 0.029$; MSE = 0.110).
+However, large deviations from an account based purely on target-category prevalence remain: Generics in which the target-category has intermediate prevalence (prevalence quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{prevalence} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by prevalence within those categories ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
 
 ##### Prevalence and cue validity
 
@@ -2023,7 +2118,7 @@ For this analysis, we measured cue validity using a free production paradigm, fo
 Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
 For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity, see Appendix B.
 
-A linear model that uses predictors for both prevalence and cue validity does a better job at explaning the endorsement data than just prevalence alone ($r^2(30) = 0.79$).
+A linear model that uses predictors for both prevalence and cue validity does a better job at explaning the endorsement data than just prevalence alone ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev.cv`$; MSE=$`r mse.gen.regression.prev.cv`$).
 This model is able to account for the endorsements of examples like "Mosquitos carry malaria" and "Lions have manes", as these features are very diagnostic of the kind.
 Deviations, however, still remain.
 For example, "Robins lay eggs" still receives only intermediate endorsement by this model, and "Mosquitos don't carry malaria" is judged to be a good statement.
@@ -2134,14 +2229,12 @@ m.gen.endorse.rsa <- bind_rows(
 )
 
 generics.endorsement.models <- bind_rows(
-  d.gen.endorse.regression %>% 
-  mutate(prediction_lower = prediction,
-         prediction_upper = prediction),
+  d.gen.endorse.regression,
   left_join(
     m.gen.endorse.rsa %>% 
-    rename(prediction = MAP, prediction_lower = cred_lower, prediction_upper = cred_upper),
+      rename(prediction_mean = MAP, prediction_ci_lower = cred_lower, prediction_ci_upper = cred_upper),
     d.gen.endorse.regression %>% 
-    select(sentence, Property, Category, prevalence, cuevalidity)
+      select(sentence, Property, Category, prev_mean, cv_mean)
   )
 ) %>%
   mutate(src = factor(src, levels = c( 
@@ -2155,8 +2248,8 @@ generics.endorsement.models <- bind_rows(
                                  "Fixed semantics model",
                                  "Prevalence alone", "Prevalence + Cue validity"
                                  ))) %>%
-  ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
-                  y = MAP_h, ymin = low, ymax = high, fill = prevalence ))+
+  ggplot(., aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
   geom_linerange(alpha = 0.7)+
   geom_errorbarh(alpha = 0.7)+
@@ -2170,7 +2263,7 @@ generics.endorsement.models <- bind_rows(
   facet_wrap(~src, nrow = 2)+
   theme(legend.position = "bottom")
 
-
+generics.endorsement.models
 ```
 
 ```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
