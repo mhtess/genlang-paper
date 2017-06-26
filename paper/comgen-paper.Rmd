@@ -102,6 +102,14 @@ logmeanexp <- function(x){
   return(xstar + log(mean(exp(x.num - xstar))))
 }
 
+compute_r2 <- function(df,v1, v2, sigfigs = 3){
+  return(round(cor(df[[v1]], df[[v2]])^2, sigfigs))
+}
+
+compute_mse <- function(df, v1, v2, sigfigs = 3){
+  return(round(mean( (df[[v1]]-df[[v2]])^2), sigfigs))
+}
+
 project.path <- "../"
 options("scipen"=10) 
 ```
@@ -1175,6 +1183,8 @@ var model = function(){
   return {g, d}
 }
 '
+genericEndorsementPriorModel <- paste(genericEndorsementPriorModelHelpers, structuredPriorModel, sep = "\n")
+
 ```
 
 ```{r generic-endorsement-priors-bayesFactors, eval = F}
@@ -1487,7 +1497,6 @@ example.generics.prior.properties <- c(
   "carry malaria", "lay eggs", 
   "are female", "have spots"
   )
-
 
 
 for (p in example.generics.prior.properties ) {
@@ -2130,44 +2139,7 @@ Additionally, negative properties (like, "not carrying malaria") are completely 
 
 ##### Fixed threshold RSA model
 
-
-\begin{figure}
-\centering
-    \includegraphics[width=\columnwidth]{figs/generics_bayesnetmodel.pdf}
-    \caption{Caption
-    }
-  \label{fig:genericsModelDiagram}
-\end{figure}
-
-
-The RSA model we propose for generic endorsement is a speaker model who decides whether or not to say the generic to a naive listener, who has access to the full prior distribution on prevalence $P(h)$.
-As a strong alternative model, we retain the specification of the speaker reasoning about a listener with this prior distribution, but remove the uncertainty about the generic threshold. 
-For this model, we set $\theta = 0$, and thus the generic statement corresponds to the quantified statement "Some".
-
-<!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the target category $h'$). -->
-We use the empirically estimated within-kind target prevalence as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's prevalence prior $P(h)$.^[
-Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
-This corresponds to the more general form of the model described in **Alternative Formulations** section. 
-With these data, the predictions of these two models are nearly identical.
-]
-The $S_1$ model is then fully specified after setting the speaker optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
-We combine the RSA model with the Bayesian data analysis model of the prevalence prior data (Expt. 1a) to create a single, joint-inference model where the speaker optimality parameter $\lambda_1$, the target prevalence $h$, and parameters of the prevalence priors $P(h)$ are inferred simultaneously via both data sources (Expt. 1a \& b; see Figure).
-For the prevalence parameters, we use the same priors described in Expt. 1a; for the speaker optimality parameter, we use an informative prior, with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
-We learn about the \emph{a posteriori} credible values of our model parameters by collecting samples from MCMC chains of 10,000 iterations removing the first 5,000 iterations, using the Metropolis-Hastings algorithm. 
-
-We compare the "Some" model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
-(The posterior predictive distribution marginalizes over the inferred parameter values to produce predictions about what the data \emph{should look like} given the pragmatics model and the observed data.)
-In accord with intuition, assigning a fixed semantics corresponding to "Some" is too lenient a specification. 
-Even for patently false generics (e.g., "Mosquitos don't carry malaria"), the speaker model is unable to prefer staying silent than producing the generic (with a "some" semantics).
-It also doesn't strongly prefer producing the generic, possibly because the information content is so small.
-
-##### Uncertain threshold RSA model
-
-Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0.5$, it has *a priori* uncertainty over the threshold.
-We perform the same Bayesian data analysis as the "Some" model.
-As we see in Figure \ref{fig:commongenerics}b, the pragmatic speaker model $S_2$, using empirically measured priors, explains nearly all of the variance in human truth judgments ($r^2=0.98$; MSE=0.003; Figure \ref{fig:commongenerics}b). 
-
-```{r generic-fullmodel, fig.width = 8}
+```{r generic-RSAmodels, fig.width = 8}
 # n_chains <- 1
 # n_samples <- 50000
 # burn <- n_samples
@@ -2228,6 +2200,28 @@ m.gen.endorse.rsa <- bind_rows(
     mutate(src = "some_model")
 )
 
+
+r2.gen.rsa.generics <- compute_r2(
+  m.gen.endorse.rsa %>% filter(src == "generics_model"), 
+  "MAP", "MAP_h", sigfigs = 3
+)
+  
+r2.gen.rsa.fixed <- compute_r2(
+  m.gen.endorse.rsa %>% filter(src == "some_model"),  
+  "MAP", "MAP_h", sigfigs = 3
+)
+
+mse.gen.rsa.generics <- compute_mse(
+  m.gen.endorse.rsa %>% filter(src == "generics_model"), 
+  "MAP", "MAP_h", sigfigs = 3
+)
+
+mse.gen.rsa.fixed <- compute_mse(
+  m.gen.endorse.rsa %>% filter(src == "some_model"),  
+  "MAP", "MAP_h", sigfigs = 3
+)
+
+
 generics.endorsement.models <- bind_rows(
   d.gen.endorse.regression,
   left_join(
@@ -2262,9 +2256,8 @@ generics.endorsement.models <- bind_rows(
   ylab("Human generic endorsement")+
   facet_wrap(~src, nrow = 2)+
   theme(legend.position = "bottom")
-
-generics.endorsement.models
 ```
+
 
 ```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
 example.generics.properties <- c("dont eat people", 
@@ -2316,7 +2309,7 @@ for (p in example.generics.properties){
 }
 
 m.gen.fullmodel.target.prevalence <- m.samp %>%
-  filter(type == "withinKind") %>%
+  filter(type == "targetPrevalence") %>%
   group_by(param, property, category) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
@@ -2325,7 +2318,7 @@ m.gen.fullmodel.target.prevalence <- m.samp %>%
 
 
 m.gen.speakerBeliefs <- m.samp %>%
-  filter(type == "withinKind") %>%
+  filter(type == "targetPrevalence") %>%
   mutate(Sentence = paste(category, property)) %>%
   filter(Sentence %in% example.generics) 
 
@@ -2393,8 +2386,8 @@ generics.endorsement.insets <- gen.inset.distributions %>%
     xlab("Prevalence") +
     ylab("Scaled probability density")+
     theme(legend.position = "bottom", legend.title = element_blank())
-
 ```
+
 
 
 ```{r generics-endorsement-figure, fig.width=11, fig.height=8}
@@ -2403,6 +2396,80 @@ grid.arrange(generics.endorsement.spectrum,
              generics.endorsement.insets, ncol = 2,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
+
+The RSA model we propose for generic endorsement is a speaker model that decides whether or not to say the generic to a naive listener.
+Unlike the simple regression models based on point-estimates of target-category prevalence and cue validity, this cognitive model has access to the full prior distribution on prevalence $P(h)$.
+This model has two other main architectural differences: an information-theoretic decision between producing the generic vs. an information-less alternative and uncertainty about the semantic threshold that corresponds to the theoretical, core meaning of a generic statement.
+
+We first test a model that has two of the the above three main architectural features.
+This model has access to the full prior distribution on prevalence as well as models an information-theoretic decision of producing the generic vs. an alternative.
+The only difference is that this model uses a fixed-threshold to correspond to the core meaning of a generic statements.
+For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).^[
+Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 0.5$) but require the further specification of a noise-model for participants' responses in the cases where participants endorse the statement when it is literally false (e.g., "Mosquitos carry malaria").
+]
+This is a strong alterantive model to our uncertain-threshold model; the only difference concerns the threshold.
+
+
+<!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the target category $h'$). -->
+We use the empirically estimated target-category prevalence as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's prevalence prior $P(h)$.^[
+Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
+This corresponds to the more general form of the model described in **Alternative Formulations** section. 
+With these data, the predictions of these two models are nearly identical.
+]
+The $S_1$ model is then fully specified after setting the speaker optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
+
+
+\begin{figure}
+\centering
+    \includegraphics[width=\columnwidth]{figs/generics_bayesnetmodel.pdf}
+    \caption{Caption
+    }
+  \label{fig:genericsModelDiagram}
+\end{figure}
+
+To fit this model, we incorporate the RSA model into the Bayesian data analysis model of the prevalence prior data (Expt. 1a) to create a single, joint-inference model where the speaker optimality parameter $\lambda_1$ is inferred jointly with the target prevalence $h_{k, f}$ for each category $k$ and property $f$ and the parameters of the prevalence priors $P_f(h)$ for each property $f$ using data from Expt. 1a \& b (see Figure \ref{fig:genericsModelDiagram}).
+For the parameters of the prevalence distributions, we use the same priors described in Expt. 1a; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
+We learn about the \emph{a posteriori} credible values of this joint inference model using an incrementalized-version of the  by collecting samples from 3 MCMC chains of 100,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. 
+
+The posterior distribution of this joint inference model tells us what we should believe about the latent parameters of the model (prevalences, prevalence priors, and the speaker optimality parameter) given the observed data, as well as what predictions the model makes given these parameter values.
+Importantly, the model recapitulates the prevalence prior data (e.g., the prevalence of laying eggs among various species) and the target-category prevalence data (e.g., the prevalence of laying eggs among robins; see Appendix A for full posteriors) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1a).
+This means the theoretically-interesting predictionso of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the details of the prevalence distributions). 
+
+We compare the fixed-threshold model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
+(Again the posterior predictive distribution marginalizes over the inferred parameter values to produce predictions about what the data \emph{should look like} given the pragmatics model and the observed data.)
+Figure \ref{fig:generic-endorsement-figure} (top right; top left subplot) shows the fixed-threshold model's ability to predict the generic endorsement data ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.fixed`$; MSE = $`r mse.gen.rsa.fixed`$).
+For almost all items, it assigns an intermediate endorsement.
+This is because almost all items get endorsed by some participants; the model then infers that the prevalence must be at least a little greater than 0\%; but, if the prevalence is greater than 0\%, the statement is literally true. The speaker model then must decide is it better to say the 0\%-threshold meaning or stay silent. 
+For some items, a fixed-threshold meaning carries some information-gain over silence (i.e., some model predictions \> 0.5). For many items, however, the 0\%-threshold is almost as meaning-less as silence; the model, thus, has a hard time strongly endorsing some statements (most model predictions around 0.5\%).
+Consistent with intuition, assigning a fixed-semantics is too lenient a specification. 
+
+MHT: Outfit fixed-threshold model with noise parameter?
+
+##### Uncertain threshold RSA model
+
+Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0$, it has uncertainty over the threshold.
+We construct the same joint-inference Bayesian data analytic model as we did for the fixed-threshold analysis.
+As we see in Figure \ref{fig:generics-endorsement-figure} (top right, top right subplot), the speaker model that relies upon an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
+
+
+To gain some intuition for why that is the case, examine the bottom row of Figure \ref{fig:generics-endorsement-figure}.
+The blue, solid lined distribution corresponds to the speaker's beliefs about the prevalence of the feature for the target category (also in blue).
+The grey distribution shows the listener's prior distribution over prevalence of the feature (these are the corresponding Probability Density Functions of the Cumulative Density Functions shown in Figure \ref{fig:generic-endorsement-priors-figure}).
+It is also the listener $L_0$'s posterior upon hearing the silent utterance.
+The red distribution shows the $L_0$ posterior upon hearing the generic utterance that corresponding to an uncertain threshold-semantics. 
+The speaker model decides when the generic utterance conveys information that would bring the listener's distribution more in line with the speaker's own distrubtion. 
+Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos carry malaria" are also useful things to say.
+"Robins are female" is neither good nor bad, as the information-content of the utterance is very small relative to silence.
+"Tigers don't eat people" is rather misleading, however; it doesn't bring the listener closer to the speaker's distribution, despite the speaker believing that the prevalence is more than half. 
+
+
+
+<!-- Generics that received definitive agreement or disagreement are predicted to be judged as such by the model (corners of Figure \ref{fig:commongenerics}b), including items for which target-category prevalence is not a good indicator of the acceptability (e.g. \emph{Mosquitos carry malaria}, for prevalence quartiles 2 and 3, $r_{Q2,3}^2=0.955$; MSE=0.005; Figure \ref{fig:commongenerics}b, intermediate shades). -->
+<!-- We also see the generics truth judgment model predicts uncertain truth judgments: for instance, \emph{Robins are female} is judged by both the model and human participants to be neither true nor false. -->
+<!-- \emph{Sharks don't attack swimmers}, while true of most sharks, is judged to be not a good thing to say by both participants and the model. -->
+<!-- This is strong evidence that the puzzling flexibility of generic truth conditions can be understood with a simple but underspecified semantics for which the precise meaning is resolved with respect to diverse prior beliefs in context. -->
+
+
 
 
 <!-- The above analysis provides a single estimate for model predictions, but it is based on noisy empirical measurements of $P(x)$. In order to estimate the impact of this empirical noise on our model predictions, we resampled the prior data (with replacement) for 57 participants worth of data, discretizing and binning as we did above and then inferring parameters. -->
@@ -2416,10 +2483,6 @@ grid.arrange(generics.endorsement.spectrum,
 
 <!-- This is akin to fitting the parameters and is the critical step in model validation: It shows what data is actually predicted by the model.)  -->
 
-Generics that received definitive agreement or disagreement are predicted to be judged as such by the model (corners of Figure \ref{fig:commongenerics}b), including items for which target-category prevalence is not a good indicator of the acceptability (e.g. \emph{Mosquitos carry malaria}, for prevalence quartiles 2 and 3, $r_{Q2,3}^2=0.955$; MSE=0.005; Figure \ref{fig:commongenerics}b, intermediate shades).
-We also see the generics truth judgment model predicts uncertain truth judgments: for instance, \emph{Robins are female} is judged by both the model and human participants to be neither true nor false.
-\emph{Sharks don't attack swimmers}, while true of most sharks, is judged to be not a good thing to say by both participants and the model.
-This is strong evidence that the puzzling flexibility of generic truth conditions can be understood with a simple but underspecified semantics for which the precise meaning is resolved with respect to diverse prior beliefs in context.
 
 <!-- basic communicative principles (\emph{be truthful}, \emph{be informative}) operating over diverse prior beliefs about the properties, all of which are at play in understanding language.  -->
 
