@@ -799,6 +799,7 @@ all.simulations %>%
 
 All models were implemented in the probabilisitic programming language WebPPL [@dippl].
 The following simulations were implemented in the Rmarkdown document that generated this paper text and figures, using the R package RWebPPL.
+That document, as well as the other models, analysis, data and experiments used in this paper can be found at \url{https://github.com/mhtess/comgen-paper}.
 
 The RSA model defined in the previous section predicts that the endorsement of a generalization depends upon a listener's *a priori* beliefs about the probabilty in question $P(h)$.
 For purposes of illustration, we present present the listener $L$ interpretations of the generalization for the underspecified threshold model as well as a fixed threshold model where the threhsold is set to the lowest possible value, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}).
@@ -992,23 +993,22 @@ mht: is it possible to construct priors in causals that would reflect the qualit
 # Case Study 1: Generic Language
 
 Generalizations about categories (i.e., *generic language*; e.g., *Birds fly.*) have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propogation [@Rhodes2012], and motivation [@Cimpian2007], as well as many other facets of everyday cognition.
-It is the premier case study of generalizations in language and has received the most attention from philosophers, linguists, and psychologists.
+It is the premier case study of generalizations in language because of its close relation to quantified statements (e.g., *Most birds fly*) and has received the most attention from philosophers, linguists, and psychologists.
 
 Any theory of generic language must explain its puzzling flexibility of usage with respect to prevalence.
 That is, \emph{Mosquitos carry malaria} and \emph{Birds lay eggs} are reasonable things to say, but \emph{Birds are female} is not.
-As a first test of our theory, we wish to explain the flexibility in endorsements of generics (e.g., "Birds lay eggs" vs. "Birds are female"; "Mosquitos carry malaria") in terms of the relevant prior knowledge about properties.
-We do this by measuring the prior belief distribution over the relevant probabilities $P(h)$ used in Eq. \ref{eq:L0} as well as the target-category prevalence $h$ that the speaker model seeks to convey in Eq. \ref{eq:S1} (Expt. 1a).
+As a first test of our theory, we wish to explain the flexibility in endorsements of generics (e.g., "Birds lay eggs" vs. "Birds are female"; "Mosquitos carry malaria") in terms of the relevant prior knowledge about properties, as explored through simulation in the **Model predictions** section.
+We validate these simulations empirically by measuring the prior belief distribution over the relevant probabilities $P(h)$ used in Eq. \ref{eq:L0} as well as the target-category prevalence $h$ that the speaker model seeks to convey in Eq. \ref{eq:S1} (Expt. 1a).
 
 <!-- The pragmatic speaker model $S_2$, Eq.~\ref{eq:S2}, is a model of truth judgments.  -->
 We test our model on thirty generic sentences that cover a range of conceptual distinctions discussed in the literature [@Prasada2013]: characteristic (e.g. \emph{Ducks have wings.}), minority (e.g. \emph{Robins lay eggs.}), striking (e.g. \emph{Mosquitos carry malaria.}), false generalization (e.g. \emph{Robins are female.}), and false (e.g. \emph{Lions lay eggs.}).
 In additional to the canonical cases from the linguistics literature, we selected sentences to elicit the full range of acceptability judgments (intuitively: "acceptable", "unacceptable", and "indeterminate") with low-, medium-, and high-prevalence properties. 
 
-
 To compare the model to empirical truth judgments, we measure the prior distribution over prevalence of these properties (Expt. 1a).
 We hypothesize that these prior distributions encode probabilities associated with conceptual distinctions [@Prasada2013].
-In particular, we hypothesize that different kind--property relations [e.g., *principled* v. *accidental relations*^[This is sometimes referred to as "statistical" relations.]; @Prasda2013] can be observed in the prevalence prior. 
-If, in fact, the prevalence prior is one manifestation of deeper, conceptual knowledge, we would expect the prevalence prior data to follow a multi-modal, mixture distribution where there exist qualitatively modes or components of the prior, the results of the different types of kinds with respect to the property.
-This is important because it is one way in which our formal theory connects to other, informal psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007].
+In particular, we hypothesize that different kind--property relations [e.g., *principled* v. *accidental relations*^[This is sometimes referred to as "statistical" relations.]; @Prasada2013] can be observed in the prevalence prior. 
+If, in fact, the prevalence prior is a manifestation of deeper, conceptual knowledge, we would expect the prevalence prior data to follow a multi-modal, mixture distribution where there exist qualitatively distinct modes or components to the prior, as probabilistic traces of the different types of kinds with respect to the property.
+This is important because it is one way in which our formal theory connects to other psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007].
 As a simple test of this hypothesis---that the prevalence prior encodes conceptual knowledge---we compare a structured (i.e., mixture) model of the prior data to an unstructured one.
 
 After having validated a measure of the prevalence prior, we consider the issue of primary theoretical interest: How well our *uncertain threshold* hypothesis accounts for endorsements of generic sentences (Expt. 1b).
@@ -4488,7 +4488,7 @@ m.cas.fullmodel.endorsement <- m.cas.samp %>%
 ```
 
 
-```{r causal-model-insets, fig.width = 8, fig.height = 3.5, cache = F}
+```{r causal-model-insets, fig.width = 8, fig.height = 3.5, cache = T}
 m.cas.fullmodel.prior.parameters <- m.cas.samp %>%
   filter(type == "prior") %>%
   rename(variable = item, parameter = roundedFreq) %>%
