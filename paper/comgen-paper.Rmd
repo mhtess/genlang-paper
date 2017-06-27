@@ -118,7 +118,7 @@ options("scipen"=10)
 
 Figuring out that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect is crucial knowledge in an uncertain world.
 We acquire such *generalizations* early in life, simply by observing instances and drawing inductive inferences [@Baldwin1993; @Xu2008; @Dewar2010].
-Once learners have the capacity to infer the intention of others, social learning can dramatically faciliate inductive reasoning [@Csibra2009; @Tomasello1999; @Butler2012].
+Once learners have the capacity to infer the intention of other cooperative agents, social learning can dramatically faciliate inductive reasoning [@Csibra2009; @Tomasello1999; @Butler2012].
 At around the first birthday, a child's mind gains access to a new, human-unique source of data: language.
 
 <!-- give rise to the productivity of human thought and form of foundations of cultural knowledge. -->
@@ -130,14 +130,14 @@ At around the first birthday, a child's mind gains access to a new, human-unique
 Learning from language is helpful because many properties are costly to directly observe (e.g., being poisonous) or events statistically unlikely (e.g., observing lightning).
 Minimally, language helps foster generalization by bringing attention to non-obvious shared relations through the use of labeling [@Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
 But language also has the ability to refer to *generalization itself*.
-At around the age of two and a half, children begin to understand that *generic language* (e.g., "Dogs bark") refers to kinds and conveys generalizations that extend beyond the here and now [@Cimpian2008].
-<!-- *Causal language*, expressing generalization beyond an individual causal event (e.g., "The block *makes* it [the machine] go."), faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
-Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008].
-Additionally, generics are the primary way by which speakers discuss social categories, making them key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010].
-
 Generic meaning, or *genericity*, can be observed in seemingly disparate kinds of linguistic devices [@Carlson1977; @Carlson1995].
-Speakers can talk about individual people in generalizations (*habitual language*; e.g., "Mary swims after work."), individual causal events in generalizations (*causal language*; e.g., "Drinking moonshine makes you go blind."), and people in general [e.g., "You never know what will happen on a blind date."; @Orvell2017].
-It is believed that every language can express generic meaning [@Behrens2005; @Carlson1995], and that such languge is central to the growth of conceptual knowledge [@Gelman2004] 
+Speakers can talk about categories generically (*generic language*; e.g., *Dogs bark*), individual people in generalizations (*habitual language*; e.g., "Mary swims after work."), causal events in generalizations (*causal language*; e.g., "Drinking moonshine makes you go blind."), and people in general [e.g., "You never know what will happen on a blind date."; @Orvell2017].
+
+It is believed that every language can express generic meaning [@Behrens2005; @Carlson1995], and that such languge is central to the growth of conceptual knowledge [@Gelman2004].
+At around the age of two and a half, children begin to understand that *generic language* refers to kinds and conveys generalizations that extend beyond the here and now [@Cimpian2008].
+<!-- *Causal language* (e.g., "The block *makes* it [the machine] go.") faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
+<!-- Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. -->
+Additionally, generics are the primary way by which speakers discuss social categories, making them key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010].
 It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015].
 
 <!-- Generic statements convey generalizations about categories, but there are other linguistic devices that look different but seem to similary convey generalization. -->
@@ -145,7 +145,7 @@ It's plausible that cultural knowledge accumulates across generations through la
 <!-- Though this diverse array of utterances all seem to convey something beyond the here and now, what exactly is common to each of them is not obvious.  -->
 <!-- Without a formal way of describing generalizations in language, we do not yet know in what ways these large swaths of language are similar.  -->
 
-Computational models of learning formalize the inferences derived from observations, explaining how children and adults generalize from sparse data [@Tenenbaum2011]. 
+The cognitive act of generalization is naturally formalized in Bayesian cognitive models [@Tenenbaum2011].
 Bayesian models showcase the role of flexibly structured representations [@Kemp2007; @Kemp2008] and assumptions learners can make about the data-generating process [e.g., learning from pedagogical actions; @Shafto2012].
 Learning from language, however, is more challenging to formalize because of the inherent context-sensitivity of language [@Grice1975; @Clark1996; @Levinson2000].
 Probabilistic models have recently made progress in describing pragmatic language understanding in precise terms [@Frank2012; @Goodman2013; @Goodman2016], formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013].
@@ -154,7 +154,9 @@ The language of generalizations --- statements that extend beyond the here-and-n
 
 The major issue in formalizing genericity is determining what makes statements that convey generalizations true or false. 
 When we hear "Dogs bark", we may feel it's a universal statment as in *All* dogs bark.
-Yet, exquisitely well-trained dogs, among others, do not bark; the statement should signal something weaker like *Most* dogs bark.
+Yet, Basenji dogs are barkless^[
+http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
+]; the statement should signal something weaker like *Most* dogs bark.
 Indeed, many generalizations seem to have the quantificational force of *most*. 
 But most mosquitos do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
 The only quantifier that would permit such a generalization would be "Some" (e.g., *some mosquitos carry malaria*).
