@@ -482,8 +482,10 @@ All results reported are similar for these two alternatives, and we use the alte
 
 
 The pair of speaker-listener models presented above correspond to the simplest possible communicative models with an underspecified threshold-meaning for a generalization. 
-This *simple but underspecified* hypothesis defines a *class* of models, however, with potentially more levels of recursion (e.g., a listener who thinks about a speaker who thinks about a listener).
-We discuss these alternative formulations (all of which are instances of the *simple but underspecified* hypothesis) and provide formal model comparisons between these RSA models in Appendix.
+The *simple but underspecified* hypothesis defines a *family* of models, however, with potentially more levels of recursion (e.g., a listener who thinks about a speaker who thinks about a listener).
+These are not of primary theoretical interest to this paper, as *any* formal model that explains the very flexible endorsement patterns of generalizations in language will be a substantial contribution.
+However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
+We discuss these alternative formulations and provide formal model comparison between these RSA models in Appendix.
 
 <!-- This decision is based on whether or not the generalization would accurately convey the $h$ -->
 <!-- For addressing the question of whether or not a generalization is "true" or "felicitous", we consider how a Gricean speaker would act, given the goal of being informative to the literal listener (Eq. \ref{eq:L0}).  -->
@@ -795,19 +797,20 @@ all.simulations %>%
 
 ## Model simulations
 
-All models were implemented in the probabilisitic programming language WebPPL [@dippl], and a complete, runable versions of the models in the following section can be found at \url{http://forestdb.org/models/generics.html}
+All models were implemented in the probabilisitic programming language WebPPL [@dippl].
+The following simulations were implemented in the Rmarkdown document that generated this paper text and figures, using the R package RWebPPL.
 
 The RSA model defined in the previous section predicts that the endorsement of a generalization depends upon a listener's *a priori* beliefs about the probabilty in question $P(h)$.
-For purposes of illustration, we present present the listener $L$ interpretations of the generalization for the underspecified threshol model as well as a fixed threshold model where the threhsold is set to the lowest possible value, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}).
+For purposes of illustration, we present present the listener $L$ interpretations of the generalization for the underspecified threshold model as well as a fixed threshold model where the threhsold is set to the lowest possible value, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}).
 
 Above, we described the intuition for how an underspecified threshold interacts with a uniformly uncertain belief about the probability $h$.
-Here, we consider some canonical cases from the literature on generics to demonstrate the kind of inferences a listener would draw from different generic statements.
-Note that our model of endorsements is a model of a speaker who decides whether or not to say the generic or stay silent. 
-Qualitatively speaking, model predictions for endorsement can be gleaned by comparing the posterior distribution over the probability $h$ upon hearing the generalization with the prior distribution over $h$ (which is the same as the listener's posterior upon hearing "silence").
-For different degrees of target probability $h$ that the speaker wants to communicate, the generalization will be more or less good at communicating it.
+Here, we consider some canonical cases from the literature on generics to demonstrate the kind of inferences our listener model would draw from different generic statements.
+Note that our model of endorsements is a model of a speaker who decides whether or not to say the generic to the listener or to stay silent. 
+Qualitatively speaking, model predictions for endorsement can be read off Figure \ref{fig:simulations} by comparing the posterior distribution over the probability $h$ upon hearing the generalization with the prior distribution over $h$ (which is the same as the listener's posterior upon hearing "silence").
+The speaker decides, for the degree of target probability $h$ that she seeks to communicate, will the generalization be better than nothing?
 
 In Figure \ref{fig:simulations} (row 2), we show a schematic prior distribution over a feature "barks".
-Here, we posit the prior is bimodal with peaks near 0\% and some high prevalence values, corresponding intuitively to the fact that many kinds creatures do not bark (i.e., have $h \sim 0$) and for those that do have members that bark, many of them bark (i.e., have some high $h$).
+Here, we posit the prior is bimodal with peaks near 0\% and some high prevalence values, corresponding intuitively to the fact that many kinds of creatures do not bark (i.e., have $h \sim 0$; e.g., cats) and for those that do have members that bark, many of them bark (i.e., have some high $h$).
 <!--  -->
 We see that the fixed threshold (middle row) struggles to differentiate those that generally do not have the feature from those that usually have the feature, returning a posterior distribution very similar to the prior.^[
 We model "those that do not generally have the feature" a Beta distribution with an expected value (mean) close to zero. 
@@ -817,13 +820,14 @@ Hearing the generalization ("Dogs bark"), however, strongly signals the property
 
 The strength of a listener's inference about $h$ (i.e., how prevalent is the feature?) depends in systematic ways on the prior belief distribution over $h$.
 Consider a prior intuitively corresponding to the feature "lays eggs" (Figure \ref{fig:simulations}, row 3). 
-The listener's posterior upon hearing the generalization (e.g., "Robins lay eggs") is much more conservative than with "barks" prior: The listener thinks that about 50% of robins lay eggs.
+The listener's posterior upon hearing the generalization (e.g., "Robins lay eggs") is much more conservative than the "barks" prior: The listener thinks that about 50% of robins lay eggs.
 Indeed, this is the same inference as if a listener heard "Robins are female" (Figure \ref{fig:simulations}, row 4, right panel). 
 Differences in the endorsements of these two statements would come from the speaker's comparison to what a listener would believe if she stayed silent (i.e., the listener's prior).
 In the case of "are female", the posterior is nearly identical with the prior; thus, the utterance has very litle information content. 
+In the case of "lays eggs", the utterance carries a lot of information (relative to the prior).
 
 Finally, we look at how a listener would interpret the statement "Mosquitos carry malaria", which intuitively should correspond to "Some mosquitos carry malaria".
-Indeed, we see that for the prior over "carries malaria", which *a priori* assumes that most creatures do not carry malaria and among those that do, the feature is not very widespread, the listener's posterior upon hearing the generalization is similar to what she learns about hearing "Some mosquitos carry malaria". 
+Indeed, we see that for the prior over "carries malaria"---which *a priori* assumes that most creatures do not carry malaria and among those that do, the feature is not very widespread---the listener's posterior upon hearing the generalization is similar to what she learns about hearing "Some mosquitos carry malaria". 
 Thus, a speaker who believes "some but very few" mosquitos carry malaria will still endorse the generalization.
 
 In sum, these simulations show that the behavior of the uncertain-threshold semantics is distinct from both the prior distribution over probability $h$ as well as the inferences derived from a fixed-threshold semantics.
