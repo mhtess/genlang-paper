@@ -450,11 +450,10 @@ As the threshold $\theta$  takes on lower and lower values, more and more $h$ pr
 When $\theta$ is very low, almost all $h$ are consistent with it (akin to "Some").
 When the listener averages over these possibilities, higher values of $h$ pass more thresholds; thus, higher $h$ are more likely *a posteriori*.
 
-In this paper, we are interested in explaining the variable endorsements of generalizations (e.g., *Birds lay eggs* is good; *Birds are female* is not) based on some known or believed probability $h$ (e.g., only female birds lay eggs).^[
-A more general version of this model can relax the assumption that the speaker has access to a degree of propensity $h$ that she is trying to communicate.
+In this paper, we are interested in explaining the variable endorsements of generalizations (e.g., *Birds lay eggs* is good; *Birds are female* is not) based on some known or believed probability $h$ (e.g., only female birds lay eggs).^[A more general version of this model can relax the assumption that the speaker has access to a degree of propensity $h$ that she is trying to communicate.
 Rather, the speaker may have a belief distribution over $h$ for the category. $k$, corresponding to the speaker's beliefs about the prevalence of the property in the category. 
-In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution: 
-$S_{belief}(u \mid k) \propto \exp{(\lambda = {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L_0(h, \theta \mid u)}  \diff \theta$
+In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
+$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
 ]
 Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe an endorsement model as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).
 \begin{equation} 
@@ -2490,7 +2489,7 @@ This is a strong alterantive model to our uncertain-threshold model; the only di
 <!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the target category $h'$). -->
 We use the empirically estimated target-category prevalence as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's prevalence prior $P(h)$.^[
 Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
-This corresponds to the more general form of the model described in **Alternative Formulations** section. 
+This corresponds to the more general form of the model described in a footnote in the model section. 
 With these data, the predictions of these two models are nearly identical.
 ]
 The $S_1$ model is then fully specified after setting the speaker optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
@@ -2588,7 +2587,7 @@ Generics have been studied extensively in the cognitive and developmental psycho
 However, no formal model has been able to make precise quantitative predictions about the basic phonemena of generics, and classic counterexamples to theories based on probability (*Birds lay eggs* v. *are female*; *Mosquitos carry malaria*) have stifled the development of formal models.
 
 By measuring listeners' prior beliefs about the prevalence of the property across kinds and the prevalence of the target kind (e.g., the percentage of birds that lay eggs), we were able to show how a semantics based on probability is tenable inspite of these seeming counterexamples.
-The key theoretical claim is that the threshold must be *underspecified* in the semantics and inferred in context by the listener.
+The key theoretical contribution is that the threshold must be *underspecified* in the semantics and inferred in context by the listener.
 The decision of whether or not to endorse the generic comes down to whether or not the generic would make the listener's belief distribution more in line with the speaker's.
 
 In explaining the variable endorsements of generics, we measured the prior distribution over the prevalence of features across categories in addition to the prevalence of the feature in the target category (e.g., the percentage of robins that lay eggs) to model the endorsement data.
@@ -2612,24 +2611,29 @@ In this case study, we focus on a particular class of events: people doing actio
 We focus on present-tense habitual sentences of the form \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., \emph{Mary smokes cigarettes.}). 
 
 Habituals about people are of particular importance because they are likely central to intuitive theories of personality and behavior. 
-Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013].
+<!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
 @McGuire1986 explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family". 
 A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant.").
 Habitual language may be a more conservative form of trait language (e.g., \emph{Bill is a smoker.}) and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-From a methodological standpoint, habituals are a particularly amenable domain to manipulating the target propensity that a speaker aims to communicate.
-People are often in the situation of being introduced to new people and learning new information about them.
-In addition, the propensity information can be expressed in an easily-interpretable frequency with which a person does an action (e.g., "Last month, Mary smoked cigarettes 3 times.").^[
-While target probability can be manipulated for generalizations about categories (generic language) (e.g., by stating the prevalence of feature in a kind), this may interact with domain knowledge in complex ways (e.g., it's *a priori* very unlikely that 90% of a hypothetical novel kind---lorches---have broken wings).
+From a methodological standpoint, habituals are a domain particularly amenable to manipulating the target propensity that a speaker aims to communicate.^[
+While target probability can be manipulated for generalizations about categories (generic language) (e.g., by stating the prevalence of feature in a kind), observers may have strongly constraining domain knowledge that heavily guides what prevalence values are likely (e.g., it's *a priori* very unlikely that 90% of a hypothetical novel kind---lorches---have broken wings).
 ]
-In our first experiment concerning habitual language, we manipulate the target frequency as well as the kind of event (Expt. 2b), creating a data set of endorsements that is three times as large as the data from Expt. 1b (generic endorsement). 
-To measure participants' latent prior belief distribution over the frequencies of people doing various actions (e.g., how often people *run*; Expt. 2a), we take advantage of the structured representation discovered in Expt. 1a, and learn about the prior by asking questions about the parameters of this model.
-In addition to directly manipulating the target propensity, these experiments provide the first test of the generality of our theory, that it can apply to generalizations about events as well as categories.
+First of all, because of the sociality of our species, we are often in the situation of being introduced to new people and learning new information about them.
+In addition, propensity information of people doing actions can be expressed in an easily-interpretable frequency (e.g., "Last month, Mary smoked cigarettes 3 times.").
 
-Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect expectations, not merely observations. 
+We follow the same general experimental structure as in Experiment 1. 
+First, we measure the prior distribution over the frequency of events, for different kinds of events (Expt. 2a).
+We do this using a novel data-analytic approach that takes advantage of the structured representation discovered in Expt. 1a.
+Then, we test endorsements of habitual sentences, manipulating the actual frequency with which a person does an action (Expt. 2b).
+In addition to directly manipulating the target propensity, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories.
+
+Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely her observations. 
 Up to this point, we have been relatively agnostic as to the interpretation of $h$, the target propensity that the speaker aims to convey.
-In our first investigation of the degree scale, we ask whether $h$ represents the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past week) or the predictive probability that this event will occur in the near future (e.g., how likely it is that Mary will smoke next week)? 
-In Expts. 3a \& 3b, we show that $h$, the target of communication, is a speakerâ€™s prediction about the future frequency of action, and not past frequency, tying the phenomenon of *genericity* even more to subjective beliefs.
+In two follow-up experiments, we ask whether $h$ represents the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past week) or the predictive probability that this event will occur in the near future (e.g., how likely it is that Mary will smoke next week)? 
+We do this by measuring particpants predictions about future frequency in situations where there are causal forces enabling or preventing the action (Expt. 2c). 
+We separately measure endorsements under the same contexts (Expt. 2d) and use the prediction measurements (Expt. 2c) as the target propensity $h$ that the speaker model is trying to communicate in order to predict habitual endorsements.
+To anticipate our results, we find that only a model that uses *predictive frequency* as the object of communication is able to predict the endorsement data, thus tying the phenomenology of *genericity* even more to subjective beliefs.
 
 
 <!-- This set of experiments is organized as follows. -->
@@ -2652,16 +2656,10 @@ In Expts. 3a \& 3b, we show that $h$, the target of communication, is a speakerâ
 <!-- The computational model described in Eq. \ref{eq:S1} is fully specified except for the prior distribution over the frequency of an event $P(h)$, which plausibly varies across different kinds of events. -->
 <!-- First, we measure the prior distribution, and use it and the computational model to predict human endorsement of habitual statements. -->
 
-## Experiment 2: Endorsing generalizations about events
+## Experiment 2a: Measuring the propensity prior for event knowledge
 
-We follow the same general experimental structure as in Experiment 1. 
-First, we measure the prior distribution over the frequency of events, for different kinds of events.
-Then, we test endorsements of habitual sentences, manipulating the actual frequency with which a person does an action.
-
-### Experiment 2a: Measuring the propensity prior for event knowledge
-
-In this experiment we elicit the prior $P(h)$ for different events in order to generate model predictions for corresponding habitual statements.
-For the case of statements about the behaviors of people, $P(h)$ can be conceived as a distribution over *different people*, each of whom do the behavior with a different frequency.
+In this experiment we elicit the prior $P(h)$ for different events in order to generate model predictions for corresponding habitual statements (Expt. 2b \& 2d).
+For the case of statements about the behaviors of people, $P(h)$ can be conceived as a distribution over *different people*, each of whom do the behavior with some frequency.
 To better understand what frequencies should be expected for different actions, we took advantage of the 
 structured representation of the prior discovered in Expt. 1.
 
@@ -2669,24 +2667,24 @@ In Expt. 1a, we discovered that prior distribution over the prevalence of a feat
 The first component (the "stable cause" component) represents the normal, stable frequencies of the property, among those that normally have the property.
 The second component (the "unstable" or "transient cause" component) represents the frequencies of the property among those categories who do not typically have the property. This second component will usually result in frequencies of 0\% (e.g., 0\% of lions have lay eggs), but could produce non-zero frequencies (e.g., in some hypothetical world, a lion who has undergone weird genetic mutations may lay eggs). 
 
-For the case of background knowledge over the frequency with which people do actions, we consider again two components.
-To a first approximation, the first component represents the frequencies of the event among the people who have done the action before (e.g., how often a person hikes, given that they have hiked before).
-The second component represents the frequencies of the event among the people who have not done the action before. 
-We will assume for these experiments, that those people who have never done the action before will almost never do the action (expected frequency: once every hundred years). 
-In this experiment, we measure the relative contribution of these two components to the prior, as well as the expected frequency among those people who have done the action before.^[
+For the case of background knowledge over the frequency with which people do actions, we consider again two components.^[
 In the case of event knowledge about people, we might expect there to be several more than just these two possibilities represented in the prior, corresponding to individuals with different traits or demographics.
 We assume here a simple structure so as to not make the specification of the prior overly complex.
 ]
+To a first approximation, the first component represents the frequencies of the event among the people who have done the action before (e.g., how often a person hikes, given that they have hiked before).
+The second component represents the frequencies of the event among the people who have not done the action before. 
+We will assume for these experiments, that those people who have never done the action before will almost never do the action. 
+In this experiment, we measure the relative contribution of these two components to the prior, as well as the expected frequency among those people who have done the action before.
 
-#### Method
+### Method
 
-##### Participants
+#### Participants
 
 We recruited 40 participants from Amazon's Mechanical Turk.
 Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
 The experiment took on average 12 minutes and participants were compensated \$1.25 for their work.
 
-##### Materials
+#### Materials
 
 We created thirty-one events organized into pairs or triplets from 5 different conceptual categories:
 <!-- We created twenty-seven events organized into pairs or triplets from 5 different conceptual categories:  -->
@@ -2697,7 +2695,7 @@ entertainment (e.g. \emph{watches professional football}, \emph{watches space la
 hobbies (e.g. \emph{runs}, \emph{hikes}). 
 Items were chosen to intuitively cover a range of likely frequencies of action, as well as to provide a minimal comparison to another item by having a common superordinate action (e.g. \emph{eating} caviar vs. peanut butter).
 
-##### Procedure
+#### Procedure
 
 For each event, participants were asked two questions, with associated dependent measures:
 
@@ -2939,6 +2937,60 @@ for (it in items){
 }
 ```
 
+```{r habituals-prior-model-parameters, fig.width = 5, fig.height = 3}
+
+example.habituals <- c("smokes marijuana", "smokes cigarettes","drinks coffee",
+                       "climbs mountains", "hikes", "runs", 
+                       "wears a suit", "wears a watch", "wears socks", 
+                       "writes poems", "goes to the movies", "plays the banjo"
+                       )
+
+rs.habituals.bda.prior.summary <- rs.habituals.bda.prior %>%
+  filter(Parameter == "mean") %>%
+  group_by(Variable, Gender, item) %>%
+  summarize(MAP = estimate_mode(value),
+            cred_upper = hdi_upper(value),
+            cred_lower = hdi_lower(value)) %>%
+  ungroup()
+rs.habituals.bda.prior.summary.wide <- left_join(
+  rs.habituals.bda.prior.summary %>% filter(Variable == "mix") %>%
+    select(-Variable) %>%
+    rename(mix_mean = MAP, mix_upper = cred_upper, mix_lower = cred_lower),
+  rs.habituals.bda.prior.summary %>% filter(Variable == "stableFreq") %>%
+    select(-Variable) %>%
+    rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
+)
+
+figure.habituals.priors.scatter <- left_join(rs.habituals.bda.prior.summary.wide,
+          d.hab.priors %>% select(item, category)) %>%
+ggplot(.,
+       aes( x = mix_mean, xmin = mix_lower, xmax = mix_upper,
+            y = sfreq_mean, ymin = sfreq_lower, ymax = sfreq_upper,
+             fill = category))+
+    scale_shape_manual(values=c(21,22))+
+  #scale_color_solarized()+scale_fill_solarized()+
+  scale_fill_brewer(palette='Set1')+
+
+  geom_point(size=4, inherit.aes = F, 
+             aes(x = mix_mean,y = sfreq_mean,  fill = category,
+            shape = Gender),  alpha = 0.9)+
+  geom_errorbar(alpha = 0.5)+
+  geom_errorbarh( alpha = 0.5)+
+  xlab("% of Americans who have DONE ACTION")+
+  ylab("Log Frequency of DOING ACTION")+
+  #scale_
+  coord_fixed(ratio = 1/8)+
+  theme(legend.title = element_text(hjust=0),
+        legend.position="bottom",
+        legend.direction="horizontal") +
+        scale_y_continuous(limits = c(-1.5, 6.5), 
+                     breaks = c(0, 2.5, 4, 5.9),
+                     labels = c("annually", "monthly", "weekly", "daily"))+
+  geom_text_repel(data = rs.habituals.bda.prior.summary.wide %>%
+                    filter(item %in% example.habituals, Gender == "female"), inherit.aes =F,
+                  aes(x = mix_mean,y = sfreq_mean, label = item), force = 5, size = 3)
+```
+
 
 ```{r habituals-prior-model-forwardSample}
 rs.habituals.bda.prior.spread <- rs.habituals.bda.prior %>% 
@@ -2969,9 +3021,9 @@ for (i in 1:1){
 
 
 
-```{r habituals-prior-fig, fig.width = 9, fig.height = 6, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red)."}
+```{r habituals-prior-marginals-fig, fig.width = 4, fig.height = 4, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red)."}
 
-bind_rows(
+figure.habituals.priors.marginals <- bind_rows(
   d.hab.priors.samples %>% 
     mutate(src = 'data', 
            val = log(val)),
@@ -2980,21 +3032,26 @@ bind_rows(
     select(gender, item, val) %>%
     mutate(src = 'model')
   ) %>%
-ggplot(. , aes( x = val, color = src))+
+  filter(item %in% example.habituals,
+         src == 'model') %>%
+  mutate(item = factor(item, levels = example.habituals)) %>%
+ggplot(. , aes( x = val, color = gender))+
   geom_density(size = 0.8, aes( y = ..scaled.. ))+
   facet_wrap(~item, nrow = 4)+
   scale_color_solarized()+
   xlab("Frequency")+
   ylab("Scaled prior density")+
-  scale_x_continuous(limits = c(-5,10)) +
-  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
   theme(strip.text.y = element_text(angle = 0),
-        legend.position = c(0.95, 0.075),
+        legend.position = c(0.9, 0.12),
         axis.text.x = element_text(angle = 90))+
     scale_x_continuous(limits = c(-5, 8), 
                      breaks = c(-5, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+```
 
+```{r habituals-prior-figure, fig.width = 11, fig.height = 6, fig.cap="Propensity priors for events (Expt. 2a). Left: Inferred mixture mean parameter and stable frequency mean parameter for N events. Right: Reconstructed priors on frequency from the structured, prior elicitation task. Priors are reconstructed by forward sampling using the inferred parameters in the structured model."}
+grid.arrange(figure.habituals.priors.scatter, figure.habituals.priors.marginals, nrow = 1)
 ```
 
 
@@ -3008,7 +3065,7 @@ ggplot(. , aes( x = val, color = src))+
 <!-- We took the log-transformed (and "-Infinity"-adjusted) raw data and binned each response to the closest bins on a grid with binwidth of 0.5 in the log-"times per year" scale. -->
 <!-- This yields a grid of 23 points with frequencies ranging from "once every twenty years" (log-frequency = -3) to "twenty times per day" (log-frequency = 9). -->
 
-#### Data analysis and results
+### Data analysis and results
 
 All participants responded correctly to both questions in the attention check trial, so all data was used in the analysis.
 We built a Bayesian data analysis model for this prior elicitation task.
@@ -3632,9 +3689,6 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
 
 ```
 
-
-
-
 ```{r habituals-endorsement-figure, fig.width=11, fig.height=8}
 grid.arrange(fig.habituals.endorsement.vs.freq, 
              habituals.endorsement.models,
@@ -3642,17 +3696,15 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-#### Behavioral results
-
 On each trial of the experiment, the participant was told a person did a particular action 3 times during some time window. 
-A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one. 
+A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
 Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements.
 A more sophisticated alternative hypothesis is that the degree to which the habitual statement is good is the frequency itself. 
 <!-- Our computational model predicts that the the degree to which the habitual statement is good is the frequency of event, normalized by the alternative possible frequencies under the prior. -->
 <!-- [MHT: SENTENCE ABOVE IS THE SOFT-SEMANTICS INTERPRETATION] -->
 
 Both of the simple alternative hypotheses can immediately be ruled by out by visual inspection of Figure \ref{fig:tjScatters} (left), which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence. 
-First, it is clear that not all habitual statements are strongly assented to, even though it is true that all the stimuli involved an agent doing the action with some non-zero frequency.
+First, it is clear that not all habitual statements are strongly assented to, even though it is true that all the stimuli involved an agent doing the action with some non-zero frequency (at least 3 times before).
 It is also clear that a habitual sentence can receive strong agreement even when the actions are very infrequent (log frequency $\sim$ -1; 3 times in a 5-year interval; e.g. \emph{writes novels}, \emph{climbs mountains}), arguing against the second alternative.
 We see in addition that even when actions are done relatively frequently (e.g. 3 times in a one month interval; log frequency $\sim$ 5), some habitual sentences receive less than full endorsement (e.g. \emph{wears socks}, \emph{drinks coffee}). 
 In our data, actions completed with a high frequency (3 times in a one week interval; log frequency $\sim$ 6.5) receive at a minimum 75\% endorsement, though there is still variability among them (e.g. between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
@@ -3678,7 +3730,7 @@ Less interestingly, the lack of a difference may be the result of gender being n
 
 #### Model criticism and comparison
 
-We used the pragmatic speaker model $S_2$ (Eq.~\ref{eq:S2}) with the priors elicited above (Expt.~1) to predict felicity judgments in Expt.~2, assuming the target propensity (to be conveyed by $S_2$) is the provided frequency.
+We used the pragmatic speaker model $S_2$ (Eq.~\ref{eq:S2}) with the priors elicited above (Expt. 2a) to predict felicity judgments in Expt.~2, assuming the target propensity (to be conveyed by $S_2$) is the provided frequency.
 Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(\lambda)$ across individuals.
 The model has two free parameters---the speaker optimality parameters, $\alpha_i$, in Eqs.~\ref{eq:S2} \& \ref{eq:S1}. 
 We use Bayesian data analytic techniques to integrate over these parameters \cite{LW2014}, comparing the posterior predictive distribution to the empirical data in Expt.~2.
@@ -4556,7 +4608,7 @@ causals.endorsement.insets <- cas.listener.predictions %>%
 
 
 
-```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = F}
+```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = T}
 figure.causals.endorsement <- bind_rows(
   m.cas.fullmodel.endorsement %>%
     mutate(src = "model"),
