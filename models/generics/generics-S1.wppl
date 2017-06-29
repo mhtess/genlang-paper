@@ -51,6 +51,12 @@ var meaning = function(utt,state, theta) {
 }
 
 var properties = levels(data.endorsement, "Property")
+
+// should be 21 properties
+assert.ok(
+  properties.length == 21
+)
+
 var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
 
 var model = function(){
@@ -65,6 +71,10 @@ var model = function(){
 			endorsement: _.filter(data.endorsement, {Property: p}),
 			prior: _.filter(data.prior, {Property: p})
 		}
+    // make sure there's data
+    assert.ok(
+      (propertyData.prior.length > 0) && (propertyData.endorsement.length > 0)
+    )
 
 		// prior parameters
 		var theta = uniformDrift({a: 0, b: 1, width:0.2})
@@ -75,7 +85,7 @@ var model = function(){
 		}
 
 		var priorParams = betaShape(betaParams);
-
+    // display("before prevalence prior factor")
 		// observe structured prior data
 		mapData({data: propertyData.prior}, function(d){
 			// display(d.roundedPrevalence)
@@ -86,9 +96,9 @@ var model = function(){
 				 Math.log(1-theta) + nullDistribution.score(d.avoided_endval)
 				//  Math.log(1-theta) + Delta({v: 0}).score(d.roundedPrevalence)
 			 ])
-			//  display(scr)
 			 factor(scr)
 		})
+    // display("after prevalence prior factor")
 
 		query.add(["prior","mixture", p, "NA"], theta)
 		query.add(["prior","stableFreq", p, "mean"], betaParams.g)
@@ -121,6 +131,7 @@ var model = function(){
 
 		// make sure subsetting works properly
 		assert.ok(categories.length > 0)
+
 		foreach(categories, function(k){
 
 			var categoryData = {
@@ -128,6 +139,11 @@ var model = function(){
 				prior: _.filter(propertyData.prior, {Category: k})
 			};
 
+      // make sure there is data
+      assert.ok(
+        (categoryData.prior.length > 0) && (categoryData.endorsement.length > 0)
+      )
+      // display(_.map(categoryData))
 			// var theta_target = uniformDrift({a: 0, b: 1, width:0.2})
 
 			var withinParams = {
@@ -142,10 +158,10 @@ var model = function(){
 			// };
 
 			mapData({data: categoryData.prior}, function(d){
-				// display(p+k+ "d = " +d.avoided_endval + " " + Beta(withinShape).score(d.avoided_endval))
+				// display(p+k+ "d = " + d.avoided_endval + " " + Beta(withinShape).score(d.avoided_endval))
 				observe(Beta(withinShape), d.avoided_endval)
 			})
-
+      // display("after prevalence factor")
 
 			query.add(["targetPrevalence","mean", p, k], withinParams.g)
 			query.add(["targetPrevalence","sampleSize", p, k], withinParams.d)
@@ -162,17 +178,18 @@ var model = function(){
 			// 				}, bins )
 			// 		})
 			// }});
-
+      // display(speakerBeliefs)
 			var s1prediction = speaker1(speakerBeliefs);
 			var responseData = _.map(categoryData.endorsement, "binaryResponse")
 
 			mapData({data:responseData}, function(d){
-				var scr = s1prediction.score(d)
-				scr == -Infinity ? display(p + " " + k + " " + speakerBeliefs + " "  + d) : null
+				// var scr = s1prediction.score(d)
+        // display(scr)
+				// scr == -Infinity ? display(p + " " + k + " " + speakerBeliefs + " "  + d) : null
 				observe(s1prediction, d)
 			})
 
-			query.add(["predictive",targetUtterance, p, k], expectation(s1prediction) )
+			query.add(["endorsement", targetUtterance, p, k], expectation(s1prediction) )
 
 		})
 
@@ -183,7 +200,8 @@ var model = function(){
 	return query
 }
 
-var totalIterations = 5000, lag = 20;
+// 1500 iterations / min (including burn-in)
+var totalIterations = 1000, lag = 10;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
 
 var outfile = 'results-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
