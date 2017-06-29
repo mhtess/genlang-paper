@@ -1664,7 +1664,7 @@ save(m.gen.endorse.priors.posteriorPredictive, file = '../analysis/generics-prio
 
 ```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 5, fig.cap="Cumulative density plots for prior distributions representing the prevalence of eight different features. Distributions are the posterior predictive distributions for the Structured and Unstructured prior models, as well as the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
-    ggplot(m.gen.endorse.priors.posteriorPredictive, 
+ggplot(m.gen.endorse.priors.posteriorPredictive, 
            aes( x = prevalence, color = src, lty = src))+
       #geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
     #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
@@ -1777,17 +1777,17 @@ d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
 d2 <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "naturalGenerics-trials-formatted.csv", sep = ""))
 
-write.csv(
-  left_join(
-  d1 %>%
-    mutate(sentence = as.character(sentence),
-           sentence = gsub('&quotechar', '', sentence),
-         sentence = gsub('lyme', 'Lyme', sentence)),
-  unique(d2 %>%
-    mutate(sentence = paste(Category, " ", Property, ".", sep = "")) %>%
-    select(Category, Property, sentence))
-), file = paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments-n100.csv", sep = ""), row.names = F)
+# write.csv(
+#   left_join(
+#   d1 %>%
+#     mutate(sentence = as.character(sentence),
+#            sentence = gsub('&quotechar', '', sentence),
+#          sentence = gsub('lyme', 'Lyme', sentence)),
+#   unique(d2 %>%
+#     mutate(sentence = paste(Category, " ", Property, ".", sep = "")) %>%
+#     select(Category, Property, sentence))
+# ), file = paste(project.path, "data/generics/endorsement/",
+#                     "truth-judgments-n100.csv", sep = ""), row.names = F)
 ```
 
 ```{r generic-endorsement}
@@ -2216,42 +2216,36 @@ Additionally, negative properties (like, "not carrying malaria") are completely 
 ##### Fixed threshold RSA model
 
 ```{r generic-RSAmodels, fig.width = 8}
-# n_chains <- 1
-# n_samples <- 50000
-# burn <- n_samples
-# 
-# model_prefix <- "results-fullModel-s1-allowUPriors-refinedPriors-fixedNull-prevPriorFactorBugFixed-smtncsgeneric-"
-# 
-# m.samp <- data.frame()
-# for (i in seq(1, n_chains)){
-#   mi <- fread(paste(project.path,  "models/generics/results/", model_prefix, 
-#                     n_samples, "_burn", burn, "_chain", i, ".csv", sep = ""))
-#   m.samp.i <- mi %>% mutate(chain = i)
-#   m.samp <- bind_rows(m.samp, m.samp.i)
-#   #print(i)
-# }
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
 
+model_prefix <- "results-generics-jointModel-S1-smntcs_"
 
-m.samp <- fread(
-  paste(project.path,"models/generics/results/", 
-        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain2.csv",
-        sep = "")
-  ) %>% mutate(chain = 1)
+m.samp <- data.frame()
+m.samp.fixed <- data.frame()
+for (i in seq(1, n_chains)){
+  mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+  
+  mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
+                    n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
+  m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
+  
+  #print(i)
+}
 
-m.gen.somemodel.endorsement <- fread(
-  paste(project.path,"models/generics/results/", 
-        #"results-fullModel-s1-smtncssome-20000_burn10000_chain1.csv", 
-        "results-fullModel-s1-lowestTheta-smtncssome-1000_burn500_lag10_chain1.csv",
-        sep = "")
-  ) %>% mutate(chain = 1) %>%
-  filter(type == 'predictive') %>%
+m.gen.somemodel.endorsement <- m.samp.fixed %>%
+  filter(type == 'endorsement') %>%
   group_by(type, param, property, category) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
 m.gen.fullmodel.endorsement <- m.samp %>%
-  filter(type == 'predictive') %>%
+  filter(type == 'endorsement') %>%
   group_by(type, param, property, category) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
@@ -2289,12 +2283,12 @@ r2.gen.rsa.fixed <- compute_r2(
 
 mse.gen.rsa.generics <- compute_mse(
   m.gen.endorse.rsa %>% filter(src == "generics_model"), 
-  "MAP", "MAP_h", sigfigs = 3
+  "MAP", "MAP_h", sigfigs = 4
 )
 
 mse.gen.rsa.fixed <- compute_mse(
   m.gen.endorse.rsa %>% filter(src == "some_model"),  
-  "MAP", "MAP_h", sigfigs = 3
+  "MAP", "MAP_h", sigfigs = 4
 )
 
 

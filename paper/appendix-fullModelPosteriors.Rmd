@@ -83,20 +83,33 @@ d.gen.endorse.bayes <- left_join(
 
 ### Uncertain threshold RSA 
 
-```{r}
-m.samp <- fread(
-  paste(project.path,"models/generics/results/", 
-        "results-generics-jointModel-S1-smtncs_generic-25000_burn12500_lag20_chain2.csv",
-        sep = "")
-  ) %>% mutate(chain = 1)
+```{r gen-loadModels, eval = F}
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
+
+model_prefix <- "results-generics-jointModel-S1-smntcs_"
+
+m.samp <- data.frame()
+m.samp.fixed <- data.frame()
+for (i in seq(1, n_chains)){
+  mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+  
+  mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
+                    n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
+  m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
+  
+  #print(i)
+}
 ```
 
 
-### Parameter posteriors
-
 #### Speaker optimality parameter
 
-```{r}
+```{r gen-speakeropt}
 m.samp %>% 
   filter(type == "param") %>%
   ggplot(., aes(x = val, fill = factor(chain)))+
@@ -107,9 +120,7 @@ m.samp %>%
 #### Posterior predictive distribution on target prevalence
 
 
-
-
-```{r}
+```{r gen-prev-loadData}
 d.prior <- read.csv(paste(project.path, data.path, 
                     "naturalGenerics-prior-trials-n57.csv", sep = ""))
 
@@ -127,8 +138,8 @@ d.prior.summary <- d.prior %>%
 
 
 
-Forward sample Target Prevalence from posterior on parameters
-```{r}
+```{r gen-prev-forward}
+#Forward sample Target Prevalence from posterior on parameters
 m.samp.prev.params <- m.samp %>%
     filter(type == "targetPrevalence") %>%
     mutate(parameter = paste(param, property, category, sep = "_")) %>%
@@ -151,9 +162,11 @@ m.samp.prevalence <- m.samp.prev.params %>%
     ungroup()
 ```
 
+#### Target prevalence
 
+##### Full distributions
 
-```{r fig.width = 6, fig.height = 6}
+```{r gen-prev-dists, fig.width = 8, fig.height = 6}
 bind_rows(
   d.prior %>% 
   mutate(sentence = paste(Category," " ,Property, ".", sep = "")) %>%
@@ -167,16 +180,20 @@ bind_rows(
     mutate(src = 'model') 
   ) %>%
 ggplot(. , aes( x = prevalence, color = src))+
-  geom_density(size = 1.1, aes( y = ..scaled.. ))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+  #geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+   #              position = position_dodge())+
   facet_wrap(~Property + Category)+
   scale_color_solarized()+
-  scale_x_continuous(limits = c(0,1)) +
-  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
   theme(strip.text.y = element_text(angle = 0))
 ```
 
+##### Means and CIs
 
-```{r}
+
+```{r gen-prev-means}
 # joint model inferred prevalence 
 m.samp.targetPrev <- m.samp.prevalence %>% 
   group_by(category, property) %>%
@@ -197,8 +214,9 @@ left_join(d.prior.summary,
   coord_fixed()
 ```
 
+##### Does posterior on target prevalence predict generic endorsement?
 
-```{r eval = F}
+```{r gen-prevalence-vs-endorsement}
 left_join(
   d.gen.endorse.bayes,
   m.samp.prevalence %>% 
@@ -224,10 +242,8 @@ left_join(
 #### Posterior predictive distribution on prevalance priors
 
 
-Forward sample from posterior on parameters
-```{r}
-
-
+```{r gen-prevprior-forward}
+#Forward sample from posterior on parameters
 m.samp.prior.params <- m.samp %>%
     filter(type == "prior") %>%
     mutate(parameter = paste(param, category, sep = "_")) %>%
@@ -242,11 +258,11 @@ m.samp.prior.params <- m.samp %>%
     group_by(parameter, property, iteration) %>%
     spread(parameter, val) %>%
     rowwise() %>%
-    mutate(isPresent = rbinom(1, 1, prob = isPresent_na),
+    mutate(isPresent = rbinom(1, 1, prob = mixture_NA),
        prevalence = ifelse(isPresent == 1, 
                            rbeta(n = 1, 
-                                 shape1 = prevalenceGivenPresent_mean* prevalenceGivenPresent_sampleSize,
-                                 shape2 = (1-prevalenceGivenPresent_mean)*prevalenceGivenPresent_sampleSize),
+                                 shape1 = stableFreq_mean* stableFreq_sampleSize,
+                                 shape2 = (1-stableFreq_mean)*stableFreq_sampleSize),
                            rbeta(n = 1,
                                  shape1 = 1,
                                  shape2 = 100))) %>%
@@ -254,8 +270,9 @@ m.samp.prior.params <- m.samp %>%
     select(property, prevalence)
 ```
 
-Marginal distributions on prevalence
-```{r fig.width = 8, fig.height = 5}
+##### Marginal distributions on prevalence
+
+```{r gen-prevprior-marginals, fig.width = 8, fig.height = 5}
 bind_rows(
   d.prior %>% 
   mutate(prevalence = prevalence / 100,
@@ -266,20 +283,19 @@ bind_rows(
     mutate(src = 'model') 
   ) %>%
 ggplot(. , aes( x = prevalence, color = src))+
-  geom_density(size = 1.1, aes( y = ..scaled.. ))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
   facet_wrap( ~ Property, nrow = 3)+
   scale_color_solarized()+
-  scale_x_continuous(limits = c(0,1)) +
+  scale_x_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
   scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
   theme(strip.text.y = element_text(angle = 0))
 ```
 
 
-CDFs
+##### Cumulative Density Functions
 
 
-```{r fig.width = 8, fig.height = 5}
-  
+```{r gen-prevprior-cdf, fig.width = 8, fig.height = 5}
 bind_rows(
   d.prior %>% 
   mutate(prevalence = prevalence / 100,
@@ -298,18 +314,4 @@ bind_rows(
 ```
 
 
-
-```{r}
-m.gen.somemodel.endorsement <- fread(
-  paste(project.path,"models/generics/results/", 
-        #"results-fullModel-s1-smtncssome-20000_burn10000_chain1.csv", 
-        "results-fullModel-s1-lowestTheta-smtncssome-1000_burn500_lag10_chain1.csv",
-        sep = "")
-  ) %>% mutate(chain = 1) %>%
-  filter(type == 'predictive') %>%
-  group_by(type, param, property, category) %>%
-  summarize(MAP = estimate_mode(val),
-            cred_upper = hdi_upper(val),
-            cred_lower = hdi_lower(val))
-```
-
+### Fixed threshold model 
