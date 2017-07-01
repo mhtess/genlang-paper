@@ -24,23 +24,23 @@ var annualRates = {
 
 var dataPath = "../../data/habituals/"
 
-var prior_file = dataPath + "priors/habituals-priors.csv";
-var endorsement_file = dataPath+"endorsement/habituals-endorsement.csv";
-var endorsement_catch_file = dataPath+"endorsement/habituals-endorsement-catch_trials.csv";
+var prior_file = dataPath + "priors/habituals-priors.csv",
+    endorsement_file = dataPath+"endorsement/habituals-endorsement.csv",
+    endorsement_catch_file = dataPath+"endorsement/habituals-endorsement-catch_trials.csv";
 
 var d_prior = dataFrame(
-	utils.readCSV(prior_file).data,[
-		"nPersons_women", "comparisonNum_women", "nInstances_women",
-		"nPersons_men", "comparisonNum_men", "nInstances_men",
-		"effectiveExistence_men", "effectiveExistence_women"
-	]
-);
-var d_endorsement = dataFrame(
-	utils.readCSV(endorsement_file).data,["n_instances"]
-);
-var d_endorsement_catch = dataFrame(
-	utils.readCSV(endorsement_catch_file).data, ["pass"]
-);
+  	utils.readCSV(prior_file).data,[
+  		"nPersons_women", "comparisonNum_women", "nInstances_women",
+  		"nPersons_men", "comparisonNum_men", "nInstances_men",
+  		"effectiveExistence_men", "effectiveExistence_women"
+  	]
+  ),
+  d_endorsement = dataFrame(
+  	utils.readCSV(endorsement_file).data,["n_instances"]
+  ),
+  d_endorsement_catch = dataFrame(
+  	utils.readCSV(endorsement_catch_file).data, ["pass"]
+  );
 
 // preprocess data
 var data = {
@@ -85,9 +85,9 @@ var utterancePrior = Infer({model: function(){
 
 var meaning = function(utt,state, theta) {
   return utt == "habitual" ? state > theta :
+         utt == "some" ? state > _.min(thetaBins) :
          utt == "habitual is false" ? state <= theta :
-         utt == 'silence' ? true :
-         utt == 'some' ? state > _.min(thetaBins) :
+         utt == "silence" ? true :
          true
 }
 
@@ -107,6 +107,12 @@ var model = function(){
 			endorsement: _.filter(data.endorsement, {habitual: i}),
 			prior: _.filter(data.prior, {item: i})
 		};
+
+    // make sure there's data
+    assert.ok(
+      (itemData.prior.length > 0) && (itemData.endorsement.length > 0)
+    )
+
 
 		// prior parameters
 		/// mixture component
@@ -205,6 +211,10 @@ var model = function(){
 			var freqData = _.filter(itemData.endorsement, {binnedAnnualRate: freq});
 			var s1prediction = speaker1(freq);
 
+      assert.ok(
+        (freqData.length > 0)
+      )
+
 			mapData({data:freqData}, function(d){
 				// display(d)
 				// display("speaker score = " + s1prediction.score(d.alignedResponse))
@@ -222,7 +232,7 @@ var model = function(){
 	return query
 }
 
-var totalIterations = 1000, lag = 5;
+var totalIterations = 100000, lag = 20;
 var mhiter = totalIterations/lag, burn = totalIterations;
 var outfile = 'results-habituals-jointModel-S1-smtncs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
