@@ -83,6 +83,7 @@ library(ggrepel)
 library(jsonlite)
 library(gridExtra)
 library(lme4)
+library(knitr)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -2357,9 +2358,9 @@ m.gen.fullmodel.prior.parameters.tidy <- m.gen.fullmodel.prior.parameters %>%
   mutate(param = paste(param, category, sep = "_")) %>%
   select(-category) %>%
   spread(param, MAP) %>%
-  rename(mix = isPresent_na, 
-         stable_mean = prevalenceGivenPresent_mean, 
-         stable_concentration = prevalenceGivenPresent_sampleSize) %>%
+  rename(mix = mixture_NA, 
+         stable_mean = stableFreq_mean, 
+         stable_concentration = stableFreq_sampleSize) %>%
   mutate( a = stable_mean * stable_concentration, 
           b = (1 - stable_mean) * stable_concentration)
 
@@ -3080,7 +3081,7 @@ We observe a correlation in our items between the mean \% of Americans who have 
 Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often). 
 This diversity is relevant because the speaker model (Eq.~\ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
 
-From the inferred parameters and the assumed functional forms (i.e., the mixture distribution), we can generate $P(h)$ modeled as a mixture of individuals who have done the action before and those that haven't.
+Analagous to what was done with the prior knowledge for generic language, from the inferred parameters and the assumed functional forms (i.e., the mixture distribution), we can generate $P(h)$ modeled as a mixture of individuals who have done the action before and those that haven't.
 That is, $P(h)$ was constructed by sampling $\lambda$ as follows:
 
 \begin{align}
@@ -3097,14 +3098,13 @@ If the coin comes up heads (i.e., $\text{Bernoulli}(\phi) = \textsc{true}$), a f
 If the coin comes up tails, a frequency $h$ is sampled from the distribution of people who have not done the action before.
 We make the simplifying assumption that people who have not done the action before will probably never do the action (expected frequency: once every hundred years).
 
-
 Figure \ref{fig:priorScatter} (right) shows example inferred priors.
 
-Some items show substantial differences between the genders (e.g. \emph{wears a bra}) and some show subtle differences (e.g. \emph{watches professional football}).
-Our prior distributions $P(h)$ are with respect to an alternative class of entities (e.g., other individuals). 
-It's possible that when evaluating habitual statements, $P(h)$ is with respect to either *all people* or *people of the same gender*. 
-For example, are the frequency conditions by which a man would qualify to "watch professional football" (habitually) different than those by which a woman would qualify to "watch professional football"?
-We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2, for select items with priors that differ substantially by gender.
+Some items show substantial differences between the genders (e.g., \emph{wears a bra}) and some show subtle differences (e.g., \emph{watches professional football}).
+Recall that the prior distributions $P(h)$ used in the RSA are with respect to an alternative class of entities (e.g., other individuals). 
+It's possible that when evaluating habitual statements under certain contexts, $P(h)$ is with respect to either *all people* or *people of the same gender*. 
+For example, are the frequency conditions by which a man would qualify to "watch  football" (habitually) different than those by which a woman would qualify to "watch  football"?
+We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2b, for select items with priors that differ substantially by gender.
 
 
 <!-- We analyze the data using a Bayesian approach to allow for a consistent integration into the computational model. -->
@@ -3185,7 +3185,7 @@ The items were the same as in the prior elicitation task.
 Participants were asked whether they agreed or disagreed with the corresponding habitual sentence: "\textsc{person does x}" (e.g., \emph{Bill smokes cigarettes}).
 Participants completed 37 trials, which were composed of the 31 items from the prior elicitation task randomly paired with either a male or female character name.
 6 of these items were then also paired with a name of the opposite gender (e.g., participants saw both a female character and a male character who watched professional football).
-These were used for an exploratory analysis on gender differences.
+These were used for an exploratory analysis on differences in endorsements by gender of the target character.
 The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-2.html}.
 
 ### Results
@@ -3690,23 +3690,77 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-On each trial of the experiment, the participant was told a person did a particular action 3 times during some time window. 
+#### Descriptive behavioral results
+
+On each trial of the experiment, the participant was told a person did a particular past frequency and was asked to evaluate the corresponding habitual statements.
 A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
-Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements.
+Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements as the target character always did the action 3 times during some time window. 
 A more sophisticated alternative hypothesis is that the degree to which the habitual statement is good is the frequency itself. 
 <!-- Our computational model predicts that the the degree to which the habitual statement is good is the frequency of event, normalized by the alternative possible frequencies under the prior. -->
 <!-- [MHT: SENTENCE ABOVE IS THE SOFT-SEMANTICS INTERPRETATION] -->
 
-Both of the simple alternative hypotheses can immediately be ruled by out by visual inspection of Figure \ref{fig:tjScatters} (left), which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence. 
+Both of the simple alternative hypotheses can immediately be ruled by out by visual inspection of Figure \ref{fig:habituals-endorsement-figure} (top-left), which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence. 
 First, it is clear that not all habitual statements are strongly assented to, even though it is true that all the stimuli involved an agent doing the action with some non-zero frequency (at least 3 times before).
-It is also clear that a habitual sentence can receive strong agreement even when the actions are very infrequent (log frequency $\sim$ -1; 3 times in a 5-year interval; e.g. \emph{writes novels}, \emph{climbs mountains}), arguing against the second alternative.
-We see in addition that even when actions are done relatively frequently (e.g. 3 times in a one month interval; log frequency $\sim$ 5), some habitual sentences receive less than full endorsement (e.g. \emph{wears socks}, \emph{drinks coffee}). 
-In our data, actions completed with a high frequency (3 times in a one week interval; log frequency $\sim$ 6.5) receive at a minimum 75\% endorsement, though there is still variability among them (e.g. between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
-Overall, the raw (log) frequency of action predicts only a fraction of the variability in responses ($r^2(93) = 0.33$).
+It is also clear that a habitual sentence can receive strong agreement even when the actions are very infrequent (3 times in a 5-year interval; e.g. \emph{writes novels}, \emph{climbs mountains}), arguing against the second alternative.
+We see in addition that even when actions are done relatively frequently (e.g. 3 times in a one month interval), some habitual sentences receive less than full endorsement (e.g. \emph{wears socks}, \emph{drinks coffee}). 
+In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g. between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
+Overall, the raw log-frequency of action predicts only a fraction of the variability in responses ($r^2(93) = 0.33$).
 For actions that are done on the time scale of years or longer (lower median of frequency), frequency itself no longer explains the endorsements ($r^2(50) = 0.07$)
 
 We observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance).
 This reflects the fact that these statements are not altogether *false* even though the action is done very rarely.
+
+
+```{r habituals-endorsement-gender-exploration, results="asis"}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    mutate(female = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high,  -characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    #rename(male_MAP, male_low = low, male_high = high) %>%
+    mutate(male = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high, -characterGender)
+    #rename(female_MAP, female_low = low, female_high = high)
+) %>% xtable(.,
+         caption = c("Exploratory ananlysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
+        label = c("tab:habituals-endorsement-gender")) %>%
+print(., type = "latex", 
+      tabular.environment = "tabularx", width = "\\textwidth",
+      scalebox='0.75',
+      include.rownames = FALSE, comment = F)
+```
+
+
+For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements. 
+Differences in endorsements would suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
+Endorsement probabilities and 95\% credible intervals for these six items for each gender are showed in Table \ref{tab:habituals-endorsement-gender}.
+Descriptively, we do not observe appreciate 
+
+
 
 We find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$. 
 This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women). 
