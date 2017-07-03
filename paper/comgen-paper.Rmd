@@ -3270,7 +3270,7 @@ fig.habituals.endorsement.vs.freq <-
 ```
 
 
-```{r habituals-endorsement-gender-exploration-scatter, fig.cap="Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.}
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.'}
 gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
                     "wears a bra", "wears a watch", "wears a suit")
 
@@ -3407,7 +3407,7 @@ d.hab.endorse.regression.freq <- left_join(
       )
 )
 
-r2.hab.n <- length(r2.habituls.regression.freq$MAP_h)
+r2.hab.n <- length(d.hab.endorse.regression.freq$MAP_h)
 
 r2.habituls.regression.freq <- compute_r2(d.hab.endorse.regression.freq,
                                           "MAP_h", "prediction")
@@ -3537,6 +3537,35 @@ m.hab.endorse.rsa <- bind_rows(
     mutate(src = "some_model")
 )
 
+r2.habituals.rsa.fixed <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.fixed <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.uncertain <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+
+habituals.rsa.uncertain.infrequent <- m.hab.endorse.rsa %>% filter(src == "habituals_model", logAnnualRate < 1.1)
+
+r2.hab.rsa.infrequent.n <- length(habituals.rsa.uncertain.infrequent$MAP_h)
+
+r2.habituals.rsa.uncertain.infrequent<- compute_r2(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain.infrequent <- compute_mse(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+
 
 
 habituals.endorsement.models <- bind_rows(
@@ -3549,14 +3578,14 @@ habituals.endorsement.models <- bind_rows(
   )
 ) %>%
   mutate(src = factor(src, levels = c( 
-                                      "habituals_model",
                                       "some_model",
+                                      "habituals_model",
                                       "regression_freq", 
                                       "regression_freq_distinct"
                                      ),
                       labels = c(
-                                 "Speaker model - uncertain semantics",
                                  "Speaker model - fixed semantics",
+                                 "Speaker model - uncertain semantics",
                                  "Frequency alone", "Frequency + Distinctiveness"
                                  ))) %>%
   ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
@@ -3932,29 +3961,40 @@ Nevertheless, because playing the banjo is a distinct skill, this simple regress
 
 #### Fixed-threshold RSA model
 
+The above regression models are too rigid to explain the flexibility in habitual endorsements. 
+Our probabilistic RSA model has more flexibility than these models because of the introduction of prior knowledge. 
+Additionally, our theory posits that the flexibility in endorsements comes from an interaction of the prior knowledge with an uncertain threshold.
+To isolate the contribution of this interaction (prior knowledge with an uncertain threshold), we first show the predictions of a model that lacks the uncertainty over the threshold (i.e., it has a fixed threshold).
+
+We used the pragmatic speaker model $S_1$ (Eq. \ref{eq:S1}) with the priors elicited above (Expt. 2a) to predict felicity judgments in Expt. 2b, assuming the target propensity ($h$, to be conveyed by $S_1$) is the provided frequency (e.g., 3 times in the past year).
+Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(h)$ across individuals.
+The RSA model has a single free parameter---the speaker optimality parameter, $\alpha_1$, in Eq. \ref{eq:S1}. 
+As we did for the generics case study, we use Bayesian data analytic techniques to integrate over these parameters \cite{LW2014}, comparing the posterior predictive distribution to the empirical data in Expt. 2b.
+To construct the posterior predictive distribution over responses, we collected 2 MCMC chains of 100,000 iterations, discarding the first 50,000 iterations for burn in.
+<!-- The Maximum A-Posteriori value and 95\% highest probability density interval for $\alpha_1$ is 19.3 [14.9,19.9] and $\alpha_2$ is 1.5 [1.4,1.6]. -->
+
 
 On each trial of the experiment, the participant was told a person did a particular past frequency and was asked to evaluate the corresponding habitual statements.
-A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
-Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements as the target character always did the action 3 times during some time window.
+A fixed threshold model only conveys that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
+Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements as the target character always did the action three times during some time window.
+Incorporating this semantics into the RSA framework makes it difficult for the speaker model (Eq. \ref{eq:S1}) to differentiate between the various habitual statements (Figure \ref{fig:habituals-endorsement-figure}, top-right: upper-left facet).
+The model has to decide between producing silence (which is always true) and a very uninformative statement (which is almost always true). The relatively small difference in information-gain on behalf of the listener is reflected in the small dynamic range of endorsments for the speaker. Overall, this model does poorly at predicting the range of endorsement data ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.fixed`$; MSE=$`r mse.habituals.rsa.fixed`$).
 
 
 #### Uncertain-threshold RSA model
 
+We constructed the same joint model for the uncertain threshold RSA speaker model and performed the same Bayesian statistical inference over the model to learn about its parameters and predictions.
+As shown in Figure \ref{fig:habituals-endorsement-figure}(top right: top right facet), the pragmatic speaker model does a good job of accounting for the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.uncertain`$; MSE=$`r mse.habituals.rsa.uncertain`$), including actions done on the time scale of years or more  ($r^2(`r r2.hab.rsa.infrequent.n`) = `r r2.habituals.rsa.uncertain.infrequent`$; MSE=$`r mse.habituals.rsa.uncertain.infrequent`$).
 
-We used the pragmatic speaker model $S_2$ (Eq.~\ref{eq:S2}) with the priors elicited above (Expt. 2a) to predict felicity judgments in Expt.~2, assuming the target propensity (to be conveyed by $S_2$) is the provided frequency.
-Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(\lambda)$ across individuals.
-The model has two free parameters---the speaker optimality parameters, $\alpha_i$, in Eqs.~\ref{eq:S2} \& \ref{eq:S1}. 
-We use Bayesian data analytic techniques to integrate over these parameters \cite{LW2014}, comparing the posterior predictive distribution to the empirical data in Expt.~2.
-To construct the posterior predictive distribution over responses, we collected 2 MCMC chains of 100,000 iterations, discarding the first 50,000 iterations for burn in.
-The Maximum A-Posteriori value and 95\% highest probability density interval for $\alpha_1$ is 19.3 [14.9,19.9] and $\alpha_2$ is 1.5 [1.4,1.6].
-%The MAP and HPD interval for the data-analytic guessing parameter is 0.004 [0.0003, 0.03], suggesting that there is not a substantial amount of the data that is better explained by a model of random guessing than by our pragmatic speaker model.
+### Discussion
 
-As shown in Figure \ref{fig:tjScatters}, right, the pragmatic speaker model does a good job of accounting for the variability in responses ($r^2(93) = 0.94$), including actions done on the time scale of years or more  ($r^2(50) = 0.92$).
-The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action. 
 
-As another potential alternative hypothesis, we formulate a model of a speaker who judges the felicity of the habitual utterance based on simple summary statistics of the prior, such as the mean and variance.
 
-Only our pragmatic speaker model who reasons about a listener is able to capture the quantitative variability in our data.
+<!-- The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action.  -->
+
+<!-- As another potential alternative hypothesis, we formulate a model of a speaker who judges the felicity of the habitual utterance based on simple summary statistics of the prior, such as the mean and variance. -->
+
+<!-- Only our pragmatic speaker model who reasons about a listener is able to capture the quantitative variability in our data. -->
 
 
 <!-- \begin{figure*}[t] -->
