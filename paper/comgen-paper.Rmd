@@ -2224,19 +2224,33 @@ lg <- 20
 
 model_prefix <- "results-generics-jointModel-S1-smntcs_"
 
-m.samp <- data.frame()
-m.samp.fixed <- data.frame()
-for (i in seq(1, n_chains)){
-  mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
-  
-  mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
-                    n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
-  m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
-  
-  #print(i)
-}
+# m.samp <- data.frame()
+# m.samp.fixed <- data.frame()
+# for (i in seq(1, n_chains)){
+#   mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+#   
+#   mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
+#                     n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
+#   m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
+#   }
+# 
+# save(m.samp,
+#      file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# 
+# save(m.samp.fixed,
+#      file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
 
 m.gen.somemodel.endorsement <- m.samp.fixed %>%
   filter(type == 'endorsement') %>%
@@ -2302,16 +2316,17 @@ generics.endorsement.models <- bind_rows(
       select(sentence, Property, Category, prev_mean, cv_mean)
   )
 ) %>%
-  mutate(src = factor(src, levels = c( 
+  mutate(src = factor(src, levels = c( "some_model",
                                       "generics_model",
-                                      "some_model",
+                                      
                                       "regression_Prev", 
                                       "regression_Prev_Cuevalidity"
                                      ),
-                      labels = c(
+                      labels = c("Fixed semantics model",
                                  "Uncertain semantics model",
-                                 "Fixed semantics model",
-                                 "Prevalence alone", "Prevalence + Cue validity"
+                                 
+                                 "Prevalence alone",
+                                 "Prevalence + Cue validity"
                                  ))) %>%
   ggplot(., aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
@@ -3204,9 +3219,6 @@ d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsem
 d.hab.endorsement <- read.csv(paste(project.path, "data/habituals/endorsement/", 
                     "habituals-endorsement.csv", sep = ""))
 
-
-
-
 d.hab.endorsement <- left_join(
   left_join(d.hab.endorsement, 
            d.hab.endorsement.catch %>% 
@@ -3849,6 +3861,8 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
 Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold RSA model in order to understand the data and our model.
 Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ.
 
+<!-- NOTE: Alternatively: We could not discuss this analysis (or, in a footnote). Since participants judged both genders for these items, we could only analyze their first gender and drop their second, for consistency with the other items. -->
+
 For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements. 
 Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
 Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}.
@@ -3873,7 +3887,48 @@ This reflects the fact that these statements are not altogether *false* even tho
 
 #### Frequency and distinctiveness
 
-FILL IN
+In the prior elicitation task (Expt. 2a), we saw that items differed in both their mean expected frequency as well as the proportion of people who have done / do the action (i.e., the mixture parameter in the frequency prior $P(h)$).
+With generics, we constructed a regression model that used empirical *cue validity* as a predictor of generic endorsement. Here, we articulate a regression model that uses participants' responses to the question about the mixture parameter $\phi$ (i.e., the proportion of people who have done the action before) to predict habitual endorsement. This is analagous to the regression model based on cue validity and prevalence in the domain of generics.
+
+```{r habituals-distinctiveness-counterexamples}
+
+format_endorsment_ci <- function(
+  df, estimate = "MAP_h", low = "low",
+  high = "high", sigfigs = 2){
+  return(paste(
+    round(df[[1,estimate]], sigfigs),
+    " [",
+    round(df[[1,low]], sigfigs),
+    ", ",
+    round(df[[1,high]], sigfigs),
+    "]", sep = ""))
+}
+
+movies.year.data <- format_endorsment_ci(filter(d.hab.endorsement.bayes, habitual == "goes to the movies", time_period == "year"))
+
+movies.year.regression.distinct <- format_endorsment_ci(filter(d.hab.endorse.regression.freq.mix, habitual == "goes to the movies",
+                                                        time_period == "year"),
+                                                        estimate = "prediction",
+                                                        low = "prediction_lower",
+                                                        high = "prediction_upper")
+
+banjo.2years.data <- format_endorsment_ci(filter(d.hab.endorsement.bayes, habitual == "plays the banjo", time_period == "2 years"))
+
+banjo.2years.regression.distinct <- format_endorsment_ci(filter(d.hab.endorse.regression.freq.mix, habitual == "plays the banjo",
+                                                        time_period == "2 years"),
+                                                        estimate = "prediction",
+                                                        low = "prediction_lower",
+                                                        high = "prediction_upper")
+```
+
+We find that this model is able to explain more of the variance in endorsements ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq.distinct`$; MSE=$`r mse.habituls.regression.freq.distinct`$). 
+Actions that are more rare across people (e.g., writing novels) are endorsed more overall. 
+Still, this model is not able to capture some of the subtle sensitivities in endorsments.
+For example, endorsements for *goes to the movies* for a person who has *gone to the movies* three times in the past year are about $`r movies.year.data`$, while this model predicts quite lower judgments $`r movies.year.regression.distinct`$.
+Going to the movies is relatively common and going three times in a year is not very frequent, and yet people still strongly endorse the habitual. 
+On the other hand, playing the banjo three times in the past two years is not very strong evidence for the habitual $`r banjo.2years.data`$.
+Nevertheless, because playing the banjo is a distinct skill, this simple regression model wants to endorse the habitual strongly in this case $`r banjo.2years.regression.distinct`$.
+
 
 #### Fixed-threshold RSA model
 
