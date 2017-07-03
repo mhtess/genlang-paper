@@ -3988,7 +3988,20 @@ As shown in Figure \ref{fig:habituals-endorsement-figure}(top right: top right f
 
 ### Discussion
 
+In Expt. 2b, we manipulated the event type (e.g., drinks coffee vs. beer) as well as the frequency with which a person has done the action in the past (e.g., three times in the past week vs. year) and measured the corresponding endorsements for habitual statements.
+We saw tremendous flexibility in the frequency conditions that leads participants to endorse habituals. 
 
+Parallel to our analysis of generic statements, we articulated a number of alternative models and found that they were unable to explain the variability in endorsements. 
+The regression model that uses the distinctiveness of the action (as measured in Expt. 2a) and the frequency of action is the best alternative model to explain endorsements. 
+This model is not a predictive model, however; rather, it is a re-description of the data and helps us understand what the *predictive* RSA model is doing. 
+
+
+Distinctly from our case study on generic language, we manipulated rather than measured the target frequency (e.g., the frequency with which a person drinks coffee).
+People are used to learning new information about others, and thus habitual language about people doing actions is particularly amenable to this kind of manipulation. 
+By manipulating the target frequency, we have shown that it is causally related to habitual endorsements.
+The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect listeners' prior knowledge about the event in the question and an underspecified threshold criterion. 
+
+This is particularly
 
 <!-- The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action.  -->
 
