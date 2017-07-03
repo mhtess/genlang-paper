@@ -3176,7 +3176,7 @@ We explore the possibility of different truth conditions for habituals of differ
 
 
 
-## Experiment 2b: Endorsing generalizations about events
+## Experiment 2b: Endorsing habitual statements
 
 We next explore the endorsements of habituals from the items whose priors were measured the prior elicitation task. 
 
@@ -3995,13 +3995,14 @@ Parallel to our analysis of generic statements, we articulated a number of alter
 The regression model that uses the distinctiveness of the action (as measured in Expt. 2a) and the frequency of action is the best alternative model to explain endorsements. 
 This model is not a predictive model, however; rather, it is a re-description of the data and helps us understand what the *predictive* RSA model is doing. 
 
-
 Distinctly from our case study on generic language, we manipulated rather than measured the target frequency (e.g., the frequency with which a person drinks coffee).
 People are used to learning new information about others, and thus habitual language about people doing actions is particularly amenable to this kind of manipulation. 
 By manipulating the target frequency, we have shown that it is causally related to habitual endorsements.
 The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect listeners' prior knowledge about the event in the question and an underspecified threshold criterion. 
 
-This is particularly
+In Experiment 2b, we supplied participants with a statement about how often a person has done the action in the past and asked them to judge the correspoding habitual statement.
+This raises an interesting question: Does the propensity communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
+Across two follow-up experiments (Expts. 2c \& 2d), we address this question by manipulating and measuring *predictive frequency* (Expt. 2c) and habitual endorsement (Expt. 2d).
 
 <!-- The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action.  -->
 
@@ -4021,22 +4022,17 @@ This is particularly
 <!-- \end{figure*} -->
 
 
-## Experiment 3: Communicating predictive propensities
-
-In Experiment 2b, we supplied participants with a statement about how often a person has done the action in the past and asked them to judge the correspoding habitual statement.
-This raises an interesting question: Does the propensity communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
+## Experiment 2c: Measuring predictive frequency
 
 While past frequency is often a good indicator of future tendency, people change abruptly due to a variety of decisions and outside events.
 Does habitual language communicate propensity in terms of past frequency or future expectations?
 On one hand, speakers can only *know* about what has happened in the past.
 On the other hand, language has a communicative function, and it would seem useful for speakers to convey what they *believe* will be the case in the future.
 
-In this pair of experiments, we address this by introducing causal events that enable or prevent future actions (e.g., buying a pack of cigarettes; developing an allergy).
-In Expt. 3a, we measure *predictive frequency* both when past frequency alone is observed and when these causal factors are introduced.
-In Expt. 3b, we examine felicity judgments of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers.
+In the following pair of experiments, we address this by introducing causal events that enable or prevent future actions (e.g., buying a pack of cigarettes; developing an allergy).
+In Expt. 2c, we measure *predictive frequency* both when past frequency alone is observed and when these causal factors are introduced.
+In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers.
 This allows us to test whether habituals are best explained by a speaker $S_1$ who communicates the objective past frequency or the subjective future frequency.
-
-### Experiment 3a: Prediction elicitation
 
 
 ```{r habituals-predictive-elicitation}
@@ -4100,7 +4096,7 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
 
 
 
-#### Methods
+### Methods
 
 We recruited `r n.subj.hab.pred` participants from MTurk, using the same criterion as Expt. 2b.
 The experiment took `r round(ave.seconds.hab.pred/60,1)` minutes on average and participants were compensated \$0.40.
@@ -4112,14 +4108,14 @@ On one third of the trials, participants were presented with an \textbf{enabling
 The final third of trials had no additional evidence and were identical to Expt. 2b. 
 
 Only twenty-one of the original thirty-one items were used in order to shorten the experiment.
-To increase expected variability, participants saw only the frequencies that led to most intermediate endorsement of the habitual in Expt. 2b. 
+To increase expected variability, participants saw only the frequencies that led to the most intermediate endorsement of the habitual in Expt. 2b. 
 In addition, we did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
 
 Participants were asked ``In the next \textsc{time window}, how many times do you think \textsc{person} does \textsc{event}?'', where the \textsc{time window} was the same as given in the \emph{past frequency statement}.
 The experiment in full can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/priors/predictive-1.html}.
 
 
-#### Results
+### Results
 
 Figure \ref{fig:habituals-predictive-figure} (left) shows the predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
 We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
@@ -4157,7 +4153,7 @@ $t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRat
 
 
 
-### Experiment 3b: Felicity judgments
+## Experiment 2d: Endorsing habituals under predictive-manipulated conditions
 
 ```{r habituals-predictive-endorsement}
 d.hab.predictive.endorsment <- read.csv(paste(
@@ -4306,7 +4302,7 @@ In Experiment 2b, we varied the type of event and the past frequency with which 
 <!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
 <!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
 <!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
-In Experiment 3, we further investigated the nature of the underlying “propensity” scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 3a) and using that, with the model, to predict the felicity of habitual sentences (Expt. 3b). 
+In Experiments 2c \& 2d, we further investigated the nature of the underlying “propensity” scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 2c) and using that, with the model, to predict the felicity of habitual sentences (Expt. 2c). 
 To our knowledge, the experiments presented here are first empirical investigations into the truth conditions of habitual sentences and the first test of a formal psychological model of generalizations in language.
 In these experiments, we directly manipulated the frequency that the speaker was trying to communicate while measuring the propensity priors.
 Thus, it is still possible that the propensity priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlational associated with generic endorsement but not directly causally related.
