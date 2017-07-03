@@ -3710,8 +3710,60 @@ For actions that are done on the time scale of years or longer (lower median of 
 We observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance).
 This reflects the fact that these statements are not altogether *false* even though the action is done very rarely.
 
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap="Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
 
-```{r habituals-endorsement-gender-exploration, results="asis"}
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.wide <- left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
+)
+
+r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
+
+ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
+                 xmin = low_female, ymin = low_male,
+                 xmax = high_female, ymax = high_male, fill = habitual))+
+  geom_text_repel(data = d.hab.bayes.gendered.wide %>%
+                    filter(time_period== "month"), aes(label = habitual,
+                                                       color = habitual),
+                  force = 3, nudge_x = -1, segment.size = 0.3)+
+  guides(fill = F, color = F)+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_point(shape = 21)+
+  geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  coord_fixed()+
+  xlab("Habitual endorsement (female character)")+
+  ylab("Habitual endorsement (male character)")+
+  scale_fill_solarized()+
+  scale_color_solarized()
+
+```
+
+```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
 gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
                     "wears a bra", "wears a watch", "wears a suit")
 
@@ -3746,7 +3798,7 @@ left_join(
     select(-MAP_h, -low, -high, -characterGender)
     #rename(female_MAP, female_low = low, female_high = high)
 ) %>% xtable(.,
-         caption = c("Exploratory ananlysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
+         caption = c("Exploratory analysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
         label = c("tab:habituals-endorsement-gender")) %>%
 print(., type = "latex", 
       tabular.environment = "tabularx", width = "\\textwidth",
@@ -3756,15 +3808,14 @@ print(., type = "latex",
 
 
 For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements. 
-Differences in endorsements would suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
-Endorsement probabilities and 95\% credible intervals for these six items for each gender are showed in Table \ref{tab:habituals-endorsement-gender}.
-Descriptively, we do not observe appreciate 
+Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
+Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}.
+We see no appreciable differences in endorsements for the two genders. 
+This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters.
 
-
-
-We find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$. 
-This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women). 
-Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
+<!-- We find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.  -->
+<!-- This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women).  -->
+<!-- Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered. -->
 
 <!-- \begin{figure*}[t] -->
 <!-- \centering -->
