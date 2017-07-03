@@ -2186,7 +2186,7 @@ mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.pre
 ##### Prevalence baseline
 
 From the prevalence prior data (Expt. 1a), we estimate participants' beliefs about the prevalence of a property for the target categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}.
-We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:commongenerics}b, right). 
+We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:generics-endorsement-figure}, upper-right: lower-left facet). 
 This is because our stimulus set includes generics that are true with high-prevalence properties (e.g., *Leopards have spots.*) and generics that are false with low prevalence properties (e.g., *Leopards have wings.*). 
 However, large deviations from an account based purely on target-category prevalence remain: Generics in which the target-category has intermediate prevalence (prevalence quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{prevalence} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by prevalence within those categories ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
 
@@ -3099,7 +3099,6 @@ If the coin comes up tails, a frequency $h$ is sampled from the distribution of 
 We make the simplifying assumption that people who have not done the action before will probably never do the action (expected frequency: once every hundred years).
 
 Figure \ref{fig:priorScatter} (right) shows example inferred priors.
-
 Some items show substantial differences between the genders (e.g., \emph{wears a bra}) and some show subtle differences (e.g., \emph{watches professional football}).
 Recall that the prior distributions $P(h)$ used in the RSA are with respect to an alternative class of entities (e.g., other individuals). 
 It's possible that when evaluating habitual statements under certain contexts, $P(h)$ is with respect to either *all people* or *people of the same gender*. 
@@ -3198,7 +3197,6 @@ d.hab.priors.mixture.summary <- d.hab.priors.filtered %>%
   multi_boot_standard( column = 'value' )
 ```
 
-
 ```{r habituals-endorsement}
 d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsement/", 
                     "habituals-endorsement-catch_trials.csv", sep = ""))
@@ -3260,39 +3258,107 @@ fig.habituals.endorsement.vs.freq <-
 ```
 
 
-```{r}
-d.gen.endorse.regression.prevalence <- left_join(
-  d.gen.endorse.bayes,
-  d.gen.endorse.prev.cue.uniq %>%
-    mutate(
-      prediction_mean = predict(glm.gen.endorse.prev, ., type = "response"),
-      prediction_ci_lower = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
-      prediction_ci_upper = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.upper, type = "response")
-    ) %>%
-    mutate(sentence = paste(Category, " ", Property, ".", sep = ""))
-) %>% mutate(
-  sqErr = (MAP_h - prediction_mean) ^ 2
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap="Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.wide <- left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
 )
 
-d.gen.endorse.regression.prevalence.cuevalidity <- left_join(
-  d.gen.endorse.bayes,
-  d.gen.endorse.prev.cue.uniq %>%
-    mutate(
-      prediction_mean = predict(glm.gen.endorse.prev.cv, ., type = "response"),
-      prediction_ci_lower = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
-      prediction_ci_upper = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.upper, type = "response"),
-      sentence = paste(Category, " ", Property, ".", sep = "")
-      )
-) %>% mutate(sqErr = (MAP_h - prediction_mean) ^ 2)
+r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
 
-d.gen.endorse.regression <- bind_rows(
-  d.gen.endorse.regression.prevalence.cuevalidity %>%
-    mutate(src = "regression_Prev_Cuevalidity"),
-  d.gen.endorse.regression.prevalence %>% 
-    mutate(src = "regression_Prev")
-  )
+ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
+                 xmin = low_female, ymin = low_male,
+                 xmax = high_female, ymax = high_male, fill = habitual))+
+  geom_text_repel(data = d.hab.bayes.gendered.wide %>%
+                    filter(time_period== "month"), aes(label = habitual,
+                                                       color = habitual),
+                  force = 3, nudge_x = -1, segment.size = 0.3)+
+  guides(fill = F, color = F)+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_point(shape = 21)+
+  geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  coord_fixed()+
+  xlab("Habitual endorsement (female character)")+
+  ylab("Habitual endorsement (male character)")+
+  scale_fill_solarized()+
+  scale_color_solarized()
+
 ```
 
+```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    mutate(female = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high,  -characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    #rename(male_MAP, male_low = low, male_high = high) %>%
+    mutate(male = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high, -characterGender)
+    #rename(female_MAP, female_low = low, female_high = high)
+) %>% xtable(.,
+         caption = c("Exploratory analysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
+        label = c("tab:habituals-endorsement-gender")) %>%
+print(., type = "latex", 
+      tabular.environment = "tabularx", width = "\\textwidth",
+      scalebox='0.75',
+      include.rownames = FALSE, comment = F)
+```
+
+
+
+<!-- We find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.  -->
+<!-- This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women).  -->
+<!-- Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered. -->
 
 ```{r habituals-regression-models}
 
@@ -3329,6 +3395,26 @@ d.hab.endorse.regression.freq <- left_join(
       )
 )
 
+r2.hab.n <- length(r2.habituls.regression.freq$MAP_h)
+
+r2.habituls.regression.freq <- compute_r2(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq <- compute_mse(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+r2.habituls.regression.infrequent.freq <- d.hab.endorse.regression.freq %>%
+  filter(logAnnualRate < 1.1)
+
+r2.hab.infrequent.n <- length(r2.habituls.regression.infrequent.freq$MAP_h)
+
+r2.habituls.infrequent.regression.freq <- compute_r2(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.infrequent.regression.freq <- compute_mse(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+
 # n.b.: Since distinctiveness is being captured by "mix", the lower the "mix", the higher the endorsement. Thus, lower bound of errorbars are computed with upper estimate of "mix"
 d.hab.endorse.regression.freq.mix <- left_join(
   d.hab.endorsement.bayes,
@@ -3340,6 +3426,13 @@ d.hab.endorse.regression.freq.mix <- left_join(
       src = "regression_freq_distinct"
       )
 )
+
+
+r2.habituls.regression.freq.distinct <- compute_r2(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq.distinct <- compute_mse(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
 
 d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endorse.regression.freq.mix) %>%
   mutate(sqErr = (MAP_h-prediction)^2)
@@ -3370,7 +3463,6 @@ d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endor
 #        filter(src == "regression_freq_distinct"), 
 #      cor(prediction, MAP_h, use = "pairwise.complete.obs"))^2
 ```
-
 
 ```{r habituals-fullmodel}
 n_chains <- 1
@@ -3753,144 +3845,46 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-#### Descriptive behavioral results
 
-On each trial of the experiment, the participant was told a person did a particular past frequency and was asked to evaluate the corresponding habitual statements.
-A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
-Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements as the target character always did the action 3 times during some time window. 
-A more sophisticated alternative hypothesis is that the degree to which the habitual statement is good is the frequency itself. 
-<!-- Our computational model predicts that the the degree to which the habitual statement is good is the frequency of event, normalized by the alternative possible frequencies under the prior. -->
-<!-- [MHT: SENTENCE ABOVE IS THE SOFT-SEMANTICS INTERPRETATION] -->
-
-Both of the simple alternative hypotheses can immediately be ruled by out by visual inspection of Figure \ref{fig:habituals-endorsement-figure} (top-left), which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence. 
-First, it is clear that not all habitual statements are strongly assented to, even though it is true that all the stimuli involved an agent doing the action with some non-zero frequency (at least 3 times before).
-It is also clear that a habitual sentence can receive strong agreement even when the actions are very infrequent (3 times in a 5-year interval; e.g. \emph{writes novels}, \emph{climbs mountains}), arguing against the second alternative.
-We see in addition that even when actions are done relatively frequently (e.g. 3 times in a one month interval), some habitual sentences receive less than full endorsement (e.g. \emph{wears socks}, \emph{drinks coffee}). 
-In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g. between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
-Overall, the raw log-frequency of action predicts only a fraction of the variability in responses ($r^2(93) = 0.33$).
-For actions that are done on the time scale of years or longer (lower median of frequency), frequency itself no longer explains the endorsements ($r^2(50) = 0.07$)
-
-We observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance).
-This reflects the fact that these statements are not altogether *false* even though the action is done very rarely.
-
-```{r habituals-endorsement-gender-exploration-scatter, fig.cap="Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.}
-gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
-                    "wears a bra", "wears a watch", "wears a suit")
-
-d.hab.bayes.gendered <- d.hab.endorsement %>%
-  filter(habitual %in% gendered.items) %>%
-  group_by(habitual, characterGender, time_period) %>%
-  summarize(k = sum(response), n = n()) %>%
-  ungroup() %>%
-  mutate(a = 1 + k,
-         b = 1 + n - k,
-         low  = qbeta(.025, a, b),
-         high = qbeta(.975, a, b),
-         MAP_h = (a-1)/(a+b-2),
-         mean = a / (a + b))
-
-
-d.hab.bayes.gendered.wide <- left_join(
-    d.hab.bayes.gendered %>%
-    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
-    filter(characterGender == "female") %>%
-    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
-    select(-characterGender),
-  d.hab.bayes.gendered %>%
-    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
-    filter(characterGender == "male") %>%
-    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
-    select(-characterGender)
-)
-
-r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
-
-ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
-                 xmin = low_female, ymin = low_male,
-                 xmax = high_female, ymax = high_male, fill = habitual))+
-  geom_text_repel(data = d.hab.bayes.gendered.wide %>%
-                    filter(time_period== "month"), aes(label = habitual,
-                                                       color = habitual),
-                  force = 3, nudge_x = -1, segment.size = 0.3)+
-  guides(fill = F, color = F)+
-  geom_abline(intercept = 0, slope = 1, lty = 3)+
-  geom_point(shape = 21)+
-  geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
-  scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
-  scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
-  coord_fixed()+
-  xlab("Habitual endorsement (female character)")+
-  ylab("Habitual endorsement (male character)")+
-  scale_fill_solarized()+
-  scale_color_solarized()
-
-```
-
-```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
-gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
-                    "wears a bra", "wears a watch", "wears a suit")
-
-d.hab.bayes.gendered <- d.hab.endorsement %>%
-  filter(habitual %in% gendered.items) %>%
-  group_by(habitual, characterGender) %>%
-  summarize(k = sum(response), n = n()) %>%
-  ungroup() %>%
-  mutate(a = 1 + k,
-         b = 1 + n - k,
-         low  = qbeta(.025, a, b),
-         high = qbeta(.975, a, b),
-         MAP_h = (a-1)/(a+b-2),
-         mean = a / (a + b))
-
-
-left_join(
-    d.hab.bayes.gendered %>%
-    select(habitual, characterGender, MAP_h, low, high) %>%
-    filter(characterGender == "female") %>%
-    mutate(female = paste(as.character(round(MAP_h, 2)), " [",
-                        as.character(round(low, 2)), ", ",
-                        as.character(round(high, 2)), "]", sep = "")) %>%
-    select(-MAP_h, -low, -high,  -characterGender),
-  d.hab.bayes.gendered %>%
-    select(habitual, characterGender, MAP_h, low, high) %>%
-    filter(characterGender == "male") %>%
-    #rename(male_MAP, male_low = low, male_high = high) %>%
-    mutate(male = paste(as.character(round(MAP_h, 2)), " [",
-                        as.character(round(low, 2)), ", ",
-                        as.character(round(high, 2)), "]", sep = "")) %>%
-    select(-MAP_h, -low, -high, -characterGender)
-    #rename(female_MAP, female_low = low, female_high = high)
-) %>% xtable(.,
-         caption = c("Exploratory analysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
-        label = c("tab:habituals-endorsement-gender")) %>%
-print(., type = "latex", 
-      tabular.environment = "tabularx", width = "\\textwidth",
-      scalebox='0.75',
-      include.rownames = FALSE, comment = F)
-```
-
+Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold RSA model in order to understand the data and our model.
+Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ.
 
 For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements. 
 Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
 Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}.
 We see no appreciable differences in endorsements for the two genders. 
 This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters.
+For all remaining analyses, we collapse across character gender when analyzing endorsements.
 
-<!-- We find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.  -->
-<!-- This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{contrast class} is other people; not just other men or women).  -->
-<!-- Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered. -->
+#### Frequency baseline
 
-<!-- \begin{figure*}[t] -->
-<!-- \centering -->
-<!--   \includegraphics[width=\textwidth]{figs/expt3-4-scatters-camera.pdf} -->
-<!--   \caption{Left: Predicted log frequency as a function of past log frequency given to the participant (Expt. 3a; CIs suppressed and jitter added for visual clarity). -->
-<!--   Middle: Human endorsements of habitual sentences (Expt. 3b) vs. Predicted log frequency (Expt. 3a), with data for corresponding items from Expt. 2 (assumed to have the same predictive log frequency as baseline).  -->
-<!--   Right: Endorsements (Expt. 3b) vs. Speaker $S_2$ model predictions using empirically elicited predictive frequencies (Expt. 3a).} -->
-<!--   \label{fig:tj3} -->
-<!--   \vspace{-7pt} -->
-<!-- \end{figure*} -->
+The simplest alternative hypothesis for habitual language endorsement is that the degree to which the habitual statement is good is the frequency itself. 
+This is unlikely to be the case based on Figure \ref{fig:habituals-endorsement-figure} (top-left), which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence. 
+First, it is clear that not all habitual statements are strongly assented to, even though it is true that all the stimuli involved an agent doing the action with some non-zero frequency (at least 3 times before).
+It is also clear that a habitual sentence can receive strong agreement even when the actions are very infrequent (3 times in a 5-year interval; e.g. \emph{writes novels}, \emph{climbs mountains}), arguing against the second alternative.
+We see in addition that even when actions are done relatively frequently (e.g. 3 times in a one month interval), some habitual sentences receive less than full endorsement (e.g. \emph{wears socks}, \emph{drinks coffee}). 
+In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g. between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
+Overall, the raw log-frequency of action predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
+In addition, for actions that are done on the time scale of years or longer (lower median of frequency), frequency itself no longer explains the endorsements ($r^2(`r r2.hab.infrequent.n`) = `r r2.habituls.infrequent.regression.freq`$; MSE =$`r mse.habituls.infrequent.regression.freq`$)
 
-#### Model criticism and comparison
+We observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance).
+This reflects the fact that these statements are not altogether *false* even though the action is done very rarely.
+
+
+#### Frequency and distinctiveness
+
+FILL IN
+
+#### Fixed-threshold RSA model
+
+
+On each trial of the experiment, the participant was told a person did a particular past frequency and was asked to evaluate the corresponding habitual statements.
+A simple null hypothesis is that habitual statements convey that the a person *has done this action before*, analagous to how the quantifier *Some* conveys that there exists at least one entity with the feature.
+Under this hypothesis, all of the items used in our experiment would qualify as good habitual statements as the target character always did the action 3 times during some time window.
+
+
+#### Uncertain-threshold RSA model
+
 
 We used the pragmatic speaker model $S_2$ (Eq.~\ref{eq:S2}) with the priors elicited above (Expt. 2a) to predict felicity judgments in Expt.~2, assuming the target propensity (to be conveyed by $S_2$) is the provided frequency.
 Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(\lambda)$ across individuals.
@@ -3906,6 +3900,17 @@ The speaker model endorses the statement when the observed frequency is relative
 As another potential alternative hypothesis, we formulate a model of a speaker who judges the felicity of the habitual utterance based on simple summary statistics of the prior, such as the mean and variance.
 
 Only our pragmatic speaker model who reasons about a listener is able to capture the quantitative variability in our data.
+
+
+<!-- \begin{figure*}[t] -->
+<!-- \centering -->
+<!--   \includegraphics[width=\textwidth]{figs/expt3-4-scatters-camera.pdf} -->
+<!--   \caption{Left: Predicted log frequency as a function of past log frequency given to the participant (Expt. 3a; CIs suppressed and jitter added for visual clarity). -->
+<!--   Middle: Human endorsements of habitual sentences (Expt. 3b) vs. Predicted log frequency (Expt. 3a), with data for corresponding items from Expt. 2 (assumed to have the same predictive log frequency as baseline).  -->
+<!--   Right: Endorsements (Expt. 3b) vs. Speaker $S_2$ model predictions using empirically elicited predictive frequencies (Expt. 3a).} -->
+<!--   \label{fig:tj3} -->
+<!--   \vspace{-7pt} -->
+<!-- \end{figure*} -->
 
 
 ## Experiment 3: Communicating predictive propensities
