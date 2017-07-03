@@ -3259,6 +3259,41 @@ fig.habituals.endorsement.vs.freq <-
   guides(fill = F)
 ```
 
+
+```{r}
+d.gen.endorse.regression.prevalence <- left_join(
+  d.gen.endorse.bayes,
+  d.gen.endorse.prev.cue.uniq %>%
+    mutate(
+      prediction_mean = predict(glm.gen.endorse.prev, ., type = "response"),
+      prediction_ci_lower = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
+      prediction_ci_upper = predict(glm.gen.endorse.prev, d.gen.endorse.prev.cue.uniq.upper, type = "response")
+    ) %>%
+    mutate(sentence = paste(Category, " ", Property, ".", sep = ""))
+) %>% mutate(
+  sqErr = (MAP_h - prediction_mean) ^ 2
+)
+
+d.gen.endorse.regression.prevalence.cuevalidity <- left_join(
+  d.gen.endorse.bayes,
+  d.gen.endorse.prev.cue.uniq %>%
+    mutate(
+      prediction_mean = predict(glm.gen.endorse.prev.cv, ., type = "response"),
+      prediction_ci_lower = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.lower, type = "response"),
+      prediction_ci_upper = predict(glm.gen.endorse.prev.cv, d.gen.endorse.prev.cue.uniq.upper, type = "response"),
+      sentence = paste(Category, " ", Property, ".", sep = "")
+      )
+) %>% mutate(sqErr = (MAP_h - prediction_mean) ^ 2)
+
+d.gen.endorse.regression <- bind_rows(
+  d.gen.endorse.regression.prevalence.cuevalidity %>%
+    mutate(src = "regression_Prev_Cuevalidity"),
+  d.gen.endorse.regression.prevalence %>% 
+    mutate(src = "regression_Prev")
+  )
+```
+
+
 ```{r habituals-regression-models}
 
 glm.hab.endorse.freq <- glm(response ~ logAnnualRate, 
@@ -3267,16 +3302,48 @@ glm.hab.endorse.freq <- glm(response ~ logAnnualRate,
 glm.hab.endorse.freq.distinct <- glm(response ~ logAnnualRate + mixture, 
               data = d.hab.endorsement, family = 'binomial')
 
-d.hab.endorse.regression <- left_join(
+
+d.hab.endorse.freq.mix.uniq <- unique(select(
+    d.hab.endorsement, habitual, logAnnualRate, time_period, 
+    mixture, mix_low, mix_high
+  ))
+
+d.hab.endorse.freq.mix.uniq.lower <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_low)
+
+d.hab.endorse.freq.mix.uniq.upper <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_high)
+
+
+
+d.hab.endorse.regression.freq <- left_join(
   d.hab.endorsement.bayes,
-  unique(select(
-    d.hab.endorsement, habitual, logAnnualRate, time_period, mixture
-  )) %>%
-    mutate(regression_freq = predict(glm.hab.endorse.freq, ., type = "response"), 
-           regression_freq_distinct = predict(glm.hab.endorse.freq.distinct, ., type = "response"))
-) %>%
-  gather(src, prediction, regression_freq, regression_freq_distinct) %>%
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq, ., type = "response"), 
+      prediction_lower = prediction,
+      prediction_upper = prediction,
+      src = "regression_freq"
+      )
+)
+
+# n.b.: Since distinctiveness is being captured by "mix", the lower the "mix", the higher the endorsement. Thus, lower bound of errorbars are computed with upper estimate of "mix"
+d.hab.endorse.regression.freq.mix <- left_join(
+  d.hab.endorsement.bayes,
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq.distinct, ., type = "response"),
+      prediction_lower =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.upper, type = "response"),
+      prediction_upper =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.lower, type = "response"),
+      src = "regression_freq_distinct"
+      )
+)
+
+d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endorse.regression.freq.mix) %>%
   mutate(sqErr = (MAP_h-prediction)^2)
+
 
 # ggplot(d.hab.endorse.regression,
 #        aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = mixture))+
@@ -3369,9 +3436,7 @@ m.hab.endorse.rsa <- bind_rows(
 
 
 habituals.endorsement.models <- bind_rows(
-  d.hab.endorse.regression %>% 
-  mutate(prediction_lower = prediction,
-         prediction_upper = prediction),
+  d.hab.endorse.regression,
   left_join(
     m.hab.endorse.rsa %>% 
     rename(prediction = MAP, prediction_lower = cred_lower, prediction_upper = cred_upper),
@@ -3404,8 +3469,6 @@ habituals.endorsement.models <- bind_rows(
   ylab("Human habitual endorsement")+
   facet_wrap(~src, nrow = 2)+
   theme(legend.position = "bottom")
-
-
 ```
 
 ```{r habituals-simulation-model}
