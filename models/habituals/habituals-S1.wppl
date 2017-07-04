@@ -130,12 +130,12 @@ var model = function(){
 		/// stable frequency distribution parameters
 		var frequencyWhenPresent = {
 			male: {
-				mu: uniformDrift({a: 0, b:10, width: 2}),
-				sigma: uniformDrift({a:0, b:5, width: 1})
+				mu: uniformDrift({a: -5, b:10, width: 2}),
+				sigma: uniformDrift({a:0, b:10, width: 1})
 			},
 			female: {
-				mu: uniformDrift({a:0, b:10, width: 2}),
-				sigma: uniformDrift({a:0, b:5, width: 1})
+				mu: uniformDrift({a: -5, b:10, width: 2}),
+				sigma: uniformDrift({a:0, b:10, width: 1})
 			}
 		};
 
