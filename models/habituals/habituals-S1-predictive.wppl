@@ -94,7 +94,6 @@ assert.ok(
 	levels(data.endorsement, "workerid").length == sum(_.map(removeExtraRow(d_endorsement_catch), "pass"))
 )
 
-
 var utterancePrior = Infer({model: function(){
 	return uniformDraw([targetUtterance, "silence"])
 }});
@@ -230,6 +229,7 @@ var model = function(){
       assert.ok(
         (conditionEndorsementData.length > 0)
       )
+      var pastFreq = conditionEndorsementData[0].binnedAnnualRate;
 
       var predictiveData = _.filter(itemData.predictive, {condition: cndtn});
       assert.ok(
@@ -237,9 +237,9 @@ var model = function(){
       )
 
       var predictiveParameters = {
-				mu: uniformDrift({a: -5, b:10, width: 2}),
-				sigma: uniformDrift({a:0, b:10, width: 1})
-			}
+        mu: uniformDrift({a: -5, b:10, width: 2}),
+        sigma: uniformDrift({a:0, b:10, width: 1})
+      }
 
       mapData({data:predictiveData}, function(d){
         // display(JSON.stringify(predictiveParameters) + " " + d.predictiveLogAnnualRate)
@@ -247,12 +247,14 @@ var model = function(){
       })
 
       query.add(["predictive", i, "predictiveFreq", cndtn, "mean"], predictiveParameters.mu);
-  		query.add(["predictive", i, "predictiveFreq", cndtn, "sigma"], predictiveParameters.sigma);
+      query.add(["predictive", i, "predictiveFreq", cndtn, "sigma"], predictiveParameters.sigma);
 
       // midBins.slice(1) to avoid the lowest possible frequency
-      var predictiveFreq = utils.closest(gaussian(predictiveParameters), midBins.slice(1));
+      var h = targetH == "predictive" ?
+        utils.closest(gaussian(predictiveParameters), midBins.slice(1)):
+        pastFreq;
 
-			var s1prediction = speaker1(predictiveFreq);
+			var s1prediction = speaker1(h);
 
 			mapData({data:conditionEndorsementData}, function(d){
         // var scr = s1prediction.score(d.alignedResponse)
@@ -261,7 +263,7 @@ var model = function(){
 				observe(s1prediction, d.alignedResponse)
 			})
 
-			query.add(["predictive", i, "endorsement", cndtn, predictiveFreq], expectation(s1prediction));
+			query.add(["predictive", i, "endorsement", cndtn, h], expectation(s1prediction));
 
 		})
 
@@ -272,27 +274,23 @@ var model = function(){
 	return query
 }
 
-// 100 iter in 30s
-var totalIterations = 100, lag = 2;
+// 100 iter in 30s (predictive)
+// 400 iter in 30s (past)
+var totalIterations = 100000, lag = 20;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
-var outfile = 'results-habituals-predictive-jointModel-S1-smtncs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-habituals-predictive-jointModel-S1-smtncs_'+targetUtterance+"-targetH_"+targetH+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
 var posterior = Infer({
   model: model,
   method: "incrementalMH",
   samples: mhiter, burn: burn, lag: lag,
-  verbose: T//, verboseLag: totalIterations / 100,
-	// stream: {
-	// 	path: "results/" + outfile,
-	// 	header: [
-	// 		"type", "B", "C", "D", "E", "val"
-	// 	]
-	// }
+  verbose: T, verboseLag: totalIterations / 100,
+	stream: {
+		path: "results/" + outfile,
+		header: [
+			"type", "B", "C", "D", "E", "val"
+		]
+	}
 })
 
 "written to " + outfile;
-// filter(function(d){
-//   return !(d.predictiveLogAnnualRate > -6)
-// }, data.predictive)
-// data.predictive
-// midBins.slice(1)
