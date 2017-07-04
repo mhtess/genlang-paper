@@ -98,6 +98,12 @@ Source: CRAN
 Version: 1.3-2
 Hash: 0bf8618b585fa98eb23414cd3ab95118
 
+Package: cowplot
+Source: CRAN
+Version: 0.7.0
+Hash: 2466c098180dba6d13128bbdafeb1eda
+Requires: ggplot2, gtable, plyr
+
 Package: curl
 Source: CRAN
 Version: 2.3
@@ -332,6 +338,11 @@ Source: CRAN
 Version: 1.8.4
 Hash: ec0683cf0ab5494db2eff1f31591624e
 Requires: Rcpp
+
+Package: polspline
+Source: CRAN
+Version: 1.1.12
+Hash: c9ad03d865465be2354a2189f3d66901
 
 Package: psych
 Source: CRAN

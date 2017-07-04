@@ -83,7 +83,7 @@ d.gen.endorse.bayes <- left_join(
 
 ### Uncertain threshold RSA 
 
-```{r gen-loadModels, eval = F}
+```{r gen-loadModels}
 n_chains <- 3
 n_samples <- 100000
 burn <- n_samples / 2
@@ -91,19 +91,26 @@ lg <- 20
 
 model_prefix <- "results-generics-jointModel-S1-smntcs_"
 
-m.samp <- data.frame()
-m.samp.fixed <- data.frame()
-for (i in seq(1, n_chains)){
-  mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
-  
-  mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
-                    n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
-  m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
-  
-  #print(i)
-}
+# m.samp <- data.frame()
+# m.samp.fixed <- data.frame()
+# for (i in seq(1, n_chains)){
+#   mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+#   
+#   mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
+#                     n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
+#   m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
+#   
+#   #print(i)
+# }
+
+load(file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
 ```
 
 
@@ -314,4 +321,197 @@ bind_rows(
 ```
 
 
+
+
+
 ### Fixed threshold model 
+
+#### Speaker optimality parameter
+
+```{r gen-fixed-speakeropt}
+m.samp.fixed %>% 
+  filter(type == "param") %>%
+  ggplot(., aes(x = val, fill = factor(chain)))+
+  geom_histogram(position = position_dodge())+
+  facet_wrap(~param + property, scales = 'free')
+```
+
+#### Posterior predictive distribution on target prevalence
+
+```{r gen-fixed-prev-forward}
+#Forward sample Target Prevalence from posterior on parameters
+m.samp.fixed.prev.params <- m.samp.fixed %>%
+    filter(type == "targetPrevalence") %>%
+    mutate(parameter = paste(param, property, category, sep = "_")) %>%
+    select(-param, -property, -category, -chain, -type) %>%
+    #mutate(item = paste(parameter, property, sep = "_")) %>%
+    group_by(parameter) %>%
+    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+    ungroup() %>%
+    separate(parameter, into = c("parameter", "property", "category"), sep= "_")
+  
+m.samp.fixed.prevalence <- m.samp.fixed.prev.params %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(
+      a = mean*sampleSize,
+      b = (1-mean)*sampleSize,
+      prevalence = rbeta(n = 1, shape1 = a, shape2 = b)
+      ) %>%
+    ungroup()
+```
+
+#### Target prevalence
+
+##### Full distributions
+
+```{r gen-fixed-prev-dists, fig.width = 8, fig.height = 6}
+bind_rows(
+  d.prior %>% 
+  mutate(sentence = paste(Category," " ,Property, ".", sep = "")) %>%
+  filter(sentence %in% full_sentences) %>%
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+    select(-workerid, -trial_type),
+  m.samp.fixed.prevalence %>% 
+    select(property, category, prevalence) %>%
+    rename(Category = category, Property = property) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = prevalence, color = src))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+  #geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+   #              position = position_dodge())+
+  facet_wrap(~Property + Category)+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+##### Means and CIs
+
+
+```{r gen-fixed-prev-means}
+# joint model inferred prevalence 
+m.samp.fixed.targetPrev <- m.samp.fixed.prevalence %>% 
+  group_by(category, property) %>%
+  summarize(MAP = estimate_mode(prevalence),
+          cred_upper = hdi_upper(prevalence),
+          cred_lower = hdi_lower(prevalence),
+          prevMean = mean(prevalence)) %>%
+  ungroup() %>% rename(Category = category, Property = property)
+  
+left_join(d.prior.summary, 
+          m.samp.fixed.targetPrev) %>%
+  ggplot(., aes(x = prevMean, xmin = cred_lower, xmax = cred_upper,
+                y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_point()+geom_errorbar(alpha = 0.3)+ geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0, 1))+
+  scale_y_continuous(limits = c(0, 1))+
+  geom_abline(intercept = 0, slope = 1, lty = 3, alpha = 0.3)+
+  coord_fixed()
+```
+
+##### Does posterior on target prevalence predict generic endorsement?
+
+```{r gen-fixed-prevalence-vs-endorsement}
+left_join(
+  d.gen.endorse.bayes,
+  m.samp.fixed.prevalence %>% 
+  group_by(category, property) %>%
+  summarize(MAP = estimate_mode(prevalence),
+          cred_upper = hdi_upper(prevalence),
+          cred_lower = hdi_lower(prevalence),
+          prevMean = mean(prevalence)) %>%
+  ungroup() %>% rename(Category = category, Property = property) %>%
+  mutate(sentence = paste(Category, " ", Property, ".", sep = ""))
+) %>%
+  ggplot(., aes(x = prevMean, xmin = cred_lower, xmax = cred_upper,
+                y = MAP_h, ymin = low, ymax = high))+
+  geom_point()+geom_errorbar(alpha = 0.3)+ geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0, 1))+
+  scale_y_continuous(limits = c(0, 1))+
+  geom_abline(intercept = 0, slope = 1, lty = 3, alpha = 0.3)+
+  coord_fixed()
+```
+
+
+
+#### Posterior predictive distribution on prevalance priors
+
+
+```{r gen-fixed-prevprior-forward}
+#Forward sample from posterior on parameters
+m.samp.fixed.prior.params <- m.samp.fixed %>%
+    filter(type == "prior") %>%
+    mutate(parameter = paste(param, category, sep = "_")) %>%
+    select(-param, -category, -chain, -type) %>%
+    mutate(item = paste(parameter, property, sep = "_")) %>%
+    group_by(item) %>%
+    mutate(iteration = ave(item==item, item, FUN=cumsum)) %>%
+    ungroup() %>%
+    select(-item)
+  
+  m.samp.fixed.prevalence.prior <- m.samp.fixed.prior.params %>%
+    group_by(parameter, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(isPresent = rbinom(1, 1, prob = mixture_NA),
+       prevalence = ifelse(isPresent == 1, 
+                           rbeta(n = 1, 
+                                 shape1 = stableFreq_mean* stableFreq_sampleSize,
+                                 shape2 = (1-stableFreq_mean)*stableFreq_sampleSize),
+                           rbeta(n = 1,
+                                 shape1 = 1,
+                                 shape2 = 100))) %>%
+    ungroup() %>%
+    select(property, prevalence)
+```
+
+##### Marginal distributions on prevalence
+
+```{r gen-fixed-prevprior-marginals, fig.width = 8, fig.height = 5}
+bind_rows(
+  d.prior %>% 
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+  select(-workerid, -trial_type, -Category),
+  m.samp.fixed.prevalence.prior %>% 
+    rename(Property = property) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = prevalence, color = src))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+  facet_wrap( ~ Property, nrow = 3)+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+
+##### Cumulative Density Functions
+
+
+```{r gen-fixed-prevprior-cdf, fig.width = 8, fig.height = 5}
+bind_rows(
+  d.prior %>% 
+  mutate(prevalence = prevalence / 100,
+         src = 'data') %>% 
+  select(-workerid, -trial_type, -Category),
+  m.samp.fixed.prevalence.prior %>% 
+    rename(Property = property) %>%
+    mutate(src = 'model') 
+  ) %>% ggplot(., aes( x = prevalence, color = src))+
+    stat_ecdf()+
+    facet_wrap(~Property, nrow = 3)+
+    scale_color_solarized()+
+    scale_x_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+    scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+    theme(strip.text.y = element_text(angle = 0))
+```
+
+
+

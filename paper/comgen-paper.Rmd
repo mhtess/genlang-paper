@@ -84,6 +84,7 @@ library(jsonlite)
 library(gridExtra)
 library(lme4)
 library(knitr)
+library(cowplot)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -4082,26 +4083,26 @@ d.hab.predictive.summary <- d.hab.predictive %>%
   group_by(condition, item, logAnnualPastRate) %>%
   multi_boot_standard(column = "logAnnualPredictiveRate")
 
-fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary, 
-       aes(x=logAnnualPastRate, 
-                              y = mean, 
-                              ymin = ci_lower, ymax = ci_upper, 
-                              fill = condition, shape=condition))+
-  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
-  scale_shape_manual(values=c(21,22,23))+
-  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
-  # #geom_errorbar(width=0.1)+
-  scale_x_continuous(limits = c(-3,6), 
-                     breaks = c(-3, 0, 2.5, 4, 5.9),
-                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
-  scale_y_continuous(limits = c(-3,6), 
-                     breaks = c(-3, 0, 2.5, 4, 5.9),
-                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
-  guides(fill=F, shape=F)+
-  scale_fill_solarized()+
-  xlab("Past frequency (log scale)")+
-  ylab("Predicted frequency (log scale)")+
-  theme(axis.text.x = element_text(angle = 90))
+# fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary, 
+#        aes(x=logAnnualPastRate, 
+#                               y = mean, 
+#                               ymin = ci_lower, ymax = ci_upper, 
+#                               fill = condition, shape=condition))+
+#   geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+#   scale_shape_manual(values=c(21,22,23))+
+#   geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+#   # #geom_errorbar(width=0.1)+
+#   scale_x_continuous(limits = c(-3,6), 
+#                      breaks = c(-3, 0, 2.5, 4, 5.9),
+#                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+#   scale_y_continuous(limits = c(-3,6), 
+#                      breaks = c(-3, 0, 2.5, 4, 5.9),
+#                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+#   guides(fill=F, shape=F)+
+#   scale_fill_solarized()+
+#   xlab("Past frequency (log scale)")+
+#   ylab("Predicted frequency (log scale)")+
+#   theme(axis.text.x = element_text(angle = 90))
 
 ```
 
@@ -4126,9 +4127,102 @@ Participants were asked ``In the next \textsc{time window}, how many times do yo
 The experiment in full can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/priors/predictive-1.html}.
 
 
-### Results
+```{r habituals-predictive-model}
+hab.predictive.bda.model <- '
+var model = function(){
 
-Figure \ref{fig:habituals-predictive-figure} (left) shows the predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
+	var predictiveFrequency = {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+	}
+
+	mapData({data: data}, function(d){
+		observe(Gaussian(predictiveFrequency),
+        d.logAnnualPredictiveRate)
+	})
+
+  return predictiveFrequency
+}
+'
+```
+
+
+```{r habituals-predictive-model-run, cache = T}
+items <- levels(factor(d.hab.predictive$item))
+conditions <- levels(factor(d.hab.predictive$condition))
+n_samples <- 500
+rs.habituals.bda.predictive <- data.frame()
+
+for (it in items){
+  for (cn in conditions){
+     df.predictive.toPass <- d.hab.predictive %>%
+       filter(condition == cn, item == it)
+     
+    rs <- webppl(program_code = hab.predictive.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.predictive.toPass,
+       data_var = "data")
+    rs.habituals.bda.predictive <- bind_rows(
+        rs.habituals.bda.predictive, 
+        rs %>% 
+            mutate(item = it, condition = cn) 
+        )
+  }
+}
+```
+
+```{r habituals-predictive-forwardSample}
+rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>% 
+  spread(Parameter, value) %>%
+  rowwise() %>%
+  mutate(
+    logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+  ) %>%
+  gather(key, val, mu, sigma, logannualRate) %>%
+  group_by(item, condition, key) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+```
+
+```{r habituals-predictive-bda-figure}
+fig.hab.freq.predictive.vs.past <- left_join(
+  rs.habituals.bda.predictive.summary %>% filter(key == "logannualRate"),
+  unique(d.hab.predictive %>% 
+    select(item, condition, logAnnualPastRate)
+  )) %>% ggplot(., 
+       aes(x=logAnnualPastRate, y = MAP, 
+                              ymin = cred_lower, ymax = cred_upper, 
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency MAP (log scale)")+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+### Modeling and results
+
+We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies).
+As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance.
+$$
+\ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic})
+$$
+
+
+Figure \ref{fig:habituals-predictive-figure} (left) shows the Maximum A-Posteriori predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
 We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
 This means that our model makes identical predictions for Expt. 2 whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
 Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
@@ -4232,9 +4326,14 @@ d.hab.predictive.endorsment.summary <- left_join(
 
 d.hab.predictive.endorsment.summary <- left_join(
   d.hab.predictive.endorsment.summary,
-  d.hab.predictive.summary %>% select(condition, item, logAnnualPastRate, mean, ci_lower, ci_upper) %>%
-    rename(logAnnualFutureRate = mean,
-         future_lower = ci_lower, future_upper = ci_upper)
+  rs.habituals.bda.predictive.summary %>% 
+    filter(key == "logannualRate") %>%
+    rename(logAnnualFutureRate = MAP,
+         future_lower = cred_lower, future_upper = cred_upper)
+  # %>%
+  #   rowwise() %>%
+  #   mutate(future_lower = ifelse(future_lower < -4, -4, future_lower),
+  #          future_upper = ifelse(future_upper > 7, 7, future_upper))
 )
 
 fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
@@ -4248,11 +4347,13 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
   geom_point(alpha = 0.7)+
   xlab("Predicted frequency (log scale)")+
   ylab("Endorsement probability")+
-  scale_x_continuous(limits = c(-3,6), 
+  scale_x_continuous(limits = c(-4.2,7.2), 
                      breaks = c(-3, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   coord_fixed(ratio=9)+
   scale_fill_solarized()+
+  guides(fill = F, shape = F)+
   theme(
     axis.text.x = element_text(angle = 90),
     legend.position="bottom",
@@ -4262,13 +4363,173 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
 ```
 
 ```{r habituals-predictive-rsa}
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
+model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
 
+m.hab.pred.samp <- data.frame()
+m.hab.past.samp <- data.frame()
+
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "targetH_predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.pred.samp <- bind_rows(m.hab.pred.samp, mi %>% mutate(chain = i))
+# 
+#   mi.past <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "targetH_past-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
+# 
+# }
+# 
+# save(m.hab.pred.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# 
+# save(m.hab.past.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "past-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+
+m.hab.pastmodel.endorsement <- m.hab.past.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorsement <- m.hab.pred.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.predictive.endorsement
+  ) %>%
+    mutate(src = "predictive_model"),
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.pastmodel.endorsement
+  ) %>%
+    mutate(src = "past_model")
+)
+
+r2.habituals.rsa.past <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.past <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.predictive <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.predictive <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+r2.hab.rsa.predictive.n <- length(d.hab.predictive.endorsment.summary$MAP_h)
+
+habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - past frequency") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(shape = 21)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  guides(fill = F)+
+  #theme(legend.position = "bottom")+
+    scale_fill_solarized()
+
+habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - predictive frequency") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(shape = 21)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  #guides(fill = F)+
+  #theme(legend.position = "bottom")+
+  scale_fill_solarized()
+```
+
+```{r fig.height = 14, fig.width=10, echo = F, eval=F}
+m.hab.pred.samp %>%
+  #filter(type == "predictive", C == "predictiveFreq") %>%
+  filter(type == "predictive", C == "endorsement") %>%
+  mutate(E = as.numeric(as.character(E))) %>%
+  ggplot(., aes(x = E, fill = D))+
+  geom_histogram(position = position_dodge())+
+  #facet_grid(B~E)+
+  facet_wrap(~B)
 ```
 
 
 
-```{r habituals-predictive-figure, fig.cap="Left: Results of Expt 3a. Right: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a"}
-grid.arrange(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, nrow = 1)
+```{r habituals-predictive-figure, fig.cap="A: Results of Expt 3a. B: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a, C & D: Endorsement models based on past frequency (C) and predictive frequency (D).", fig.width = 9, fig.height = 9}
+legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
+
+# add the legend underneath the row we made earlier. Give it 10% of the height
+# of one plot (via rel_heights).
+
+
+prow <- plot_grid(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, habituals.predictive.past.model, habituals.predictive.predictive.model + theme(legend.position="none"), labels = c("A", "B", "C", "D"), ncol = 2, align = 'v')
+  
+plot_grid( prow, legend_b, ncol = 1, rel_heights = c(5, 0))
 ```
 
 
@@ -4342,10 +4603,10 @@ Indeed, causal language has been shown to faciliate causal learning for nonobvio
 We design this last experiment with the goal of testing the causal relationship between the prevalence priors that we posit as a mediating representation between abstract conecptual structure and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
-In Experiment 4a, we manipulate participants' beliefs about a causal system and measure their updated beliefs about system, serving a manipulation check.
-In Experiment 4b, we test whether these manipulated priors give rise to different endorsements of causal statements.
+In Experiment 3a, we manipulate participants' beliefs about a causal system and measure their updated beliefs about system, serving a manipulation check.
+In Experiment 3b, we test whether these manipulated priors give rise to different endorsements of causal statements.
 
-## Experiment 4a: Manipulating the Prevalence Prior for Causes
+## Experiment 3a: Manipulating the Prevalence Prior for Causes
 
 In this experiment, we introduce participants to statistics about novel causal forces and have them make predictions about future instances of those causes.
 This prediction task serves as a manipulation check for our prevalence prior manipulation.
@@ -4678,11 +4939,11 @@ ggplot(., aes(x = response, fill = Distribution, color = Distribution))+
 
 ### Model predictions
 
-... run RSA model using fixed parameters and MAP estimates of these priors ...
+... run RSA model using fixed parameters and MAP estimates of these priors ?
 
 
 
-## Experiment 4b: Endorsing Causal Language
+## Experiment 3b: Endorsing Causal Language
 
 In this experiment, we tested whether the manipulated priors of Expt. 4a are causally related to the endorsement of causal statements.
 
@@ -4744,13 +5005,13 @@ d.caus.endorse.summary <- left_join(
 
 We recruited `r n.subj.cas.endorse` participants from Amazon's Mechanical Turk.
 Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
-None of the participants had participated in Experiment 4a. 
+None of the participants had participated in Experiment 3a. 
 The experiment consisted of one trial and took on average `r ave.minutes.cas.endorse` minutes; participants were compensated \$0.25 for their work.
 
 #### Procedure and materials
 
-The materials were the same as in Experiment 4a.
-Phase 1 of the experiment was identical to that of Experiment 4a.
+The materials were the same as in Experiment 3a.
+Phase 1 of the experiment was identical to that of Experiment 3a.
 In phase 2 of the endorsement task, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
 The results are reported to the participant in terms of how many out of 100 of the attempts were successful. 
 Participants saw 1 of 2 reported frequencies: 20\% or 70\% (randomized between-subjects).
