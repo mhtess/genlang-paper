@@ -2860,11 +2860,11 @@ var model = function(){
 	var stableFrequency = {
 		male: {
 			mu: uniformDrift({a: -5, b:10, width: 2}),
-			sigma: uniformDrift({a:0, b:5, width: 1})
+			sigma: uniformDrift({a:0, b:10, width: 1})
 		},
 		female: {
 			mu: uniformDrift({a:-5, b:10, width: 2}),
-			sigma: uniformDrift({a:0, b:5, width: 1})
+			sigma: uniformDrift({a:0, b:10, width: 1})
 		}
 	}
 
@@ -3477,36 +3477,42 @@ d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endor
 ```
 
 ```{r habituals-fullmodel}
-n_chains <- 1
-n_samples <- 10000
-burn <- n_samples
-lg <- 5
-i <- 1
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
 model_prefix <- "results-habituals-jointModel-S1-"
 
-m.hab.samp <- data.frame()
-for (i in seq(1, n_chains)){
-  mi <- fread(paste(project.path,  "models/habituals/results/", 
-                    model_prefix, "smtncs_habitual-",
-                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  m.samp.i <- mi %>% mutate(chain = i)
-  m.hab.samp <- bind_rows(m.hab.samp, m.samp.i)
-}
+# m.hab.samp <- data.frame()
+# m.hab.fixed.samp <- data.frame()
 
-n_chains <- 1
-n_samples <- 1000
-burn <- n_samples
-lg <- 5
-i <- 1
-m.hab.fixed.samp <- data.frame()
-for (i in seq(1, n_chains)){
-  mi <- fread(paste(project.path,  "models/habituals/results/", 
-                    model_prefix, "smtncs_some-",
-                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  m.samp.i <- mi %>% mutate(chain = i)
-  m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, m.samp.i)
-}
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "smtncs_habitual-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.samp <- bind_rows(m.hab.samp, mi %>% mutate(chain = i))
+# 
+#   mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "smtncs_some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, mi.fixed %>% mutate(chain = i))
+# 
+# }
+# 
+# save(m.hab.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# 
+# save(m.hab.fixed.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
 m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
   filter(type == 'predictive') %>%
@@ -3980,6 +3986,11 @@ Under this hypothesis, all of the items used in our experiment would qualify as 
 Incorporating this semantics into the RSA framework makes it difficult for the speaker model (Eq. \ref{eq:S1}) to differentiate between the various habitual statements (Figure \ref{fig:habituals-endorsement-figure}, top-right: upper-left facet).
 The model has to decide between producing silence (which is always true) and a very uninformative statement (which is almost always true). The relatively small difference in information-gain on behalf of the listener is reflected in the small dynamic range of endorsments for the speaker. Overall, this model does poorly at predicting the range of endorsement data ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.fixed`$; MSE=$`r mse.habituals.rsa.fixed`$).
 
+Another shortcoming of this fixed threshold is illuminated by our manipulation of target frequency.
+With a fixed threshold on what makes a statement true or false, any two points that lie above the threshold are indistinguishable. 
+Thus, this model makes the same predictions for different target frequencies in the same event.
+For example, the model endorses somebody who hikes three times every two years the same as somebody who hikes three times every month. 
+
 
 #### Uncertain-threshold RSA model
 
@@ -4250,21 +4261,27 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
 
 ```
 
+```{r habituals-predictive-rsa}
+
+```
+
+
+
 ```{r habituals-predictive-figure, fig.cap="Left: Results of Expt 3a. Right: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a"}
 grid.arrange(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, nrow = 1)
 ```
 
 
-#### Methods
+### Methods
 
 We recruited `r n.subj.hab.pred.endorse` participants from MTurk, using the same criterion as Expt. 2b.
 The experiment took `r round(ave.seconds.hab.pred.endorse / 60)` minutes on average on participants were compensated \$0.40 for their work.
-None of the participants had completed Expt. 3a.
-The only difference from Expt. 3a is the dependent measure. 
-On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2).
+None of the participants had completed Expt. 2c.
+The only difference from Expt. 2c is the dependent measure. 
+On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2b).
 The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-3-preventative.html}.
 
-#### Results
+### Results
 
 There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure}, middle; blue points).
 When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\% highest probability density interval for the true endorsement probabilities per condition are: baseline = 
