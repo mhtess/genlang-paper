@@ -1,4 +1,4 @@
-// time ~/webppl-fork/webppl habituals-S1-predictive.wppl --require utils predictive habitual 1
+// time ~/webppl-fork/webppl habituals-S1-predictive-test.wppl --require utils predictive habitual 1
 
 var chain = last(process.argv) // load index as last command line index
 
@@ -149,11 +149,11 @@ var model = function(){
 		var frequencyWhenPresent = {
 			male: {
 				mu: uniformDrift({a: -5, b:10, width: 2}),
-				sigma: uniformDrift({a:0, b:10, width: 1})
+				sigma: uniformDrift({a:0, b:5, width: 1})
 			},
 			female: {
 				mu: uniformDrift({a: -5, b:10, width: 2}),
-				sigma: uniformDrift({a:0, b:10, width: 1})
+				sigma: uniformDrift({a:0, b:5, width: 1})
 			}
 		};
 
@@ -238,7 +238,7 @@ var model = function(){
 
       var predictiveParameters = {
         mu: uniformDrift({a: -5, b:10, width: 2}),
-        sigma: uniformDrift({a:0, b:10, width: 1})
+        sigma: uniformDrift({a:0, b:5, width: 1})
       }
 
       mapData({data:predictiveData}, function(d){
@@ -251,7 +251,8 @@ var model = function(){
 
       // midBins.slice(1) to avoid the lowest possible frequency
       var h = targetH == "predictive" ?
-        utils.closest(gaussian(predictiveParameters), midBins.slice(1)):
+        utils.closest(predictiveParameters.mu, midBins.slice(1)):
+        // utils.closest(gaussian(predictiveParameters), midBins.slice(1)):
         pastFreq;
 
 			var s1prediction = speaker1(h);
