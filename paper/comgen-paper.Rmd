@@ -4336,6 +4336,13 @@ d.hab.predictive.endorsment.summary <- left_join(
   #          future_upper = ifelse(future_upper > 7, 7, future_upper))
 )
 
+r2.habituals.predictiveFreq <- compute_r2(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+mse.habituals.predictiveFreq <- compute_mse(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+
+
+
 fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
   ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
                  fill=condition, shape=condition,
@@ -4364,26 +4371,30 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
 
 ```{r habituals-predictive-rsa}
 n_chains <- 3
+# n_samples <- 500000
+# burn <- n_samples / 2
+# lg <- 150
+model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
 n_samples <- 100000
 burn <- n_samples / 2
 lg <- 20
-model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
+
 
 m.hab.pred.samp <- data.frame()
 m.hab.past.samp <- data.frame()
 
 # for (i in seq(1, n_chains)){
 #   mi <- fread(paste(project.path,  "models/habituals/results/",
-#                     model_prefix, "targetH_predictive-",
+#                     model_prefix, "targetH_predictiveMean-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
 #   m.hab.pred.samp <- bind_rows(m.hab.pred.samp, mi %>% mutate(chain = i))
-# 
-#   mi.past <- fread(paste(project.path,  "models/habituals/results/",
-#                     model_prefix, "targetH_past-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-#   m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
-# 
-# }
+
+  # mi.past <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "targetH_past-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
+
+#}
 # 
 # save(m.hab.pred.samp,
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
@@ -4394,10 +4405,11 @@ m.hab.past.samp <- data.frame()
 #                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
 
-load(paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
+load(file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
-load(paste(project.path,  "models/habituals/results/", model_prefix, "past-",
+
+load(file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
 
@@ -4544,33 +4556,40 @@ The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/exp
 
 ### Results
 
-There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure}, middle; blue points).
+There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure} B; green points).
+Still, frequency --- even predictive frequency --- does not perfectly explain the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.predictiveFreq`$; MSE = $`r mse.habituals.predictiveFreq`$). 
+
 When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\% highest probability density interval for the true endorsement probabilities per condition are: baseline = 
-`r round(d.hab.predictive.endorsment.baseline.summary[[1,"MAP_h"]], 2)` [
-`r round(d.hab.predictive.endorsment.baseline.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.baseline.summary[[1,"low"]], 2)`,
 `r round(d.hab.predictive.endorsment.baseline.summary[[1,"high"]], 2)`
 ], enabling = 
-`r round(d.hab.predictive.endorsment.enabling.summary[[1,"MAP_h"]], 2)` [
-`r round(d.hab.predictive.endorsment.enabling.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.enabling.summary[[1,"low"]], 2)`,
 `r round(d.hab.predictive.endorsment.enabling.summary[[1,"high"]], 2)`
-], preventative = `r round(d.hab.predictive.endorsment.preventative.summary[[1,"MAP_h"]], 2)` [
-`r round(d.hab.predictive.endorsment.preventative.summary[[1,"low"]], 2)`,
+], preventative = `r round(d.hab.predictive.endorsment.preventative.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.preventative.summary[[1,"low"]], 2)`,
 `r round(d.hab.predictive.endorsment.preventative.summary[[1,"high"]], 2)`
 ]
 
-... ADD REGRESSION MODEL RESULTS ...
+We use our formal model to test whether past or predictive frequency is what is being communicated by these statements.
+To formalize the predictive frequency speaker model, we use the predictive frequency data (Expt. 2c) as the $h$ that the speaker model $S$ (Eq. \ref{eq:S1}) is aiming to communicate. 
+The past frequency model is constructed using the past frequency supplied to participants as the $h$ that the speaker $S$ model is trying to communicate.
 
-... ADD RSA RESULTS ...
+We analyze this model in the same Bayesian data analysis regime as for our previous models, integrating the simple Bayesian analysis of the predictive frequency data (Expt. 2c; for the predictive model only) with the joint model of the priors (Expt. 2a) and the new endorsement data (Expt. 2d).
+We use the same priors over the parameters as before, and learn about the posterior distribution by collecting three independent MCMC chains of N iterations (removing the first M for burn-in). 
+Figure \ref{fig:habituals-predictive-figure} C \& D shows the resulting model predictions for the past frequency and the predictive frequency speaker models. 
+Participants judgments of the habitual statements was indeed influenced by the causal manipulations in the way predicted by the speaker model using the predictive frequency as input ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.predictive`$; MSE = $`r mse.habituals.rsa.predictive`$).
+The model based on past frequency does not make different predictions for the different causal manipulation conditions and does a poor job at explaining the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.past`$; MSE = $`r mse.habituals.rsa.past`$). 
+
+
 <!-- We use the mean predicted log frequency from Expt. 3a as the input to the speaker $S_1$ model to predict the felicity judgments measured in Expt. 3b. -->
 <!-- We infer the two model parameters using the same analysis approach in Expt. 2.  -->
 <!-- The model matches the data well ($r^2(63) = 0.91$; Figure \ref{fig:tj3}, right). -->
 <!-- The same model using the past frequency as the object of communication does not match the data at all ($r^2(63) = 0.02$). -->
 <!-- These results suggest that the felicity of habituals is based on an underlying scale of predicted future propensity, not merely the observed frequency in the past. -->
 
-<!-- Interestingly, we observe endorsements in this experiment that are appreciably higher than in Expt. 2 for the same items (Figure \ref{fig:tj3}, middle; red vs. purple points).  -->
-<!-- This may be due, in part, to an effect of the experimental context on participants:  -->
-<!-- in this experiment the overall population of frequencies is much lower (both because we selected moderate frequencies from Expt. 2 and because of the preventative information) and participants may infer that the experimenter believes this to be a representative range and adjust judgments accordingly. -->
-<!-- Future investigation into this issue is warranted. -->
+Interestingly, we observe endorsements in this experiment that are appreciably higher than in Expt. 2 for the same items (Figure \ref{fig:tj3}, middle; red vs. purple points).
+This may be due, in part, to an effect of the experimental context on participants:
+in this experiment the overall population of frequencies is much lower (both because we selected moderate frequencies from Expt. 2 and because of the preventative information) and participants may infer that the experimenter believes this to be a representative range and adjust judgments accordingly.
+Future investigation into this issue is warranted.
 
 ## Discussion
 
