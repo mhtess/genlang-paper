@@ -1,4 +1,4 @@
-// time ~/webppl-fork/webppl habituals-S1-predictive-test.wppl --require utils predictive habitual 1
+// time ~/webppl-fork/webppl habituals-S1-predictive.wppl --require utils predictive habitual 1
 
 var chain = last(process.argv) // load index as last command line index
 
@@ -89,6 +89,7 @@ var data = {
 		}, removeExtraRow(d_predictive)))
 };
 
+
 // test that removing Ss who failed catch trial works properly
 assert.ok(
 	levels(data.endorsement, "workerid").length == sum(_.map(removeExtraRow(d_endorsement_catch), "pass"))
@@ -108,6 +109,15 @@ var meaning = function(utt,state, theta) {
 
 var items = levels(data.endorsement, "habitual");
 var conditions = levels(data.endorsement, "condition");
+
+var meanPredictiveData =_.fromPairs(map(function(i){
+    return [i, _.fromPairs(map(function(c){
+      var responses = _.map(_.filter(data.predictive, {item: i, condition: c}), "predictiveLogAnnualRate")
+      var meanResponse = sum(responses)/responses.length
+      return [c, utils.closest(meanResponse, midBins)]
+    }, conditions))]
+}, items))
+
 
 var model = function(){
 
@@ -130,7 +140,6 @@ var model = function(){
       (itemData.prior.length > 0) && (itemData.endorsement.length > 0) &&
       (itemData.predictive.length > 0)
     )
-
 
 		// prior parameters
 		/// mixture component
@@ -231,30 +240,33 @@ var model = function(){
       )
       var pastFreq = conditionEndorsementData[0].binnedAnnualRate;
 
-      var predictiveData = _.filter(itemData.predictive, {condition: cndtn});
-      assert.ok(
-        (predictiveData.length > 0)
-      )
+      // var predictiveData = _.filter(itemData.predictive, {condition: cndtn});
+      // assert.ok(
+      //   (predictiveData.length > 0)
+      // )
 
-      var predictiveParameters = {
-        mu: uniformDrift({a: -5, b:10, width: 2}),
-        sigma: uniformDrift({a:0, b:5, width: 1})
-      }
+      // var predictiveParameters = {
+      //   mu: uniformDrift({a: -5, b:10, width: 2}),
+      //   sigma: uniformDrift({a:0, b:5, width: 1})
+      // }
 
-      mapData({data:predictiveData}, function(d){
-        // display(JSON.stringify(predictiveParameters) + " " + d.predictiveLogAnnualRate)
-        observe(Gaussian(predictiveParameters), d.predictiveLogAnnualRate)
-      })
-
-      query.add(["predictive", i, "predictiveFreq", cndtn, "mean"], predictiveParameters.mu);
-      query.add(["predictive", i, "predictiveFreq", cndtn, "sigma"], predictiveParameters.sigma);
+      // mapData({data:predictiveData}, function(d){
+      //   // display(JSON.stringify(predictiveParameters) + " " + d.predictiveLogAnnualRate)
+      //   observe(Gaussian(predictiveParameters), d.predictiveLogAnnualRate)
+      // })
+      //
+      // query.add(["predictive", i, "predictiveFreq", cndtn, "mean"], predictiveParameters.mu);
+      // query.add(["predictive", i, "predictiveFreq", cndtn, "sigma"], predictiveParameters.sigma);
 
       // midBins.slice(1) to avoid the lowest possible frequency
       var h = targetH == "predictive" ?
-        utils.closest(predictiveParameters.mu, midBins.slice(1)):
-        // utils.closest(gaussian(predictiveParameters), midBins.slice(1)):
+        meanPredictiveData[i][cndtn] :
+        // utils.closest(predictiveParameters.mu, midBins.slice(1)):
+        // utils.closest(predictiveParameters.mu, midBins):
+        // utils.closest(gaussian(predictiveParameters), midBins):
         pastFreq;
 
+      // display(h)
 			var s1prediction = speaker1(h);
 
 			mapData({data:conditionEndorsementData}, function(d){
@@ -277,9 +289,9 @@ var model = function(){
 
 // 100 iter in 30s (predictive)
 // 400 iter in 30s (past)
-var totalIterations = 100000, lag = 20;
+var totalIterations = 100000, lag = 50;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
-var outfile = 'results-habituals-predictive-jointModel-S1-smtncs_'+targetUtterance+"-targetH_"+targetH+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_'+targetUtterance+"-targetH_"+targetH+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
 var posterior = Infer({
   model: model,
