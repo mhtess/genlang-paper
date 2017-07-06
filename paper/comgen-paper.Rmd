@@ -799,8 +799,8 @@ all.simulations %>%
 ## Model simulations
 
 All models were implemented in the probabilisitic programming language WebPPL [@dippl].
-The following simulations were implemented in the Rmarkdown document that generated this paper text and figures, using the R package RWebPPL.
-That document, as well as the other models, analysis, data and experiments used in this paper can be found at \url{https://github.com/mhtess/comgen-paper}.
+The following simulations were implemented in the RMarkdown document that generated this paper text and figures, using the R package RWebPPL.
+That document, as well as the other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
 The RSA model defined in the previous section predicts that the endorsement of a generalization depends upon a listener's *a priori* beliefs about the probabilty in question $P(h)$.
 For purposes of illustration, we present present the listener $L$ interpretations of the generalization for the underspecified threshold model as well as a fixed threshold model where the threhsold is set to the lowest possible value, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}).
@@ -1103,7 +1103,6 @@ Participants were asked to fill in each row with the percentage of members of ea
 Eight property--columns appeared in the table, and this whole procedure was repeated 2 times.
 In total, each participant generated 10 animal names and reported on the prevalence of sixteen properties for 22 animals (their own 10 and the experimentally-supplied 12). 
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/experiments/generics/experiments/real-kinds/prior-2.html}.
 
 ### Bayesian analysis
 
@@ -2728,7 +2727,6 @@ They responded to this attention check by selecting an option from a drop-down m
 They did this to test their understanding and attention for each of the two questions.
 
 For the experimental trials, we anticipated there might be different beliefs about the frequency of events depending on whether the actor is male or female, so we asked about both genders. Participants answered both questions for both genders on each slide (4 questions total per slide, order of male / female randomized between-subjects), and every participant completed all 31 items in a randomized order.
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/priors/priors-2.html}.
 
 
 
@@ -3201,7 +3199,6 @@ Participants were asked whether they agreed or disagreed with the corresponding 
 Participants completed 37 trials, which were composed of the 31 items from the prior elicitation task randomly paired with either a male or female character name.
 6 of these items were then also paired with a name of the opposite gender (e.g., participants saw both a female character and a male character who watched professional football).
 These were used for an exploratory analysis on differences in endorsements by gender of the target character.
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-2.html}.
 
 ### Results
 
@@ -4083,26 +4080,26 @@ d.hab.predictive.summary <- d.hab.predictive %>%
   group_by(condition, item, logAnnualPastRate) %>%
   multi_boot_standard(column = "logAnnualPredictiveRate")
 
-# fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary, 
-#        aes(x=logAnnualPastRate, 
-#                               y = mean, 
-#                               ymin = ci_lower, ymax = ci_upper, 
-#                               fill = condition, shape=condition))+
-#   geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
-#   scale_shape_manual(values=c(21,22,23))+
-#   geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
-#   # #geom_errorbar(width=0.1)+
-#   scale_x_continuous(limits = c(-3,6), 
-#                      breaks = c(-3, 0, 2.5, 4, 5.9),
-#                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
-#   scale_y_continuous(limits = c(-3,6), 
-#                      breaks = c(-3, 0, 2.5, 4, 5.9),
-#                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
-#   guides(fill=F, shape=F)+
-#   scale_fill_solarized()+
-#   xlab("Past frequency (log scale)")+
-#   ylab("Predicted frequency (log scale)")+
-#   theme(axis.text.x = element_text(angle = 90))
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
+       aes(x=logAnnualPastRate,
+                              y = mean,
+                              ymin = ci_lower, ymax = ci_upper,
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency (log scale)")+
+  theme(axis.text.x = element_text(angle = 90))
 
 ```
 
@@ -4124,7 +4121,6 @@ To increase expected variability, participants saw only the frequencies that led
 In addition, we did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
 
 Participants were asked ``In the next \textsc{time window}, how many times do you think \textsc{person} does \textsc{event}?'', where the \textsc{time window} was the same as given in the \emph{past frequency statement}.
-The experiment in full can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/priors/predictive-1.html}.
 
 
 ```{r habituals-predictive-model}
@@ -4147,10 +4143,10 @@ var model = function(){
 ```
 
 
-```{r habituals-predictive-model-run, cache = T}
+```{r habituals-predictive-model-run, cache = T, eval=F}
 items <- levels(factor(d.hab.predictive$item))
 conditions <- levels(factor(d.hab.predictive$condition))
-n_samples <- 500
+n_samples <- 5000
 rs.habituals.bda.predictive <- data.frame()
 
 for (it in items){
@@ -4173,7 +4169,69 @@ for (it in items){
 }
 ```
 
-```{r habituals-predictive-forwardSample}
+
+```{r eval = F}
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, fill = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+
+```{r habituals-predictive-bda-forwardSample, fig.width=14, eval=F}
+rs.habituals.bda.predictive.samples <- rs.habituals.bda.predictive %>% 
+  spread(Parameter, value) %>%
+  rowwise() %>%
+  mutate(
+    logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+  )
+
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+
+bind_rows(
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate),
+  rs.habituals.bda.predictive.samples %>% 
+    select(item, condition, logannualRate) %>%
+    rename(logAnnualPredictiveRate = logannualRate) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = src))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+#  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+#               position = position_dodge())+
+  facet_grid(condition ~ item )+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(-5,10)) +
+  #scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+
+
+
+
+```{r habituals-predictive-bda-summary, eval =F}
 rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>% 
   spread(Parameter, value) %>%
   rowwise() %>%
@@ -4187,7 +4245,7 @@ rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>%
             cred_lower = hdi_lower(val))
 ```
 
-```{r habituals-predictive-bda-figure}
+```{r habituals-predictive-bda-figure, eval = F}
 fig.hab.freq.predictive.vs.past <- left_join(
   rs.habituals.bda.predictive.summary %>% filter(key == "logannualRate"),
   unique(d.hab.predictive %>% 
@@ -4213,18 +4271,18 @@ fig.hab.freq.predictive.vs.past <- left_join(
   theme(axis.text.x = element_text(angle = 90))
 ```
 
-### Modeling and results
+### Results
 
-We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies).
-As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance.
-$$
-\ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic})
-$$
+<!-- We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies). -->
+<!-- As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance. -->
+<!-- $$ -->
+<!-- \ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic}) -->
+<!-- $$ -->
 
 
-Figure \ref{fig:habituals-predictive-figure} (left) shows the Maximum A-Posteriori predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
+Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
 We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
-This means that our model makes identical predictions for Expt. 2 whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
+This means that our model makes identical predictions for Expt. 2b whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
 Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
 
 
@@ -4239,7 +4297,7 @@ lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
 
 
 We confirm these observations using a linear mixed-effects model, predicting the log-transformed responses from the log-transormed past frequency and the experimental condition (baseline, preventative, enabling).
-To account for participants and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
+To account for participant and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
 Confirming our predictions, the preventative information led to significantly lower predictions for future frequency, relative to the baseline condition (
 $\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Estimate"],2)`$;
 $SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Std. Error"],2)`;$
@@ -4375,6 +4433,7 @@ n_chains <- 3
 # burn <- n_samples / 2
 # lg <- 150
 model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
+#model_prefix <- "results-habituals-predictive-jointModel-predMin-3-S1-smtncs_habitual-"
 n_samples <- 100000
 burn <- n_samples / 2
 lg <- 20
@@ -4382,10 +4441,15 @@ lg <- 20
 
 m.hab.pred.samp <- data.frame()
 m.hab.past.samp <- data.frame()
+# m.hab.pred.samp <- fread(paste(project.path,
+#                                 "models/habituals/results/",
+#                                 "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-targetH_predictive-10000_burn5000_lag20_chain1.csv",
+#                                 sep = ""))
+
 
 # for (i in seq(1, n_chains)){
 #   mi <- fread(paste(project.path,  "models/habituals/results/",
-#                     model_prefix, "targetH_predictiveMean-",
+#                     model_prefix, "targetH_predictive-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
 #   m.hab.pred.samp <- bind_rows(m.hab.pred.samp, mi %>% mutate(chain = i))
 
@@ -4395,6 +4459,8 @@ m.hab.past.samp <- data.frame()
   # m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
 
 #}
+
+
 # 
 # save(m.hab.pred.samp,
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
@@ -4517,31 +4583,60 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   #guides(fill = F)+
   #theme(legend.position = "bottom")+
   scale_fill_solarized()
+#habituals.predictive.predictive.model
 ```
 
-```{r fig.height = 14, fig.width=10, echo = F, eval=F}
+```{r fig.height = 6, fig.width=14, echo = F, eval=F}
 m.hab.pred.samp %>%
-  #filter(type == "predictive", C == "predictiveFreq") %>%
-  filter(type == "predictive", C == "endorsement") %>%
-  mutate(E = as.numeric(as.character(E))) %>%
-  ggplot(., aes(x = E, fill = D))+
+  filter(type == "predictive", C == "predictiveFreq", E == "sigma") %>%
+  #filter(type == "predictive", C == "endorsement") %>%
+#  mutate(E = as.numeric(as.character(E))) %>%
+  ggplot(., aes(x = val, fill = D))+
   geom_histogram(position = position_dodge())+
   #facet_grid(B~E)+
-  facet_wrap(~B)
+  facet_grid(D~B)
+```
+
+```{r, eval = F}
+m.hab.predfreq.summary <- m.hab.pred.samp %>%
+  filter(type == "predictive", C == "predictiveFreq") %>%
+  group_by(B, D, E) %>%
+  summarize(MAP = estimate_mode(val)) %>% spread(E, MAP)
+
+left_join(m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - predictive frequency"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
 ```
 
 
-
-```{r habituals-predictive-figure, fig.cap="A: Results of Expt 3a. B: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a, C & D: Endorsement models based on past frequency (C) and predictive frequency (D).", fig.width = 9, fig.height = 9}
+```{r habituals-predictive-figure, fig.cap="A: Results of Expt 3a. B: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a, C & D: Endorsement models based on past frequency (C) and predictive frequency (D).", fig.width = 10.5, fig.height = 11}
 legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
 
 # add the legend underneath the row we made earlier. Give it 10% of the height
 # of one plot (via rel_heights).
 
 
-prow <- plot_grid(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, habituals.predictive.past.model, habituals.predictive.predictive.model + theme(legend.position="none"), labels = c("A", "B", "C", "D"), ncol = 2, align = 'v')
+grid.arrange(
+  arrangeGrob(
+    fig.hab.freq.predictive.vs.past, 
+    fig.hab.endorse.vs.predfreq, 
+    habituals.predictive.past.model, 
+    habituals.predictive.predictive.model + theme(legend.position="none"),
+    nrow=2, layout_matrix = cbind(c(1,3), c(2,4))),
+legend_b, nrow=2,heights=c(8, 1))
+
+
+#prow <- plot_grid(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, habituals.predictive.past.model, habituals.predictive.predictive.model #+ theme(legend.position="none"), labels = c("A", "B", "C", "D"), ncol = 2, align = 'v')
   
-plot_grid( prow, legend_b, ncol = 1, rel_heights = c(5, 0))
+#plot_grid( prow, legend_b, ncol = 1, rel_heights = c(5, 0))
 ```
 
 
@@ -4552,7 +4647,6 @@ The experiment took `r round(ave.seconds.hab.pred.endorse / 60)` minutes on aver
 None of the participants had completed Expt. 2c.
 The only difference from Expt. 2c is the dependent measure. 
 On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2b).
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/habituals/experiments/truth-judgments/tj-3-preventative.html}.
 
 ### Results
 
@@ -4570,12 +4664,12 @@ When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\
 ]
 
 We use our formal model to test whether past or predictive frequency is what is being communicated by these statements.
-To formalize the predictive frequency speaker model, we use the predictive frequency data (Expt. 2c) as the $h$ that the speaker model $S$ (Eq. \ref{eq:S1}) is aiming to communicate. 
+To formalize the predictive frequency speaker model, we use the mran predictive frequency data (Expt. 2c) as the $h$ that the speaker model $S$ (Eq. \ref{eq:S1}) is aiming to communicate. 
 The past frequency model is constructed using the past frequency supplied to participants as the $h$ that the speaker $S$ model is trying to communicate.
 
-We analyze this model in the same Bayesian data analysis regime as for our previous models, integrating the simple Bayesian analysis of the predictive frequency data (Expt. 2c; for the predictive model only) with the joint model of the priors (Expt. 2a) and the new endorsement data (Expt. 2d).
-We use the same priors over the parameters as before, and learn about the posterior distribution by collecting three independent MCMC chains of N iterations (removing the first M for burn-in). 
-Figure \ref{fig:habituals-predictive-figure} C \& D shows the resulting model predictions for the past frequency and the predictive frequency speaker models. 
+We analyze this model in the same Bayesian data analysis regime as for our previous models.
+We use the same priors over the parameters as before, and learn about the posterior distribution by collecting three independent MCMC chains of 100,000 iterations (removing the first 50,000 for burn-in). 
+Figure \ref{fig:habituals-predictive-figure} (bottom, left and right) shows the resulting model predictions for the past frequency and the predictive frequency speaker models. 
 Participants judgments of the habitual statements was indeed influenced by the causal manipulations in the way predicted by the speaker model using the predictive frequency as input ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.predictive`$; MSE = $`r mse.habituals.rsa.predictive`$).
 The model based on past frequency does not make different predictions for the different causal manipulation conditions and does a poor job at explaining the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.past`$; MSE = $`r mse.habituals.rsa.past`$). 
 
@@ -4594,35 +4688,42 @@ Future investigation into this issue is warranted.
 ## Discussion
 
 Habitual language conveys generalizations about events and our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account the listener’s prior beliefs about the action (measured in Expt. 2a). 
-We have seen that our computational model endorses statements that communicate generalizations about events with the same sensitivity to context that people exhibit (Expt. 2b).
+We saw that our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b).
 In Experiment 2b, we varied the type of event and the past frequency with which the person did the action, and found substantial graded variability in the endorsement judgments of people.
+By manipulating (rather than measuring) the target frequency with which a person does an action, we showed how alternative models were insufficient to account for this gradience.
+In particular, a fixed threshold model that has access to the same prior knowledge as our model and goes through the same information-theoretic decision making procedure as our speaker model is unable to make different predictions for different frequencies.
+Only our uncertain threshold model was able to precisely account for the wide range of endorsements.
+
 <!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
 <!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
 <!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
-In Experiments 2c \& 2d, we further investigated the nature of the underlying “propensity” scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 2c) and using that, with the model, to predict the felicity of habitual sentences (Expt. 2c). 
-To our knowledge, the experiments presented here are first empirical investigations into the truth conditions of habitual sentences and the first test of a formal psychological model of generalizations in language.
-In these experiments, we directly manipulated the frequency that the speaker was trying to communicate while measuring the propensity priors.
-Thus, it is still possible that the propensity priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlational associated with generic endorsement but not directly causally related.
-In our final case study, we extend our theory to communicating generlizations about causes, and test experimentally whether the propensity prior is indeed causally related to generic endorsement. 
+In Experiments 2c \& 2d, we further investigated the nature of the underlying “propensity” scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 2c) and using that, with the model, to predict the felicity of habitual sentences (Expt. 2d). 
+To our knowledge, the experiments presented here are first empirical investigations into the truth conditions of habitual sentences and the first test of a formal psychological model of such generalizations in language.
+
+In these experiments, we directly manipulated the frequency that the speaker was trying to communicate while still measuring the priors over the propensity of the event.
+Thus, it is still possible that the propensity priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic endorsement but not directly causally related.
+In our final case study, we extend our theory to communicating generlizations about causes, and experimentally test whether the propensity prior is indeed causally related to generic endorsement. 
 
 # Case Study 3: Causal Language
 
 Learning that an event consistently tends to result in another event serves as a foundation for an intuitive theory of causality [@Goodman2011; @Kemp2010a].
-Communicating generalizations about causally related events is potentially highly useful because no one individual can run all the experiments that she wants to run in a life time. 
+Communicating generalizations about causally related events is potentially highly valuable because relevant data can be prohibitively expensive and no one individual can run all the experiments that she wants to run in a life time. 
 The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone. 
 
-Our framework for communicating generalizations makes predictions about statements conveying genericty about a category of causal events. 
+Our framework for communicating generalizations makes predictions about statements conveying genericity about a category of causal events. 
 In this domain, an instance of the category is a single causal event, or *token causality* (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough). 
 <!-- [Gerstenberg] -->
-Determining whether or not a singular event itself is causal is challenging, plausibly having to do with counterfactual reasoning [e.g., @Gerstenberg2015how]. 
+Ascribing causality to a singular pair of conjoined events is itself a challenging problem [e.g., @Gerstenberg2015how]. 
 Inducing the existence of an abstract cause from observational evidence also depends in complex ways on an observer's background theory of causality [e.g., @Griffiths2005; @Schulz2008a].
 
 Language provides a way to bypass the observational data needed to make a causal induction.
-Indeed, causal language has been shown to faciliate causal learning for nonobvious causal relations [@Bonawitz2010].
-We design this last experiment with the goal of testing the causal relationship between the prevalence priors that we posit as a mediating representation between abstract conecptual structure and endorsements of generalizations about causes.
+Indeed, causal language has been shown to faciliate causal learning for nonobvious causal relations in 2-year-olds [@Bonawitz2010].
+
+In this paper, we posit that prevalence priors are a mediating representation between abstract conceptual structure and generalizations in language.
+In this last set of experiments, we test the causal relationship between the prevalence priors and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
-In Experiment 3a, we manipulate participants' beliefs about a causal system and measure their updated beliefs about system, serving a manipulation check.
+In Experiment 3a, we manipulate participants' beliefs about a causal system and measure their updated beliefs, serving a manipulation check.
 In Experiment 3b, we test whether these manipulated priors give rise to different endorsements of causal statements.
 
 ## Experiment 3a: Manipulating the Prevalence Prior for Causes
@@ -4930,7 +5031,7 @@ for (p in causal.priorParams$distribution){
 
 ### Results
 
-The distributions that resulted from participants predicting the causal efficacy of the new herbs / fertilizers are shown in Figure \ref{fig:empirical-causal-prior-densities}.
+The distributions that resulted from participants predicting the causal efficacy of the new herbs / fertilizers are shown in Figure \ref{fig:figure-causals}.
 These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
 We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
 
@@ -4964,11 +5065,11 @@ ggplot(., aes(x = response, fill = Distribution, color = Distribution))+
 
 ## Experiment 3b: Endorsing Causal Language
 
-In this experiment, we tested whether the manipulated priors of Expt. 4a are causally related to the endorsement of causal statements.
+In this experiment, we tested whether the manipulated priors of Expt. 3a are causally related to the endorsement of causal statements.
 
 ### Method
 
-Most of the experiment was identical to that of Experiment 4a.
+Most of the experiment was identical to that of Experiment 3a.
 
 
 ```{r causal-endorsement-data}
@@ -5040,7 +5141,6 @@ Partipants responded by either clicking "Yes" or "No".
 After responding, participants were then asked to recall what the herbs / fertilizers aimed to achieve (e.g., "make animals sleepy") and one of the ten results they saw on the previous page. 
 This attention check served to confirm that participants had encoded some part of both relevant aspects of the experiment (the domain and the frequencies). 
 
-### Results
 
 ```{r causals-endorsement-fig, fig.width = 4, fig.height = 3, eval = F}
 
@@ -5056,9 +5156,6 @@ ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low
   ylab("Proportion Causal Endorsement")
 ```
 
-`r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
-As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior (i.e., a Beta-Binomial model). 
-These are shown for the different experimentally-manipulated priors and frequencies in Figure \ref{fig:causals-endorsement}.
 
 ```{r causals-fullmodel}
 n_chains <- 1
@@ -5173,6 +5270,19 @@ causals.endorsement.insets <- cas.listener.predictions %>%
   guides(fill = F, color = F)
 ```
 
+```{r}
+md.caus.endorse <- left_join(
+  m.cas.fullmodel.endorsement,
+    d.caus.endorse.summary %>%
+    select(distribution, frequency, MAP_h, low, high) %>%
+    rename(dist = distribution)
+)
+
+n.caus.endorse <- length(md.caus.endorse$MAP_h)
+r2.caus.rsa <- compute_r2(md.caus.endorse, "MAP_h", "MAP")
+mse.caus.rsa <- compute_mse(md.caus.endorse, "MAP_h", "MAP")
+
+```
 
 
 
@@ -5221,25 +5331,35 @@ grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
 #              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
+### Results
 
+`r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
+As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior. 
+These are shown for the different experimentally-manipulated priors and frequencies in Figure \ref{fig:causals-endorsement}.
+
+As predicted by our model, endorsements for a causal statement were sensitive to the background distribution of other causes and the causal power of the target cause.
+When many other causes produced the effect very reliably (*common deterministic* condition), very few participants endorsed the causal statement for a cause with causal power of 0.2, and were at chance when the causal power was 0.7 (Figure \ref{fig:figure-causals-endorsement; top, blue).
+By contrast, when many other causes failed to produce the effect and those that did were not very reliable (*rare weak* condition; green in figure), at least half of participants endorsed the causal statement for a cause with causal power of 0.2, and were at ceiling when the causal power was 0.7.
+The other two conditions (*rare deterministic* and *common weak*) led to endorsements intermediate between these two conditions.
+Our model predicted these effects again with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
 
 ## Discussion
 
 In our third case study, we applied our same model to generalizations about causal events.
-In this domain, we succesfully manipulated participants' beliefs about the expected causal power in a domain (Expt. 4a).
+In this domain, we succesfully manipulated participants' beliefs about the expected causal power in a domain (Expt. 3a).
 We did this for both unstructured distributions (*common weak*, *common strong*) and structured distributions (*rare weak*, *rare strong*). 
-In Expt. 4b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
-In addition to further demonstrating the generality of this theory, these experiments show that the *prevalence prior* $P(h)$ construct that we posit is causally related to endorsement.
+In Expt. 3b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
+In addition to further demonstrating the generality of this theory, these experiments show that the *prevalence prior* $P(h)$ is causally related to endorsements of generalizations in language.
 
 In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall. 
 In addition to their plausibility, these causal events could have ambiguous causal power associated with them (e.g., it's plausible that there are herbs that only weakly make animals sleepy and it's also plausible that there are herbs that almost deterministically make animals sleepy).
 These two features of the domains make them particularly amenable to manipulation.
 That is, people's abstract theories about these domains are flexible enough to permit such manipulations.
 
-It's likely that there exist domains for which abstract, intuitive theories might interact with the experimentally-supplied "experimental data" to form a hybrid belief distribution.^[
-If this were happening in our domains, we would expect this to show up in the results of Expt. 4a. Participants' predictions about the likely causal power of new causes would be expected to show a mixture of their abstract, intuitive theories and the experimentally supplied data.
+It's likely that there exist domains for which abstract, intuitive theories might interfere with the experimentally-supplied "experimental data" to form a hybrid belief distribution.^[
+If this were happening in our domains, we would expect this to show up in the results of Expt. 3a. Participants' predictions about the likely causal power of new causes would be expected to show a mixture of their abstract, intuitive theories and the experimentally supplied data.
 ]
-For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analagous to our "strong" priors conditions. 
+For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analagous to our "deterministic" priors conditions. 
 Causal systems that demonstrate surprising or *a priori* unlikely effects (e.g., liquids melting concrete) could induce rarity about the existence of a non-zero causal power, analgous to our "rare" prior conditions. 
 Our theory would predict in these cases that differences in endorsement would be attributable to differences in the belief distribution over causal power. 
 
@@ -5249,12 +5369,12 @@ Our theory would predict in these cases that differences in endorsement would be
 It is a remarkable fact that so much is learned from ideas expressed vaguely in words.
 Generalizations in language (e.g., *John runs.*, *Dogs are friendly.*, *The block makes the machine play music*) are a premier example of how simple statements --- statements understood by even the youngest language users --- can display complex sensitivity to context.
 We have argued that the core meaning of such linguistic expressions is, in fact, simple, but underspecified. 
-To our knowledge, this is the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
+To our knowledge, this is the first formal theory of genericity in language that makes precise quantitative predictions about human endorsement data. 
 
-It is also the first attempt in psychology to try to unify significant swaths of language that are seemingly quite different from one another: generalizations about categories, events, and causes.
+As a formal theory of genericity in language, we aim to unify significant swaths of language that are seemingly quite different from one another: generalizations about categories, events, and causes.
 What these expressions have in common is not surface-level features but *genericity*, the fact that these statements convey generalizations. 
-Indeed we have been able to capture the context-sensivity of these statements by positing a single underlying scale defined by the *propensity*, or probability (Expts. 1, 3, \& 4).
-This scale is defined by a subjective, predictive probability, not mere frequency (Expt. 2).
+Indeed we have been able to capture the context-sensivity of these statements by positing a single underlying scale defined by the *propensity*, or probability (Expt. 1, 2a \& 2b, 3).
+This scale is defined by a subjective, predictive probability, not mere frequency (Expts. 2c \& 2d).
 We have shown that listeners' prior knowledge about this scale is causally related to their endorsement of statements of genericity (Expt. 3).
 Finally, our framework naturally accounts for a number of well-documented examples from linguistics of generalizations about categories, or *generic language* (Expt. 1).
 In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below.
@@ -5267,7 +5387,8 @@ We believe this has been a stumbling block for formal semantic models that try t
 As @Nickel2016 notes, genericity is particularly difficult to study because it intersects with many other phenomena in language (e.g., gradable adjectives in *Giraffes are tall*).
 We argue that it also intersects with world knowledge in subtle ways, and it is critical to accurately measure and describe world knowledge before making claims about the implications of a generalization *per se*.
 
-Our separation of world knowledge from the semantics of generics allows a way for conceptual structure to influence generic production and comprehension, without having to posit conceptual structure and semantics are one in the same.
+Our separation of world knowledge from the semantics of generics provides a substantial, but well-circumscribed role for conceptual structure to influence generic production and comprehension.
+We do this without having to posit that conceptual structure and semantics are one in the same.
 This is important for applied Natural Language Processing research that seeks to draw inferences about particular entities from information conveyed in generalizations in text [e.g., @Herbelot2011].
 At the same time, this paves the way for articulating formal theories about conceptual structure and provides a route for influence on generic language [c.f., @Leslie2008].
 
@@ -5323,15 +5444,15 @@ Future work should address the property-wise reading of generalizations, and exp
 <!-- -- add tomasello about learning about how to take turns, as a generalization about an event type which is the event of how the game is supposed to be played -->
 
 Previous psychological and philosophical work on generics has looked beyond prevalence and focused on conceptual distinctions and relations [@Gelman2003; @Prasada2013; @Leslie2007; @Leslie2008]. 
-Prasada has argued for a distinction between \emph{characteristic} properties (e.g.~\emph{Diapers are absorbent.}) and \emph{statistical} properties (e.g.~\emph{Diapers are white.}).
-Leslie suggests information that is striking (e.g.~\emph{Tigers eat people.}) is useful and thus permitted to be a generic.
+Prasada has argued for a distinction between \emph{characteristic} properties (e.g., \emph{Diapers are absorbent.}) and \emph{statistical} properties (e.g., \emph{Diapers are white.}).
+Leslie suggests information that is striking (e.g., \emph{Tigers eat people.}) is useful and thus permitted to be a generic.
 Gelman outlines how generics tend to express \emph{essential} qualities that are relatively timeless and enduring. 
 Where in the prevalence-based semantics could such conceptual distinctions come into play?
 
 Our approach makes the strong claim that beliefs about predicted prevalence are the connective tissue between conceptual knowledge and the semantics of generic language.
 That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding prevalence distributions.
 We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to different prevalence priors. 
-In Expt. 4 we showed that these prevalence distributions are causally related to endorsement.
+In Expt. 3 we showed that these prevalence distributions are causally related to endorsement.
 
 It is natural to ask how subjective probabilities might reflect conceptual knowledge.
 We found that empirical prevalence distributions are structured in a way that reflects intuitions about causal mechanisms underlying different properties; the differences in shape of these distributions in turn led to variable endorsements of generalizations. 
@@ -5343,12 +5464,12 @@ Future work will be needed to explore whether probabilistic representations of c
 ## Communicating Predictive Probabilities
 
 It is important to note that our approach is based on \emph{subjective} probability, and not mere frequency.
-Indeed, we elucidated in Expt.~3 that using participants' \emph{predictions} of probability in our formal model perfectly track generic endorsement, when the present frequency would make the wrong prediction.
+Indeed, we elucidated in Expts. 2c \& 2d that using participants' \emph{predictions} of probability in our formal model perfectly track generic endorsement, when the present frequency would make the wrong prediction.
 
 The focus on subjective, predictive probability casts new light on puzzles surrounding accidentally-true situations.
-To take a thought-experiment from the linguistics litearature, imagine that currently every Supreme Court justice's social security number is an even number. 
+Consider a classic thought experiment in the linguistics and philosophy literature: Imagine that currently every Supreme Court Justice's social security number is an even number. 
 Linguists predict the statement "Supreme Court Justices have even social security numbers" would still be considered false [@Cohen1999].
-Our explanation is this phenomenon is that abstract intuitive theories lead us to reject observed frequencies in forming our subjective probabilities.
+Our explanation of this phenomenon is that abstract intuitive theories lead us to reject observed frequencies in forming our subjective probabilities.
 That is, because we may believe selection for the Supreme Court is not influenced by one's social security number, we would assign a roughly 50\% subjective probability that the \emph{next} justice would have an even social security number.
 Thus, given that the all professions would have roughly the same probability of having employees with even social security numbers, the statement \emph{Supreme Court Justices have even social security numbers} would be similar to *Birds are female*. 
 Thus, our model would not endorse the statement \emph{Supreme Court Justices have even social security numbers}, because the predictive prevalence would not be any different for Supreme Court Justices than any other profession.
@@ -5364,6 +5485,9 @@ We suggest that problems with communicating probabilities are a problem of the l
 A host of developmental evidence suggests that even the youngest learners are actually quite good about reasoning about probabilities, but in ways that are not explicit or tied to language [@Gweon2010; @Dewar2010].
 In this work, we have argued that probabilities are central to even the most basic linguistic expressions.
 We convey probabilities to each other using language, but the most basic ways we have of conveying them are *vague*. 
+
+<!-- One might also question the feature of our computational model that the speaker is explicitly trying to communicate $h$, her subjective probability.  -->
+<!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the target category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
 
 <!-- ### The Problems with Communicating Generalizations -->
 
@@ -5399,21 +5523,21 @@ We convey probabilities to each other using language, but the most basic ways we
 The linguistic outlet for generalizations about categories---so called, *generic language*---has received tremendous attention from psychologists, linguists, and philosophers.
 Generic language is one of the earliest emerging forms of complex, compositional language.
 Somewhere between 2 and 3 years of age, children recognize that generics convey a generalization about a category, not directly tied to concrete instances in a scene [@Cimpian2008].
-...More on development...
+Generics are ubiqiutous in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004] and are believed to be central to the growth of conceptual knowledge [@Gelman2004], 
 
 What is perhaps surprising from a formal perspective is that generic language is far from trivial to characterize. 
 If generics convey something about the prevalence of feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...).
-Rehash linguistic puzzles.
-The extreme flexibility of generic meaning stands in stark contrast to its early emergence in development.
-In fact, quantified statements, whose formal meaning is much more straight-forward, emerge much *later* in development [@Brandone2014; @Gelman2015].
-This has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) will not work for generic language [@Leslie2008].
+The extreme flexibility of generic meaning (e.g., *Birds lay eggs* vs. *Birds are female*) stands in stark contrast to its early emergence in development.
+In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge much *later* in development [@Brandone2014; @Gelman2015].
+This has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) is not approrpriate for generic language [@Leslie2008].
 
-This would be throwing out the baby with the bathwater.
+We think this would be throwing out the baby with the bathwater.
 When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance (e.g., "some", "most"): (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
 Upon learning the meaning function is a threshold-function (1), a Bayesian language learner would be well-suited to adopt a prior distribution over possible thresholds $\theta$.
 This prior could then be updated with more data to acquire its fixed meaning.
 For the generic statement, the language learner is done once she acquires (1). 
 The rest of the meaning is inferred in context.
+With that lens, generic meaning would be primary, while quantified utterances would be refinements.
 
 There is an alternative reason why our uncertain threshold model makes the acquisition problem easier than quantifiers.
 A uniform prior over the threshold in the truth-functional threshold semantics (as we have assumed in this work) is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the probability degree $h$ *itself*: ^[It is equivalent to the probability degree $h$ normalized by the prior distribution over the degree (i.e., the comparison class)]
@@ -5421,7 +5545,7 @@ $$
 \int_{0}^{1} \delta_{h > \theta} \diff \theta =  h
 $$
 
-This *soft semantics* (corresponding intuitively to something like "more is better") is perhaps the simplest semantics one could imagine.
+This *soft semantics* (corresponding intuitively to something like "the higher the probability, the better the utterance", or just "more is better") is perhaps the simplest semantics one could imagine.
 <!-- Given this mathematical equivalence, we can imagine the *more is better* soft semantics is what is acquired early. -->
 The difficulty in acquiring the meaning of quantifiers is then a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
 This special case involves learning the value of the threshold (aspect 2) and not in recognizing that the utterance conveys something about the quantity (e.g., aspect 1).
@@ -5597,13 +5721,13 @@ For example, being a paperback can only be true or false (in the predicability s
 Aggregations of entities that can be predicated by the feature are, without further supporting context, categories of books.
 Such categories may include books of different of different genres or eras, among plausibly many other such sub-categories.
 From the taxonomic relation of the subordinate categories (e.g., types of books) to the target category (i.e., books), the true prevalence of the feature among the target category must be the mean of the prevalence of all subcategories, assuming an equal partitioning of the prior probability of subcategories.
-Thus, if we were to construct a speaker model of the statement "Books are paperbacks", the model would predict a 0.5 endorsement: neither true nor untrue. 
+Thus, if we were to construct a speaker model of the statement "Books are paperbacks", the model would predict a 0.5 endorsement: neither true nor untrue, in the same way as "Birds are female". 
 
 (2) is often used to argue that no actual instances need have the property to make a generalization true. 
-Part (or perhaps all) of Mary's job is to handle the mail from Antarctica; in this thought experiment, to date, there has not been any mail from Antarctica [@Cohen1999]. 
+In this thought experiment, part (perhaps all) of Mary's job is to handle the mail from Antarctica; to date, however, there has not been any mail from Antarctica [@Cohen1999]. 
 Thus, it is not the case that Mary *has handled* any mail from Antarctica before.
-This example is an extreme case of the phenomenon highlighted by Expt. 3.
-In Expt. 3, we manipulated predictive probability, while keeping fixed past frequency, and saw the endorsements of habitual statements indeed tracked predictive probability (with the linking function being the RSA speaker model). 
+This example is an extreme case of the phenomenon highlighted by Expts. 2c \& 2d.
+In this pair of experiments, we manipulated predictive probability, while keeping fixed past frequency, and saw the endorsements of habitual statements indeed tracked predictive probability (with the linking function being the RSA speaker model). 
 Our general cognitive modeling framework takes the fundamental currency of a generalization in language to be a subjective predictive probability. 
 Past frequency and actual prevalence in the world often tracks predictive probabilities, but language users' internal models of how the world works can lead them in certain situations to expect something different.
 
@@ -5611,7 +5735,7 @@ Past frequency and actual prevalence in the world often tracks predictive probab
 This example was first introduced, to our knowledge, by @Nickel2008.
 ]
 @Nickel2008 suggests this statement is semantically equivalent to: *Elephants live in Africa and elephants live in Asia*.
-This example is challenging for many statistical based approaches, since it cannot be the case that most elephants live in Africa and most elephants live in Asia. That is, we should not take the statement to imply that there are international elephants (i.e., individual elephants who live in Africa part time and Asia part time); but that is the only possible interpretation if the generic statement is given a fixed, majority based quantificational account (e.g., if the generic means *most*).
+This example is challenging for many statistical based approaches, since it cannot be the case that most elephants live in Africa and most elephants live in Asia. In addition, we should not take the statement to imply that there are international elephants (i.e., individual elephants who live in Africa part time and Asia part time); but that is the only possible interpretation if the generic statement is given a fixed, majority based quantificational account (e.g., if the generic means *most*).
 
 <!-- Instead, the statement should be glossed as *some elephants live in Africa* and *some elephants live in Asia*, and perhaps taken collectively, *most elephants live in either Africa or Asia* [@Nickel2008].  -->
 <!-- This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia." -->
@@ -5624,7 +5748,7 @@ Our model can flexibly accomodate new evidence (e.g., learning that elephants li
 A runnable version of the model for this example can be found at [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
 
 Finally, (4) is used to argue that even if the property is widespread (or perhaps in a softer sense, as in our model, widespread relative to other kinds or groups), speakers might find it avervise to actually assert the generic.
-That is, even if it were the case that, because of a variety socio-cultural reasons, women tend to be submissive (more so than men, and many other social categories), we might still not want to say *Women are submissive* [@Haslanger2011]. 
+That is, even if it were the case that, because of a variety of socio-cultural reasons, women tend to be submissive (more so than men, and many other social categories), we might still not want to assert *Women are submissive* [@Haslanger2011]. 
 In our Model Simulations section, we showed that the generic often can imply the property is widespread, even with uninformed prior beliefs about the property. 
 If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth. ^[
 Note that this can naturally capture the central phenoman described in @Cimpian2010.
@@ -5632,7 +5756,7 @@ Note that this can naturally capture the central phenoman described in @Cimpian2
 The current formulation of the model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated from the generic statement).
 However, if states of the world (or, listener's beliefs about states of the world) correspond to different subjective utilities, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
 This kind of extension to the RSA framework has already accounted for a variety of behaviors corresponding to polite speech understanding and production [@Yoon2016; @Yoon2017].
-If our model believed that states of the world where the prevalence of the feature is high (e.g., a world where many women were submissive) were undesirable (either in absolute terms or as a belief), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such generic claims. 
+If our speaker model believed that states of the world where the prevalence of the feature is high (e.g., a world where many women were submissive) were undesirable (either in absolute terms or as a belief), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such generic claims. 
 We find this possibility intruiging for future work.
 
 In sum, we've tried to argue that our information-theoretic communicative model couched in general cognitive framework can be used to formalize a number of interesting and heretofore puzzling avenues in genericity. 
