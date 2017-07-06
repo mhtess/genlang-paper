@@ -4433,18 +4433,14 @@ n_chains <- 3
 # burn <- n_samples / 2
 # lg <- 150
 model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
-#model_prefix <- "results-habituals-predictive-jointModel-predMin-3-S1-smtncs_habitual-"
+model_prefix <- "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-"
 n_samples <- 100000
 burn <- n_samples / 2
-lg <- 20
+lg <- 50
 
 
 m.hab.pred.samp <- data.frame()
 m.hab.past.samp <- data.frame()
-# m.hab.pred.samp <- fread(paste(project.path,
-#                                 "models/habituals/results/",
-#                                 "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-targetH_predictive-10000_burn5000_lag20_chain1.csv",
-#                                 sep = ""))
 
 
 # for (i in seq(1, n_chains)){
@@ -4459,24 +4455,22 @@ m.hab.past.samp <- data.frame()
   # m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
 
 #}
-
-
 # 
+# 
+# # 
 # save(m.hab.pred.samp,
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
-# 
+# # # 
 # save(m.hab.past.samp,
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
 
-load(file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
-                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-predictive-100000_burn50000_lag50_3chains.RData", sep = ""))
 
 
-load(file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
-                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-past-100000_burn50000_lag20_3chains.RData", sep = ""))
 
 
 
@@ -4583,7 +4577,7 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   #guides(fill = F)+
   #theme(legend.position = "bottom")+
   scale_fill_solarized()
-#habituals.predictive.predictive.model
+habituals.predictive.predictive.model
 ```
 
 ```{r fig.height = 6, fig.width=14, echo = F, eval=F}
