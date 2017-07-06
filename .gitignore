@@ -14,3 +14,5 @@ paper/library.bib
 packrat/lib*/
 .Rhistory
 paper/comgen-paper.pdf
+models/*/results/*.csv
+packrat/src/
