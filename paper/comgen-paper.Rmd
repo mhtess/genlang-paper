@@ -3076,7 +3076,7 @@ grid.arrange(figure.habituals.priors.scatter, figure.habituals.priors.marginals,
 
 ### Data analysis and results
 
-All participants responded correctly to both questions in the attention check trial, so all data was used in the analysis.
+All participants responded correctly to both questions in the attention check trial, so all collected data was used in the analysis.
 We built a Bayesian data analysis model for this prior elicitation task.
 In addition to specifying the correct way to combine our two prior-elicitation questions, using this inferred prior resolves two technical difficulties.
 First, it smooths effects that are clearly results of the response format. For example, a very common rating for certain events is \emph{1 time per year}. Presumably participants would be just as happy reporting \emph{approximately} 1 time per year (e.g., on average, 1.2 times per year); the raw data does not reflect this due to demands of the dependent measure.
@@ -3087,13 +3087,12 @@ This number can be interpreted as a probability coming from a Beta distribution:
 Question 2 elicits the rate, or relative frequency, with which a person does the action.
 This was modeled by a log-normal distribution: $\ln d_{stable} \sim \text{Gaussian}(\mu_{stable}, \sigma_{stable})$. 
 Each item was modeled independently for each gender.
-
-We implemented this model using the probabilistic programming language WebPPL \cite{dippl}, and found the credible values of the parameters by running MCMC for 100,000 iterations, discarding the first 50,000 for burnin.
+We learned about the credible values of the parameters by running MCMC for 100,000 iterations, discarding the first 50,000 for burnin.
 
 The priors elicited cover a range of possible parameter values as intended (Figure \ref{fig:priorScatter}, scatter), resulting in parametrized distributions of dramatically different shapes (insets).  
 We observe a correlation in our items between the mean \% of Americans who have \textsc{done action} before (Question 1) and the mean log-frequency of action (Question 2) ($r_{1,2} = 0.74$).
-Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often). 
-This diversity is relevant because the speaker model (Eq.~\ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
+Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often).
+This diversity is relevant because the speaker model (Eq. \ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
 
 Analagous to what was done with the prior knowledge for generic language, from the inferred parameters and the assumed functional forms (i.e., the mixture distribution), we can generate $P(h)$ modeled as a mixture of individuals who have done the action before and those that haven't.
 That is, $P(h)$ was constructed by sampling $\lambda$ as follows:
@@ -3111,13 +3110,13 @@ We then flip a coin weighted by $\phi$: $\text{Bernoulli}(\phi)$.
 If the coin comes up heads (i.e., $\text{Bernoulli}(\phi) = \textsc{true}$), a frequency $h$ is sampled from the distribution of people who have done the action before. This distribution is a log-normal distribution with parameters inferred from the second question of the experiment $\ln h \sim \text{Gaussian}(\mu_{stable}, \sigma_{stable})$.
 If the coin comes up tails, a frequency $h$ is sampled from the distribution of people who have not done the action before.
 We make the simplifying assumption that people who have not done the action before will probably never do the action (expected frequency: once every hundred years).
+Figure \ref{fig:habituals-prior-figure} (right) shows example inferred priors.
 
-Figure \ref{fig:priorScatter} (right) shows example inferred priors.
-Some items show substantial differences between the genders (e.g., \emph{wears a bra}) and some show subtle differences (e.g., \emph{watches professional football}).
-Recall that the prior distributions $P(h)$ used in the RSA are with respect to an alternative class of entities (e.g., other individuals). 
-It's possible that when evaluating habitual statements under certain contexts, $P(h)$ is with respect to either *all people* or *people of the same gender*. 
-For example, are the frequency conditions by which a man would qualify to "watch  football" (habitually) different than those by which a woman would qualify to "watch  football"?
-We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2b, for select items with priors that differ substantially by gender.
+<!-- Some items show substantial differences between the genders (e.g., \emph{wears a bra}) and some show subtle differences (e.g., \emph{watches professional football}). -->
+<!-- Recall that the prior distributions $P(h)$ used in the RSA are with respect to an alternative class of entities (e.g., other individuals).  -->
+<!-- It's possible that when evaluating habitual statements under certain contexts, $P(h)$ is with respect to either *all people* or *people of the same gender*.  -->
+<!-- For example, are the frequency conditions by which a man would qualify to "watch  football" (habitually) different than those by which a woman would qualify to "watch  football"? -->
+<!-- We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2b, for select items with priors that differ substantially by gender. -->
 
 
 <!-- We analyze the data using a Bayesian approach to allow for a consistent integration into the computational model. -->
@@ -3196,9 +3195,9 @@ The particular intervals used (\{weeks, months, years\}) were selected after exa
 The items were the same as in the prior elicitation task.
 
 Participants were asked whether they agreed or disagreed with the corresponding habitual sentence: "\textsc{person does x}" (e.g., \emph{Bill smokes cigarettes}).
-Participants completed 37 trials, which were composed of the 31 items from the prior elicitation task randomly paired with either a male or female character name.
-6 of these items were then also paired with a name of the opposite gender (e.g., participants saw both a female character and a male character who watched professional football).
-These were used for an exploratory analysis on differences in endorsements by gender of the target character.
+Participants completed thirty-seven trials, which were composed of the thirty-one items from the prior elicitation task randomly paired with either a male or female character name.
+Six of these items were then also paired with a name of the opposite gender (e.g., participants saw both a female character and a male character who drank beer).
+<!-- These were used for an exploratory analysis on differences in endorsements by gender of the target character. -->
 
 ### Results
 
@@ -3268,7 +3267,7 @@ fig.habituals.endorsement.vs.freq <-
 ```
 
 
-```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.'}
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.', eval=F}
 gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
                     "wears a bra", "wears a watch", "wears a suit")
 
@@ -3890,18 +3889,19 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-
+<!-- For the six items for which data for characters of both genders were collected for each participant, we analyzed only the data from participants' first presentation of the item. -->
 Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold RSA model in order to understand the data and our model.
-Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ.
+For all analyses, we collapse across gender of the target character.
+<!-- Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ. -->
 
 <!-- NOTE: Alternatively: We could not discuss this analysis (or, in a footnote). Since participants judged both genders for these items, we could only analyze their first gender and drop their second, for consistency with the other items. -->
 
-For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements. 
-Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men).
-Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}.
-We see no appreciable differences in endorsements for the two genders. 
-This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters.
-For all remaining analyses, we collapse across character gender when analyzing endorsements.
+<!-- For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements.  -->
+<!-- Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men). -->
+<!-- Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}. -->
+<!-- We see no appreciable differences in endorsements for the two genders.  -->
+<!-- This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters. -->
+<!-- For all remaining analyses, we collapse across character gender when analyzing endorsements. -->
 
 #### Frequency baseline
 
@@ -4577,7 +4577,7 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   #guides(fill = F)+
   #theme(legend.position = "bottom")+
   scale_fill_solarized()
-habituals.predictive.predictive.model
+#habituals.predictive.predictive.model
 ```
 
 ```{r fig.height = 6, fig.width=14, echo = F, eval=F}
@@ -4616,7 +4616,6 @@ legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.posi
 
 # add the legend underneath the row we made earlier. Give it 10% of the height
 # of one plot (via rel_heights).
-
 
 grid.arrange(
   arrangeGrob(
