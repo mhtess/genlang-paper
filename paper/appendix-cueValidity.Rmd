@@ -302,12 +302,267 @@ d.cv.bothtasks %>%
 ```
 
 
-
-
 ```{r dq.histogram, fig.height = 4, eval = F}
 ggplot(d.cv.targets, aes( x = response ))+
   geom_histogram() + 
   facet_wrap(~type) + 
   scale_x_continuous(breaks = c(0, 0.5, 1))
 ```
+
+
+## Comparison with prevalence prior derived cue validity
+
+Here, we treat each entry (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior. This will have the prevalence prior favor kinds that are easy to produce (like dogs and cats) as well as the experimentally supplied kinds (like mosquitos and robins).
+
+```{r cv-fp-data-analyzeAll}
+d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "originalStims.json", sep = "")) %>%
+  mutate(
+    property = gsub("'", "", property),
+    Property = gsub("'", "", Property),
+    sentence = paste(Category, Property),
+    item = paste(category, property))
+
+
+
+
+# d.prev.summary <- d.prev %>%
+#   mutate(item = paste(Category, Property)) %>%
+#   filter(item %in% d.target.items$sentence) %>%
+#   mutate(prevalence = prevalence / 100) %>%
+#   group_by(Category, Property, item) %>%
+#   multi_boot_standard(column = "prevalence")
+
+d.cv.bootstrapped.all <- data.frame()
+resample_n <- length(levels(factor(d.cv.fp$workerid)))
+for (i in 1:1000){
+  
+  d.cv.bsample <- d.cv.fp %>% 
+    select(workerid, property, response) %>% 
+    spread(property, response) %>% 
+    sample_n(resample_n, replace = TRUE) %>%
+    gather(property, category, -workerid) %>% 
+        group_by(property) %>%
+    mutate(n = n(),
+           item = paste(category, property)) %>%
+    filter(item %in% d.target.items$item) %>%
+    group_by(category, property) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials,
+              prop = ifelse(is.na(prop), 0.01, prop),
+              iteration = i)
+  
+  d.cv.bootstrapped.all <- bind_rows(d.cv.bootstrapped.all, d.cv.bsample)
+}
+
+d.gen.cv.all.summary <- left_join(
+    d.target.items %>% select(-sentence),
+    d.cv.bootstrapped.all %>%
+      group_by(category, property) %>%
+      summarize(cv_mean = empiricalMean(prop),
+                cv_ci_lower = empiricalLower(prop),
+                cv_ci_upper = empiricalUpper(prop))
+) %>%
+  mutate(
+    cv_ci_lower = ifelse(is.na(cv_mean), 0.01, cv_ci_lower),
+    cv_ci_upper = ifelse(is.na(cv_mean), 0.01, cv_ci_upper),
+    cv_mean = ifelse(is.na(cv_mean), 0.01, cv_mean)
+  )
+
+```
+
+
+```{r, echo = F, eval = F}
+wp.pkg.path <- paste(project.path, "models/generics/node_modules/utils/", sep = "")
+
+
+cueValidityModel1 <- '
+var cueValidity = function(){
+  var kind = uniformDraw(data.prior);
+  observe(Bernoulli({p: kind.prevalence/100}), true)
+  return kind.Category == data.kind[0]
+}
+
+expectation(Infer({model: cueValidity}))
+'
+
+
+d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
+                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+
+
+d.gen.endorse.priors <- read.csv(paste(project.path, 
+                                       "data/generics/endorsement/",
+                                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+gen.endorse.properties <- levels(d.gen.endorse.priors$Property)
+
+
+wp.cueValidity <- data.frame()
+for (p in gen.endorse.properties){
+  categories <- levels(factor(filter(d.gen.cv.all.summary, Property == p)$Category))
+  prevPriorData = d.gen.endorse.priors %>% filter(Property == p)
+  
+  for (catg in categories){
+
+    dataToPass <- list(
+      prior = prevPriorData,
+      kind = catg
+    )
+    
+    wp.rs <- webppl(cueValidityModel2, 
+       #packages = c(wp.pkg.path),
+       data_var = "data",
+       data = dataToPass)
+    
+    wp.cueValidity <- bind_rows(wp.cueValidity, 
+                                data.frame(Category = catg,
+                                           Property = p,
+                                           cv = wp.rs))
+    
+  }
+  print(p)
+}
+# save(wp.cueValidity, file =
+#        paste(project.path, model.path,
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+# load(file = 
+#        paste(project.path, model.path, 
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+```
+
+
+```{r}
+md.fp <- left_join(left_join(
+  d.gen.cv.all.summary,
+  wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
+), target.items2)
+
+ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, ymax = cv_ci_upper,
+                   color = type, alpha = type))+
+  geom_point()+
+  scale_alpha_manual(values = c(1,1,1,0.5))+
+  geom_errorbar()+
+  ylim(0, 1) + xlim(0, 1)+
+  coord_fixed()
+
+compute_r2(md.fp, "cv_mean", "prev_prior_derived_cv")
+compute_mse(md.fp, "cv_mean", "prev_prior_derived_cv")
+
+diagnostic.props <- data.frame(
+  item = c("kangaroo has a pouch", "lion has a mane", 
+           "mosquito carries malaria", "tick carries Lyme disease"),
+  type = "diagnostic"
+)
+
+undiagnostic.props <- data.frame(
+  item = c("leopard is juvenile", "lion is male", "robin is female", "swan is full-grown"),
+  type = "undiagnostic"
+)
+
+false.props <- data.frame(
+  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
+  type = "false"
+)
+
+target.items2 <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
+md.fp.desid <- md.fp %>%
+  filter(item %in% target.items2$item)
+
+compute_r2(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+compute_mse(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+```
+
+
+```{r}
+target.items
+md.fp
+```
+
+
+
+```{r}
+d.cv.dq.all <- d.cv.dq %>%
+  mutate(property = gsub("&quotechar", "", property), 
+         item = paste(category, property)) %>%
+  group_by(category, property) %>%
+  multi_boot_standard(column = 'response')
+
+md.dq <-  left_join( left_join(
+    left_join(
+    d.gen.cv.all.summary %>% select(Category, Property, category, property, item),
+    d.cv.dq.all),
+    wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
+  ), target.items2)
+
+ggplot(md.dq, aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
+                     color = type))+
+  geom_point()+
+  geom_errorbar()+
+  ylim(0, 1) + xlim(0, 1)+
+  coord_fixed()
+  
+compute_r2(md.dq, "mean", "prev_prior_derived_cv")
+compute_mse(md.dq, "mean", "prev_prior_derived_cv")
+
+md.dq.desid <- md.dq %>%
+  filter(item %in% target.items2$item)
+
+compute_r2(md.dq.desid, "mean", "prev_prior_derived_cv")
+compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
+
+
+```
+
+```{r cvModel-uniformPrior, echo = F, eval = F}
+cueValidityModel2 <- '
+var cueValidity = function(){
+  var kind = uniformDraw(data.allKinds);
+  var responses = _.filter(data.prior, {Category: kind});
+  var response = _.isEmpty(responses) ? {prevalence: 0} : uniformDraw(responses);
+  observe(Bernoulli({p: response.prevalence/100}), true)
+  return kind == data.kind[0]
+}
+
+expectation(Infer({model: cueValidity}))
+'
+
+allKinds = levels(factor(d.gen.endorse.priors$Category))
+
+wp.cueValidity.uniform <- data.frame()
+for (p in gen.endorse.properties){
+  categories <- levels(factor(filter(d.gen.cv.all.summary, Property == p)$Category))
+  prevPriorData = d.gen.endorse.priors %>% filter(Property == p)
+  
+  for (catg in categories){
+
+    dataToPass <- list(
+      prior = prevPriorData,
+      kind = filter(prevPriorData, Category == catg)[1, "Category"],
+      allKinds = allKinds
+    )
+    
+    wp.rs <- webppl(cueValidityModel2, data_var = "data", data = dataToPass)
+    
+    wp.cueValidity.uniform <- bind_rows(wp.cueValidity.uniform, 
+                                data.frame(Category = catg,
+                                           Property = p,
+                                           cv = wp.rs))
+    
+  }
+  print(p)
+}
+# save(wp.cueValidity, file = 
+#        paste(project.path, model.path, 
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+# dataToPass %>% toJSON(.)
+# 
+# wp.rs
+wp.cueValidity.uniform
+```
+
+
+
+
+
+
 
