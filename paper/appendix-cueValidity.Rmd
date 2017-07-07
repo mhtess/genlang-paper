@@ -11,22 +11,22 @@ substrRight <- function(x, n){
 }
 ```
 
-# Appendix B: Measuring cue validity
+# Appendix B: Measuring Cue Validity
 
 In considering generalizations about categories, or *generic language*, theories try to formalize the truth conditions by analogy to quantified statements (e.g., *some*, *most*, ...).
-Here, the prevalence of the feature, or $P(f \mid k)$, is the central quantity.
-Quantifiers can be described as conditions on prevalence: $\denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}$.
+Here, the prevalence of the feature, or $P(f \mid k)$, is the critical quantity.
+Quantifiers can be described as conditions on prevalence: 
+$$
+\denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}
+$$
 The question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
-Hard-constraints on $\theta$ are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice.
+Hard-constraints on $\theta$ are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice (i.e., *Some mosquitos carry malaria*).
 
-Some (who?) have noted, however, that the inverse probability, the probability of the kind $k$ given the feature $f$ --- $P(k \mid f)$ --- might be able to save statistical-based approaches [@Leslie2007].
+
+@Leslie2007 notes that mosquitos are the only species to carry malaria, and perhaps this explains why the generic is true.
+More formally, the inverse probability --- the probability of the kind $k$ given the feature $f$: $P(k \mid f)$ --- might be able to save statistical-based approaches [@Leslie2007; @Khemlani2012].
 This inverse probability, referred to as *cue validity*, encodes the diagnosticity of the feature for the kind.
 For example, after learning that an entity *carries malaria*, the probability that the entity is a *mosquito* is very high. 
-
-An approach based only on cue-validity would be insufficient because of cases like *Dogs have four legs*. 
-Tons of animals have four legs, and so the diagnositicity of having four legs for a dog is very low. 
-However, one could argue for some integration of the two probabilities --- prevalence and cue validity.
-This is often tested by measuring prevalence and cue validity and using both measurements as predictors of generic endorsement in a logistic-regression [@Khemlani2012; @Prasada2013].
 
 As noted in the main text, cue validity can be derived from a prevalence prior composed of a finite number of kinds.
 This relationship follows from Bayes' Rule:
@@ -35,22 +35,29 @@ $$
 P(x \in k | x \in f) = \frac{P(x \in f \mid x \in k) \cdot P(x \in k)}{\sum_{k'}P(x \in f \mid x \in k') \cdot P(x \in k')}
 $$
 
-where $x$ is an arbitrary entity, $k$ is a kind represented as a collection of entities in the kind, and $f$ is a feature represented as a collection of entities with the feature.
+where $x$ is an arbitrary entity, $k$ is a kind (represented as a collection of entities in the kind), and $f$ is a feature (represented as a collection of entities with the feature).
 However, in a generative model composed of a potentially infinite number of kinds, the cue validity of a feature for a particular kind is 0. 
-In our mixture model formulation of the prevalence prior, we explicitly represent the prevalence prior as a generative model with a potentially infinite number of kinds (see Appendix A for more details).
-In this formulation, there is a mixture parameter $\phi$ that we consider the *potential of the property to be present in a kind*. 
-This is generalization of cue validity to the case of an infinite number of kinds. 
+In our mixture model formulation of the prevalence prior, we explicitly represent the prevalence prior as a generative model with a potentially infinite number of kinds.
+In this formulation, the mixture parameter $\phi$ can be seen as a generalization of cue validity, to the case of potentially infinite numbers of kinds.
 
-## Cue validity is a special case of the prevalence prior structure
+
+Cue validity is not itself sufficient to explain endorsements because of cases like *Dogs have four legs*, where many kinds have the feature. 
+However, one could argue for some integration of the two probabilities --- prevalence and cue validity.
+This is often used as the "statistical-based approach" and operationalized by measuring prevalence and cue validity, and using both measurements as predictors of generic endorsement in a logistic-regression of generic endorsement [@Khemlani2012; @Prasada2013].
+
+In Expt. 1, we articulated this alternative model by measuring cue validity (and prevalence) and predicting generic endorsement from a regression model.
+In a small review of the literature, we discovered different methods for measuring cue validity, which lead to different results. 
+Therefore, here we propose three *a priori* desiderata that a measurement of cue validity should satisfy.
+We describe two experiments that represent the primary methods for measuring cue validity and compare them with these desiderata in mind.
+Finally, we compare the cue validity measured using these different methods to cue validity derived from our prevalence prior elicitation task (Expt. 1a, main text).
 
 ## Measuring cue validity
 
-Measuring cue validity involves collecting participants' judgments that rely upon the probability of the kind given the feature.
-There are at least two conceivable ways of trying to measure cue validity.
-One way is ask participants directly about the probability (or likelihood, odds, etc...) of the kind given the feature, using a likert scale or slider.
-This is the paradigm used by @Khemlani2012 and @Prasada2013.
+Measuring cue validity involves collecting participants' judgments that relate to the probability of the kind given the feature.
+There are at least two distinct, prominent ways of measuring cue validity.
+One way is ask participants directly about the probability (or likelihood, odds, etc...) of the kind given the feature, using a likert scale or slider [@Khemlani2012; @Prasada2013].
 We'll call this approach the "direct question" approach.
-Another way is to supply participants with the feature alone and have them generate the kind.
+Another way is to supply participants with the feature alone and have them generate the kind or kinds [@Cree2006].
 We'll call this approach the "free production" approach. 
 
 What criteria can we use to validate one measurement over the other?
@@ -64,17 +71,18 @@ We propose three boundary cases *a priori* that the measurement should be able t
 We collected cue validity ratings by running both a direct question and a free production experiment.
 For the free production experiment, the cue validity is the proportion of responses of the target category (e.g., "mosquitos") for the property (e.g., "carries malaria").
 Of primary interest is the measurement for the boundary conditions described above.
-
+The experiments can be seen on \url{https://mhtess.github.io}.
 
 ## Experimental materials
 
 Materials were the same for both experiments.
-They were a collection of familiar properties and animal categories used in Expt. X (endorsement of generalizations about categories) described in the main text.
+They were a collection of familiar properties and animal categories used in Expt. 1b (endorsement of generic statements) described in the main text.
 There were twenty-one properties in total.
 
 ## Direct question experiment
 
 ### Method
+
 #### Participants
 
 We recruited 40 participants from Amazon's Mechanical Turk.
@@ -92,7 +100,6 @@ What are the odds that it is a \textsc{k}?
 
 Participants responded using a slider bar with endpoints labeled "unlikely" and "likely". 
 The slider appeared with no handle present; participants had to click on the slider for the slider handle to appear.
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/generics/speaker_familiar-kinds/cue-validity-1.html}
 
 Participants completed the thirty target trials (corresponding to the thirty generic statements used in Expt. X) in addition to ten filler trials (total number of trials = 40).
 The filler trials were made up of random category -- property pairings.
@@ -101,12 +108,12 @@ All trials were presented in a randomized order.
 ## Free production experiment
 
 ### Method
+
 #### Participants
 
 We recruited 50 participants from Amazon's Mechanical Turk.
 Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
 The experiment took on average 3 minutes and participants were compensated \$0.40 for their work.
-
 
 #### Procedure
 
@@ -120,14 +127,11 @@ What do you think it is?
 Participants responded by filling in a text box with their response.
 There were twenty-one trials in total, one for each property.
 Trials were presented in a randomized order.
-The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/generics/speaker_familiar-kinds/cue-validity-2-freeProduction.html}
 
 ## Results
 
 To process the free production, we forced all characters to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
 As well, "mosquito" was a commonly mispelled label; we counted anything that started with "mosqu", "mesqu", "misqu", "mosiq" as "mosquito". 
-
-
 
 ```{r directQuestion, echo = F}
 d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
@@ -163,17 +167,19 @@ d.cv.summary <- d.cv.targets %>%
   multi_boot_standard(column = "response")
 
 
-ggplot(d.cv.summary, aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
-  geom_bar(stat = 'identity', position = position_dodge())+
-  geom_errorbar(position = position_dodge())+
-  facet_wrap(~type, scales = 'free')+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
-  theme(axis.text.x = element_text(angle = 90))+
-  xlab("")+
-  ylab("Probability rating of cue validity")+
-  ggtitle("Direct question paradigm")
+# ggplot(d.cv.summary, aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
+#   geom_bar(stat = 'identity', position = position_dodge())+
+#   geom_errorbar(position = position_dodge())+
+#   facet_wrap(~type, scales = 'free')+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   theme(axis.text.x = element_text(angle = 90))+
+#   xlab("")+
+#   ylab("Probability rating of cue validity")+
+#   ggtitle("Direct question paradigm")
 
 ```
+
+
 
 
 
@@ -214,14 +220,84 @@ d.cv.fp.summary <- left_join(
   mutate(prop = ifelse(is.na(prop), 0.01, prop)) %>%
   mutate(type = factor(type, levels = c("diagnostic", "undiagnostic", "false")))
 
-ggplot(d.cv.fp.summary, aes ( x = item, y = prop))+
-  geom_bar(stat = 'identity', position = position_dodge())+
-  facet_wrap(~type, scales = 'free')+
+
+
+d.cv.bootstrapped <- data.frame()
+resample_n <- length(levels(factor(d.cv.fp$workerid)))
+for (i in 1:100){
+  
+  d.cv.bsample <-left_join(
+    target.items,
+    d.cv.fp %>% 
+    select(workerid, property, response) %>% 
+    spread(property, response) %>% 
+    sample_n(resample_n, replace = TRUE) %>%
+    gather(property, category, -workerid) %>% 
+    group_by(property) %>%
+    mutate(n = n(),
+           item = paste(category, property))
+    ) %>%
+    group_by(category, property, item, type) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials,
+              prop = ifelse(is.na(prop), 0.01, prop),
+              iteration = i)
+  
+  d.cv.bootstrapped <- bind_rows(d.cv.bootstrapped, d.cv.bsample)
+}
+
+empiricalLower = function(dist){
+  xi <- quantile(dist, 0.025)
+  return (xi[["2.5%"]])
+}
+empiricalUpper = function(dist){
+  xi <- quantile(dist, 0.975)
+  return (xi[["97.5%"]])
+}
+empiricalMean = function(dist){
+  xi <- quantile(dist, 0.5)
+  return (xi[["50%"]])
+}
+
+
+d.cv.fp.summary <- d.cv.bootstrapped %>%
+      group_by(item, type) %>%
+      summarize(mean = empiricalMean(prop),
+                ci_lower = empiricalLower(prop),
+                ci_upper = empiricalUpper(prop)) %>%
+  mutate(
+    ci_lower = ifelse(is.na(mean), 0.01, ci_lower),
+    ci_upper = ifelse(is.na(mean), 0.01, ci_upper),
+    mean = ifelse(is.na(mean), 0.01, mean)
+  )
+
+d.cv.bothtasks <- bind_rows(
+  d.cv.summary %>% mutate(task = 'direct question'),
+  d.cv.fp.summary %>% mutate(task = 'free production')
+)
+
+theoretical.cv <- data.frame(
+  type = c( "false", "undiagnostic","diagnostic"),
+  cv = c(0.05, 0.05, 0.95)
+)
+
+```
+```{r cv-bothquestions-barplots, fig.cap="Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95\% confidence intervals."}
+d.cv.bothtasks %>%
+  mutate(type = factor(type, levels = c( "false", "undiagnostic","diagnostic"))) %>%
+  ggplot(., aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_bar(stat = 'identity', position = position_dodge(0.5),
+           width = 0.5, color = 'black', fill = 'white')+
+  geom_errorbar(position = position_dodge(0.5), width = 0.3)+
+  facet_grid(task~type, scales = 'free')+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
-  theme(axis.text.x = element_text(angle = 90))+
+  geom_hline(data = theoretical.cv, aes(yintercept = cv), lty = 2)+
+  theme(axis.text.x = element_text(angle = 90),
+        strip.text.y = element_text(angle = 0))+
   xlab("")+
-  ylab("Proportion produced target category")+
-  ggtitle("Free production paradigm")
+  ylab("Cue validity")+
+  guides(color = F)
 
 ```
 
