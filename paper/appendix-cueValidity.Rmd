@@ -62,10 +62,12 @@ We'll call this approach the "free production" approach.
 
 What criteria can we use to validate one measurement over the other?
 We propose three boundary cases *a priori* that the measurement should be able to satisfy.
+For each case, we provide four examples which will be used to evaluate each measure.
+
 \begin{enumerate}
 \item{Completely diagnostic features: We contend there are a number of features that only one (or very small) of categories contain. Examples include: \emph{carrying malaria} (mosquitos), \emph{carrying Lyme disease} (ticks), \emph{having manes} (lions), \emph{having pouches} (kangaroos). The cue validity of these features for the corresponding categories should be very high (close to 1).}
-\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{having wings} (leopards), \emph{laying eggs} (lions).}
-\item{Completely undiagnostic features: We contend there are a number of features that almost every category contains. Examples include: \emph{being female / male}, \emph{being juvenile}. The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
+\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{has wings} (leopard), \emph{has a mane} (shark), "has spots" (kangaroo), "has a pouch" (tiger). }
+\item{Completely undiagnostic features: We contend there are a number of features that almost every category contains. Examples include: \emph{is female} (robin), \emph{is male} (lion), \emph{is juvenile} (kangaroo), \emph{is full-grown} (leopard). The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
 \end{enumerate}
 
 We collected cue validity ratings by running both a direct question and a free production experiment.
@@ -128,10 +130,28 @@ Participants responded by filling in a text box with their response.
 There were twenty-one trials in total, one for each property.
 Trials were presented in a randomized order.
 
-## Results
+## Results and Evaluation
 
 To process the free production, we forced all characters to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
 As well, "mosquito" was a commonly mispelled label; we counted anything that started with "mosqu", "mesqu", "misqu", "mosiq" as "mosquito". 
+
+To calculate confidence intervals for the free production data, we resampled participants (with replacement) and computed the proportion of responses that were of the target category (e.g., the proportion of "mosquito" responses for the cue "carries malaria"). We did this one-thousand times to took the empirical 95\% quantile of those proportions.
+
+We are interested in the results of each measure (direct question and free production) for the three conditions corresponding to the desiderata outlined above. 
+To evaluate each measure, we selected four examples property--category pairs that we believe are unambiguously instances of the boundary conditions described above (these items are described above with the desiderata).
+
+Figure \ref{fig:cv-bothquestions-barplots} shows the results for the twelve items of interest for both measurements.
+We see that for the "false" features, both measures behave as desired (shown by the dotted line). 
+The cue validity of a feature that is false is zero or near-zero.
+For "diagnostic" features, both measures behave reasonably well.
+Learning that an entity has malaria strongly implies that it is a mosquito. 
+However, there are some subtle differences among our examples that only the free production measure picks up on.
+"Having a mane" is strongly diagnostic for a "lion" but also for a "horse" (and so the overall cue validity for lion is around 0.5).
+"Carrying Lyme disease" is mostly diagnostic for a "tick" but also "deer" (and thus, the cue validity for tick is not maximal).
+
+The measures deviate the most in their treatment of the undiagnostic features. 
+Learning that an entity is female does not strongly imply that it is a robin, which is accurately reflected in the free production measure but not in the direct question measure.
+A similar phenomena can be observed in direct question measure for the other undiagnostic features.
 
 ```{r directQuestion, echo = F}
 d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
@@ -178,13 +198,6 @@ d.cv.summary <- d.cv.targets %>%
 #   ggtitle("Direct question paradigm")
 
 ```
-
-
-
-
-
-
-
 
 ```{r freeProduction, echo = F}
 d.cv.fp <- read.csv(paste(project.path, 
@@ -283,8 +296,10 @@ theoretical.cv <- data.frame(
 )
 
 ```
-```{r cv-bothquestions-barplots, fig.cap="Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95\% confidence intervals."}
-d.cv.bothtasks %>%
+
+
+```{r, cache = F}
+cv.bothquestions.bars <- d.cv.bothtasks %>%
   mutate(type = factor(type, levels = c( "false", "undiagnostic","diagnostic"))) %>%
   ggplot(., aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
   geom_bar(stat = 'identity', position = position_dodge(0.5),
@@ -293,20 +308,26 @@ d.cv.bothtasks %>%
   facet_grid(task~type, scales = 'free')+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   geom_hline(data = theoretical.cv, aes(yintercept = cv), lty = 2)+
-  theme(axis.text.x = element_text(angle = 90),
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
         strip.text.y = element_text(angle = 0))+
   xlab("")+
   ylab("Cue validity")+
   guides(color = F)
-
 ```
 
 
-```{r dq.histogram, fig.height = 4, eval = F}
-ggplot(d.cv.targets, aes( x = response ))+
+```{r dq.histogram, fig.width = 3}
+dq.histograms <- ggplot(d.cv.targets %>%
+         filter(item %in% undiagnostic.props$item), aes( x = response ))+
   geom_histogram() + 
-  facet_wrap(~type) + 
-  scale_x_continuous(breaks = c(0, 0.5, 1))
+  facet_wrap(~item, nrow = 1) + 
+  scale_x_continuous(breaks = c(0, 1))+
+  scale_y_continuous(breaks = c(0, 10))
+```
+
+
+```{r cv-bothquestions-barplots, fig.height = 6, fig.width = 8, fig.cap="Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals."}
+grid.arrange(cv.bothquestions.bars, dq.histograms, heights = c(2.5, 1))
 ```
 
 
@@ -314,23 +335,35 @@ ggplot(d.cv.targets, aes( x = response ))+
 
 Here, we treat each entry (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior. This will have the prevalence prior favor kinds that are easy to produce (like dogs and cats) as well as the experimentally supplied kinds (like mosquitos and robins).
 
-```{r cv-fp-data-analyzeAll}
+
+
+```{r}
+diagnostic.props <- data.frame(
+  item = c("kangaroo has a pouch", "lion has a mane", 
+           "mosquito carries malaria", "tick carries Lyme disease"),
+  type = "diagnostic"
+)
+
+undiagnostic.props <- data.frame(
+  item = c("leopard is juvenile", "lion is male", "robin is female", "swan is full-grown"),
+  type = "undiagnostic"
+)
+
+false.props <- data.frame(
+  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
+  type = "false"
+)
+
+target.items2 <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
+```
+
+```{r cv-fp-data-analyzeAll, cache = T}
 d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "originalStims.json", sep = "")) %>%
   mutate(
     property = gsub("'", "", property),
     Property = gsub("'", "", Property),
     sentence = paste(Category, Property),
     item = paste(category, property))
-
-
-
-
-# d.prev.summary <- d.prev %>%
-#   mutate(item = paste(Category, Property)) %>%
-#   filter(item %in% d.target.items$sentence) %>%
-#   mutate(prevalence = prevalence / 100) %>%
-#   group_by(Category, Property, item) %>%
-#   multi_boot_standard(column = "prevalence")
 
 d.cv.bootstrapped.all <- data.frame()
 resample_n <- length(levels(factor(d.cv.fp$workerid)))
@@ -372,7 +405,7 @@ d.gen.cv.all.summary <- left_join(
 ```
 
 
-```{r, echo = F, eval = F}
+```{r cuevalidity-model-pk}
 wp.pkg.path <- paste(project.path, "models/generics/node_modules/utils/", sep = "")
 
 
@@ -409,8 +442,7 @@ for (p in gen.endorse.properties){
       kind = catg
     )
     
-    wp.rs <- webppl(cueValidityModel2, 
-       #packages = c(wp.pkg.path),
+    wp.rs <- webppl(cueValidityModel1, 
        data_var = "data",
        data = dataToPass)
     
@@ -435,6 +467,7 @@ for (p in gen.endorse.properties){
 md.fp <- left_join(left_join(
   d.gen.cv.all.summary,
   wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
+  #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
 ), target.items2)
 
 ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, ymax = cv_ci_upper,
@@ -448,37 +481,13 @@ ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, y
 compute_r2(md.fp, "cv_mean", "prev_prior_derived_cv")
 compute_mse(md.fp, "cv_mean", "prev_prior_derived_cv")
 
-diagnostic.props <- data.frame(
-  item = c("kangaroo has a pouch", "lion has a mane", 
-           "mosquito carries malaria", "tick carries Lyme disease"),
-  type = "diagnostic"
-)
 
-undiagnostic.props <- data.frame(
-  item = c("leopard is juvenile", "lion is male", "robin is female", "swan is full-grown"),
-  type = "undiagnostic"
-)
-
-false.props <- data.frame(
-  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
-  type = "false"
-)
-
-target.items2 <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
 md.fp.desid <- md.fp %>%
   filter(item %in% target.items2$item)
 
 compute_r2(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
 compute_mse(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
 ```
-
-
-```{r}
-target.items
-md.fp
-```
-
-
 
 ```{r}
 d.cv.dq.all <- d.cv.dq %>%
@@ -491,6 +500,7 @@ md.dq <-  left_join( left_join(
     left_join(
     d.gen.cv.all.summary %>% select(Category, Property, category, property, item),
     d.cv.dq.all),
+    #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
     wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
   ), target.items2)
 
@@ -513,7 +523,7 @@ compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
 
 ```
 
-```{r cvModel-uniformPrior, echo = F, eval = F}
+```{r cvModel-uniformPrior}
 cueValidityModel2 <- '
 var cueValidity = function(){
   var kind = uniformDraw(data.allKinds);
@@ -557,12 +567,8 @@ for (p in gen.endorse.properties){
 # dataToPass %>% toJSON(.)
 # 
 # wp.rs
-wp.cueValidity.uniform
+
 ```
-
-
-
-
 
 
 
