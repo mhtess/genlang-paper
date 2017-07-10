@@ -4142,7 +4142,6 @@ var model = function(){
 '
 ```
 
-
 ```{r habituals-predictive-model-run, cache = T, eval=F}
 items <- levels(factor(d.hab.predictive$item))
 conditions <- levels(factor(d.hab.predictive$condition))
@@ -4169,7 +4168,6 @@ for (it in items){
 }
 ```
 
-
 ```{r eval = F}
   d.hab.predictive %>% 
     mutate(src = 'data') %>% 
@@ -4184,7 +4182,6 @@ ggplot(. , aes( x = logAnnualPredictiveRate, fill = condition))+
   scale_x_continuous(limits = c(-5,10)) +
   theme(strip.text.y = element_text(angle = 0))
 ```
-
 
 ```{r habituals-predictive-bda-forwardSample, fig.width=14, eval=F}
 rs.habituals.bda.predictive.samples <- rs.habituals.bda.predictive %>% 
@@ -4227,10 +4224,6 @@ ggplot(. , aes( x = logAnnualPredictiveRate, color = src))+
   theme(strip.text.y = element_text(angle = 0))
 ```
 
-
-
-
-
 ```{r habituals-predictive-bda-summary, eval =F}
 rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>% 
   spread(Parameter, value) %>%
@@ -4245,7 +4238,7 @@ rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>%
             cred_lower = hdi_lower(val))
 ```
 
-```{r habituals-predictive-bda-figure, eval = F}
+```{r habituals-predictive-bda-figure, eval =F}
 fig.hab.freq.predictive.vs.past <- left_join(
   rs.habituals.bda.predictive.summary %>% filter(key == "logannualRate"),
   unique(d.hab.predictive %>% 
@@ -4384,10 +4377,13 @@ d.hab.predictive.endorsment.summary <- left_join(
 
 d.hab.predictive.endorsment.summary <- left_join(
   d.hab.predictive.endorsment.summary,
-  rs.habituals.bda.predictive.summary %>% 
-    filter(key == "logannualRate") %>%
-    rename(logAnnualFutureRate = MAP,
-         future_lower = cred_lower, future_upper = cred_upper)
+  d.hab.predictive.summary %>%
+    rename(logAnnualFutureRate = mean,
+         future_lower = ci_lower, future_upper = ci_upper)
+  # rs.habituals.bda.predictive.summary %>% 
+  #   filter(key == "logannualRate") %>%
+  #   rename(logAnnualFutureRate = MAP,
+  #        future_lower = cred_lower, future_upper = cred_upper)
   # %>%
   #   rowwise() %>%
   #   mutate(future_lower = ifelse(future_lower < -4, -4, future_lower),
