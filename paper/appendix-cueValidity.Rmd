@@ -19,11 +19,12 @@ Quantifiers can be described as conditions on prevalence:
 $$
 \denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}
 $$
-The question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
-Hard-constraints on $\theta$ are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice (i.e., *Some mosquitos carry malaria*).
+The driving question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
+Fixed constraints on $\theta$ (e.g., $\theta = 0.5$) are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice (i.e., *Some mosquitos carry malaria*).
 
 
-@Leslie2007 notes that mosquitos are the only species to carry malaria, and perhaps this explains why the generic is true.
+With respect to malaria-carrying mosquitos, @Leslie2007 notes that the mosquito is the only species to carry malaria. 
+The distinctiveness of *carrying malaria* then perhaps why *Mosquitos carry malaria* is true.
 More formally, the inverse probability --- the probability of the kind $k$ given the feature $f$: $P(k \mid f)$ --- might be able to save statistical-based approaches [@Leslie2007; @Khemlani2012].
 This inverse probability, referred to as *cue validity*, encodes the diagnosticity of the feature for the kind.
 For example, after learning that an entity *carries malaria*, the probability that the entity is a *mosquito* is very high. 
@@ -66,14 +67,14 @@ For each case, we provide four examples which will be used to evaluate each meas
 
 \begin{enumerate}
 \item{Completely diagnostic features: We contend there are a number of features that only one (or very small) of categories contain. Examples include: \emph{carrying malaria} (mosquitos), \emph{carrying Lyme disease} (ticks), \emph{having manes} (lions), \emph{having pouches} (kangaroos). The cue validity of these features for the corresponding categories should be very high (close to 1).}
-\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{has wings} (leopard), \emph{has a mane} (shark), "has spots" (kangaroo), "has a pouch" (tiger). }
+\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{has wings} (leopard), \emph{has a mane} (shark), *has spots* (kangaroo), *has a pouch* (tiger). }
 \item{Completely undiagnostic features: We contend there are a number of features that almost every category contains. Examples include: \emph{is female} (robin), \emph{is male} (lion), \emph{is juvenile} (kangaroo), \emph{is full-grown} (leopard). The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
 \end{enumerate}
 
 We collected cue validity ratings by running both a direct question and a free production experiment.
 For the free production experiment, the cue validity is the proportion of responses of the target category (e.g., "mosquitos") for the property (e.g., "carries malaria").
 Of primary interest is the measurement for the boundary conditions described above.
-The experiments can be seen on \url{https://mhtess.github.io}.
+Links to the experiments can be found on \url{https://mhtess.github.io}.
 
 ## Experimental materials
 
@@ -103,7 +104,7 @@ What are the odds that it is a \textsc{k}?
 Participants responded using a slider bar with endpoints labeled "unlikely" and "likely". 
 The slider appeared with no handle present; participants had to click on the slider for the slider handle to appear.
 
-Participants completed the thirty target trials (corresponding to the thirty generic statements used in Expt. X) in addition to ten filler trials (total number of trials = 40).
+Participants completed the thirty target trials (corresponding to the thirty generic statements used in Expt. 1b) in addition to ten filler trials (total number of trials = 40).
 The filler trials were made up of random category -- property pairings.
 All trials were presented in a randomized order.
 
@@ -130,12 +131,14 @@ Participants responded by filling in a text box with their response.
 There were twenty-one trials in total, one for each property.
 Trials were presented in a randomized order.
 
-## Results and Evaluation
+### Free production data processing
 
 To process the free production, we forced all characters to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
 As well, "mosquito" was a commonly mispelled label; we counted anything that started with "mosqu", "mesqu", "misqu", "mosiq" as "mosquito". 
 
-To calculate confidence intervals for the free production data, we resampled participants (with replacement) and computed the proportion of responses that were of the target category (e.g., the proportion of "mosquito" responses for the cue "carries malaria"). We did this one-thousand times to took the empirical 95\% quantile of those proportions.
+To calculate confidence intervals for the free production data, we resampled participants (with replacement) and computed the proportion of responses that were of the target category (e.g., the proportion of "mosquito" responses for the cue "carries malaria"). We did this 1000 times to generate an empirical distribution from which 95\% intervals could be calculated.
+
+## Results and Evaluation
 
 We are interested in the results of each measure (direct question and free production) for the three conditions corresponding to the desiderata outlined above. 
 To evaluate each measure, we selected four examples property--category pairs that we believe are unambiguously instances of the boundary conditions described above (these items are described above with the desiderata).
@@ -149,9 +152,13 @@ However, there are some subtle differences among our examples that only the free
 "Having a mane" is strongly diagnostic for a "lion" but also for a "horse" (and so the overall cue validity for lion is around 0.5).
 "Carrying Lyme disease" is mostly diagnostic for a "tick" but also "deer" (and thus, the cue validity for tick is not maximal).
 
-The measures deviate the most in their treatment of the undiagnostic features. 
+The measures deviate in their characterization of the undiagnostic features. 
 Learning that an entity is female does not strongly imply that it is a robin, which is accurately reflected in the free production measure but not in the direct question measure.
-A similar phenomena can be observed in direct question measure for the other undiagnostic features.
+A similar phenomenon can be observed in direct question measure for the other undiagnostic features.
+Figure \ref{fig:cv-bothquestions-barplots} (bottom) shows the raw empirical distributions of responses for the direct question measure. 
+We observe suggestive evidence that participants respond to this question for unidagnostic features in one of two ways: (i) reporting near-0 likelihood (accurate response) or (ii) reported near-0.5 likelihood. 
+This latter response option may be a pragmatic effect of asking the direct question and/or participants "opting out" of a response. 
+For example, in response to the question "There is a thing that is female. What are the odds that it is a robin?", a reasonable human response may be "I don't know". Participants may cope with the awkwardness of the question by placing the slider bar in the middle of the scale. 
 
 ```{r directQuestion, echo = F}
 d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
@@ -335,8 +342,14 @@ grid.arrange(cv.bothquestions.bars, dq.histograms, heights = c(2.5, 1))
 
 ## Comparison with prevalence prior derived cue validity
 
-Here, we treat each entry (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior. This will have the prevalence prior favor kinds that are easy to produce (like dogs and cats) as well as the experimentally supplied kinds (like mosquitos and robins).
+We can further understand our measures of cue validity by comparing them to cue validity derived from our prevalence prior elicitation task (Expt. 1a).
+Expt. 1a is not perfectly designed for this comparison, as we supplied participants with half of the animal categories that they rated. (Participants freely generated the other half). Thus, we do not have the best measurement of the prior probability of categories $P(k)$.
 
+In this analysis, we treat each category entry from Expt. 1a (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior.
+This will result in the prevalence prior favoring kinds that are easy to produce (like dogs and cats, which is plausibly a good approximation for $P(k)$) as well as favoring the experimentally supplied kinds (like mosquitos and robins).
+
+We compute cue validity from the prevalence prior using Bayes' rule. 
+Figure \ref{fig:cv-scatters} show the ...
 
 
 ```{r}
@@ -454,7 +467,7 @@ for (p in gen.endorse.properties){
                                            cv = wp.rs))
     
   }
-  print(p)
+  #print(p)
 }
 # save(wp.cueValidity, file =
 #        paste(project.path, model.path,
@@ -525,7 +538,7 @@ compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
 
 ```
 
-```{r cvModel-uniformPrior}
+```{r cvModel-uniformPrior, eval = F}
 cueValidityModel2 <- '
 var cueValidity = function(){
   var kind = uniformDraw(data.allKinds);
