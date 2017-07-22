@@ -143,7 +143,7 @@ To calculate confidence intervals for the free production data, we resampled par
 We are interested in the results of each measure (direct question and free production) for the three conditions corresponding to the desiderata outlined above. 
 To evaluate each measure, we selected four examples property--category pairs that we believe are unambiguously instances of the boundary conditions described above (these items are described above with the desiderata).
 
-Figure \ref{fig:cv-bothquestions-barplots} shows the results for the twelve items of interest for both measurements.
+Figure \ref{fig:cv-bothquestions-barplots} (top) shows the results for the twelve items of interest for both measurements.
 We see that for the "false" features, both measures behave as desired (shown by the dotted line). 
 The cue validity of a feature that is false is zero or near-zero.
 For "diagnostic" features, both measures behave reasonably well.
@@ -155,7 +155,7 @@ However, there are some subtle differences among our examples that only the free
 The measures deviate in their characterization of the undiagnostic features. 
 Learning that an entity is female does not strongly imply that it is a robin, which is accurately reflected in the free production measure but not in the direct question measure.
 A similar phenomenon can be observed in direct question measure for the other undiagnostic features.
-Figure \ref{fig:cv-bothquestions-barplots} (bottom) shows the raw empirical distributions of responses for the direct question measure. 
+Figure \ref{fig:cv-bothquestions-barplots} (bottom left) shows the raw empirical distributions of responses for the direct question measure. 
 We observe suggestive evidence that participants respond to this question for unidagnostic features in one of two ways: (i) reporting near-0 likelihood (accurate response) or (ii) reported near-0.5 likelihood. 
 This latter response option may be a pragmatic effect of asking the direct question and/or participants "opting out" of a response. 
 For example, in response to the question "There is a thing that is female. What are the odds that it is a robin?", a reasonable human response may be "I don't know". Participants may cope with the awkwardness of the question by placing the slider bar in the middle of the scale. 
@@ -323,11 +323,11 @@ cv.bothquestions.bars <- d.cv.bothtasks %>%
 ```
 
 
-```{r dq.histogram, fig.width = 3}
+```{r dq.histogram}
 dq.histograms <- ggplot(d.cv.targets %>%
          filter(item %in% undiagnostic.props$item), aes( x = response ))+
   geom_histogram() + 
-  facet_wrap(~item, nrow = 1) + 
+  facet_wrap(~item, nrow = 2) + 
   scale_x_continuous(breaks = c(0, 1))+
   scale_y_continuous(breaks = c(0, 10))+
   xlab("Direct question response")+
@@ -335,21 +335,8 @@ dq.histograms <- ggplot(d.cv.targets %>%
 ```
 
 
-```{r cv-bothquestions-barplots, fig.height = 6, fig.width = 8, fig.cap="Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals."}
-grid.arrange(cv.bothquestions.bars, dq.histograms, heights = c(2.5, 1))
-```
 
 
-## Comparison with prevalence prior derived cue validity
-
-We can further understand our measures of cue validity by comparing them to cue validity derived from our prevalence prior elicitation task (Expt. 1a).
-Expt. 1a is not perfectly designed for this comparison, as we supplied participants with half of the animal categories that they rated. (Participants freely generated the other half). Thus, we do not have the best measurement of the prior probability of categories $P(k)$.
-
-In this analysis, we treat each category entry from Expt. 1a (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior.
-This will result in the prevalence prior favoring kinds that are easy to produce (like dogs and cats, which is plausibly a good approximation for $P(k)$) as well as favoring the experimentally supplied kinds (like mosquitos and robins).
-
-We compute cue validity from the prevalence prior using Bayes' rule. 
-Figure \ref{fig:cv-scatters} show the ...
 
 
 ```{r}
@@ -483,25 +470,39 @@ md.fp <- left_join(left_join(
   d.gen.cv.all.summary,
   wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
   #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
-), target.items2)
+), target.items2) %>%
+  mutate(type = ifelse(is.na(type), "other", type),
+           type = factor(type, levels = c("diagnostic", "undiagnostic", "false", "other"),
+                       labels = c("diagnostic", "undiagnostic", "false", "other")))
 
-ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, ymax = cv_ci_upper,
-                   color = type, alpha = type))+
-  geom_point()+
-  scale_alpha_manual(values = c(1,1,1,0.5))+
-  geom_errorbar()+
-  ylim(0, 1) + xlim(0, 1)+
-  coord_fixed()
+fill.colors <- RColorBrewer::brewer.pal(3, "Set1")
 
-compute_r2(md.fp, "cv_mean", "prev_prior_derived_cv")
-compute_mse(md.fp, "cv_mean", "prev_prior_derived_cv")
+# ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, ymax = cv_ci_upper,
+#                    color = type))+
+#   #scale_alpha_manual(values = c(1,1,1,0.5))+
+#   geom_errorbar(alpha = 0.4)+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   geom_point(data = md.fp %>% filter(type == "other"), size = 2)+
+#   geom_point(data = md.fp %>% filter(!(type == "other")), size = 2)+
+#   coord_fixed()+
+#   #scale_color_solarized()+
+#   scale_color_manual(values = c(fill.colors, "grey8"))+
+#   xlab("Prevalence Prior Derived Cue Validity")+
+#   ylab("Free Production Measured Cue Validity")+
+#   theme(legend.title = element_blank())
+
+r2.fp <- compute_r2(md.fp, "cv_mean", "prev_prior_derived_cv")
+mse.fp <- compute_mse(md.fp, "cv_mean", "prev_prior_derived_cv")
+n.fp <- length(md.fp$item)
 
 
 md.fp.desid <- md.fp %>%
   filter(item %in% target.items2$item)
 
-compute_r2(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
-compute_mse(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+r2.fp.desid <- compute_r2(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+mse.fp.desid <- compute_mse(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+n.fp.desid <- length(md.fp.desid$item)
 ```
 
 ```{r}
@@ -517,26 +518,105 @@ md.dq <-  left_join( left_join(
     d.cv.dq.all),
     #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
     wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
-  ), target.items2)
+  ), target.items2) %>%
+  mutate(type = ifelse(is.na(type), "other", type),
+           type = factor(type, levels = c("diagnostic", "undiagnostic", "false", "other"),
+                       labels = c("diagnostic", "undiagnostic", "false", "other")))
 
-ggplot(md.dq, aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
-                     color = type))+
-  geom_point()+
-  geom_errorbar()+
-  ylim(0, 1) + xlim(0, 1)+
-  coord_fixed()
-  
-compute_r2(md.dq, "mean", "prev_prior_derived_cv")
-compute_mse(md.dq, "mean", "prev_prior_derived_cv")
+
+# ggplot(md.dq, aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
+#                      color = type))+
+#   geom_errorbar(alpha = 0.4)+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   geom_point(data = md.dq %>% filter(type == "other"), size = 2)+
+#   geom_point(data = md.dq %>% filter(!(type == "other")), size = 2)+
+#   coord_fixed()+
+#   #scale_color_solarized()+
+#   scale_color_manual(values = c(fill.colors, "grey8"))+
+#   xlab("Prevalence Prior Derived Cue Validity")+
+#   ylab("Direct Question Measured Cue Validity")+
+#   theme(legend.title = element_blank())
+# 
+#   
+r2.dq <- compute_r2(md.dq, "mean", "prev_prior_derived_cv")
+mse.dq <- compute_mse(md.dq, "mean", "prev_prior_derived_cv")
+n.dq <- length(md.dq$item)
 
 md.dq.desid <- md.dq %>%
   filter(item %in% target.items2$item)
 
-compute_r2(md.dq.desid, "mean", "prev_prior_derived_cv")
-compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
+r2.dq.desid <- compute_r2(md.dq.desid, "mean", "prev_prior_derived_cv")
+mse.dq.desid <- compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
+n.dq.desid <- length(md.dq.desid$item)
 
-
+prevprior.cv.scatters <- bind_rows(
+  md.fp %>%
+    rename(mean = cv_mean, ci_lower = cv_ci_lower, ci_upper = cv_ci_upper) %>%
+    mutate(src = "Free production"),
+  md.dq %>%
+    mutate(src = "Direct question")
+) %>%
+  ggplot(., aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
+                     color = type))+
+  geom_errorbar(alpha = 0.4)+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  geom_point(data = . %>% filter(type == "other"), size = 2)+
+  geom_point(data = . %>% filter(!(type == "other")), size = 2)+
+  coord_fixed()+
+  #scale_color_solarized()+
+  scale_color_manual(values = c(fill.colors, "grey8"))+
+  xlab("Prevalence Prior Derived Cue Validity")+
+  ylab("Measured Cue Validity")+
+  theme(legend.title = element_blank(),
+        legend.position = 'bottom',
+        legend.direction = 'horizontal')+
+  facet_wrap(~src)
 ```
+
+
+```{r cv-bothquestions-barplots, fig.height = 8, fig.width = 8, fig.cap="Top: Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals. Bottom left: Raw empirical distributions for direct question task. Bottom right: Correspondence between measured cue validity and prevalence prior derived cue validity."}
+grid.arrange(cv.bothquestions.bars, 
+             dq.histograms, 
+             prevprior.cv.scatters,
+             ncol = 4,
+             layout_matrix = cbind(c(1,1,2,2),
+                                   c(1,1,2,2),
+                                   c(1,1,3,3),
+                                   c(1,1,3,3)
+                                   ))
+```
+
+
+## Comparison with prevalence prior derived cue validity
+
+We can further understand our measures of cue validity by comparing them to cue validity derived from our prevalence prior elicitation task (Expt. 1a).
+Expt. 1a is not perfectly designed for this comparison, as we supplied participants with half of the animal categories that they rated. (Participants freely generated the other half). Thus, we do not have the best measurement of the prior probability of categories $P(k)$.
+
+In this analysis, we treat each category entry from Expt. 1a (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior.
+This will result in the prevalence prior favoring kinds that are easy to produce (like dogs and cats, which is plausibly a good approximation for $P(k)$) as well as favoring the experimentally supplied kinds (like mosquitos and robins).
+
+We compute cue validity from the prevalence prior using Bayes' rule. 
+Figure \ref{fig:cv-bothquestions-barplots} (bottom right) shows the two measurements of cue validity as they relate to the prevalence prior derived cue validity. 
+The prevalence prior derived cue validity is high associated with both measurements: $r_{direct}^2(`r n.dq`) = `r r2.dq`; MSE_{direct} = `r mse.dq`$ and $r_{free}^2(`r n.fp`) = `r r2.fp`; MSE_{free} = `r mse.fp`$.
+Of primary interest is how the measurements behave for for desiderata items. 
+We see that the prevalence prior derived cue validity converges with the free production measurement for the desiderata items ($r_{free}^2(`r n.fp.desid`) = `r r2.fp.desid`; MSE_{free} = `r mse.fp.desid`$), whereas the direct question measurement overestimates the cue validity of undiagnositic features ($r_{direct}^2(`r n.dq.desid`) = `r r2.dq.desid`; MSE_{direct} = `r mse.dq.desid`$).
+Interestingly, the direct question measurement consistently overestimates cue validity in comparison to the prevalence prior derived cue validity. 
+
+
+## Summary
+
+*Cue validity* is often used as a measurement for understanding generic truth conditions. 
+We articulated three *a priori* boundary conditions for a measurement of cue validity, because we observe different measurements being used in the literature. 
+We found that the "free production" measurement (i.e., having participants generate categories given a feature), and not the direct question measurement (i.e., asking participants a likelihood judgment of the category given the feature), satisfied all three boundary conditions. 
+In addition, cue validity derived from our prevalence prior measurement (Expt. 1a) also satisfied these boundary conditions. 
+We conclude that researchers interested in generic truth conditions should use a free production paradigm for measuring cue validity.
+
+
+
+
 
 ```{r cvModel-uniformPrior, eval = F}
 cueValidityModel2 <- '
