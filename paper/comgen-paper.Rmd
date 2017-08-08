@@ -130,8 +130,8 @@ At around a child's first birthday, however, the mind gains access to a new, hum
 <!-- Even before birth, human and non-human animals alike gather statistical information and form generalizations to predict what will come next. -->
 <!-- The human learner, perhaps uniquely in the animal kingdom, displays striking sensitivity to the intentional and pedagogical actions of others, leading to distinct and often stronger inferences from data than would otherwise be warranted from random observations. -->
 Learning from language is important because observations can be costly (e.g., a plant being poisonous) or statistically unlikely (e.g., lightning).
-Minimally, language fosters generalizations by bringing attention to objects being of the same kind through the use of labeling [e.g., "This is a bird."; @Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
-Objects have many properties though; when speakers attach kind-labels to properties (e.g., *Birds fly*), listeners hear a *generalization*.
+Minimally, language fosters generalizations by bringing attention to objects being of the same kind through the use of labeling [e.g., "This is a dog"; @Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
+Objects have many properties though; when speakers attach kind-labels to properties (e.g., *Dogs bark*), listeners hear a *generalization*.
 The above example is a generalization about a category (*generic language*); individual entities can also be talked about in generalization (*habitual language*; e.g., "Mary swims after work.") in addition to causal events (*causal language*; e.g., "Drinking moonshine makes you go blind."), to name just a few.
 What these statements have in common is that they convey generalizations [also referred to as generic meaning, or *genericity*; @Carlson1977; @Carlson1995].
 
@@ -142,7 +142,8 @@ Generic language is ubiquitous in everyday conversation as well as in child-dire
 Because of its powerful implications, generalizations in language are thought to be central to the growth of conceptual knowledge [@Gelman2004].
 <!-- *Causal language* (e.g., "The block *makes* it [the machine] go.") faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
 Additionally, generics are the primary way by which speakers discuss social categories, making them key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010].
-It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015].
+
+<!-- It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015]. -->
 
 <!-- Generic statements convey generalizations about categories, but there are other linguistic devices that look different but seem to similary convey generalization. -->
 <!-- *Genericity* can be observed when talking about categories (e.g., *Dogs bark*), people in general , specific people (e.g., *Martha swims after work*), or causal events (e.g., *Drinking moonshines makes you go blind*). -->
@@ -159,22 +160,22 @@ Meanwhile, the language of generalizations --- statements that extend beyond the
 
 
 The major issue in formalizing genericity is determining what makes such statements true or false. 
-When we hear "Dogs bark", we may feel it's a universal statment, like *All* dogs bark.
+When we hear "Dogs bark", it feels like a universal statement, like *All* dogs bark.
 Yet, Basenji dogs are barkless^[
 http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
 ]; the generalization instead should signal something weaker like *Most* dogs bark.
 Indeed, many generalizations seem to have the quantificational force of *most*. 
-But most mosquitos do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
+But *most mosquitos* do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
 The only quantifier that would permit such a statement would be "Some" (e.g., *some mosquitos carry malaria*).
 But equating the generalization with *some* is too lenient: Some robins are female, but saying *Robins are female* seems odd.
-One might feel exceptions should be made for properties that only apply to one gender (like being female), but *Robins lay eggs* is intuitively true, despite the property being very similarly distributed among the population of robins as being female.
+Exceptions could be made for properties that only apply to one gender (like being female), but *Robins lay eggs* is intuitively true despite the property also being only present in females.
 
 In this paper, we combine a probabilistic model of pragmatic reasoning with ideas from formal semantics to articulate a formal theory of the truth conditions of generalizations in language. 
 By formalizing this semantic hypothesis in a pragmatic language understanding model, we derive predictions for the endorsements of such statements which we show to depend in systematic ways on relevant prior knowledge.
-Across three distinct case studies, we both measure and manipulate prior knowledge, showing that it is causally related to the endorsement of generalizations in the ways predicted by our model.
+Across three distinct case studies, we both measure and manipulate prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model.
 <!-- We relate known measurements on factors regarding generic language to each other via our model. -->
 <!-- We then go on to manipulate the relevant factors, showing they are causally related via our model to generic endorsement and interpretation.  -->
-We do this in three domains: generalizations about categories, events, and causes. 
+We do this in three domains: generalizations about categories, events, and causes.
 We show that in each domain, our general theoretical framework applies and predicts endorsements about generalizations conveyed in language, when simpler models would fall short. 
 
 The rest of this paper is organized as follows. 
