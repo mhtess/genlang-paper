@@ -119,9 +119,9 @@ options("scipen"=10)
 # Introduction 
 
 Figuring out that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect is crucial knowledge in an uncertain world.
-We acquire such *generalizations* early in life, simply by observing instances and drawing inductive inferences [@Baldwin1993; @Xu2008; @Dewar2010].
-Once learners have the capacity to infer the intention of other cooperative agents, social learning can dramatically faciliate inductive reasoning [@Csibra2009; @Tomasello1999; @Butler2012].
-At around the first birthday, a child's mind gains access to a new, human-unique source of data: language.
+Such *generalizations* can be acquired by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010].
+Other cooperative agents can facilitate this, and learners can draw stronger inductive inferences in social learning contexts [@Csibra2009; @Tomasello1999; @Butler2012].
+At around a child's first birthday, however, the mind gains access to a new, human-unique source of data: language.
 
 <!-- give rise to the productivity of human thought and form of foundations of cultural knowledge. -->
 <!-- They allow us to understand the complex world around us and dream up how possible future situations might unfold. -->
@@ -129,11 +129,13 @@ At around the first birthday, a child's mind gains access to a new, human-unique
 <!-- Generalizations are central to human understanding.  -->
 <!-- Even before birth, human and non-human animals alike gather statistical information and form generalizations to predict what will come next. -->
 <!-- The human learner, perhaps uniquely in the animal kingdom, displays striking sensitivity to the intentional and pedagogical actions of others, leading to distinct and often stronger inferences from data than would otherwise be warranted from random observations. -->
-Learning from language is important because many properties are costly to directly observe (e.g., being poisonous) or events statistically unlikely (e.g., observing lightning).
-Minimally, language helps foster generalization by bringing attention to non-obvious shared relations through the use of labeling [@Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
-But language also has the ability to refer to *generalization itself*.
-Generic meaning, or *genericity*, can be observed in seemingly disparate kinds of linguistic devices [@Carlson1977; @Carlson1995].
-Speakers communicate generalizations about categories (*generic language*; e.g., *Dogs bark*), about individual people (*habitual language*; e.g., "Mary swims after work."), about causal events (*causal language*; e.g., "Drinking moonshine makes you go blind."), and about people in general [e.g., "You never know what will happen on a blind date."; @Orvell2017].
+Learning from language is important because observations can be costly (e.g., a plant being poisonous) or statistically unlikely (e.g., lightning).
+Minimally, language fosters generalizations by bringing attention to objects being of the same kind through the use of labeling [e.g., "This is a bird."; @Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
+Objects have many properties though; when speakers attach kind-labels to properties (e.g., *Birds fly*), listeners hear a *generalization*.
+The above example is a generalization about a category (*generic language*); individual entities can also be talked about in generalization (*habitual language*; e.g., "Mary swims after work.") in addition to causal events (*causal language*; e.g., "Drinking moonshine makes you go blind."), to name just a few.
+What these statements have in common is that they convey generalizations [also referred to as generic meaning, or *genericity*; @Carlson1977; @Carlson1995].
+
+<!-- and about people in general [e.g., "You never know what will happen on a blind date."; @Orvell2017]. -->
 
 It is believed that every language can express generic meaning [@Behrens2005; @Carlson1995].
 Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008], and around the age of two and a half, children begin to understand that *generic language* refers to kinds and conveys generalizations that extend beyond the here and now [@Cimpian2008].
@@ -5791,12 +5793,9 @@ The theory presented here gives one explanation of how we do so, providing a com
 
 <div id = 'refs'></div>
 
-
-```{r child = 'appendix-alternativeRSAmodels.Rmd'}
-```
-
 ```{r child = 'appendix-cueValidity.Rmd'}
 ```
 
-```{r child = 'appendix-fullModelPosteriors.Rmd'}
+
+```{r child = 'appendix-alternativeRSAmodels.Rmd'}
 ```
