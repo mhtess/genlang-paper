@@ -55,9 +55,9 @@ assert.ok(
 var regression = function(){
 
   var bs = {
-    intercept: uniform({a: -10, b: 10}),
-    prevalence: uniform({a: -10, b: 10}),
-    cue: uniform({a: -10 , b: 10})
+    intercept: uniformDrift({a: -10, b: 10, width: 2}),
+    prevalence: uniformDrift({a: -10, b: 10, width: 2}),
+    cue: uniformDrift({a: -10 , b: 10, width: 2})
   }
 
   var linearFunction = function(xs){
@@ -66,7 +66,7 @@ var regression = function(){
      bs.cue * xs.cue;
   };
 
-  var sigma = uniform({a: 0, b: 10});
+  var sigma = uniformDrift({a: 0, b: 10, width: 1});
 
   foreach(properties, function(p){
 
@@ -114,8 +114,9 @@ var regression = function(){
         cue: cueValidity_theta
       };
 
-      query.add(["predictive", "prevalence", p, k], predictors.prevalence)
-      query.add(["predictive", "cue", p, k], predictors.cue)
+      query.add(["prior", "prevalence_mean", p, k], prevalenceParams.g)
+      query.add(["prior", "prevalence_sampleSize", p, k], prevalenceParams.d)
+      query.add(["prior", "cue", p, k], cueValidity_theta)
 
       var prediction = linearFunction(predictors),
           prediction_withNoise = gaussian({mu: prediction, sigma: sigma}),
@@ -129,6 +130,7 @@ var regression = function(){
       })
 
       query.add(["predictive","generic", p, k], expectation(logisticPrediction) )
+
     })
 
   })
@@ -142,7 +144,7 @@ var regression = function(){
 }
 
 //
-var totalIterations = 500, lag = 20;
+var totalIterations = 50000, lag = 20;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
 
 var outfile = 'results-generics-jointModel-regressionPrevCV-'+totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
@@ -153,10 +155,10 @@ var posterior = Infer({
 	method: "incrementalMH",
   samples: mhiter, burn: burn, lag: lag, verbose: T,
   verboseLag: mhiter / 20,
-	// stream: {
-	// 	path: "results/" + outfile,
-	// 	header: ["type", "param", "property", "category", "val"]
-	// }
+	stream: {
+		path: "results/" + outfile,
+		header: ["type", "param", "property", "category", "val"]
+	}
 })
 
 "written to " + outfile;
