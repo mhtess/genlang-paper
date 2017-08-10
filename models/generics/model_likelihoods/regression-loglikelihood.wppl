@@ -1,4 +1,4 @@
-// time ~/webppl-fork/webppl regression.wppl --require utils generic 1
+// time ~/webppl-fork/webppl regression-loglikelihood.wppl --require ../node_modules/utils generic 1
 
 var chain = last(process.argv) // load index as last command line index
 // penultimate argument is the semantics
@@ -8,7 +8,7 @@ var targetUtterance = process.argv[process.argv.length - 2]
 
 var responseDictionary = { "agree-key": true, "disagree-key": false };
 
-var dataPath = "../../data/generics/endorsement/"
+var dataPath = "../../../data/generics/endorsement/"
 var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
  		endorsementFile = dataPath + "truth-judgments-n100.csv",
 		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv",
@@ -52,13 +52,41 @@ assert.ok(
   properties.length == 21
 )
 
+var globalParamPriors = {
+	intercept: Uniform({a: -10, b: 10}),
+	prevalence: Uniform({a: -10, b: 10}),
+	cue: Uniform({a: -10, b: 10})
+}
+
+var sigmaPrior = Uniform({a: 0, b: 10});
+
+var prevalenceParamsPriors = {
+  g: Uniform({a: 0, b: 1}),
+  d: Uniform({a: 0, b: 100})
+};
+var cueValidity_thetaPrior = Uniform({a: 0, b: 1})
+
 var regression = function(){
 
+
   var bs = {
-    intercept: uniformDrift({a: -10, b: 10, width: 2}),
-    prevalence: uniformDrift({a: -10, b: 10, width: 2}),
-    cue: uniformDrift({a: -10 , b: 10, width: 2})
+    intercept: sample(globalParamPriors.intercept),
+    prevalence: sample(globalParamPriors.prevalence),
+    cue: sample(globalParamPriors.cue)
   }
+
+  var sigma = sample(sigmaPrior)
+
+
+  var globalLatentsLike = globalParamPriors.intercept.score(bs.intercept) +
+                        globalParamPriors.prevalence.score(bs.prevalence) +
+                        globalParamPriors.cue.score(bs.cue) +
+                        sigmaPrior.score(sigma)
+
+  // display(globalLatentLike)
+
+  query.add(["logLikelihood", "globalLatents", "NA", "NA"], globalLatentsLike)
+
 
   var linearFunction = function(xs){
      return bs.intercept +
@@ -66,7 +94,6 @@ var regression = function(){
      bs.cue * xs.cue;
   };
 
-  var sigma = uniformDrift({a: 0, b: 10, width: 1});
 
   foreach(properties, function(p){
 
@@ -90,9 +117,12 @@ var regression = function(){
 
       // analyze prevalence data
       var prevalenceParams = {
-        g: uniformDrift({a: 0, b: 1, width: 0.2}),
-        d: uniformDrift({a: 0, b: 100, width: 20})
+        g: sample(prevalenceParamsPriors.g),
+        d: sample(prevalenceParamsPriors.d)
       };
+
+      var itemPrevalanceLike = prevalenceParamsPriors.g.score(prevalenceParams.g) +
+                               prevalenceParamsPriors.d.score(prevalenceParams.d);
 
 			var prevalenceShapes = betaShape(prevalenceParams);
 
@@ -102,21 +132,20 @@ var regression = function(){
 			});
 
       // analyze cue validity data
-      var cueValidity_theta = uniformDrift({a: 0, b: 1, width: 0.2}),
+      var cueValidity_theta = sample(cueValidity_thetaPrior),
           cueValidity_k = _.filter(cueValidityData, {targetMention: 1}).length,
           cueValidity_n = cueValidityData.length;
 
-      // display(Binomial({p: cueValidity_theta, n: cueValidity_n}).score(cueValidity_k))
+
+      var itemCueValidityLike = cueValidity_thetaPrior.score(cueValidity_theta);
       observe(Binomial({p: cueValidity_theta, n: cueValidity_n}), cueValidity_k)
+
+      query.add(["logLikelihood","itemParamsPriors", p, k], itemCueValidityLike + itemPrevalanceLike)
 
       var predictors = {
         prevalence: beta(prevalenceShapes),
         cue: cueValidity_theta
       };
-
-      query.add(["prior", "prevalence_mean", p, k], prevalenceParams.g)
-      query.add(["prior", "prevalence_sampleSize", p, k], prevalenceParams.d)
-      query.add(["prior", "cue", p, k], cueValidity_theta)
 
       var prediction = linearFunction(predictors),
           prediction_withNoise = gaussian({mu: prediction, sigma: sigma}),
@@ -124,30 +153,23 @@ var regression = function(){
 
       var genericsData = _.map(itemData.endorsement, "binaryResponse");
 
-      mapData({data: genericsData}, function(d){
-        // display(logisticPrediction.score(d))
-        observe(logisticPrediction, d)
-      })
+      var logLike = sum(map(function(d){
+				// display(regressionPrediction.score(d.alignedResponse))
+        return logisticPrediction.score(d)
+      }, genericsData))
 
-      query.add(["predictive","generic", p, k], expectation(logisticPrediction) )
+      query.add(["logLikelihood","genericsData", p, k], logLike)
 
     })
 
   })
-
-  query.add(["param", "beta", "intercept", "NA"], bs.intercept)
-  query.add(["param", "beta", "prevalence", "NA"], bs.prevalence)
-  query.add(["param", "beta", "cue", "NA"], bs.cue)
-  query.add(["param", "sigma", "NA", "NA"], sigma)
-
   return query
 }
 
-//
-var totalIterations = 50000, lag = 20;
+var totalIterations = 200000, lag = 20;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
 
-var outfile = 'results-generics-jointModel-regressionPrevCV-'+totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-marginalLikelihood-regressionPrevCV-'+totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
 
 var posterior = Infer({
