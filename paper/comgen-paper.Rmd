@@ -120,24 +120,24 @@ options("scipen"=10)
 
 Figuring out that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect is crucial knowledge in an open-ended world.
 Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or just statistically unlikely (e.g., understanding the properties of lightning).
-It thus is crucial that language allow us to communicate abstract ideas to each other.
-The most basic kind of abstract idea is a *generalization*
+It thus is crucial that language allow us to communicate such *generalizations* to each other.
+<!-- The most basic kind of abstract idea is a *generalization* -->
 
-*Generalizations* are acquired by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010].
+Generalizations are acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010].
 Cooperative agents can facilitate inductive learning by supplying helpful data points to the learner [@Csibra2009; @Tomasello1999; @Butler2012].
-At around a child's first birthday, however, the mind gains access to a new, human-unique source of data: language.
+At around a child's first birthday, however, the learner gains access to a new, human-unique source of data: language.
 Minimally, language fosters generalizations by bringing attention to objects being of the same kind through the use of labeling [e.g., "This is a dog"; @Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
-Objects have many properties though; when speakers attach properties to kind-labels (e.g., *Dogs bark*), listeners hear a *generalization*.
+Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization.
 
 Generalizations in language are often studied in *generic language* or generics.
 Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-Around the age of two and a half, children begin to understand that *generic language* refers to abstract categories and conveys information that extend beyond the present context [@Cimpian2008].
+Around the age of two and a half, children begin to understand that generic language refers to categories and conveys information that extends beyond the present context [@Cimpian2008].
 It is believed that every language can express generic meaning [@Behrens2005; @Carlson1995], and such generalizations in language are thought to be central to the growth of conceptual knowledge [@Gelman2004].
 <!-- *Causal language* (e.g., "The block *makes* it [the machine] go.") faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
 Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010].
 
 Generic statements ascribing properties to categories are just one kind of generalization found in language. 
-Individual entities can also be talked about in generalization using so-called *habitual language* (e.g., "Mary swims after work.").
+Individual entities can also be talked about in generalization, using so-called *habitual language* (e.g., "Mary swims after work.").
 <!-- Recent evidence suggests talking about the other in generalization (using so-called *generic You*) can help make meaning from difficult situations   [e.g., "You never know what will happen on a blind date."; @Orvell2017]. -->
 Communicating about causality can also take the form of communicating a generalization about a causal event (*causal language*; e.g., "Drinking moonshine makes you go blind.").
 What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995].
@@ -164,7 +164,7 @@ What these statements have in common is that they convey generalizations, or exh
 <!-- Though this diverse array of utterances all seem to convey something beyond the here and now, what exactly is common to each of them is not obvious.  -->
 <!-- Without a formal way of describing generalizations in language, we do not yet know in what ways these large swaths of language are similar.  -->
 
-Rational models of communication [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016] have had received a lot of recent success in formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013; @Qing2014]. 
+Rational models of communication [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016] have had a lot of recent success in formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013; @Qing2014]. 
 Such models of rational communication describe the inferences listeners can draw from language, and the utterances speakers should say given their communicative goals. 
 Heretofore, however, the fragments of language under investigation have been limited to utterances that convey information about a specific entity or situation, about the here and now.
 Meanwhile, the language of generalizations don't make reference to entities in the world or concrete situations. 
