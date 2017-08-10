@@ -118,8 +118,8 @@ options("scipen"=10)
 
 # Introduction 
 
-Figuring out that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect is crucial knowledge in an uncertain world.
-Such *generalizations* can be acquired by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010].
+The knowledge that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial in an uncertain world.
+Such *generalizations* can be acquired by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. /ndg{older cites for this? hume?}
 Other cooperative agents can facilitate this, and learners can draw stronger inductive inferences in social learning contexts [@Csibra2009; @Tomasello1999; @Butler2012].
 At around a child's first birthday, however, the mind gains access to a new, human-unique source of data: language.
 
@@ -143,6 +143,11 @@ Because of its powerful implications, generalizations in language are thought to
 <!-- *Causal language* (e.g., "The block *makes* it [the machine] go.") faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
 Additionally, generics are the primary way by which speakers discuss social categories, making them key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010].
 
+[XXX first three pars are floppy. tighten.
+There haven't been (many)? Formal models of generic language. Say why this is important.
+To build one, we need to firsts say what a generalization is. We use the Bayesian idea that an inductive generalization can be understood in terms if probbilities.
+Then we need to say how these probabilities are communicated. Use RSA...]
+
 <!-- It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015]. -->
 
 <!-- Generic statements convey generalizations about categories, but there are other linguistic devices that look different but seem to similary convey generalization. -->
@@ -150,9 +155,6 @@ Additionally, generics are the primary way by which speakers discuss social cate
 <!-- Though this diverse array of utterances all seem to convey something beyond the here and now, what exactly is common to each of them is not obvious.  -->
 <!-- Without a formal way of describing generalizations in language, we do not yet know in what ways these large swaths of language are similar.  -->
 
-Probabilistic models are used to describe language understanding in precise, quantitative terms [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016], formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013; @Qing2014].
-Such models of rational communication describe inferences listeners can draw from language; heretofore, however, this language has been limited to utterances that convey information about a specific entity or situation.
-Meanwhile, the language of generalizations --- statements that extend beyond the here-and-now --- has eluded precise formalization.
 <!-- The language of generalization is exceedingly difficult to formalize, however. -->
 <!-- The cognitive act of generalization is naturally formalized in Bayesian cognitive models [@Tenenbaum2011]. -->
 <!-- Bayesian models showcase the role of flexibly structured representations [@Kemp2007; @Kemp2008] and assumptions learners can make about the data-generating process [e.g., learning from pedagogical actions; @Shafto2012]. -->
@@ -169,6 +171,11 @@ But *most mosquitos* do not carry malaria, while the statement "Mosquitos carry 
 The only quantifier that would permit such a statement would be "Some" (e.g., *some mosquitos carry malaria*).
 But equating the generalization with *some* is too lenient: Some robins are female, but saying *Robins are female* seems odd.
 Exceptions could be made for properties that only apply to one gender (like being female), but *Robins lay eggs* is intuitively true despite the property also being only present in females.
+
+Probabilistic models are used to describe language understanding in precise, quantitative terms [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016], formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013; @Qing2014].
+Such models of rational communication describe inferences listeners can draw from language; heretofore, however, this language has been limited to utterances that convey information about a specific entity or situation.
+Meanwhile, the language of generalizations --- statements that extend beyond the here-and-now --- has eluded precise formalization.
+
 
 In this paper, we combine a probabilistic model of pragmatic reasoning with ideas from formal semantics to articulate a formal theory of the truth conditions of generalizations in language. 
 By formalizing this semantic hypothesis in a pragmatic language understanding model, we derive predictions for the endorsements of such statements which we show to depend in systematic ways on relevant prior knowledge.
