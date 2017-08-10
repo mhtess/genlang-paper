@@ -29,10 +29,10 @@ abstract: >
     Generalizations are central to human understanding yet can be difficult to acquire through direct experience (e.g., learning that a plant is poisonous).
     Language provides simple ways to convey generalizations (e.g., *Birds fly.*), and the language of generalizations is ubiquitous in everyday discourse and child-directed speech.
     Yet the meaning of these expressions is philosophically puzzling (e.g., not all birds fly) and has resisted precise formalization.
-    The major issue in formalizing *genericity* is in determining the conditions under which such statements are true or false; these conditions are extremely flexible in communicating generalizations. 
-    Using a state-of-the-art probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of such linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
-    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (i.e., *generic language*, e.g., *Birds fly*), events (i.e., *habitual language*, e.g., *John runs*), and causes (i.e., *causal language*, e.g., *The block makes the machine play music.*). Across these divesre domains, we find that our model, and not simpler models, explains the full spectra of endorsements of generalizations in language.
-    The model suggests that central phenomena of genericity emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
+    The major issue in formalizing *genericity* is in determining the conditions under which such statements are true or false; these conditions are extremely flexible. 
+    Using a probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of such linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
+    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language*, such as *Birds fly*), events (*habitual language*, such as *John runs*), and causes (*causal language*, such as *The block makes the machine play music.*). Across these diverse domains, we find that our model explains the full spectra of endorsements of generalizations in language, while simpler models do not.
+    These results suggest that central phenomena of genericity emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
   
 keywords          : "genericity, generalizations, generics, pragmatics, semantics, bayesian modeling"
 wordcount         : "X"
@@ -5314,7 +5314,7 @@ figure.causals.endorsement <- bind_rows(
   theme(legend.position = 'bottom', legend.direction = 'horizontal', legend.title = element_blank())
 ```
 
-```{r figure-causals, fig.width=11, fig.height=8, cache = F}
+```{r figure-causals, fig.width=11, fig.height=8, cache = T}
 grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
              layout_matrix = cbind(c(1,1,2)))
 
