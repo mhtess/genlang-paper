@@ -55,9 +55,12 @@ output            : papaja::apa6_pdf
 \definecolor{Red}{RGB}{255,0,0}
 \definecolor{Green}{RGB}{10,200,100}
 \definecolor{Blue}{RGB}{10,100,200}
-<!-- \newcommand{\ndg}[1]{\textcolor{Green}{$[ndg: #1 ]$}} -->
-<!-- \newcommand{\mht}[1]{\textcolor{Blue}{$[mht: #1 ]$}} -->
-<!-- \newcommand{\red}[1]{\textcolor{Red}{$#1$}} -->
+
+\newcommand{\mht}[1]{{\textcolor{Blue}{[mht: #1]}}}
+\newcommand{\ndg}[1]{{\textcolor{Green}{[ndg: #1]}}}
+\newcommand{\red}[1]{{\textcolor{Red}{#1}}}
+
+
 
 ```{r global_options, include=FALSE}
 rm(list=ls())
@@ -142,8 +145,6 @@ Individual entities can also be talked about in generalization, using so-called 
 <!-- Recent evidence suggests talking about the other in generalization (using so-called *generic You*) can help make meaning from difficult situations   [e.g., "You never know what will happen on a blind date."; @Orvell2017]. -->
 Communicating about causality can also take the form of communicating a generalization about a causal event (*causal language*; e.g., "Drinking moonshine makes you go blind.").
 What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995].
-
-
 
 <!-- give rise to the productivity of human thought and form of foundations of cultural knowledge. -->
 <!-- They allow us to understand the complex world around us and dream up how possible future situations might unfold. -->
