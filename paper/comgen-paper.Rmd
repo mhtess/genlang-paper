@@ -119,9 +119,11 @@ options("scipen"=10)
 
 # Introduction 
 
-Knowing that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial in an open-ended world.
-Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or just statistically unlikely (e.g., understanding the properties of lightning).
+Knowing that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to trhiving in an open-ended world.
+Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or just rare (e.g., understanding the properties of lightning).
 It thus is crucial that language allow us to communicate such *generalizations* to each other.
+By sharing painfully-won generalizations we thrive collectively without individually needing to taste each potentialy-poisonous plant or witness enough lightning strikes.
+
 
 Generalizations are acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. [XXX cite older stuff. eg hume]
 Cooperative teachers can facilitate inductive learning by supplying helpful data points to the learner [@Csibra2009; @Tomasello1999; @Butler2012].
