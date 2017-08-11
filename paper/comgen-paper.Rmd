@@ -60,8 +60,6 @@ output            : papaja::apa6_pdf
 \newcommand{\ndg}[1]{{\textcolor{Green}{[ndg: #1]}}}
 \newcommand{\red}[1]{{\textcolor{Red}{#1}}}
 
-
-
 ```{r global_options, include=FALSE}
 rm(list=ls())
 knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
@@ -360,10 +358,19 @@ print(df.tab, type = "latex",
       include.rownames = FALSE, comment = F)
 ```
 
-Particular statements can be made about objects, events, and causes (e.g., "My dog is friendly.", "John ran this afternoon.", or "My grandfather drank moonshine and it made him go blind.").
-To consider the corresponding generalizations (i.e., "Dogs are friendly", "John runs", "Drinking moonshines makes you go blind"), we must specify exactly how the particular relates to the generalization.
-We consider the generalization to be about a *category* and the particular to correspond to *instances* of that category.
-Thus, *dog* is an instance of the category \textsc{dogs}, *John at a particular time* is an instance of the category of \textsc{john}, and *drinking moonshine at a particular time* is an instance of the category of \textsc{drinking moonshine} (see Table \ref{tab:genpart}).
+Particular statements can be made about objects, events, and causes. For example:
+
+1. My dog is friendly. (object)
+2. John ran this afternoon. (event)
+3. My grandfather drank moonshine and it made him go blind. (cause)
+
+Particular statements refer to individuals of a category of which generalizatons can be made. For example,
+
+4. Dogs are friendly
+5. John runs
+6. Drinking moonshines makes you go blind
+
+That is, *dog* is an instance of the category \textsc{dogs}, *John at a particular time* is an instance of the category of \textsc{john}, and *drinking moonshine at a particular time* is an instance of the category of \textsc{drinking moonshine} (see Table \ref{tab:genpart}).
 
 Suppose we observe instances $\{x_1, x_2, ..., x_n\}$ of category $k$ and some number of them have feature $f$: What do we learn about possible future instances of $x_{n+1}$, particularly with respect to $f$?
 For properties among instances of a category (e.g., being friendly among dogs), we can describe this inductive inference by a probability $h$ $h = P(x \in f \mid x \in k)$^[
