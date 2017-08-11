@@ -121,17 +121,18 @@ options("scipen"=10)
 
 # Introduction 
 
-Knowing that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to trhiving in an open-ended world.
-Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or just rare (e.g., understanding the properties of lightning).
+Knowing that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to trhiving in our open-ended world.
+Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding the properties of lightning).
 It thus is crucial that language allow us to communicate such *generalizations* to each other.
-By sharing painfully-won generalizations we thrive collectively without individually needing to taste each potentialy-poisonous plant or witness enough lightning strikes.
+By sharing generalizations we thrive collectively without individually needing to taste each potentialy-poisonous plant or witness enough lightning strikes.
+Furthermore, sharing generalizations from one generation to the next may be a crucial mechanism behind the cultural ratchet \ndg{cite. or remove if you don't like it here}.
 
-
-Generalizations are acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. [XXX cite older stuff. eg hume]
-Cooperative teachers can facilitate inductive learning by supplying helpful data points to the learner [@Csibra2009; @Tomasello1999; @Butler2012].
+Generalizations can be acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. \ndg{cite older stuff. eg hume}
+Cooperative teachers can facilitate inductive learning by supplying helpful observations to the learner [@Csibra2009; @Tomasello1999; @Butler2012].
 At around a child's first birthday, however, the learner gains access to a new, human-unique source of data: language.
 Minimally, language fosters generalizations by bringing attention to objects being of the same kind through the use of labeling [e.g., "This is a dog"; @Gelman1986; @Gopnik2000; @Graham2004; @Markman1989; @Schulz2008].
 Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization.
+\ndg{this par doesn't really do much}
 
 Generalizations in language are often studied in *generic language* or generics.
 Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
@@ -156,10 +157,10 @@ What these statements have in common is that they convey generalizations, or exh
 
 
 
-[XXX first three pars are floppy. tighten.
-There haven't been (many)? Formal models of generic language. Say why this is important.
+\ndg{prev three pars are floppy. tighten.
+There haven't been (many?) formal models of generic language. Say why this is important.
 To build one, we need to firsts say what a generalization is. We use the Bayesian idea that an inductive generalization can be understood in terms if probbilities.
-Then we need to say how these probabilities are communicated. Use RSA...]
+Then we need to say how these probabilities are communicated. Use RSA...}
 
 <!-- It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015]. -->
 
