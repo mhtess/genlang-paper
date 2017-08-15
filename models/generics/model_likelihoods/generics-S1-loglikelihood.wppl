@@ -234,8 +234,9 @@ var model = function(){
 // var totalIterations = 100000,
 var lag = 10;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
+var effChain = (chain - chain%iterationTests.length ) / terationTests.length
 
-var outfile = 'results-marginalLikelihood-testIterations-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-marginalLikelihood-testIterations-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+effChain+'.csv'
 
 var posterior = Infer({
   model: model,
