@@ -1,6 +1,12 @@
 // time ~/webppl-fork/webppl generics-S1-loglikelihood.wppl --require ../node_modules/utils generic 1
 
 var chain = last(process.argv) // load index as last command line index
+
+
+var iterationTests = [
+  200000, 300000, 400000, 500000
+]
+var totalIterations = iterationTests[chain % iterationTests.length];
 // penultimate argument is the semantics
 // generic = uncertain threshold
 // some = fixed threshold at lowest threshold value
@@ -85,10 +91,10 @@ var model = function(){
 	};
 
   var noiseParam = sample(noiseParamPrior);
-  var globalLikelihoods = speakerOptimalityPrior.score(speakerOptimality.s1) +
-                          noiseParamPrior.score(noiseParam);
+  // var globalLikelihoods = speakerOptimalityPrior.score(speakerOptimality.s1) +
+                          // noiseParamPrior.score(noiseParam);
 
-  query.add(["logLikelihood","globals","NA", "NA"], globalLikelihoods)
+  // query.add(["logLikelihood","globals","NA", "NA"], globalLikelihoods)
 
 	foreach(properties, function(p){
 
@@ -102,16 +108,16 @@ var model = function(){
     )
 
 		// prior parameters
-		var theta = sample(priorThetaPrior),
-        thetaLike = priorThetaPrior.score(theta);
+		var theta = sample(priorThetaPrior)
+      //  thetaLike = priorThetaPrior.score(theta);
 		var betaParams = {
 			g: sample(priorBetaGPrior),
 			d: sample(priorBetaDPrior)
-		},
-      betaLike = priorBetaGPrior.score(betaParams.g) +
-                 priorBetaDPrior.score(betaParams.d);
+		}
+      // betaLike = priorBetaGPrior.score(betaParams.g) +
+      //            priorBetaDPrior.score(betaParams.d);
 
-   query.add(["logLikelihood","itemPrior", p, "NA"], thetaLike + betaLike)
+  //  query.add(["logLikelihood","itemPrior", p, "NA"], thetaLike + betaLike)
 
 
 		var priorParams = betaShape(betaParams);
@@ -176,10 +182,10 @@ var model = function(){
         d: sample(prevalenceParamsPriors.d)
       };
 
-      var itemPrevalanceLike = prevalenceParamsPriors.g.score(withinParams.g) +
-                               prevalenceParamsPriors.d.score(withinParams.d);
-
-     query.add(["logLikelihood","itemPrevalanceLike", p, k], itemPrevalanceLike)
+    //   var itemPrevalanceLike = prevalenceParamsPriors.g.score(withinParams.g) +
+    //                            prevalenceParamsPriors.d.score(withinParams.d);
+     //
+    //  query.add(["logLikelihood","itemPrevalanceLike", p, k], itemPrevalanceLike)
 
 			var withinShape = betaShape(withinParams);
 			// var withinKind_params = {
@@ -225,17 +231,18 @@ var model = function(){
 }
 
 // 1500 iterations / min (including burn-in)
-var totalIterations = 100000, lag = 20;
+// var totalIterations = 100000,
+var lag = 10;
 var mhiter = totalIterations/lag, burn = totalIterations / 2;
 
-var outfile = 'results-marginalLikelihood-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+var outfile = 'results-marginalLikelihood-testIterations-S1-'+'smntcs_'+targetUtterance+"-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
 
 var posterior = Infer({
   model: model,
 	method: "incrementalMH",
   samples: mhiter, burn: burn, lag: lag,
   verbose: T,
-  verboseLag: mhiter / 20,
+  verboseLag: mhiter / 60,
 	stream: {
 		path: "results/" + outfile,
 		header: ["type", "param", "property", "category", "val"]
