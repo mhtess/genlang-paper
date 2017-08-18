@@ -1,0 +1,141 @@
+// time ~/webppl-fork/webppl generics-S1-priorParameters.wppl --require utils 1
+
+var chain = last(process.argv) // load index as last command line index
+
+var dataPath = "../../data/generics/endorsement/"
+var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
+
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
+ 		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),
+		d_catch = dataFrame(utils.readCSV(endorsementCatchFile).data, ["pass"]);
+
+var data = {
+	prior: map(function(d){
+		extend(d, {
+			avoided_endval: avoidEnds(d.prevalence/100)
+		})
+	}, d_prior),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			d
+	}, d_endorsement))
+};
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(d_catch, "pass"))
+)
+
+var properties = levels(data.endorsement, "Property")
+
+// should be 21 properties
+assert.ok(
+  properties.length == 21
+)
+
+var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
+
+var model = function(){
+
+	foreach(properties, function(p){
+
+		var propertyData = {
+			endorsement: _.filter(data.endorsement, {Property: p}),
+			prior: _.filter(data.prior, {Property: p})
+		}
+    // make sure there's data
+    assert.ok(
+      (propertyData.prior.length > 0) && (propertyData.endorsement.length > 0)
+    )
+
+		// prior parameters
+		var theta = uniformDrift({a: 0, b: 1, width:0.2})
+
+		var betaParams = {
+			g: uniformDrift({a: 0, b: 1, width: 0.2}),
+			d: uniformDrift({a: 0, b: 100, width: 20})
+		}
+
+		var priorParams = betaShape(betaParams);
+    // display("before prevalence prior factor")
+		// observe structured prior data
+		mapData({data: propertyData.prior}, function(d){
+			// display(d.roundedPrevalence)
+			// display(Delta({v: 0}).score(d.roundedPrevalence))
+			// display(Beta(priorParams).score(d.roundedPrevalence))
+			var scr = util.logsumexp([
+				 Math.log(theta) + Beta(priorParams).score(d.avoided_endval),
+				 Math.log(1-theta) + nullDistribution.score(d.avoided_endval)
+				//  Math.log(1-theta) + Delta({v: 0}).score(d.roundedPrevalence)
+			 ])
+			 factor(scr)
+		})
+    // display("after prevalence prior factor")
+
+		query.add(["prior","mixture", p, "NA"], theta)
+		query.add(["prior","stableFreq", p, "mean"], betaParams.g)
+		query.add(["prior","stableFreq", p, "sampleSize"], betaParams.d)
+
+		var categories = levels(propertyData.endorsement, "Category");
+
+		// make sure subsetting works properly
+		assert.ok(categories.length > 0)
+
+		foreach(categories, function(k){
+
+			var categoryData = {
+				endorsement: _.filter(propertyData.endorsement, {Category: k}),
+				prior: _.filter(propertyData.prior, {Category: k})
+			};
+
+      // make sure there is data
+      assert.ok(
+        (categoryData.prior.length > 0) && (categoryData.endorsement.length > 0)
+      )
+
+			var withinParams = {
+				g: uniformDrift({a: 0, b: 1, width: 0.2}),
+				d: uniformDrift({a: 0, b: 100, width: 20})
+			}
+
+			var withinShape = betaShape(withinParams);
+
+			mapData({data: categoryData.prior}, function(d){
+				// display(p+k+ "d = " + d.avoided_endval + " " + Beta(withinShape).score(d.avoided_endval))
+				observe(Beta(withinShape), d.avoided_endval)
+			})
+      // display("after prevalence factor")
+
+			query.add(["targetPrevalence","mean", p, k], withinParams.g)
+			query.add(["targetPrevalence","sampleSize", p, k], withinParams.d)
+
+		})
+
+	})
+
+	return query
+}
+
+// 1500 iterations / min (including burn-in)
+var totalIterations = 10000, lag = 20;
+var mhiter = totalIterations/lag, burn = totalIterations / 2;
+
+var outfile = 'results-genericsRSA-priorParameters-' + totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+
+var posterior = Infer({
+  model: model,
+	method: "incrementalMH",
+  samples: mhiter, burn: burn, lag: lag,
+  verbose: T,
+  verboseLag: mhiter / 20,
+	stream: {
+		path: "results/" + outfile,
+		header: ["type", "param", "property", "category", "val"]
+	}
+})
+
+"written to " + outfile;
