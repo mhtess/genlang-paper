@@ -1042,7 +1042,7 @@ It is the premier case study of generalizations in language because of its close
 Any theory of generic language must explain its puzzling flexibility of usage with respect to prevalence.
 That is, \emph{Mosquitos carry malaria} and \emph{Birds lay eggs} are reasonable things to say, but \emph{Birds are female} is not.
 As a first test of our theory, we wish to explain the flexibility in endorsements of generics (e.g., "Birds lay eggs" vs. "Birds are female"; "Mosquitos carry malaria") in terms of the relevant prior knowledge about properties, as explored through simulation in the **Model predictions** section.
-We validate these simulations empirically by measuring the prior belief distribution over the relevant probabilities $P(h)$ used in Eq. \ref{eq:L0} as well as the target-category prevalence $h$ that the speaker model seeks to convey in Eq. \ref{eq:S1} (Expt. 1a).
+We validate these simulations empirically by measuring the prior belief distribution over the relevant probabilities $P(h)$ used in Eq. \ref{eq:L0} and the prevalence of the category that the speaker model seeks to convey (the *referent-category* prevalence) $h$ in Eq. \ref{eq:S1} (Expt. 1a).
 
 <!-- The pragmatic speaker model $S_2$, Eq.~\ref{eq:S2}, is a model of truth judgments.  -->
 We test our model on thirty generic sentences that cover a range of conceptual distinctions discussed in the literature [@Prasada2013]: characteristic (e.g. \emph{Ducks have wings.}), minority (e.g. \emph{Robins lay eggs.}), striking (e.g. \emph{Mosquitos carry malaria.}), false generalization (e.g. \emph{Robins are female.}), and false (e.g. \emph{Lions lay eggs.}).
@@ -1115,17 +1115,15 @@ To preview our results, we find that only our formulation of an uncertain thresh
 
 
 The prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the prevalence of a given property (e.g. \textsc{lays eggs}) across relevant categories. 
-To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are on an alien planet and you come across your favorite kind of animal from Earth. Now try to predict whether or not that animal is female. To get an intuition for your subjective probability, ask yourself "What percentage of that kind of animal is female?".
-The answer is probably 50\%. 
-Now try to predict whether or not that animal lays eggs (or, "What percentage of that kind of animal lays eggs?").
-Depending on what your favorite animal is, the answer is probably either 50\% or 0\% (e.g., if your favorite animal is a dog, there is a 0\% chance that it lays eggs)^[
-The subjective probability may, in fact, be non-zero but very small. This would allow for the intuitive possibility of a dog that lays eggs potentially due to some strange generic mutation or the interaction of dog genetics with the alien environment. 
+To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are walking around and you come across an instance of your favorite kind of animal from Earth (e.g., a peregrine falcon). Ask yourself "is it female?" Your answer will probably depend upon the percentage of the category that you believe to be female (e.g., the percentage of female peregrine falcons, i.e., 50\%). Now, do you think it lays eggs? Your answer to this question will likely depend upon on what animal you're thinking of: If you're thinking of a peregrine falcon, the probability is similar to that of being female (50\%) because female peregrine falcons lay eggs; If you're thinking of a mammal, it's likely that it won't lay eggs (0\%) because most mammals give birth to live young. That is, the answer is either 50\% or 0\% depending on the kind of creature we are thinking of. ^[
+The subjective probability may, in fact, be non-zero in what we're calling as 0\%, non-zero but very small. This would allow for the intuitive possibility of a dog that lays eggs potentially due to some strange generic mutation or the interaction of dog genetics with a foreign environment. 
 ].
 
-This decomposition of the prevalence prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the prevalence of the feature given the kind $P(h \mid k)$ is one way to measure the prevalence prior $P(h) = \int_{k} P(h \mid k) \diff k$.
-We measured this distribution by employing this technique empirically for the set of properties (e.g. \textsc{lays eggs, carries malaria}; 21 in total) used in our target sentences. 
-We then ask whether a structured, prior model accounts better for this data than an unstructured model.
- 
+This thought experiment decomposes the prevalence prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the prevalence of the feature given the kind $P(h \mid k)$.
+We will use this decomposition to measure the prevalence prior $P(h) = \int_{k} P(h \mid k) \diff k$, and perform a structured Bayesian data-analysis to model the prior data.
+We measured prior distributions empirically for the set of properties (e.g. \textsc{lays eggs, carries malaria}; 21 in total) used in our generic sentences.
+After measurement, we show that assuming a structured model of the prior data is substantially preferred to an unstructured model.
+
 ### Method
 
 #### Participants
@@ -1381,7 +1379,7 @@ Eight example prior distributions inferred using both the structured and unstruc
 There is a lot of diversity in the shapes of the distributions, which the structured model accounts for quite well.
 One item that the structured model doesn't perfectly capture is the prior distribution over "lays eggs".
 The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 100\%^[
-Similar phenomena have been observed in other prevalence elicitation tasks when the target category is fixed [e.g., estimating only the percentage of Robins that lay eggs; @Prasada2013]
+Similar phenomena have been observed in other prevalence elicitation tasks when the referent-category is fixed [e.g., estimating only the percentage of Robins that lay eggs; @Prasada2013]
 ]; our simple two-component mixture model has no way to account for such a tri-modal distribution. 
 A more complex model (i.e., one with three mixture components) is necessary to perfectly account for this item's data; however, we retain the imperfect simpler model for data-analytic ease going forward. 
 
@@ -1777,7 +1775,7 @@ This is an important point of departure in our work from previous work.
 <!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
 <!-- It in fact may be one dimension of a higher-dimesional generative model of kinds and properties. -->
 <!-- Cue validity is conceptually related to the mixture parameter $\phi$ of the prevalence prior. -->
-<!-- However, cue validity requires knowledge of the target category $k$ -->
+<!-- However, cue validity requires knowledge of the referent-category $k$ -->
 
 <!-- For example, suppose there are 10 possible kinds and 3 of them belong the stable cause distribution and 7 belong to the transient cause distribution.  -->
 <!-- Say we observe the feature and want to know what the probability that the entity is of a particular kind that we know to be of the stable distribution.  -->
@@ -1802,7 +1800,7 @@ This is an important point of departure in our work from previous work.
 <!-- The prior beliefs over the prevalence of the property, $P(h)$, can also be interpreted as the pragmatic listener's posterior upon hearing the null utterance, because the null utterance has no information content. -->
 <!-- We see the interpretation of the generic is quite variable across our empirically measured priors. -->
 <!-- For instance, in the case of \textsc{carries malaria}, the prior is very left-skewed; with this prior, the threshold $\theta$ can plausibly be very low because high prevalence is unlikely. -->
-<!-- Properties like \textsc{doesn't attack swimmers} are very right-skewed; with this prior, not many thresholds lead to a substantial update in beliefs, and so the generic is unlikely to be used by speaker $S_1$ unless the property is practically-universal within the target category.  -->
+<!-- Properties like \textsc{doesn't attack swimmers} are very right-skewed; with this prior, not many thresholds lead to a substantial update in beliefs, and so the generic is unlikely to be used by speaker $S_1$ unless the property is practically-universal within the referent-category.  -->
 <!-- Some properties have priors that are unimodal with low variance (e.g. \textsc{is female}); these properties are present in every kind in almost exactly the same proportion. The model  and thus are too obvious and certain to allow for an informative generic utterance: The posterior is not very different from the prior.  -->
 <!-- With $P(x)$ now empirically established, we can test if our speaker model predicts human truth judgments of generic statements about these properties. -->
 
@@ -1810,8 +1808,8 @@ This is an important point of departure in our work from previous work.
 ## Experiment 1b: Endorsing generic statements
 
 In Expt. 1a, we measured and modeled the prevalence prior distribution (e.g., the prevalence of laying eggs for different kinds of animals) for different features.
-This data also includes informaiton about the target-category prevalence (e.g., how many robins lay eggs).
-Using the target-category prevalence as $h$ in our speaker model (Eq. \ref{eq:S1}), the speaker model will predict endorsements for the corresponding generic statements (e.g., "Robins lay eggs").
+This data also includes information about the referent-category prevalence (e.g., how many robins lay eggs).
+Using the referent-category prevalence as $h$ in our speaker model (Eq. \ref{eq:S1}), the speaker model will predict endorsements for the corresponding generic statements (e.g., "Robins lay eggs").
 To test these predictions, we collect human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
 
 #### Method
@@ -2231,7 +2229,7 @@ mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.pre
 From the prevalence prior data (Expt. 1a), we estimate participants' beliefs about the prevalence of a property for the target categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}.
 We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:generics-endorsement-figure}, upper-right: lower-left facet). 
 This is because our stimulus set includes generics that are true with high-prevalence properties (e.g., *Leopards have spots.*) and generics that are false with low prevalence properties (e.g., *Leopards have wings.*). 
-However, large deviations from an account based purely on target-category prevalence remain: Generics in which the target-category has intermediate prevalence (prevalence quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{prevalence} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by prevalence within those categories ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
+However, large deviations from an account based purely on referent-category prevalence remain: Generics in which the referent-category has intermediate prevalence (prevalence quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{prevalence} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by prevalence within those categories ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
 
 ##### Prevalence and cue validity
 
@@ -2527,7 +2525,7 @@ grid.arrange(generics.endorsement.spectrum,
 ```
 
 The RSA model we propose for generic endorsement is a speaker model that decides whether or not to say the generic to a naive listener.
-Unlike the simple regression models based on point-estimates of target-category prevalence and cue validity, this cognitive model has access to the full prior distribution on prevalence $P(h)$.
+Unlike the simple regression models based on point-estimates of referent-category prevalence and cue validity, this cognitive model has access to the full prior distribution on prevalence $P(h)$.
 This model has two other main architectural differences: an information-theoretic decision between producing the generic vs. an information-less alternative and uncertainty about the semantic threshold that corresponds to the theoretical, core meaning of a generic statement.
 
 We first test a model that has two of the the above three main architectural features.
@@ -2539,8 +2537,8 @@ Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 
 This is a strong alterantive model to our uncertain-threshold model; the only difference concerns the threshold.
 
 
-<!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the target category $h'$). -->
-We use the empirically estimated target-category prevalence as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's prevalence prior $P(h)$.^[
+<!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the referent-category $h'$). -->
+We use the empirically estimated referent-category prevalence as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's prevalence prior $P(h)$.^[
 Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
 This corresponds to the more general form of the model described in a footnote in the model section. 
 With these data, the predictions of these two models are nearly identical.
@@ -2561,7 +2559,7 @@ For the parameters of the prevalence distributions, we use the same priors descr
 We learn about the \emph{a posteriori} credible values of this joint inference model using an incrementalized-version of the  by collecting samples from 3 MCMC chains of 100,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. 
 
 The posterior distribution of this joint inference model tells us what we should believe about the latent parameters of the model (prevalences, prevalence priors, and the speaker optimality parameter) given the observed data, as well as what predictions the model makes given these parameter values.
-Importantly, the model recapitulates the prevalence prior data (e.g., the prevalence of laying eggs among various species) and the target-category prevalence data (e.g., the prevalence of laying eggs among robins; see Appendix A for full posteriors) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1a).
+Importantly, the model recapitulates the prevalence prior data (e.g., the prevalence of laying eggs among various species) and the referent-category prevalence data (e.g., the prevalence of laying eggs among robins; see Appendix A for full posteriors) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1a).
 This means the theoretically-interesting predictionso of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the details of the prevalence distributions). 
 
 We compare the fixed-threshold model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
@@ -2572,7 +2570,7 @@ This is because almost all items get endorsed by some participants; the model th
 For some items, a fixed-threshold meaning carries some information-gain over silence (i.e., some model predictions \> 0.5). For many items, however, the 0\%-threshold is almost as meaning-less as silence; the model, thus, has a hard time strongly endorsing some statements (most model predictions around 0.5\%).
 Consistent with intuition, assigning a fixed-semantics is too lenient a specification. 
 
-MHT: Outfit fixed-threshold model with noise parameter?
+\mht{Outfit fixed-threshold model with noise parameter?}
 
 ##### Uncertain threshold RSA model
 
@@ -2582,7 +2580,7 @@ As we see in Figure \ref{fig:generics-endorsement-figure} (top right, top right 
 
 
 To gain some intuition for why that is the case, examine the bottom row of Figure \ref{fig:generics-endorsement-figure}.
-The blue, solid lined distribution corresponds to the speaker's beliefs about the prevalence of the feature for the target category (also in blue).
+The blue, solid lined distribution corresponds to the speaker's beliefs about the prevalence of the feature for the referent-category (also in blue).
 The grey distribution shows the listener's prior distribution over prevalence of the feature (these are the corresponding Probability Density Functions of the Cumulative Density Functions shown in Figure \ref{fig:generic-endorsement-priors-figure}).
 It is also the listener $L_0$'s posterior upon hearing the silent utterance.
 The red distribution shows the $L_0$ posterior upon hearing the generic utterance that corresponding to an uncertain threshold-semantics. 
@@ -2593,7 +2591,7 @@ Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos car
 
 
 
-<!-- Generics that received definitive agreement or disagreement are predicted to be judged as such by the model (corners of Figure \ref{fig:commongenerics}b), including items for which target-category prevalence is not a good indicator of the acceptability (e.g. \emph{Mosquitos carry malaria}, for prevalence quartiles 2 and 3, $r_{Q2,3}^2=0.955$; MSE=0.005; Figure \ref{fig:commongenerics}b, intermediate shades). -->
+<!-- Generics that received definitive agreement or disagreement are predicted to be judged as such by the model (corners of Figure \ref{fig:commongenerics}b), including items for which referent-category prevalence is not a good indicator of the acceptability (e.g. \emph{Mosquitos carry malaria}, for prevalence quartiles 2 and 3, $r_{Q2,3}^2=0.955$; MSE=0.005; Figure \ref{fig:commongenerics}b, intermediate shades). -->
 <!-- We also see the generics truth judgment model predicts uncertain truth judgments: for instance, \emph{Robins are female} is judged by both the model and human participants to be neither true nor false. -->
 <!-- \emph{Sharks don't attack swimmers}, while true of most sharks, is judged to be not a good thing to say by both participants and the model. -->
 <!-- This is strong evidence that the puzzling flexibility of generic truth conditions can be understood with a simple but underspecified semantics for which the precise meaning is resolved with respect to diverse prior beliefs in context. -->
@@ -2622,10 +2620,10 @@ Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos car
 <!--     Prevalence prior distributions empirically elicited for twenty-one animal properties. -->
 <!--     Prior distributions summarized by two parameters of a structured Bayesian model: $\phi$----a property's potential to be present in a category----and $\gamma$----the mean prevalence when it is possible for the property to be present in a category. -->
 <!--     Inset plots display example empirical prior distributions over prevalence and corresponding $L_1$ model predictions: the posterior after hearing a generic utterance.  -->
-<!--     Intervals on the top of insets show human judgments about the prevalence of the property within a target category. -->
+<!--     Intervals on the top of insets show human judgments about the prevalence of the property within a referent-category. -->
 <!--     (b) -->
-<!--     Human acceptability judgments compared with model predictions (left) and the target-category prevalence (right) for thirty generic utterances about familiar animals and properties.  -->
-<!--     Color denotes target-category prevalence of the property, with lighter colors indicating higher prevalence.  -->
+<!--     Human acceptability judgments compared with model predictions (left) and the referent-category prevalence (right) for thirty generic utterances about familiar animals and properties.  -->
+<!--     Color denotes referent-category prevalence of the property, with lighter colors indicating higher prevalence.  -->
 <!--      Error bars denote 95\% Bayesian credible intervals. -->
 <!--     } -->
 <!--   \label{fig:commongenerics} -->
@@ -2643,7 +2641,7 @@ By measuring listeners' prior beliefs about the prevalence of the property acros
 The key theoretical contribution is that the threshold must be *underspecified* in the semantics and inferred in context by the listener.
 The decision of whether or not to endorse the generic comes down to whether or not the generic would make the listener's belief distribution more in line with the speaker's.
 
-In explaining the variable endorsements of generics, we measured the prior distribution over the prevalence of features across categories in addition to the prevalence of the feature in the target category (e.g., the percentage of robins that lay eggs) to model the endorsement data.
+In explaining the variable endorsements of generics, we measured the prior distribution over the prevalence of features across categories in addition to the prevalence of the feature in the referent-category (e.g., the percentage of robins that lay eggs) to model the endorsement data.
 Thus, we have shown how these measurements are related to generic endorsement via our model. 
 Yet, this evidence is still correlational in nature.
 We do not yet know if the variables that we are measuring are causally related to endorsement.
@@ -5519,7 +5517,7 @@ In this work, we have argued that probabilities are central to even the most bas
 We convey probabilities to each other using language, but the most basic ways we have of conveying them are *vague*. 
 
 <!-- One might also question the feature of our computational model that the speaker is explicitly trying to communicate $h$, her subjective probability.  -->
-<!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the target category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
+<!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the referent-category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
 
 <!-- ### The Problems with Communicating Generalizations -->
 
@@ -5709,7 +5707,7 @@ This provides a more unifying view of generics, since the basic currency of gene
 <!-- Across all experiments, the formal model predicted the quantitative details of participants' judgments with high accuracy. -->
 
 <!-- There have been numerous demonstrations arguing that statistics (e.g., property prevalence) are insufficient to explain generic meaning [@Gelman2002; @Gelman2007; @Cimpian2010; @Cimpian2010c; @Khemlani2012; @Prasada2013]. -->
-<!-- In these experiments, the prevalence considered is only the prevalence of the property for the target category [e.g., the percentage of birds that lay eggs; @Khemlani2012; @Prasada2013], what we have referred to as \emph{within-kind prevalence}.  -->
+<!-- In these experiments, the prevalence considered is only the prevalence of the property for the referent-category [e.g., the percentage of birds that lay eggs; @Khemlani2012; @Prasada2013], what we have referred to as \emph{within-kind prevalence}.  -->
 <!-- Indeed, this simple statistic also fails to explain our data (Figure \ref{fig:commongenerics}b, right). -->
 <!-- Our formal model of pragmatics, by contrast, considers not only within-kind prevalence, but a listener's prior beliefs about prevalence across kinds in order to arrive at a meaning for a generic utterance. -->
 <!-- By establishing the validity of a semantics based on prevalence alone, we provide a formalism to learn about categories from generic statements.  -->
@@ -5744,7 +5742,7 @@ This is not an isolated example.
 The same features can be observed in *Pastas are spaghetti*, *Animals are humans*.
 These examples are generated by pairing a superordinate category with a property that describes a strictly subordinate category. 
 We posit that the weirdness of these examples is the result of a failure of the comparison class.
-<!-- Specifically, the target category K in a generic statement "Ks F" is not expected to be in the comparison class.  -->
+<!-- Specifically, the referent-category K in a generic statement "Ks F" is not expected to be in the comparison class.  -->
 
 Though we have not introduced a theory of how a comparison class is contructed, relevant ideas may be found in @Keil1979.
 His notion of *predicability* might relate to the comparison class, insofar as both may be derived with respect the property (e.g., the kinds of categories can be felicitiously predicated by "is paperback" may form a comparison class).
@@ -5752,7 +5750,7 @@ Note that this idea is similar to @Cohen1999's category of "Relative generics", 
 For example, being a paperback can only be true or false (in the predicability sense of @Keil1979) of individual books.
 Aggregations of entities that can be predicated by the feature are, without further supporting context, categories of books.
 Such categories may include books of different of different genres or eras, among plausibly many other such sub-categories.
-From the taxonomic relation of the subordinate categories (e.g., types of books) to the target category (i.e., books), the true prevalence of the feature among the target category must be the mean of the prevalence of all subcategories, assuming an equal partitioning of the prior probability of subcategories.
+From the taxonomic relation of the subordinate categories (e.g., types of books) to the referent-category (i.e., books), the true prevalence of the feature among the referent-category must be the mean of the prevalence of all subcategories, assuming an equal partitioning of the prior probability of subcategories.
 Thus, if we were to construct a speaker model of the statement "Books are paperbacks", the model would predict a 0.5 endorsement: neither true nor untrue, in the same way as "Birds are female". 
 
 (2) is often used to argue that no actual instances need have the property to make a generalization true. 
