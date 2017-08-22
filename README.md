@@ -24,3 +24,16 @@ Note that several models are written in the RMarkdown document using [RWebPPL](h
  6. Knit! (very first time you knit, it may ask you to upgrade a package; just hit yes)
  
 Note that first time you knit (or if you clear the cache), it will take about 10-15 minutes to knit; subsequent knits should be under a minute due to the cache.
+
+### Troubleshooting
+
+If you sponatenously get package load error messages like:
+```
+"Error in loadNamespace(name) : there is no package called ‘nameOfPackage’"
+```
+there may be something buggy with packrat and symlinks, which would lead to commands like `packrat::on()` leading to errors such as 
+```
+Error in ensurePackageSymlink(source, target) :
+  Target '/path/to/repo/packrat/lib-R/boot' already exists and is not a symlink
+```
+in which case you should delete all folders inside `packrat/lib-R/` and re-try.
