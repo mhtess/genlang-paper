@@ -156,7 +156,7 @@ What these statements have in common is that they convey generalizations, or exh
 
 
 \ndg{prev three pars are floppy. tighten.
-There haven't been (many?) formal models of generic language. Say why this is important.
+There haven't been many formal models of generic language, none have made quantitative predictions. Say why this is important.
 To build one, we need to firsts say what a generalization is. We use the Bayesian idea that an inductive generalization can be understood in terms if probbilities.
 Then we need to say how these probabilities are communicated. Use RSA...}
 
