@@ -421,6 +421,8 @@ For abstract, generalizable knowledge to remain in a culture, it must be able to
 
 # Generalization from Language
 
+\ndg{move all this background about generics earlier, so that this section can go straight to our model.}
+
 We will discuss communicating generalizations in the context of generalizations about categories (i.e., *generic language*), though the arguments will extend to events and causes as well, following the definitions of $h$ described in the previous section. 
 Generics express a relation between a kind K (e.g., \textsc{dogs}) and a property F (e.g., \textsc{is friendly}), such that the property can also be said to be applicable to an individual (i.e., "My dog is friendly"). 
 Bare plural statements (e.g., *Dogs are friendly*) strongly tend to yield a generic meaning, though other forms can express such a meaning [e.g., *A mongoose eats snakes.*; @Carlson1977] .
