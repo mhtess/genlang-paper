@@ -327,67 +327,79 @@ We find that this formalism resolves the philosophical and empirical puzzles.
 
 
 
-# A Formal View of Generalization
+# Generalization from observations
 
-Generalizations are used to make predictions about instances that an agent has yet to experience [@HumeTHN].
+Generalizations are used to make predictions about properties instances that an agent has yet to experience [@HumeTHN]. 
 From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993].
-To form a generalization about a category or kind $k$, an observer must be able to individuate an exemplar or instance $x$ as belonging to the category.
-This is faciliated through the use of labeling; the linguistic expression of such an individuation would manifest in utterances such as "$x$ is a $k$" or "this $k$ ..."
-To generalize a feature $f$ to that category, it is also necessary to be able to determine if the particular instance has the feature.
-That is, a speaker must be able to say "This $k$ (i.e., $x$) has $f$".
-We call this latter kind of statement a *particular*.
+As adults we readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find me typing.
+In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$. 
+The entities can be objects (a dog), events (a coffee drink), or more fine grained types (me on a given day).
+The properties can vary greatly (e.g. having fur, causing jitters, typing). 
+Yet the prediction for a new entity can be described as a *predictive probability*: 
+$h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$.
+\ndg{say what we call $h$ throughout. prevalence?}
 
-```{r table-generalization, results="asis"}
-df.tab <- data.frame(
-  Generalization = c("Dogs are friendly", "John smokes", "Drinking moonshine makes you go blind"),
-  #x = c("an instance of K in space", "an instance of K in time", "an instance of a "),
-  "Generalization over" = c("Category", "Event", "Cause"),
-  "Linguistic construct" = c("Generic", "Habitual", "Causal"),
-  x = c("a dog", "an instance of John", "an instance of a person drinking moonshine"),
-  k = c("DOGS", "JOHN", "DRINKING MOONSHINE"),
-  f = c("is friendly", "is smoking / smoked at time t", "caused person to go blind")
-) %>% xtable(.,
-         caption = c("Decomposition of generalizations into concrete particulars and corresponding properties."),
-        label = c("tab:genpart"))
 
-# apa_table(df.tab, 
-#           caption = "Decomposition of generalizations into concrete particulars and corresponding properties.", 
-#           escape = TRUE, small = TRUE
-# )
 
-print(df.tab, type = "latex", 
-      tabular.environment = "tabularx", width = "\\textwidth",
-      scalebox='0.75',
-      include.rownames = FALSE, comment = F)
-```
+<!-- To form a generalization about a category or kind $k$, an observer must be able to individuate an exemplar or instance $x$ as belonging to the category. -->
+<!-- This is faciliated through the use of labeling; the linguistic expression of such an individuation would manifest in utterances such as "$x$ is a $k$" or "this $k$ ..." -->
+<!-- To generalize a feature $f$ to that category, it is also necessary to be able to determine if the particular instance has the feature. -->
+<!-- That is, a speaker must be able to say "This $k$ (i.e., $x$) has $f$". -->
+<!-- We call this latter kind of statement a *particular*. -->
 
-Particular statements can be made about objects, events, and causes. For example:
+<!-- ```{r table-generalization, results="asis"} -->
+<!-- df.tab <- data.frame( -->
+<!--   Generalization = c("Dogs are friendly", "John smokes", "Drinking moonshine makes you go blind"), -->
+<!--   #x = c("an instance of K in space", "an instance of K in time", "an instance of a "), -->
+<!--   "Generalization over" = c("Category", "Event", "Cause"), -->
+<!--   "Linguistic construct" = c("Generic", "Habitual", "Causal"), -->
+<!--   x = c("a dog", "an instance of John", "an instance of a person drinking moonshine"), -->
+<!--   k = c("DOGS", "JOHN", "DRINKING MOONSHINE"), -->
+<!--   f = c("is friendly", "is smoking / smoked at time t", "caused person to go blind") -->
+<!-- ) %>% xtable(., -->
+<!--          caption = c("Decomposition of generalizations into concrete particulars and corresponding properties."), -->
+<!--         label = c("tab:genpart")) -->
 
-1. My dog is friendly. (object)
-2. John ran this afternoon. (event)
-3. My grandfather drank moonshine and it made him go blind. (cause)
+<!-- # apa_table(df.tab,  -->
+<!-- #           caption = "Decomposition of generalizations into concrete particulars and corresponding properties.",  -->
+<!-- #           escape = TRUE, small = TRUE -->
+<!-- # ) -->
 
-Particular statements refer to individuals of a category of which generalizatons can be made. For example,
+<!-- print(df.tab, type = "latex",  -->
+<!--       tabular.environment = "tabularx", width = "\\textwidth", -->
+<!--       scalebox='0.75', -->
+<!--       include.rownames = FALSE, comment = F) -->
+<!-- ``` -->
 
-4. Dogs are friendly
-5. John runs
-6. Drinking moonshines makes you go blind
+<!-- Particular statements can be made about objects, events, and causes. For example: -->
 
-That is, *dog* is an instance of the category \textsc{dogs}, *John at a particular time* is an instance of the category of \textsc{john}, and *drinking moonshine at a particular time* is an instance of the category of \textsc{drinking moonshine} (see Table \ref{tab:genpart}).
+<!-- 1. My dog is friendly. (object) -->
+<!-- 2. John ran this afternoon. (event) -->
+<!-- 3. My grandfather drank moonshine and it made him go blind. (cause) -->
 
-Suppose we observe instances $\{x_1, x_2, ..., x_n\}$ of category $k$ and some number of them have feature $f$: What do we learn about possible future instances of $x_{n+1}$, particularly with respect to $f$?
-For properties among instances of a category (e.g., being friendly among dogs), we can describe this inductive inference by a probability $h$ $h = P(x \in f \mid x \in k)$^[
-With a frequentist interpretation, this can be thought of as the *prevalence* of $f$ among $k$.
-].
-<!-- In the study of categories and properties, $x$ is an object. -->
-For an action exhibited by an agent, the inference concerns a rate --- how frequently (in time) does $x \in f$ occur --- which can be described as a probability mass: $h = \int_{t} P(x \in f_t \mid x \in k_t) \diff t$
-<!-- In this case, $x$ is a instance of an agent. -->
-Causal learning can be described with the same formalism as for categories, a probability referring to the likelihood of an effect $e$ given a cause $c$, also known as causal power: $h = P(x \in e \mid x \in c)$.
-Throughout, we refer to the degree of probability as $h$ because it represents a hypothesis about the underlying causal power or frequency of some instance in a category.
+<!-- Particular statements refer to individuals of a category of which generalizatons can be made. For example, -->
+
+<!-- 4. Dogs are friendly -->
+<!-- 5. John runs -->
+<!-- 6. Drinking moonshines makes you go blind -->
+
+<!-- That is, *dog* is an instance of the category \textsc{dogs}, *John at a particular time* is an instance of the category of \textsc{john}, and *drinking moonshine at a particular time* is an instance of the category of \textsc{drinking moonshine} (see Table \ref{tab:genpart}). -->
+
+<!-- Suppose we observe instances $\{x_1, x_2, ..., x_n\}$ of category $k$ and some number of them have feature $f$: What do we learn about possible future instances of $x_{n+1}$, particularly with respect to $f$? -->
+<!-- For properties among instances of a category (e.g., being friendly among dogs), we can describe this inductive inference by a probability $h$ $h = P(x \in f \mid x \in k)$^[ -->
+<!-- With a frequentist interpretation, this can be thought of as the *prevalence* of $f$ among $k$. -->
+<!-- ]. -->
+<!-- <!-- In the study of categories and properties, $x$ is an object. --> -->
+<!-- For an action exhibited by an agent, the inference concerns a rate --- how frequently (in time) does $x \in f$ occur --- which can be described as a probability mass: $h = \int_{t} P(x \in f_t \mid x \in k_t) \diff t$ -->
+<!-- <!-- In this case, $x$ is a instance of an agent. --> -->
+<!-- Causal learning can be described with the same formalism as for categories, a probability referring to the likelihood of an effect $e$ given a cause $c$, also known as causal power: $h = P(x \in e \mid x \in c)$. -->
+<!-- Throughout, we refer to the degree of probability as $h$ because it represents a hypothesis about the underlying causal power or frequency of some instance in a category. -->
 <!-- A Bayesian agent will have prior beliefs about the probability (potentially an uninformed prior) and uses Bayesian inference to learn about the probability from her observations. -->
 
 <!-- Suppose *a priori* we have no informative beliefs about the propensity (i.e., $P(x \in f \mid x \in k) \sim \text{Uniform}(0, 1)$). -->
-Observing some number of positive instances of $k$ with $f$ will update a prior belief distribution into a posterior belief distribution.
+
+The human capacity to generalize from observations has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
+Observing some number of instances of $k$ with $f$ will update a prior belief distribution into a posterior belief distribution.
 As a concrete example, consider the feature *is friendly* ($f$) for the category *dog* ($k$): $h = P(x \in \{\text{is friendly}\} \mid x \in \{\text{is a dog}\})$.
 If an agent were to encounter some number of individual dogs, note how many of them were friendly ($d$), she could form a posterior belief distribution about the probability that the next dog she encounters will be friendly (in other words, a belief about the friendliness of dogs).
 
@@ -397,8 +409,7 @@ $$
 
 Our ability to use this updated belief $P(h \mid d)$ in order to make predictions about unobserved instances is a computational description of generalization [e.g., @Tenenbaum2006; @Tenenbaum2011].
 
-The human capacity to generalize from observations has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
-Inductive inferences show complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place.
+Generalization from examples shows complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place.
 For instance, observing that an indigenous person living on a remote island *is obese* provides considerably less information about the weights of other islanders in comparison to inferences about skin color upon learning that one islander's skin color *is brown* [@Nisbett1983].
 This subtlety can be modeled using heirarchical models to elaborate the prior in a Bayesian model [@Kemp2008].
 Observations that are generated by an intentional agent can similar lead to subtle inferences, like unconfounding otherwise ambiguous causal evidence [@Goodman2009].
@@ -408,7 +419,7 @@ Relying upon observations would be particularly problematic to learn, for exampl
 For abstract, generalizable knowledge to remain in a culture, it must be able to be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
 
 
-# Formalizing Generalizations in Language
+# Generalization from Language
 
 We will discuss communicating generalizations in the context of generalizations about categories (i.e., *generic language*), though the arguments will extend to events and causes as well, following the definitions of $h$ described in the previous section. 
 Generics express a relation between a kind K (e.g., \textsc{dogs}) and a property F (e.g., \textsc{is friendly}), such that the property can also be said to be applicable to an individual (i.e., "My dog is friendly"). 
