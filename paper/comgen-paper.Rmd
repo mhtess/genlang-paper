@@ -5427,16 +5427,16 @@ Our theory would predict in these cases that differences in endorsement would be
 # General Discussion
 
 It is a remarkable fact that so much is learned from ideas expressed vaguely in words.
-Generalizations in language (e.g., *John runs.*, *Dogs are friendly.*, *The block makes the machine play music*) are a premier example of how simple statements --- statements understood by even the youngest language users --- can display complex sensitivity to context.
+Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements --- statements understood by even the youngest language users --- can display complex sensitivity to context.
 We have argued that the core meaning of such linguistic expressions is, in fact, simple, but underspecified. 
-To our knowledge, this is the first formal theory of genericity in language that makes precise quantitative predictions about human endorsement data. 
+To our knowledge, this is the first formal theory of generalizations in language that makes precise quantitative predictions about human endorsement data. 
 
-As a formal theory of genericity in language, we aim to unify significant swaths of language that are seemingly quite different from one another: generalizations about categories, events, and causes.
+As a formal theory of generalizations in language, we aim to unify significant swaths of language that are seemingly quite different from one another: generalizations about categories, events, and causes.
 What these expressions have in common is not surface-level features but *genericity*, the fact that these statements convey generalizations. 
-Indeed we have been able to capture the context-sensivity of these statements by positing a single underlying scale defined by the *propensity*, or probability (Expt. 1, 2a \& 2b, 3).
+Indeed we have been able to capture the context-sensivity of these statements by positing a single underlying scale defined by the *prevalence*, or probability (Expt. 1, 2a \& 2b, 3).
 This scale is defined by a subjective, predictive probability, not mere frequency (Expts. 2c \& 2d).
 We have shown that listeners' prior knowledge about this scale is causally related to their endorsement of statements of genericity (Expt. 3).
-Finally, our framework naturally accounts for a number of well-documented examples from linguistics of generalizations about categories, or *generic language* (Expt. 1).
+Finally, our framework naturally accounts for a number of well-documented examples from the linguistics of generalizations about categories, or *generic language* (Expt. 1).
 In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below.
 
 The theory we present here has a number of desirable features that go beyond alternative accounts.
@@ -5450,7 +5450,7 @@ We argue that it also intersects with world knowledge in subtle ways, and it is 
 Our separation of world knowledge from the semantics of generics provides a substantial, but well-circumscribed role for conceptual structure to influence generic production and comprehension.
 We do this without having to posit that conceptual structure and semantics are one in the same.
 This is important for applied Natural Language Processing research that seeks to draw inferences about particular entities from information conveyed in generalizations in text [e.g., @Herbelot2011].
-At the same time, this paves the way for articulating formal theories about conceptual structure and provides a route for influence on generic language [c.f., @Leslie2008].
+At the same time, this paves the way for articulating formal theories about conceptual structure and provides a route for precise, quantitative influence on generic language [c.f., @Leslie2008].
 
 <!-- We used the most basic tests to validate our model: Production was examined in terms of *endorsement*, which can be seen as a special case of production when the only available alterantive utterances are the assertion or its negation. -->
 <!-- Comprehension was examined in terms of *implied prevalence*, which in our theory is most basic inference a hearer can make upon hearing a generalization. -->
@@ -5463,26 +5463,26 @@ We conclude by sketching out arguments for other known philosophical puzzles in 
 ## The Comparison Class and the Question Under Discussion
 
 In this paper, we proposed a model for understanding generalizations in language that relies upon interlocutors' shared beliefs over the statistics of the event or property under discussion.
-We constructed the prior belief distribution for the propensity of a property, event, or cause by considering other possible categories having the property, people doing the action, or causes producing the effect.
-These other kinds, people, and causes form *comparison classes* against which the target is evaluated. 
-$P(h)$ is always relative to a class of other entities or events, a comparison class $C$: $P_C(h)$.
+We constructed the prior belief distribution for the prevalence of a property, event, or cause by considering other possible categories having the property, people doing the action, or causes producing the effect.
+These other kinds, people, and causes form *comparison classes* against which the referent-category is evaluated. 
+Thus, the prevalence prior $P(h)$ is always relative to a class of other entities or events, a comparison class $C$: $P_C(h)$.
 
 The existence of comparison classes is uncontroversial in the study of *vague language* [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
 Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012].
-We have shown similar sensitivity to the statistics of comparison class in the language of generalizations, thus incorporating generic, habitual, and causal language to the study of *vague language*. 
+We have shown similar sensitivity to the statistics of comparison class in the language of generalizations, thus incorporating generic, habitual, and causal language into the study of *vague language*. 
 
-In this work, we made the design decision to construct the comparison class with respect to other kinds, people, or causes.
+In this work, we made the *a priori* decision to construct the comparison class with respect to other kinds, people, or causes.
 In this way, the statement of genericity is addressing the implicit Question Under Discussions (QUDs): *who \textsc{does action}?*, *what causes \textsc{effect}?*, or *what \textsc{has feature}?*, respectively.
 In the minimal contexts employed in our experiments, this is a reasonable assumption.
-There is a different assumption we could have made, however: Another clear way to construct the comparison class, with respect to other features. 
+There is a different assumption we could have made, however: Another clear way to construct the comparison class is with respect to other features. 
 This *feature-wise* comparison class would correspond to addressing the implicit QUDs: *what does \textsc{person} do?*, *what effects does \textsc{cause} bring about?*, and *what features does \textsc{kind} have?*
 
-Statements of genericity can be used to address either QUD, and this difference can even be observed the same sentence.
-"Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., *Lawyers (as opposed to doctors, firefighters, ...) care about the law.*; say, in a pedagogical context) or a feature-wise comparison class (i.e., *Lawyers care about the law (as opposed to justice, ethics, ...)* e.g., said sardonically).
+Statements of genericity can be used to address either QUD, and this difference can even be observed in the same sentence.
+The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., *Lawyers (as opposed to doctors, firefighters, ...) care about the law.*; one can imagine this interpretation in a pedagogical context) or a feature-wise comparison class (i.e., *Lawyers care about the law (as opposed to justice, ethics, ...)* e.g., when said sardonically).
 We chose to focus in this work on the category-wise comparison class for methodological convenience. 
 In our three case studies, the *category-wise* comparison classes are fixed to *other people*, *other causes*, or *other kinds*, even as we vary the features.
 *Feature-wise* comparison classes are likely to be modulated by the feature itself.
-Future work should address the property-wise reading of generalizations, and explore what cues lead listeners to one or the other interpretation.
+Future work should address the feature-wise reading of generalizations, and explore what cues lead listeners to one or the other interpretation.
 
 
 <!-- Throughout our experiments in this work, we have focused on sentences about animals.  -->
@@ -5510,7 +5510,7 @@ Leslie suggests information that is striking (e.g., \emph{Tigers eat people.}) i
 Gelman outlines how generics tend to express \emph{essential} qualities that are relatively timeless and enduring. 
 Where in the prevalence-based semantics could such conceptual distinctions come into play?
 
-Our approach makes the strong claim that beliefs about predicted prevalence are the connective tissue between conceptual knowledge and the semantics of generic language.
+Our approach makes the strong claim that beliefs about predicted prevalence is the connective tissue between conceptual knowledge and the semantics of generic language.
 That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding prevalence distributions.
 We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to different prevalence priors. 
 In Expt. 3 we showed that these prevalence distributions are causally related to endorsement.
@@ -5527,8 +5527,8 @@ Future work will be needed to explore whether probabilistic representations of c
 It is important to note that our approach is based on \emph{subjective} probability, and not mere frequency.
 Indeed, we elucidated in Expts. 2c \& 2d that using participants' \emph{predictions} of probability in our formal model perfectly track generic endorsement, when the present frequency would make the wrong prediction.
 
-The focus on subjective, predictive probability casts new light on puzzles surrounding accidentally-true situations.
-Consider a classic thought experiment in the linguistics and philosophy literature: Imagine that currently every Supreme Court Justice's social security number is an even number. 
+The focus on subjective, predictive probability casts new light on classic puzzles surrounding accidentally-true situations.
+Consider a thought experiment from the linguistics and philosophical literature: Imagine that currently every Supreme Court Justice's social security number is an even number. 
 Linguists predict the statement "Supreme Court Justices have even social security numbers" would still be considered false [@Cohen1999].
 Our explanation of this phenomenon is that abstract intuitive theories lead us to reject observed frequencies in forming our subjective probabilities.
 That is, because we may believe selection for the Supreme Court is not influenced by one's social security number, we would assign a roughly 50\% subjective probability that the \emph{next} justice would have an even social security number.
@@ -5589,11 +5589,11 @@ Generics are ubiqiutous in child-directed and child-produced speech [@Gelman1998
 What is perhaps surprising from a formal perspective is that generic language is far from trivial to characterize. 
 If generics convey something about the prevalence of feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...).
 The extreme flexibility of generic meaning (e.g., *Birds lay eggs* vs. *Birds are female*) stands in stark contrast to its early emergence in development.
-In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge much *later* in development [@Brandone2014; @Gelman2015].
+In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge *later* in development [@Brandone2014; @Gelman2015].
 This has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) is not approrpriate for generic language [@Leslie2008].
 
 We think this would be throwing out the baby with the bathwater.
-When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance (e.g., "some", "most"): (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$ and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
+When we consider the acquisition problem, there are two aspects of meaning that a language learner must acquire for the semantics of a quantified utterance (e.g., "some", "most"): (1) that the meaning is a threshold-function (i.e., $\denote{u}(h, \theta) = \{h :h > \theta\}$) and (2) the fixed value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
 Upon learning the meaning function is a threshold-function (1), a Bayesian language learner would be well-suited to adopt a prior distribution over possible thresholds $\theta$.
 This prior could then be updated with more data to acquire its fixed meaning.
 For the generic statement, the language learner is done once she acquires (1). 
@@ -5852,7 +5852,7 @@ This is a promising area for future research.
 Categories are inherently unobservable. 
 You cannot see the category \textsc{dog}, only some number of instances of it.
 Yet we easily talk about these abstractions, conveying hard-won generalizations to each other and down through generations.
-The theory presented here gives one explanation of how we do so, providing a computational perspective on how category generalizations are conveyed and how beliefs play a central role in understanding language.
+The theory presented here gives one explanation of how we do so, providing a computational perspective on how we communicate generalizations and how beliefs play a central role in understanding language.
 
 
 # References 
