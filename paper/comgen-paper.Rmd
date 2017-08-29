@@ -1186,7 +1186,7 @@ The "unstructured" alternative hypothesis is that there is just a single distrib
 For the structural hypothesis, we assume the data was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D}_{stable}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D}_{transient}$).
 The "transient" distribution intuitively corresponds to accidental causes of the feature (e.g., a lion, who through some genetic mutation, reproduces by laying eggs).
 We model this distribution as a Beta distribuition that heavily favors probabilities near 0: $\text{Beta}(\gamma = 0.01, \delta = 100)$.^[
-Note that we use the alterantive mean $\gamma$ and concentration $\xi$ (or, inverse-variance) parameterization of the Beta distribution rather than the canonical shape (or pseudocount) parameterization for ease of posterior inference. The shape parameterization can be recovered using: $\alpha = \gamma \cdot \xi; \beta = (1 - \gamma) \cdot \xi$.
+Note that we use the noncanonical mean $\gamma$ and concentration $\xi$ (or, inverse-variance) parameterization of the Beta distribution rather than the canonical shape (or pseudocount) parameterization for ease of posterior inference. The shape parameterization can be recovered using: $\alpha = \gamma \cdot \xi; \beta = (1 - \gamma) \cdot \xi$.
 ]
 The "stable" distribution is modeled as a Beta distribution with unknown parameters $\text{Beta}(\gamma, \xi)$.^[
 Because the Beta distribution is not defined at the points 0 and 1, we add $\epsilon$ to the 0 responses and round 1 to 0.99.
@@ -1776,11 +1776,11 @@ If prevalence is the "forward probability" (e.g., one's predictions about whethe
 For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria; hence "carrying malaria" has high cue validity for mosquitos. 
 
 A natural proposal is that endorsements for generic language have to do with cue validity.
-This possibility has been investigated empirically, and in fact, cue validity is highly correlated with generic endorsement [@Khemlani2012].
+This possibility has been investigated empirically in one of few examples of statistical modeling of generics, and in fact, cue validity is highly correlated with generic endorsement [@Khemlani2012].
 However, cue validity has some empirical and theoretical issues.
-Empirically, cue validity is not a necessary criteria for generic endorsement (e.g., *Dogs have four legs*).
-Theoretically, it's not obvious why cue validity would be part of the semantic content of generics.
-If generics are for conveying generalizations and supporting prediction, listeners would be far better suited to have information that supports prediction about features given categories, not categories given features.
+Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
+Theoretically, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
+<!-- If generics are for conveying generalizations and supporting prediction, listeners would be far better suited to have information that supports prediction about features given categories, not categories given features. -->
 <!-- , since knowledge of cue validity requires knowledge of the kind whereas the forward-probability (prevalence)  can be computed only based on the feature. -->
 <!-- ^[ -->
 <!-- As a simple demonstration, imagine we've just discovered a new kind of animal called a fep. -->
@@ -1789,17 +1789,17 @@ If generics are for conveying generalizations and supporting prediction, listene
 <!-- that it's easy to estimate the prevalence of being female among  -->
 <!-- ] -->
 
-However, we shouldn't throw away the possibility that distributional information about the property is relevant. 
-The mixture parameter $\phi$ in the prevalence prior distribution can be seen as a generalization of cue validity. 
+However, we should not throw away the possibility that distributional information about the property is relevant. 
+The mixture parameter $\phi$ in the prevalence prior distribution can be seen as a generalization of the construct of cue validity. 
 Recall that $\phi$ is the weighting between the two generative components of the prevalence prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$).
 If there is a finite number of kinds in the prevalence prior for a feature, and one knows the prevalence of the feature for each kind, then the cue validity of that feature for a particular kind is encoded in the prevalence prior, in that it can be derived via Bayes' Rule:
 $$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
 
-Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is not longer defined (or, it is zero for all kinds). 
-This is for the same reason that for a continuous probability distribution, the probability of any particular number is zero. 
+Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is no longer well-defined (or, it is zero for all kinds). 
+This is for the same reason that for a probability distribution over the real numbers (a *continuous* probability distribution), the probability of any particular number is zero. 
 For example, consider the cue validity of "having wings" for \textsc{robins}: $P(\text{robin} \mid \text{has wings})$.
-The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds}, but there are many kinds of birds and the feature is not particularly diagnostic for anyone of them. 
-At the same time, the mixture parameter for the distribution over the prevalence of "having wings" is still relatively small, since it represents information about the distribution and not one particular kind.
+The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds} (and hence, $\phi$ is relatively low), but there are many kinds of birds and the feature is not particularly diagnostic for any given one of the subkinds (e.g., robins). 
+$phi$ is still relatively small in this case because it encodes information about the distribution across kinds and not just one particular kind.
 This is an important point of departure in our work from previous work.
 
 <!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
@@ -2564,7 +2564,7 @@ The only difference is that this model uses a fixed-threshold to correspond to t
 For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).^[
 Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 0.5$) but require the further specification of a noise-model for participants' responses in the cases where participants endorse the statement when it is literally false (e.g., "Mosquitos carry malaria").
 ]
-This is a strong alterantive model to our uncertain-threshold model; the only difference concerns the threshold.
+This is a strong alternative model to our uncertain-threshold model; the only difference concerns the threshold.
 
 
 <!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the prevalence of the property within the referent-category $h'$). -->
