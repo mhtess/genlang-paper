@@ -26,13 +26,15 @@ author_note: >
   Enter author note here.
 
 abstract: > 
-    Generalizations are central to human understanding yet can be difficult to acquire through direct experience (e.g., learning that a plant is poisonous).
-    Language provides simple ways to convey generalizations (e.g., *Birds fly.*), and the language of generalizations is ubiquitous in everyday discourse and child-directed speech.
+    Generalizations are central to human understanding and language provides simple ways to convey generalizations (e.g., "Birds fly").
+    The language of generalizations is ubiquitous in everyday discourse and child-directed speech. 
     Yet the meaning of these expressions is philosophically puzzling (e.g., not all birds fly) and has resisted precise formalization.
-    The major issue in formalizing *genericity* is in determining the conditions under which such statements are true or false; these conditions are extremely flexible. 
+    The major issue in formalizing *genericity* is in determining what which such statements are true or false.
     Using a probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of such linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
-    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language*, such as *Birds fly*), events (*habitual language*, such as *John runs*), and causes (*causal language*, such as *The block makes the machine play music.*). Across these diverse domains, we find that our model explains the full spectra of endorsements of generalizations in language, while simpler models do not.
-    These results suggest that central phenomena of genericity emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
+    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language* e.g., "Birds fly"), events (*habitual language* e.g., "John runs"), and causes (*causal language* e.g., "Staring at the sun makes you go blind"). 
+    Across these diverse domains, we find that our model explains human endorsements of generalizations in language, while simpler models do not.
+    This is the first formal theory that makes precise, quantitative predictions about human understanding of generalizations in language.
+    The results suggest that central phenomena of genericity emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
   
 keywords          : "genericity, generalizations, generics, pragmatics, semantics, bayesian modeling"
 wordcount         : "X"
@@ -136,7 +138,7 @@ Generalizations in language are often studied in *generic language* (or, generic
 In contrast to *particular statements* which describe individual entities or situations (e.g., "Rufus is friendly") and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which two-and-a-half-year-olds recognize [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
 Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-Generalizations are not limited to generics, however; they can be found in statements about individuals (*habitual language*; e.g., "Mary swims after work.") as well as causal events (*causal language*; e.g., "Staring at the sun makes you go blind.").
+Generalizations are much than just generics, however; they can be found in statements about individuals (*habitual language*; e.g., "Mary swims after work.") as well as causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
 It is believed that every language can express generalizations [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
@@ -147,34 +149,33 @@ It is believed that every language can express generalizations [@Behrens2005; @C
 
 
 Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions about observable behavior.
-A formal model in this domain is advantageous to make explicit the relevant assumptions of a psychological or linguistic hypothesis for predicting human behavior; this, in turn, makes the theory more falsifiable. 
+A formal model in this domain is useful to make explicit the relevant assumptions of a psychological or linguistic hypothesis for predicting human behavior; this, in turn, makes the theory more falsifiable. 
 The major challenge in formalizing generalizations in language is determining what makes such statements true or false.
-When we hear "Dogs bark", it feels like a universal statement, like *All* dogs bark.
+When we hear "Dogs bark", it sounds like a universal statement, like *All* dogs bark.
 But the property doesn't apply to all dogs: Basenji dogs are barkless^[
 http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
 ].
 The generalization could signal something weaker like *Most* dogs bark.
 <!-- Indeed, many generalizations seem to have the quantificational force of *most*. -->
-However, less than 1\% of moquitos actually carry malaria and still "Mosquitos carry malaria" is intuitively true.
+However, only a tiny fraction of moquitos carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
 <!-- *most mosquitos* do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true. -->
 The only quantifier that would permit such a statement would be *some* (e.g., "Some mosquitos carry malaria").
 But weakening the generalization to *some* goes too far: Half of robins are female, but saying "Robins are female" seems odd.
-That same half of robins (i.e., the females), however, also lay eggs, and "Robins lay eggs" is intuively reasonable. 
+That same half of robins (i.e., the females), however, also lay eggs, and "Robins lay eggs" is again intuively true. 
 
 These observations have led to proposals that the statistics of the feature (e.g., the prevalence or probability of a member of category having a property) is only incidentally related to generic meaning. 
 **Conceptual accounts** of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
 From this perspective, the statement "Bishops move diagonally" is true not because most bishops move diagonally, but rather because those are the rules of chess.
-
-With this perspective, @Leslie2007 proposes generics express a cognitively primitive, default generalization. 
+With this perspective, @Leslie2007 proposes that generics express a cognitively primitive, default generalization. 
 The *generics as default* view argues that certain principles explain how generics become true or false.
-"Mosquitos carry malaria" conveys a dangerous or *striking property*, which is useful to know about if you are trying to survive in a hostile world.
-This theory correctly predicted that generics that convey striking properties would be true even if the property were relatively rare [e.g., "Sharks attack swimmers"; @Cimpian2010; @Prasada2013].
+"Mosquitos carry malaria" conveys a dangerous or *striking property*, which is useful to know if you are to survive in a hostile world.
+This theory correctly predicted that generics that convey striking properties would be true even if the property was relatively uncommon [e.g., "Sharks attack swimmers"; @Cimpian2010; @Prasada2013].
 "Robins lay eggs" can be thought of as conveying a *characteristic property*, which permits its felicity despite only 50\% having the feature [@Prasada2006; @Prasada2013].
 
 Yet, generics are not limited to conveying rich, conceptual relations. 
-Arbitrary relationships can also be expressed with generics (e.g., "Barns are red"; "Ravens are bigger than toasters") which seem only to be true because those are the statistics of the world [@Nickel2008; @Nickel2016; @Sterken2015].
+Arbitrary relationships can also be expressed with generics (e.g., "Barns are red"; "Ravens are bigger than toasters") which seem only to be true only because of the statistics of the world [@Nickel2008; @Nickel2016; @Sterken2015].
 The *generics as default* view must then be supplemented with the principle that, in certain situations, statistics influence generic endorsement.
-The diversity of generic statements highlighted by this view is interesting, but insofar as generics are a single, unified phenomenon, there should be a general, unified principle that explains what makes the statements true or false.
+The diversity of generic statements highlighted by the conceptual accounts is interesting, but insofar as generics are a single, unified phenomenon, there should be a general, unified principle that explains what makes the statements true or false.
 <!-- It is thus argued that there are qualitatively different kinds of generic statements (i.e., "striking", "characteristic", "statistical"), each with their own conditions on what makes them true. -->
 <!-- This diversity is interesting, but what is common across generics? -->
 <!-- Is there some core meaning to *genericity*, a general unified principle that explains what makes generic statements true or false? -->
@@ -422,9 +423,9 @@ We denote prevalence as $h$ to emphasize that it is a latent *hypothesis*, and n
 <!-- For properties among instances of a category (e.g., being friendly among dogs), we can describe this inductive inference by a probability $h$ $h = P(x \in f \mid x \in k)$^[ -->
 <!-- With a frequentist interpretation, this can be thought of as the *prevalence* of $f$ among $k$. -->
 <!-- ]. -->
-<!-- <!-- In the study of categories and properties, $x$ is an object. --> -->
+<!-- <!-- In the study of categories and properties, $x$ is an object. --> 
 <!-- For an action exhibited by an agent, the inference concerns a rate --- how frequently (in time) does $x \in f$ occur --- which can be described as a probability mass: $h = \int_{t} P(x \in f_t \mid x \in k_t) \diff t$ -->
-<!-- <!-- In this case, $x$ is a instance of an agent. --> -->
+<!-- <!-- In this case, $x$ is a instance of an agent. --> 
 <!-- Causal learning can be described with the same formalism as for categories, a probability referring to the likelihood of an effect $e$ given a cause $c$, also known as causal power: $h = P(x \in e \mid x \in c)$. -->
 <!-- Throughout, we refer to the degree of probability as $h$ because it represents a hypothesis about the underlying causal power or frequency of some instance in a category. -->
 <!-- A Bayesian agent will have prior beliefs about the probability (potentially an uninformed prior) and uses Bayesian inference to learn about the probability from her observations. -->
@@ -499,7 +500,7 @@ Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her belie
 $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance.
 $P(h)$ represents the listener's prior world knowledge concerning the relevant prevalences $h$.
 The particular form of the prior plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008].
-This component of the model provides a potential bridge to conceptual account of generics [e.g., @Leslie2007; Prasada2006; Prasada2013].
+This component of the model provides a potential bridge to conceptual account of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013].
 Critically in our model, this structure is in listener's knowledge of the world $P(h)$ and not in the semantic content of the utterance $u$. 
 <!-- Our proposal that generic language and other forms of communicating generalizations convey information about probabilities that underly generalization and prediction implies that the conceptual factors of the kind discussed by Prasada, Leslie, et al. influence the meaning of a generic statement via their influence on subjective probability. -->
 <!-- Flexible, structured models of the world have been shown to do just that in the case of generalizations from observations, merging structured representations with probabilisitic inference [e.g., @Kemp2008; @Goodmanconcepts]. -->
@@ -1182,14 +1183,14 @@ We formalize this hypothesis using a simple Bayesian mixture model.
 We test the simplest "structural" hypothesis, where there are two, qualitatively different components to the prior [e.g., if participants believe that some kinds have a causal mechanism that *could* give rise to the property, while kinds others do not; cf., @Griffiths2005].
 The "unstructured" alternative hypothesis is that there is just a single distribution that gives rise to the prevalence prior data.
 
-For the structural hypothesis, we assume the data was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D_{stable}}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D_{transient}}$).
+For the structural hypothesis, we assume the data was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D}_{stable}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D}_{transient}$).
 The "transient" distribution intuitively corresponds to accidental causes of the feature (e.g., a lion, who through some genetic mutation, reproduces by laying eggs).
 We model this distribution as a Beta distribuition that heavily favors probabilities near 0: $\text{Beta}(\gamma = 0.01, \delta = 100)$.^[
 Note that we use the alterantive mean $\gamma$ and concentration $\xi$ (or, inverse-variance) parameterization of the Beta distribution rather than the canonical shape (or pseudocount) parameterization for ease of posterior inference. The shape parameterization can be recovered using: $\alpha = \gamma \cdot \xi; \beta = (1 - \gamma) \cdot \xi$.
 ]
 The "stable" distribution is modeled as a Beta distribution with unknown parameters $\text{Beta}(\gamma, \xi)$.^[
 Because the Beta distribution is not defined at the points 0 and 1, we add $\epsilon$ to the 0 responses and round 1 to 0.99.
-Adjusting 1 to $1- \epsilon$ leads to improper inferences for this model, as $1 - \epsilon$ is only likely under a highly right-skewed distribution; this would disproportionately influence the shape of $D_{stable}$. 
+Adjusting 1 to $1- \epsilon$ leads to improper inferences for this model, as $1 - \epsilon$ is only likely under a highly right-skewed distribution; this would disproportionately influence the shape of $\mathcal{D}_{stable}$. 
 This problem does not appear for 0 being adjusted to $\epsilon$ because the "transient" distribution already expects such low values.
 Similar results can be obtained by rounding 0 to 0.01. 
 Alternatively, the "transient" distribution could be defined as a Delta distribution at 0, and 0 responses could remain in their raw form.
@@ -1790,7 +1791,7 @@ If generics are for conveying generalizations and supporting prediction, listene
 
 However, we shouldn't throw away the possibility that distributional information about the property is relevant. 
 The mixture parameter $\phi$ in the prevalence prior distribution can be seen as a generalization of cue validity. 
-Recall that $\phi$ is the weighting between the two generative components of the prevalence prior (i.e., the stable cause distribution $\mathcal{D_{stable}}$ and the transient cause distribution $\mathcal{D_{transient}}$).
+Recall that $\phi$ is the weighting between the two generative components of the prevalence prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$).
 If there is a finite number of kinds in the prevalence prior for a feature, and one knows the prevalence of the feature for each kind, then the cue validity of that feature for a particular kind is encoded in the prevalence prior, in that it can be derived via Bayes' Rule:
 $$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
 
