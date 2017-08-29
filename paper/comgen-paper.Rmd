@@ -476,14 +476,6 @@ For generalizations, the threshold would apply to the subjective probability or 
 <!-- Finally, "Mosquitos carry malaria" is intuitively true despite malaria only being present in a tiny fraction of a percentage of mosquitos. -->
 <!-- It seems that any hard condition on the prevalence of the feature in the category (e.g., how many robins lay eggs) would violate intuitions.  -->
 
-<!-- We propose that generic language and other forms of genericity information convey information about probabilities that underly generalization and prediction. -->
-<!-- We posit that the conceptual factors of the kind discussed by Prasada, Leslie, and colleagues influence the meaning of a generic statement via their influence on probabilities.  -->
-<!-- Bayesian cognitive models have been shown to represent flexible, structured knowledge of the world and formalize the inferences that people draw using such conceptual representations [e.g., @Kemp2008; @Goodmanconcepts]. -->
-<!-- The basic currency of inductive reasoning in these models is probability. -->
-<!-- If generalizations in language convey information about probabilties, then a relatively simple semantic theory (e.g., a threshold on probability) may be enough to formalize the core meaning of a generic statement $u_{gen}$: -->
-
-
-<!-- We will discuss communicating generalizations in the context of generalizations about categories (i.e., *generic language*), though the arguments will extend to events and causes as well, following the definitions of $h$ described in the previous section.  -->
 
 <!-- In the case of generic language, we posit that conceptual factors may influence the meaning of a generic statement via its influence on subjective probability. -->
 <!-- If that's true, a simple, semantic theory  -->
@@ -504,10 +496,14 @@ L(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P
 \end{eqnarray}
 
 Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her beliefs about the prevalence $h$ according the meaning of an utterance $u$.
-$P(h)$ represents the listener's prior world knowledge concerning the relevant prevalences $h$.
-The particular form of the prior plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008; cf., $Prasada2006; Prasada2013].
-We term this prior distribution the **prevalence prior**.
 $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance.
+$P(h)$ represents the listener's prior world knowledge concerning the relevant prevalences $h$.
+The particular form of the prior plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008].
+This component of the model provides a potential bridge to conceptual account of generics [e.g., @Leslie2007; Prasada2006; Prasada2013].
+Critically in our model, this structure is in listener's knowledge of the world $P(h)$ and not in the semantic content of the utterance $u$. 
+<!-- Our proposal that generic language and other forms of communicating generalizations convey information about probabilities that underly generalization and prediction implies that the conceptual factors of the kind discussed by Prasada, Leslie, et al. influence the meaning of a generic statement via their influence on subjective probability. -->
+<!-- Flexible, structured models of the world have been shown to do just that in the case of generalizations from observations, merging structured representations with probabilisitic inference [e.g., @Kemp2008; @Goodmanconcepts]. -->
+We term this prior distribution the **prevalence prior**.
 
 
 <!-- \begin{eqnarray} -->
@@ -564,6 +560,7 @@ The *simple but underspecified* hypothesis defines a *family* of models, however
 These are not of primary theoretical interest to this paper, as *any* formal model that explains the very flexible endorsement patterns of generalizations in language will be a substantial advancement.
 However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
 We discuss these alternative formulations and provide formal model comparison between these RSA models in Appendix.
+
 
 <!-- This decision is based on whether or not the generalization would accurately convey the $h$ -->
 <!-- For addressing the question of whether or not a generalization is "true" or "felicitous", we consider how a Gricean speaker would act, given the goal of being informative to the literal listener (Eq. \ref{eq:L0}).  -->
@@ -5504,6 +5501,7 @@ Future work should address the property-wise reading of generalizations, and exp
 ## Structured prior knowledge and Implications for Conceptual Structure
 
 <!-- -- add tomasello about learning about how to take turns, as a generalization about an event type which is the event of how the game is supposed to be played -->
+
 
 Previous psychological and philosophical work on generics has looked beyond prevalence and focused on conceptual distinctions and relations [@Gelman2003; @Prasada2013; @Leslie2007; @Leslie2008]. 
 Prasada has argued for a distinction between \emph{characteristic} properties (e.g., \emph{Diapers are absorbent.}) and \emph{statistical} properties (e.g., \emph{Diapers are white.}).
