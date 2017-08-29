@@ -454,57 +454,60 @@ For abstract, generalizable knowledge to remain in a culture, it must be able to
 
 # Generalization from Language
 
-If generalization from observations can be described using probability, then it seems very natural to consider the semantic content of generalizations in language as relating to probability. 
-One very simple semantic theory that has been used for describing quantified statements is a *threshold semantics*:
+If generalization from observations can be described using probability, then it seems very natural to consider the semantic content of an utterance that conveys generalization also to be relating to probability. 
+One very simple semantic theory that has been used for describing quantified statements (e.g., "some", "all") is a *threshold semantics*.
+For generalizations, the threshold would apply to the subjective probability or *prevalence* $h$:
+  
+\begin{eqnarray}
+\delta_{\denote{u_{gen}}(h, \theta)} & = & P(u_{gen} \mid h, \theta) \\
+&\propto  &
+\begin{cases}
+1 & \text{if } h > \theta \\
+0 & \text{otherwise}
+\end{cases}
+\end{eqnarray}
+
+<!-- Generics express a relation between a kind K (e.g., \textsc{dogs}) and a property F (e.g., \textsc{is friendly}), such that the property can also be said to be applicable to an individual (i.e., "My dog is friendly").  -->
+<!-- Bare plural statements (e.g., "Dogs are friendly") tend to yield a generic meaning, though other forms can express such a meaning [e.g., "A mongoose eats snakes."; @Carlson1977] . -->
+<!-- Given that generics express a property that can be applied to individuals, it seems intuitive that what makes the statement true or false would correspond to the number of individuals who hold the property. -->
+<!-- At first glance, generics convey that *most* have the property, such as "Most dogs are friendly". -->
+<!-- "Robins lay eggs" is true, though, despite the fact that only female robins lay eggs. -->
+<!-- If generic statements can be true by restricting themselves to only be describing females, why does *Robins are female* seem like a weird statement to make? -->
+<!-- Finally, "Mosquitos carry malaria" is intuitively true despite malaria only being present in a tiny fraction of a percentage of mosquitos. -->
+<!-- It seems that any hard condition on the prevalence of the feature in the category (e.g., how many robins lay eggs) would violate intuitions.  -->
+
+<!-- We propose that generic language and other forms of genericity information convey information about probabilities that underly generalization and prediction. -->
+<!-- We posit that the conceptual factors of the kind discussed by Prasada, Leslie, and colleagues influence the meaning of a generic statement via their influence on probabilities.  -->
+<!-- Bayesian cognitive models have been shown to represent flexible, structured knowledge of the world and formalize the inferences that people draw using such conceptual representations [e.g., @Kemp2008; @Goodmanconcepts]. -->
+<!-- The basic currency of inductive reasoning in these models is probability. -->
+<!-- If generalizations in language convey information about probabilties, then a relatively simple semantic theory (e.g., a threshold on probability) may be enough to formalize the core meaning of a generic statement $u_{gen}$: -->
 
 
-Generics express a relation between a kind K (e.g., \textsc{dogs}) and a property F (e.g., \textsc{is friendly}), such that the property can also be said to be applicable to an individual (i.e., "My dog is friendly"). 
-Bare plural statements (e.g., "Dogs are friendly") tend to yield a generic meaning, though other forms can express such a meaning [e.g., "A mongoose eats snakes."; @Carlson1977] .
-Given that generics express a property that can be applied to individuals, it seems intuitive that what makes the statement true or false would correspond to the number of individuals who hold the property.
-At first glance, generics convey that *most* have the property, such as "Most dogs are friendly".
-"Robins lay eggs" is true, though, despite the fact that only female robins lay eggs.
-If generic statements can be true by restricting themselves to only be describing females, why does *Robins are female* seem like a weird statement to make?
-Finally, "Mosquitos carry malaria" is intuitively true despite malaria only being present in a tiny fraction of a percentage of mosquitos.
-It seems that any hard condition on the prevalence of the feature in the category (e.g., how many robins lay eggs) would violate intuitions. 
-
-
-We propose that generic language and other forms of genericity information convey information about probabilities that underly generalization and prediction.
-We posit that the conceptual factors of the kind discussed by Prasada, Leslie, and colleagues influence the meaning of a generic statement via their influence on probabilities. 
-Bayesian cognitive models have been shown to represent flexible, structured knowledge of the world and formalize the inferences that people draw using such conceptual representations [e.g., @Kemp2008; @Goodmanconcepts].
-The basic currency of inductive reasoning in these models is probability.
-If generalizations in language convey information about probabilties, then a relatively simple semantic theory (e.g., a threshold on probability) may be enough to formalize the core meaning of a generic statement $u_{gen}$:
-
-
-
-\ndg{move all this background about generics earlier, so that this section can go straight to our model.}
-
-We will discuss communicating generalizations in the context of generalizations about categories (i.e., *generic language*), though the arguments will extend to events and causes as well, following the definitions of $h$ described in the previous section. 
+<!-- We will discuss communicating generalizations in the context of generalizations about categories (i.e., *generic language*), though the arguments will extend to events and causes as well, following the definitions of $h$ described in the previous section.  -->
 
 <!-- In the case of generic language, we posit that conceptual factors may influence the meaning of a generic statement via its influence on subjective probability. -->
 <!-- If that's true, a simple, semantic theory  -->
 
 
-
-
-$\delta_{\denote{u}(h, \theta)}$ is the Kronecker delta function returning $1$ for states $h$ greater than threshold $\theta$ and $0$ otherwise. 
+$\delta_{\denote{u}(h, \theta)}$ is the Kronecker delta function returning $1$ for probabilities $h$ greater than threshold $\theta$ and $0$ otherwise. 
 Logical quantifiers can be described using threshold semantics (i.e., *some* is $h > 0$, all is $h = 1$).
 What threshold $\theta$ should be used for the generic generalization?
 
 To answer this, we draw a metaphor to Bayesian statistics and data analysis.
-When there is a latent parameter the Bayesian scientist doesn't know much about, she puts a prior distribution over the parameter and infers the parameter's likely value by collecting data.
+When there is a latent parameter the Bayesian scientist does not know much about, she puts a prior distribution over the parameter and infers the parameter's likely value by collecting data.
 In a similar vein, we posit that the meaning of a generalization in language is *underspecified*; that is, there is not a fixed $\theta$ that corresponds to the generalization, but rather the listener has uncertainty over $\theta$ (in the form of a prior distribution $P(\theta)$) and infers $\theta$ in context (i.e., after having heard the utterance).
-Though it's possible different $P(\theta)$ could be learned for different contexts, we assume this prior is identical across context and is completely uninformed: $P(\theta) = \text{Uniform}(0, 1)$.
+Though it is possible different $P(\theta)$ could be learned for different contexts, we assume this prior is identical across contexts and is completely uninformed by the context: $P(\theta) = \text{Uniform}(0, 1)$.
 
 
 \begin{eqnarray}
 L(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-Equation \ref{eq:L0} is a model of a listener $L$ who updates her beliefs $h$ according the meaning an utterance $u$.
-$P(h)$ represents the listener's prior world knowledge concerning the relevant probabilities $h$.
-The particular form of the prior plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [cf., @Griffiths2005; @Tenenbaum2006; @Kemp2008].
-We term this prior distribution the *prevalence prior*.
-$\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule, representing the literal semantics of utterances described above.
+Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her beliefs about the prevalence $h$ according the meaning of an utterance $u$.
+$P(h)$ represents the listener's prior world knowledge concerning the relevant prevalences $h$.
+The particular form of the prior plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008; cf., $Prasada2006; Prasada2013].
+We term this prior distribution the **prevalence prior**.
+$\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance.
 
 
 <!-- \begin{eqnarray} -->
@@ -512,35 +515,36 @@ $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule, represen
 <!-- \end{eqnarray} -->
 
 
-This is a Bayesian model of interpreting a statement conveying a generalization whose meaning is simple (i.e., a threshold function) but underspecified.
-Figure \ref{fig:simulations} shows model $L$'s posterior distribution on $h$ upon hearing utterances corresponding to the uncertain threshold (Eq. \ref{eq:L0}) as well as a comparison model using a fixed threshold at 0 (intuitively, corresponding to the quantifier "some").
-The differences in the semantics are easily seen when considering a uniform distribution over $h$ (top left facet).
-The fixed threshold model rules out only the lowest possible state and returns a posterior very similar to the prior.
-The behavior of the generalization is distinct: The higher the $h$, the more likely the state is.
+This is a Bayesian model of interpreting a statement conveying a generalization whose meaning is simple (i.e., a threshold) but underspecified.
+Figure \ref{fig:simulations} shows model $L$'s posterior distribution on prevalence $h$ upon hearing utterances corresponding to the uncertain threshold (Eq. \ref{eq:L0}) as well as a comparison model using a fixed threshold at 0 (intuitively, corresponding to the quantifier "some").
+The differences in the semantics are easily seen when considering a uniform prior distribution over $h$ (top left facet).
+The fixed threshold model rules out only the lowest possible prevalence ($h=0$) and returns a posterior very similar to the prior.
+The behavior of the generalization is distinct: The higher the $h$, the more likely it is after hearing the generalization.
 
-The intuition behind the model's behavior can be gleaned by imagining what the listener $L$ would believe with different thresholds and averaging over those possibilities.
-If the threshold $\theta$ is very high, only the highest $h$ would pass the threshold.
-If the threshold $\theta$  is slightly lower but still high, the highest $h$ probabilities would still pass the threshold, as would some that are slightly lower.
-As the threshold $\theta$  takes on lower and lower values, more and more $h$ probabilities would surpass it.
-When $\theta$ is very low, almost all $h$ are consistent with it (akin to "Some").
-When the listener averages over these possibilities, higher values of $h$ pass more thresholds; thus, higher $h$ are more likely *a posteriori*.
+The intuition behind the model's behavior can be gleaned by imagining what the listener $L$ would believe given different thresholds and averaging over those possibilities.
+If the threshold $\theta$ is very high, only the highest prevalence $h$ would pass the threshold.
+If the threshold $\theta$ is slightly lower but still high, the highest $h$ would still pass the threshold, as would some that are slightly lower.
+As the threshold $\theta$  takes on lower and lower values, more and more $h$'s would surpass it.
+When $\theta$ is very low, almost all $h$ are consistent with it (akin to fixed-threshold model).
+When the listener averages over these possibilities, $h$'s with higher values pass more thresholds; thus, higher $h$'s are more likely *a posteriori*.
 
-In this paper, we are interested in explaining the variable endorsements of generalizations (e.g., *Birds lay eggs* is good; *Birds are female* is not) based on some known or believed probability $h$ (e.g., only female birds lay eggs).^[A more general version of this model can relax the assumption that the speaker has access to a degree of propensity $h$ that she is trying to communicate.
-Rather, the speaker may have a belief distribution over $h$ for the category. $k$, corresponding to the speaker's beliefs about the prevalence of the property in the category. 
+In this paper, we are interested in explaining the variable *endorsements* of generalizations (e.g., "Birds lay eggs" is good; "Birds are female" is not) based on some known or believed prevalence $h$ (e.g., only female birds lay eggs).
+Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe an endorsement model as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).^[A more general version of this model can relax the assumption that the speaker has access to a specific value of prevalence $h$ that she is trying to communicate.
+Rather, the speaker may have a belief distribution over $h$ for the category $k$, corresponding to the speaker's beliefs about the prevalence of the property in the category. 
 In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
 $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
 ]
-Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe an endorsement model as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).
+
 \begin{equation} 
 S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)}  \diff \theta  }
 \label{eq:S1}
 \end{equation}
 
 In RSA, language production and comprehension are defined by recursive Bayesian models describing speaker and listener.
-Following RSA, this speaker is assumed to be an approximately rational Bayesian agent with degree with rationality governed by parameter $\lambda$.
+Following RSA, the speaker is assumed to be an approximately rational Bayesian agent with degree with rationality governed by parameter $\lambda$.
 Since the speaker $S$ doesn't know the threshold $\theta$, she must integrate over the likely values that the listener will infer. 
 
-The speaker's decision to say an utterance (e.g., the generalization) is determined with respect to how well it would communicate $h$ to the listener $L$, in comparison to alternative utterances.
+The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate $h$ to the listener $L$, in comparison to alternative utterances.
 To model endorsement, this decision is evaluated in comparison to the alternative of *not saying the generalization*;
 with just two alternatives (say the utterance vs. not), the model can be interpreted as a model of felicity judgments [@Degen2014]. 
 Formally, we consider the negative alternative as the option of staying quiet, which carries no information content^[
@@ -557,7 +561,7 @@ All results reported are similar for these two alternatives, and we use the alte
 
 The pair of speaker-listener models presented above correspond to the simplest possible communicative models with an underspecified threshold-meaning for a generalization. 
 The *simple but underspecified* hypothesis defines a *family* of models, however, with potentially more levels of recursion (e.g., a listener who thinks about a speaker who thinks about a listener).
-These are not of primary theoretical interest to this paper, as *any* formal model that explains the very flexible endorsement patterns of generalizations in language will be a substantial contribution.
+These are not of primary theoretical interest to this paper, as *any* formal model that explains the very flexible endorsement patterns of generalizations in language will be a substantial advancement.
 However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
 We discuss these alternative formulations and provide formal model comparison between these RSA models in Appendix.
 
@@ -602,7 +606,7 @@ We discuss these alternative formulations and provide formal model comparison be
 <!-- Applying this function to a set of worlds returns a set of worlds that are consistent with $h > \theta$. -->
 
 <!-- Though intuitively appealing and simple, this threshold-based truth function for a generalization is problematic. -->
-<!-- <!-- fixed value of $\theta$ seems unlikely. --> -->
+<!-- <!-- fixed value of $\theta$ seems unlikely. -->
 <!-- The generalization *Mary smokes cigarettes* suggests a daily-habit (e.g., $h > \text{once a day}$), while *Bill writes poems* implies something much weaker, perhaps a poem every few weeks (e.g., $h > \text{once a month}$. -->
 <!-- *Drinking moonshine makes you go blind* and so does *staring at the sun*, but neither causal statement tells you to precisely the increased relative risk. -->
 <!-- *Mosquitos carry malaria* is a true statement despite the prevalence of carrying malaria among mosquitos being a just a fraction of 1\%, while *Ducks are female* might seem like a weird thing to say, even though the rate is much higher than the malaria-carrying mosquitos. -->
@@ -842,8 +846,6 @@ all.simulations %>%
   guides(fill = F, color = F)+
   theme(strip.text.y = element_text(angle = 0))
 ```
-
-
 
 <!-- For addressing the question of whether or not a generalization is "true" or "felicitous", we consider how a Gricean speaker would act, given the goal of being informative to the literal listener (Eq. \ref{eq:L0}).  -->
 
