@@ -1,0 +1,357 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+ 
+\documentclass[11pt,letterpaper]{letter} % Specify the font size (10pt, 11pt and 12pt) and paper size (letterpaper, a4paper, etc)
+%\usepackage[urw-garamond]{mathdesign}
+\usepackage{graphicx} % Required for including pictures
+\usepackage{microtype} % Improves typography
+%\usepackage{gfsdidot} % Use the GFS Didot font: http://www.tug.dk/FontCatalogue/gfsdidot/
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{url}
+% Create a new command for the horizontal rule in the document which allows thickness specification
+\makeatletter
+\def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT MARGINS
+%----------------------------------------------------------------------------------------
+
+\textwidth 6.75in
+\textheight 9.25in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\topmargin -1in
+\longindentation 0.50\textwidth
+\parindent 0.4in
+
+%----------------------------------------------------------------------------------------
+%	SENDER INFORMATION
+%----------------------------------------------------------------------------------------
+
+\def\Who{} % Your name
+\def\What{} % Your title
+\def\Autha{Michael Henry Tessler} % Your name
+\def\Authb{Noah D. Goodman} % Your name
+\def\Where{Department of Psychology} % Your department/institution
+\def\Address{450 Serra Mall, Bldg 420} % Your address
+\def\CityZip{Stanford, CA 94305} % Your city, zip code, country, etc
+\def\Email{E-mail: mtessler@stanford.edu} % Your email address
+\def\TEL{Phone: (757) 561-7971} % Your phone number
+
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER AND FROM ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\address{
+\includegraphics[width=0.8in]{logo-simple.pdf} % Include the logo of your institution
+\hspace{5.1in} % Position of the institution logo, increase to move left, decrease to move right
+\vskip -0.85in~\\ % Position of the text in relation to the institution logo, increase to move down, decrease to move up
+\Large\hspace{1.5in}STANFORD UNIVERSITY \hfill %~\\[0.05in] % First line of institution name, adjust hspace if your logo is wide
+%\hspace{1.5in}University 
+\hfill 
+\normalsize % Second line of institution name, adjust hspace if your logo is wide
+\makebox[0ex][r]{\bf \Who \What }\hspace{0.08in} % Print your name and title with a little whitespace to the right
+~\\[-0.11in] % Reduce the whitespace above the horizontal rule
+\hspace{1.5in}\vhrulefill{1pt} \\ % Horizontal rule, adjust hspace if your logo is wide and \vhrulefill for the thickness of the rule
+\hspace{\fill}\parbox[t]{2.85in}{ % Create a box for your details underneath the horizontal rule on the right
+%\flushright 
+\footnotesize % Use a smaller font size for the details
+\flushright
+%\Who \\  % Your name, all text after this will be italicized
+\Autha\\
+\Authb\\
+\Where\\ % Your department
+\Address\\ % Your address
+\CityZip\\ % Your city and zip code
+%\TEL\\ % Your phone number
+%\Email\\ % Your email address
+%\URL % Your URL
+}
+\hspace{0in} % Horizontal position of this block, increase to move left, decrease to move right
+\vspace{-1in} % Move the letter content up for a more compact look
+}
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\def\opening#1{\thispagestyle{empty}
+{\centering\fromaddress \vspace{0.6in} \\ % Print the header and from address here, add whitespace to move date down
+\hspace*{\longindentation}\hspace*{\fill}\par} % Print today's date, remove \today to not display it
+%{\raggedright \toname \\ \toaddress \par} % Print the to name and address
+\vspace{0.4in} % White space after the to address
+\noindent #1 % Print the opening line
+% Uncomment the 4 lines below to print a footnote with custom text
+%\def\thefootnote{}
+%\def\footnoterule{\hrule}
+%\footnotetext{\hspace*{\fill}{\footnotesize\em Footnote text}}
+%\def\thefootnote{\arabic{footnote}}
+}
+
+%----------------------------------------------------------------------------------------
+%	SIGNATURE STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\signature{\Autha \\ \Authb \What} % The signature is a combination of your name and title
+
+\long\def\closing#1{
+\vspace{0.1in} % Some whitespace after the letter content and before the signature
+\noindent % Stop paragraph indentation
+\hspace*{\longindentation} % Move the signature right
+\parbox{\indentedwidth}{\raggedright
+#1 % Print the signature text
+\vskip 0.1in % Whitespace between the signature text and your name
+\fromsig}} % Print your name and title
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS
+%----------------------------------------------------------------------------------------
+
+\begin{letter}
+%{Prof. Jones\\
+%Mathematics Search Committee\\
+%Department of Mathematics\\
+%University of California\\
+%Berkeley, California 12345\\
+%}
+
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS
+%----------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT
+%----------------------------------------------------------------------------------------
+
+\opening{Dear Editor,}
+
+
+We enclose the manuscript \emph{A pragmatic theory of generic language} to be considered for publication in \emph{Psychological Review}. 
+This paper explores the linguistic means by which generalizations about categories are communicated.  
+We present a Bayesian model of understanding generic language, and show that it predicts human judgments with high quantitative accuracy across several experiments.
+We probe the theory in more detail, and find that the semantics of generic language depend in a fundamental way on subjective beliefs. 
+%generalizations (e.g. ``Dogs bark.'') are conveyed.
+% Generalizing properties to categories is central to human understanding of the world. 
+
+Categories are inherently unobservable; thus, it is critical that language allow us to transmit hard-won information about categories. Generic language (e.g.~\emph{Swans are white.}) is a simple and ubiquitous way to do this. 
+Generic utterances are common in everyday conversation (\emph{Movie theaters are cold.}), the speech of young children (\emph{Slides aren't for grown ups!}), child-directed speech (\emph{Dogs are friendly.}), political and scientific discourse (\emph{Politicians make promises.}, \emph{Psychology experiments don't replicate.}), stereotypes (\emph{Boys are good at math.}), motivation (\emph{Big girls eat broccoli!}), and many other facets of experience.
+
+Though this type of language is found everywhere, the meaning of generic language is philosophically puzzling and has resisted precise formalization. 
+The major issue in formalizing generic language is determining what makes a generic sentence true or false.
+Generic utterances are often about characteristic properties contained by a majority (e.g. \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g. \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
+Indeed, \emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier would suffice. 
+%The acceptability of generics seems not to have to do with the statistics of the property because while \emph{Robins lay eggs} is true, \emph{Robins are female} is not, despite the prevalence of the properties being equivalent. 
+
+%properties with the same statistics generate infelicitous generics (e.g. ``Robins are female'').
+% and it's not useful to say ``Sharks don't attack swimmers'' even though the overwhelming majority don't. 
+Parallel to these extremely flexible truth conditions are the surprisingly strong interpretations of novel generic utterances.
+Generic language seems to exaggerate the statistics of the property; listeners typically interpret ``Bears like to eat ants.'' as ``\emph{Almost all} bears like to eat ants.''
+This strength of interpretation has been identified as a mechanism in the propagation of social stereotypes. 
+
+
+% This article provides a formal account (instantiated in a computational model) of ``generics'', the primary linguistic construct by which interlocutors talk about categories and concepts (e.g. ``\emph{Dogs} bark.'', ``\emph{Tall folks} are good at basketball.'', ``\emph{The French} eat snails.'').  
+% 
+% At the same time, the conditions by which generic utterances are true seem at once to be associated with the the number of instances with the property (e.g. ``Barns are red.'' is true because most barns are red) and not associated with it (e.g. ``Lions have manes.'' is a good generic utterance but ``Lions are male.'' is not, even though the set of lions that are male is a superset of those that have manes.)
+
+We explore a meaning of the generic that is based on the prevalence of the property (``what \% of the category has the property?'') but 
+whose criterion is left underspecified in the language, and must be resolved in context.
+We instantiate this idea in a probabilistic model of pragmatic reasoning, encompassing the basic communicative qualities to be truthful and informative. 
+We show how these basic communicative principles coupled with the interlocutors' beliefs about the property in the question (which we measure empirically) are sufficient to explain the paradoxical phenomena of flexible truth conditions with simultaneously strong implications.
+The model explains almost all of the variance in human judgments for the evaluation and comprehension of generic utterances.
+We go on to further interrogate the semantic scale against which the generic is evaluated, and find that it is intelocutors' subjective beliefs about what is likely to be the case in the future, and not the objective truth about what has been the case in the past, that matters for generic language. This research opens up a number of interesting questions about the nature of conceptual structure and its linguistic traces.
+
+This work will be of strong interest to psychologists, as well as linguists, philosophers, and computer scientists interested in language and interaction.
+The puzzles of generic language are immediately compelling to a general audience, the more so because of their connections to cognitive development, cultural transmission of knowledge, and propagation of stereotypes.
+Our solution represents the first formal model of generic language to be validated by quantitative agreement with human behavioral data.
+It is not, however, uncontroversial: we champion a statistical view that has been often dismissed in the literature.
+Indeed, in presentations around the world we have found this work to excite broad interest and engagement.
+
+%We resolve the philosophical paradoxes in the meaning of generic utterances by positing a stable meaning that is as simple as possible: a threshold on the number of instances with the property (i.e. the property's \emph{prevalence}), where the threshold is uncertain \emph{a priori} and only resolved by pragmatic reasoning.
+%This simple semantics is consistent with the phenomenon from cognitive development that generics are learned at a very young age and are important for conceptual development.
+%Interlocutors' beliefs about the prevalence of properties are represented as probability distribution; a framework that is useful for representing rich, structured knowledge of the world. 
+%This work thus furthers the mathematical connection between language and the mind, by providing a bridge between the quantifiable properties of the world and the stuff of thought. 
+
+
+
+
+
+
+%Using this vague semantics, we explain two major puzzles surrounding generic language. 
+
+%This look provides insight into the stable properties 
+
+%The first is that generic utterances can be true for a wide range of prevalences: from tigers with stripes ($\sim 100\%$) all the way down to mosquitos with malaria (very few). 
+%How can the prevalence of the property alone explain what makes some generics good things to say and others not as good? 
+%The insight is that with an uncertain semantics, the likely meaning of the generic (i.e. the likely threshold for acceptance) is inferred using listeners' \emph{a priori} beliefs and the communicative force of a speech act, in a probabilistic pragmatics framework. Speakers who takes this into account will have different criteria to satisfy (different thresholds) for different different types of properties (Expts.~1a and 1b). At the same time, listeners' inferences about the likely prevalence will often be stronger than what a speaker would to justify such a claim. This captures human inferences with a high degree of quantitative accuracy (Expts.~2a and 2b). 
+%
+
+
+
+The following reviewers have expertise in the phenomenology of generic language, experimental studies of pragmatics, and/or the Bayesian modeling tools we use:
+
+\begin{itemize}
+\item Greg N. Carlson, Department of Linguistics, University of Rochester carlson@ling.rochester.edu
+\item Ted Gibson, Department of Brain and Cognitive Sciences, MIT egibson@mit.edu
+\item Gerhard J{\"a}ger, Department of General Linguistics, University of T{\"u}bingen gerhard.jaeger@uni-tuebingen.de
+%\item Mark Steedman, School of Informatics, University of Edinburgh  steedman@inf.ed.ac.uk
+\item Susan A. Gelman, Department of Psychology, University of Michigan gelman@umich.edu
+\item Naomi Feldman, Department of Linguistics, University of Maryland nhf@umd.edu
+\item Amy Perfors, Department of Psychology, University of Adelaide amy.perfors@adelaide.edu.au
+\item Klinton Bicknell, Department of Linguistics, Northwestern University kbicknell@northwestern.edu
+\item Michael Franke, University of T{\"u}bingen, mchfranke@gmail.com
+\item Tamar Kushnir, Department of Psychology, Cornell University, tk397@cornell.edu
+%\item Michael Lee, Department of Cognitive Sciences, University of California, Irvine mdlee@uci.edu
+\end{itemize}
+
+We look forward to receiving your opinion.
+
+
+\closing{Sincerely yours,}
+
+%----------------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}
+
+
+
+
+%
+%
+%
+%
+%%----------------------------------------------------------------------------------------
+%%	ADDRESSEE AND GREETING/CLOSING
+%%----------------------------------------------------------------------------------------
+%
+%\greetto{Dear Editor,} % Greeting text
+%\closeline{Sincerely yours,} % Closing text
+%
+%%\nameto{Mrs. Jane Smith} % Addressee of the letter above the to address
+%
+%%\addrto{
+%%Recruitment Officer \\ % To address
+%%The Corporation \\
+%%123 Pleasant Lane \\
+%%City, State 12345
+%%}
+%
+%%----------------------------------------------------------------------------------------
+%
+%\begin{document}
+%\begin{newlfm}
+%
+%%----------------------------------------------------------------------------------------
+%%	LETTER CONTENT
+%%----------------------------------------------------------------------------------------
+%
+%%
+%%Generalizations about categories are central to human understanding, and generic language (e.g.~\emph{Dogs bark.}) provides a simple and ubiquitous way to communicate these generalizations. 
+%%Yet the meaning of generic language is philosophically puzzling and has resisted precise formalization.
+%%We explore the idea that the core meaning of a generic sentence is simple but underspecified, 
+%%and that general principles of pragmatic reasoning are responsible for establishing the precise meaning in context.
+%%Building on recent probabilistic models of language understanding, we provide a formal model for the evaluation and comprehension of generic sentences. 
+%%
+%%This model explains the puzzling flexibility in usage of generics in terms of diverse prior beliefs about properties.
+%%We elicit these priors experimentally and show that the resulting model predictions explain almost all of the variance in human judgements for both common and novel generics.
+%%
+%
+%We enclose the manuscript \emph{A pragmatic theory of generic language} to be considered for publication in \emph{Science Magazine}. 
+%This paper explores the linguistic means by which generalizations about categories, some of the most central aspects of human understanding, are communicated.  
+%We present a Bayesian model of understanding generic language, and show that it predicts human judgments with high quantitative accuracy across several experiments.
+%
+%%generalizations (e.g. ``Dogs bark.'') are conveyed.
+%% Generalizing properties to categories is central to human understanding of the world. 
+%
+%Categories are inherently unobservable; thus, it is critical that language allow us to transmit hard-won information about categories. Generic language (e.g.~\emph{Swans are white.}) is a simple and ubiquitous way to do this. 
+%Generic utterances are common in everyday conversation (\emph{Movie theaters are cold.}), the speech of young children (\emph{Slides aren't for grown ups.}), child-directed speech (\emph{Dogs are friendly.}), political and scientific discourse (\emph{Taxes are high.}, \emph{Psychology experiments don't replicate.}), stereotypes (\emph{Boys are good at math.}), motivation (\emph{Big girls eat broccoli!}), and many other facets of experience.
+%
+%Though this type of language is found everywhere, the meaning of generic language is philosophically puzzling and has resisted precise formalization. 
+%One major roadblock has been specifying the conditions in which a generic utterance is true, or a felicitous thing to say.
+%Generic utterances are often about majority characteristic properties (e.g. \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g. \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
+%Indeed, \emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier would suffice. 
+%%The acceptability of generics seems not to have to do with the statistics of the property because while \emph{Robins lay eggs} is true, \emph{Robins are female} is not, despite the prevalence of the properties being equivalent. 
+%
+%%properties with the same statistics generate infelicitous generics (e.g. ``Robins are female'').
+%% and it's not useful to say ``Sharks don't attack swimmers'' even though the overwhelming majority don't. 
+%Parallel to these extremely flexible truth conditions are the surprisingly strong interpretations of novel generic utterances.
+%Generic language seems to exaggerate the statistics of the property; listeners typically interpret ``Bears like to eat ants.'' as ``\emph{Almost all} bears like to eat ants.''
+%This strength of interpretation has been identified as a mechanism in the propagation of social stereotypes. 
+%
+%
+%% This article provides a formal account (instantiated in a computational model) of ``generics'', the primary linguistic construct by which interlocutors talk about categories and concepts (e.g. ``\emph{Dogs} bark.'', ``\emph{Tall folks} are good at basketball.'', ``\emph{The French} eat snails.'').  
+%% 
+%% At the same time, the conditions by which generic utterances are true seem at once to be associated with the the number of instances with the property (e.g. ``Barns are red.'' is true because most barns are red) and not associated with it (e.g. ``Lions have manes.'' is a good generic utterance but ``Lions are male.'' is not, even though the set of lions that are male is a superset of those that have manes.)
+%
+%We explore a meaning of the generic that is based on statistics (``what \% of the category has the property?'') but 
+%whose criterion is left underspecified in the language, and must be resolved in context.
+%We instantiate this idea in a probabilistic model of pragmatic reasoning, encompassing the basic communicative qualities to be truthful and informative. 
+%We show how these basic communicative principles coupled with the listener's beliefs about the property in the question (which we measure empirically) are sufficient to explain the paradoxical phenomena of flexible truth conditions with simultaneously strong implications.
+%The model explains almost all of the variance in human judgments for the evaluation and comprehension of generic utterances.
+%
+%This work will be of strong interest to psychologists, linguists and philosophers, as well as to computer scientists interested in language and interaction.
+%The puzzles of generic language are immediately compelling to a general audience, the more so because of their connections to cognitive development, cultural transmission of knowledge, and propagation of stereotypes.
+%Our solution represents the first formal model of generic language to be validated by quantitative agreement with human behavioral data.
+%It is not, however, uncontroversial: we champion a statistical view that has been largely dismissed in the literature.
+%Indeed, in presentations around the world we have found this work to excite broad interest and engagement.
+%
+%%We resolve the philosophical paradoxes in the meaning of generic utterances by positing a stable meaning that is as simple as possible: a threshold on the number of instances with the property (i.e. the property's \emph{prevalence}), where the threshold is uncertain \emph{a priori} and only resolved by pragmatic reasoning.
+%%This simple semantics is consistent with the phenomenon from cognitive development that generics are learned at a very young age and are important for conceptual development.
+%%Interlocutors' beliefs about the prevalence of properties are represented as probability distribution; a framework that is useful for representing rich, structured knowledge of the world. 
+%%This work thus furthers the mathematical connection between language and the mind, by providing a bridge between the quantifiable properties of the world and the stuff of thought. 
+%
+%
+%
+%
+%
+%
+%%Using this vague semantics, we explain two major puzzles surrounding generic language. 
+%
+%%This look provides insight into the stable properties 
+%
+%%The first is that generic utterances can be true for a wide range of prevalences: from tigers with stripes ($\sim 100\%$) all the way down to mosquitos with malaria (very few). 
+%%How can the prevalence of the property alone explain what makes some generics good things to say and others not as good? 
+%%The insight is that with an uncertain semantics, the likely meaning of the generic (i.e. the likely threshold for acceptance) is inferred using listeners' \emph{a priori} beliefs and the communicative force of a speech act, in a probabilistic pragmatics framework. Speakers who takes this into account will have different criteria to satisfy (different thresholds) for different different types of properties (Expts.~1a and 1b). At the same time, listeners' inferences about the likely prevalence will often be stronger than what a speaker would to justify such a claim. This captures human inferences with a high degree of quantitative accuracy (Expts.~2a and 2b). 
+%%
+%
+%
+%
+%The following reviewers have expertise in the phenomenology of generic language and/or the Bayesian modeling tools we use:
+%
+%\begin{itemize}
+%\item Greg N. Carlson, Department of Linguistics, University of Rochester \url{carlson@ling.rochester.edu}
+%\item Susan A. Gelman, Department of Psychology, University of Michigan \url{gelman@umich.edu}
+%\item Mark Steedman, School of Informatics, University of Edinburgh,  \url{steedman@inf.ed.ac.uk}
+%\item Michael Lee, Department of Cognitive Sciences, University of California, Irvine, \url{mdlee@uci.edu}
+%\item Ted Gibson, Department of Brain and Cognitive Sciences, MIT, \url{egibson@mit.edu}
+%\end{itemize}
+%
+%
+%%\item Andrei Cimpian, Department of Psychology, University of Illinois at Urbana-Champaign \url{acimpian@illinois.edu}
+%%\item Sandeep Prasada, Department of Psychology, Hunter College \url{sprasada@hunter.cuny.edu}
+%%\end{itemize}
+%%The following reviewers have expertise in the Bayesian modeling techniques we use:
+%%\begin{itemize}
+%%\item Amy Perfors
+%%\item Gerhardt Jaeger
+%%
+%%\ndg{MH, fill in emails etc?}
+%
+%
+%
+%%----------------------------------------------------------------------------------------
+%
+%\end{newlfm}
+%\end{document}
