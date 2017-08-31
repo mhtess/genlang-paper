@@ -111,64 +111,45 @@
 
 \begin{document}
 
-%----------------------------------------------------------------------------------------
-%	TO ADDRESS
-%----------------------------------------------------------------------------------------
-
 \begin{letter}
-%{Prof. Jones\\
-%Mathematics Search Committee\\
-%Department of Mathematics\\
-%University of California\\
-%Berkeley, California 12345\\
-%}
-
-
-%----------------------------------------------------------------------------------------
-%	TO ADDRESS
-%----------------------------------------------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------------------
-%	LETTER CONTENT
-%----------------------------------------------------------------------------------------
 
 \opening{Dear Editor,}
 
-
-We enclose the manuscript \emph{A pragmatic theory of generic language} to be considered for publication in \emph{Psychological Review}. 
-This paper explores the linguistic means by which generalizations about categories are communicated.  
-We present a Bayesian model of understanding generic language, and show that it predicts human judgments with high quantitative accuracy across several experiments.
+We enclose the manuscript \emph{Communicating Generalizations} to be considered for publication in \emph{Psychological Review}. 
+This paper explores the linguistic means by which generalizations about categories, events, and causality are communicated.  
+We present a Bayesian model of understanding generalizations in language, and show that it predicts human judgments with high quantitative accuracy across several experiments.
 We probe the theory in more detail, and find that the semantics of generic language depend in a fundamental way on subjective beliefs. 
-%generalizations (e.g. ``Dogs bark.'') are conveyed.
-% Generalizing properties to categories is central to human understanding of the world. 
 
-Categories are inherently unobservable; thus, it is critical that language allow us to transmit hard-won information about categories. Generic language (e.g.~\emph{Swans are white.}) is a simple and ubiquitous way to do this. 
+Understanding how the world works requires learning generalizations. 
+The kinds of observations that would facilitate such learning, however, can be rare (e.g., \emph{figuring out that lightning strikes tall objects}) or costly (e.g., \emph{learning that certain plants are poisonous}).
+We don't need to need taste every plant to figure out which ones are poisonous; we don't need to stand under objects of various heights to learn that lightning strikes tall objects.
+Language allow us to communicate generalizations to each other.
+
+The language of generalizations is often studied in what's called \emph{generic language} (e.g., ~\emph{Birds fly}).
 Generic utterances are common in everyday conversation (\emph{Movie theaters are cold.}), the speech of young children (\emph{Slides aren't for grown ups!}), child-directed speech (\emph{Dogs are friendly.}), political and scientific discourse (\emph{Politicians make promises.}, \emph{Psychology experiments don't replicate.}), stereotypes (\emph{Boys are good at math.}), motivation (\emph{Big girls eat broccoli!}), and many other facets of experience.
+Generalizations can be transmitted about more than just categories.
+\emph{Habitual language} conveys generalizations about events (e.g., ~\emph{Mary swims after work}).
+\emph{Causal language} conveys generalizations about causal events (e.g., ~\emph{Staring at the sun makes you go blind}).
 
-Though this type of language is found everywhere, the meaning of generic language is philosophically puzzling and has resisted precise formalization. 
-The major issue in formalizing generic language is determining what makes a generic sentence true or false.
-Generic utterances are often about characteristic properties contained by a majority (e.g. \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g. \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
-Indeed, \emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier would suffice. 
-%The acceptability of generics seems not to have to do with the statistics of the property because while \emph{Robins lay eggs} is true, \emph{Robins are female} is not, despite the prevalence of the properties being equivalent. 
+Though this type of language is found everywhere, the meaning of generalizations in language is philosophically puzzling and has resisted precise formalization. 
+The major issue in formalizing generalizations in language is determining what makes such statements true or false.
+Consider generic utterances:
+Generics are often about characteristic properties contained by a majority (e.g., \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g., \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
+Indeed, \emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier (i.e., \emph{some}) would suffice. 
+Some have taken this evidence to suggest that generics must express special mental relationships between kinds and properties, but arbitrary generalizations --- which seem only to depend on the actual statistics of the world --- can also be conveyed with generics (e.g., \emph{Ravens are bigger than toasters}).
+There have been a few formal models proposed for generic language, but none that have made precise, quantitative predictions about human endorsement patterns.
 
-%properties with the same statistics generate infelicitous generics (e.g. ``Robins are female'').
-% and it's not useful to say ``Sharks don't attack swimmers'' even though the overwhelming majority don't. 
-Parallel to these extremely flexible truth conditions are the surprisingly strong interpretations of novel generic utterances.
-Generic language seems to exaggerate the statistics of the property; listeners typically interpret ``Bears like to eat ants.'' as ``\emph{Almost all} bears like to eat ants.''
-This strength of interpretation has been identified as a mechanism in the propagation of social stereotypes. 
+Analogous phenomena can be observed in habitual and causal language.
+If John smokes once a year, one might hesitate to endorse the statement \emph{John smokes}.
+Yet, climbing a mountain once a year makes John really seem like he \emph{climbs mountains}.
+\emph{Drinking moonshine makes you go blind} and so does \emph{staring at the sun}, but neither statement conveys precise information about the relative risk.
 
+In this paper, we propose that the core meaning of generalizations in language is \emph{simple but underspecified}.
+We adopt a familiar formalism for the truth conditions of this language: a threshold function (e.g., the statement is true if the frequency is greater than some criterion $\theta$), but whose criterion $\theta$ is left underspecified in the language, and must be resolved in context.
+We instantiate this idea in a state-of-the-art probabilistic model of communication, and operationalize \emph{endorsement} (i.e., felicity or agreement with a statement) as a speaker's decision about whether or not to say the generalization to a naive listener (as opposed to staying silent).
+We show how this simple model coupled with the interlocutors' beliefs about the property or event in the question (which we both \emph{measure and manipulate} empirically) are sufficient to explain the puzzling phenomenon of flexible truth conditions.
+The model explains almost all of the variance in human judgments for the evaluation of generic, habitual, and causal utterances.
 
-% This article provides a formal account (instantiated in a computational model) of ``generics'', the primary linguistic construct by which interlocutors talk about categories and concepts (e.g. ``\emph{Dogs} bark.'', ``\emph{Tall folks} are good at basketball.'', ``\emph{The French} eat snails.'').  
-% 
-% At the same time, the conditions by which generic utterances are true seem at once to be associated with the the number of instances with the property (e.g. ``Barns are red.'' is true because most barns are red) and not associated with it (e.g. ``Lions have manes.'' is a good generic utterance but ``Lions are male.'' is not, even though the set of lions that are male is a superset of those that have manes.)
-
-We explore a meaning of the generic that is based on the prevalence of the property (``what \% of the category has the property?'') but 
-whose criterion is left underspecified in the language, and must be resolved in context.
-We instantiate this idea in a probabilistic model of pragmatic reasoning, encompassing the basic communicative qualities to be truthful and informative. 
-We show how these basic communicative principles coupled with the interlocutors' beliefs about the property in the question (which we measure empirically) are sufficient to explain the paradoxical phenomena of flexible truth conditions with simultaneously strong implications.
-The model explains almost all of the variance in human judgments for the evaluation and comprehension of generic utterances.
 We go on to further interrogate the semantic scale against which the generic is evaluated, and find that it is intelocutors' subjective beliefs about what is likely to be the case in the future, and not the objective truth about what has been the case in the past, that matters for generic language. This research opens up a number of interesting questions about the nature of conceptual structure and its linguistic traces.
 
 This work will be of strong interest to psychologists, as well as linguists, philosophers, and computer scientists interested in language and interaction.
