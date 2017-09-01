@@ -2422,7 +2422,7 @@ generics.endorsement.insets <- gen.inset.distributions %>%
 
 
 
-```{r generics-endorsement-figure, fig.width=11, fig.height=8}
+```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generaliztions about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on prevalence alone (lower left) and prevalence and cue validity (lower right). Bottom: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the prevalence of the feature within a referent category. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach)."}
 grid.arrange(generics.endorsement.spectrum, 
              generics.endorsement.models,
              generics.endorsement.insets, ncol = 2,
