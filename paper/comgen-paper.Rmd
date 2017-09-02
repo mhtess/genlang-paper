@@ -21,6 +21,7 @@ header-includes:
   - \usepackage{wrapfig}
   - \usepackage{caption}
   - \usepackage{booktabs}
+  - \usepackage{amsmath}
 
 author_note: >
   Enter author note here.
@@ -2422,7 +2423,7 @@ generics.endorsement.insets <- gen.inset.distributions %>%
 
 
 
-```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generaliztions about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on prevalence alone (lower left) and prevalence and cue validity (lower right). Bottom: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the prevalence of the feature within a referent category. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach)."}
+```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on prevalence alone (lower left) and prevalence and cue validity (lower right). Bottom: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the prevalence of the feature within a referent category. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach)."}
 grid.arrange(generics.endorsement.spectrum, 
              generics.endorsement.models,
              generics.endorsement.insets, ncol = 2,
@@ -2450,14 +2451,9 @@ With these data, the predictions of these two models are nearly identical.
 ]
 The $S_1$ model is then fully specified after setting the speaker optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
 
-
-\begin{figure}
-\centering
-    \includegraphics[width=\columnwidth]{figs/generics_bayesnetmodel.pdf}
-    \caption{Caption
-    }
-  \label{fig:genericsModelDiagram}
-\end{figure}
+```{r genericsModelDiagram, fig.cap="Graphical model corresponding to the fully Bayesian data analysis of the RSA model. The prevalence prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The prevalence within the referent category $d^{pr}_{k,f}$ is generated from a latent prevalence $h_{k,f}$. The fixed-threshold (control model) or uncertain-threshold RSA model takes the prevalence prior $P_f(h)$, the referent-category prevalence $h$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that RSA corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; RSA cannot be represented by a graphical model because it has recursion. "}
+knitr::include_graphics("figs/generics_bayesnetmodel.pdf", dpi = 108)
+```
 
 To fit this model, we incorporate the RSA model into the Bayesian data analysis model of the prevalence prior data (Expt. 1a) to create a single, joint-inference model where the speaker optimality parameter $\lambda_1$ is inferred jointly with the target prevalence $h_{k, f}$ for each category $k$ and property $f$ and the parameters of the prevalence priors $P_f(h)$ for each property $f$ using data from Expt. 1a \& b (see Figure \ref{fig:genericsModelDiagram}).
 For the parameters of the prevalence distributions, we use the same priors described in Expt. 1a; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
@@ -3828,7 +3824,7 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
 
 ```
 
-```{r habituals-endorsement-figure, fig.width=11, fig.height=8}
+```{r habituals-endorsement-figure, fig.width=11, fig.height=8, fig.cap="Endorsing generalizations about events Top left: Human elicited endorsements for ninety-three habitual sentences as a function of the (log) frequency of the referent action. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on (log) frequency alone (lower left) and log frequency and distinctiveness (lower right). Bottom: Five example frequency priors and listener posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a & 2b.  (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})"}
 grid.arrange(fig.habituals.endorsement.vs.freq, 
              habituals.endorsement.models,
              habituals.endorsement.insets, ncol = 2,
@@ -4553,7 +4549,7 @@ left_join(m.hab.predictive.endorse.rsa %>%
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="A: Results of Expt 3a. B: Results of Expt. 3b as they relate to the predicted frequencies from Expt. 3a, C & D: Endorsement models based on past frequency (C) and predictive frequency (D).", fig.width = 10.5, fig.height = 11}
+```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 10.5, fig.height = 11}
 legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
 
 # add the legend underneath the row we made earlier. Give it 10% of the height
@@ -5257,7 +5253,7 @@ figure.causals.endorsement <- bind_rows(
   theme(legend.position = 'bottom', legend.direction = 'horizontal', legend.title = element_blank())
 ```
 
-```{r figure-causals, fig.width=11, fig.height=8, cache = T}
+```{r figure-causals, fig.width=11, fig.height=8, cache = T, fig.cap="Endorsing generalizations about causes. Top: Human elicited endorsements and model fit predictions for four manipulated prior distributions and two observed frequencies. Bottom: Prevalence priors and listener posteriors upon hearing the generalization for the experimentally manipulated priors. These distributions are inferred using both data sources from Expt. 3 (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})."}
 grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
              layout_matrix = cbind(c(1,1,2)))
 
