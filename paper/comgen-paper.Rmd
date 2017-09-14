@@ -27,18 +27,18 @@ author_note: >
   Enter author note here.
 
 abstract: > 
-    Generalizations are central to human understanding and language provides simple ways to convey generalization (e.g., "Dogs bark").
+    Generalizations are central to human understanding and language provides simple ways to convey them (e.g., "Dogs bark").
     The language of generalization is ubiquitous in everyday discourse and child-directed speech. 
-    Yet the meaning of these expressions is philosophically puzzling (e.g., not all birds fly) and has resisted precise formalization.
-    The major issue in formalizing generalizations in language is in determining what which such statements are true or false.
+    Yet the meaning of these expressions is logically puzzling (e.g., not all birds fly) and has resisted precise formalization.
+    The major issue in formalizing generalization in language is in determining what which such statements are true or false.
     Using a probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of such linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
     To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language* e.g., "Dogs bark"), events (*habitual language* e.g., "John runs"), and causes (*causal language* e.g., "Staring at the sun makes you go blind"). 
-    Across these diverse domains, we find that our model explains human endorsements of generalizations in language, while simpler models do not.
+    Across these diverse domains, we find that our model explains almost all of the variance in human endorsements of generalizations in language, while simpler models fall short.
     This is the first formal theory that makes precise, quantitative predictions about human understanding of generalizations in language.
-    The results suggest that central phenomena of genericity emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
+    The results suggest that central phenomena emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
   
 keywords          : "genericity, generalization, generics, pragmatics, semantics, bayesian modeling"
-wordcount         : "X"
+wordcount         : "20000"
 
 bibliography      : ["generics.bib"]
 
@@ -71,7 +71,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
 ```
 
 
-```{r libraries}
+```{r libraries, cache = F}
 library(papaja)
 library(formatR)
 library(rwebppl)
@@ -139,7 +139,7 @@ Generalizations in language are often studied in *generic language* (or, generic
 Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
 In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which 2-and-a-half-year-olds appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
-Generics are just one case of generalizations in language, however;  individuals can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
+Generics are just one case of generalization in language, however;  events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
 It is believed that every language can express generalizations [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
@@ -148,7 +148,7 @@ It is believed that every language can express generalizations [@Behrens2005; @C
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions about observable behavior.
+Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions about human understanding.
 A formal model in this domain is useful to make explicit the relevant assumptions of a psychological or linguistic hypothesis for predicting human behavior; this, in turn, makes the theory more falsifiable. 
 The major challenge in formalizing generalizations in language is determining what makes such statements true or false.
 When we hear "Dogs bark", it sounds like a universal statement, like *All* dogs bark.
@@ -163,13 +163,13 @@ The only quantifier that would permit such a statement would be *some* (e.g., "S
 But weakening the generalization to *some* goes too far: Half of robins are female, but saying "Robins are female" seems odd.
 That same half of robins (i.e., the females), however, also lay eggs, and "Robins lay eggs" is again intuively true. 
 
-These observations have led to proposals that the statistics of the feature (e.g., the prevalence or probability of a member of category having a property) is only incidentally related to generic meaning. 
+These observations have led to proposals that the statistics of the feature (e.g., the prevalence or probability of a member of a category having a property) is only incidentally related to generic meaning. 
 *Conceptual accounts* of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
 From this perspective, the statement "Bishops move diagonally" is true not because most bishops move diagonally, but rather because those are the rules of chess.
 With this perspective, @Leslie2007 proposes that generics express a cognitively primitive, default generalization. 
 The *generics as default* view argues that certain principles explain how generics become true or false.
 "Mosquitos carry malaria" conveys a dangerous or *striking property*, which is useful to know if you are to survive in a hostile world.
-This theory correctly predicted that generics that convey striking properties would be true even if the property was relatively uncommon [e.g., "Sharks attack swimmers"; @Cimpian2010; @Prasada2013].
+This theory predicts that generics which convey striking properties would be true even if the property was relatively uncommon (e.g., "Sharks attack swimmers"), which has been borne out emprically [@Cimpian2010; @Prasada2013].
 "Robins lay eggs" can be thought of as conveying a *characteristic property*, which permits its felicity despite only 50\% having the feature [@Prasada2006; @Prasada2013].
 
 Yet, generics are not limited to conveying rich, conceptual relations. 
@@ -180,15 +180,15 @@ The diversity of generic statements highlighted by the conceptual accounts is in
 <!-- This diversity is interesting, but what is common across generics? -->
 <!-- Is there some core meaning to *genericity*, a general unified principle that explains what makes generic statements true or false? -->
 
-We propose a formal, unified account of generalizations in language that can make precise, quantitative predictions about these simple and ubiquituous utterances.
+We propose a formal, unified account of generalization in language that can make precise, quantitative predictions about these simple and ubiquituous utterances.
 We do so by first reviewing the much more well-studied form of generalization: generalization from observations. 
 The Bayesian probability calculus describes inductive generalizations in terms of probability, and this is a good model of human generalization [@Shepard1987; @Tenenbaum2001].
 We then formalize how these probabilities are communicated, using a rational model of communication --- the Rational Speech Act theory [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016].
 Such models of rational communication describe the inferences listeners can draw from language, and the utterances speakers should say given their state of knowledge and communicative goals. 
-Heretofore, the fragments of language formalized in such models have been limited to *particular statements* that convey information about a specific entity or situation [e.g., in hyperbole: "My watch cost a million dollars"; @Kao2014, or vagueness: "John is tall"; @Lassiter2013].
-The language of generalizations, however, does not make reference to entities in the world or concrete situations, but rather refer to unobservable concepts in the head.
+Heretofore, however, the fragments of language formalized in such models have been limited to *particular statements* that convey information about a specific entity or situation [e.g., in hyperbole: "My watch cost a million dollars"; @Kao2014, or vagueness: "John is tall"; @Lassiter2013].
+The language of generalization, however, does not make reference to entities in the world or concrete situations, but rather refer to unobservable concepts in the head.
 
-Specifically, we explore the hypothesis that the core meaning of a generic statement and other language for conveying generalizations concerns subjective probability in a *simple but underspecified* way.
+Specifically, we explore the hypothesis that the core meaning of a generic statement and other language for conveying generalization concerns subjective probability in a *simple but underspecified* way.
 We formalize this hypothesis in a probabilistic model of language understanding, and derive predictions for the endorsements of such statements by considering whether or not a speaker would say the generalization to a listener.
 We show that this decision depends in systematic ways on the prior knowledge of the listener.
 
@@ -436,7 +436,7 @@ The human capacity to generalize from observations has been studied extensively 
 From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007].
 The Bayesian probability calculus provides a computational description of generalization [e.g., @Tenenbaum2006; @Tenenbaum2011]: Observing some number of instances of $k$ with $f$ will update what an observer believes *a priori* (formally: a prior belief distribution) in order to make predictions about unobserved instances, via a posterior belief distribution.
 As a concrete example, consider the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$): $h = P(x \in \{\text{barks}\} \mid x \in \{\text{is a dog}\})$.
-If an agent were to encounter some number of individual dogs and note how many of them bark ($d$), using Bayes' rule, she could form a posterior belief distribution about the probability that the next dog she encounters will bark (in other words, a belief about the barkiness of dogs).
+If an agent were to encounter some number of individual dogs and note how many of them bark ($d$), using Bayes' rule, she could form a posterior belief distribution about the probability that the next dog she encounters will bark (in other words, a belief about the barking capacity of dogs).
 
 $$
 P(h \mid d) = \frac{P(d \mid h) \cdot P(h)}{\int_{h'}P(d \mid h') \cdot P(h')}
@@ -454,7 +454,7 @@ For abstract, generalizable knowledge to remain in a culture, it must be faithfu
 # Generalization from Language
 
 If generalization from observations can be described using probability, then it seems  natural to consider the semantic content of an utterance that conveys generalization also to be relating to probability. 
-One very simple semantic theory is a *threshold semantics*: an utterance is true is some quantity or *degree* is above a threshold.
+Perhaps the simplest, quantitative semantic theory is a *threshold semantics*: an utterance is true if some quantity or *degree* is above a threshold.
 For generalizations, the threshold would apply to the *feature-probability* $h$:^[
 We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her existing state of knowldege to form a subjective probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
 ]
@@ -500,11 +500,7 @@ Contrary to these accounts, in our model, conceptual structure is represented in
 
 
 In this paper, we are interested in explaining the variable *endorsements* of generalizations (e.g., "Robins lay eggs" is good; "Robins are female" is not) based on some known or believed feature-probability $h$ in a referent category (e.g., only female robins lay eggs).
-Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe a **speaker model** as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).^[A more general version of this model can relax the assumption that the speaker has access to a specific feature-probability $h$ that he is trying to communicate.
-Rather, the speaker may have a belief distribution over $h$ for the category $k$, corresponding to the speaker's beliefs about the feature-probability of the property in the category. 
-In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
-$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
-]
+Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe a **speaker model** as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).
 
 \begin{equation} 
 S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)}  \diff \theta )}
@@ -514,7 +510,11 @@ S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)
 The speaker $S$ doesn't know the threshold $\theta$; rather, he integrates over the likely values that the listener will believe. 
 Additionaly, following RSA, the speaker model is assumed to be an approximately rational Bayesian agent with rationality governed by parameter $\lambda$, which acts as a soft-max function.
 
-The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate the **referent feature-probability** $h$ to the listener $L$, in comparison to alternative utterances.
+The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate the **referent feature-probability** $h$ to the listener $L$, in comparison to alternative utterances.^[A more general version of this model can relax the assumption that the speaker has access to a specific feature-probability $h$ that he is trying to communicate.
+Rather, the speaker may have a belief distribution over $h$ for the category $k$, corresponding to the speaker's beliefs about the feature-probability of the property in the category. 
+In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
+$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
+]
 We specify a single alternative utterance corresponding to *not saying the generalization*:
 With just these two alternatives (say the generalization vs. not), the model can be interpreted as a model of felicity judgments or sentence *endorsement* [@Degen2014]. 
 Formally, we consider the negative alternative as the option of staying quiet, which carries no information content^[
@@ -2406,7 +2406,7 @@ generics.endorsement.insets <- gen.inset.distributions %>%
   ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
   geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
   facet_wrap(~property, nrow = 1)+
-  geom_text_repel(data = category.text.labels,
+  geom_label_repel(data = category.text.labels,
                   aes(label = category, x = x , y = y),
                   inherit.aes = F, color = "#2b83ba")+
     #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
@@ -3193,24 +3193,25 @@ example.habituals <- c("climbs mountains_year", "hikes_year", "runs_year",
                        "goes to the movies_month", "smokes cigarettes_month")
 fig.habituals.endorsement.vs.freq <- 
   ggplot(d.hab.endorsement.bayes, aes( x = logAnnualRate, y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
-  geom_jitter(width = 0.1, shape = 21)+
+  geom_jitter(width = 0.1, shape = 21, size = 5)+
   ylab("Human endorsement probability")+
   xlab("Frequency of target")+
-  geom_label_repel(data = d.hab.endorsement.bayes %>% 
+  geom_text_repel(data = d.hab.endorsement.bayes %>% 
                     mutate(sentence = paste(habitual, time_period, sep = "_")) %>%
                     filter(sentence %in% example.habituals), aes( label = habitual ),
-                       fontface = 'bold', color = 'white',
+                       color = 'black', fill = 'white',
     box.padding = unit(0.35, "lines"),
-    point.padding = unit(0.5, "lines"),
-    segment.color = 'grey50')+
+    point.padding = unit(1e-06, "lines"),
+    segment.color = 'grey37', segment.size=0.7, nudge_x= 1.1, nudge_y = -0.1)+
   scale_x_continuous(limits = c(-1,6), 
                      breaks = c(-1, 0, 0.7, 2.5, 4, 5.9),
                      labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
   scale_y_continuous(limits = c(-0.01, 1.01), 
                      breaks = c(0, 0.5, 1))+
-  theme(axis.text.x = element_text(angle = 90))+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")+
   coord_fixed(ratio = 7)+
-  guides(fill = F)
+  guides(fill = guide_colorbar(title = 'log annual rate'))
 ```
 
 
@@ -3541,9 +3542,9 @@ habituals.endorsement.models <- bind_rows(
   ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
-  geom_linerange(alpha = 0.7)+
-  geom_errorbarh(alpha = 0.7)+
-  geom_point(shape = 21)+
+  geom_linerange(alpha = 0.15)+
+  geom_errorbarh(alpha = 0.15)+
+  geom_point(shape = 21, size = 3)+
   scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
@@ -3551,7 +3552,8 @@ habituals.endorsement.models <- bind_rows(
   xlab("Model prediction")+
   ylab("Human habitual endorsement")+
   facet_wrap(~src, nrow = 2)+
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom")+
+  guides(fill = F)
 ```
 
 ```{r habituals-simulation-model}
@@ -3819,17 +3821,17 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
   #scale_linetype_manual(values = c(3, 4, 1))+
   #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
   scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-  xlab("Prevalence") +
+  xlab("Frequency (log scale)") +
   ylab("Scaled probability density")+
   theme(legend.position = "bottom", legend.title = element_blank(),
-        axis.text.x = element_text(angle = 90))+
+        axis.text.x = element_text(angle = 90, vjust = 1))+
       scale_x_continuous(limits = c(-5, 8), 
                      breaks = c(-5, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))
 
 ```
 
-```{r habituals-endorsement-figure, fig.width=11, fig.height=8, fig.cap="Endorsing generalizations about events Top left: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent (log) frequency alone (lower left) and referent log frequency + distinctiveness (lower right). Bottom: Five example frequency priors and listener posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a & 2b.  (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})"}
+```{r habituals-endorsement-figure, fig.width=11, fig.height=9, fig.cap="Endorsing generalizations about events Top left: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent (log) frequency alone (lower left) and referent log frequency + distinctiveness (lower right). Bottom: Five example frequency priors and listener posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a & 2b.  (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})", cache = F}
 grid.arrange(fig.habituals.endorsement.vs.freq, 
              habituals.endorsement.models,
              habituals.endorsement.insets, ncol = 2,
@@ -4034,7 +4036,7 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
                               y = mean,
                               ymin = ci_lower, ymax = ci_upper,
                               fill = condition, shape=condition))+
-  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6, size = 4)+
   scale_shape_manual(values=c(21,22,23))+
   geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
   # #geom_errorbar(width=0.1)+
@@ -4048,7 +4050,7 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
   scale_fill_solarized()+
   xlab("Past frequency (log scale)")+
   ylab("Predicted frequency (log scale)")+
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 
 ```
 
@@ -4197,7 +4199,7 @@ fig.hab.freq.predictive.vs.past <- left_join(
                               ymin = cred_lower, ymax = cred_upper, 
                               fill = condition, shape=condition))+
   geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
-  scale_shape_manual(values=c(21,22,23))+
+  scale_shape_manual(values=c(21,22,23, size = 4))+
   geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
   # #geom_errorbar(width=0.1)+
   scale_x_continuous(limits = c(-4,7), 
@@ -4210,7 +4212,7 @@ fig.hab.freq.predictive.vs.past <- left_join(
   scale_fill_solarized()+
   xlab("Past frequency (log scale)")+
   ylab("Predicted frequency MAP (log scale)")+
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 ```
 
 ### Results
@@ -4351,21 +4353,21 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
                  fill=condition, shape=condition,
                  xmin = future_lower, xmax=future_upper,
                  ymin=low, ymax = high))+
-  geom_errorbar(alpha=0.3)+
-  geom_errorbarh(alpha=0.3)+
+  geom_errorbar(alpha=0.8)+
+  geom_errorbarh(alpha=0.8)+
   scale_shape_manual(values=c(21,22,23,24))+
-  geom_point(alpha = 0.7)+
+  geom_point(alpha = 1, size = 4)+
   xlab("Predicted frequency (log scale)")+
-  ylab("Endorsement probability")+
+  ylab("Human habitual endorsement")+
   scale_x_continuous(limits = c(-4.2,7.2), 
                      breaks = c(-3, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
-  coord_fixed(ratio=9)+
+  coord_fixed(ratio=11.4)+
   scale_fill_solarized()+
   guides(fill = F, shape = F)+
   theme(
-    axis.text.x = element_text(angle = 90),
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
     legend.position="bottom",
     legend.direction="horizontal"
     )
@@ -4483,7 +4485,7 @@ habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
   geom_abline(intercept = 0, slope = 1, lty = 3)+
   geom_linerange(alpha = 0.7)+
   geom_errorbarh(alpha = 0.7)+
-  geom_point(shape = 21)+
+  geom_point(shape = 21, size = 4)+
   scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
@@ -4493,7 +4495,7 @@ habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
   facet_wrap(~src, nrow = 1)+
   guides(fill = F)+
   #theme(legend.position = "bottom")+
-    scale_fill_solarized()
+  scale_fill_solarized()
 
 habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   mutate(src = factor(src, levels = c( 
@@ -4511,7 +4513,7 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   geom_abline(intercept = 0, slope = 1, lty = 3)+
   geom_linerange(alpha = 0.7)+
   geom_errorbarh(alpha = 0.7)+
-  geom_point(shape = 21)+
+  geom_point(shape = 21, size = 4)+
   scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
@@ -4556,7 +4558,7 @@ left_join(m.hab.predictive.endorse.rsa %>%
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 10.5, fig.height = 11}
+```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 10, fig.height = 9.5, cache=F}
 legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
 
 # add the legend underneath the row we made earlier. Give it 10% of the height
