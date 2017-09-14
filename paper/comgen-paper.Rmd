@@ -1779,23 +1779,39 @@ d.gen.endorse.bayes <- left_join(
          high = qbeta(.975, a, b),
          MAP_h = (a-1)/(a+b-2),
          mean = a / (a + b)) %>% 
-  ungroup() %>%
-  mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))
+  ungroup()
 
+
+d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
+                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+
+d.prev.summary <- d.prev %>%
+  mutate(item = paste(Category, " ", Property, ".", sep = "")) %>%
+  filter(item %in% d.gen.endorse.bayes$sentence) %>%
+  mutate(prevalence = prevalence / 100) %>%
+  group_by(Category, Property, item) %>%
+  multi_boot_standard(column = "prevalence")
 
 # d.gen.endorse.summary %>%
 #   ggplot(., aes(x = sentence, y = mean, ymin = ci_lower, ymax = ci_upper))+
-generics.endorsement.spectrum <- d.gen.endorse.bayes %>%
+generics.endorsement.spectrum <- left_join(
+  d.gen.endorse.bayes, d.prev.summary %>% rename(sentence = item, prev = mean, prev_low = ci_lower, prev_high = ci_upper)
+) %>%
+  mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))  %>%
   #ggplot(., aes(x = sentence, y = MAP_h, ymin = low, ymax = high))+
-  ggplot(., aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5))+
-  geom_bar(stat = 'identity', position = position_dodge(),fill = 'grey')+
+  ggplot(., aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev))+
+  geom_bar(stat = 'identity', position = position_dodge(), color= 'black', alpha = 0.9)+
   geom_linerange(position = position_dodge())+
   #geom_errorbar(position = position_dodge())+
   coord_flip()+
-  ylab("Proportion Endorsement")+
+  ylab("Human generic endorsement")+
   xlab("")+
   #scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1))+
-  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))#+
+  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
+  scale_fill_continuous(breaks = c(0, 1), limits = c(0, 1))+
+  guides(fill = guide_colorbar(title = 'feature probability',
+                               ticks = F))+
+  theme(legend.position = 'bottom')
   #geom_hline(yintercept = -0.25, lty = 3)+
   #geom_hline(yintercept = 0.25, lty = 3)
 ```
@@ -1914,7 +1930,7 @@ As a control model, we use the same infrastructure but assign a fixed semantics 
 This control model has both features (i) and (ii) but lacks the uncertainty over the threshold.
 This provides a strict test of our *simple but underspecified* hypothesis.
 
-```{r generic-regression-models, cache = T}
+```{r generic-regression-models}
 d.cv <- read.csv(paste(project.path, "data/generics/endorsement/", "cue-validity-2-freeProduction-trials.csv", sep = ""))
 
 d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "originalStims_wrongDeployment.json", sep = "")) %>%
@@ -1939,17 +1955,6 @@ d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "or
     sentence = paste(Category, Property),
     item = paste(category, property))
 
-
-d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
-                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
-
-
-d.prev.summary <- d.prev %>%
-  mutate(item = paste(Category, Property)) %>%
-  filter(item %in% d.target.items$sentence) %>%
-  mutate(prevalence = prevalence / 100) %>%
-  group_by(Category, Property, item) %>%
-  multi_boot_standard(column = "prevalence")
 
 d.cv.bootstrapped <- data.frame()
 resample_n <- length(levels(factor(d.cv$workerid)))
@@ -2040,7 +2045,8 @@ d.gen.endorse.prev.cue <- left_join(
       rename(prev_mean = mean,
              sentence = item,
              prev_ci_lower = ci_lower,
-             prev_ci_upper = ci_upper)
+             prev_ci_upper = ci_upper) %>%
+      mutate(sentence = gsub('[.]', '', sentence))
     ),
   d.gen.cv.summary %>% select(-item))
 
@@ -2280,17 +2286,18 @@ generics.endorsement.models <- bind_rows(
   ggplot(., aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
-  geom_linerange(alpha = 0.7)+
-  geom_errorbarh(alpha = 0.7)+
-  geom_point(shape = 21)+
+  geom_linerange(alpha = 0.4)+
+  geom_errorbarh(alpha = 0.4)+
+  geom_point(shape = 21, size = 3)+
   scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
-  scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
   coord_fixed()+
   xlab("Model prediction")+
   ylab("Human generic endorsement")+
   facet_wrap(~src, nrow = 2)+
-  theme(legend.position = "bottom")
+  #theme(legend.position = "bottom")+
+  guides(fill = F)
 ```
 
 
@@ -2425,7 +2432,7 @@ generics.endorsement.insets <- gen.inset.distributions %>%
 
 
 
-```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent feature-probability alone (lower left) and feature-probability + cue validity (lower right). Bottom: Five example feature-probability priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent feature-probability. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach)."}
+```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent feature-probability alone (lower left) and feature-probability + cue validity (lower right). Bottom: Five example feature-probability priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent feature-probability. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
 grid.arrange(generics.endorsement.spectrum, 
              generics.endorsement.models,
              generics.endorsement.insets, ncol = 2,
@@ -3196,7 +3203,7 @@ fig.habituals.endorsement.vs.freq <-
   geom_jitter(width = 0.1, shape = 21, size = 5)+
   ylab("Human endorsement probability")+
   xlab("Frequency of target")+
-  geom_text_repel(data = d.hab.endorsement.bayes %>% 
+  geom_label_repel(data = d.hab.endorsement.bayes %>% 
                     mutate(sentence = paste(habitual, time_period, sep = "_")) %>%
                     filter(sentence %in% example.habituals), aes( label = habitual ),
                        color = 'black', fill = 'white',
@@ -3208,10 +3215,12 @@ fig.habituals.endorsement.vs.freq <-
                      labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
   scale_y_continuous(limits = c(-0.01, 1.01), 
                      breaks = c(0, 0.5, 1))+
+  scale_fill_continuous(breaks = c(0, 5))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
         legend.position = "bottom")+
   coord_fixed(ratio = 7)+
-  guides(fill = guide_colorbar(title = 'log annual rate'))
+  guides(fill = guide_colorbar(title = 'log annual rate',
+                               ticks = F))
 ```
 
 
