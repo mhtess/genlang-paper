@@ -22,9 +22,11 @@ header-includes:
   - \usepackage{caption}
   - \usepackage{booktabs}
   - \usepackage{amsmath}
+  - \usepackage{graphicx}
+  - \usepackage{subcaption}
 
 author_note: >
-  Enter author note here.
+  This manuscript is currently in prep. Comments or suggestions should be directed to MHT.
 
 abstract: > 
     Generalizations are central to human understanding and language provides simple ways to convey them (e.g., "Dogs bark").
@@ -1046,13 +1048,24 @@ The experiment took about 10 minutes and participants were compensated \$1.00.
 #### Procedure and materials
 
 On each trial of the experiment, participants filled out a table where each row was an animal category and each column was a property. 
-Participants first were shown six animal categories randomly sampled from a set corresponding to the generic sentences used in Expt. 1b (e.g., \textsc{robins, mosquitos}) and were asked to generate five of their own.
+Participants first were shown six animal categories randomly sampled from a set corresponding to the generic sentences used in Expt. 1b (e.g., \textsc{robins, mosquitos}) and were asked to generate five of their own (Figure \ref{fig:generics-prior-task} left).
 
 A column then appeared to the right of the animal names with a property in the header (e.g., *lays eggs*).
-Participants were asked to fill in each row with the percentage of members of each of the species that had the property by giving a number (e.g., "50\%").
+Participants were asked to fill in each row with the percentage of members of each of the species that had the property by giving a number (e.g., "50\%"; Figure \ref{fig:generics-prior-task} right).
 Eight property--columns appeared in the table, and this whole procedure was repeated two times.
 In total, each participant generated ten animal names and reported on the feature-probability of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
+
+
+\begin{figure}
+\centering
+    \includegraphics[width=\columnwidth]{figs/generics-prior-bothStages.pdf}
+    \caption{Design of Experiment 1a for eliciting prior knowledge about feature-probabilities. Left: Participants first generated animal names after seeing six example categories. Right: One feature at a time, participants estimated the percentage of the category with the feature, for each category.}
+    \label{fig:generics-prior-task}
+\end{figure}
+
+
+<!-- ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. -->
 
 ### Bayesian analysis
 
