@@ -127,7 +127,7 @@ options("scipen"=10)
 Knowing that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be necessary to thrive in our open-ended world.
 Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding that lightning strikes tall objects).
 It thus is crucial that language allow us to communicate such *generalizations* to each other.
-By sharing generalizations, we flourish collectively without individually needing to taste  potentially-poisonous plants or personally witness enough lightning strikes.
+By sharing generalizations, we flourish collectively without individually needing to taste  potentially-poisonous plants or personally witness many lightning strikes.
 Furthermore, communicating generalizations from one generation to the next may be a foundational mechanism behind the faithful transmission of knowledge necessary for cumulative cultural evolution [@Tomasello1999; @Henrich2015].
 
 <!-- Generalizations can be acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. \ndg{cite older stuff. eg hume} -->
@@ -139,9 +139,9 @@ Furthermore, communicating generalizations from one generation to the next may b
 
 Generalizations in language are often studied in *generic language* (or, generics): simple statements that convey generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
 Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which 2-and-a-half-year-olds appreciate [@Cimpian2008].
+In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which 2-and-a-half-year-olds already appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
-Generics are just one case of generalization in language, however;  events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
+Generics are just one case of generalization in language, however;  events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as can causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
 It is believed that every language can express generalizations [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
@@ -151,12 +151,13 @@ It is believed that every language can express generalizations [@Behrens2005; @C
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
 Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions about human understanding.
-A formal model in this domain is useful to make explicit the relevant assumptions of a psychological or linguistic hypothesis for predicting human behavior; this, in turn, makes the theory more falsifiable. 
+A formal model is useful to make explicit the relevant assumptions of a psychological or linguistic hypothesis that is meant to predict human behavior; this, in turn, makes the theory more testable. 
+\ndg{we go on to talk about informal models next... maybe this defense of formal models needs to be later? adjust flow somehow.}
 The major challenge in formalizing generalizations in language is determining what makes such statements true or false.
 When we hear "Dogs bark", it sounds like a universal statement, like *All* dogs bark.
 But the property doesn't apply to all dogs: Basenji dogs are barkless^[
 http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
-].
+], for example.
 The generalization could signal something weaker like *Most* dogs bark.
 <!-- Indeed, many generalizations seem to have the quantificational force of *most*. -->
 However, only a tiny fraction of moquitos carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
@@ -170,7 +171,7 @@ These observations have led to proposals that the statistics of the feature (e.g
 From this perspective, the statement "Bishops move diagonally" is true not because most bishops move diagonally, but rather because those are the rules of chess.
 With this perspective, @Leslie2007 proposes that generics express a cognitively primitive, default generalization. 
 The *generics as default* view argues that certain principles explain how generics become true or false.
-"Mosquitos carry malaria" conveys a dangerous or *striking property*, which is useful to know if you are to survive in a hostile world.
+"Mosquitos carry malaria" conveys a dangerous or striking property, which is useful to know if you are to survive in a hostile world.
 This theory predicts that generics which convey striking properties would be true even if the property was relatively uncommon (e.g., "Sharks attack swimmers"), which has been borne out emprically [@Cimpian2010; @Prasada2013].
 "Robins lay eggs" can be thought of as conveying a *characteristic property*, which permits its felicity despite only 50\% having the feature [@Prasada2006; @Prasada2013].
 
@@ -183,15 +184,16 @@ The diversity of generic statements highlighted by the conceptual accounts is in
 <!-- Is there some core meaning to *genericity*, a general unified principle that explains what makes generic statements true or false? -->
 
 We propose a formal, unified account of generalization in language that can make precise, quantitative predictions about these simple and ubiquituous utterances.
-We do so by first reviewing the much more well-studied form of generalization: generalization from observations. 
-The Bayesian probability calculus describes inductive generalizations in terms of probability, and this is a good model of human generalization [@Shepard1987; @Tenenbaum2001].
-We then formalize how these probabilities are communicated, using a rational model of communication --- the Rational Speech Act theory [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016].
+We do so by first considering a much more well-studied form of generalization: generalization from observations. 
+The Bayesian probability calculus describes inductive generalizations in terms of probability, and this is has proven to be a good model of human generalization [@Shepard1987; @Tenenbaum2001].
+Given that certain probabilities are the *result* of inductive generalization, it would make sense that these are the *object* of communication for generalizations. 
+We thus explore how these probabilities can be communicated in natural language. 
+We formalize this using a rational model of communication --- the Rational Speech Act (RSA) theory [@Frank2012; @Goodman2013; @Franke2015; @Goodman2016].
 Such models of rational communication describe the inferences listeners can draw from language, and the utterances speakers should say given their state of knowledge and communicative goals. 
 Heretofore, however, the fragments of language formalized in such models have been limited to *particular statements* that convey information about a specific entity or situation [e.g., in hyperbole: "My watch cost a million dollars"; @Kao2014, or vagueness: "John is tall"; @Lassiter2013].
-The language of generalization, however, does not make reference to entities in the world or concrete situations, but rather refer to unobservable concepts in the head.
-
+The language of generalization does not make reference to entities in the world or concrete situations, but rather refer to unobservable concepts in the head.
 Specifically, we explore the hypothesis that the core meaning of a generic statement and other language for conveying generalization concerns subjective probability in a *simple but underspecified* way.
-We formalize this hypothesis in a probabilistic model of language understanding, and derive predictions for the endorsements of such statements by considering whether or not a speaker would say the generalization to a listener.
+We combine this notion of generic semantics with RSA, and derive predictions for the endorsements of such statements by considering whether or not a speaker would bother to say the generalization to a listener.
 We show that this decision depends in systematic ways on the prior knowledge of the listener.
 
 Across three distinct case studies, we both measure and manipulate prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model.
@@ -200,9 +202,10 @@ Across three distinct case studies, we both measure and manipulate prior knowled
 Our three case studies correspond to generalizations about categories, events, and causes.
 We show that in each domain, our general theoretical framework explains endorsements about generalizations conveyed in language, while simpler models fall short. 
 
+\ndg{the next two paragraphs feel partly redundant with what just came...}
 The paper is organized as follows. 
 In Section 1, we describe the Bayesian framework for generalization from observations, serving as the foundation for our semantic theory.
-In Section 2, we formalize the hypothesis that the core of meaning of a generalization is *simple but underspecified* and incorporate this *uncertain semantics* into a framework for pragmatic language understanding -- the Rational Speech Act framework.
+In Section 2, we formalize the hypothesis that the core of meaning of a generalization is *simple but underspecified* and incorporate this *uncertain semantics* into the RSA framework for pragmatic language understanding.
 
 To test our model, we examine endorsements of generalizations in three domains: categories, events, and causes.
 Our model makes predictions about how endorsements should vary according to (i) the listener's prior world knowledge and (ii) the speaker's state of knowledge (or, belief distribution) that she seeks to communicate. 
@@ -210,7 +213,7 @@ In Section 3, we describe experiments that measure both quantities and relate th
 In Section 4, we describe experiments that manipulate the speaker's state of knowledge in communicating generalizations about events (*habitual language*).
 In Section 5, we describe experiments that manipulate both the listener's relevant prior knowledge and the speaker's state of knowledge in communicating generalizations about causes (*causal language*). 
 
-Across all of our experimental settings, we find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements (cumulative $r^2(N) = 0.XX$), where simpler models fall short.
+Across all of our experimental settings, we find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements (cumulative $r^2(N) = 0.XX$).
 In the final section of the paper, we discuss how our model paves a path to unifying the extant psychological, linguistic, and philosophical literatures on *genericity*.
 Our theory also opens up a number of new directions for understanding generalizations in language and building models that learn from language in the way that people learn from language.
 
