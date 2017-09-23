@@ -15,3 +15,8 @@ packrat/lib*/
 .Rhistory
 paper/comgen-paper.pdf
 models/*/results/*.csv
+paper/*pdf
+*/papaparse/
+*/webppl-csv/
+*.json
+paper/coverletter.synctex.gz

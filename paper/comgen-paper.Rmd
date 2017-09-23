@@ -151,8 +151,6 @@ It is believed that every language can express generalizations [@Behrens2005; @C
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
 Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions about human understanding.
-A formal model is useful to make explicit the relevant assumptions of a psychological or linguistic hypothesis that is meant to predict human behavior; this, in turn, makes the theory more testable. 
-\ndg{we go on to talk about informal models next... maybe this defense of formal models needs to be later? adjust flow somehow.}
 The major challenge in formalizing generalizations in language is determining what makes such statements true or false.
 When we hear "Dogs bark", it sounds like a universal statement, like *All* dogs bark.
 But the property doesn't apply to all dogs: Basenji dogs are barkless^[
@@ -179,6 +177,9 @@ Yet, generics are not limited to conveying rich, conceptual relations.
 Arbitrary relationships can also be expressed with generics (e.g., "Barns are red"; "Ravens are bigger than toasters") which seem only to be true only because of the statistics of the world [@Nickel2008; @Nickel2016; @Sterken2015].
 The *generics as default* view must then be supplemented with the principle that, in certain situations, statistics influence generic endorsement.
 The diversity of generic statements highlighted by the conceptual accounts is interesting, but insofar as generics are a single, unified phenomenon, there should be a general, unified principle that explains what makes the statements true or false.
+In addition, a unified theory should be formalized to make explicit the relevant assumptions of the psychological or linguistic hypothesis meant to predict human behavior; this, in turn, makes the theory more testable. 
+\ndg{we go on to talk about informal models next... maybe this defense of formal models needs to be later? adjust flow somehow.}
+\mht{moved it here}
 <!-- It is thus argued that there are qualitatively different kinds of generic statements (i.e., "striking", "characteristic", "statistical"), each with their own conditions on what makes them true. -->
 <!-- This diversity is interesting, but what is common across generics? -->
 <!-- Is there some core meaning to *genericity*, a general unified principle that explains what makes generic statements true or false? -->
