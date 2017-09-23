@@ -1,0 +1,174 @@
+// time ~/webppl-fork/webppl regression-smc.wppl --require ../node_modules/utils --require webppl-json generic 1
+
+var chain = last(process.argv) // load index as last command line index
+// penultimate argument is the semantics
+// generic = uncertain threshold
+// some = fixed threshold at lowest threshold value
+var targetUtterance = process.argv[process.argv.length - 2]
+
+var all_annealingFactors = [
+  5, 10, 25, 50, 75, 100, 200
+]
+
+var all_particles = [
+  10000, 20000, 30000
+]
+
+var annealingFactor = 10;//all_annealingFactors[chain % all_annealingFactors.length];
+var particles = 20;//all_particles[chain % all_particles.length];
+
+var responseDictionary = { "agree-key": true, "disagree-key": false };
+
+var dataPath = "../../../data/generics/endorsement/"
+var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv",
+    cueValidityDataFile = dataPath + "cue-validity-2-freeProduction-trials-wProperty.csv"
+
+
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
+    d_cue = dataFrame(utils.readCSV(cueValidityDataFile).data, ["targetMention"]),
+ 		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),
+		d_catch = dataFrame(utils.readCSV(endorsementCatchFile).data, ["pass"]);
+
+var data = {
+	prevalence: map(function(d){
+		extend(d, {
+			avoided_endval: avoidEnds(d.prevalence/100)
+		})
+	}, d_prior),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			extend(d, {
+				binaryResponse: responseDictionary[d.response]
+			})
+	}, d_endorsement)),
+  cue: d_cue
+};
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(d_catch, "pass"))
+)
+
+var logisticFunction = function(y) {
+   return 1 / (1 + exp(-y));
+};
+
+var properties = levels(data.endorsement, "Property");
+// should be 21 properties
+assert.ok(
+  properties.length == 21
+)
+
+var globalParamPriors = {
+	intercept: Uniform({a: -10, b: 10}),
+	prevalence: Uniform({a: -10, b: 10}),
+	cue: Uniform({a: -10, b: 10})
+}
+
+var sigmaPrior = Uniform({a: 0, b: 10});
+
+var prevalenceParamsPriors = {
+  g: Uniform({a: 0, b: 1}),
+  d: Uniform({a: 0, b: 100})
+};
+var cueValidity_thetaPrior = Uniform({a: 0, b: 1})
+
+var regression = function(){
+
+  var bs = {
+    intercept: sample(globalParamPriors.intercept),
+    prevalence: sample(globalParamPriors.prevalence),
+    cue: sample(globalParamPriors.cue)
+  }
+
+  var sigma = sample(sigmaPrior)
+
+  var linearFunction = function(xs){
+     return bs.intercept +
+     bs.prevalence * xs.prevalence +
+     bs.cue * xs.cue;
+  };
+
+  foreach(properties, function(p){
+
+    var categories = levels(_.filter(data.endorsement, {Property: p}), "Category");
+    var cueValidityData = _.filter(data.cue, {Property: p})
+
+    // make sure there's data
+    assert.ok(cueValidityData.length > 0)
+
+    foreach(categories, function(k){
+
+      var itemData = {
+				endorsement: _.filter(data.endorsement, {Category: k, Property: p}),
+				prevalence: _.filter(data.prevalence, {Category: k, Property: p})
+			};
+
+      // make sure there's data
+      assert.ok(
+        (itemData.prevalence.length > 0) && (itemData.endorsement.length > 0)
+      )
+
+      // analyze prevalence data
+      var prevalenceParams = {
+        g: sample(prevalenceParamsPriors.g),
+        d: sample(prevalenceParamsPriors.d)
+      };
+
+			var prevalenceShapes = betaShape(prevalenceParams);
+      // display(itemData.prevalence)
+      var ll_prevalence = sum(map(function(d){
+				return Beta(prevalenceShapes).score(d.avoided_endval)
+			}, itemData.prevalence))
+
+      var factor_prevalence = function(){ factor(ll_prevalence / annealingFactor) }
+
+      repeat(annealingFactor, factor_prevalence)
+
+      // analyze cue validity data
+      var cueValidity_theta = sample(cueValidity_thetaPrior),
+          cueValidity_k = _.filter(cueValidityData, {targetMention: 1}).length,
+          cueValidity_n = cueValidityData.length;
+
+      var ll_cuevalidity = Binomial({p: cueValidity_theta, n: cueValidity_n}).score(cueValidity_k)
+
+      var factor_cuevalidity = function(){ factor(ll_cuevalidity / annealingFactor) }
+
+      repeat(annealingFactor, factor_cuevalidity)
+
+      var predictors = {
+        prevalence: beta(prevalenceShapes),
+        cue: cueValidity_theta
+      };
+
+      var prediction = linearFunction(predictors),
+          prediction_withNoise = gaussian({mu: prediction, sigma: sigma}),
+          logisticPrediction = Bernoulli({p: logisticFunction(prediction_withNoise) })
+
+      var genericsData = _.map(itemData.endorsement, "binaryResponse");
+
+      var ll_endorsement = sum(map(function(d){
+        return logisticPrediction.score(d)
+      }, genericsData))
+
+      var factor_endorsement = function(){ factor(ll_endorsement / annealingFactor) }
+
+      repeat(annealingFactor, factor_endorsement)
+
+    })
+
+  })
+
+}
+
+var outfile = 'results/normalizationConstant-generics-jointModel-regression-'+'smntcs_'+targetUtterance+"-SMCp"+ particles+'_annealingFactor'+annealingFactor+'_chain'+chain+'.csv'
+
+var posterior = Infer({ model: regression, particles, method: "SMC"})
+
+json.write(outfile, posterior.normalizationConstant)
+
+outfile + "   written";

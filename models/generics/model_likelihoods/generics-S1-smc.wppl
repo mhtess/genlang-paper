@@ -9,11 +9,11 @@ var targetUtterance = process.argv[process.argv.length - 2]
 // var particles = utils.parseInt(process.argv[process.argv.length - 2])
 
 var all_annealingFactors = [
-  1, 10, 50, 100, 200, 500, 1000
+  5, 10, 25, 50, 75, 100, 200
 ]
 
 var all_particles = [
-  50000, 75000, 100000
+  10000, 20000, 30000
 ]
 
 var annealingFactor = all_annealingFactors[chain % all_annealingFactors.length];
@@ -23,7 +23,7 @@ display("particles = " + particles)
 display("annealingFactor = " + annealingFactor)
 var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
 
-var dataPath = "../../data/generics/endorsement/"
+var dataPath = "../../../data/generics/endorsement/"
 var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
  		endorsementFile = dataPath + "truth-judgments-n100.csv",
 		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
@@ -220,8 +220,8 @@ var model = function(){
 
 var outfile = 'results/normalizationConstant-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-SMCp"+ particles+'_annealingFactor'+annealingFactor+'_chain'+chain+'.csv'
 
-// 1500 iterations / min (including burn-in)
-
 var posterior = Infer({ model, particles, method: "SMC"})
 
 json.write(outfile, posterior.normalizationConstant)
+
+outfile + " written";
