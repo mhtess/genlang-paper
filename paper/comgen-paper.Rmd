@@ -438,7 +438,8 @@ We denote feature-probability as $h$ to emphasize that it is a latent *hypothesi
 
 <!-- Suppose *a priori* we have no informative beliefs about the propensity (i.e., $P(x \in f \mid x \in k) \sim \text{Uniform}(0, 1)$). -->
 
-The human capacity to generalize from observations has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
+\ndg{smooth out this par.}
+The human capacity to generalize from observations, deriving $h$ from example $x$s, has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
 From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007].
 The Bayesian probability calculus provides a computational description of generalization [e.g., @Tenenbaum2006; @Tenenbaum2011]: Observing some number of instances of $k$ with $f$ will update what an observer believes *a priori* (formally: a prior belief distribution) in order to make predictions about unobserved instances, via a posterior belief distribution.
 As a concrete example, consider the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$): $h = P(x \in \{\text{barks}\} \mid x \in \{\text{is a dog}\})$.
@@ -448,6 +449,7 @@ $$
 P(h \mid d) = \frac{P(d \mid h) \cdot P(h)}{\int_{h'}P(d \mid h') \cdot P(h')}
 $$
 
+\ndg{what is this par doing for us? delete?}
 Generalization from examples shows complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place.
 For instance, observing that an indigenous person living on a remote island *is brown and obese* provides considerably more information about the skin color of other islanders than about their weight [@Nisbett1983].
 This subtlety can be modeled by incorporating heiarchical structure into the prior belief distribution of a Bayesian model, allowing the model to represent and reason flexibly about different kinds of properties [@Kemp2008].
@@ -457,13 +459,18 @@ Studying generalizations from observational evidence can only take us so far, ho
 Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
 For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
 
+\ndg{i'm not sure that generalization from examples should have it's own section, as opposed to be a subsection or couple pars of the next...}
+
 # Generalization from Language
 
-If generalization from observations can be described using probability, then it seems  natural to consider the semantic content of an utterance that conveys generalization also to be relating to probability. 
-Perhaps the simplest, quantitative semantic theory is a *threshold semantics*: an utterance is true if some quantity or *degree* is above a threshold.
+If generalization from observations can be described using probability, then it seems  natural to consider the semantic content of an utterance that conveys a generalization to be related to probability. 
+If we wish to connect to the semantic tools of *truth values* \ndg{cite montague?}, then we will need to connect the scalar quantity of probability to a boolean truth value.
+Perhaps the simplest way to connect a scalar quantity to a truth value is with a *threshold semantics*: an utterance is true if the underlying quantity is above a threshold.
 For generalizations, the threshold would apply to the *feature-probability* $h$:^[
 We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her existing state of knowldege to form a subjective probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
 ]
+
+\ndg{why are there any deltas yet? so far we only want a truth functional semantics, so something like $\denote{u_{gen}} = h>\theta$. then we use the delta in eq:L0.}
 
 \begin{eqnarray}
 \delta_{\denote{u_{gen}}(h, \theta)} & = & P(u_{gen} \mid h, \theta) \label{eq:delta} \\ 
@@ -476,25 +483,24 @@ We emphasize that our account is based on an agent's subjective probability $h$.
 
 Following standard treatment from formal semantics, we represent the semantic content of an utterance by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$, which here returns probabilities proportional to $1$ for feature-probabilities $h$ greater than threshold $\theta$, and $0$ otherwise. 
 Logical quantifiers can be described using such a semantics (i.e., *some* is $h > 0$, all is $h = 1$).
-What threshold $\theta$ should be used for the generic generalization?
 
-To answer this, we draw a metaphor to Bayesian statistics and data analysis.
-When there is a latent parameter the Bayesian scientist knows little about, she puts a prior distribution over the parameter and infers the parameter's likely value by collecting data.
+What threshold $\theta$ should be used for the generic generalization?
+In Bayesian statistics, when there is a latent parameter that little is known about, one puts a prior distribution over the parameter and infers the parameter's likely value given any data.
 In a similar vein, we posit that the meaning of a generalization in language is *underspecified*; that is, there is not a fixed $\theta$ that corresponds to the generalization, but rather the listener has uncertainty over $\theta$---in the form of a prior distribution $P(\theta)$---and infers $\theta$ after hearing an utterance.
 Though it is possible that different $P(\theta)$s could be learned for different contexts, we assume this prior is identical across contexts and is completely uninformed by the context: $P(\theta) = \text{Uniform}(0, 1)$.
 
-Given the semantic likelihood function defined in Eq. \ref{eq:delta} and the prior distribution over thresholds $\theta$, we can formalize a **listener model** by specifying a prior distribution over feature-probabilities $P(h)$:
+Given the semantic function defined in Eq. \ref{eq:delta} and the prior distribution over thresholds $\theta$, we can formalize a **listener model** by specifying a prior distribution over feature-probabilities $P(h)$:
 
 \begin{eqnarray}
 L(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her beliefs about the feature-probability $h$ according to the meaning of an utterance $u$.
+Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her beliefs about the feature-probability $h$ according to the meaning of an utterance $u$. \ndg{i don't like describing L0 as a bayesian agent, because this is not an instance of Bayes' rule (because the semantics doesn't provide a likelihood, but only a weight)}
 $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance.
 $P(h)$ represents the listener's prior world knowledge concerning the relevant feature-probabilities $h$.
 The particular form of the **feature-probability prior** $P(h)$ plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008].
-This component of the model provides a potential bridge to conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013].
-Contrary to these accounts, in our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$.
+In our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$.
+This is a different approach than in conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013], but provides a potential bridge, as explored later.
 
 <!-- Our proposal that generic language and other forms of communicating generalizations convey information about probabilities that underly generalization and prediction implies that the conceptual factors of the kind discussed by Prasada, Leslie, et al. influence the meaning of a generic statement via their influence on subjective probability. -->
 <!-- Flexible, structured models of the world have been shown to do just that in the case of generalizations from observations, merging structured representations with probabilisitic inference [e.g., @Kemp2008; @Goodmanconcepts]. -->
