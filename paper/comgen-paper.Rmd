@@ -512,7 +512,7 @@ This is a different approach than in conceptual accounts of generics [e.g., @Les
 
 
 In this paper, we are interested in explaining the variable *endorsements* of generalizations (e.g., "Robins lay eggs" is good; "Robins are female" is not) based on some known or believed feature-probability $h$ in a referent category (e.g., only female robins lay eggs).
-Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe a **speaker model** as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}).
+Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe a **speaker model** as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}). \ndg{prabably should say something more about modeling endorsements as a speaker model...}
 
 \begin{equation} 
 S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)}  \diff \theta )}
@@ -522,28 +522,28 @@ S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)
 The speaker $S$ doesn't know the threshold $\theta$; rather, he integrates over the likely values that the listener will believe. 
 Additionaly, following RSA, the speaker model is assumed to be an approximately rational Bayesian agent with rationality governed by parameter $\lambda$, which acts as a soft-max function.
 
-The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate the **referent feature-probability** $h$ to the listener $L$, in comparison to alternative utterances.^[A more general version of this model can relax the assumption that the speaker has access to a specific feature-probability $h$ that he is trying to communicate.
+\ndg{i wonder if we shoud start with the speaker / endorsement idea? introducing the listener and semantics might be more natural then.}
+
+The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate the **feature-probability** $h$ to the listener $L$, in comparison to alternative utterances.^[A more general version of this model can relax the assumption that the speaker has access to a specific feature-probability $h$ that he is trying to communicate.
 Rather, the speaker may have a belief distribution over $h$ for the category $k$, corresponding to the speaker's beliefs about the feature-probability of the property in the category. 
 In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
 $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
 ]
-We specify a single alternative utterance corresponding to *not saying the generalization*:
-With just these two alternatives (say the generalization vs. not), the model can be interpreted as a model of felicity judgments or sentence *endorsement* [@Degen2014]. 
-Formally, we consider the negative alternative as the option of staying quiet, which carries no information content^[
+We specify a single alternative utterance corresponding to *staying silent*^[
 This alternative can be realized in at least two other ways: the speaker could have said the negation of the utterance (i.e., *The generalization is not true.*) or the negative generalization (i.e., *The opposite is true.*, e.g., *Ks do not have F*).
 All results reported are similar for these two alternatives, and we use the alternative of the *silent* utterance for simplicity.
 ]:
-
+With just these two alternatives (say the generalization vs. not), the model can be interpreted as a model of felicity judgments or sentence *endorsement* [@Degen2014]. \ndg{why?}
+Because staying silent carries no information content to the listener, it can be modeled as a uniform utterance:
 \begin{equation*}
-\delta_{\denote{u_{silence}}(h, \theta)} \propto \begin{cases}
-1 &\text{for all h}
-\end{cases}
+\denote{u_{silence}(h, \theta)} \propto \text{True}
 \end{equation*}
+\ndg{i simplified the eq... ok?}
 
 
-The pair of speaker-listener models presented above correspond to the simplest possible communicative models with an underspecified threshold-meaning for a generalization. 
-The *simple but underspecified* hypothesis defines a *family* of models, however, with potentially more levels of recursion (e.g., a listener who thinks about a speaker who thinks about a listener).
-To our knowledge there is no unifying computational account of linguistic genericity and as such, the primary theoretical interest of this paper is to outline such an account, rather than discuss possible variations within it. 
+The pair of speaker-listener models presented above correspond to the simplest communicative models with an underspecified threshold-meaning for a generalization. 
+Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener).
+The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it. 
 However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
 We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix.
 
