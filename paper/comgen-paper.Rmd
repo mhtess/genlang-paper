@@ -137,11 +137,11 @@ Furthermore, communicating generalizations from one generation to the next may b
 <!-- Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization. -->
 <!-- \ndg{this par doesn't really do much} -->
 
-Generalizations in language are often studied in *generic language* (or, generics): simple statements that convey generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
+Generalizations in language are often studied via *generic language* (or, generics): simple statements that convey generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
 Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which 2-and-a-half-year-olds already appreciate [@Cimpian2008].
+In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which even 2-and-a-half-year-olds appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
-Generics are just one case of generalization in language, however;  events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as can causality (*causal language*; e.g., "Staring at the sun makes you go blind.").
+Generics are just one case of generalization in language, however; events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causal relationships (*causal language*; e.g., "Staring at the sun makes you go blind.").
 It is believed that every language can express generalizations [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
@@ -164,7 +164,7 @@ The only quantifier that would permit such a statement would be *some* (e.g., "S
 But weakening the generalization to *some* goes too far: Half of robins are female, but saying "Robins are female" seems odd.
 That same half of robins (i.e., the females), however, also lay eggs, and "Robins lay eggs" is again intuively true. 
 
-These observations have led to proposals that the prevalence or probability of a member of a category having the property (e.g., $P(x \text{ barks} \mid x \text{ is a dog})$) is only tangentially related to generic meaning. 
+These observations have led to proposals that the prevalence or probability of a member of the category having the property (e.g., $P(x \text{ barks} \mid x \text{ is a dog})$) is only tangentially related to generic meaning. 
 *Conceptual accounts* of generics emphasize the structure of "generic knowledge" [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
 From this perspective, the statement "Bishops move diagonally" is true not because bishops tend to move diagonally, but rather because those are the rules of chess.
 With this in mind, @Leslie2007 proposes *cognitively primitive* principles that dictate how generics become true or false.
@@ -177,7 +177,7 @@ Yet others have observed that generics are not limited to conveying rich, concep
 "Ravens are bigger than toasters" because of the size of ravens and the size of toasters, not because of a special relationship between ravens and toasters.
 *Conceptual accounts* must then be supplemented with the proviso that, in certain situations, the statistics of the world do influence human intuitions about generics.
 
-Needless to say, generic statements are a diverse class, and the conceptual view highlights this diversity [e.g., @Prasada2013].
+Hence, generic statements are a diverse class, and the conceptual view highlights this diversity [e.g., @Prasada2013].
 But insofar as generics are a single class in language---indeed, insofar as they are a subclass of generalization in language---there should be a general, unified principle that explains what makes the statements true or false.
 The same logic should apply to all generalizations in language, including habitual and causal language.
 This is the goal of this paper.
@@ -191,18 +191,18 @@ In this paper, we take a critical look at the notion that prevalence---or its mo
 We strive for a probability-based semantics for its generality: Probability is the universal currency of belief and serves as a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
 Given that certain probabilities are the *result* of inductive generalization, it would make sense that these are the *object* of communication for generalizations. 
 We formalize such a semantics in a general probabilistic framework for modeling cognition, and thus incorporate generalizations in language into models designed to formalize concepts and intuitive theories [@Goodmanconcepts].
-Formalizing such a theory is scientifically useful as well to make explicit the assumptions of the psycho--linguistic hypothesis meant to match human intuitions; this, in turn, makes the theory more testable. 
+Formalizing such a theory is scientifically useful as well to make explicit the assumptions of the psycho--linguistic hypothesis meant to match human intuitions, which in turn, elucidates the conditions under which the theory may be meaningfully tested. 
 
 We take the primary desideratum for a theory of the language of generalization to be adult human intuitions into the truth or felicity of statements conveying generalization, which we measure empirically. 
 To test the theory that probability can serve as the core semantic theory, we build a computational model of endorsement around this core semantic theory and compare our model to human judgments.
 Though concepts such as *striking properties* are not explicitly formalized in our model, there is a natural avenue for future integration as our theory is couched in a general cognitive modeling framework.
 
-Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecified* function of probability.
+Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecfied* function of probability and where context helps resolve the underspecification.
+In its simplest form, context takes the shape of interlocutors' shared beliefs about the relevant properties or categories under discussion [cf., @Grice1975; @Clark1996; @Levinson2000].
 We then ask what a rational speaker---who can only either endorse the generalization or stay silent---would say in different contexts; this is our formal model of endorsement.
-We show that the decision to endorse depends in systematic ways on the prior knowledge of the agent who hears the generalizations, the listener.
-We test this theory in three distinct case studies, by both measuring and manipulating listener prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model.
-Our three case studies correspond to generalizations about categories, events, and causes.
-We show that in each domain, our general theoretical framework explains endorsements about generalizations conveyed in language, while simpler models fall short. 
+We show how the decision to endorse depends in systematic ways on the shared prior knowledge of the interlocutors. \mht{"interlocutors" may be confusing here...}
+We test this theory in three distinct case studies---generalizations about categories, events, and causes---by both measuring and manipulating prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model.
+<!-- We show that in each domain, our general theoretical framework explains endorsements about generalizations conveyed in language, while simpler models fall short.  -->
 
 <!-- We think prevalence may have been cast aside too quickly for two main reasons: (i) in previous empirical work, prevalence has been rather narrowly defined, as frequency, where in fact it can be more generally seen as probability (ii) the backround knowledge that adult speakers, whose intuitions are consulted to establish a theory of meaning, may bring to the table has not been explicitly considered or formalized in studies and theoretical work into the language of generalization. -->
 
@@ -383,14 +383,14 @@ We find that this formalism resolves the philosophical and empirical puzzles.
 
 
 
-# Generalization from Observations
+# Computational Framework
 
 Generalizations are used to make predictions about properties of instances that an agent has yet to experience [@HumeTHN].
-People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find me typing.
+People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find certain people typing.
 In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$. 
-The entities can be objects (a dog), events (a coffee drink), or more fine grained types (me on a given day).
+The specific exemplars can be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
 The properties can vary greatly (e.g., having fur, causing jitters, typing). 
-Yet the prediction for a new entity can be described as a *predictive probability*, which we will denote throughout the paper as $h$ and refer to as the **feature-probability**: 
+Yet the prediction for the new exemplar can be described as a *predictive probability*, which we will denote throughout the paper as $h$ and refer to as the **feature-probability**: 
 $h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$.^[
 We denote feature-probability as $h$ to emphasize that it is a latent *hypothesis*, and not necessarily an observable frequency or prevalence.
 ]
@@ -454,68 +454,122 @@ We denote feature-probability as $h$ to emphasize that it is a latent *hypothesi
 <!-- Suppose *a priori* we have no informative beliefs about the propensity (i.e., $P(x \in f \mid x \in k) \sim \text{Uniform}(0, 1)$). -->
 
 \ndg{smooth out this par.}
+
+## Generalization from observation
+
 The human capacity to generalize from observations, deriving $h$ from example $x$s, has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
 From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007].
-The Bayesian probability calculus provides a computational description of generalization [e.g., @Tenenbaum2006; @Tenenbaum2011]: Observing some number of instances of $k$ with $f$ will update what an observer believes *a priori* (formally: a prior belief distribution) in order to make predictions about unobserved instances, via a posterior belief distribution.
-As a concrete example, consider the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$): $h = P(x \in \{\text{barks}\} \mid x \in \{\text{is a dog}\})$.
-If an agent were to encounter some number of individual dogs and note how many of them bark ($d$), using Bayes' rule, she could form a posterior belief distribution about the probability that the next dog she encounters will bark (in other words, a belief about the barking capacity of dogs).
+Such inductive generalization can be described by the Bayesian probability calculus: An observer's initial beliefs or state of knowledge---called a prior belief distribution---is updated through experience (i.e., after making observations) and becomes a posterior belief distribution (what they belief *a posteriori*). 
+This posterior distribution becomes the observer's prior for the next observation she makes: it thus informs her predictions about unobserved instances.
 
+As a concrete example, consider a learner investigating the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$).
+$h$ describes the learner's subjective probability that the next dog she encounters will bark^[At the moment, we assume the feature \textsc{barks} is an all-or-none Boolean property. Later, we will see how the presence of this feature itself can be thought of as a generalization over events of barking.], or more abstractly, her belief about the barking capacity of dogs.
+That is, $h = P(x \text{ barks} \mid x \text{ is a dog})$.
+The learner does not know $h$, but has some idea about what $h$ could be; this is represented by $P(h)$, the learner's prior beliefs about how likely it is that $x$ will bark given that $x$ is a dog.
+
+The observer goes around the world, encountering dogs and taking note of how many bark.
+This could be represented as a number of positive examples $d$ out of a number of total examples $n$. 
+With the weak assumption that the dogs she has observed were all independent and identically-distributed (*i.i.d.*) random samples from the category of dogs, the likelihood of her observations are given by the Binomial distribution. 
+That is, $d \sim  \text{Binomial}(n, h)$, where $d$ is the number of dogs she has seen that bark, $n$ is the total number of dogs she has seen, and $h$ is the feature-probability of barking among dogs.
+This is called a likelihood function: It determines how well a given value of $h$ predicts the observed $d$. 
+Given a formal description of the learner's state of knowledge before any observations $P(h)$ and the learner's assumptions about how the data she observed were generated (e.g., the *i.i.d.* assumption), what a learner should believe after having seen the data is proportional to the product of these two terms, as given by Bayes' Rule:
 $$
-P(h \mid d) = \frac{P(d \mid h) \cdot P(h)}{\int_{h'}P(d \mid h') \cdot P(h')}
+P(h \mid d) \propto P(d \mid h) \cdot P(h)
 $$
-
-\ndg{what is this par doing for us? delete?}
-Generalization from examples shows complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place.
-For instance, observing that an indigenous person living on a remote island *is brown and obese* provides considerably more information about the skin color of other islanders than about their weight [@Nisbett1983].
-This subtlety can be modeled by incorporating heiarchical structure into the prior belief distribution of a Bayesian model, allowing the model to represent and reason flexibly about different kinds of properties [@Kemp2008].
-Observations that are generated by an intentional agent can lead to similarly subtle inferences, like deconfounding otherwise ambiguous causal evidence [@Goodman2009].
-
-Studying generalizations from observational evidence can only take us so far, however, in understanding how the mind understands the world or culture accumulates across generations.
+$P(h \mid d)$ is then the strength of the learner's belief in the next dog she encounters barking.
+This simple idea of integrating observational evidence with prior knowledge is surprisingly powerful in explaining a multitude of diverse phenomena, from perception to word learning to inductive reasoning [e.g., @Tenenbaum2006; @Tenenbaum2011].
+<!-- \ndg{what is this par doing for us? delete?} -->
+<!-- Generalization from examples shows complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place. -->
+<!-- For instance, observing that an indigenous person living on a remote island *is brown and obese* provides considerably more information about the skin color of other islanders than about their weight [@Nisbett1983]. -->
+<!-- This subtlety can be modeled by incorporating heiarchical structure into the prior belief distribution of a Bayesian model, allowing the model to represent and reason flexibly about different kinds of properties [@Kemp2008]. -->
+<!-- Observations that are generated by an intentional agent can lead to similarly subtle inferences, like deconfounding otherwise ambiguous causal evidence [@Goodman2009]. -->
+Yet generalizations from observational evidence is limited in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
 Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
+How do we acquire these generalizations?
 For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
 
-\ndg{i'm not sure that generalization from examples should have it's own section, as opposed to be a subsection or couple pars of the next...}
+## Generalization from language
 
-# Generalization from Language
-
-If generalization from observations can be described using probability, then it seems  natural to consider the semantic content of an utterance that conveys a generalization to be related to probability. 
-If we wish to connect to the semantic tools of *truth values* \ndg{cite montague?}, then we will need to connect the scalar quantity of probability to a boolean truth value.
-Perhaps the simplest way to connect a scalar quantity to a truth value is with a *threshold semantics*: an utterance is true if the underlying quantity is above a threshold.
-For generalizations, the threshold would apply to the *feature-probability* $h$:^[
+If generalization from observations can be described using probability, then it seems natural to consider probability to be central to the semantic content of an utterance that conveys a generalization.
+To connect to the semantic tools of *truth values* [@Montague1973], we will need to relate the scalar quantity of probability to a Boolean truth value.
+Perhaps the simplest way to connect a scalar quantity to a truth value is with a *threshold semantics*: An utterance is true if the underlying quantity is above a threshold.
+For generalizations, then, the threshold would apply to the *feature-probability* $h$:^[
 We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her existing state of knowldege to form a subjective probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
 ]
+$$\denote{u_{gen}}(h, \theta) = \{h>\theta\}$$
 
-\ndg{why are there any deltas yet? so far we only want a truth functional semantics, so something like $\denote{u_{gen}} = h>\theta$. then we use the delta in eq:L0.}
+### Resolving underspecification
+
+What threshold $\theta$ should be used for the generalization?
+We posit that the language of generalization is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
+That is, we posit that $\theta$ is contextually-determined, and specifically that it is determined by Bayesian reasoning using relevant prior knowledge.
 
 \begin{eqnarray}
-\delta_{\denote{u_{gen}}(h, \theta)} & = & P(u_{gen} \mid h, \theta) \label{eq:delta} \\ 
-&\propto  &
-\begin{cases}
+Lit(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
+\end{eqnarray}
+
+Equation \ref{eq:L0} is a model of a "literal" listener $Lit$ who updates her beliefs about the feature-probability $h$ according to the meaning of an utterance $u$. 
+We formalize the underspecification of $\theta$ by a uninformed prior distribution over $\theta$ [i.e., *a priori* all thresholds are equally likely; cf., @Lassiter2013].
+The semantic content of an utterance is represented by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$, which here returns probabilities proportional to $1$ when the utterance is true (i.e., when $h > \theta$) and $0$ otherwise.
+
+\begin{eqnarray}
+\delta_{\denote{u_{gen}}(h, \theta)} &\propto  & \begin{cases}
 1 & \text{if } h > \theta \\
 0 & \text{otherwise}
-\end{cases}
+\end{cases}\label{eq:delta}
 \end{eqnarray}
 
-Following standard treatment from formal semantics, we represent the semantic content of an utterance by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$, which here returns probabilities proportional to $1$ for feature-probabilities $h$ greater than threshold $\theta$, and $0$ otherwise. 
-Logical quantifiers can be described using such a semantics (i.e., *some* is $h > 0$, all is $h = 1$).
+Finally, $h$ is sampled from a prior belief distribution $P(h)$, potentially informed by the property in question and discussed further below. 
 
-What threshold $\theta$ should be used for the generic generalization?
-In Bayesian statistics, when there is a latent parameter that little is known about, one puts a prior distribution over the parameter and infers the parameter's likely value given any data.
-In a similar vein, we posit that the meaning of a generalization in language is *underspecified*; that is, there is not a fixed $\theta$ that corresponds to the generalization, but rather the listener has uncertainty over $\theta$---in the form of a prior distribution $P(\theta)$---and infers $\theta$ after hearing an utterance.
-Though it is possible that different $P(\theta)$s could be learned for different contexts, we assume this prior is identical across contexts and is completely uninformed by the context: $P(\theta) = \text{Uniform}(0, 1)$.
+### Endorsement model
 
-Given the semantic function defined in Eq. \ref{eq:delta} and the prior distribution over thresholds $\theta$, we can formalize a **listener model** by specifying a prior distribution over feature-probabilities $P(h)$:
+The above model determines how $\theta$ should be resolved in context.
+Now, how do we decide when a statement conveying a generalization is true or not?
+To answer this question, we draw upon recently developed tools in the field of probabilistic pragmatics [@Franke2009; @Frank2012; @Franke2015; @Goodman2016].
+The felicity or endorsement of a statement can be modeled by a speaker model who has in his repetoire only two possible utterances: convey the statement to a naive listener or stay silent [@Franke2014cogsci; @Degen2014]. 
 
-\begin{eqnarray}
-L(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
-\end{eqnarray}
+\begin{equation} 
+E(u \mid h = h') \propto \exp{(\lambda \cdot U(u; h') )}
+\label{eq:S1}
+\end{equation}
 
-Equation \ref{eq:L0} is a model of a Bayesian listener $L$ who updates her beliefs about the feature-probability $h$ according to the meaning of an utterance $u$. \ndg{i don't like describing L0 as a bayesian agent, because this is not an instance of Bayes' rule (because the semantics doesn't provide a likelihood, but only a weight)}
-$\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance.
-$P(h)$ represents the listener's prior world knowledge concerning the relevant feature-probabilities $h$.
-The particular form of the **feature-probability prior** $P(h)$ plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008].
-In our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$.
-This is a different approach than in conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013], but provides a potential bridge, as explored later.
+Following the Rational Speech Act framework, the speaker (called $E$ for endorsement) is assumed to be an approximately rational Bayesian agent who produces utterances according to their utility $U$ with rationality governed by parameter $\lambda$, which acts as a soft-max function.
+Because we are interested in determining whether or not *feature-probability* alone is sufficient to formalize generalizations in language, we define the endorsement utility as a function of only the utterance (say the generalization or stay silent) and the *referent-category feature-probability* $h'$ (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$).
+
+The utility of an utterance is defined by how well it conveys the speaker's beliefs ($h'$) to a naive listener $Lit$, after integrating out her residual uncertainty about $\theta$.^[A more general version of this model can relax the assumption that the endorser has access to a specific feature-probability $h'$ that he is trying to communicate.
+Rather, the endorser may have a belief distribution over $h'$ for the category $k$, corresponding to the endorser's beliefs about the feature-probability of the property in the category. 
+In this situation, we would define the endorsement utility to be the expected value of the informativity, which integrates over the endorser's belief distribution:
+$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
+]
+The literal semantics for the generalization is the threshold function described above; the literal semantics for the option of staying silent carries no informational content:  $\denote{u_{silence}(h, \theta)} \propto \text{True}$.^[
+This "silent" alternative can be realized in at least two other ways: the endorser could say the negation of the generalization (i.e., "It is not the case that Ks F") or the negative generalization (i.e., "Ks do not have F").
+All results reported are similar for these two alternatives, and we use the alternative of the *silent* utterance for simplicity.
+]
+
+\begin{equation} 
+U(u; h') =  \ln{ \int_{\theta} Lit(h = h', \theta \mid u)  \diff \theta } \label{eq:utility}
+\end{equation}
+
+Thus, Eq. \ref{eq:S1} provides a mapping from a *referent-category feature-probability* $h'$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"). 
+It does this assuming a threshold semantics that deals only with *feature-probabilities* but without us having to specify the threshold (note that there is not $\theta$ is Eq. \ref{eq:S1}).
+Rather, the uncertainty over $\theta$ is resolved *internal* to the cognitive model, by reasoning about the literal semantics and the prior distribution over feature-probabilities $P(h)$.
+
+The endorsement model presented above is a special case of a family of rational models of communication that use an underspecified threshold-meaning for a generalization.
+
+Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener).
+The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it. 
+However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
+We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix.
+
+
+
+
+<!-- In Bayesian statistics, when there is uncertainty about latent parameter, one specifies a prior distribution over the parameter and reasons backward about the parameter's likely value given any data. -->
+<!-- In a similar vein, we posit that the meaning of a generalization in language is *underspecified*; that is, there is not a fixed $\theta$ that corresponds to the generalization, but rather the listener has uncertainty over $\theta$---in the form of a prior distribution $P(\theta)$---and infers $\theta$ after hearing an utterance. -->
+<!-- Though it is possible that different $P(\theta)$s could be learned for different contexts, we assume this prior is identical across contexts and is completely uninformed by the context *a priori*: $P(\theta) = \text{Uniform}(0, 1)$. -->
+
+<!-- \ndg{i wonder if we shoud start with the speaker / endorsement idea? introducing the listener and semantics might be more natural then.} -->
+
 
 <!-- Our proposal that generic language and other forms of communicating generalizations convey information about probabilities that underly generalization and prediction implies that the conceptual factors of the kind discussed by Prasada, Leslie, et al. influence the meaning of a generic statement via their influence on subjective probability. -->
 <!-- Flexible, structured models of the world have been shown to do just that in the case of generalizations from observations, merging structured representations with probabilisitic inference [e.g., @Kemp2008; @Goodmanconcepts]. -->
@@ -524,45 +578,16 @@ This is a different approach than in conceptual accounts of generics [e.g., @Les
 <!-- L(h \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h)} \label{eq:L0fixed} -->
 <!-- \end{eqnarray} -->
 
+### The feature-probability prior and model simulations
+
+<!-- $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance. -->
+<!-- $P(h)$ represents the listener's prior world knowledge concerning the relevant feature-probabilities $h$. -->
+<!-- The particular form of the **feature-probability prior** $P(h)$ plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008]. -->
+<!-- In our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$. -->
+<!-- This is a different approach than in conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013], but provides a potential bridge, as explored later. -->
 
 
-In this paper, we are interested in explaining the variable *endorsements* of generalizations (e.g., "Robins lay eggs" is good; "Robins are female" is not) based on some known or believed feature-probability $h$ in a referent category (e.g., only female robins lay eggs).
-Following the Rational Speech Act (RSA) framework [@Goodman2016], we describe a **speaker model** as a Bayesian decision of whether or not to say the generalization to the listener $L$ (Eq. \ref{eq:L0}). \ndg{prabably should say something more about modeling endorsements as a speaker model...}
 
-\begin{equation} 
-S(u \mid h) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} L_0(h, \theta \mid u)}  \diff \theta )}
-\label{eq:S1}
-\end{equation}
-
-The speaker $S$ doesn't know the threshold $\theta$; rather, he integrates over the likely values that the listener will believe. 
-Additionaly, following RSA, the speaker model is assumed to be an approximately rational Bayesian agent with rationality governed by parameter $\lambda$, which acts as a soft-max function.
-
-\ndg{i wonder if we shoud start with the speaker / endorsement idea? introducing the listener and semantics might be more natural then.}
-
-The speaker's decision to say an utterance (e.g., the generalization) is determined by how well it would communicate the **feature-probability** $h$ to the listener $L$, in comparison to alternative utterances.^[A more general version of this model can relax the assumption that the speaker has access to a specific feature-probability $h$ that he is trying to communicate.
-Rather, the speaker may have a belief distribution over $h$ for the category $k$, corresponding to the speaker's beliefs about the feature-probability of the property in the category. 
-In this situation, we would define the speaker's utility to be the expected value of the informativity, which integrates over her belief distribution:
-$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
-]
-We specify a single alternative utterance corresponding to *staying silent*^[
-This alternative can be realized in at least two other ways: the speaker could have said the negation of the utterance (i.e., *The generalization is not true.*) or the negative generalization (i.e., *The opposite is true.*, e.g., *Ks do not have F*).
-All results reported are similar for these two alternatives, and we use the alternative of the *silent* utterance for simplicity.
-]:
-With just these two alternatives (say the generalization vs. not), the model can be interpreted as a model of felicity judgments or sentence *endorsement* [@Degen2014]. \ndg{why?}
-Because staying silent carries no information content to the listener, it can be modeled as a uniform utterance:
-\begin{equation*}
-\denote{u_{silence}(h, \theta)} \propto \text{True}
-\end{equation*}
-\ndg{i simplified the eq... ok?}
-
-
-The pair of speaker-listener models presented above correspond to the simplest communicative models with an underspecified threshold-meaning for a generalization. 
-Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener).
-The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it. 
-However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
-We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix.
-
-## Model simulations
 
 All models were implemented in the probabilisitic programming language WebPPL [@dippl].
 The following simulations were implemented using the R package RWebPPL in the RMarkdown document that generated this paper text and figures.
