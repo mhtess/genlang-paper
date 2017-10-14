@@ -191,7 +191,7 @@ d.cv.targets <- left_join(
 
 d.cv.summary <- d.cv.targets %>%
   group_by(item, type) %>%
-  multi_boot_standard(column = "response")
+  multi_boot_standard(col = "response")
 
 
 # ggplot(d.cv.summary, aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
@@ -307,6 +307,7 @@ theoretical.cv <- data.frame(
 
 ```{r}
 cv.bothquestions.bars <- d.cv.bothtasks %>%
+  ungroup() %>%
   mutate(type = factor(type, levels = c( "false", "undiagnostic","diagnostic"))) %>%
   ggplot(., aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
   geom_bar(stat = 'identity', position = position_dodge(0.5),
@@ -510,7 +511,7 @@ d.cv.dq.all <- d.cv.dq %>%
   mutate(property = gsub("&quotechar", "", property), 
          item = paste(category, property)) %>%
   group_by(category, property) %>%
-  multi_boot_standard(column = 'response')
+  multi_boot_standard(col = 'response')
 
 md.dq <-  left_join( left_join(
     left_join(
