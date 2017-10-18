@@ -1,6 +1,6 @@
 ---
-title             : "Communicating generalizations"
-shorttitle        : "Communicating generalizations"
+title             : "The language of generalization"
+shorttitle        : "The language of generalization"
 
 author: 
   - name          : "Michael Henry Tessler"
@@ -122,6 +122,13 @@ project.path <- "../"
 options("scipen"=10) 
 ```
 
+<!-- 
+possible titles:
+- Communicating generalizations
+- The language of generalization
+- The language of generalization: Probability, vagueness, and interaction
+-->
+
 # Introduction 
 
 Learning that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to thrive in our open-ended world.
@@ -177,7 +184,7 @@ Yet others have observed that generics are not limited to conveying rich, concep
 "Ravens are bigger than toasters" because of the size of ravens and the size of toasters, not because of a special relationship between ravens and toasters.
 *Conceptual accounts* must then be supplemented with the proviso that, in certain situations, the statistics of the world do influence human intuitions about generics.
 
-Hence, generic statements are a diverse class, and the conceptual view highlights this diversity [e.g., @Prasada2013].
+Generic statements have diverse theoretical underpinnings, and the conceptual view highlights this diversity [e.g., @Prasada2013].
 But insofar as generics are a single class in language---indeed, insofar as they are a subclass of generalization in language---there should be a general, unified principle that explains what makes the statements true or false.
 The same logic should apply to all generalizations in language, including habitual and causal language.
 This is the goal of this paper.
@@ -189,12 +196,12 @@ This is the goal of this paper.
 
 In this paper, we take a critical look at the notion that prevalence---or its more general formulation, probability---cannot serve as the core of a semantic theory of generalization in language (including generics).
 We strive for a probability-based semantics for its generality: Probability is the universal currency of belief and serves as a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
-Given that certain probabilities are the *result* of inductive generalization, it would make sense that these are the *object* of communication for generalizations. 
-We formalize such a semantics in a general probabilistic framework for modeling cognition, and thus incorporate generalizations in language into models designed to formalize concepts and intuitive theories [@Goodmanconcepts].
-Formalizing such a theory is scientifically useful as well to make explicit the assumptions of the psycho--linguistic hypothesis meant to match human intuitions, which in turn, elucidates the conditions under which the theory may be meaningfully tested. 
+Given that certain probabilities are the *result* of inductive generalization, it would make sense that these are the object of communication for generalizations. 
+We formalize such a semantics in a general cognitive modeling framework, and thus incorporate generalizations in language into a larger class of models designed to formalize concepts and common-sense reasoning [@Goodmanconcepts].
+Formalizing such a theory is scientifically useful as well to make explicit the assumptions the theory, which in turn, elucidates the conditions under which the theory may be meaningfully tested. 
 
 We take the primary desideratum for a theory of the language of generalization to be adult human intuitions into the truth or felicity of statements conveying generalization, which we measure empirically. 
-To test the theory that probability can serve as the core semantic theory, we build a computational model of endorsement around this core semantic theory and compare our model to human judgments.
+To test the hypothesis that probability can serve as the core semantic theory, we build a computational model of endorsement around this semantic theory and compare our model to human judgments.
 Though concepts such as *striking properties* are not explicitly formalized in our model, there is a natural avenue for future integration as our theory is couched in a general cognitive modeling framework.
 
 Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecfied* function of probability and where context helps resolve the underspecification.
@@ -387,106 +394,57 @@ We find that this formalism resolves the philosophical and empirical puzzles.
 
 Generalizations are used to make predictions about properties of instances that an agent has yet to experience [@HumeTHN].
 People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find certain people typing.
-In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$. 
-The specific exemplars can be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
-The properties can vary greatly (e.g., having fur, causing jitters, typing). 
-Yet the prediction for the new exemplar can be described as a *predictive probability*, which we will denote throughout the paper as $h$ and refer to as the **feature-probability**: 
-$h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$.^[
-We denote feature-probability as $h$ to emphasize that it is a latent *hypothesis*, and not necessarily an observable frequency or prevalence.
-]
+In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$.
+This prediction can be described by a conditional probability: $h = P(x \in F \mid x \in K)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **feature-probability**.
+The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
+The properties can also vary widely (e.g., having fur, causing jitters, typing). 
+Yet the mathematical description of the inductive inference is always given by the conditional feature-probability $h$.
 
+How does one come to learn $h$, the uncertainty that underlies an inductive inference about a category having a property?
+One way is through observation: One can observe instances of the category $k$ and note how many of them have $f$.
+But the inferences derived from observation will depend upon on one's background knowledge about the property [@Gelman2003; @Keil1992].
+For example, if you observe an instance of a novel creature category that \emph{has two legs}, you may infer that all of that category has two legs.
+If an addition you observe that it has broken wings, the corresponding prediction of another instance having broken wings is not nearly as strong [@Nisbett1983].
+This kind of knowledge can be represented formally in a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule:
 
-<!-- To form a generalization about a category or kind $k$, an observer must be able to individuate an exemplar or instance $x$ as belonging to the category. -->
-<!-- This is faciliated through the use of labeling; the linguistic expression of such an individuation would manifest in utterances such as "$x$ is a $k$" or "this $k$ ..." -->
-<!-- To generalize a feature $f$ to that category, it is also necessary to be able to determine if the particular instance has the feature. -->
-<!-- That is, a speaker must be able to say "This $k$ (i.e., $x$) has $f$". -->
-<!-- We call this latter kind of statement a *particular*. -->
-
-<!-- ```{r table-generalization, results="asis"} -->
-<!-- df.tab <- data.frame( -->
-<!--   Generalization = c("Dogs are friendly", "John smokes", "Drinking moonshine makes you go blind"), -->
-<!--   #x = c("an instance of K in space", "an instance of K in time", "an instance of a "), -->
-<!--   "Generalization over" = c("Category", "Event", "Cause"), -->
-<!--   "Linguistic construct" = c("Generic", "Habitual", "Causal"), -->
-<!--   x = c("a dog", "an instance of John", "an instance of a person drinking moonshine"), -->
-<!--   k = c("DOGS", "JOHN", "DRINKING MOONSHINE"), -->
-<!--   f = c("is friendly", "is smoking / smoked at time t", "caused person to go blind") -->
-<!-- ) %>% xtable(., -->
-<!--          caption = c("Decomposition of generalizations into concrete particulars and corresponding properties."), -->
-<!--         label = c("tab:genpart")) -->
-
-<!-- # apa_table(df.tab,  -->
-<!-- #           caption = "Decomposition of generalizations into concrete particulars and corresponding properties.",  -->
-<!-- #           escape = TRUE, small = TRUE -->
-<!-- # ) -->
-
-<!-- print(df.tab, type = "latex",  -->
-<!--       tabular.environment = "tabularx", width = "\\textwidth", -->
-<!--       scalebox='0.75', -->
-<!--       include.rownames = FALSE, comment = F) -->
-<!-- ``` -->
-
-<!-- Particular statements can be made about objects, events, and causes. For example: -->
-
-<!-- 1. My dog is friendly. (object) -->
-<!-- 2. John ran this afternoon. (event) -->
-<!-- 3. My grandfather drank moonshine and it made him go blind. (cause) -->
-
-<!-- Particular statements refer to individuals of a category of which generalizatons can be made. For example, -->
-
-<!-- 4. Dogs are friendly -->
-<!-- 5. John runs -->
-<!-- 6. Drinking moonshines makes you go blind -->
-
-<!-- That is, *dog* is an instance of the category \textsc{dogs}, *John at a particular time* is an instance of the category of \textsc{john}, and *drinking moonshine at a particular time* is an instance of the category of \textsc{drinking moonshine} (see Table \ref{tab:genpart}). -->
-
-<!-- Suppose we observe instances $\{x_1, x_2, ..., x_n\}$ of category $k$ and some number of them have feature $f$: What do we learn about possible future instances of $x_{n+1}$, particularly with respect to $f$? -->
-<!-- For properties among instances of a category (e.g., being friendly among dogs), we can describe this inductive inference by a probability $h$ $h = P(x \in f \mid x \in k)$^[ -->
-<!-- With a frequentist interpretation, this can be thought of as the *prevalence* of $f$ among $k$. -->
-<!-- ]. -->
-<!-- <!-- In the study of categories and properties, $x$ is an object. --> 
-<!-- For an action exhibited by an agent, the inference concerns a rate --- how frequently (in time) does $x \in f$ occur --- which can be described as a probability mass: $h = \int_{t} P(x \in f_t \mid x \in k_t) \diff t$ -->
-<!-- <!-- In this case, $x$ is a instance of an agent. --> 
-<!-- Causal learning can be described with the same formalism as for categories, a probability referring to the likelihood of an effect $e$ given a cause $c$, also known as causal power: $h = P(x \in e \mid x \in c)$. -->
-<!-- Throughout, we refer to the degree of probability as $h$ because it represents a hypothesis about the underlying causal power or frequency of some instance in a category. -->
-<!-- A Bayesian agent will have prior beliefs about the probability (potentially an uninformed prior) and uses Bayesian inference to learn about the probability from her observations. -->
-
-<!-- Suppose *a priori* we have no informative beliefs about the propensity (i.e., $P(x \in f \mid x \in k) \sim \text{Uniform}(0, 1)$). -->
-
-\ndg{smooth out this par.}
-
-## Generalization from observation
-
-The human capacity to generalize from observations, deriving $h$ from example $x$s, has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000].
-From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007].
-Such inductive generalization can be described by the Bayesian probability calculus: An observer's initial beliefs or state of knowledge---called a prior belief distribution---is updated through experience (i.e., after making observations) and becomes a posterior belief distribution (what they belief *a posteriori*). 
-This posterior distribution becomes the observer's prior for the next observation she makes: it thus informs her predictions about unobserved instances.
-
-As a concrete example, consider a learner investigating the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$).
-$h$ describes the learner's subjective probability that the next dog she encounters will bark^[At the moment, we assume the feature \textsc{barks} is an all-or-none Boolean property. Later, we will see how the presence of this feature itself can be thought of as a generalization over events of barking.], or more abstractly, her belief about the barking capacity of dogs.
-That is, $h = P(x \text{ barks} \mid x \text{ is a dog})$.
-The learner does not know $h$, but has some idea about what $h$ could be; this is represented by $P(h)$, the learner's prior beliefs about how likely it is that $x$ will bark given that $x$ is a dog.
-
-The observer goes around the world, encountering dogs and taking note of how many bark.
-This could be represented as a number of positive examples $d$ out of a number of total examples $n$. 
-With the weak assumption that the dogs she has observed were all independent and identically-distributed (*i.i.d.*) random samples from the category of dogs, the likelihood of her observations are given by the Binomial distribution. 
-That is, $d \sim  \text{Binomial}(n, h)$, where $d$ is the number of dogs she has seen that bark, $n$ is the total number of dogs she has seen, and $h$ is the feature-probability of barking among dogs.
-This is called a likelihood function: It determines how well a given value of $h$ predicts the observed $d$. 
-Given a formal description of the learner's state of knowledge before any observations $P(h)$ and the learner's assumptions about how the data she observed were generated (e.g., the *i.i.d.* assumption), what a learner should believe after having seen the data is proportional to the product of these two terms, as given by Bayes' Rule:
 $$
 P(h \mid d) \propto P(d \mid h) \cdot P(h)
 $$
-$P(h \mid d)$ is then the strength of the learner's belief in the next dog she encounters barking.
-This simple idea of integrating observational evidence with prior knowledge is surprisingly powerful in explaining a multitude of diverse phenomena, from perception to word learning to inductive reasoning [e.g., @Tenenbaum2006; @Tenenbaum2011].
+
+Yet, generalizations from observational evidence is limited in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
+Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
+How do we acquire these generalizations?
+For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
+
+<!-- The human capacity to generalize from observations, deriving $h$ from example $x$s, has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000]. -->
+<!-- From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007]. -->
+<!-- Such inductive generalization can be described by the Bayesian probability calculus: An observer's initial beliefs or state of knowledge---called a prior belief distribution---is updated through experience (i.e., after making observations) and becomes a posterior belief distribution (what they belief *a posteriori*).  -->
+<!-- This posterior distribution becomes the observer's prior for the next observation she makes: it thus informs her predictions about unobserved instances. -->
+
+<!-- As a concrete example, consider a learner investigating the feature \textsc{barks} ($f$) for the category \textsc{dog} ($k$). -->
+<!-- $h$ describes the learner's subjective probability that the next dog she encounters will bark^[At the moment, we assume the feature \textsc{barks} is an all-or-none Boolean property. Later, we will see how the presence of this feature itself can be thought of as a generalization over events of barking.], or more abstractly, her belief about the barking capacity of dogs. -->
+<!-- That is, $h = P(x \text{ barks} \mid x \text{ is a dog})$. -->
+<!-- The learner does not know $h$, but has some idea about what $h$ could be; this is represented by $P(h)$, the learner's prior beliefs about how likely it is that $x$ will bark given that $x$ is a dog. -->
+
+<!-- The observer goes around the world, encountering dogs and taking note of how many bark. -->
+<!-- This could be represented as a number of positive examples $d$ out of a number of total examples $n$.  -->
+<!-- With the weak assumption that the dogs she has observed were all independent and identically-distributed (*i.i.d.*) random samples from the category of dogs, the likelihood of her observations are given by the Binomial distribution.  -->
+<!-- That is, $d \sim  \text{Binomial}(n, h)$, where $d$ is the number of dogs she has seen that bark, $n$ is the total number of dogs she has seen, and $h$ is the feature-probability of barking among dogs. -->
+<!-- This is called a likelihood function: It determines how well a given value of $h$ predicts the observed $d$.  -->
+<!-- Given a formal description of the learner's state of knowledge before any observations $P(h)$ and the learner's assumptions about how the data she observed were generated (e.g., the *i.i.d.* assumption), what a learner should believe after having seen the data is proportional to the product of these two terms, as given by Bayes' Rule: -->
+
+
+<!-- $P(h \mid d)$ is then the strength of the learner's belief in the next dog she encounters barking. -->
+<!-- This simple idea of integrating observational evidence with prior knowledge is surprisingly powerful in explaining a multitude of diverse phenomena, from perception to word learning to inductive reasoning [e.g., @Tenenbaum2006; @Tenenbaum2011]. -->
 <!-- \ndg{what is this par doing for us? delete?} -->
 <!-- Generalization from examples shows complex sensitivites to the kind of observations, and even how those observations came to be observed in the first place. -->
 <!-- For instance, observing that an indigenous person living on a remote island *is brown and obese* provides considerably more information about the skin color of other islanders than about their weight [@Nisbett1983]. -->
 <!-- This subtlety can be modeled by incorporating heiarchical structure into the prior belief distribution of a Bayesian model, allowing the model to represent and reason flexibly about different kinds of properties [@Kemp2008]. -->
 <!-- Observations that are generated by an intentional agent can lead to similarly subtle inferences, like deconfounding otherwise ambiguous causal evidence [@Goodman2009]. -->
-Yet generalizations from observational evidence is limited in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
-Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
-How do we acquire these generalizations?
-For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
+<!-- Yet generalizations from observational evidence is limited in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations. -->
+<!-- Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*). -->
+<!-- How do we acquire these generalizations? -->
+<!-- For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations. -->
 
 ## Generalization from language
 
@@ -586,17 +544,17 @@ We discuss these alternative formulations and provide formal model comparison be
 <!-- In our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$. -->
 <!-- This is a different approach than in conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013], but provides a potential bridge, as explored later. -->
 
-
-
-
-All models were implemented in the probabilisitic programming language WebPPL [@dippl].
+The endorsement model defined in the previous section predicts that the endorsement of a generalization depends upon two factors: (i) the feature-probability $h$ in the referent-category (e.g., the \% of robins that lay eggs) and (ii) shared background knowledge about what feature-probabilities are likely *a priori*.
+We use classic examples from the literature on generics to elucidate the meaning of these two components and demonstrate why the endorsement model makes the predictions that it does. 
+We implemented the models in the probabilisitic programming language WebPPL [@dippl].
 The following simulations were implemented using the R package RWebPPL in the RMarkdown document that generated this paper text and figures.
-That document, as well as the other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
+That document, as well as all other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
-The RSA model defined in the previous section predicts that the endorsement of a generalization depends upon the probability that utterance vs. silence accurate conveys to a naive listener a feature-probability $h$ in a referent-category (e.g., the \% of robins that lay eggs).
-This probability of successful communication is given by $L(h \mid u, \theta)$ (Eq. \ref{eq:S1}) and depends upon the listener's *a priori* beliefs about the feature-probability in question: $P(h)$ (Eq. \ref{eq:L0}), as well as the referent-category feature-probability $h$ (Eq. \ref{eq:S1}).
-Predictions for endorsement depend upon how well the listener's posterior on $h$  upon hearing a generalization matches an $h$ that the speaker wants to convey in comparison to how well the listener's prior matches (which would result from the speaker staying silent).
-For purposes of illustration, we present different hypothetical priors on feature-probabilities $P(h)$, together with listener $L$ posterior distributions on $h$ after hearing utterances corresponding to (i) the underspecified threshold semantics as well as (ii) a comparison model where the threshold is fixed near-0, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}).
+
+<!-- depends upon the probability that utterance vs. silence accurate conveys to a naive listener a. -->
+<!-- This probability of successful communication is given by $L(h \mid u, \theta)$ (Eq. \ref{eq:S1}) and depends upon the listener's *a priori* beliefs about the feature-probability in question: $P(h)$ (Eq. \ref{eq:L0}), as well as the referent-category feature-probability $h$ (Eq. \ref{eq:S1}). -->
+<!-- Predictions for endorsement depend upon how well the listener's posterior on $h$  upon hearing a generalization matches an $h$ that the speaker wants to convey in comparison to how well the listener's prior matches (which would result from the speaker staying silent). -->
+<!-- For purposes of illustration, we present different hypothetical priors on feature-probabilities $P(h)$, together with listener $L$ posterior distributions on $h$ after hearing utterances corresponding to (i) the underspecified threshold semantics as well as (ii) a comparison model where the threshold is fixed near-0, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}). -->
 
 ```{r simluationsModel, eval = T, cache = T}
 l0.model <- '
@@ -690,28 +648,30 @@ continuousListener0(data.utt[0])
 '
 
 priorNames <- c(
-  "uniform", #"uniformRare", 
+  "doesntEatPeople", #"uniformRare", 
   "isFemale", 
   "laysEggs", 
   #"eatsFood", 
   "barks",
-  "carriesMalaria"#,
+  "carriesMalaria",
+  "hasSpots"
  # "areSick"
   )
 priorShapes <- list(
-  uniform =  list(params = data.frame(a = 1, b = 1), mix = 1), 
-  #uniformRare =  list(params = data.frame(a = 1, b = 1), mix = 0.4), 
   isFemale =  list(params = data.frame(a = 10, b = 10), mix = 1), 
   laysEggs =  list(params = data.frame(a = 10, b = 10), mix = 0.4), 
-  #eatsFood =  list(params = data.frame(a = 50, b = 1), mix = 1), 
+  doesntEatPeople =  list(params = data.frame(a = 50, b = 1), mix = 1), 
   barks =  list(params = data.frame(a = 5, b = 1), mix = 0.4), 
-  #areSick =  list(params = data.frame(a = 1, b = 5), mix = 1), 
+  hasSpots =  list(params = data.frame(a = 5, b = 1), mix = 0.7), 
   carriesMalaria =  list(params = data.frame(a = 2, b = 10), mix = 0.4)
 )
 
+
+
+
 all.simulations <- data.frame()
 for (p in priorNames){
-  for (u in c("generic", "some")){
+  for (u in c("generic")){
     
     inputData = list(prior = priorShapes[[p]], utt = u)
     l0.rs <- webppl(l0.model, data = inputData, data_var = "data")
@@ -759,44 +719,211 @@ for (p in priorNames){
 }
 ```
 
-```{r simulations, fig.cap = "Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 9, fig.height=5}
-all.simulations %>%
+```{r simluationEndorsementModel, eval = T, cache = T}
+s1.model <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var targetUtterance = "generic";
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaPrior = Infer({model: function(){
+ return uniformDraw([
+   0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+   0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
+ ])}
+});
+
+var bins = [
+  0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+  0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
+];
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state>0.01:
+         utt=="most"? state> 0.5:
+         utt=="all"? state >= 0.99:
+         true
+}
+
+var mixture = data.mix[0];
+var priorParams = data.params[0];
+
+var statePrior = Infer({model: function(){
+  var component = flip(mixture);
+  return component ?
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta(priorParams), b) + Number.EPSILON
+      }, bins )
+    }) :
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
+      }, bins )
+    })
+}});
+
+var continuousListener0 = function(utterance) {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+   var state_prior = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    factor(
+    (utterance == "generic") ? 
+      Math.log(state) : 
+    (state > 0.017) ? 0 : -Infinity
+    )
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+
+
+
+var listener0 = cache(function(utterance) {
+  Infer({model: function(){
+    var state = sample(statePrior)
+    var state_prior = sample(statePrior)
+    var theta = utterance == "generic" ? sample(thetaPrior) : -99
+    condition(meaning(utterance, state, theta))
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }})}, 10000)
+var alpha = 2
+
+var endorser = function(featureProb){
+  Infer({model: function(){
+    var endorsement = sample(utterancePrior)
+    var L0 = marginalize(listener0(endorsement), "state_Posterior")
+    factor(alpha * L0.score(featureProb))
+    return endorsement
+  }})
+}
+
+
+probability(endorser(data.featureProb[0]), "generic")
+'
+
+exampleGenerics <- c(
+  "sharksDontEatPeople",
+  "robinsAreFemale", 
+  "robinsLayEggs", 
+  "kangaroosHaveSpots",
+  "dogsBark",
+  "mosquitosCarryMalaria"
+  )
+exampleParameters <- list(
+  robinsAreFemale =  list(params = data.frame(a = 10, b = 10), mix = 1, featureProb = 0.5), 
+  robinsLayEggs =  list(params = data.frame(a = 10, b = 10), mix = 0.2, featureProb = 0.5), 
+  sharksDontEatPeople =  list(params = data.frame(a = 50, b = 1), mix = 1, featureProb = 0.8), 
+  dogsBark =  list(params = data.frame(a = 5, b = 1), mix = 0.4, featureProb = 0.9), 
+  kangaroosHaveSpots =  list(params = data.frame(a = 5, b = 1), mix = 0.7, featureProb = 0.1), 
+  mosquitosCarryMalaria =  list(params = data.frame(a = 1, b = 30), mix = 0.1, featureProb = 0.1)
+)
+
+s1.simulations <- data.frame()
+for (p in exampleGenerics){
+
+    s1.rs <- webppl(s1.model, data = exampleParameters[[p]], data_var = "data")
+    s1.simulations <- bind_rows(s1.simulations,
+                                   data.frame(example = p, endorsement = s1.rs, featureProb = exampleParameters[[p]]["featureProb"] ))
+    
+}
+
+```
+
+```{r}
+s1.simulations.relabeled <- s1.simulations %>%
+  mutate(example = factor(example, 
+                          levels = c("dogsBark", "kangaroosHaveSpots", "sharksDontEatPeople", "robinsLayEggs", "robinsAreFemale", "mosquitosCarryMalaria"),
+                            labels = c("Dogs bark", "Kangaroos have spots", "Sharks don't eat people", "Robins lay eggs", "Robins are female", "Mosquitos carry malaria")))
+
+s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement))+
+  #geom_jitter(width = 0.1, shape = 21, size = 5)+
+  #ylab("Human endorsement probability")+
+  #xlab("Frequency of target")+
+  geom_label_repel(data = s1.simulations.relabeled, 
+                   aes( label = example, fill = example),
+                       color = 'white',
+    box.padding = unit(0.0, "lines"),
+    #point.padding = unit(1e-06, "lines"),
+    segment.color = 'grey37')+
+  scale_fill_solarized()+
+  scale_x_continuous(limits = c(0, 1), 
+                     breaks = c(0, 0.5, 1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 1),
+                     labels = c("False", "True"))+
+  coord_fixed(ratio = 1)+
+  guides(fill = F)+
+  ylab("Endorsement model prediction")+
+  xlab("Hypothesized feature-probability")
+
+```
+
+```{r simulations_l0, fig.cap = "Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions."}
+all.simulations.refactored <- all.simulations %>%
   mutate(Distribution = paste(Distribution, utterance, sep = "_")) %>%
-  filter(Distribution != "Some", Distribution != "Most", Distribution != "Prior_generic") %>%
+  filter(Distribution != "Some", Distribution != "Most") %>%
   mutate(Distribution = factor(Distribution, levels = 
-                             c("Prior_some",  "Posterior_Generalization_generic", "Posterior_Generalization_some"),
-                                labels = c("Prior/Silence",  "Generalization (Uncertain threshold)", "Fixed threshold")),
-         PriorShape = factor(PriorShape, levels = c("uniform", "barks","laysEggs","carriesMalaria","isFemale"),
-                             labels = c("uniform", "bark","lay eggs","carry malaria","are female")
+                                c( "Prior_generic", "Posterior_Generalization_generic"),
+                                labels = c( "Prior/Silence", "Generalization")
+                             # c("Prior_some",  "Posterior_Generalization_generic", "Posterior_Generalization_some"),
+                             #    labels = c("Prior/Silence",  "Generalization (Uncertain threshold)", "Fixed threshold")
+                             ),
+         PriorShape = factor(PriorShape, 
+                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
+                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria")
+                            # levels = c("uniform", "barks","laysEggs","carriesMalaria","isFemale"),
+                             #labels = c("uniform", "bark","lay eggs","carry malaria","are female")
                                   #"eatsFood","areSick", "uniformRare", 
                                   #"carriesMalaria"
                                   )
-         ) %>%
-  ggplot(., aes(x = value, #y = prob, 
+         )
+
+l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
                 #lty = Distribution, 
-                color = Distribution, fill = Distribution))+
-    geom_density(#stat= 'identity', 
-                aes(y = ..scaled..),
-                 size = 0.6, alpha = 0.7, adjust = 1.5)+
+                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
+    geom_density(aes(y = ..scaled..),
+                 size = 0.6,  adjust = 1.5)+
     #geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
     theme_few() +
-    #scale_color_solarized()+
-    #scale_fill_solarized()+
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    scale_alpha_manual(values = c(0.7, 0.3))+
+    scale_linetype_manual(values = c(1, 3))+
     #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
     #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-   scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+   #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
     #scale_linetype_manual(values = c(3, 4, 2, 1))+
-    scale_linetype_manual(values = c(3, 4, 1))+
     scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     xlab("Feature-probability h") +
-    ylab("Scaled probability density") +
-  facet_grid(PriorShape~Distribution, scales = 'free')+
+    ylab("Scaled prior probability density") +
+  facet_wrap(~PriorShape, scales = 'free')+
   guides(fill = F, color = F)+
-  theme(strip.text.y = element_text(angle = 0))
+  theme(strip.text.y = element_text(angle = 0),
+          legend.position = c(0.92, 0.35))
 ```
 
+```{r simulations, fig.cap = "Model behavior. Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 14, fig.height=6, cache=F}
+grid.arrange(l0.simulations.distributions, 
+             s1.simulations.scatter, ncol = 3,
+             layout_matrix = cbind(c(1,1), c(1,1), c(2, 2)))
+
+```
 
 
 These different semantic models make different predictions easily seen when considering a uniform prior distribution over $h$ (Figure\ \@ref(fig:simulations); top row).
@@ -1217,6 +1344,110 @@ var model = function(){
 '
 genericEndorsementPriorModel <- paste(genericEndorsementPriorModelHelpers, structuredPriorModel, sep = "\n")
 
+```
+
+```{r generic-endorsement-priors-unbounded, eval = F}
+# this data set already excludes the 2nd attempt of 3 participants who completed the experiment a second time
+
+d.gen.endorse.priors <- read.csv(paste(project.path, 
+                                       "data/generics/endorsement/",
+                                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+gen.endorse.properties <- levels(d.gen.endorse.priors$Property)
+
+
+unboundedModel <- '
+var eps = 0.01;//Number.EPSILON;
+var log = function(x){ return Math.log(x) }
+var exp = function(x){ return Math.exp(x) }
+
+var avoidEndPoints = function(x){
+  x == 0 ? eps : 
+  x == 1 ? 1 - eps : 
+  x
+}
+
+var preprocessedResponses = map(function(d){
+  return avoidEndPoints(d / 100)
+}, data)
+
+var shapeParams = function(params){
+  return {
+    a: params.g * params.d,
+    b: (1 - params.g) * params.d
+  }
+}
+
+var model = function(){
+
+  // var numComponents = (1 + poisson(1));
+  var numComponents = 5//discrete([1, 1, 1, 1, 1]) + 1
+  var mixtureWeights = sort(normalize(repeat(numComponents, function(){
+    return uniformDrift({a: 0, b:1, width: 0.2})
+  }))).reverse()
+
+  // var mixtureWeights = dirichlet(ones([numComponents, 1]));
+  var componentParams = map(function(i){
+    var g = uniformDrift({a: 0, b:1, width: 0.2}), d = uniformDrift({a: 0, b:100, width: 20})
+    var betaParams = shapeParams({g, d})
+    return betaParams
+  }, _.range(numComponents))
+
+  mapData({data: preprocessedResponses}, function(d){
+    
+    var scr = log(sum(map(function(cParams){
+      cParams[1] * exp(Beta(cParams[0]).score(d))
+    }, _.zip(componentParams, mixtureWeights))))
+//    }, _.zip(componentParams, T.toScalars(mixtureWeights)))))
+    factor(scr)
+  })
+
+  var componentPredictives = map(function(cParams){
+      return beta(cParams)
+  }, componentParams)
+
+  return _.fromPairs(
+    _.zip(
+        map(function(i){ i + "_weight" }, _.range(5)), 
+        mixtureWeights
+      ).concat(
+      _.zip(
+        map(function(i){ i + "_predictive" }, _.range(5)), 
+        componentPredictives
+      )
+    )
+  )//sort(T.toScalars(mixtureWeights))
+};
+'
+
+example.generics.prior.properties <- c(
+  "dont eat people", "have beautiful feathers",
+  "have wings", "are red",
+  "carry malaria", "lay eggs", 
+  "are female", "have spots"
+  )
+priorData <- filter(d.gen.endorse.priors, Property == "lay eggs")$prevalence
+  n_samples <- 10000
+lg = 0
+  m.gen.endorse.priors.unbounded <- webppl(unboundedModel,
+                                 data = priorData, data_var = "data",
+                                 model_var = "model",
+                                 chains = 1,
+                                 cores = 1,
+                                 inference_opts =
+                                   list(method = "MCMC",
+                                        #kernel = list(HMC = list(steps = 5, stepSize = 0.001)),
+                                        samples = n_samples,
+                                        burn = n_samples / 2,
+                                        lag = lg,
+                                        verbose = T))
+```
+```{r eval = F}
+m.gen.endorse.priors.unbounded %>%
+      separate(Parameter, into = c("c", "var")) %>% 
+      ggplot(., aes( x=  value, fill = c))+
+ geom_histogram(position = position_dodge(), binwidth = 0.05)+
+ facet_wrap(~var)+
+  scale_fill_solarized()
 ```
 
 ```{r generic-endorsement-priors-bayesFactors, eval = F}
