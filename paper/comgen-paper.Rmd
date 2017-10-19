@@ -395,23 +395,21 @@ We find that this formalism resolves the philosophical and empirical puzzles.
 Generalizations are used to make predictions about properties of instances that an agent has yet to experience [@HumeTHN].
 People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find certain people typing.
 In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$.
-This prediction can be described by a conditional probability: $h = P(x \in F \mid x \in K)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **feature-probability**.
+This prediction can be described by a conditional probability: $h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **feature-probability**.
 The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
-The properties can also vary widely (e.g., having fur, causing jitters, typing). 
+The properties correspondingly also vary widely (e.g., having fur, causing jitters, typing). 
 Yet the mathematical description of the inductive inference is always given by the conditional feature-probability $h$.
 
-How does one come to learn $h$, the uncertainty that underlies an inductive inference about a category having a property?
+How does one come to learn $h$, the uncertainty that underlies an inductive inference about a member of a category having a property?
 One way is through observation: One can observe instances of the category $k$ and note how many of them have $f$.
 But the inferences derived from observation will depend upon on one's background knowledge about the property [@Gelman2003; @Keil1992].
 For example, if you observe an instance of a novel creature category that \emph{has two legs}, you may infer that all of that category has two legs.
-If an addition you observe that it has broken wings, the corresponding prediction of another instance having broken wings is not nearly as strong [@Nisbett1983].
-This kind of knowledge can be represented formally in a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule:
+If in addition you observe that it has broken wings, the corresponding prediction of another instance having broken wings is not nearly as strong [@Nisbett1983].
+This kind of knowledge can be represented formally as a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(h \mid d) \propto P(d \mid h) \cdot P(h)$
+Here, $P(d \mid h)$ is the observer's generative model of the observed data. 
+It is conditional on $h$ because the probability of various direct observations depends upon the feature-probability that the observer assumes. 
 
-$$
-P(h \mid d) \propto P(d \mid h) \cdot P(h)
-$$
-
-Yet, generalizations from observational evidence is limited in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
+Generalization from observational evidence is limited, however, in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
 Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
 How do we acquire these generalizations?
 For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
@@ -448,11 +446,11 @@ For abstract, generalizable knowledge to remain in a culture, it must be faithfu
 
 ## Generalization from language
 
-If generalization from observations can be described using probability, then it seems natural to consider probability to be central to the semantic content of an utterance that conveys a generalization.
-To connect to the semantic tools of *truth values* [@Montague1973], we will need to relate the scalar quantity of probability to a Boolean truth value.
+If generalization from observations can be described as a predictive probability, then it seems natural to consider that same metric to be central to the semantic content of an utterance that conveys a generalization.
+To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean truth value.
 Perhaps the simplest way to connect a scalar quantity to a truth value is with a *threshold semantics*: An utterance is true if the underlying quantity is above a threshold.
 For generalizations, then, the threshold would apply to the *feature-probability* $h$:^[
-We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her existing state of knowldege to form a subjective probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
+We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her prior knowldege $P(h)$ to form a posterior probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
 ]
 $$\denote{u_{gen}}(h, \theta) = \{h>\theta\}$$
 
