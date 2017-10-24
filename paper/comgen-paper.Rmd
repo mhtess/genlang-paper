@@ -1122,82 +1122,239 @@ mht: is it possible to construct priors in causals that would reflect the qualit
 # Case Study 1: Generic Language
 
 Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propogation [@Rhodes2012], and motivation [@Cimpian2007], as well as many other facets of everyday cognition.
-It is the premier case study of generalizations in language because of its close relation to quantified statements (e.g., "Most dogs bark") and has received the most attention from philosophers, linguists, and psychologists.
+It has been the premier case study of generalization in language because of its similarity to quantified statements (e.g., "Most dogs bark").
+Any theory of generic language must explain its puzzling flexibility of endorsements with respect to feature-probability (e.g., the number of dogs that bark; the number of mosquitos that carry malaria).
 
-Any theory of generic language must explain its puzzling flexibility of usage with respect to feature-probability.
-That is, "Mosquitos carry malaria" and "Robins lay eggs" are reasonable things to say, but "Robins are female" is not.
-As a first test of our theory, we wish to explain the flexibility in endorsements of generics in terms of the relevant prior knowledge about properties, as explored through simulation in the **model simulations** section.
-We validate these simulations empirically by measuring the prior belief distribution over the feature-probabilities $P(h)$ used in Eq. \ref{eq:L0} and the referent-category feature-probability that the speaker model seeks to convey (the *referent feature-probability*) $h$ in Eq. \ref{eq:S1} (Expt. 1a).
+We first measure endorsement for thirty generic sentences that cover a range of conceptual distinctions discussed in the literature [@Prasada2013]: *characteristic* (e.g., "Ducks have wings."), *minority* (e.g., "Robins lay eggs."), *striking* (e.g. "Mosquitos carry malaria."), *false generalization* (e.g., "Robins are female."), and *absent features* (e.g. "Lions lay eggs.").
+In additional to the canonical cases from the linguistics literature, we craft sentences to elicit the full range of acceptability judgments (intuitively: "true", "false", and "indeterminte") for generics with properties of low, medium, and high feature-probabilities (Expt. 1a).
 
-<!-- The pragmatic speaker model $S_2$, Eq.~\ref{eq:S2}, is a model of truth judgments.  -->
-We test our model on thirty generic sentences that cover a range of conceptual distinctions discussed in the literature [@Prasada2013]: *characteristic* (e.g., "Ducks have wings."), *minority* (e.g., "Robins lay eggs."), *striking* (e.g. "Mosquitos carry malaria."), *false generalization* (e.g., "Robins are female."), and *absent features* (e.g. "Lions lay eggs.").
-In additional to the canonical cases from the linguistics literature, we select sentences to elicit the full range of acceptability judgments (intuitively: "acceptable", "unacceptable", and "indeterminate") with low, medium, and high feature-probability properties. 
-
-To compare the model to empirical truth judgments, we measure the prior distribution over feature-probabilities of these properties (Expt. 1a).
-We hypothesize that these prior distributions encode probabilities associated with conceptual distinctions [@Prasada2013].
-In particular, we hypothesize that different kind--property relations [e.g., *principled* v. *accidental relations*^[This is sometimes referred to as "statistical" relations.]; @Prasada2013] can be observed in the feature-probability prior. 
-If, in fact, the feature-probability prior is a manifestation of deeper, conceptual knowledge, we would expect the feature-probability prior data to follow a multi-modal, mixture distribution where there exist qualitatively distinct modes or components to the prior, as probabilistic traces of the different types of kinds with respect to the property.
-A prior that is structured would be one way in which our formal theory connects to other psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007].
-As a simple test of this hypothesis---that the feature-probability prior encodes conceptual knowledge---we compare a structured (i.e., mixture) model of the prior data to an unstructured one.
-
-After having validated a measure of the feature-probability prior, we consider the issue of primary theoretical interest: How well our *uncertain threshold* hypothesis accounts for endorsements of generic sentences (Expt. 1b).
-In order to better understand the contribution of our theoretical framework, we evaluate alternative models that have either been previously analyzed in the generics literature or that are simpler forms of our *uncertain threshold* RSA model. 
-To preview our results, we find that only our formulation of an uncertain threshold RSA model is able to account for the flexibility in generic endorsement.
+We restrict our items to generics about animal categories so we may more easily measure the prior belief distribution over the feature-probabilities $P(h)$ (Expt. 1b).
+Our measurement of the feature-probability priors includes measurements of the referent-category feature-probabilties $h'$ (e.g.,$P(x \text{ lays eggs} \mid x \text{ is a robin})$), allowing us to both generate predictions for the endorsement model (Eq. \ref{eq:S1}) as well as for simpler, alternative models (e.g., endorsement as a linear function of referent feature-probability). 
+To preview our results, we find that only an endorsement model based on an uncertain-threshold semantics is able to account for the flexibility observed in generic endorsement.
 
 
-<!-- At first glance, generics feel like universally-quantified statements as in *All* birds fly.  -->
-<!-- Unlike universals, however, generics are resilient to counter-examples (e.g., *Birds fly* seems true even in the face of flightless birds like kiwis or penguins). -->
-<!-- *Most* birds fly seems more reasonable, and yet most mosquitos *do not* carry malaria while *Mosquitos carry malaria* seems like a true statement. -->
-<!-- Finally, the probability of a bird being female is much higher than the probability of a mosquito carrying malaria, but *Birds are female* seems weird to say. -->
-<!-- *Birds lay eggs*, however, is fine, even though the rate is the same as *are female* (only females lay eggs). -->
+<!-- That is, "Mosquitos carry malaria" and "Robins lay eggs" are reasonable things to say, but "Robins are female" is not. -->
+<!-- As a first test of our theory, we wish to explain the flexibility in endorsements of generics in terms of the relevant prior knowledge about properties, as explored through simulation in the **model simulations** section. -->
+<!-- We validate these simulations empirically by measuring t and the referent-category feature-probability that the speaker model seeks to convey (the *referent feature-probability*) $h$ in Eq. \ref{eq:S1} (Expt. 1a). -->
 
-<!-- Empirical work done on category generalizations has elucidated another puzzling phenomenon. -->
-<!-- Generic statements often imply the property is widespread in the category [e.g., *Swans have hollow bones* implies something much stronger than *Some swans have hollow bones*; @Gelman2002; @Cimpian2010; @Brandone2014]. -->
-<!-- This characteristically strong interpretation interacts with the indeterminacy in truth conditions, resulting in an *asymmetry* between endorsement and interpretation. -->
-<!-- For a variety of features, both children and adults infer that a property is *more* prevalent when told the generalizations than when judging it true or not [@Cimpian2010; @Brandone2014]. -->
+<!-- <!-- The pragmatic speaker model $S_2$, Eq.~\ref{eq:S2}, is a model of truth judgments.  --> -->
+<!-- We test our model on -->
+
+<!-- To compare the model to empirical truth judgments, we measure the prior distribution over feature-probabilities of these properties (Expt. 1a). -->
+<!-- We hypothesize that these prior distributions encode probabilities associated with conceptual distinctions [@Prasada2013]. -->
+<!-- In particular, we hypothesize that different kind--property relations [e.g., *principled* v. *accidental relations*^[This is sometimes referred to as "statistical" relations.]; @Prasada2013] can be observed in the feature-probability prior.  -->
+<!-- If, in fact, the feature-probability prior is a manifestation of deeper, conceptual knowledge, we would expect the feature-probability prior data to follow a multi-modal, mixture distribution where there exist qualitatively distinct modes or components to the prior, as probabilistic traces of the different types of kinds with respect to the property. -->
+<!-- A prior that is structured would be one way in which our formal theory connects to other psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007]. -->
+<!-- As a simple test of this hypothesis---that the feature-probability prior encodes conceptual knowledge---we compare a structured (i.e., mixture) model of the prior data to an unstructured one. -->
+
+<!-- After having validated a measure of the feature-probability prior, we consider the issue of primary theoretical interest: How well our *uncertain threshold* hypothesis accounts for endorsements of generic sentences (Expt. 1b). -->
+<!-- In order to better understand the contribution of our theoretical framework, we evaluate alternative models that have either been previously analyzed in the generics literature or that are simpler forms of our *uncertain threshold* RSA model.  -->
+## Experiment 1a: Generic endorsements
+
+In this experiment, we elicit human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
+The goal of this study is to observe a range of endorsements for generic statements about animal categories. 
+
+#### Method
+```{r eval = F}
+d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments-n100.csv", sep = ""))
+d2 <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "naturalGenerics-trials-formatted.csv", sep = ""))
+
+# write.csv(
+#   left_join(
+#   d1 %>%
+#     mutate(sentence = as.character(sentence),
+#            sentence = gsub('&quotechar', '', sentence),
+#          sentence = gsub('lyme', 'Lyme', sentence)),
+#   unique(d2 %>%
+#     mutate(sentence = paste(Category, " ", Property, ".", sep = "")) %>%
+#     select(Category, Property, sentence))
+# ), file = paste(project.path, "data/generics/endorsement/",
+#                     "truth-judgments-n100.csv", sep = ""), row.names = F)
+```
+
+```{r generic-endorsement}
+d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments_catch-trials.csv", sep = ""))
+
+d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
+                    "truth-judgments-n100.csv", sep = ""))
 
 
 
+d.gen.endorse.summary <- left_join(
+  d.gen.endorse, 
+  d.gen.endorse.catch %>% select(workerid, pass)
+  ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0)) %>%
+  group_by(sentence) %>%
+  multi_boot_standard(col = "response") %>%
+  ungroup() %>%
+  mutate(sentence = factor(sentence, levels = sentence[order(mean)]))
+
+d.gen.endorse.bayes <- left_join(
+  d.gen.endorse, 
+  d.gen.endorse.catch %>% select(workerid, pass)
+  ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0),
+         sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  group_by(sentence) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b)) %>% 
+  ungroup()
 
 
+d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
+                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
 
+d.prev.summary <- d.prev %>%
+  mutate(item = paste(Category, " ", Property, ".", sep = "")) %>%
+  filter(item %in% d.gen.endorse.bayes$sentence) %>%
+  mutate(prevalence = prevalence / 100) %>%
+  group_by(Category, Property, item) %>%
+  multi_boot_standard(col = "prevalence")
 
-<!-- Interpreting the generic as meaning "most" (i.e. \emph{Most swans are white}) captures many cases, but cannot explain why \emph{Robins lay eggs} and \emph{Mosquitos carry malaria} are so intuitively compelling: Only adult female robins lay eggs and a very tiny fraction of mosquitos actually carry malaria. -->
-<!-- Indeed, it appears that any \emph{truth condition} stated in terms of how common the property is within the kind violates intuitions. -->
-<!-- Consider the birds: for a bird, being female practically implies you will lay eggs (the properties are present in the same proportion), yet we say things like \emph{Birds lay eggs} and we do not say things like \emph{Birds are female}. -->
+# d.gen.endorse.summary %>%
+#   ggplot(., aes(x = sentence, y = mean, ymin = ci_lower, ymax = ci_upper))+
+generics.endorsement.spectrum <- left_join(
+  d.gen.endorse.bayes, d.prev.summary %>% rename(sentence = item, prev = mean, prev_low = ci_lower, prev_high = ci_upper)
+) %>%
+  mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))  %>%
+  #ggplot(., aes(x = sentence, y = MAP_h, ymin = low, ymax = high))+
+  ggplot(., aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev))+
+  geom_bar(stat = 'identity', position = position_dodge(), color= 'black', alpha = 0.9)+
+  geom_linerange(position = position_dodge())+
+  #geom_errorbar(position = position_dodge())+
+  coord_flip()+
+  ylab("Human generic endorsement")+
+  xlab("")+
+  #scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1))+
+  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
+  scale_fill_continuous(breaks = c(0, 1), limits = c(0, 1))+
+  guides(fill = guide_colorbar(title = 'feature probability',
+                               ticks = F))+
+  theme(legend.position = 'bottom')
+  #geom_hline(yintercept = -0.25, lty = 3)+
+  #geom_hline(yintercept = 0.25, lty = 3)
+```
 
+##### Participants
 
-<!-- One case study in the language of generalizations is about category generalizations. -->
-<!-- Category generalizations, called *generic statement*, has been studied extensively in cognitive and developmental psychology: *generic* statements, or generalizations about categories. -->
+We recruited 100 participants over Amazon's crowd-sourcing platform Mechanical Turk (MTurk).  
+Participants were restricted to those with US IP addresses and with at least a 95\% MTurk work approval rating (the same criteria apply to all experiments reported). 
+4 participants were excluded for failing to recall the button corresponding to *agreement* in the forced-choice task.
+5 participants self-reported a native language other than English; removing their data has no effect on the results reported. 
+The experiment took about 3 minutes and participants were compensated \$0.35.
 
+##### Procedure and materials
 
-<!-- These *strong implications* might underly stereotype formation in social categories [@Rhodes2012]. -->
-<!-- In addition to the flexibility in truth conditions, two phenomena have been noted.  -->
-<!-- The case of *Mosquitos carry malaria* suggests the utterance must in some way be analogous to the quantifier "some" (e.g., *Some mosquitos carry malaria*).  -->
-<!-- Generic language, however, is often interpreted as implying the property is widespread: *Swans have hollow bones* means something different than *Some swans have hollow bones* [@Gelman2002]. -->
+Participants were shown thirty generic sentences in a randomized order.
+They were asked to press one of two buttons (randomized between-participants) to signify whether they agreed or disagreed with the sentence (see Table 2 in Appendix for complete list). 
+The thirty sentences were presented in a random order between participants and covered a range of conceptual categories described above.
+Approximately 10 true, 10 false, and 10 uncertain truth-value generics were selected.
 
-<!-- These three phenomena---flexible truth, strong interpretations, and evidence exaggeration---have confounded all formal models aimed to capture the meaning of generalizations in language. -->
-<!-- Informal theories have argued that the nature of concepts and their relations are inextricably tied to their linguistic expression [@Leslie2007; @Prasada2013]. -->
-<!-- Formal theories have limited themselves to a measurable quantitative degree (e.g., how prevalent a property is in a category), which, in isolation, is difficult to reconcile with the extreme flexibility of generic language. -->
-<!-- Here, we present a theory formalizing the inuition that the core meaning of a linguistic generalization is simple, but underspecified, and that general principles of communication may be used to resolve the precise meaning in context.  -->
-<!-- This theory inherently relies upon measurable quantities (i.e., prevalence) but situates it within a Bayesian agent with potentially structured prior knowledge, providing a bridge to conceptual theories.  -->
-<!-- We find that this formalism (and not simpler ones) explains all three empirical puzzles. -->
+As an attention check, participants were asked at the end of the trials which button corresponded to "Agree".
+4 participants were excluded for failing this trial.
 
-<!-- When interpretations are compared directly against truth conditions (i.e., how prevalent a property would need to be for the generic to be true),  -->
+#### Results
 
-<!-- Three empirical phenomena make generalizations in language difficult to formalize. -->
-<!-- The conditions under which a generalizations becomes "true" are variable: -->
+```{r generic-endorsement-manipulationcheck}
+# MHT's truth judgments of sentences
+# t --> true; f --> false; i --> indeterminate/uncertain
+all.sentences <- list("Cardinals are red." = "t",
+ "Ducks have wings." = "t",
+ "Kangaroos have pouches." = "t",
+ "Kangaroos have spots." = "f",
+ "Leopards are juvenile." = "i",
+ "Leopards have spots." = "t",
+ "Leopards have wings." = "f",
+ "Lions are male." = "i",
+ "Lions have manes." = "t",
+ "Lions lay eggs." = "f",
+ "Mosquitos attack swimmers." = "i",
+ "Mosquitos carry malaria." = "t",
+ "Mosquitos dont carry malaria." = "f",
+ "Peacocks dont have beautiful feathers." = "f",
+ "Peacocks have beautiful feathers." = "t",
+ "Robins are female." = "i",
+ "Robins carry malaria." = "f",
+ "Robins lay eggs." = "t",
+ "Sharks are white." = "i",
+ "Sharks attack swimmers." = "t",
+ "Sharks dont attack swimmers." = "f",
+ "Sharks have manes." = "f",
+ "Sharks lay eggs." = "i",
+ "Swans are full-grown." = "i",
+ "Swans are white." = "t",
+ "Ticks carry Lyme disease." = "t",
+ "Ticks dont carry Lyme disease."= "f",
+ "Tigers dont eat people."= "f",
+ "Tigers eat people." = "t",
+ "Tigers have pouches."= "f")
 
+mht.truth.judgments <- data.frame(sentence = names(all.sentences),
+           truth_judgment = as.vector(unlist(all.sentences)))
 
-<!-- Existing work in both adults and children suggests that choosing to communicate a generalization can be used to exagerate evidence [@Cimpian2010; @Brandone2014]. -->
+d.gen.endorse.manipulation.check.bayes <- left_join(
+  left_join(
+    d.gen.endorse, 
+    d.gen.endorse.catch %>% select(workerid, pass)
+    ),
+  mht.truth.judgments ) %>%
+  filter(pass == 1) %>%
+  rowwise() %>%
+  mutate(response = ifelse(response == "agree-key", 1, 0),
+         sentence = gsub('&quotechar', '', sentence),
+         sentence = gsub('lyme', 'Lyme', sentence)) %>%
+  group_by(truth_judgment) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b)) %>% 
+  ungroup() %>%
+  mutate(truth_judgment = factor(truth_judgment, levels = truth_judgment[order(MAP_h)]))
 
-<!-- In addition to having manifold interpretations, what makes linguistic generalizations true or false (i.e., their truth conditions) is also a mystery. -->
-<!-- The statement *Birds lay eggs* is true even though only about half of them do (namely, the females). -->
-<!-- Half of birds are also female, and yet *Birds are female* sounds like a strange thing to say. -->
-<!--  while *Canadians are right-handed* is also weird, even though the vast majority of them are.  -->
+true_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"MAP_h"]]
+true_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"low"]]
+true_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"high"]]
 
-## Experiment 1a: Measuring the feature-probability prior for categories
+false_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"MAP_h"]]
+false_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"low"]]
+false_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"high"]]
 
+uncertain_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"MAP_h"]]
+uncertain_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"low"]]
+uncertain_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"high"]]
+
+```
+
+As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
+As one would expect, there were substantial differences in empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP`$ $[`r true_low`, `r true_high`]$);
+indeterminate generics were agreed with \emph{less} likely than chance ($`r uncertain_MAP`$ $[`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP`$ $[`r false_low`, `r false_high`])$).
+
+In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generics-endorsement-figure} top left).
+Such a continuum of judgments is already evidence against any theory that only predicts categorically whether a generic statement is true or false.
+Ideally, a complete theory of genericity should be able to explain statements that are endorsed completely, unendorsed completely, and all shades in between.
+
+In order to better understand the process that generates this endorsement data, we measure the prior distribution over feature-probabilities and articulate a set of formal models that try to predict these endorsement data. 
+
+## Experiment 1b: Feature-probability prior elicitation
 
 The feature-probability prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the probability of a given feature (e.g. \textsc{lays eggs}) across relevant categories. 
 To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are walking around and you come across an instance of your favorite kind of animal from Earth (e.g., a peregrine falcon). Ask yourself "is it female?" Your answer will probably depend upon the percentage of the category that you believe to be female (e.g., the percentage of female peregrine falcons, i.e., 50\%). Now, do you think it lays eggs? Your answer to this question will likely depend upon on what animal you're thinking of: If you're thinking of a peregrine falcon, the probability is similar to that of being female (50\%) because female peregrine falcons lay eggs; if you're thinking of a mammal, it's likely that it won't lay eggs (0\%) because most mammals give birth to live young. That is, the answer is either 50\% or 0\% depending on the kind of creature you are thinking of^[
@@ -1207,27 +1364,27 @@ Non-zero probabilities allow for the intuitive possibility of a dog that lays eg
 
 This thought experiment decomposes the feature-probability prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the feature-probability given the kind $P(h \mid k)$.
 We will use this decomposition to measure the feature-probability prior $P(h) = \int_{k} P(h \mid k) \diff k$, and perform a structured Bayesian data-analysis to model the prior data.
-We measured prior distributions empirically for the set of properties (e.g., \textsc{lays eggs, carries malaria}; 21 in total) used in our generic sentences.
-After measurement, we show that assuming a structured model of the prior data is substantially preferred to an unstructured model.
+We measured prior distributions empirically for the set of properties (e.g., \textsc{lays eggs, carries malaria}; 21 in total) used in our generic sentences in Expt. 1a.
+To create a larger set of properties, we reverse-code responses for five properties to create their corresponding negative properties (e.g., we create a property "doesn't have beautiful feathers" by subtracting from 100\% the responses for "has beautiful feathers").
 
 ### Method
 
 #### Participants
 
-We recruited 60 participants over Amazon's crowd-sourcing platform Mechanical Turk (MTurk).  
-Participants were restricted to those with US IP addresses and with at least a 95\% MTurk work approval rating (the same criteria apply to all experiments reported). 
-Three participants were accidentally allowed to complete the experiment for a second time, so we excluded their second responses (resulting in $n=57$).
-Two participants self-reported a native language other than English; removing their data ($n=55$) has no effect on the results reported. 
+We recruited 60 participants over Amazon MTurk.  
+3 participants were accidentally allowed to complete the experiment for a second time, so we excluded their second responses (resulting in $n=57$).
+2 participants self-reported a native language other than English; removing their data ($n=55$) has no effect on the results reported. 
 The experiment took about 10 minutes and participants were compensated \$1.00.
 
 #### Procedure and materials
 
 On each trial of the experiment, participants filled out a table where each row was an animal category and each column was a property. 
-Participants first were shown six animal categories randomly sampled from a set corresponding to the generic sentences used in Expt. 1b (e.g., \textsc{robins, mosquitos}) and were asked to generate five of their own (Figure \ref{fig:generics-prior-task} left).
-
-A column then appeared to the right of the animal names with a property in the header (e.g., *lays eggs*).
+Participants first were shown six animal categories randomly sampled from a set corresponding to referent-categories of the generic sentences used in Expt. 1a (e.g., \textsc{robins, mosquitos}) and were asked to generate five of their own (Figure \ref{fig:generics-prior-task} left).
+A column then appeared to the right of the animal names with a property label in the column header (e.g., *lays eggs*).
 Participants were asked to fill in each row with the percentage of members of each of the species that had the property by giving a number (e.g., "50\%"; Figure \ref{fig:generics-prior-task} right).
-Eight property--columns appeared in the table, and this whole procedure was repeated two times.
+Eight property--columns appeared in the table.
+
+This whole procedure was repeated two times (two trials).
 In total, each participant generated ten animal names and reported on the feature-probability of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
 
@@ -1235,22 +1392,19 @@ In total, each participant generated ten animal names and reported on the featur
 \begin{figure}
 \centering
     \includegraphics[width=\columnwidth]{figs/generics-prior-bothStages.pdf}
-    \caption{Design of Experiment 1a for eliciting prior knowledge about feature-probabilities. Left: Participants first generated animal names after seeing six example categories. Right: One feature at a time, participants estimated the percentage of the category with the feature, for each category.}
+    \caption{Design of Experiment 1b for eliciting prior knowledge about feature-probabilities. Left: Participants first generated animal names after seeing six example categories. Right: One feature at a time, participants estimated the percentage of the category with the feature, for each category.}
     \label{fig:generics-prior-task}
 \end{figure}
 
 
-<!-- ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. -->
+### Bayesian data analysis
 
-### Bayesian analysis
+In order to integrate the results of our prior measurement into richer models of endorsement, we first try to accurately model the prior data by itself.
+We do this using a Bayesian mixture model, which assumes that the data generated by participants for each property (e.g., \textsc{lay eggs}) comes from one of two underlying distributions. 
+One of these distributions is fixed to represent kinds of animals who *do not have* an internal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}).
+The second distribution is flexible and represents kinds of animals who *do have* such an internal mechanism; this distribution is flexible and can represent different shapes for different properties (e.g., the differences in feature-probability judgments for \textsc{lay eggs} vs. \text{has wings}).
 
-To create a larger set of properties, we reverse-code responses for five properties to create their corresponding negative properties (e.g., we create a property "doesn't have beautiful feathers" by subtracting from 100\% the responses for "has beautiful feathers").
-In analyzing the feature-probability prior data, we are primarily interested in exploring the hypothesis that the prior is structured as a result of deeper conceptual knowledge.
-We formalize this hypothesis using a simple Bayesian mixture model. 
-We test the simplest "structural" hypothesis, where there are two, qualitatively different components to the prior [e.g., if participants believe that some kinds have a causal mechanism that *could* give rise to the property, while other kinds do not; cf., @Griffiths2005].
-The "unstructured" alternative hypothesis is that there is just a single distribution that gives rise to the feature-probability prior data.
-
-For the structured hypothesis, we assume the data was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D}_{stable}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D}_{transient}$).
+Formally, we assume the prior data (analzyed independently for each property) was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D}_{stable}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D}_{transient}$).
 The "transient" distribution intuitively corresponds to accidental causes of the feature (e.g., a lion, who through some genetic mutation, reproduces by laying eggs).
 We model this distribution as a Beta distribuition that heavily favors probabilities near 0: $\text{Beta}(\gamma = 0.01, \delta = 100)$.^[
 Note that we use the noncanonical mean $\gamma$ and concentration $\xi$ (or, inverse-variance) parameterization of the Beta distribution rather than the canonical shape (or pseudocount) parameterization for ease of posterior inference. The shape parameterization can be recovered using: $\alpha = \gamma \cdot \xi; \beta = (1 - \gamma) \cdot \xi$.
@@ -1263,18 +1417,22 @@ Similar results can be obtained by rounding 0 to 0.01.
 Alternatively, the "transient" distribution could be defined as a Delta distribution at 0, and 0 responses could remain in their raw form.
 ]
 Finally, we assume that these two components combine with mixture weighting $\phi$ such that the data we observe is $$P(d) = \phi\cdot \text{Beta} (d \mid \gamma, \xi) + (1 -  \phi) \cdot \text{Beta}(d \mid \gamma = 0.01, \xi = 100) $$.
-The unstructured alternative hypothesis assumes the data was generated by a single component in the prior distribution with unknown parameteres $P(d) = \text{Beta} (d \mid \gamma, \xi)$.
 
-We test which hypothesis better accounts for the data by computing a Bayes Factor, which compares the relative explanatory power of each model while taking into account model flexibility [@LW2014].
-We put the following priors over the latent parameters of each model (note that the unstructured model does not use $\phi$):
+
+<!-- The unstructured alternative hypothesis assumes the data was generated by a single component in the prior distribution with unknown parameteres $P(d) = \text{Beta} (d \mid \gamma, \xi)$. -->
+
+We put the following priors over the latent parameters of the model:
 
 \begin{eqnarray}
-\phi & \sim & \text{Uniform}(0, 1) \\
-\gamma & \sim & \text{Uniform}(0, 1) \\
-\xi & \sim & \text{Uniform}(0, 100) \\
+\phi_i & \sim & \text{Uniform}(0, 1) \\
+\gamma_i & \sim & \text{Uniform}(0, 1) \\
+\xi_i & \sim & \text{Uniform}(0, 100) \\
 \end{eqnarray}
 
-Each property (e.g., *lays eggs*, *carries malaria*) is modeled independently (i.e., each property's feature-probability prior has its own parameters). 
+where $i$ ranges over the different properties (e.g., *lays eggs*, *carries malaria*).
+
+'s data; however, we retain the imperfect simpler model for data-analytic ease going forward. 
+
 
 ### Results
 
@@ -1559,13 +1717,9 @@ marginal.prior.likelihoods <- marginal.prior.likelihoods %>%
 roundedBF1 = round(mean(marginal.prior.likelihoods$logBF)/ 10000)*10000
 ```
 
-The Bayes Factor indicates the extent to which the data support one model over another.
-The overall Bayes Factor in terms of structured model (S) over the unstructured model (U) for the full feature-probability prior data set is approximately $\log BF_{SU} = `r roundedBF1`$, meaning that the structured hypothesis is approximately `r roundedBF1` orders of magnitude more likely than the unstructured hypothesis to account for the feature-probability prior data.
-Indeed, the data strongly suggests the feature-probability prior is structured.
-
-It is possible that the data is, in fact, more structured than our simple two-component model would allow. 
-To see how well the structured model fits the feature-probability prior data, we use Bayesian inference to infer the *a posteriori* likely values of the parameters and then use the inferred parameters to generate new data.
-The generated data from the model's posterior is called the *posterior predictive distribution* and is an important step in model validation. 
+To learn about the credible values of the parameters, we ran separate MCMC chains for each item, collecting 75,000 samples, removing the first 25,000 for burn-in.
+To see how well the mixture model fits the feature-probability prior data, we use the inferred parameters to generate new data.
+The data generated from the model's posterior is called the *posterior predictive distribution* and is an important step in model criticism. 
 If the model is a good representation of the data, the posterior predictive data will align with the observed experimental data. 
 We construct a posterior predictive distribution by "forward sampling" the model.^[
 This can be described by the following algorithm: First, flip a coin weighted by $\phi$.
@@ -1574,14 +1728,18 @@ If it comes up tails, we sample from the "transient" component: $\text{Beta}(0.0
 We do this many times using the posterior distibution to generate a distribution over predicted feature-probability ratings.
 ]
 
-To learn about the credible values of the parameters, we ran separate MCMC chains for each item, collecting 75,000 samples, removing the first 25,000 for burn-in.
-Eight example prior distributions inferred using both the structured and unstructured models, together with the raw empirical distributions, are shown in Figure \ref{fig:generic-endorsement-priors-figure}.
-There is a lot of diversity in the shapes of the distributions, which the structured model accounts for quite well.
-One item that the structured model doesn't perfectly capture is the prior distribution over "lays eggs".
+Eight example prior distributions reconstructed from the mixture model's posterior parameter distribution, together with a comparison model that lacks one of the components of the mixture model (the "transient" distribution $D_{transient}$), are shown with the raw empirical distributions of feature-probability judgments in Figure \ref{fig:generic-endorsement-priors-figure}.
+There is a lot of diversity in the shapes of the distributions, which the mixture model accounts for quite well, while a model that only models a single distribution fails to.
+One feature-probability prior that the mixture model does not perfectly capture is the prior distribution over the feature \textsc{lay eggs}.
 The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 100\%^[
 Similar phenomena have been observed in other feature-probability elicitation tasks when the referent-category is fixed [e.g., estimating only the percentage of *robins* that *lay eggs*; @Prasada2013]
 ]; our simple two-component mixture model has no way to account for such a tri-modal distribution. 
-A more complex model (i.e., one with three mixture components) is necessary to perfectly account for this item's data; however, we retain the imperfect simpler model for data-analytic ease going forward. 
+A more complex model (i.e., one with three mixture components) is necessary to perfectly account for this item.
+
+<!-- The Bayes Factor indicates the extent to which the data support one model over another. -->
+<!-- The overall Bayes Factor in terms of structured model (S) over the unstructured model (U) for the full feature-probability prior data set is approximately $\log BF_{SU} = `r roundedBF1`$, meaning that the structured hypothesis is approximately `r roundedBF1` orders of magnitude more likely than the unstructured hypothesis to account for the feature-probability prior data. -->
+<!-- Indeed, the data strongly suggests the feature-probability prior is structured. -->
+
 
 ```{r generic-endorsement-priors-savageDickeyModel, eval = F}
 savageDickeyModel <-'
@@ -1935,291 +2093,19 @@ ggplot(m.gen.endorse.priors.summary %>% filter(Parameter == 'phi') %>%
   ylab("MAP estimate and 95% HDI of Mixture parameter")
 ```
 
-### Discussion
 
-The feature-probability prior distribution $P_f(h)$ encodes beliefs about the feature-probability (or, probabilities) of a feature $f$ across different kinds.
-These distributions are structured and are best represented by a model with at least two distinct generative components: one corresponding to those kinds that only accidentally or transiently have the feature and one corresponding to those kinds with a stable causal mechanism that gives rise to the feature with some probability.
+## Endorsement model comparison
 
-<!-- The knowledge encoded by the prevalence prior distribution is similar to another theoretical construct discussed in the generics literature: cue validity. -->
-
-If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), the inverse probability---$P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs)---is known as *cue validity*.
-For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria; hence "carrying malaria" has high cue validity for mosquitos. 
-
-A natural proposal is that endorsements for generic language have to do with cue validity.
-This possibility has been investigated empirically in one of few examples of statistical modeling of generics, and in fact, cue validity is highly correlated with generic endorsement [@Khemlani2012].
-However, cue validity has some empirical and theoretical issues.
-Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
-Theoretically, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
-<!-- If generics are for conveying generalizations and supporting prediction, listeners would be far better suited to have information that supports prediction about features given categories, not categories given features. -->
-<!-- , since knowledge of cue validity requires knowledge of the kind whereas the forward-probability (prevalence)  can be computed only based on the feature. -->
-<!-- ^[ -->
-<!-- As a simple demonstration, imagine we've just discovered a new kind of animal called a fep. -->
-<!-- It should be easy to estimate the prevalence of being female among feps (probably 50\%) even without any knowledge of feps.  -->
-<!-- However, if you learn in another context that a particular entity is green, it's impossible to estimate the cue validity of being green for feps -->
-<!-- that it's easy to estimate the prevalence of being female among  -->
-<!-- ] -->
-
-However, we should not throw away the possibility that distributional information about the property is relevant. 
-The mixture parameter $\phi$ in the feature-probability prior distribution can be seen as a generalization of the construct of cue validity. 
-Recall that $\phi$ is the weighting between the two generative components of the feature-probability prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$).
-If there is a finite number of kinds in the feature-probability prior for a feature, and one knows the probability of the feature for each kind, then the cue validity of that feature for a particular kind is encoded in the feature-probability prior, in that it can be derived via Bayes' Rule:
-$$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
-
-Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is no longer well-defined (or, it is zero for all kinds). 
-This is for the same reason that for a probability distribution over the real numbers (a *continuous* probability distribution), the probability of any particular number is zero. 
-For example, consider the cue validity of "having wings" for \textsc{robins}: $P(\text{robin} \mid \text{has wings})$.
-The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds} (and hence, $\phi$ is relatively low), but there are many kinds of birds and the feature is not particularly diagnostic for any given one of the subkinds (e.g., robins). 
-$phi$ is still relatively small in this case because it encodes information about the distribution across kinds and not just one particular kind.
-This is an important point of departure in our work from previous work.
-
-<!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
-<!-- It in fact may be one dimension of a higher-dimesional generative model of kinds and properties. -->
-<!-- Cue validity is conceptually related to the mixture parameter $\phi$ of the prevalence prior. -->
-<!-- However, cue validity requires knowledge of the referent-category $k$ -->
-
-<!-- For example, suppose there are 10 possible kinds and 3 of them belong the stable cause distribution and 7 belong to the transient cause distribution.  -->
-<!-- Say we observe the feature and want to know what the probability that the entity is of a particular kind that we know to be of the stable distribution.  -->
-<!-- If we know the prevalence given each distribution (i.e, $P(f \mid k_{stable})$ and $P(f \mid k_{transient})$). -->
-
-
-<!-- For simplicity, assume that each component corresponds to a single probability (i.e., a single prevalence value) as opposed to a distribution. -->
-<!-- Thus, $\mathcal{D_{stable}} = P(f \mid \mathcal{D_{stable}}) = p_{stable}$ -->
-
-<!-- $n_{stable} n_{transient}$ -->
-
-
-
-<!-- Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though it's role in generic meaning is controversial [@Leslie2007; @Leslie2008]. -->
-<!-- In empirical studies of generic language, however, it is often empirically measured [@Khemlani2012]. -->
-<!-- For this analysis, we measured cue validity using a free production paradigm, following @Cree2006. -->
-<!-- Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?"). -->
-<!-- For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity, see Appendix B. -->
-<!-- To process the priors data, we discretize the prevalence judgments to 12 discrete bins: $\{[0-0.01), (0.01-0.05), (0.05-0.15), (0.15-0.25),  ..., (0.75-0.85), (0.85-0.95), (0.95-1]\}$, and look at the counts within each bin, after doing add-1 Laplace smoothing, as the relative probability of that prevalence.  -->
-<!-- Do a BDA to describe the data in a more compact form. -->
-<!-- We can explore how the underspecified-threshold listener model $L_{0}(x , \theta \mid u)$ (Eq. \ref{eq:L0}) interprets generic utterances with these priors on prevalence (Figure \ref{fig:commongenerics}a, insets).  -->
-<!-- The prior beliefs over the prevalence of the property, $P(h)$, can also be interpreted as the pragmatic listener's posterior upon hearing the null utterance, because the null utterance has no information content. -->
-<!-- We see the interpretation of the generic is quite variable across our empirically measured priors. -->
-<!-- For instance, in the case of \textsc{carries malaria}, the prior is very left-skewed; with this prior, the threshold $\theta$ can plausibly be very low because high prevalence is unlikely. -->
-<!-- Properties like \textsc{doesn't attack swimmers} are very right-skewed; with this prior, not many thresholds lead to a substantial update in beliefs, and so the generic is unlikely to be used by speaker $S_1$ unless the property is practically-universal within the referent-category.  -->
-<!-- Some properties have priors that are unimodal with low variance (e.g. \textsc{is female}); these properties are present in every kind in almost exactly the same proportion. The model  and thus are too obvious and certain to allow for an informative generic utterance: The posterior is not very different from the prior.  -->
-<!-- With $P(x)$ now empirically established, we can test if our speaker model predicts human truth judgments of generic statements about these properties. -->
-
-
-## Experiment 1b: Endorsing generic statements
-
-In Expt. 1a, we measured and modeled the feature-probability prior distribution (e.g., the probability of laying eggs for different kinds of animals) for different features.
-This data also includes information about the referent-category feature-probability (e.g., how many robins lay eggs).
-Using the referent-category feature-probability as $h$ in our speaker model (Eq. \ref{eq:S1}), the speaker model will predict endorsements for the corresponding generic statements (e.g., "Robins lay eggs").
-To test these predictions, we collect human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
-
-#### Method
-```{r eval = F}
-d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments-n100.csv", sep = ""))
-d2 <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "naturalGenerics-trials-formatted.csv", sep = ""))
-
-# write.csv(
-#   left_join(
-#   d1 %>%
-#     mutate(sentence = as.character(sentence),
-#            sentence = gsub('&quotechar', '', sentence),
-#          sentence = gsub('lyme', 'Lyme', sentence)),
-#   unique(d2 %>%
-#     mutate(sentence = paste(Category, " ", Property, ".", sep = "")) %>%
-#     select(Category, Property, sentence))
-# ), file = paste(project.path, "data/generics/endorsement/",
-#                     "truth-judgments-n100.csv", sep = ""), row.names = F)
-```
-
-```{r generic-endorsement}
-d.gen.endorse.catch <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments_catch-trials.csv", sep = ""))
-
-d.gen.endorse <- read.csv(paste(project.path, "data/generics/endorsement/",
-                    "truth-judgments-n100.csv", sep = ""))
-
-
-
-d.gen.endorse.summary <- left_join(
-  d.gen.endorse, 
-  d.gen.endorse.catch %>% select(workerid, pass)
-  ) %>%
-  filter(pass == 1) %>%
-  rowwise() %>%
-  mutate(response = ifelse(response == "agree-key", 1, 0)) %>%
-  group_by(sentence) %>%
-  multi_boot_standard(col = "response") %>%
-  ungroup() %>%
-  mutate(sentence = factor(sentence, levels = sentence[order(mean)]))
-
-d.gen.endorse.bayes <- left_join(
-  d.gen.endorse, 
-  d.gen.endorse.catch %>% select(workerid, pass)
-  ) %>%
-  filter(pass == 1) %>%
-  rowwise() %>%
-  mutate(response = ifelse(response == "agree-key", 1, 0),
-         sentence = gsub('&quotechar', '', sentence),
-         sentence = gsub('lyme', 'Lyme', sentence)) %>%
-  group_by(sentence) %>%
-  summarize(k = sum(response), n = n()) %>%
-  ungroup() %>%
-  mutate(a = 1 + k,
-         b = 1 + n - k,
-         low  = qbeta(.025, a, b),
-         high = qbeta(.975, a, b),
-         MAP_h = (a-1)/(a+b-2),
-         mean = a / (a + b)) %>% 
-  ungroup()
-
-
-d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
-                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
-
-d.prev.summary <- d.prev %>%
-  mutate(item = paste(Category, " ", Property, ".", sep = "")) %>%
-  filter(item %in% d.gen.endorse.bayes$sentence) %>%
-  mutate(prevalence = prevalence / 100) %>%
-  group_by(Category, Property, item) %>%
-  multi_boot_standard(col = "prevalence")
-
-# d.gen.endorse.summary %>%
-#   ggplot(., aes(x = sentence, y = mean, ymin = ci_lower, ymax = ci_upper))+
-generics.endorsement.spectrum <- left_join(
-  d.gen.endorse.bayes, d.prev.summary %>% rename(sentence = item, prev = mean, prev_low = ci_lower, prev_high = ci_upper)
-) %>%
-  mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))  %>%
-  #ggplot(., aes(x = sentence, y = MAP_h, ymin = low, ymax = high))+
-  ggplot(., aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev))+
-  geom_bar(stat = 'identity', position = position_dodge(), color= 'black', alpha = 0.9)+
-  geom_linerange(position = position_dodge())+
-  #geom_errorbar(position = position_dodge())+
-  coord_flip()+
-  ylab("Human generic endorsement")+
-  xlab("")+
-  #scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1))+
-  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
-  scale_fill_continuous(breaks = c(0, 1), limits = c(0, 1))+
-  guides(fill = guide_colorbar(title = 'feature probability',
-                               ticks = F))+
-  theme(legend.position = 'bottom')
-  #geom_hline(yintercept = -0.25, lty = 3)+
-  #geom_hline(yintercept = 0.25, lty = 3)
-```
-
-##### Participants
-
-We recruited 100 participants over MTurk. 
-4 participants were excluded for failing to pass a catch trial.
-5 participants self-reported a native language other than English; removing their data has no effect on the results reported. 
-The experiment took about 3 minutes and participants were compensated \$0.35.
-
-##### Procedure and materials
-
-Participants were shown thirty generic sentences in a randomized order.
-They were asked to press one of two buttons (randomized between-participants) to signify whether they agreed or disagreed with the sentence (see Table 2 in Appendix for complete list). 
-The thirty sentences were presented in a random order between participants and covered a range of conceptual categories described above.
-Approximately 10 true, 10 false, and 10 uncertain truth-value generics were selected.
-
-As an attention check, participants were asked at the end of the trials which button corresponded to "Agree".
-4 participants were excluded for failing this trial.
-
-#### Data and model analysis
-
-```{r generic-endorsement-manipulationcheck}
-# MHT's truth judgments of sentences
-# t --> true; f --> false; i --> indeterminate/uncertain
-all.sentences <- list("Cardinals are red." = "t",
- "Ducks have wings." = "t",
- "Kangaroos have pouches." = "t",
- "Kangaroos have spots." = "f",
- "Leopards are juvenile." = "i",
- "Leopards have spots." = "t",
- "Leopards have wings." = "f",
- "Lions are male." = "i",
- "Lions have manes." = "t",
- "Lions lay eggs." = "f",
- "Mosquitos attack swimmers." = "i",
- "Mosquitos carry malaria." = "t",
- "Mosquitos dont carry malaria." = "f",
- "Peacocks dont have beautiful feathers." = "f",
- "Peacocks have beautiful feathers." = "t",
- "Robins are female." = "i",
- "Robins carry malaria." = "f",
- "Robins lay eggs." = "t",
- "Sharks are white." = "i",
- "Sharks attack swimmers." = "t",
- "Sharks dont attack swimmers." = "f",
- "Sharks have manes." = "f",
- "Sharks lay eggs." = "i",
- "Swans are full-grown." = "i",
- "Swans are white." = "t",
- "Ticks carry Lyme disease." = "t",
- "Ticks dont carry Lyme disease."= "f",
- "Tigers dont eat people."= "f",
- "Tigers eat people." = "t",
- "Tigers have pouches."= "f")
-
-mht.truth.judgments <- data.frame(sentence = names(all.sentences),
-           truth_judgment = as.vector(unlist(all.sentences)))
-
-d.gen.endorse.manipulation.check.bayes <- left_join(
-  left_join(
-    d.gen.endorse, 
-    d.gen.endorse.catch %>% select(workerid, pass)
-    ),
-  mht.truth.judgments ) %>%
-  filter(pass == 1) %>%
-  rowwise() %>%
-  mutate(response = ifelse(response == "agree-key", 1, 0),
-         sentence = gsub('&quotechar', '', sentence),
-         sentence = gsub('lyme', 'Lyme', sentence)) %>%
-  group_by(truth_judgment) %>%
-  summarize(k = sum(response), n = n()) %>%
-  ungroup() %>%
-  mutate(a = 1 + k,
-         b = 1 + n - k,
-         low  = qbeta(.025, a, b),
-         high = qbeta(.975, a, b),
-         MAP_h = (a-1)/(a+b-2),
-         mean = a / (a + b)) %>% 
-  ungroup() %>%
-  mutate(truth_judgment = factor(truth_judgment, levels = truth_judgment[order(MAP_h)]))
-
-true_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"MAP_h"]]
-true_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"low"]]
-true_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "t")[[1,"high"]]
-
-false_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"MAP_h"]]
-false_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"low"]]
-false_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "f")[[1,"high"]]
-
-uncertain_MAP <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"MAP_h"]]
-uncertain_low <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"low"]]
-uncertain_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment == "i")[[1,"high"]]
-
-```
-
-
-As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
-As one would expect, there were substantial differencesin empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP`$ $[`r true_low`, `r true_high`])$;
-indeterminate generics were agreed with \emph{less} likely than chance ($`r uncertain_MAP`$ $[`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP`$ $[`r false_low`, `r false_high`])$).
-
-In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ref{fig:generics-endorsement-figure} top left).
-Such a continuum of judgments is already evidence against any theory that only predicts whether a generic statement is true or false.
-Ideally, a complete theory of genericity should be able to explain statements that are endorsed completely, unendorsed completely, and all shades in between.
-
-To try to understand this endorsement data, we articulate a set of simple models that have been proposed in the literature and a reduced-form of our proposed RSA model. 
+To try to understand the generic endorsement data, we articulate a set of formal models that have been previously-proposed in the literature, a reduced-form of our proposed endorsement model, and our full endorsement model.
 As the simplest baseline hypothesis, we first explore whether referent-category feature-probability itself predicts generic endorsement (e.g., does the fraction of \textsc{robins} that \textsc{lay eggs} predict the felicity of *Robins lay eggs*?).
-As a secondary alternative hypothesis, we explore whether referent feature-probability and *cue validity* (the probability of a kind given the feature; described in more detail below) predicts generic endorsement of these items.
+As a secondary alternative hypothesis, we explore whether referent feature-probability and *cue validity*---the probability of a kind given the feature (described in more detail below)---predicts the endorsement data.
 We fit these models using standard maximum-likelihood techniques; we model uncertainty in the input measurements (i.e., referent feature-probability, cue validity) by bootstrapping those data.
 
-Our underspecified threshold model has access to the full prior distribution on feature-probabilities $P(h)$, from which it infers likely thresholds for the generic. 
-The endorsement model is a model of a speaker who is deciding whether or not to say the generic.
-There are thus three unique components to this model: (i) the prior distribution $P(h)$, (ii) the speaker model deciding whether or not to produce the generic, and (iii) the uncertain threshold.
+Our underspecified-threshold endorsement model has access to the full prior distribution on feature-probabilities $P(h)$ (measured in Expt. 1b), from which the interpreter model infers likely thresholds for the generic. 
+The endorsement model is a model of a speaker who is deciding whether or not to say the generic to the interpreter model.
+We identify three, theoretically-substantial components of this model: (a) the prior distribution $P(h)$, (b) the endorsement deciding whether or not to produce the generic, and (c) the uncertain threshold.
 As a control model, we use the same infrastructure but assign a fixed semantics to the utterance (i.e., analgous to the quantifier "some", which only rules out the lowest possible degree). 
-This control model has both features (i) and (ii) but lacks the uncertainty over the threshold.
+This control model has both features (a) and (b) but lacks the uncertainty over the threshold (c).
 This provides a strict test of our *simple but underspecified* hypothesis.
 
 ```{r generic-regression-models}
@@ -2431,14 +2317,16 @@ mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.pre
 ```
 
 
-##### Referent feature-probability baseline
+### Referent feature-probability baseline
 
-From the feature-probability prior data (Expt. 1a), we estimate participants' beliefs about the probability of a feature for the referent categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}).
+From the feature-probability prior data (Expt. 1b), we estimate participants' beliefs about the probability of a feature for the referent categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}).
 We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:generics-endorsement-figure}, upper-right: lower-left facet). 
-This is because our stimulus set includes generics that are true with high feature-probability properties (e.g., *Leopards have spots.*) and generics that are false with low feature-probability properties (e.g., *Leopards have wings.*). 
-However, large deviations from an account based purely on referent feature-probabilities remain: Generics in which the referent-category has intermediate feature-probabilities (feature-probability quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{feature-probability} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by referent feature-probability ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
+The referent feature-probability baseline is a decent model of these data because our stimulus set includes generics that are true with high feature-probability properties (e.g., *Leopards have spots.*) and generics that are false with low feature-probability properties (e.g., *Leopards have wings.*). 
 
-##### Cue validity and referent feature-probability
+However, large deviations from an account based purely on referent feature-probabilities remain: Generics in which the referent-category has intermediate feature-probabilities (feature-probability quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{feature-probability} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by referent feature-probability ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
+This includes generics that are judged true with relatively low referent feature-probabilities (e.g., "Mosquitos carry malaria") and false with relatively high referent feature-probabilities (e.g., "Sharks don't eat people").
+
+### Cue validity and referent feature-probability
 
 <!-- As a secondary alternative hypothesis, we explore whether prevalence and *cue validity* predicts generic endorsement of these items. -->
 If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
@@ -2462,7 +2350,7 @@ These highlight a shortcoming of a simple model based on cue validity.
 A simple metric like cue validity is too blunt to capture this subtlety.
 Additionally, negative properties (like, "not carrying malaria") are completely undiagnostic for almost every category, and the fitted regression model doesn't know how to penalize "Mosquitos don't carry malaria" because the feature-probability is high.
 
-##### Fixed threshold RSA model
+### Fixed threshold endorsement model
 
 ```{r generic-RSAmodels, fig.width = 8}
 n_chains <- 3
@@ -2775,7 +2663,7 @@ Consistent with intuition, assigning a fixed-semantics is too lenient a specific
 
 \mht{Outfit fixed-threshold model with noise parameter?}
 
-##### Uncertain threshold RSA model
+### Uncertain threshold RSA model
 
 Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0$, it has uncertainty over the threshold.
 We construct the same joint-inference Bayesian data analytic model as we did for the fixed-threshold analysis.
@@ -2794,47 +2682,9 @@ Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos car
 
 
 
-<!-- Generics that received definitive agreement or disagreement are predicted to be judged as such by the model (corners of Figure \ref{fig:commongenerics}b), including items for which referent-category prevalence is not a good indicator of the acceptability (e.g. \emph{Mosquitos carry malaria}, for prevalence quartiles 2 and 3, $r_{Q2,3}^2=0.955$; MSE=0.005; Figure \ref{fig:commongenerics}b, intermediate shades). -->
-<!-- We also see the generics truth judgment model predicts uncertain truth judgments: for instance, \emph{Robins are female} is judged by both the model and human participants to be neither true nor false. -->
-<!-- \emph{Sharks don't attack swimmers}, while true of most sharks, is judged to be not a good thing to say by both participants and the model. -->
-<!-- This is strong evidence that the puzzling flexibility of generic truth conditions can be understood with a simple but underspecified semantics for which the precise meaning is resolved with respect to diverse prior beliefs in context. -->
-
-
-
-
-<!-- The above analysis provides a single estimate for model predictions, but it is based on noisy empirical measurements of $P(x)$. In order to estimate the impact of this empirical noise on our model predictions, we resampled the prior data (with replacement) for 57 participants worth of data, discretizing and binning as we did above and then inferring parameters. -->
-<!-- This procedure (re-sample prior, discretize and bin, infer parameters) was repeated 500 times to bootstrap the model predictions. -->
-<!-- The Maximum A-Posteriori (MAP) estimate and 95\% Highest Probability Density (HPD) interval for $\lambda_1$ is 0.5 [0.004, 12.7] and $\lambda_2$ is 1.7 [1.3, 2.1]. -->
-<!-- ^[ -->
-<!-- The fact that $\lambda_1$ is credibly less than 1 suggests that the generic utterance may be more costly than "staying silent" (our model assumes equal cost). -->
-<!-- We maintain using only the two $\lambda$ parameters in the model for simplicity. -->
-<!-- ] -->
-
-
-<!-- This is akin to fitting the parameters and is the critical step in model validation: It shows what data is actually predicted by the model.)  -->
-
-
-<!-- basic communicative principles (\emph{be truthful}, \emph{be informative}) operating over diverse prior beliefs about the properties, all of which are at play in understanding language.  -->
-
-<!-- \begin{figure} -->
-<!-- \centering -->
-<!--     \includegraphics[width=\columnwidth]{figs/generics-prior-prevalence-tj.pdf} -->
-<!--     \caption{Endorsing familiar generics. (a)  -->
-<!--     Prevalence prior distributions empirically elicited for twenty-one animal properties. -->
-<!--     Prior distributions summarized by two parameters of a structured Bayesian model: $\phi$----a property's potential to be present in a category----and $\gamma$----the mean prevalence when it is possible for the property to be present in a category. -->
-<!--     Inset plots display example empirical prior distributions over prevalence and corresponding $L_1$ model predictions: the posterior after hearing a generic utterance.  -->
-<!--     Intervals on the top of insets show human judgments about the prevalence of the property within a referent-category. -->
-<!--     (b) -->
-<!--     Human acceptability judgments compared with model predictions (left) and the referent-category prevalence (right) for thirty generic utterances about familiar animals and properties.  -->
-<!--     Color denotes referent-category prevalence of the property, with lighter colors indicating higher prevalence.  -->
-<!--      Error bars denote 95\% Bayesian credible intervals. -->
-<!--     } -->
-<!--   \label{fig:commongenerics} -->
-
-<!-- \end{figure} -->
-
-
 ## Discussion
+
+
 
 Generic language is the premier case study for generalizations in language. 
 Generics have been studied extensively in the cognitive and developmental psychological literatures and have been shown to have implications for wide ranging phenomena from stereotype propogataion [@Rhodes2012] to motivation [@Cimpian2007].
@@ -2850,12 +2700,93 @@ This evidence is correlational in nature, however.
 We do not yet know if the variables that we are measuring are causally related to endorsement.
 In our second case study, we extend our theory to a new domain and provide the first causal evidence for our theory by manipulating the referent feature-probability that the speaker aims to communicate.
 
+### Discussion (from priors)
+
+The feature-probability prior distribution $P_f(h)$ encodes beliefs about the feature-probability (or, probabilities) of a feature $f$ across different kinds.
+These distributions are structured and are best represented by a model with at least two distinct generative components: one corresponding to those kinds that only accidentally or transiently have the feature and one corresponding to those kinds with a stable causal mechanism that gives rise to the feature with some probability.
+
+<!-- The knowledge encoded by the prevalence prior distribution is similar to another theoretical construct discussed in the generics literature: cue validity. -->
+
+If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), the inverse probability---$P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs)---is known as *cue validity*.
+For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria; hence "carrying malaria" has high cue validity for mosquitos. 
+
+A natural proposal is that endorsements for generic language have to do with cue validity.
+This possibility has been investigated empirically in one of few examples of statistical modeling of generics, and in fact, cue validity is highly correlated with generic endorsement [@Khemlani2012].
+However, cue validity has some empirical and theoretical issues.
+Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
+Theoretically, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
+<!-- If generics are for conveying generalizations and supporting prediction, listeners would be far better suited to have information that supports prediction about features given categories, not categories given features. -->
+<!-- , since knowledge of cue validity requires knowledge of the kind whereas the forward-probability (prevalence)  can be computed only based on the feature. -->
+<!-- ^[ -->
+<!-- As a simple demonstration, imagine we've just discovered a new kind of animal called a fep. -->
+<!-- It should be easy to estimate the prevalence of being female among feps (probably 50\%) even without any knowledge of feps.  -->
+<!-- However, if you learn in another context that a particular entity is green, it's impossible to estimate the cue validity of being green for feps -->
+<!-- that it's easy to estimate the prevalence of being female among  -->
+<!-- ] -->
+
+However, we should not throw away the possibility that distributional information about the property is relevant. 
+The mixture parameter $\phi$ in the feature-probability prior distribution can be seen as a generalization of the construct of cue validity. 
+Recall that $\phi$ is the weighting between the two generative components of the feature-probability prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$).
+If there is a finite number of kinds in the feature-probability prior for a feature, and one knows the probability of the feature for each kind, then the cue validity of that feature for a particular kind is encoded in the feature-probability prior, in that it can be derived via Bayes' Rule:
+$$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
+
+Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is no longer well-defined (or, it is zero for all kinds). 
+This is for the same reason that for a probability distribution over the real numbers (a *continuous* probability distribution), the probability of any particular number is zero. 
+For example, consider the cue validity of "having wings" for \textsc{robins}: $P(\text{robin} \mid \text{has wings})$.
+The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds} (and hence, $\phi$ is relatively low), but there are many kinds of birds and the feature is not particularly diagnostic for any given one of the subkinds (e.g., robins). 
+$phi$ is still relatively small in this case because it encodes information about the distribution across kinds and not just one particular kind.
+This is an important point of departure in our work from previous work.
+
+<!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
+<!-- It in fact may be one dimension of a higher-dimesional generative model of kinds and properties. -->
+<!-- Cue validity is conceptually related to the mixture parameter $\phi$ of the prevalence prior. -->
+<!-- However, cue validity requires knowledge of the referent-category $k$ -->
+
+<!-- For example, suppose there are 10 possible kinds and 3 of them belong the stable cause distribution and 7 belong to the transient cause distribution.  -->
+<!-- Say we observe the feature and want to know what the probability that the entity is of a particular kind that we know to be of the stable distribution.  -->
+<!-- If we know the prevalence given each distribution (i.e, $P(f \mid k_{stable})$ and $P(f \mid k_{transient})$). -->
+
+
+<!-- For simplicity, assume that each component corresponds to a single probability (i.e., a single prevalence value) as opposed to a distribution. -->
+<!-- Thus, $\mathcal{D_{stable}} = P(f \mid \mathcal{D_{stable}}) = p_{stable}$ -->
+
+<!-- $n_{stable} n_{transient}$ -->
+
+
+
+<!-- Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though it's role in generic meaning is controversial [@Leslie2007; @Leslie2008]. -->
+<!-- In empirical studies of generic language, however, it is often empirically measured [@Khemlani2012]. -->
+<!-- For this analysis, we measured cue validity using a free production paradigm, following @Cree2006. -->
+<!-- Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?"). -->
+<!-- For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity, see Appendix B. -->
+<!-- To process the priors data, we discretize the prevalence judgments to 12 discrete bins: $\{[0-0.01), (0.01-0.05), (0.05-0.15), (0.15-0.25),  ..., (0.75-0.85), (0.85-0.95), (0.95-1]\}$, and look at the counts within each bin, after doing add-1 Laplace smoothing, as the relative probability of that prevalence.  -->
+<!-- Do a BDA to describe the data in a more compact form. -->
+<!-- We can explore how the underspecified-threshold listener model $L_{0}(x , \theta \mid u)$ (Eq. \ref{eq:L0}) interprets generic utterances with these priors on prevalence (Figure \ref{fig:commongenerics}a, insets).  -->
+<!-- The prior beliefs over the prevalence of the property, $P(h)$, can also be interpreted as the pragmatic listener's posterior upon hearing the null utterance, because the null utterance has no information content. -->
+<!-- We see the interpretation of the generic is quite variable across our empirically measured priors. -->
+<!-- For instance, in the case of \textsc{carries malaria}, the prior is very left-skewed; with this prior, the threshold $\theta$ can plausibly be very low because high prevalence is unlikely. -->
+<!-- Properties like \textsc{doesn't attack swimmers} are very right-skewed; with this prior, not many thresholds lead to a substantial update in beliefs, and so the generic is unlikely to be used by speaker $S_1$ unless the property is practically-universal within the referent-category.  -->
+<!-- Some properties have priors that are unimodal with low variance (e.g. \textsc{is female}); these properties are present in every kind in almost exactly the same proportion. The model  and thus are too obvious and certain to allow for an informative generic utterance: The posterior is not very different from the prior.  -->
+<!-- With $P(x)$ now empirically established, we can test if our speaker model predicts human truth judgments of generic statements about these properties. -->
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- In addition, why generics often imply the property is widespread has also been puzzling [@Gelman2004]. -->
 <!-- We show that this is the result of the shape of listener's prior knowledge and that when that shape differs, the implied prevalence is much weaker (e.g., with accidental properties). -->
 <!-- Even more puzzling has been the basic asymmetry between endorsements and interpretations [@Cimpian2010]. -->
 <!-- We show that this asymmetry arises from the underspecified-threshold interacting with diverse prior beliefs.  -->
 <!-- While implied prevalences vary wildly for different kinds of properties under discussion, the endorsements are relatively less sensitive to these distinctions. -->
 <!-- Thus, the basic asymmetry is largely being driven by the listener's interpretation of a generic. -->
+
 
 
 # Case Study 2: Habitual Language
