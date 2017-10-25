@@ -964,160 +964,6 @@ For these simulations, we had specify the feature-probability priors $P(h)$.
 In the rest of this paper, we both meausure and manipulate $P(h)$ and examine the behavior of the speaker model in three case studies: generalizations about categories, events, and causes.
 
 
-<!-- Consider how an uniformly underspecified threshold would interact with a uniformly uncertain belief about a probability (recall the thresholds defines what probabilities or states of the world should be ruled out).  -->
-<!-- If the threshold is very high, only the highest probabilities would be left (i.e., pass the threshold). -->
-<!-- If the threshold is slightly lower but still high, the highest probabilities would still pass the threshold, as would some that are slightly lower. -->
-<!-- As the threshold takes on lower and lower values, more and more probabilities would surpass it. -->
-<!-- When the threshold is very low, almost all probabilities are consistent with it. -->
-<!-- But since we don't know *a priori* what the threshold is likely to be, each of theses situations is plausible. -->
-<!-- The posterior distribution on probabilities or states of the world will favor higher probabilities (because they pass more thresholds), but will still include probabilities that are quite low [though they are *a posteriori* unlikely; see Figure \ref{fig:simluations} ].  -->
-<!-- Speakers, thus, will produce generalizations with some probability in each state of the world, though the speaker will say the generalization more often when the propensities associated with the states of the world are higher [see Figure \ref{fig:simluations}]. -->
-
-<!-- - Figure -->
-  <!-- - Subfigure 1 [width = 0.2] (Uniform priors) [two rows, left subfigure] -->
-  <!--   -- Basic L0 posteriors on degrees for uncertain, fixed at 0 and fixed at 0.5 -->
-  <!--   -- Basic S1 posteriors on utterances, for prevalence 0 - 1 (and for fixed thresholds) -->
-  <!-- - Subfigure 2 [width = 0.8] (L0 vs. L1 lifted vs. L1 unlifted x 4 priors x {speaker, listener} ) [model as color, lty; priors as columns x {speaker, listeners} as rows]  -->
-  <!--   -- priors = [uniform, n-shaped, u-shaped, mixture model / maybe put more in appendix: rare, accidental, female, eggs] -->
-
-<!--
-mht: is it possible to construct priors in causals that would reflect the qualitative prediction shown here?
--->
-
-
-
-
-
-
-<!-- $P(x)$ is a distribution on the prevalence of a given property (e.g. \textsc{lays eggs}) across animal categories.  -->
-<!-- In Figure \ref{fig:schematic-unif}, are $L_1$ (Eq.~\ref{eq:L1}) posterior prevalence distributions on $x$ (red solid line) for several example prior prevalence distributions $P(x)$ (blue dashed line), as well as the $S_2$ generic endorsement probability for different levels of prevalence. -->
-<!-- We name these example prior distributions to suggest properties that might be associated with such priors.  -->
-<!-- (Later, we will empirically measure these priors for properties of interest.) -->
-<!-- First, we explore generic interpretation and endorsement for priors of three different shapes (left column).  -->
-<!-- For each of these, the $L_1$ posterior distribution (red solid) over prevalence is heavily driven by the prior (blue dashed). -->
-<!-- $S_2$ endorsement probabilities for the generic (black solid) increase as a function of prevalence, and what counts as "true" (in terms of the prevalence) depends on the prior.  -->
-
-<!-- \begin{figure} -->
-<!-- \centering -->
-<!--     \includegraphics[width=\columnwidth]{figs/schematics_s2.pdf} -->
-<!--     \caption{Schematic prior distributions for prevalence $x$ (blue dashed), the pragmatic listener $L_1$ model's posterior distribution over prevalence upon hearing a generic utterance (red), and speaker $S_2$ model's endorsement of a generic utterance for different levels of prevalence (black). -->
-<!--     The names given to these priors are meant to be suggestive of what kinds of properties these distributions might correspond to. -->
-<!--     The left column uses prevalence priors modeled as Beta(15,15), Beta(4,1), and Beta(4,16) distributions. -->
-<!--       The right column uses a prior distribution that is a mixture of the distribution to the left of it with a second component, modeled as Beta(0.5, 4.5), reflecting categories with 0\% property prevalence. -->
-<!--     Horizontal dashed line at 0.5 is for convenience of comparing the point at which an utterance becomes judged as more true than false for $S_2$. -->
-<!-- 	Note that the prior distribution over prevalence will be the same as $L_1$'s posterior distribution upon hearing the "null" utterance. -->
-<!--     } -->
-<!--   \label{fig:schematic-unif} -->
-<!-- \end{figure} -->
-
-
-<!-- To take one example, consider the distribution over what might be the property "are female" (top-left facet). -->
-<!-- The \emph{a priori} prevalence is centered around 0.5. -->
-<!-- Because of pragmatics, the pressure to be \emph{truthful} will drive likely threshold values below 0.5 (lower values are more likely to be true).  -->
-<!-- At the same time, the pressure to be \emph{informative} will drive the threshold values up: Higher values are more likely to be informative.  -->
-<!-- The result is a posterior over prevalence that is only marginally greater than the prior, making higher prevalence values more likely after hearing the generic.  -->
-<!-- But the relative information gain is very little (the posterior is not very different from the prior), and thus the $S_2$ model is reluctant to endorse the generic unless the property is exceedingly prevalent.  -->
-<!-- The same basic phenomenon can be observed for the other two example priors (left column): The posterior over prevalence heavily depends upon the prior, but is also not very different from the prior. -->
-
-<!-- We now imagine what would happen if there were some kinds where the property was completely absent, while being present at some rate in other kinds. -->
-<!-- Figure \ref{fig:schematic-unif} (right column) shows this possibility: mixing the distribution to the left of it with a second component at 0\% prevalence. -->
-<!-- Consider the schematic prior over "lay eggs". -->
-<!-- We see the pragmatic listener $L_1$'s posterior prevalence distribution is not very different from the interpretation that doesn't include the second component in the prior (here, "are female"), but it is dramatically different from the prior with two components (compare red with blue dashed line for the right column). -->
-<!-- This suggests that when many categories have 0\% prevalence, lower thresholds are informative.  -->
-<!-- Indeed, the $S_2$ model predicts that the generic becomes felicitous at lower prevalence levels (compare black line of left v. right column). -->
-<!-- For "lay eggs", when the property is prevalent in 50\% of the kind (e.g., 50\% of birds lay eggs), endorsement of the generic (e.g., \emph{Birds lay eggs}) by the $S_2$ is roughly 0.85; for "are female", with the same prevalence (50\% of birds are female), endorsement for \emph{Birds are female} is only 0.50: It is judged to be neither true nor false.  -->
-<!-- The important result is the asymmetry: the first generic can be endorsed more strongly than the second, at the same prevalence level; the exact endorsement rates depend on quantitative aspects of the priors, which must be determined empirically. -->
-
-<!-- The model thus predicts differences in truth judgments depending on the prevalence prior.  -->
-<!-- The first test of our theory, then, will be to see if these predictions correspond to human truth judgments of familiar generic sentences.  -->
-
-
-
-
-<!-- Next is a hypothetical speaker, who reasons about the literal listener when deciding which utterance to produce. -->
-<!-- \begin{eqnarray} -->
-<!-- S_{1}(u \mid x, \theta) &\propto& \exp{(\lambda_1 \cdot \ln {L_{0}(x \mid u, \theta)} ) }\label{eq:S1} -->
-<!-- \end{eqnarray} -->
-<!-- This speaker $S_1$ also knows the threshold $\theta$ and chooses utterances to convey information to the literal listener $L_0$ . -->
-<!-- Following RSA, this speaker is an approximately rational (speech-)actor with degree with rationality governed by parameter $\lambda_1$. -->
-
-
-<!-- For the case of understanding a generic (e.g., *Dogs are friendly*), the relevant dimension for the adopted semantics is the prevalence of property within the category (e.g., the \% of dogs that are friendly). -->
-<!-- In this model, a threshold $\theta$ is established in context by a Bayesian listener reasoning about what threshold would make this utterance true? -->
-
-
-
-<!-- The model begins with a simple Bayesian agent---a literal listener---who updates her prior beliefs $P(x)$ according to the truth-functional meaning of the utterance heard $\denote{u}$. -->
-<!-- \begin{eqnarray} -->
-<!-- L_{0}(x \mid u, \theta) &\propto& {\delta_{\denote{u}(x, \theta)} \cdot P(x)} \label{eq:L0} -->
-<!-- \end{eqnarray} -->
-<!-- For the generic sentence, we assign the simplest possible meaning, a threshold on the prevalence: $\denote{u_{generic}} = P(F\mid K)>\theta$. -->
-
-<!-- The likelihood $\delta_{\denote{u}(x)}$ is the Kronecker delta function returning $1$ for states $x$ compatible with utterance $u$ (i.e., where the prevalence $x$ is above the threshold $\theta$), and $0$ otherwise. -->
-<!-- The literal listener is a hypothetical agent who knows the threshold $\theta$. -->
-
-<!-- Next is a hypothetical speaker, who reasons about the literal listener when deciding which utterance to produce. -->
-<!-- \begin{eqnarray} -->
-<!-- S_{1}(u \mid x, \theta) &\propto& \exp{(\lambda_1 \cdot \ln {L_{0}(x \mid u, \theta)} ) }\label{eq:S1} -->
-<!-- \end{eqnarray} -->
-<!-- This speaker $S_1$ also knows the threshold $\theta$ and chooses utterances to convey information to the literal listener $L_0$ . -->
-<!-- Following RSA, this speaker is an approximately rational (speech-)actor with degree with rationality governed by parameter $\lambda_1$. -->
-
-
-
-<!-- For the generic sentence, we assign the simplest possible meaning, a threshold on the propensity: $\denote{u_{generic}} = P(F\mid K)>\theta$. -->
-<!-- The prior distribution $P(h)$ is a distribution over likely degrees of propensity.  -->
-<!-- For the case of understanding a generic (e.g., *Dogs are friendly*), the relevant dimension for the adopted semantics is the prevalence of property within the category (e.g., the \% of dogs that are friendly). -->
-
-<!-- Life is only so long, however, and a person can only be in one place at a time. -->
-<!-- The amount of data we can gather about any particular category, event, or causal force is extremely limited by these physical constraints. -->
-<!-- Thus, it would be useful if language provided a simple way to communicate these generalizations to one another. -->
-
-
-
-
-
-<!-- # A Formal Theory of Generalizations in Language -->
-
-<!-- We find both the statistical and conceptual accounts compelling, but an important perspective is missing. -->
-<!-- Linguistic generalizations are not unique in their flexibility. -->
-<!-- Understanding language in general depends upon assumptions interlocutors make about each other and what content is under discussion.  -->
-<!-- Viewing language understanding as a social reasoning process reveals that utterances carry a mosaic of interpretations with a complex sensitivity to context [@Clark1996; @Grice1975; @Levinson2000].  -->
-<!-- Can the puzzles of generic language be understood as effects of pragmatic reasoning? -->
-<!-- If so, we may be able to get away with a relatively simple, statistical,  semantic theory. -->
-<!-- Abstract mental representations, then, may be the conceptual backdrop against which generic language is interpreted.  -->
-
-<!-- We pursue such a line of inquiry, assuming the simplest truth-conditional meaning: a threshold on prevalence $P(F\mid K)>\theta$ [c.f., @Cohen1999]. -->
-<!-- No fixed value of the threshold, $\theta$, would allow for the extreme flexibility generics exhibit (e.g. \emph{Mosquitos carry malaria}; \emph{Robins lay eggs} v. \emph{Robins are female}),  -->
-<!-- so instead we allow this threshold to be established in context through pragmatic reasoning. -->
-<!-- Such an inference would depend on background knowledge about properties and categories---potentially structured, conceptual knowledge. -->
-<!-- This inference, nonetheless, is a general mechanism of understanding language, not specific to interpreting generic statements. -->
-<!-- We formalize this hypothesis in the Rational Speech Act (RSA) theory---a formal, probabilistic theory of language understanding. -->
-<!-- RSA is derived from social reasoning, formalized as recursive Bayesian inference between speaker and listener [@Frank2012; @Goodman2013; @Goodman2016; see also, @Franke2009; @Franke2015]. -->
-<!-- @Goodman2016 provides a good introduction to the RSA framework and Appendix A presents a brief tutorial on RSA for the reader unfamiliar. -->
-
-
-<!-- The model begins with a simple Bayesian agent---a literal listener---who updates her prior beliefs $P(x)$ according to the truth-functional meaning of the utterance heard $\denote{u}$. -->
-<!-- \begin{eqnarray} -->
-<!-- L_{0}(x \mid u, \theta) &\propto& {\delta_{\denote{u}(x, \theta)} \cdot P(x)} \label{eq:L0} -->
-<!-- \end{eqnarray} -->
-<!-- For the generic sentence, we assign the simplest possible meaning, a threshold on the prevalence: $\denote{u_{generic}} = P(F\mid K)>\theta$. -->
-<!-- The prior distribution $P(x)$ is a distribution over likely states of the world.  -->
-<!-- For the case of understanding a generic (e.g., *Dogs are friendly*), the relevant dimension for the adopted semantics is the prevalence of property within the category (e.g., the \% of dogs that are friendly). -->
-<!-- The likelihood $\delta_{\denote{u}(x)}$ is the Kronecker delta function returning $1$ for states $x$ compatible with utterance $u$ (i.e., where the prevalence $x$ is above the threshold $\theta$), and $0$ otherwise. -->
-<!-- The literal listener is a hypothetical agent who knows the threshold $\theta$. -->
-
-
-<!-- To understand how language is interpreted pragmatically, we model a pragmatic listener $L_1$ who updates her prior beliefs $P(x)$ by reasoning about the generative process of the utterance, the speaker model $S_1$. -->
-<!-- \begin{eqnarray} -->
-<!-- L_{1}(x , \theta \mid u) &\propto& S_{1}(u \mid x, \theta) \cdot P(x) \cdot P(\theta) \label{eq:L1} -->
-<!-- \end{eqnarray} -->
-<!-- Following @Lassiter2013, we model the pragmatic listener as having uncertainty about the threshold: $P(\theta)$. -->
-<!-- Though the listener doesn't know the threshold *a priori*, she resolves the threshold (i.e., the meaning) in context by integrating her prior beliefs $P(x)$ with the basic principles of communication to be truthful and informative, instantiated in her model of the speaker $S_1$ [@Lassiter2015; @GoodmanLassiter]. -->
-<!-- In principle, thresholds could be learned over time for different contexts, but here we assume the listener has no informative knowledge about the semantic variable $P(\theta) = \text{Uniform([0, 1])}$. -->
-<!-- The pragmatic listener $L_1$ (Eq. \ref{eq:L1}) is thus a model of *generic interpretation*: Upon hearing a generic, how should a listener update her beliefs? -->
-
-
 
 # Case Study 1: Generic Language
 
@@ -1133,22 +979,6 @@ Our measurement of the feature-probability priors includes measurements of the r
 To preview our results, we find that only an endorsement model based on an uncertain-threshold semantics is able to account for the flexibility observed in generic endorsement.
 
 
-<!-- That is, "Mosquitos carry malaria" and "Robins lay eggs" are reasonable things to say, but "Robins are female" is not. -->
-<!-- As a first test of our theory, we wish to explain the flexibility in endorsements of generics in terms of the relevant prior knowledge about properties, as explored through simulation in the **model simulations** section. -->
-<!-- We validate these simulations empirically by measuring t and the referent-category feature-probability that the speaker model seeks to convey (the *referent feature-probability*) $h$ in Eq. \ref{eq:S1} (Expt. 1a). -->
-
-<!-- <!-- The pragmatic speaker model $S_2$, Eq.~\ref{eq:S2}, is a model of truth judgments.  --> -->
-<!-- We test our model on -->
-
-<!-- To compare the model to empirical truth judgments, we measure the prior distribution over feature-probabilities of these properties (Expt. 1a). -->
-<!-- We hypothesize that these prior distributions encode probabilities associated with conceptual distinctions [@Prasada2013]. -->
-<!-- In particular, we hypothesize that different kind--property relations [e.g., *principled* v. *accidental relations*^[This is sometimes referred to as "statistical" relations.]; @Prasada2013] can be observed in the feature-probability prior.  -->
-<!-- If, in fact, the feature-probability prior is a manifestation of deeper, conceptual knowledge, we would expect the feature-probability prior data to follow a multi-modal, mixture distribution where there exist qualitatively distinct modes or components to the prior, as probabilistic traces of the different types of kinds with respect to the property. -->
-<!-- A prior that is structured would be one way in which our formal theory connects to other psychological accounts of generic language [cf., @Prasada2013; @Gelman2003; @Leslie2007]. -->
-<!-- As a simple test of this hypothesis---that the feature-probability prior encodes conceptual knowledge---we compare a structured (i.e., mixture) model of the prior data to an unstructured one. -->
-
-<!-- After having validated a measure of the feature-probability prior, we consider the issue of primary theoretical interest: How well our *uncertain threshold* hypothesis accounts for endorsements of generic sentences (Expt. 1b). -->
-<!-- In order to better understand the contribution of our theoretical framework, we evaluate alternative models that have either been previously analyzed in the generics literature or that are simpler forms of our *uncertain threshold* RSA model.  -->
 ## Experiment 1a: Generic endorsements
 
 In this experiment, we elicit human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
@@ -1388,7 +1218,6 @@ This whole procedure was repeated two times (two trials).
 In total, each participant generated ten animal names and reported on the feature-probability of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
 
-
 \begin{figure}
 \centering
     \includegraphics[width=\columnwidth]{figs/generics-prior-bothStages.pdf}
@@ -1417,22 +1246,14 @@ Similar results can be obtained by rounding 0 to 0.01.
 Alternatively, the "transient" distribution could be defined as a Delta distribution at 0, and 0 responses could remain in their raw form.
 ]
 Finally, we assume that these two components combine with mixture weighting $\phi$ such that the data we observe is $$P(d) = \phi\cdot \text{Beta} (d \mid \gamma, \xi) + (1 -  \phi) \cdot \text{Beta}(d \mid \gamma = 0.01, \xi = 100) $$.
-
-
 <!-- The unstructured alternative hypothesis assumes the data was generated by a single component in the prior distribution with unknown parameteres $P(d) = \text{Beta} (d \mid \gamma, \xi)$. -->
-
 We put the following priors over the latent parameters of the model:
-
 \begin{eqnarray}
 \phi_i & \sim & \text{Uniform}(0, 1) \\
 \gamma_i & \sim & \text{Uniform}(0, 1) \\
-\xi_i & \sim & \text{Uniform}(0, 100) \\
+\xi_i & \sim & \text{Uniform}(0, 100)
 \end{eqnarray}
-
 where $i$ ranges over the different properties (e.g., *lays eggs*, *carries malaria*).
-
-'s data; however, we retain the imperfect simpler model for data-analytic ease going forward. 
-
 
 ### Results
 
@@ -2103,10 +1924,10 @@ We fit these models using standard maximum-likelihood techniques; we model uncer
 
 Our underspecified-threshold endorsement model has access to the full prior distribution on feature-probabilities $P(h)$ (measured in Expt. 1b), from which the interpreter model infers likely thresholds for the generic. 
 The endorsement model is a model of a speaker who is deciding whether or not to say the generic to the interpreter model.
-We identify three, theoretically-substantial components of this model: (a) the prior distribution $P(h)$, (b) the endorsement deciding whether or not to produce the generic, and (c) the uncertain threshold.
+We identify three, theoretically-substantial components of this model: (a) the prior distribution $P(h)$, (b) the endorsement as a speaker decision of whether or not to produce the generic, and (c) the uncertain threshold.
 As a control model, we use the same infrastructure but assign a fixed semantics to the utterance (i.e., analgous to the quantifier "some", which only rules out the lowest possible degree). 
 This control model has both features (a) and (b) but lacks the uncertainty over the threshold (c).
-This provides a strict test of our *simple but underspecified* hypothesis.
+This provides a strict test of the uncertain-threshold hypothesis.
 
 ```{r generic-regression-models}
 d.cv <- read.csv(paste(project.path, "data/generics/endorsement/", "cue-validity-2-freeProduction-trials.csv", sep = ""))
@@ -2316,8 +2137,9 @@ r2.gen.regression.prev.intermedprev <- round(with(d.gen.endorse.regression.preva
 mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.prevalence.intermediateprev$sqErr), 3)
 ```
 
+### Baseline models
 
-### Referent feature-probability baseline
+#### Referent feature-probability
 
 From the feature-probability prior data (Expt. 1b), we estimate participants' beliefs about the probability of a feature for the referent categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}).
 We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \ref{fig:generics-endorsement-figure}, upper-right: lower-left facet). 
@@ -2326,19 +2148,28 @@ The referent feature-probability baseline is a decent model of these data becaus
 However, large deviations from an account based purely on referent feature-probabilities remain: Generics in which the referent-category has intermediate feature-probabilities (feature-probability quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{feature-probability} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by referent feature-probability ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
 This includes generics that are judged true with relatively low referent feature-probabilities (e.g., "Mosquitos carry malaria") and false with relatively high referent feature-probabilities (e.g., "Sharks don't eat people").
 
-### Cue validity and referent feature-probability
+#### Cue validity and referent feature-probability
 
-<!-- As a secondary alternative hypothesis, we explore whether prevalence and *cue validity* predicts generic endorsement of these items. -->
-If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
-*Cue validity* measures the salience of a category given a feature but also captures the distinctiveness of the feature. 
+##### Model specification
+
+As a secondary baseline hypothesis, we explore whether prevalence and *cue validity* together predict generic endorsementse.
+If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
+*Cue validity* thus captures the distinctiveness of the feature for the category. 
 For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria. 
-Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though it's role in generic meaning is controversial [@Leslie2007; @Leslie2008].
+Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though its role in generic meaning is controversial [@Leslie2007; @Leslie2008].
+Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
+Theoretically, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
 
-For a feature-probability distribution with a fixed set of categories, the cue validity of a kind given a feature can be calculated from the feature-probability prior distribution.
-In empirical studies of generic language, however, it is often empirically measured [@Khemlani2012].
-For this analysis, we measured cue validity using a free production paradigm, following @Cree2006.
+
+We described in Expt 1b. that $P(h)$ can be decomposed into a prior on kinds $P(k)$ and the likelihood of a feature-probability given the kind $P(h \mid k)$.
+If there is a finite number of kinds in the feature-probability prior for a feature, and one knows the probability of the feature for each kind (i.e., $P(h \mid k)= P(f \mid k)$), then the cue validity of that feature for a particular kind is encoded in the feature-probability prior and it can be derived via Bayes' Rule:
+$$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
+Previous empirical studies of generic language, however, have not measured the feature-probability prior and instead try to estimate cue-validity by asking about the distinctiveness of features for given animals [e.g., @Khemlani2012]
+In keeping with this tradition, we measured cue validity using a free production paradigm, following @Cree2006.
 Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
-For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity, see Appendix B.
+For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity as well as the *feature-probability prior derived cue validity*, see Appendix.
+
+##### Results
 
 A linear model that uses predictors for both referent feature-probability and cue validity does a better job at explaning the endorsement data than just feature-probability alone ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev.cv`$; MSE=$`r mse.gen.regression.prev.cv`$).
 This model is able to account for the endorsements of examples like "Mosquitos carry malaria" and "Lions have manes", as these features are very diagnostic of the kind.
@@ -2350,7 +2181,44 @@ These highlight a shortcoming of a simple model based on cue validity.
 A simple metric like cue validity is too blunt to capture this subtlety.
 Additionally, negative properties (like, "not carrying malaria") are completely undiagnostic for almost every category, and the fitted regression model doesn't know how to penalize "Mosquitos don't carry malaria" because the feature-probability is high.
 
-### Fixed threshold endorsement model
+### Information-theoretic endorsement models
+
+The model we propose for endorsing generalizations is a model of a speaker that decides whether or not to say the generalization to a naive listener.
+Unlike the baseline regression models based on point-estimates of referent-category feature-probability and cue validity, this cognitive model has access to the full prior distribution on feature-probabilities $P(h)$.
+This model has two other main architectural features: an information-theoretic decision between producing the generic vs. an information-less alternative (formalized in the speaker model) and uncertainty about the semantic threshold $P(\theta)$ that corresponds to the theoretical, core meaning of a generic statement.
+We construct a strong, alternative model by removing the uncertainty about the semantic threshold $\theta$. 
+We describe that model below in more detail; before, we describe our data analytic approach for this pair of models. 
+
+##### Model specification
+
+
+For both fixed-threshold and uncertain-threshold models, the endorsement model $E$ (Eq. \ref{eq:S1}) decides whether or not to assert the generalization conditioned on a particular referent-category feature-probability $h'$^[
+Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
+This corresponds to the more general form of the model described in a footnote in the model section. 
+For these data, the predictions of these two models are nearly identical.
+]
+(e.g., given the percentage of robins that lay eggs, does it want to say "Robins lay eggs"?).
+We use the empirically estimated referent-category feature-probability (the same as used in the baseline regression model) as the $h'$ in the endorser $E$ model.
+The empirically measured priors from Expt. 1b are used as the literal interpreter's feature-probability prior $P(h)$.
+The $E$ endorsement model is then fully specified (i.e., can generate predictions) after setting the optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
+
+```{r genericsModelDiagram, fig.cap="Graphical model corresponding to the fully Bayesian data analysis of the RSA model. The feature-probability prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-category feature-probability $d^{pr}_{k,f}$ is generated from a latent feature-probability $h_{k,f}$. The fixed-threshold (control model) or uncertain-threshold RSA model takes the feature-probability prior $P_f(h)$, the referent-category feature-probability $h$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that RSA corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; RSA cannot be represented by a graphical model because it has recursion. "}
+knitr::include_graphics("figs/generics_bayesnetmodel.pdf", dpi = 108)
+```
+
+To fit this pair of endorsement models, we incorporate them into the Bayesian data analytic model of the feature-probability prior data (Expt. 1b) to create a single, joint-inference model where the optimality parameter $\lambda_1$ is inferred jointly with all the other latent parameters of the full model (the referent feature-probability $h'_{k, f}$ for each category $k$ and property $f$ and the parameters of the feature-probability priors $P_f(h)$ for each property $f$) using data from Expt. 1a \& b (see Figure \ref{fig:genericsModelDiagram}).
+For the parameters of the feature-probability prior distributions, we use the same priors described in Expt. 1b; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
+We learn about the \emph{a posteriori} credible values of the joint inference models by collecting samples from 3 MCMC chains of 100,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. 
+
+#### Fixed-threshold  model
+
+We first test a model that has two of the the above three main architectural features.
+This model has access to the full prior distribution on feature-probabilities as well as models an information-theoretic decision of producing the generic vs. an alternative.
+The only difference is that this model uses a fixed-threshold to correspond to the core meaning of a generic statements.
+For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).^[
+Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 0.5$) but require the further specification of a noise-model for participants' responses in the cases where participants endorse the statement when it is literally false (e.g., "Mosquitos carry malaria" would be literally false under a $\theta = 0.5$ semantics).
+]
+This is a strong alternative model to our uncertain-threshold model; the only difference concerns the threshold.
 
 ```{r generic-RSAmodels, fig.width = 8}
 n_chains <- 3
@@ -2620,55 +2488,30 @@ grid.arrange(generics.endorsement.spectrum,
              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-The RSA model we propose for generic endorsement is a speaker model that decides whether or not to say the generic to a naive listener.
-Unlike the simple regression models based on point-estimates of referent-category feature-probability and cue validity, this cognitive model has access to the full prior distribution on feature-probabilities $P(h)$.
-This model has two other main architectural differences: an information-theoretic decision between producing the generic vs. an information-less alternative (formalized using RSA) and uncertainty about the semantic threshold that corresponds to the theoretical, core meaning of a generic statement.
-
-We first test a model that has two of the the above three main architectural features.
-This model has access to the full prior distribution on feature-probabilities as well as models an information-theoretic decision of producing the generic vs. an alternative.
-The only difference is that this model uses a fixed-threshold to correspond to the core meaning of a generic statements.
-For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).^[
-Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 0.5$) but require the further specification of a noise-model for participants' responses in the cases where participants endorse the statement when it is literally false (e.g., "Mosquitos carry malaria" would be literally false under this semantics).
-]
-This is a strong alternative model to our uncertain-threshold model; the only difference concerns the threshold.
-
-
-<!-- Our pragmatic speaker model, $S_1$ in Eq. \ref{eq:S1}, reasons about whether it would be useful to say to the generic to this kind of listener so that the listener may acquire the same beliefs as the speaker (represented as the feature-probability of the property within the referent-category $h'$). -->
-We use the empirically estimated referent-category feature-probability as the $h$ that the speaker $S_1$ is trying to communicate, and use the empirically measured priors from Expt. 1a as the listener's feature-probability prior $P(h)$.^[
-Rather than trying to communicate a particular $h$, the speaker could plausibly try to communicate her full belief distribution over $h$ to the listener. 
-This corresponds to the more general form of the model described in a footnote in the model section. 
-With these data, the predictions of these two models are nearly identical.
-]
-The $S_1$ model is then fully specified after setting the speaker optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
-
-```{r genericsModelDiagram, fig.cap="Graphical model corresponding to the fully Bayesian data analysis of the RSA model. The feature-probability prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-category feature-probability $d^{pr}_{k,f}$ is generated from a latent feature-probability $h_{k,f}$. The fixed-threshold (control model) or uncertain-threshold RSA model takes the feature-probability prior $P_f(h)$, the referent-category feature-probability $h$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that RSA corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; RSA cannot be represented by a graphical model because it has recursion. "}
-knitr::include_graphics("figs/generics_bayesnetmodel.pdf", dpi = 108)
-```
-
-To fit this model, we incorporate the RSA model into the Bayesian data analysis model of the feature-probability prior data (Expt. 1a) to create a single, joint-inference model where the speaker optimality parameter $\lambda_1$ is inferred jointly with the referent feature-probability $h_{k, f}$ for each category $k$ and property $f$ and the parameters of the feature-probability priors $P_f(h)$ for each property $f$ using data from Expt. 1a \& b (see Figure \ref{fig:genericsModelDiagram}).
-For the parameters of the feature-probability distributions, we use the same priors described in Expt. 1a; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
-We learn about the \emph{a posteriori} credible values of this joint inference model using an incrementalized-version of the  by collecting samples from 3 MCMC chains of 100,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. 
-
 The posterior distribution of this joint inference model tells us what we should believe about the latent parameters of the model (referent feature-probabilities, feature-probability priors, and the single speaker optimality parameter) given the observed data, as well as what predictions the model makes given these parameter values.
-Importantly, the model recapitulates the feature-probability prior data (e.g., the probability of laying eggs among various species) and the referent-category feature-probability data (e.g., the probability of laying eggs among robins; see Appendix A for full posteriors) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1a).
-This means the theoretically-interesting predictionso of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the details of the feature-probability distributions). 
+Importantly, the model recapitulates the same feature-probability prior data (e.g., the probability of laying eggs among various species) and the referent-category feature-probability data (e.g., the probability of laying eggs among robins; see Appendix for full posteriors) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1b).
+This means the theoretically-interesting predictionso of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the feature-probability distributions). 
 
 We compare the fixed-threshold model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
-(Again the posterior predictive distribution marginalizes over the inferred parameter values to produce predictions about what the data \emph{should look like} given the pragmatics model and the observed data.)
+(Again the posterior predictive distribution marginalizes over the inferred parameter values to produce predictions about what the data \emph{should look like} given the endorsement model and the observed data.)
 Figure \ref{fig:generic-endorsement-figure} (top right; top left subplot) shows the fixed-threshold model's ability to predict the generic endorsement data ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.fixed`$; MSE = $`r mse.gen.rsa.fixed`$).
-For almost all items, it assigns an intermediate endorsement.
-This is because almost all items get endorsed by some participants; the model then infers that the referent feature-probability must be at least a little greater than 0\%; but, if the referent feature-probability is greater than 0\%, the statement is 100\% true. The speaker model then must decide is it better to say the 0\%-threshold meaning or stay silent. 
-For some items, a fixed-threshold meaning carries some information-gain over silence (i.e., some model predictions \> 0.5). For many items, however, the 0\%-threshold is almost as meaning-less as silence; the model, thus, has a hard time strongly endorsing some statements (most model predictions around 0.5\%).
-Consistent with intuition, assigning a fixed-semantics is too lenient a specification. 
+The model fails to distinguish any of the generic sentences because they are all somewhat true. 
+All items get endorsed by at least some participants; the model then infers that the referent feature-probability $h'$ must be greater than 0\%; but, if the referent feature-probability is greater than 0\%, the statement is 100\% true given the fixed-threshold semantics.
+
+The endorsement model decides if it better to assert the 0\%-threshold statement or stay silent. 
+For some items, a fixed-threshold meaning carries some information-gain over silence (i.e., some model predictions \> 0.5). 
+For many items, however, the 0\%-threshold is almost as meaning-less as silence; the model, thus, has a hard time strongly endorsing statements (most model predictions around 0.5\%).
+Consistent with *a priori* intuition, assigning a fixed-semantics is too lenient a formalization for generic sentences. 
+This demonstrates that the Bayesian data analytic approach used to fit the parameters of our model is not itself causally sufficient for any model of endorsements to explain the human endorsement data.
+The fixed-threshold model, even with access to the full prior distribution $P(h)$, falls short in explaining the data.
 
 \mht{Outfit fixed-threshold model with noise parameter?}
 
 ### Uncertain threshold RSA model
 
-Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0$, it has uncertainty over the threshold.
+Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0$, it has uncertainty over the threshold specified with a uniform prior distribution over $\theta$.
 We construct the same joint-inference Bayesian data analytic model as we did for the fixed-threshold analysis.
-As we see in Figure \ref{fig:generics-endorsement-figure} (top right, top right subplot), the speaker model that relies upon an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
-
+As we see in Figure \ref{fig:generics-endorsement-figure} (top right, top right subplot), the endorsement model that relies upon an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
 
 To gain some intuition for why that is the case, examine the bottom row of Figure \ref{fig:generics-endorsement-figure}.
 The blue, solid lined distribution corresponds to the speaker's beliefs about the probability of the feature for the referent-category (i.e., *referent feature-probability*).
@@ -2679,8 +2522,6 @@ The speaker model decides when the generic utterance conveys information that wo
 Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos carry malaria" are also useful things to say.
 "Robins are female" is neither good nor bad, as the information-content of the utterance is very small relative to silence.
 "Tigers don't eat people" is rather misleading, however; it doesn't bring the listener closer to the speaker's distribution, despite the speaker believing that the feature-probability is more than half. 
-
-
 
 ## Discussion
 
@@ -2699,95 +2540,6 @@ Thus, we have shown how these measurements are related to generic endorsement vi
 This evidence is correlational in nature, however.
 We do not yet know if the variables that we are measuring are causally related to endorsement.
 In our second case study, we extend our theory to a new domain and provide the first causal evidence for our theory by manipulating the referent feature-probability that the speaker aims to communicate.
-
-### Discussion (from priors)
-
-The feature-probability prior distribution $P_f(h)$ encodes beliefs about the feature-probability (or, probabilities) of a feature $f$ across different kinds.
-These distributions are structured and are best represented by a model with at least two distinct generative components: one corresponding to those kinds that only accidentally or transiently have the feature and one corresponding to those kinds with a stable causal mechanism that gives rise to the feature with some probability.
-
-<!-- The knowledge encoded by the prevalence prior distribution is similar to another theoretical construct discussed in the generics literature: cue validity. -->
-
-If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), the inverse probability---$P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs)---is known as *cue validity*.
-For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria; hence "carrying malaria" has high cue validity for mosquitos. 
-
-A natural proposal is that endorsements for generic language have to do with cue validity.
-This possibility has been investigated empirically in one of few examples of statistical modeling of generics, and in fact, cue validity is highly correlated with generic endorsement [@Khemlani2012].
-However, cue validity has some empirical and theoretical issues.
-Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
-Theoretically, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
-<!-- If generics are for conveying generalizations and supporting prediction, listeners would be far better suited to have information that supports prediction about features given categories, not categories given features. -->
-<!-- , since knowledge of cue validity requires knowledge of the kind whereas the forward-probability (prevalence)  can be computed only based on the feature. -->
-<!-- ^[ -->
-<!-- As a simple demonstration, imagine we've just discovered a new kind of animal called a fep. -->
-<!-- It should be easy to estimate the prevalence of being female among feps (probably 50\%) even without any knowledge of feps.  -->
-<!-- However, if you learn in another context that a particular entity is green, it's impossible to estimate the cue validity of being green for feps -->
-<!-- that it's easy to estimate the prevalence of being female among  -->
-<!-- ] -->
-
-However, we should not throw away the possibility that distributional information about the property is relevant. 
-The mixture parameter $\phi$ in the feature-probability prior distribution can be seen as a generalization of the construct of cue validity. 
-Recall that $\phi$ is the weighting between the two generative components of the feature-probability prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$).
-If there is a finite number of kinds in the feature-probability prior for a feature, and one knows the probability of the feature for each kind, then the cue validity of that feature for a particular kind is encoded in the feature-probability prior, in that it can be derived via Bayes' Rule:
-$$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
-
-Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is no longer well-defined (or, it is zero for all kinds). 
-This is for the same reason that for a probability distribution over the real numbers (a *continuous* probability distribution), the probability of any particular number is zero. 
-For example, consider the cue validity of "having wings" for \textsc{robins}: $P(\text{robin} \mid \text{has wings})$.
-The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds} (and hence, $\phi$ is relatively low), but there are many kinds of birds and the feature is not particularly diagnostic for any given one of the subkinds (e.g., robins). 
-$phi$ is still relatively small in this case because it encodes information about the distribution across kinds and not just one particular kind.
-This is an important point of departure in our work from previous work.
-
-<!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
-<!-- It in fact may be one dimension of a higher-dimesional generative model of kinds and properties. -->
-<!-- Cue validity is conceptually related to the mixture parameter $\phi$ of the prevalence prior. -->
-<!-- However, cue validity requires knowledge of the referent-category $k$ -->
-
-<!-- For example, suppose there are 10 possible kinds and 3 of them belong the stable cause distribution and 7 belong to the transient cause distribution.  -->
-<!-- Say we observe the feature and want to know what the probability that the entity is of a particular kind that we know to be of the stable distribution.  -->
-<!-- If we know the prevalence given each distribution (i.e, $P(f \mid k_{stable})$ and $P(f \mid k_{transient})$). -->
-
-
-<!-- For simplicity, assume that each component corresponds to a single probability (i.e., a single prevalence value) as opposed to a distribution. -->
-<!-- Thus, $\mathcal{D_{stable}} = P(f \mid \mathcal{D_{stable}}) = p_{stable}$ -->
-
-<!-- $n_{stable} n_{transient}$ -->
-
-
-
-<!-- Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though it's role in generic meaning is controversial [@Leslie2007; @Leslie2008]. -->
-<!-- In empirical studies of generic language, however, it is often empirically measured [@Khemlani2012]. -->
-<!-- For this analysis, we measured cue validity using a free production paradigm, following @Cree2006. -->
-<!-- Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?"). -->
-<!-- For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity, see Appendix B. -->
-<!-- To process the priors data, we discretize the prevalence judgments to 12 discrete bins: $\{[0-0.01), (0.01-0.05), (0.05-0.15), (0.15-0.25),  ..., (0.75-0.85), (0.85-0.95), (0.95-1]\}$, and look at the counts within each bin, after doing add-1 Laplace smoothing, as the relative probability of that prevalence.  -->
-<!-- Do a BDA to describe the data in a more compact form. -->
-<!-- We can explore how the underspecified-threshold listener model $L_{0}(x , \theta \mid u)$ (Eq. \ref{eq:L0}) interprets generic utterances with these priors on prevalence (Figure \ref{fig:commongenerics}a, insets).  -->
-<!-- The prior beliefs over the prevalence of the property, $P(h)$, can also be interpreted as the pragmatic listener's posterior upon hearing the null utterance, because the null utterance has no information content. -->
-<!-- We see the interpretation of the generic is quite variable across our empirically measured priors. -->
-<!-- For instance, in the case of \textsc{carries malaria}, the prior is very left-skewed; with this prior, the threshold $\theta$ can plausibly be very low because high prevalence is unlikely. -->
-<!-- Properties like \textsc{doesn't attack swimmers} are very right-skewed; with this prior, not many thresholds lead to a substantial update in beliefs, and so the generic is unlikely to be used by speaker $S_1$ unless the property is practically-universal within the referent-category.  -->
-<!-- Some properties have priors that are unimodal with low variance (e.g. \textsc{is female}); these properties are present in every kind in almost exactly the same proportion. The model  and thus are too obvious and certain to allow for an informative generic utterance: The posterior is not very different from the prior.  -->
-<!-- With $P(x)$ now empirically established, we can test if our speaker model predicts human truth judgments of generic statements about these properties. -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- In addition, why generics often imply the property is widespread has also been puzzling [@Gelman2004]. -->
-<!-- We show that this is the result of the shape of listener's prior knowledge and that when that shape differs, the implied prevalence is much weaker (e.g., with accidental properties). -->
-<!-- Even more puzzling has been the basic asymmetry between endorsements and interpretations [@Cimpian2010]. -->
-<!-- We show that this asymmetry arises from the underspecified-threshold interacting with diverse prior beliefs.  -->
-<!-- While implied prevalences vary wildly for different kinds of properties under discussion, the endorsements are relatively less sensitive to these distinctions. -->
-<!-- Thus, the basic asymmetry is largely being driven by the listener's interpretation of a generic. -->
-
-
 
 # Case Study 2: Habitual Language
 
