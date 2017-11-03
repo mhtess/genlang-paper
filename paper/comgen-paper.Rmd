@@ -29,15 +29,15 @@ author_note: >
   This manuscript is currently in prep. Comments or suggestions should be directed to MHT.
 
 abstract: > 
-    Generalizations are central to human understanding and language provides simple ways to convey them (e.g., "Dogs bark").
+    Generalizations are central to human understanding and language provides simple ways to convey them (e.g., "Birds fly").
     The language of generalization is ubiquitous in everyday discourse and child-directed speech. 
     Yet the meaning of these expressions is logically puzzling (e.g., not all birds fly) and has resisted precise formalization.
-    The major issue in formalizing generalization in language is in determining what which such statements are true or false.
-    Using a probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of such linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
-    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language* e.g., "Dogs bark"), events (*habitual language* e.g., "John runs"), and causes (*causal language* e.g., "Staring at the sun makes you go blind"). 
-    Across these diverse domains, we find that our model explains almost all of the variance in human endorsements of generalizations in language, while simpler models fall short.
-    This is the first formal theory that makes precise, quantitative predictions about human understanding of generalizations in language.
-    The results suggest that central phenomena emerge from the interaction of diverse prior beliefs about properties with general communicative principles. 
+    The major issue in formalizing generalization in language is determining which such statements are true or which are false.
+    Using a probabilistic model of pragmatic reasoning, we explore the hypothesis that the meaning of these linguistic expressions is *simple but underspecified*, and that general communicative principles can be used to establish a more precise meaning in context. 
+    To test this theory, we examine endorsements of generalizations about three different domains: generalizations about categories (*generic language* e.g., "Birds fly"), events (*habitual language* e.g., "John runs"), and causes (*causal language* e.g., "Staring at the sun makes you go blind"). 
+    Across these diverse domains, we find that our model explains almost all of the variance in human endorsements of language conveying generalization, while simpler models fall short.
+    Ours is the first formal theory that makes precise, quantitative predictions about human understanding of the language of generalization.
+    The results suggest the central phenomena emerge from the interaction of underspecified meaning with diverse beliefs about properties. 
   
 keywords          : "genericity, generalization, generics, pragmatics, semantics, bayesian modeling"
 wordcount         : "20000"
@@ -144,11 +144,11 @@ Furthermore, communicating generalizations from one generation to the next may b
 <!-- Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization. -->
 <!-- \ndg{this par doesn't really do much} -->
 
-Generalizations in language are often studied via *generic language* (or, generics): simple statements that convey generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
+The language of generalization is often studied via *generic language* (or, generics): simple statements  about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
 Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which even 2-and-a-half-year-olds appreciate [@Cimpian2008].
+In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which children as young as 2 appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
-Generics are just one case of generalization in language, however; events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causal relationships (*causal language*; e.g., "Staring at the sun makes you go blind.").
+Generics are just one case of the language of generalizations, however; events can be described in generalizations (*habitual language*; e.g., "Mary swims after work.") as well as causal relationships (*causal language*; e.g., "Staring at the sun makes you go blind.").
 It is believed that every language can express generalizations [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
@@ -157,58 +157,58 @@ It is believed that every language can express generalizations [@Behrens2005; @C
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite their ubiquity and relative simplicity, there have been few formal models of generic language and none that have made precise, quantitative predictions to match human intuitions. 
-The major challenge in formalizing the language of generalizations is in determining what makes such statements true or false.
-When we hear "Dogs bark", it sounds like a universal statement, like *All* dogs bark.
-But the property doesn't apply to all dogs: Basenji dogs are barkless^[
+Despite their ubiquity and relative simplicity, there have been few formal models of this language and none that have made precise, quantitative predictions to match human intuitions. 
+The major challenge in formalizing the language of generalizations is in determining *what makes the statements true or false*.
+When we hear "Dogs bark", it sounds like a universal statement, as in "All dogs bark".
+But the property does not apply to all dogs: Basenji dogs are barkless^[
 http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
 ], for example.
-The generalization could signal something weaker like *Most* dogs bark.
-<!-- Indeed, many generalizations seem to have the quantificational force of *most*. -->
-However, only a tiny fraction of moquitos carry malaria, while the statement "Mosquitos carry malaria" is intuitively true.
+The generalization could signal something weaker like "Most dogs bark".
+However, "Most mosquitos do not carry malaria" (in fact, only a tiny fraction do), but "Mosquitos carry malaria" is intuitively true.
 <!-- *most mosquitos* do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true. -->
-The only quantifier that would permit such a statement would be *some* (e.g., "Some mosquitos carry malaria").
-But weakening the generalization to *some* goes too far: Half of robins are female, but saying "Robins are female" seems odd.
-That same half of robins (i.e., the females), however, also lay eggs, and "Robins lay eggs" is again intuively true. 
+The only quantifier that would permit such a statement would be "some" (e.g., "Some mosquitos carry malaria").
+But weakening the generalization to "some" is too permissive: "Some Robins are female" (in fact, half of them are), but asserting "Robins are female" seems odd.
+Even more perplexing: Those very same female robins lay eggs, and "Robins lay eggs" is a perfectly fine thing to say.
 
-These observations have led to proposals that the prevalence or probability of a member of the category having the property (e.g., $P(x \text{ barks} \mid x \text{ is a dog})$) is only tangentially related to generic meaning. 
-*Conceptual accounts* of generics emphasize the structure of "generic knowledge" [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
-From this perspective, the statement "Bishops move diagonally" is true not because bishops tend to move diagonally, but rather because those are the rules of chess.
-With this in mind, @Leslie2007 proposes *cognitively primitive* principles that dictate how generics become true or false.
-*Characteristic* features are one such principle; "Robins lay eggs" is thus true because it is the mode of reproduction, and reproduction is a characteristic dimension for animal kinds.
-*Horrifying* or *striking* information also leads to true generics, which is why "Mosquitos carry malaria" is true despite its low prevalence.
+These observations have led to the conclusion that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not central to the meaning of generalizations in language. 
+Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
+A paradigm case is the statement "Bishops move diagonally", which is true but not because bishops tend to move diagonally but rather because those are the rules of the game.
+It's been suggested that the mind has cognitive primitives that directly dictate what generalizations are true or false.
+One such primitive is the ability to priviledge *characteristic features*: For an animal, their mode of reproduction is a characteristic feature. Whatever their mode of reproduction, regardless of the actual prevalence of the feature, will make a true generic statement (e.g., "Robins lay eggs").
+*Horrifying* or *striking* is also priviledged and creates true generics, which is why "Mosquitos carry malaria" is felicitous.
 
-Yet others have observed that generics are not limited to conveying rich, conceptual relations [@Nickel2008; @Nickel2016; @Sterken2015]. 
+Examining a wider range of examples makes one realize that generics convey more than just rich, conceptual relations [@Nickel2008; @Nickel2016; @Sterken2015]. 
+Purely arbitrary relationships sound like true generics true.
 <!-- Arbitrary relationships are also expressed with generics:  -->
-"Barns are red" is true because that is how barn-owners tend to paint their barns; if barn-owners decided to switch to blue, the things they would be painting would still be considered barns.
-"Ravens are bigger than toasters" because of the size of ravens and the size of toasters, not because of a special relationship between ravens and toasters.
-*Conceptual accounts* must then be supplemented with the proviso that, in certain situations, the statistics of the world do influence human intuitions about generics.
+For example, "Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are blue" would be true.
+Ravens and toasters have no priviledge relationship to each other, but the statement "Ravens are bigger than toasters" is still a true genaralization.
+Conceptual accounts must then be supplemented with the proviso that, in some situations, the actual prevalence of the feature does influence human intuitions about generics.
 
-Generic statements have diverse theoretical underpinnings, and the conceptual view highlights this diversity [e.g., @Prasada2013].
-But insofar as generics are a single class in language---indeed, insofar as they are a subclass of generalization in language---there should be a general, unified principle that explains what makes the statements true or false.
-The same logic should apply to all generalizations in language, including habitual and causal language.
-This is the goal of this paper.
+What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [e.g., @Prasada2013].
+But insofar as there is a single class of linguistic expressions that we can describe as communicating generalizations, there should be something common to them all: a general, unified semantic core.
+The test of a unified semantic core is its ability to explain what makes the statements true or false.
 
 <!-- It is thus argued that there are qualitatively different kinds of generic statements (i.e., "striking", "characteristic", "statistical"), each with their own conditions on what makes them true. -->
 <!-- This diversity is interesting, but what is common across generics? -->
 <!-- Is there some core meaning to *genericity*, a general unified principle that explains what makes generic statements true or false? -->
 <!-- Finally, formalizing such a theory is crucial to make explicit the relevant assumptions of the psychological or linguistic hypothesis meant to match human intuitions; this, in turn, makes the theory more testable.  -->
 
-In this paper, we take a critical look at the notion that prevalence---or its more general formulation, probability---cannot serve as the core of a semantic theory of generalization in language (including generics).
-We strive for a probability-based semantics for its generality: Probability is the universal currency of belief and serves as a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
-Given that certain probabilities are the *result* of inductive generalization, it would make sense that these are the object of communication for generalizations. 
-We formalize such a semantics in a general cognitive modeling framework, and thus incorporate generalizations in language into a larger class of models designed to formalize concepts and common-sense reasoning [@Goodmanconcepts].
-Formalizing such a theory is scientifically useful as well to make explicit the assumptions the theory, which in turn, elucidates the conditions under which the theory may be meaningfully tested. 
+In this paper, we propose a semantic core for the language of generalization.
+To do so, we look to probability, a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
+Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
+We then consider the background knowledge that listeners bring to bear when interpreting generalizations, and formalize an endorsement model based on this interpretation hypothesis.
+Though concepts such as *striking properties* are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
+Our endorsement model is the first formal theory that makes quantitative predictions about what makes generalizations in language true or false; the assumptions of the theory, and in turn, the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.
 
-We take the primary desideratum for a theory of the language of generalization to be adult human intuitions into the truth or felicity of statements conveying generalization, which we measure empirically. 
-To test the hypothesis that probability can serve as the core semantic theory, we build a computational model of endorsement around this semantic theory and compare our model to human judgments.
-Though concepts such as *striking properties* are not explicitly formalized in our model, there is a natural avenue for future integration as our theory is couched in a general cognitive modeling framework.
+<!-- We formalize such a semantics in a general cognitive modeling framework, and thus incorporate generalizations in language into a larger class of models designed to formalize concepts and common-sense reasoning [@Goodmanconcepts]. -->
 
-Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecfied* function of probability and where context helps resolve the underspecification.
-In its simplest form, context takes the shape of interlocutors' shared beliefs about the relevant properties or categories under discussion [cf., @Grice1975; @Clark1996; @Levinson2000].
-We then ask what a rational speaker---who can only either endorse the generalization or stay silent---would say in different contexts; this is our formal model of endorsement.
-We show how the decision to endorse depends in systematic ways on the shared prior knowledge of the interlocutors. \mht{"interlocutors" may be confusing here...}
-We test this theory in three distinct case studies---generalizations about categories, events, and causes---by both measuring and manipulating prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model.
+<!-- Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecfied* function of probability and where context helps resolve the underspecification. -->
+<!-- In its simplest form, context takes the shape of interlocutors' shared beliefs about the relevant properties or categories under discussion [cf., @Grice1975; @Clark1996; @Levinson2000]. -->
+<!-- We then ask what a rational speaker---who can only either endorse the generalization or stay silent---would say in different contexts; this is our formal model of endorsement. -->
+<!-- We show how the decision to endorse depends in systematic ways on the shared prior knowledge of the interlocutors. \mht{"interlocutors" may be confusing here...} -->
+<!-- We test this theory in three distinct case studies---generalizations about categories, events, and causes---by both measuring and manipulating prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model. -->
+
+
 <!-- We show that in each domain, our general theoretical framework explains endorsements about generalizations conveyed in language, while simpler models fall short.  -->
 
 <!-- We think prevalence may have been cast aside too quickly for two main reasons: (i) in previous empirical work, prevalence has been rather narrowly defined, as frequency, where in fact it can be more generally seen as probability (ii) the backround knowledge that adult speakers, whose intuitions are consulted to establish a theory of meaning, may bring to the table has not been explicitly considered or formalized in studies and theoretical work into the language of generalization. -->
@@ -228,167 +228,14 @@ We test this theory in three distinct case studies---generalizations about categ
 <!-- We then go on to manipulate the relevant factors, showing they are causally related via our model to generic endorsement and interpretation.  -->
 
 The paper is organized as follows. 
-In Section 1, we describe the Bayesian framework for generalization from observations, serving as the foundation for our semantic theory.
-In Section 2, we formalize the hypothesis that the core of meaning of a generalization is *simple but underspecified* and incorporate this *uncertain semantics* into a computational model of endorsement.
-<!-- To test our model, we examine endorsements of generalizations in three domains: categories, events, and causes. -->
-<!-- Our model makes predictions about how endorsements should vary according to (i) the listener's prior world knowledge and (ii) the speaker's state of knowledge (or, belief distribution) that she seeks to communicate.  -->
-In Section 3, we describe experiments that measure both listener prior knowledge and the prevalence of the properties in question, and relate them via our model to the endorsements of generalizations about categories (*generic language*). 
-In Section 4, we describe experiments that measure listener prior knowledge and manipulate the frequency of various events to explain endorsements of generalizations about events (*habitual language*).
-Finally, in Section 5, we describe experiments that manipulate both the listener's prior knowledge and the prevalence of the properties in question in endorsing generalizations about causes (*causal language*). 
-
-Across all of our experimental settings, we find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements (cumulative $r^2(N) = 0.XX$).
-In the final section of the paper, we discuss the generality of our approach and pave a path to unifying the extant psychological, linguistic, and philosophical literatures on generalization in language.
-We also show how our endorsement model is a special case of a speaker model in a rational framework of communication. 
-This opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language. 
-
-<!-- (2) It also allows us to consider sources of gradience in behavior, determining whether or not we should allocate it to *noise* in the observed data or to *uncertainty* in the head of the language user. -->
-<!-- *Causal language* (e.g., "The block *makes* it [the machine] go.") faciliates more abstract forms of causal reasoning [@Bonawitz2010]. -->
-
-
-
-<!-- \ndg{There haven't been many formal models of generic language, none have made quantitative predictions. Say why this is important. -->
-<!-- To build one, we need to firsts say what a generalization is. We use the Bayesian idea that an inductive generalization can be understood in terms if probbilities. -->
-<!-- Then we need to say how these probabilities are communicated. Use RSA...} -->
-
-
-
-
-<!-- Rational models of communication have had a lot of recent success in formalizing complex linguistic phenomena ranging from politeness [@Yoon2016] and hyperbole [@Kao2014] to metaphor [@Kao2014] and vagueness [@Lassiter2013; @Qing2014].  -->
-
-
-
-<!-- give rise to the productivity of human thought and form of foundations of cultural knowledge. -->
-<!-- They allow us to understand the complex world around us and dream up how possible future situations might unfold. -->
-<!-- It's been suggested that were psychology to have *general laws* akin to Newtonian laws in physics, the first general law in psychology would be of generalizations [Shepard1987]. -->
-<!-- Generalizations are central to human understanding.  -->
-<!-- Even before birth, human and non-human animals alike gather statistical information and form generalizations to predict what will come next. -->
-<!-- The human learner, perhaps uniquely in the animal kingdom, displays striking sensitivity to the intentional and pedagogical actions of others, leading to distinct and often stronger inferences from data than would otherwise be warranted from random observations. -->
-<!-- and about people in general [e.g., "You never know what will happen on a blind date."; @Orvell2017]. -->
-
-<!-- It's plausible that cultural knowledge accumulates across generations through language's ability to talk about generalizations [@Henrich2015]. -->
-
-<!-- Generic statements convey generalizations about categories, but there are other linguistic devices that look different but seem to similary convey generalization. -->
-<!-- *Genericity* can be observed when talking about categories (e.g., *Dogs bark*), people in general , specific people (e.g., *Martha swims after work*), or causal events (e.g., *Drinking moonshines makes you go blind*). -->
-<!-- Though this diverse array of utterances all seem to convey something beyond the here and now, what exactly is common to each of them is not obvious.  -->
-<!-- Without a formal way of describing generalizations in language, we do not yet know in what ways these large swaths of language are similar.  -->
-
-
-
-<!-- The language of generalization is exceedingly difficult to formalize, however. -->
-<!-- The cognitive act of generalization is naturally formalized in Bayesian cognitive models [@Tenenbaum2011]. -->
-<!-- Bayesian models showcase the role of flexibly structured representations [@Kemp2007; @Kemp2008] and assumptions learners can make about the data-generating process [e.g., learning from pedagogical actions; @Shafto2012]. -->
-<!-- Learning from language, however, is more challenging to formalize because of the inherent context-sensitivity of language [@Grice1975; @Clark1996; @Levinson2000]. -->
-
-
-<!-- Exceptions could be made for properties that only apply to one gender (like being female), but *Robins lay eggs* is intuitively true despite the property also being only present in females. -->
-<!-- Generics roughly convey that the properties is widespread in the category (e.g., *Most dogs are friendly*), however they don't always imply the same degree of prevalence. -->
-<!-- *Birds are female* sounds strange even though half of birds of female.  -->
-
-
-<!-- ALTERNATIVE INTRO -->
-
-<!-- Yet, generalizations can be hard to acquire. -->
-<!-- Consider what it would take to learn that under certain conditions (e.g., when eaten raw) a plant is poisonous, while under other conditions (e.g., when processed appropriately) the plant is nutritious.  -->
-<!-- This is a common ecological problem and historical examples suggest that humans are not particularly good at learning such generalizations [e.g., the Australian explorers case; @Henrich2015]. -->
-<!-- In this domain, the relationship to be learned (i.e., between different ways of food processing and the poisonousness of the plant) is non-obvious and trial-and-error learning is costly (negative examples entail death). -->
-
-<!-- Crucially, once acquired, such hard-won generalizations can be communicated among humans, something which other animals struggle to accomplish [cite tomasello apes something]. -->
-<!-- Generalizable knowledge can be inferred through demonstration, or in pedagogical contexts when ostensive cues are present [@Csibra].  -->
-<!-- By and large, however, language provides the most flexible and generative way to communicate generalizations.  -->
-
-<!-- A generalization provides a relation between a category and a property: It tells us to predict that property of future instances of the category [@HumeTHN]. -->
-<!-- Generalization can be described as a probability and inductive inference as a probabilistic model [@Tenenbaum2011]. -->
-<!-- From a very young age, children make strong inductive inferences from their experience in a way consistent with the Bayesian probability calculus [@Dewar2010; @Gelman1986; @Markman1989]. -->
-
-<!-- If generalizations can be described by predictive probabilities, it would stand to reason that the most direct way to communicate a generalization would be to convey probability.  -->
-<!-- Ironically, humans are very bad at describing and interpreting probabilities explicitly [@Tversky1974]. -->
-<!-- Rather than be a deficiency, however, the difficulty we have in understanding numerical descriptions of probability might reflect the flexible adaptivity of natural language to make vague or ambiguous that which shared context can be relied upon to guide interpretation [@Piantadosi2012]. -->
-<!-- If language has evolved in a way to make efficient the kinds of inductive inferences that are central to human cognition, we would expect the language of generalizations to be simple [c.f., @Leslie2008]. -->
-
-<!-- Indeed, generalizations in language (e.g., *Dogs are friendly*, *Mary smokes cigarettes*, *Yeast makes bread rise*) are among the simplest forms of compositional expressions.  -->
-<!-- Generalizations do not come in just one syntactic form: "*Dogs* are friendly", "*A library book* should be treated with respect", "*The contemporary foodie* seeks culinary experinces in menu-less restaurants and grandmothers' kitchens" [@Carlson1995; @NickelBlackwell; @sepGenerics]. -->
-<!-- Each of these statements has in common the fact that they predicate a property of a category and the properties themselves apply to instances of the category (unlike, e.g., *Dinosaurs are extinct* because being extinct is not a property that can be true of a particular dinosaur).  -->
-<!-- In this way, these statements exhibit *genericity*, or put another way, they convey generalizations. -->
-
-<!-- In this paper, we formalize the language of generalizations with the interest is deciding what makes a generalization in language *true or false*. -->
-<!-- How speakers convey generalizations and how listeners interpret them. -->
-
-<!-- We examine three case studies of generalizations in language: Generalizations about agents, objects, and events.  -->
-<!-- In Section 1, we introduce an information-theoric communicative theory of how generalizations are conveyed in language and flesh out the model's predictions alongside alternative models. -->
-<!-- In order to do so, we provide a unified mathematical framework for dealing with agents, objects, and events, casting each as a category over which generalization can occur. -->
-<!-- Our model predicts the endorsements of generalizations should vary with the (A) the probability of an instances having the property and (B) the prior distribution over the property probability (e.g., how likely instances of other categories are to have the property). -->
-<!-- In Section 2, we introduce our empirical paradigm which we use to measure endorsement and interpretation of linguisitic generalizations, examining generalizations about *agents* in what is known as *habitual language* (e.g., "Mary smokes cigarettes.").  -->
-<!-- In Section 3, we extend our paradigm to generalizations about *events* (i.e., *causal language* e.g., "Yeast makes bread rise.") and experimentally manipulate participants' background knowledge, showing that prior beliefs about probabilities are causally related to endorsement and interpretation of generalizations. -->
-<!-- In Section 4, we use our paradigm to address long-standing theoretical and empirical puzzles regarding generalizations about *objects*, so-called *generic language*.  -->
-<!-- We show our how model explains three known psychological puzzles surrounding generic language.  -->
-<!-- In all case studies, we provide formal comparison to simpler models and in all cases, find that only our communicative theory explains the patterns of empirical data. -->
-<!-- We conclude with a general discussion about the relationship of our theory to extant theories in the psychology, linguistics, and philosophy of genericity, and highlight the implications for modeling language acquisition, conceptual development, and other avenues of research that this framework opens. -->
-
-
-<!-- the truth conditions of generalizations of events (so called *habitual language*) by manipulating the target propensity (A) while surveying a wide variety of events (which should induce variability in B). -->
-<!-- In Section 3, we manipulate both (A) and (B) while testing the model on generalizations about causes (*causal language*). -->
-<!-- If our theory is truly a theory about communicating generalizations, it should be able to explain the known psychological puzzles surrounding *generic language* (generalizations about categories).  -->
-
-
-
-<!-- In stark constrast, a computational understanding of communicating generalizations is not well understood at all.  -->
-
-<!-- Gathering data and observing evidence, however, is costly.  -->
-<!-- The human problem of induction even displays a complex sensitivity to not only the type of data, but how the data was generated [@Gweon2010; @Shafto2012]. -->
-<!-- A learner cannot form all of her abstract knowledge through direct experience, however. -->
-<!-- Life is only so long, and you can only be in one place at a time. -->
-
-
-
-
-
-
-<!-- In this paper, we introduce a formal model for understanding the language of generalizations. -->
-<!-- <!-- The fact that generalizations in language seem to convey something about the propensity but that there seem to be as many interpretations of generalized statements as there are generalizations have confounded formal models aimed to capture their meaning. -->
-<!-- We take as a starting point the idea that the core meaning of a linguistic generalization is simple (i.e., it conveys something about the propensity), but underspecified (i.e., there is uncertainty in the meaning). -->
-<!-- We extend a rational model of communication --- the Rational Speech Act theory --- to be able to understand general statements that extend beyond the here-and-now. -->
-<!-- We provide a number of stringest tests of this theory to explain generalizations about categories, events, and causal forces.  -->
-
-
-
-<!-- How can generalizations in language have such flexible truth conditions while simultaneously carrying intuitive and, at times, very strong implications? -->
-<!-- This question has been investigated by psychologists, linguists, and philosophers since @Carlson1977. -->
-<!-- Here, we provide a unified formal theory of generalizations conveyed in language. -->
-<!-- We test theory on the preeminent case study of linguistic generalizations: generic language, or generalizations about categories. -->
-<!--  -->
-<!-- To be precise, we develop a computational model that describes pragmatic reasoning about the propensity required to assert the generaization.   -->
-<!-- We find that this formalism resolves known philosophical and empirical puzzles. -->
-<!--We also provide the first set of experimental results about linguistic generalizations about events and causal forces, so called *habitual* and *causal statements*.-->
-
-<!-- and find extreme flexibility in usage, which our model predicts.  -->
-
-<!-- In Section 2, we conduct a set of experiments to test the *truth conditions* of familiar generalizations about categories (generic statements), and find our model predicts key patterns in human judgments -->
-<!-- In Section 3, we conduct a set of experiments to test *interpretations* of novel generic sentences, again finding our model predicts human judgments with high quantitative accuracy. -->
-<!-- In Section 4, we begin to test the generality of the theory, examining the *truth conditions* of generalizations about events. -->
-<!-- In Section 5, we further probe our theory's generality, investing the *truth conditions* and *interpretations* of novel generalizations about causal forces.  -->
-<!-- In all cases, we provide formal comparison to simpler models and in all cases, find that only our communicative theory with an underspecified meaning function explains the pattern of human data. -->
-<!-- We also find that the prior beliefs used in our model reflect conceptual structure, and this provides an understanding of the conceptual implications of generics. -->
-<!-- Finally, we investigate the underlying semantic scale in more detail, and find that the core meaning of generalizations in language depends in a crucial way on subjective beliefs, not mere frequency. -->
-
-<!--
-Most would agree that \emph{Swans are white}, but certainly not every swan is.
-This type of utterance conveys a generalization about a category (i.e. \textsc{swans}) and is known as a generic utterance [@Carlson1977; @Leslie2008].
-Communicating generically about categories is useful because categories themselves are unobservable [@Markman1989].
-Knowledge about categories, while central to human reasoning, is tricky to acquire because categories themselves are unobservable [Markman1989}.
-It is believed that every language can express generic meaning [@Behrens2005; @Carlson1995], and that generics are essential to the growth of conceptual knowledge [@Gelman2004] and how kinds are represented in the mind [@Leslie2008].
-Generic language is ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008], and children as young as two or three understand that generics refer to categories and support generalization [@Cimpian2008].
-and though English and many other languages do not possess an unambiguous form devoted to generic meaning [@Behrens2000, @AlMalki2014].
-Additionally, generics are the primary way by which speakers discuss social categories, making them key to propagating stereotypes [@GelmanEtAl2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010motivation].
-Despite their psychological centrality, apparent simplicity, and ubiquity, a formal account of generic meaning remains elusive.
-
-
-How can generics have such flexible truth conditions while simultaneously carrying strong implications?
-In this paper, we explore the idea that the core meaning of a generic statement is simple, but underspecified, and that general principles of communication may be used to resolve precise meaning in context. 
-In particular, we develop a mathematical model that describes pragmatic reasoning about the degree of prevalence required to assert the generic.  
-We find that this formalism resolves the philosophical and empirical puzzles.
--->
-
-
+In Section 1, formalize the hypothesis that the core of meaning of a generalization in language is simple but *underspecified*, articulate a thory of relevant background knowledge used to understand a generalization in language, and develop a computational model of endorsement around these components.
+The endorsement model's predictions about depend upon the background knowledge and the probability communicated. 
+Sections 2 - 4 presents our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
+Across these three case studies, we both measure and manipulate background knowledge and probability communicated and measure its effect on endorsement. 
+We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements (cumulative $r^2(N) = 0.XX$).
+<!-- In the final section of the paper, we discuss the generality of our approach and pave a path to unifying the extant psychological, linguistic, and philosophical literatures on generalization in language. -->
+<!-- We also show how our endorsement model is a special case of a speaker model in a rational framework of communication.  -->
+<!-- This opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language.  -->
 
 # Computational Framework
 
@@ -397,23 +244,25 @@ People readily predict that a new dog will have fur, drinking a new cup of coffe
 In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$.
 This prediction can be described by a conditional probability: $h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **feature-probability**.
 The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
-The properties correspondingly also vary widely (e.g., having fur, causing jitters, typing). 
+The properties also vary (e.g., having fur, causing jitters, typing). 
 Yet the mathematical description of the inductive inference is always given by the conditional feature-probability $h$.
 
-How does one come to learn $h$, the uncertainty that underlies an inductive inference about a member of a category having a property?
+How does one come to have an $h$ in their head?
 One way is through observation: One can observe instances of the category $k$ and note how many of them have $f$.
 But the inferences derived from observation will depend upon on one's background knowledge about the property [@Gelman2003; @Keil1992].
 For example, if you observe an instance of a novel creature category that \emph{has two legs}, you may infer that all of that category has two legs.
 If in addition you observe that it has broken wings, the corresponding prediction of another instance having broken wings is not nearly as strong [@Nisbett1983].
 This kind of knowledge can be represented formally as a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(h \mid d) \propto P(d \mid h) \cdot P(h)$
-Here, $P(d \mid h)$ is the observer's generative model of the observed data. 
-It is conditional on $h$ because the probability of various direct observations depends upon the feature-probability that the observer assumes. 
+Relying upon observational evidence can only take you so far, though. 
+To learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*), it is better to learn from others.
+Fortunately, language has simple ways of encoding generalizations.
 
-Generalization from observational evidence is limited, however, in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations.
-Relying upon observations would be particularly problematic, for example, to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*).
-How do we acquire these generalizations?
-For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations.
 
+<!-- Here, $P(d \mid h)$ is the observer's generative model of the observed data.  -->
+<!-- It is conditional on $h$ because the probability of various direct observations depends upon the feature-probability that the observer assumes.  -->
+<!-- Generalization from observational evidence is limited, however, in its capacity to describe how the mind builds complex theories of the world or how culture accumulates across generations. -->
+<!-- How do we acquire these generalizations? -->
+<!-- For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations. -->
 <!-- The human capacity to generalize from observations, deriving $h$ from example $x$s, has been studied extensively in cognitive and developmental psychology [@Nisbett1983; @Baldwin1993; @Heit2000]. -->
 <!-- From a very young age, children draw strong inferences about nonobvious object properties from just a few examples [@Baldwin1993; @Gopnik2000;  @XuTenenbaum2007]. -->
 <!-- Such inductive generalization can be described by the Bayesian probability calculus: An observer's initial beliefs or state of knowledge---called a prior belief distribution---is updated through experience (i.e., after making observations) and becomes a posterior belief distribution (what they belief *a posteriori*).  -->
@@ -446,15 +295,19 @@ For abstract, generalizable knowledge to remain in a culture, it must be faithfu
 
 ## Generalization from language
 
-If generalization from observations can be described as a predictive probability, then it seems natural to consider that same metric to be central to the semantic content of an utterance that conveys a generalization.
+Generalization from observations can be described as a predictive probability; it is intuitive then to posit that same quantity to be at the core of a semantic theory of the language of generalization.
 To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean truth value.
-Perhaps the simplest way to connect a scalar quantity to a truth value is with a *threshold semantics*: An utterance is true if the underlying quantity is above a threshold.
-For generalizations, then, the threshold would apply to the *feature-probability* $h$:^[
-We emphasize that our account is based on an agent's subjective probability $h$. The literature on generic language has often examined *prevalence*, or the proportion of members of a category with the property, as the primary quantitative metric that could relate to generic meaning (in addition to *cue validity*, described below). A Bayesian agent, however, would only use prevalence as a way to update her prior knowldege $P(h)$ to form a posterior probability for future use. Thus, we consider the semantic content of a generalization to be related to probability, not necessarily prevalence.
-]
+One simple way is with a *threshold semantics*: An utterance is true if the relevant quantity is above a threshold.
+A threshold semantics for the language of generlaizaion would then apply to the *feature-probability* $h$:
 $$\denote{u_{gen}}(h, \theta) = \{h>\theta\}$$
+We emphasize that this account is based on a probability $h$.
+The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the feature-probability $h$.^[
+  There has also been substantial discussion of *cue validity* , which we come back to below.
+]
+Prevalence, an ostensibly observable quantity, can inform a person's beliefs (e.g., via Bayesian belief updating) but it is not the belief itself. 
+Probability is a measure of belief. 
 
-### Resolving underspecification
+### Semantics and background knowledge
 
 What threshold $\theta$ should be used for the generalization?
 We posit that the language of generalization is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
@@ -518,29 +371,7 @@ However, there are interesting theoretical differences to be found within this f
 We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix.
 
 
-
-
-<!-- In Bayesian statistics, when there is uncertainty about latent parameter, one specifies a prior distribution over the parameter and reasons backward about the parameter's likely value given any data. -->
-<!-- In a similar vein, we posit that the meaning of a generalization in language is *underspecified*; that is, there is not a fixed $\theta$ that corresponds to the generalization, but rather the listener has uncertainty over $\theta$---in the form of a prior distribution $P(\theta)$---and infers $\theta$ after hearing an utterance. -->
-<!-- Though it is possible that different $P(\theta)$s could be learned for different contexts, we assume this prior is identical across contexts and is completely uninformed by the context *a priori*: $P(\theta) = \text{Uniform}(0, 1)$. -->
-
-<!-- \ndg{i wonder if we shoud start with the speaker / endorsement idea? introducing the listener and semantics might be more natural then.} -->
-
-
-<!-- Our proposal that generic language and other forms of communicating generalizations convey information about probabilities that underly generalization and prediction implies that the conceptual factors of the kind discussed by Prasada, Leslie, et al. influence the meaning of a generic statement via their influence on subjective probability. -->
-<!-- Flexible, structured models of the world have been shown to do just that in the case of generalizations from observations, merging structured representations with probabilisitic inference [e.g., @Kemp2008; @Goodmanconcepts]. -->
-
-<!-- \begin{eqnarray} -->
-<!-- L(h \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h)} \label{eq:L0fixed} -->
-<!-- \end{eqnarray} -->
-
 ### The feature-probability prior and model simulations
-
-<!-- $\delta_{\denote{u}(h, \theta)}$ is the likelihood term in Bayes' Rule and represents the literal semantic content of an utterance. -->
-<!-- $P(h)$ represents the listener's prior world knowledge concerning the relevant feature-probabilities $h$. -->
-<!-- The particular form of the **feature-probability prior** $P(h)$ plausibly depends upon the kind of property or event in question and could be structured as a result of deeper conceptual knowledge about properties and events [@Griffiths2005; @Tenenbaum2006; @Kemp2008]. -->
-<!-- In our model, conceptual structure is represented in listeners' knowledge of the world $P(h)$ and not in the semantic content of the utterance $u_{gen}$. -->
-<!-- This is a different approach than in conceptual accounts of generics [e.g., @Leslie2007; @Prasada2006; @Prasada2013], but provides a potential bridge, as explored later. -->
 
 The endorsement model defined in the previous section predicts that the endorsement of a generalization depends upon two factors: (i) the feature-probability $h$ in the referent-category (e.g., the \% of robins that lay eggs) and (ii) shared background knowledge about what feature-probabilities are likely *a priori*.
 We use classic examples from the literature on generics to elucidate the meaning of these two components and demonstrate why the endorsement model makes the predictions that it does. 
@@ -967,8 +798,12 @@ In the rest of this paper, we both meausure and manipulate $P(h)$ and examine th
 
 # Case Study 1: Generic Language
 
-Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propogation [@Rhodes2012], and motivation [@Cimpian2007], as well as many other facets of everyday cognition.
-It has been the premier case study of generalization in language because of its similarity to quantified statements (e.g., "Most dogs bark").
+Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propogation [@Rhodes2012], and motivation [@Cimpian2007], as well as many other facets of everyday reasoning.
+Generics have been the case study of choice for generalizations in language because of theiry vexing similarity to quantified statements (e.g., "*Most* dogs bark").
+Time after time, psychologists have shown that generics simply do not reduce to quantified statements [e.g., @Khemlani2012, @Prasada2013, @Cimpian2010].
+Here, we take our first look at the 
+
+Here, we take 
 Any theory of generic language must explain its puzzling flexibility of endorsements with respect to feature-probability (e.g., the number of dogs that bark; the number of mosquitos that carry malaria).
 
 We first measure endorsement for thirty generic sentences that cover a range of conceptual distinctions discussed in the literature [@Prasada2013]: *characteristic* (e.g., "Ducks have wings."), *minority* (e.g., "Robins lay eggs."), *striking* (e.g. "Mosquitos carry malaria."), *false generalization* (e.g., "Robins are female."), and *absent features* (e.g. "Lions lay eggs.").
