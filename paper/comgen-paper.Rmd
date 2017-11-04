@@ -185,7 +185,7 @@ Ravens and toasters have no priviledge relationship to each other, but the state
 Conceptual accounts must then be supplemented with the proviso that, in some situations, the actual prevalence of the feature does influence human intuitions about generics.
 
 What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [e.g., @Prasada2013].
-But insofar as there is a single class of linguistic expressions that we can describe as communicating generalizations, there should be something common to them all: a general, unified semantic core.
+But insofar as there is a single class of linguistic expressions that convey generalizations, there should be something common to them all: a general, unified semantic core.
 The test of a unified semantic core is its ability to explain what makes the statements true or false.
 
 <!-- It is thus argued that there are qualitatively different kinds of generic statements (i.e., "striking", "characteristic", "statistical"), each with their own conditions on what makes them true. -->
@@ -194,7 +194,7 @@ The test of a unified semantic core is its ability to explain what makes the sta
 <!-- Finally, formalizing such a theory is crucial to make explicit the relevant assumptions of the psychological or linguistic hypothesis meant to match human intuitions; this, in turn, makes the theory more testable.  -->
 
 In this paper, we propose a semantic core for the language of generalization.
-To do so, we look to probability, a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
+To do so, we look to probability, the universal currency of belief and a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
 Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
 We then consider the background knowledge that listeners bring to bear when interpreting generalizations, and formalize an endorsement model based on this interpretation hypothesis.
 Though concepts such as *striking properties* are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
@@ -230,12 +230,12 @@ Our endorsement model is the first formal theory that makes quantitative predict
 The paper is organized as follows. 
 In Section 1, formalize the hypothesis that the core of meaning of a generalization in language is simple but *underspecified*, articulate a thory of relevant background knowledge used to understand a generalization in language, and develop a computational model of endorsement around these components.
 The endorsement model's predictions about depend upon the background knowledge and the probability communicated. 
-Sections 2 - 4 presents our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
+Sections 2 - 4 present our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
 Across these three case studies, we both measure and manipulate background knowledge and probability communicated and measure its effect on endorsement. 
 We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements (cumulative $r^2(N) = 0.XX$).
 <!-- In the final section of the paper, we discuss the generality of our approach and pave a path to unifying the extant psychological, linguistic, and philosophical literatures on generalization in language. -->
 <!-- We also show how our endorsement model is a special case of a speaker model in a rational framework of communication.  -->
-<!-- This opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language.  -->
+This opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language.
 
 # Computational Framework
 
@@ -247,14 +247,15 @@ The targets of our predictions can vary widely: They may be objects (a dog), eve
 The properties also vary (e.g., having fur, causing jitters, typing). 
 Yet the mathematical description of the inductive inference is always given by the conditional feature-probability $h$.
 
-How does one come to have an $h$ in their head?
-One way is through observation: One can observe instances of the category $k$ and note how many of them have $f$.
-But the inferences derived from observation will depend upon on one's background knowledge about the property [@Gelman2003; @Keil1992].
-For example, if you observe an instance of a novel creature category that \emph{has two legs}, you may infer that all of that category has two legs.
-If in addition you observe that it has broken wings, the corresponding prediction of another instance having broken wings is not nearly as strong [@Nisbett1983].
-This kind of knowledge can be represented formally as a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(h \mid d) \propto P(d \mid h) \cdot P(h)$
-Relying upon observational evidence can only take you so far, though. 
-To learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*), it is better to learn from others.
+How does one acquire such an inductive belief?
+One can observe instances of the category $k$ and note how many of them have $f$.
+These observations can support prediction to new instances by integrating them with one's prior expectations about the property [cf., @Gelman2003; @Keil1992].
+For example, if you observe creatures that \textsc{have two legs}, you might infer that all creatures of that category have two legs.
+Observing new creatures with \textsc{broken wings}, however, leads to a much weaker prediction about other instances of the category having the property [@Nisbett1983].
+This kind of background knowledge can be represented formally as a probability distribution over the feature-probabilities $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(h \mid d) \propto P(d \mid h) \cdot P(h)$
+
+Learning from observational evidence can only take you so far, though. 
+To learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*), one would much rather learn from others.
 Fortunately, language has simple ways of encoding generalizations.
 
 
@@ -295,31 +296,42 @@ Fortunately, language has simple ways of encoding generalizations.
 
 ## Generalization from language
 
-Generalization from observations can be described as a predictive probability; it is intuitive then to posit that same quantity to be at the core of a semantic theory of the language of generalization.
-To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean truth value.
+Generalization from observations can be described as a predictive probability; it is intuitive then to posit that same quantity will be at the core of a semantic theory of the language of generalization.
+To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean value.
 One simple way is with a *threshold semantics*: An utterance is true if the relevant quantity is above a threshold.
-A threshold semantics for the language of generlaizaion would then apply to the *feature-probability* $h$:
-$$\denote{u_{gen}}(h, \theta) = \{h>\theta\}$$
-We emphasize that this account is based on a probability $h$.
-The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the feature-probability $h$.^[
-  There has also been substantial discussion of *cue validity* , which we come back to below.
-]
-Prevalence, an ostensibly observable quantity, can inform a person's beliefs (e.g., via Bayesian belief updating) but it is not the belief itself. 
-Probability is a measure of belief. 
+A threshold semantics for the language of generlizations would then apply to the *feature-probability* $h$:
+\begin{equation}
+\denote{generalization}(h, \theta) = \{h>\theta\}
+\label{eq:semantics}
+\end{equation}
+Various attempts of this kind have been made before [e.g., @Cohen1999].
+We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $h$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.  
+$h$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief (due to background knowledge, see above).
 
-### Semantics and background knowledge
+<!-- We emphasize that this account is based on a probability $h$. -->
+<!-- The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the feature-probability $h$.^[ -->
+<!--   There has also been substantial discussion of *cue validity* , which we come back to below. -->
+<!-- ] -->
+<!-- Prevalence, an ostensibly observable quantity, can inform a person's beliefs (e.g., via Bayesian belief updating) but it is not the belief itself.  -->
+<!-- Probability is a measure of belief.  -->
 
-What threshold $\theta$ should be used for the generalization?
-We posit that the language of generalization is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
-That is, we posit that $\theta$ is contextually-determined, and specifically that it is determined by Bayesian reasoning using relevant prior knowledge.
+### Literal interpretation model
+
+Quantifier statements can be described using a similar threshold semantics: $\denote{some}(x) = \{h > 0\}; \denote{all} = \{h = 1\}$.
+So what threshold should be used for the generalizations? 
+What is $\theta$?
+Unlike quantified language, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
+That is, we hypothesize that $\theta$ is contextually-determined, in a way analagous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
+
+We formalize this underspecified semantics in a probabilistic model, where the underspecifed threshold $\theta$ is sampled from a uninformed prior distribution over possible thresholds $P(\theta)$ [cf., @Lassiter2013].
+After making explicit the relevant background knowledge $P(h)$, the model becomes:
 
 \begin{eqnarray}
-Lit(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
+Interpret(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-Equation \ref{eq:L0} is a model of a "literal" listener $Lit$ who updates her beliefs about the feature-probability $h$ according to the meaning of an utterance $u$. 
-We formalize the underspecification of $\theta$ by a uninformed prior distribution over $\theta$ [i.e., *a priori* all thresholds are equally likely; cf., @Lassiter2013].
-The semantic content of an utterance is represented by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$, which here returns probabilities proportional to $1$ when the utterance is true (i.e., when $h > \theta$) and $0$ otherwise.
+Equation \ref{eq:L0} ($Interpret$) is a literal interpretation model, that updates its beliefs about the feature-probability $h$ according to the truth-functional meaning of the utterance $u$. 
+Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$ that returns probabilities proportional to $1$ when the utterance is true (i.e., when $h > \theta$) and $0$ otherwise.
 
 \begin{eqnarray}
 \delta_{\denote{u_{gen}}(h, \theta)} &\propto  & \begin{cases}
@@ -328,57 +340,68 @@ The semantic content of an utterance is represented by the Kronecker delta funct
 \end{cases}\label{eq:delta}
 \end{eqnarray}
 
-Finally, $h$ is sampled from a prior belief distribution $P(h)$, potentially informed by the property in question and discussed further below. 
+<!-- Finally, $h$ is sampled from a prior belief distribution $P(h)$, potentially informed by the property in question and discussed further below.  -->
 
 ### Endorsement model
 
-The above model determines how $\theta$ should be resolved in context.
-Now, how do we decide when a statement conveying a generalization is true or not?
-To answer this question, we draw upon recently developed tools in the field of probabilistic pragmatics [@Franke2009; @Frank2012; @Franke2015; @Goodman2016].
-The felicity or endorsement of a statement can be modeled by a speaker model who has in his repetoire only two possible utterances: convey the statement to a naive listener or stay silent [@Franke2014cogsci; @Degen2014]. 
+Given the above minimal model of literal interpretation, how do we decide when a statement conveying a generalization is true or not?
+We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization convey sufficient information to warrant the cost of producition? 
+We formalize this by considering how well the generalization would convey the feature-probability $h$ to the $Interpret$ model (Eq. \ref{eq:L0})^[A more general version of this model can relax the assumption that the endorsement model has access to a specific feature-probability $h'$ that it wants to communicate.
+Rather, the endorser may have a distribution over $h'$ for the category $k$, corresponding to the endorser's uncertain beliefs about the feature-probability. 
+In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorser's belief distribution:
+$Endorse(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} Interpret(h, \theta \mid u)} \diff \theta )}$
+].
 
 \begin{equation} 
-E(u \mid h = h') \propto \exp{(\lambda \cdot U(u; h') )}
+Endorse(u \mid h = h') \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Interpret(h = h', \theta \mid u)  \diff \theta } )}
 \label{eq:S1}
 \end{equation}
 
-Following the Rational Speech Act framework, the speaker (called $E$ for endorsement) is assumed to be an approximately rational Bayesian agent who produces utterances according to their utility $U$ with rationality governed by parameter $\lambda$, which acts as a soft-max function.
-Because we are interested in determining whether or not *feature-probability* alone is sufficient to formalize generalizations in language, we define the endorsement utility as a function of only the utterance (say the generalization or stay silent) and the *referent-category feature-probability* $h'$ (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$).
-
-The utility of an utterance is defined by how well it conveys the speaker's beliefs ($h'$) to a naive listener $Lit$, after integrating out her residual uncertainty about $\theta$.^[A more general version of this model can relax the assumption that the endorser has access to a specific feature-probability $h'$ that he is trying to communicate.
-Rather, the endorser may have a belief distribution over $h'$ for the category $k$, corresponding to the endorser's beliefs about the feature-probability of the property in the category. 
-In this situation, we would define the endorsement utility to be the expected value of the informativity, which integrates over the endorser's belief distribution:
-$S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} L(h, \theta \mid u)} \diff \theta )}$
-]
-The literal semantics for the generalization is the threshold function described above; the literal semantics for the option of staying silent carries no informational content:  $\denote{u_{silence}(h, \theta)} \propto \text{True}$.^[
-This "silent" alternative can be realized in at least two other ways: the endorser could say the negation of the generalization (i.e., "It is not the case that Ks F") or the negative generalization (i.e., "Ks do not have F").
-All results reported are similar for these two alternatives, and we use the alternative of the *silent* utterance for simplicity.
+The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$): $Interpret(h = h', \theta \mid u)$.
+$Endorse$ is not interested in communicating $\theta$ (in fact, it does not know $\theta$), and so integrates over the values of $\theta$.
+We assume the decision to endorse is an approximately rational one, with degree of rationality given by $\lambda$.
+The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances. 
+We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *Endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [cf., @Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$^[
+  This "null" alternative  to the generalization ("Ks F") can be realized in at least two other ways: the negation of the generalization (i.e., "It is   not the case that Ks F") or the negative generalization (i.e., "Ks do not F").
+  All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
 ]
 
-\begin{equation} 
-U(u; h') =  \ln{ \int_{\theta} Lit(h = h', \theta \mid u)  \diff \theta } \label{eq:utility}
-\end{equation}
 
-Thus, Eq. \ref{eq:S1} provides a mapping from a *referent-category feature-probability* $h'$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"). 
-It does this assuming a threshold semantics that deals only with *feature-probabilities* but without us having to specify the threshold (note that there is not $\theta$ is Eq. \ref{eq:S1}).
-Rather, the uncertainty over $\theta$ is resolved *internal* to the cognitive model, by reasoning about the literal semantics and the prior distribution over feature-probabilities $P(h)$.
+Our endorsement model (Eq. \ref{eq:S1}) provides a straight-forward mapping from a *referent-category feature-probability* $h'$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"). 
+It does this assuming a threshold semantics based on probability but does not require specifying the threshold *a priori* (note that there is not $\theta$ is Eq. \ref{eq:S1}).
+This model can be seen as a special case of a Rational Speech Act model [@Frank2012; @Goodman2016], where there is only a single level of recursion and the space of possible utterances is maximally constrained. 
 
-The endorsement model presented above is a special case of a family of rational models of communication that use an underspecified threshold-meaning for a generalization.
+<!-- Rather, the uncertainty over $\theta$ is resolved *internal* to the cognitive model, by reasoning about the literal semantics and the prior distribution over feature-probabilities $P(h)$. -->
 
-Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener).
-The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it. 
-However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*).
-We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix.
+<!-- The endorsement model presented above is a special case of a family of rational models of communication that use an underspecified threshold-meaning for a generalization. -->
 
+<!-- Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener). -->
+<!-- The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it.  -->
+<!-- However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*). -->
+<!-- We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix. -->
 
-### The feature-probability prior and model simulations
+<!-- The null alternative returns a posterior interpretation distribution that is identical with the prior $P(h)$. -->
 
-The endorsement model defined in the previous section predicts that the endorsement of a generalization depends upon two factors: (i) the feature-probability $h$ in the referent-category (e.g., the \% of robins that lay eggs) and (ii) shared background knowledge about what feature-probabilities are likely *a priori*.
-We use classic examples from the literature on generics to elucidate the meaning of these two components and demonstrate why the endorsement model makes the predictions that it does. 
-We implemented the models in the probabilisitic programming language WebPPL [@dippl].
-The following simulations were implemented using the R package RWebPPL in the RMarkdown document that generated this paper text and figures.
+<!-- Following the Rational Speech Act framework, the speaker (called $E$ for endorsement) is assumed to be an approximately rational Bayesian agent who produces utterances according to their utility $U$ with rationality governed by parameter $\lambda$, which acts as a soft-max function. -->
+<!-- Because we are interested in determining whether or not *feature-probability* alone is sufficient to formalize generalizations in language, we define the endorsement utility as a function of only the utterance (say the generalization or stay silent) and the *referent-category feature-probability* $h'$ (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$). -->
+
+<!-- The utility of an utterance is defined by how well it conveys the speaker's beliefs ($h'$) to a naive listener $Lit$, after integrating out her residual uncertainty about $\theta$. -->
+
+<!-- The literal semantics for the generalization is the threshold function described above; the literal semantics for the option of staying silent carries no informational content:   -->
+
+<!-- \begin{equation}  -->
+<!-- U(u; h') =  \ln{ \int_{\theta} Lit(h = h', \theta \mid u)  \diff \theta } \label{eq:utility} -->
+<!-- \end{equation} -->
+
+We implemented the model in the probabilisitic programming language WebPPL [@dippl].
+The following simulations were implemented using the R package RWebPPL [@rwebppl] in the RMarkdown document that generated this paper text and figures.
 That document, as well as all other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
+
+### Model simulations
+
+The endorsement model defined in the previous section explicitly predicts that the variability in endorsements for generalizations in language can be explained by two factors: (i) the feature-probability communicated in the category under discussion $h'$ in Eq. \ref{eq:S1} (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) and (ii) the background knowledge about feature-probabilities $P(h)$ (Eq. \ref{eq:L0}).
+We simulate how these two factors change both literal interpretation and endorsement using hypothetical values based on intuition about classic examples from the literature on generic language.
 
 <!-- depends upon the probability that utterance vs. silence accurate conveys to a naive listener a. -->
 <!-- This probability of successful communication is given by $L(h \mid u, \theta)$ (Eq. \ref{eq:S1}) and depends upon the listener's *a priori* beliefs about the feature-probability in question: $P(h)$ (Eq. \ref{eq:L0}), as well as the referent-category feature-probability $h$ (Eq. \ref{eq:S1}). -->
@@ -754,45 +777,75 @@ grid.arrange(l0.simulations.distributions,
 
 ```
 
+Figure\ \@ref(fig:simulations) (left; filled colors) shows six prior distributions over feature-probabilities, representing the relevant background knowledge about each property.
+These distributions can be thought of as distributions over categories, displaying only the feature-probability for the property in question.
+For example, many different kinds of animals *do not bark*; thus, there is substantial probability mass near 0 for the prior distribution over the feature-probability of \textsc{barks} (top left; solid pink distribution). 
+In addition, among the categories that do have instances that bark (e.g., \textsc{dogs}, \textsc{seals}, ...), the probability is quite high that an instance will bark; thus, the feature-probability distribution has substantial mass at relatively high values, with the maximum probability-density occuring around 0.9 (though with quite a bit of uncertainty around this value).
 
-These different semantic models make different predictions easily seen when considering a uniform prior distribution over $h$ (Figure\ \@ref(fig:simulations); top row).
-The fixed-threshold model rules out only the lowest possible feature-probabilities ($h \sim 0$) and returns a posterior very similar to the prior.
-The behavior of the generalization is distinct from a fixed-threshold model: The higher the feature-probability $h$, the more likely it is after hearing the generalization.^[
-The intuition behind the model's behavior can be gleaned by imagining what the listener model $L$ would believe given different thresholds, and averaging over those possibilities.
-If the threshold $\theta$ is very high, only the highest feature-probability $h$ would pass the threshold.
-If the threshold $\theta$ is slightly lower but still high, the highest feature-probabilitys $h$ would still pass the threshold, as would some that are slightly lower.
-As the threshold $\theta$ takes on lower and lower values, more and more $h$'s would surpass it.
-When $\theta$ is very low, almost all $h$ are consistent with it (akin to fixed-threshold model).
-The listener averages over these possibilities: $h$'s with higher values pass more thresholds and the result is that higher $h$'s are more likely *a posteriori*.
-]
+The lighter distribution is the interpretation distribution given by Eq. \ref{eq:L0}. 
+This gives the literal interpretation of a generalization about a previously unknown category (e.g., "Feps bark.") given the background knowledge about the property.
+For instance, the interpretation of a generalization about the property \textsc{barks} is that the feature-probability is quite high, near 1 with some uncertainty (top left; lighter pink distribution).
+This would correspond to a rather strong interpretation (i.e., "Almost all feps bark").
+This is not the case for the \textsc{lays eggs} distribution (a la "Feps lay eggs"; bottom left, green). 
+Given the background knowledge about that property----not that many animals lay eggs, and among those for which the feature is present, the probability is about 0.5 (because it's only present in the females)----the interpretation is much more conservative: "About half of feps lay eggs".
+The model can even derive very weak interpretations, as is shown in the \textsc{carries malaria} distribution (bottom right, purple).
+Again, the literal interpretation depends upon the background knowledge in a deep way.
 
-Next, we consider a few classic cases from the literature on generics to demonstrate the kind of inferences our listener model would draw from different generic statements.
-The strength of a listener's inference about $h$ (i.e., how prevalent is the feature?) depends in systematic ways on the prior belief distribution over $h$.
-In Figure\ \@ref(fig:simulations) (row 2), we show a schematic prior distribution that is bimodal with peaks near 0\% and some high feature-probability values; this prior could be over the feature-probability of *barking* because many kinds of creatures do not bark (i.e., have $h \sim 0$; e.g., cats), but *for those that do have members that bark*, many of them bark (i.e., have some high $h$).
-The fixed threshold model (right column) struggles to differentiate those that generally do not have the feature from those that usually have the feature, returning a posterior distribution very similar to the prior.^[
-We model "those that do not generally have the feature" as a Beta distribution with an expected value (mean) close to zero. 
-The fact that this component of the prior is not just a Delta function at 0\% reflects the intuitive possibility that some members of a kind who do not generally have the feature (e.g., a cat who barks) could somehow acquire the feature from accidental or transient causes (e.g., a strange genetic mutation).
-]
-The uncertain threshold model, however, easily rules out the categories that do not generally have the feature and strongly signals the property is widespread in the category.
+The endorsement model's predictions for six generic sentences are shown in Figure\ \@ref(fig:simulations) (right).
+Given a feature-probability of a referent category $h'$ (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$; Fig.\ \@ref(fig:simulations) right x-axis) and the background knowledge of the interpreter (Fig.\ \@ref(fig:simulations) left), the endorsement model (Eq. \ref{eq:S1}) predicts an endorsement probability (Fig.\ \@ref(fig:simulations) right y-axis).
+We see the model correctly predicts "Dogs bark", "Robins lay eggs", and "Mosquitos carry malaria" are all true, despite the referent feature-probabilities varying substantially between these three examples.
+Intruigingly, the model predicts "Robins are female" (which has the same feature-probability as "Robins lay eggs") should receive intermediate endorsement: It is neither true nor false.
+To understand this prediction, examine the interpretation distribution for the \textsc{are female} distribution: It is identical with the prior (Figure\ \@ref(fig:simulations) left; blue distributions).
+The endorsement model decides if it is better to produce the generalization or stay silent (which results in the interpretation distribution being the prior). 
+In this case, there is no difference in interpretation, and thus, the model is completely ambivalent about whether or not to endorse the statement.
+This can be contrasted with cases such as "Sharks don't eat people" and "Kangaroos have spots", which the model thinks would be misleading to say (i.e., better to say nothing).
+\mht{For further discussion about the behavior of the model, and these six examples, see Appendix?}
 
-How does the model handle the puzzling case of "Robins lay eggs" vs. "Robins are female"?
-In each case, we must consider the feature-probability prior:  $P(h_\text{lay eggs})$ and $P(h_\text{are female})$.
-For being female, no matter what animal category a person might think of, the feature is prevalent in the exact same proprotion (i.e., 50\% of X are female; Figure\ \@ref(fig:simulations) bottom row).
-For laying eggs, it really depends: If a person thinks of a falcon, then 50\% of that category lays eggs; if a person thinks of a bear, then 0\% of them lay eggs.
-This dependency is reflected in the corresponding $P(h)$, which is a bimodal distribution with peaks near-0\% and near-50\% (Figure\ \@ref(fig:simulations) row 3).
-For both priors, the interpretation upon hearing the generalization is the same (i.e., roughly 50\% of the category has the feature; Figure\ \@ref(fig:simulations) rows and 5, middle red panel).
-The difference in endorsement comes from the comparison to the prior: For being female, the listener is very likely to arrive at 50\% under her prior, but for laying egges, this is not the case. 
-In other words, "Robins are female" has little very informational content as the listener's posterior is nearly identical with her prior (i.e., it doesn't matter if the speaker says the generalization or stays silent).
-"Robins lay eggs", however, has a lot of informational content.
+These simulations show how the model predicted endorsement depends upon the background knowledge about the property $P(h)$ as well as the feature-probability $h'$ communicated. 
+We chose reasonable, hypothetical values for each of these, and saw that the endorsement model recapitulated standard intuitions about the truth or falsity of classic examples from the generics literature.
+In what follows, we test this theory for a wide range of generalizations, including generalizations of different types (categories, events, and causes).
+We do this by both measurning and manipulating background knowledge and feature-probability communicated and relate it to human elicited endorsements of generalizations.
 
-Finally, we look at how the uncertain threshold produces an interpretation for the statement "Mosquitos carry malaria", which intuitively should correspond to "Some mosquitos carry malaria".
-The prior $P(h_\text{carry malaria})$ assumes that most creatures do not carry malaria and among those that do, the feature is not very widespread.
-Here, we see that listener's posterior upon hearing the generalization (the uncertain threshold) is similar to what she learns upon hearing "Some mosquitos carry malaria" (the fixed threshold; Figure\ \@ref(fig:simulations) row 4). 
-Thus, a speaker who believes that *very few* mosquitos carry malaria will still endorse "Mosquitos carry malaria".
+<!-- that the behavior of the uncertain-threshold semantics is distinct from both the prior distribution over probability $h$, as well as the inferences derived from a fixed-threshold semantics. -->
+<!-- For these simulations, we had specify both the feature-probability priors $P(h)$ and the referent feature-probability $h'$.. -->
+<!-- In the rest of this paper, we both meausure and manipulate $P(h)$ and examine the behavior of the speaker model in three case studies: generalizations about categories, events, and causes. -->
 
-In sum, these simulations show that the behavior of the uncertain-threshold semantics is distinct from both the prior distribution over probability $h$, as well as the inferences derived from a fixed-threshold semantics.
-For these simulations, we had specify the feature-probability priors $P(h)$.
-In the rest of this paper, we both meausure and manipulate $P(h)$ and examine the behavior of the speaker model in three case studies: generalizations about categories, events, and causes.
+<!-- These different semantic models make different predictions easily seen when considering a uniform prior distribution over $h$ (Figure\ \@ref(fig:simulations); top row). -->
+<!-- The fixed-threshold model rules out only the lowest possible feature-probabilities ($h \sim 0$) and returns a posterior very similar to the prior. -->
+<!-- The behavior of the generalization is distinct from a fixed-threshold model: The higher the feature-probability $h$, the more likely it is after hearing the generalization.^[ -->
+<!-- The intuition behind the model's behavior can be gleaned by imagining what the listener model $L$ would believe given different thresholds, and averaging over those possibilities. -->
+<!-- If the threshold $\theta$ is very high, only the highest feature-probability $h$ would pass the threshold. -->
+<!-- If the threshold $\theta$ is slightly lower but still high, the highest feature-probabilitys $h$ would still pass the threshold, as would some that are slightly lower. -->
+<!-- As the threshold $\theta$ takes on lower and lower values, more and more $h$'s would surpass it. -->
+<!-- When $\theta$ is very low, almost all $h$ are consistent with it (akin to fixed-threshold model). -->
+<!-- The listener averages over these possibilities: $h$'s with higher values pass more thresholds and the result is that higher $h$'s are more likely *a posteriori*. -->
+<!-- ] -->
+
+<!-- Next, we consider a few classic cases from the literature on generics to demonstrate the kind of inferences our listener model would draw from different generic statements. -->
+<!-- The strength of a listener's inference about $h$ (i.e., how prevalent is the feature?) depends in systematic ways on the prior belief distribution over $h$. -->
+<!-- In Figure\ \@ref(fig:simulations) (row 2), we show a schematic prior distribution that is bimodal with peaks near 0\% and some high feature-probability values; this prior could be over the feature-probability of *barking* because many kinds of creatures do not bark (i.e., have $h \sim 0$; e.g., cats), but *for those that do have members that bark*, many of them bark (i.e., have some high $h$). -->
+<!-- The fixed threshold model (right column) struggles to differentiate those that generally do not have the feature from those that usually have the feature, returning a posterior distribution very similar to the prior.^[ -->
+<!-- We model "those that do not generally have the feature" as a Beta distribution with an expected value (mean) close to zero.  -->
+<!-- The fact that this component of the prior is not just a Delta function at 0\% reflects the intuitive possibility that some members of a kind who do not generally have the feature (e.g., a cat who barks) could somehow acquire the feature from accidental or transient causes (e.g., a strange genetic mutation). -->
+<!-- ] -->
+<!-- The uncertain threshold model, however, easily rules out the categories that do not generally have the feature and strongly signals the property is widespread in the category. -->
+
+<!-- How does the model handle the puzzling case of "Robins lay eggs" vs. "Robins are female"? -->
+<!-- In each case, we must consider the feature-probability prior:  $P(h_\text{lay eggs})$ and $P(h_\text{are female})$. -->
+<!-- For being female, no matter what animal category a person might think of, the feature is prevalent in the exact same proprotion (i.e., 50\% of X are female; Figure\ \@ref(fig:simulations) bottom row). -->
+<!-- For laying eggs, it really depends: If a person thinks of a falcon, then 50\% of that category lays eggs; if a person thinks of a bear, then 0\% of them lay eggs. -->
+<!-- This dependency is reflected in the corresponding $P(h)$, which is a bimodal distribution with peaks near-0\% and near-50\% (Figure\ \@ref(fig:simulations) row 3). -->
+<!-- For both priors, the interpretation upon hearing the generalization is the same (i.e., roughly 50\% of the category has the feature; Figure\ \@ref(fig:simulations) rows and 5, middle red panel). -->
+<!-- The difference in endorsement comes from the comparison to the prior: For being female, the listener is very likely to arrive at 50\% under her prior, but for laying egges, this is not the case.  -->
+<!-- In other words, "Robins are female" has little very informational content as the listener's posterior is nearly identical with her prior (i.e., it doesn't matter if the speaker says the generalization or stays silent). -->
+<!-- "Robins lay eggs", however, has a lot of informational content. -->
+
+<!-- Finally, we look at how the uncertain threshold produces an interpretation for the statement "Mosquitos carry malaria", which intuitively should correspond to "Some mosquitos carry malaria". -->
+<!-- The prior $P(h_\text{carry malaria})$ assumes that most creatures do not carry malaria and among those that do, the feature is not very widespread. -->
+<!-- Here, we see that listener's posterior upon hearing the generalization (the uncertain threshold) is similar to what she learns upon hearing "Some mosquitos carry malaria" (the fixed threshold; Figure\ \@ref(fig:simulations) row 4).  -->
+<!-- Thus, a speaker who believes that *very few* mosquitos carry malaria will still endorse "Mosquitos carry malaria". -->
+
+
 
 
 
