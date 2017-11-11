@@ -1,0 +1,2117 @@
+# Case Study 2: Habitual Language
+
+<!-- THINK ABOUT: -->
+<!-- Kelley, H. H. (1973). The processes of causal attribution. American psychologist, 28(2), 107-128. -->
+<!-- Orvis, B. R., Cunningham, J. D., & Kelley, H. H. (1975). A closer examination of causal inference: The roles of consensus, distinctiveness, and consistency information. Journal of Personality and Social Psychology, 32(4), 605-616. -->
+
+We meet new people all the time, and hear about them at least as often.
+*Habitual language* (e.g,. "Mary smokes."; "My car won't start.") conveys generalizations about events, including people doing actions. 
+<!-- In this case study, we focus on a particular class of events: people doing actions. -->
+Habituals about people taking actions are of particular importance to social psychology because of their role in causal attribution [@Kelley1973] and intuitive theories of personality and behavior [@McGuire1986].
+Habitual language may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
+
+We use the same computational model and follow the same general experimental structure as in the first case study. 
+We focus on present-tense habitual sentences of the form \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes."). 
+First, we measure the prior distribution over the feature-probabilities for different kinds of events (Expt. 2a).
+We do this using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b.
+Then, we test our model on endorsements of habitual sentences, manipulating the frequency of a referent person doing an action (Expt. 2b).
+In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories.
+
+
+Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely her observations. 
+We have said that $h$ represents a probability that a speaker aims to convey.
+In two follow-up experiments, we ask whether $h$ represents the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past week) or the predictive rate of this event occurring in the near future (e.g., how often we should expect Mary to smoke next week).
+We do this by measuring participants' predictions about future rates when causal forces enable or prevent the action (Expt. 2c). 
+We separately measure endorsements under the same contexts (Expt. 2d) and use the prediction measurements (Expt. 2c) as the referent feature-probabilities $h$ that the endorsement model is trying to communicate.
+
+<!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
+<!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
+<!-- A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant."). -->
+
+
+
+<!-- This set of experiments is organized as follows. -->
+<!-- In the **Event Prior Elicitation** study (Expt. 1), -->
+<!-- In the **Endorsing Habitual Language** experiment (Expt. 2), we introduce a separate participants to different characters, each of whom have done some action with some frequeny (e.g., *In the last month, John ran 3 times*), and ask them to judge the corresponding generalization (e.g., *John runs*). -->
+<!-- In the **Interpreting Habitual Language** experiment (Expt. 3), we invert this paradigm, supplying participants with the generalization (e.g., *John runs*) and ask them to juge how often the person does some action (e.g., answer the question: *How often do you think John runs?*). -->
+
+<!-- We evaluate our family of RSA models, in addition to some ad-hoc non-Bayesian models, on these experimental data. -->
+<!-- Because the ad-hoc models do not comprise a formalized alternative theory of endorsement and interpretation, but rather statistical descriptions of the data, we compare the ad-hoc models to the simplest RSA model on endorsement and interpretation, separately. -->
+<!-- After presenting the results of Expts. 2 \& 3, we compare RSA models on their ability to jointly predict both endorsement and interpretation data simultaneously.  -->
+<!-- Finally, having validated a communicative theory of genericity, we probe the theory in more detail in Experiment 4 by asking whether past frequency or predictive probability is what is being communicated. -->
+
+
+<!-- The internal structure of particular events can differ in substantial ways. -->
+<!-- For example, events differ in their expected duration. -->
+<!-- For example, the event of *smoking a cigarette* plausibly takes between 5 - 10 minutes, while the event of *wearing socks* probably lasts for several hours. -->
+<!-- We take as a starting point the fact that events can be segmented and aggregated; the relevant dimension becomes the frequency with which the event occurs. -->
+
+<!-- In our main test of the hypothesis, we collect felicity or truth judgments for habitual statements about people's actions. -->
+<!-- The computational model described in Eq. \ref{eq:S1} is fully specified except for the prior distribution over the frequency of an event $P(h)$, which plausibly varies across different kinds of events. -->
+<!-- First, we measure the prior distribution, and use it and the computational model to predict human endorsement of habitual statements. -->
+
+## Experiment 2a: Measuring the feature-probability prior for events
+
+In this experiment we elicit the feature-probability prior $P(h)$ for different events in order to generate model predictions for corresponding habitual statements (measured in Expt. 2b \& 2d).
+For language about the behaviors of people, $P(h)$ represents a language user's background knowledge about the likely frequency of doing the behavior; this can be conceived as a distribution over *different people*, each of whom do the behavior with different rates.
+We designed our elicitation task to take advantage of the mixture-model representation of the feature-probability prior used in Expt. 1 (namely: that the distribution over a feature-probability can be represented as a mixture of probabilities from those with a stable causal mechanism that gives rise to the feature and those without such a mechanism).
+For background knowledge of people doing actions, we consider again two components^[
+  In the case of event knowledge about people, we expect there to be several more than just these two possibilities represented in the prior, corresponding to individuals with different traits or demographics.
+  We assume here a simple structure so as to not make the specification of the prior overly complex.
+], which we operationalize by *people who have done the action before* and *people who have not the action before*.
+We measure how often people do the action, among those who have done it before, as well as the people's beliefs about the how many people have done the action before; we assume for simplicity that people who have never done the action before will rarely do the action. 
+
+
+<!-- In Expt. 1a, we discovered that feature-probability prior distribution can be modeled by a mixture model with two components. -->
+<!-- The first component (the "stable cause" component) represents the normal, stable probability of the feature, among those categories that normally have the feature. -->
+<!-- The second component (the "unstable" or "transient cause" component) represents the probability of the property among those categories who do not typically have the property.  -->
+<!-- This second component will usually result in feature-probabilities of 0\% (e.g., 0\% of lions have lay eggs), but could produce non-zero probabilities (e.g., in some hypothetical world, a lion who has undergone weird genetic mutations may lay eggs).  -->
+
+
+
+### Method
+
+#### Participants
+
+We recruited 40 participants from Amazon's Mechanical Turk.
+Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
+The experiment took on average 12 minutes and participants were compensated \$1.25 for their work.
+
+#### Materials
+
+We created thirty-one events organized into pairs or triplets from 5 different conceptual categories:
+<!-- We created twenty-seven events organized into pairs or triplets from 5 different conceptual categories:  -->
+food and drug (e.g. \emph{eats caviar}, \emph{eats peanut butter}), 
+work (e.g. \emph{sells things on eBay}, \emph{sells companies}), 
+clothing (e.g. \emph{wears a suit}, \emph{wears a bra}), 
+entertainment (e.g. \emph{watches professional football}, \emph{watches space launches}), and 
+hobbies (e.g. \emph{runs}, \emph{hikes}). 
+Items were chosen to intuitively cover a range of likely frequencies of action, as well as to provide a minimal comparison to another item by having a common superordinate action (e.g. \emph{eating} caviar vs. peanut butter).
+
+#### Procedure
+
+For each event, participants were asked two questions, with different dependent measures:
+
+\begin{enumerate}
+\item ``How many \{men, women\} have \textsc{done action} before?'' \\
+
+Participants responded ``N out of every J.'' by entering a number for N and choosing J from a drop-down menu (options: \{1000 - 10 million\}; default: 1000).
+
+\item ``For a typical \{man, woman\} who has \textsc{done action}  before, how frequently does he or she \textsc{do action}?''\\  
+
+Participants responded ``M times in K.'' by entering a number for M and choosing K from a drop-down menu (options: \{week, month, year, 5 years\}; default: year).
+\end{enumerate}
+
+For example, one set of prompts read: *How many women have smoked cigarettes before?*; *For a typical woman who has smoked cigarettes before, how frequently does he smoke cigarettes?*
+The difference in meaning of these questions was explained to participants on an instructions page before the experimental trials, and tested for recall on a subsequent trial.
+<!-- After reading the instructions, participants were asked to recall the two types of questions. -->
+They responded to this attention check by selecting an option from a drop-down menu consisting of four options. 
+<!-- They did this to test their understanding and attention for each of the two questions. -->
+For the experimental trials, we anticipated there to be different beliefs about the frequency of events depending on whether the actor is male or female, so we asked about both genders.
+Participants answered both questions for both genders on each slide (4 questions total per slide, order of male / female randomized between-subjects), and every participant completed all 31 items in a randomized order.
+
+
+<!-- The experiment began by having participants input the names of eight friends, family members, or people they knew well that they could answer some questions about. -->
+<!-- Participants were told that these names would only be used to assist them in reasoning through the second part of the experiment.  -->
+
+<!-- In the second phase of the experiment, participants were asked: "For each of the following people, how often does he or she \textsc{do action}?" -->
+<!-- Participants had to fill in the blanks in sentences of the form: "\text{friend does action} ___ times per ___". -->
+<!-- The first blank was a text box where participants could enter a number. -->
+<!-- The second blank was a drop-down menu where participants could select a time interval from the following options: \{week, 2 weeks, month, 2 months, 6 months, year, 2 years, 5 years\} -->
+<!-- They completed this task for each of their eight listed friends or family members. -->
+<!-- To make the task slightly less tedious, there was an option where participants could set the time window for all eight of their responses. -->
+
+<!-- In order to get sufficient data for actions that are relatively uncommon (e.g., *climbs mountains*, *writes novels*), if participants responded that all of their friends do the action with a frequency of "0 times" (in some interval), a follow-up question appeared that read: "Do you know anybody who has \textsc{done action} before?".  -->
+<!-- If they responded "Yes", another follow-up question appeared that read: "How often do you think that person \textsc{does action}?", with the same dependent measure format as before. -->
+
+<!-- Participants completed these elicitation trials for a random subset of 15 items, presented in a randomized order. -->
+<!-- The experiment can be viewed at \url{http://stanford.edu/~mtessler/generics-paper/experiments/habituals/priors/friends-and-family-1.html} -->
+
+<!-- \begin{figure*}[t] -->
+<!-- \centering -->
+<!--   \includegraphics[width=0.84\textwidth]{figs/tj-scatters-3} -->
+<!--   \caption{ -->
+<!--   Human acceptability judgments as a function of the log frequency of action (left) and speaker $S_2$ model predictions (right) for ninety-three unique items (event \textsc{x} frequency).  -->
+<!--   Color denotes target-individual frequency of action (log scale), with lighter colors indicating more frequent actions.  -->
+<!--   Actual frequency noted on x-axis for examples (left). -->
+<!--   Error bars correspond to 95\% bootstrapped confidence intervals for the participant data and 95\% Bayesian credible intervals for the model predictions.  -->
+<!--   Error bars suppressed and points jittered on left facet for visual clarity. -->
+<!--   } -->
+<!--   \label{fig:tjScatters} -->
+<!-- \end{figure*} -->
+
+<!-- #### Data preprocessing -->
+
+```{r habituals-prior-data}
+annualRates = list("5 years" = 1/5, "2 years" = 1/2,
+                   "year" = 1, "6 months" = 2, "2 months" = 6,
+                   "month" = 12, "2 weeks" = 26 ,"week" = 52)
+
+d.hab.priors <- read.csv(paste(project.path, "data/habituals/priors/", "habituals-priors.csv", sep = ""))
+
+d.hab.priors <- d.hab.priors %>%
+  mutate(comparisonTime_men = as.character(comparisonTime_men),
+         comparisonTime_women = as.character(comparisonTime_women),
+         item = as.character(item),
+         item = ifelse(item == "sell things on eBay", "sells things on eBay", item)) %>%
+  rowwise() %>%
+  mutate(
+    mixture_male = nPersons_men / comparisonNum_men,
+    mixture_female = nPersons_women / comparisonNum_women,
+    dayRate_male = ifelse(comparisonTime_men == "week", nInstances_men / 7,
+                   ifelse(comparisonTime_men == "month", nInstances_men / 30,
+                   ifelse(comparisonTime_men == "year", nInstances_men / 365,
+                   ifelse(comparisonTime_men == "5 years", 
+                          nInstances_men / (5*365), -99)))),
+    dayRate_female = ifelse(comparisonTime_women == "week", nInstances_women / 7,
+                   ifelse(comparisonTime_women == "month", nInstances_women / 30,
+                   ifelse(comparisonTime_women == "year", nInstances_women / 365,
+                   ifelse(comparisonTime_women == "5 years", 
+                          nInstances_women / (5*365), -99)))),
+    annualRate_male = dayRate_male * 365,
+    annualRate_female = dayRate_female * 365
+  )
+
+
+d.hab.priors.filtered <- filter(d.hab.priors, 
+       !(
+         (mixture_male == 0) ||   (mixture_female == 0) ||   
+           (dayRate_male == 0) ||   (dayRate_female == 0)  )
+       )
+```
+
+
+```{r habituals-prior-forwardsample}
+# this is basically bootstrapping and combining using the structured model
+
+d.hab.priors.samples <- data.frame()
+for (i in 1:10){
+  
+  d.hab.priors.samples <- bind_rows(
+    d.hab.priors.samples,
+    d.hab.priors.filtered %>% 
+    select(workerid, item, starts_with("annualRate"), 
+           starts_with("mixture")) %>%
+    rowwise() %>%
+    mutate(
+      stable_male = rbinom(n = 1, size = 1, prob = mixture_male),
+       freq_male = ifelse(stable_male == 1, annualRate_male, 0.007),
+       stable_female = rbinom(n = 1, size = 1, prob = mixture_female),
+       freq_female = ifelse(stable_female == 1, annualRate_female, 0.007)
+       ) %>%
+    select(item, freq_male, freq_female) %>%
+    gather(gender, val, freq_male, freq_female) %>%
+  mutate(gender = gsub("freq_", "", gender))
+  )
+}
+
+```
+
+```{r habituals-prior-model}
+hab.prior.bda.model <- '
+var betaShape = function(p){
+  return {a: p.g * p.d, b: (1-p.g) * p.d}
+};
+
+var model = function(){
+	var mixtureParams = {
+		male: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    },
+		female: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    }
+	};
+
+	var mixtureShapes = {
+		male: betaShape(mixtureParams.male),
+		female: betaShape(mixtureParams.female)
+	};
+
+	mapData({data: data.mixture}, function(d){
+    Beta(mixtureShapes[d.gender]).score(d.val) == -Infinity ? display(JSON.stringify(d)) : null
+     // display(Beta(mixtureShapes[d.gender]).score(d.val))
+		observe(Beta(mixtureShapes[d.gender]), d.val)
+	})
+
+	var stableFrequency = {
+		male: {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+		},
+		female: {
+			mu: uniformDrift({a:-5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+		}
+	}
+
+	mapData({data: data.frequency}, function(d){
+    Gaussian(stableFrequency[d.gender]).score(d.logval) == -Infinity ? 
+        display(JSON.stringify(d)) : null
+    // display(Gaussian(stableFrequency[d.gender]).score(d.logval))
+		observe(Gaussian(stableFrequency[d.gender]), d.logval)
+	})
+
+	var existenceProb = {
+		male: beta(mixtureShapes.male),
+		female: beta(mixtureShapes.female)
+	};
+
+	var freqWhenPresent = {
+		male: gaussian(stableFrequency.male),
+		female: gaussian(stableFrequency.female)
+	}
+
+  var marginalFreq = {
+    male: flip(existenceProb.male) ? freqWhenPresent.male : -5,
+    female: flip(existenceProb.female) ? freqWhenPresent.female : -5,
+  }
+
+  return {
+    mix_mean_male : mixtureParams.male.g,
+    mix_mean_female : mixtureParams.female.g,
+    mix_samplesize_male : mixtureParams.male.d,
+    mix_samplesize_female : mixtureParams.female.d,
+    stableFreq_mean_male : stableFrequency.male.mu,
+    stableFreq_mean_female :stableFrequency.female.mu,
+    stableFreq_sd_male : stableFrequency.male.sigma,
+    stableFreq_sd_female :stableFrequency.female.sigma,
+    marginalFreq_NA_male: marginalFreq.male,
+    marginalFreq_NA_female: marginalFreq.female
+  }
+}
+'
+```
+
+
+```{r habituals-prior-model-run, cache = T}
+items <- levels(factor(d.hab.priors.filtered$item))
+n_samples <- 500
+rs.habituals.bda.prior <- data.frame()
+
+for (it in items){
+  
+ df.prior.toPass <- list(
+   frequency = d.hab.priors.filtered %>%
+      filter(item == it) %>%
+      select(item, starts_with("annualRate")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("annualRate_", "", gender),
+             logval = log(val)),
+   mixture = d.hab.priors.filtered %>% 
+      filter(item == it) %>%
+      select(item, starts_with("mixture")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("mixture_", "", gender)) %>%
+      rowwise() %>%
+      mutate(val = ifelse(val == 1, 0.9999, 
+                          ifelse(val == 0, 0.000001, val)))
+  )
+ 
+  rs <- webppl(program_code = hab.prior.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.prior.toPass,
+       data_var = "data")
+  
+  rs.habituals.bda.prior <- bind_rows(
+    rs.habituals.bda.prior, 
+    rs %>% 
+      mutate(item = it) %>% 
+      separate(Parameter, into = c("Variable", "Parameter", "Gender"))
+  )
+}
+```
+
+```{r habituals-prior-model-parameters, fig.width = 5, fig.height = 3}
+
+example.habituals <- c("smokes marijuana", "smokes cigarettes","drinks coffee",
+                       "climbs mountains", "hikes", "runs", 
+                       "wears a suit", "wears a watch", "wears socks", 
+                       "writes poems", "goes to the movies", "plays the banjo"
+                       )
+
+rs.habituals.bda.prior.summary <- rs.habituals.bda.prior %>%
+  filter(Parameter == "mean") %>%
+  group_by(Variable, Gender, item) %>%
+  summarize(MAP = estimate_mode(value),
+            cred_upper = hdi_upper(value),
+            cred_lower = hdi_lower(value)) %>%
+  ungroup()
+rs.habituals.bda.prior.summary.wide <- left_join(
+  rs.habituals.bda.prior.summary %>% filter(Variable == "mix") %>%
+    select(-Variable) %>%
+    rename(mix_mean = MAP, mix_upper = cred_upper, mix_lower = cred_lower),
+  rs.habituals.bda.prior.summary %>% filter(Variable == "stableFreq") %>%
+    select(-Variable) %>%
+    rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
+)
+
+figure.habituals.priors.scatter <- left_join(rs.habituals.bda.prior.summary.wide,
+          d.hab.priors %>% select(item, category)) %>%
+ggplot(.,
+       aes( x = mix_mean, xmin = mix_lower, xmax = mix_upper,
+            y = sfreq_mean, ymin = sfreq_lower, ymax = sfreq_upper,
+             fill = category))+
+    scale_shape_manual(values=c(21,22))+
+  #scale_color_solarized()+scale_fill_solarized()+
+  scale_fill_brewer(palette='Set1')+
+
+  geom_point(size=4, inherit.aes = F, 
+             aes(x = mix_mean,y = sfreq_mean,  fill = category,
+            shape = Gender),  alpha = 0.9)+
+  geom_errorbar(alpha = 0.5)+
+  geom_errorbarh( alpha = 0.5)+
+  xlab("% of Americans who have DONE ACTION")+
+  ylab("Log Frequency of DOING ACTION")+
+  #scale_
+  coord_fixed(ratio = 1/8)+
+  theme(legend.title = element_text(hjust=0),
+        legend.position="bottom",
+        legend.direction="horizontal") +
+        scale_y_continuous(limits = c(-1.5, 6.5), 
+                     breaks = c(0, 2.5, 4, 5.9),
+                     labels = c("annually", "monthly", "weekly", "daily"))+
+  geom_text_repel(data = rs.habituals.bda.prior.summary.wide %>%
+                    filter(item %in% example.habituals, Gender == "female"), inherit.aes =F,
+                  aes(x = mix_mean,y = sfreq_mean, label = item), force = 5, size = 3)
+```
+
+
+```{r habituals-prior-model-forwardSample}
+rs.habituals.bda.prior.spread <- rs.habituals.bda.prior %>% 
+  mutate(param = paste(Variable, Parameter, sep = "_")) %>%
+  select(-Variable, -Parameter, -Chain) %>%
+  spread(param, value) 
+
+rs.habituals.bda.prior.samples <- data.frame()
+for (i in 1:1){
+  rs.habituals.bda.prior.samples <- bind_rows(
+    rs.habituals.bda.prior.samples,
+    rs.habituals.bda.prior.spread %>%
+    rowwise() %>%
+    mutate(
+      a = mix_mean * mix_samplesize,
+      b = (1 - mix_mean) * mix_samplesize,
+      theta = rbeta(n = 1, shape1 = a, shape2 = b),
+      stable = rbinom(n = 1, size = 1, prob = theta),
+      logannualRate = ifelse(stable == 1, 
+                             rnorm(n = 1, 
+                                   mean = stableFreq_mean, 
+                                   sd = stableFreq_sd), -5),
+       annualRate =  exp(logannualRate)
+    )
+  )
+}
+```
+
+
+
+```{r habituals-prior-marginals-fig, fig.width = 4, fig.height = 4, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red)."}
+
+figure.habituals.priors.marginals <- bind_rows(
+  d.hab.priors.samples %>% 
+    mutate(src = 'data', 
+           val = log(val)),
+  rs.habituals.bda.prior.samples %>%
+    rename(gender = Gender, val = logannualRate) %>%
+    select(gender, item, val) %>%
+    mutate(src = 'model')
+  ) %>%
+  filter(item %in% example.habituals,
+         src == 'model') %>%
+  mutate(item = factor(item, levels = example.habituals)) %>%
+ggplot(. , aes( x = val, color = gender))+
+  geom_density(size = 0.8, aes( y = ..scaled.. ))+
+  facet_wrap(~item, nrow = 4)+
+  scale_color_solarized()+
+  xlab("Frequency")+
+  ylab("Scaled prior density")+
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
+  theme(strip.text.y = element_text(angle = 0),
+        legend.position = c(0.9, 0.12),
+        axis.text.x = element_text(angle = 90))+
+    scale_x_continuous(limits = c(-5, 8), 
+                     breaks = c(-5, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+```
+
+```{r habituals-prior-figure, fig.width = 11, fig.height = 6, fig.cap="Feature-probability priors for events (Expt. 2a). Left: Inferred mixture mean parameter and stable frequency mean parameter for N events. Right: Reconstructed priors on rates from the structured, prior elicitation task. Priors are reconstructed by forward sampling using the inferred parameters in the structured model."}
+grid.arrange(figure.habituals.priors.scatter, figure.habituals.priors.marginals, nrow = 1)
+```
+
+
+<!-- Every response for a frequency of a person doing an action is a sample from $P_{event}(h)$. -->
+<!-- We first transformed all responses onto the same scale of "times per year" (assuming 52 weeks per year; 12 months per year). -->
+<!-- An empirical distribution can be found by making a histogram of these responses.  -->
+<!-- The empirical distributions follows a kind-of log-normal distribution, with the additional feature of having a substantial probability mass at the frequency of 0 (for those individuals who never do the action).  -->
+<!-- We thus log-transformed the empirical data.  -->
+<!-- To avoid values of -Infinity, we set the responses of 0 to mean roughly "once every twenty years". -->
+
+<!-- We took the log-transformed (and "-Infinity"-adjusted) raw data and binned each response to the closest bins on a grid with binwidth of 0.5 in the log-"times per year" scale. -->
+<!-- This yields a grid of 23 points with frequencies ranging from "once every twenty years" (log-frequency = -3) to "twenty times per day" (log-frequency = 9). -->
+
+### Results
+
+All participants responded correctly to both questions in the attention check trial, so all collected data was used in the analysis.
+Question 1 elicits the proportion of people who have done an action before. 
+We rescale this to be a number between 0 and 1, and assume it was generated from a Beta distribution: $d_{Q1} \sim \text{Beta}(\gamma_{Q1}, \xi_{Q1})$. 
+Question 2 elicits the rate or frequency with which a person (who has done the action before) does the action.
+We model this as generated by a log-normal distribution: $\ln d_{Q2} \sim \text{Gaussian}(\mu_{Q2}, \sigma_{Q2})$.
+Each item was modeled independently for each gender.
+We learned about the credible values of the parameters by running MCMC for 100,000 iterations, discarding the first 50,000 for burnin.
+
+The priors elicited cover a range of possible parameter values as intended (Figure \@ref(fig:priorScatter), scatter):
+We observe a correlation in our items between the mean \% of Americans who have \textsc{done action} before (Question 1) and the mean log-frequency of action (Question 2) ($r_{1,2} = 0.74$).
+Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often).
+This diversity is relevant because the speaker model (Eq. \ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
+
+
+To generate feature-probability prior distributions, we built a Bayesian mixture-model for this prior elicitation task, analagous to that used in Case Study 1 (Expt. 1b).
+The only difference is that we estimate the mixture component directly from responses to Question 1. 
+We assume that those who have not done the action before will probably not do the action in the future. 
+With these assumptions, the feature-probability distribution is given by:
+
+\begin{align}
+\phi & \sim \text{Beta}(\gamma_{Q1}, \xi_{Q1}) \nonumber \\ 
+\ln h & \sim \begin{cases}
+		\text{Gaussian}(\mu_{Q2}, \sigma_{Q2}) &\mbox{if } \text{Bernoulli}(\phi) = \textsc{T} \label{eq:priorModel}  \\
+				\text{Delta}(h=0.01) &\mbox{if } \text{Bernoulli}(\phi) = \textsc{F} \\
+		\end{cases}
+\end{align}
+
+Figure \@ref(fig:habituals-prior-figure) (right) shows example reconstructed priors.
+In addition to specifying the correct way to combine our two prior-elicitation questions, using this inferred prior resolves two technical difficulties.
+First, it smooths effects that are clearly results of the response format. 
+For example, a very common rating for certain events is \emph{1 time per year}.
+Presumably participants would be just as happy reporting \emph{approximately} 1 time per year (e.g., on average, 1.2 times per year); the raw data does not reflect this due to demands of the dependent measure.
+Second, this methodology better captures the tails of the prior distribution (i.e., very frequent or very infrequent rates) which have relatively little data and need to be regularized by the analysis.
+
+
+<!-- Analagous to what was done with the prior knowledge for generic language, from the inferred parameters and the assumed functional forms (i.e., the mixture distribution), we can generate $P(h)$ modeled as a mixture of individuals who have done the action before and those that haven't. -->
+<!-- That is, $P(h)$ was constructed by sampling $\lambda$ as follows: -->
+
+<!-- We first sample a mixture weight $\phi$ from the posterior distribution over the mixture component hyperparameters $\text{Beta}(\gamma_{mixture}, \xi_{mixture})$, inferred from the first question of the experiment. -->
+<!-- We then flip a coin weighted by $\phi$: $\text{Bernoulli}(\phi)$. -->
+<!-- If the coin comes up heads (i.e., $\text{Bernoulli}(\phi) = \textsc{true}$), a frequency $h$ is sampled from the distribution of people who have done the action before. This distribution is a log-normal distribution with parameters inferred from the second question of the experiment $\ln h \sim \text{Gaussian}(\mu_{stable}, \sigma_{stable})$. -->
+<!-- If the coin comes up tails, a frequency $h$ is sampled from the distribution of people who have not done the action before. -->
+<!-- We make the simplifying assumption that people who have not done the action before will probably never do the action (expected frequency: once every hundred years). -->
+
+<!-- Some items show substantial differences between the genders (e.g., \emph{wears a bra}) and some show subtle differences (e.g., \emph{watches professional football}). -->
+<!-- Recall that the prior distributions $P(h)$ used in the RSA are with respect to an alternative class of entities (e.g., other individuals).  -->
+<!-- It's possible that when evaluating habitual statements under certain contexts, $P(h)$ is with respect to either *all people* or *people of the same gender*.  -->
+<!-- For example, are the frequency conditions by which a man would qualify to "watch  football" (habitually) different than those by which a woman would qualify to "watch  football"? -->
+<!-- We explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2b, for select items with priors that differ substantially by gender. -->
+
+
+<!-- We analyze the data using a Bayesian approach to allow for a consistent integration into the computational model. -->
+<!-- The data we would like to explain are: the bins $n_i \in \{-3, -2.5, ..., 8.5, 9\}$ that participants gave in response to items $i \in \{1, ..., 27\}$. -->
+<!-- The data is explained as a function of subjective beliefs $P_i$, with $P_{ij}$ being participants' (as a collective) belief about the relative likelihood for bin $j$ for item $i$.  -->
+<!-- Each $P_i$ defines a likelihood for our data, assuming an appropriate linking function. -->
+
+<!-- Following @Franke2016, the linking function for this data treats each bin $n_{i}$ as a draw from a categorical distribution where the probability of bin $j$ is proportional to $\exp{(a\cdot P_i)}$, i.e., a soft-max choice from $P_{i}$.  -->
+<!-- The higher parameter $a$, the more likely $n_{i}$ is the mode of $P_{i}$.  -->
+<!-- For $a \rightarrow 0$, all bins become equiprobable. -->
+
+<!-- \begin{eqnarray} -->
+<!-- P_{i} &\sim& \text{Dirichlet}(1, ..., 1) \\  -->
+<!-- a & \sim & \text{Gamma}(2,1) \\ -->
+<!-- n_{i} &\sim & \text{Categorical}(\exp(a \cdot P_i)) -->
+<!-- \end{eqnarray} -->
+
+<!-- VIZ (as before)? -->
+
+<!-- We assume each "binned" response is a sample from a multinomial distribution with unknown probability vector. -->
+<!-- We put a Dirichlet-prior over this probability vector. -->
+
+<!-- We built a Bayesian data analysis model for this prior elicitation task. -->
+<!-- Question 1 elicits the proportion of people who have done an action before.  -->
+<!-- We model this data as coming from a Beta distribution: $d_{1} \sim \text{Beta}(\gamma_{1}, \xi_{1})$.  -->
+<!-- Question 2 elicits the rate, or relative frequency, with which a person does the action. -->
+<!-- This was modeled by a log-normal distribution: $\ln d_{2} \sim \text{Gaussian}(\mu_{2}, \sigma_{2})$.  -->
+<!-- Each item was modeled independently for each gender. -->
+<!-- We implemented this model using the probabilistic programming language WebPPL \cite{dippl}, and found the credible values of the parameters by running MCMC for 100,000 iterations, discarding the first 50,000 for burnin. -->
+
+<!-- The priors elicited cover a range of possible parameter values as intended (Figure \ref{fig:priorScatter}, scatter), resulting in parametrized distributions of dramatically different shapes (insets).   -->
+<!-- We observe a correlation in our items between the mean \% of Americans who have \textsc{done action} before (Question 1) and the mean log-frequency  of action (Question 2) ($r_{1,2} = 0.74$). -->
+<!-- Items that tend to be more popular actions also tend to be more frequent actions (e.g. \emph{wears socks}) and visa-versa (e.g. \emph{steals cars}), though there are notable exceptions (e.g. \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done very often).  -->
+<!-- This diversity is relevant because the speaker model (Eq.~\ref{eq:S2}) will produce habitual sentences (e.g. \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution.  -->
+
+<!-- From the inferred parameters and assumed functional forms, we get an inferred $P(p)$ modeled as a mixture of individuals with the possibility of carrying out the action and those without the possibility of doing it.  -->
+<!-- That is, $P(p)$ was constructed by sampling $p$ as follows: -->
+
+<!-- \begin{align} -->
+<!-- \theta & \sim \text{Beta}(\gamma_{1}, \xi_{1}) \nonumber \\  -->
+<!-- \ln \lambda & \sim \begin{cases} -->
+<!-- 		\text{Gaussian}(\mu_{2}, \sigma_{2}) &\mbox{if } \text{Bernoulli}(\theta) = \textsc{t} \label{eq:priorModel}  \\ -->
+<!-- 				\delta_{\lambda=-\infty} &\mbox{if } \text{Bernoulli}(\theta) = \textsc{f} \\ -->
+<!-- 		\end{cases} -->
+<!-- \end{align} -->
+
+<!-- In addition to specifying the correct way to combine our two prior-elicitation questions, using this inferred prior in our language model resolves two technical difficulties: (1) It smooths effects that are clearly results of the response format^[ -->
+<!-- For example, a very common rating is *1 time per year*. Presumably participants would be just as happy reporting *approximately* 1 time per year; the raw data does not reflect this due to demands of the dependent measure. -->
+<!-- ] -->
+<!-- and (2) it better captures the tails of the prior distribution which have relatively little data and need to be regularized by the analysis. -->
+<!-- Figure \ref{fig:priorScatter} (right) shows example inferred priors. -->
+
+<!-- Some items show substantial differences between the genders (e.g., *wears a bra*) and some show subtle differences (e.g., *watches professional football*).  -->
+<!-- We will explore the possibility of different truth conditions for habituals of different gendered characters in Experiment 2, for select items with priors that differ substantially by gender. -->
+
+
+
+## Experiment 2b: Endorsing habitual statements
+
+We next explore the endorsements of habituals from the items whose feature-probability priors were measured the prior elicitation task (Expt. 2a). 
+
+### Method
+
+#### Participants
+
+We recruited 150 participants from MTurk.
+To arrive at this number, we performed a Bayesian precision analysis to determine the minimum sample size necessary to reliably ensure 95\% posterior credible intervals no larger than 0.3 for a parameter whose true value is 0.5 and for which the data is a 2-alternative forced choice.
+This analysis revealed a minimum sample size of 50 per item; since participants only completed about one third of the items, we recruited 150 participants.
+The experiment took 4 minutes on average and participants were compensated \$0.55 for their work.
+
+#### Procedure and materials
+
+On each trial, participants were presented with a \emph{past frequency statement} for a given event of the form: "In the past M \{weeks, months, years\}, \textsc{person} \textsc{did x} 3 times".
+For example, "In the past month, Bill smoked cigarettes 3 times".
+The particular intervals used (\{weeks, months, years\}) were selected by simulating predictions of the endorsement model (Eq. \ref{eq:S1}) with the goal of yielding a range of predicted endorsement rates.
+The items were the same as in the prior elicitation task (Expt. 2a).
+
+Participants were asked whether they agreed or disagreed with the corresponding habitual sentence: "\textsc{person does x}" (e.g.,"Bill smokes cigarettes.").
+Participants completed thirty-seven trials, which were composed of the thirty-one items from the prior elicitation task randomly paired with either a male or female character name.
+Six of these items were then also paired with a name of the opposite gender (e.g., participants rated both a female character and a male character who drank beer).
+These were used for an exploratory analysis on differences in endorsements by gender of the target character.
+
+### Results
+
+```{r habituals-prior-mixture-summarize}
+d.hab.priors.mixture.summary <- d.hab.priors.filtered %>%
+  select(item, starts_with("mixture_")) %>%
+  gather(key, value, -item) %>%
+  group_by(item) %>%
+  multi_boot_standard( col = 'value' )
+```
+
+```{r habituals-endorsement}
+d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsement/", 
+                    "habituals-endorsement-catch_trials.csv", sep = ""))
+
+d.hab.endorsement <- read.csv(paste(project.path, "data/habituals/endorsement/", 
+                    "habituals-endorsement.csv", sep = ""))
+
+d.hab.endorsement <- left_join(
+  left_join(d.hab.endorsement, 
+           d.hab.endorsement.catch %>% 
+             select(workerid, pass)
+           ) %>%
+  filter(pass == 1),
+  d.hab.priors.mixture.summary %>% rename(habitual = item, mixture = mean, mix_low = ci_lower, mix_high = ci_upper)) %>%
+  mutate(response = ifelse(as.character(response) == "agree-key", 1, 0)) %>%
+  rowwise() %>%
+  mutate(
+    annualRate = annualRates[[as.character(time_period)]]*n_instances,
+    logAnnualRate = log(annualRate)
+  )
+
+
+d.hab.endorsement.bayes <- d.hab.endorsement %>% 
+  group_by(habitual, logAnnualRate, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+example.habituals <- c("climbs mountains_year", "hikes_year", "runs_year",
+                       "goes to the movies_month", "smokes cigarettes_month")
+fig.habituals.endorsement.vs.freq <- 
+  ggplot(d.hab.endorsement.bayes, aes( x = logAnnualRate, y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
+  geom_jitter(width = 0.1, shape = 21, size = 5)+
+  ylab("Human endorsement probability")+
+  xlab("Frequency of target")+
+  geom_label_repel(data = d.hab.endorsement.bayes %>% 
+                    mutate(sentence = paste(habitual, time_period, sep = "_")) %>%
+                    filter(sentence %in% example.habituals), aes( label = habitual ),
+                       color = 'black', fill = 'white',
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(1e-06, "lines"),
+    segment.color = 'grey37', segment.size=0.7, nudge_x= 1.1, nudge_y = -0.1)+
+  scale_x_continuous(limits = c(-1,6), 
+                     breaks = c(-1, 0, 0.7, 2.5, 4, 5.9),
+                     labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 0.5, 1))+
+  scale_fill_continuous(breaks = c(0, 5))+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")+
+  coord_fixed(ratio = 7)+
+  guides(fill = guide_colorbar(title = 'log annual rate',
+                               ticks = F))
+```
+
+
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.', eval=F}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.wide <- left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
+)
+
+r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
+
+ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
+                 xmin = low_female, ymin = low_male,
+                 xmax = high_female, ymax = high_male, fill = habitual))+
+  geom_text_repel(data = d.hab.bayes.gendered.wide %>%
+                    filter(time_period== "month"), aes(label = habitual,
+                                                       color = habitual),
+                  force = 3, nudge_x = -1, segment.size = 0.3)+
+  guides(fill = F, color = F)+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_point(shape = 21)+
+  geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
+  scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+  coord_fixed()+
+  xlab("Habitual endorsement (female character)")+
+  ylab("Habitual endorsement (male character)")+
+  scale_fill_solarized()+
+  scale_color_solarized()
+
+```
+
+```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    mutate(female = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high,  -characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    #rename(male_MAP, male_low = low, male_high = high) %>%
+    mutate(male = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high, -characterGender)
+    #rename(female_MAP, female_low = low, female_high = high)
+) %>% xtable(.,
+         caption = c("Exploratory analysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
+        label = c("tab:habituals-endorsement-gender")) %>%
+print(., type = "latex", 
+      tabular.environment = "tabularx", width = "\\textwidth",
+      scalebox='0.75',
+      include.rownames = FALSE, comment = F)
+```
+
+
+```{r habituals-regression-models}
+
+glm.hab.endorse.freq <- glm(response ~ logAnnualRate, 
+              data = d.hab.endorsement, family = 'binomial')
+
+glm.hab.endorse.freq.distinct <- glm(response ~ logAnnualRate + mixture, 
+              data = d.hab.endorsement, family = 'binomial')
+
+
+d.hab.endorse.freq.mix.uniq <- unique(select(
+    d.hab.endorsement, habitual, logAnnualRate, time_period, 
+    mixture, mix_low, mix_high
+  ))
+
+d.hab.endorse.freq.mix.uniq.lower <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_low)
+
+d.hab.endorse.freq.mix.uniq.upper <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_high)
+
+
+
+d.hab.endorse.regression.freq <- left_join(
+  d.hab.endorsement.bayes,
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq, ., type = "response"), 
+      prediction_lower = prediction,
+      prediction_upper = prediction,
+      src = "regression_freq"
+      )
+)
+
+r2.hab.n <- length(d.hab.endorse.regression.freq$MAP_h)
+
+r2.habituls.regression.freq <- compute_r2(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq <- compute_mse(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+r2.habituls.regression.infrequent.freq <- d.hab.endorse.regression.freq %>%
+  filter(logAnnualRate < 1.1)
+
+r2.hab.infrequent.n <- length(r2.habituls.regression.infrequent.freq$MAP_h)
+
+r2.habituls.infrequent.regression.freq <- compute_r2(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.infrequent.regression.freq <- compute_mse(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+
+# n.b.: Since distinctiveness is being captured by "mix", the lower the "mix", the higher the endorsement. Thus, lower bound of errorbars are computed with upper estimate of "mix"
+d.hab.endorse.regression.freq.mix <- left_join(
+  d.hab.endorsement.bayes,
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq.distinct, ., type = "response"),
+      prediction_lower =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.upper, type = "response"),
+      prediction_upper =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.lower, type = "response"),
+      src = "regression_freq_distinct"
+      )
+)
+
+
+r2.habituls.regression.freq.distinct <- compute_r2(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq.distinct <- compute_mse(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endorse.regression.freq.mix) %>%
+  mutate(sqErr = (MAP_h-prediction)^2)
+
+
+# ggplot(d.hab.endorse.regression,
+#        aes (x = prediction, y = MAP_h, ymin = low, ymax = high, color = mixture))+
+#   geom_errorbar(alpha = 0.1)+
+#   geom_abline(intercept = 0, slope = 1, lty = 3)+
+#   # geom_text_repel(data = d.hab.endorse.regression.freq.distinct %>%
+#   #                   filter(sqErr > 0.1),
+#   #                 aes(label = paste(habitual, time_period)), force = 5, size = 3)+
+#   geom_point()+
+#   xlim(0,1)+
+#   ylim(0,1)+
+#   coord_fixed()+
+#   xlab("Logistic model prediction")+
+#   ylab("Human habitual endorsement")+
+#   facet_wrap(~src)
+
+
+
+# with(d.hab.endorse.regression %>%
+#        filter(src == "regression_freq"), 
+#      cor(prediction, MAP_h, use = "pairwise.complete.obs"))^2
+# 
+# with(d.hab.endorse.regression %>%
+#        filter(src == "regression_freq_distinct"), 
+#      cor(prediction, MAP_h, use = "pairwise.complete.obs"))^2
+```
+
+```{r habituals-fullmodel}
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
+model_prefix <- "results-habituals-jointModel-S1-"
+
+# m.hab.samp <- data.frame()
+# m.hab.fixed.samp <- data.frame()
+
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "smtncs_habitual-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.samp <- bind_rows(m.hab.samp, mi %>% mutate(chain = i))
+# 
+#   mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "smtncs_some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, mi.fixed %>% mutate(chain = i))
+# 
+# }
+# 
+# save(m.hab.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# 
+# save(m.hab.fixed.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
+  filter(type == 'predictive') %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.fullmodel.endorsement <- m.hab.samp %>%
+  filter(type == 'predictive') %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.endorsement.bayes,
+    m.hab.fullmodel.endorsement
+  ) %>%
+    mutate(src = "habituals_model"),
+  left_join(
+    d.hab.endorsement.bayes,
+    m.hab.somemodel.endorsement
+  ) %>%
+    mutate(src = "some_model")
+)
+
+r2.habituals.rsa.fixed <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.fixed <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.uncertain <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+
+habituals.rsa.uncertain.infrequent <- m.hab.endorse.rsa %>% filter(src == "habituals_model", logAnnualRate < 1.1)
+
+r2.hab.rsa.infrequent.n <- length(habituals.rsa.uncertain.infrequent$MAP_h)
+
+r2.habituals.rsa.uncertain.infrequent<- compute_r2(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain.infrequent <- compute_mse(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+
+
+
+habituals.endorsement.models <- bind_rows(
+  d.hab.endorse.regression,
+  left_join(
+    m.hab.endorse.rsa %>% 
+    rename(prediction = MAP, prediction_lower = cred_lower, prediction_upper = cred_upper),
+    d.hab.endorse.regression %>% 
+    select(habitual, time_period, logAnnualRate, mixture)
+  )
+) %>%
+  mutate(src = factor(src, levels = c( 
+                                      "some_model",
+                                      "habituals_model",
+                                      "regression_freq", 
+                                      "regression_freq_distinct"
+                                     ),
+                      labels = c(
+                                 "Speaker model - fixed semantics",
+                                 "Speaker model - uncertain semantics",
+                                 "Referent frequency alone", "Distinctiveness + referent frequency"
+                                 ))) %>%
+  ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.15)+
+  geom_errorbarh(alpha = 0.15)+
+  geom_point(shape = 21, size = 3)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 2)+
+  theme(legend.position = "bottom")+
+  guides(fill = F)
+```
+
+```{r habituals-simulation-model}
+l0.hab.model <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var betaShape = function(p){
+  return {a: p.g * p.d, b: (1-p.g) * p.d}
+};
+
+var probBins = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9];
+
+var targetUtterance = "habitual";
+
+
+var roundTo3 = function(x){
+  return Math.round(x * 10000) / 10000
+}
+
+var lowerBound = -5, upperBound = 10, binWidth = 0.5;
+
+var stateBins =  _.range(
+  lowerBound, upperBound, binWidth
+)
+
+var thetaBins = map2(function(b1, b2){
+  var diff = Math.abs(b2 - b1) / 2;
+  return roundTo3(diff+ b1);
+}, stateBins.slice(0, stateBins.length-1), stateBins.slice(1))
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state> _.min(thetaBins):
+         true
+}
+
+
+var priorParams = data.priorParams[0];
+
+var stable_female_params = betaShape({
+  g: priorParams.mixture_female_mean, d: priorParams.mixture_female_samplesize
+})
+
+var stable_male_params = betaShape({
+  g: priorParams.mixture_male_mean, d: priorParams.mixture_male_samplesize
+})
+
+// this marginalizes out the mixture parameter
+var statePrior = Infer({model: function(){
+  var gender = flip(0.5) ? "female" : "male";
+  return gender == "female" ? // 
+    flip(
+        categorical({
+          vs: probBins,
+          ps: map(function(b) {
+            return probability(Beta(stable_female_params), b) + Number.EPSILON
+          }, probBins )
+        })
+    ) ? // stable female distribution
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) : // unstable female distribution
+    _.min(stateBins) : 
+    flip(        
+      categorical({
+          vs: probBins,
+          ps: map(function(b) {
+            return probability(Beta(stable_male_params), b) + Number.EPSILON
+          }, probBins )
+      })
+    ) ? 
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) :
+    _.min(stateBins)
+}});
+
+var listener0 = cache(function(utterance) {
+  Infer({model: function(){
+    var state = sample(statePrior)
+    var state_prior = sample(statePrior)
+    var theta = utterance == "habitual" ? sample(thetaPrior) : -99
+    condition(meaning(utterance, state, theta))
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }})}, 10000)
+
+var continuousListener0 = function(utterance) {
+  Infer({model: function(){
+   var state = flip(0.5) ? 
+        flip(beta(stable_female_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }) : delta({v:-5}) :
+        flip(beta(stable_male_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }) : delta({v:-5})
+   var state_prior = flip(0.5) ? 
+        flip(beta(stable_female_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }) : delta({v:lowerBound}) :
+        flip(beta(stable_male_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }) : delta({v:lowerBound})
+    var theta = uniform(lowerBound, upperBound)
+    condition(
+      (utterance == "habitual") ? 
+      state > theta : 
+      (state > _.min(lowerBound))
+    )
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }, method: "rejection", samples: 10000, burn:5000, verbose: T})}
+
+continuousListener0(data.utt[0])
+'
+```
+
+```{r habituals-model-insets, fig.width = 4.75, fig.height = 1.5, cache = T}
+example.habituals.actions <- separate(data.frame(example.habituals), 
+                                      example.habituals, 
+                                      into=c("action", "time_period"), sep = "_")$action
+
+
+m.hab.fullmodel.prior.parameters <- m.hab.samp %>%
+  filter(type == "prior", B %in% example.habituals.actions) %>%
+  rename(action = B, variable = C, gender = D, parameter = E) %>%
+  group_by(action, variable, gender, parameter) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+# use MAP estimates to generate L(h | generic) & L(h | silence) predictions
+
+m.hab.fullmodel.prior.parameters.tidy <- m.hab.fullmodel.prior.parameters %>%
+  ungroup() %>%
+  select(action, variable, gender, parameter, MAP) %>%
+  mutate(param = paste(variable, gender, parameter, sep = "_")) %>%
+  select(-variable, -gender, -parameter) %>%
+  spread(param, MAP)
+
+hab.listener.predictions <- data.frame()
+  
+for (p in example.habituals.actions){
+ priorParams <- m.hab.fullmodel.prior.parameters.tidy %>% filter(action == p) 
+ 
+ inputData = list(priorParams = priorParams,
+                  utt = "habitual")
+ 
+ l0.rs <- webppl(l0.hab.model, data = inputData, data_var = "data")
+ 
+ hab.listener.predictions <- bind_rows(
+   hab.listener.predictions, 
+   l0.rs %>% select(Parameter,value) %>% mutate(action = p)
+   )
+ 
+}
+
+# m.gen.fullmodel.target.prevalence <- m.samp %>%
+#   filter(type == "withinKind") %>%
+#   group_by(param, property, category) %>%
+#   summarize(MAP = estimate_mode(val),
+#             cred_upper = hdi_upper(val),
+#             cred_lower = hdi_lower(val))
+
+# m.gen.speakerBeliefs <- m.samp %>%
+#   filter(type == "withinKind") %>%
+#   mutate(Sentence = paste(category, property)) %>%
+#   filter(Sentence %in% example.generics) 
+
+# m.gen.speakerBeliefs <- m.samp.prev.params <- m.samp %>%
+#     filter(type == "targetPrevalence") %>%
+#     mutate(Sentence = paste(category, property)) %>%
+#     filter(Sentence %in% example.generics) %>%
+#     mutate(parameter = paste(param, property, category, sep = "_")) %>%
+#     select(-param, -property, -category, -chain, -type) %>%
+#     group_by(parameter) %>%
+#     mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+#     ungroup() %>%
+#     separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
+#     group_by(category, property, iteration) %>%
+#     spread(parameter, val) %>%
+#     rowwise() %>%
+#     mutate(
+#       a = mean*sampleSize,
+#       b = (1-mean)*sampleSize,
+#       val = rbeta(n = 1, shape1 = a, shape2 = b)
+#       ) %>%
+#     ungroup()
+
+# gen.inset.distributions <- bind_rows(
+#   gen.listener.predictions %>%
+#     mutate(category = NA),
+#   m.gen.speakerBeliefs %>%
+#     select(property, val) %>%
+#     rename(value = val) %>%
+#     mutate(Parameter = "speakerBeliefs")
+# )
+# 
+# 
+# category.text.labels <- data.frame(property = c("dont eat people", 
+#                       "carry malaria", "lay eggs",  "are female", "have spots"),
+#              category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
+#              x = c(0.3, 0.3, 0.47, 0.05, 0.6),
+#             y = c(0.45, 0.5, 0.45, 0.5, 0.26))
+
+
+
+habituals.endorsement.insets <- hab.listener.predictions %>% 
+    mutate(Parameter = factor(Parameter, levels = c("state_Prior",
+                                                  "state_Posterior"
+                                                  ),
+                            labels = c("Listener Prior (Posterior given Silence)",
+                                       "Listener Posterior given Habitual")),
+         action = fct_relevel(action,
+                                "climbs mountains", "hikes", "runs",
+                              "goes to the movies", "smokes cigarettes"
+                              ) ) %>%
+  ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
+  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+  facet_wrap(~action, nrow = 1)+
+  # geom_text_repel(data = category.text.labels,
+  #                 aes(label = category, x = x , y = y),
+  #                 inherit.aes = F, color = "#2b83ba")+
+  #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+  #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+  scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
+  scale_color_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
+  scale_alpha_manual(values = c(0.6, 0.4))+#, 0))+
+  #scale_linetype_manual(values = c(3, 4, 2, 1))+
+  #scale_linetype_manual(values = c(3, 4, 1))+
+  #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+  scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+  xlab("Frequency (log scale)") +
+  ylab("Scaled probability density")+
+  theme(legend.position = "bottom", legend.title = element_blank(),
+        axis.text.x = element_text(angle = 90, vjust = 1))+
+      scale_x_continuous(limits = c(-5, 8), 
+                     breaks = c(-5, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+
+```
+
+```{r habituals-endorsement-figure, fig.width=11, fig.height=9, fig.cap="Endorsing generalizations about events Top left: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent (log) frequency alone (lower left) and referent log frequency + distinctiveness (lower right). Bottom: Five example frequency priors and listener posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a & 2b.  (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})", cache = F}
+grid.arrange(fig.habituals.endorsement.vs.freq, 
+             habituals.endorsement.models,
+             habituals.endorsement.insets, ncol = 2,
+             layout_matrix = cbind(c(1,1,3), c(2,2,3)))
+```
+
+<!-- For the six items for which data for characters of both genders were collected for each participant, we analyzed only the data from participants' first presentation of the item. -->
+Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold RSA model to better understand the data and the contribution of our model.
+For all analyses, we collapse across gender of the referent character.^[
+  In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.
+  This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{comparison class} is other people; not just other men or women).
+  Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
+]
+<!-- Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ. -->
+
+<!-- NOTE: Alternatively: We could not discuss this analysis (or, in a footnote). Since participants judged both genders for these items, we could only analyze their first gender and drop their second, for consistency with the other items. -->
+
+<!-- For our six items that showed substantial variability in the elicited priors between genders, we explore differences in endorsements.  -->
+<!-- Differences in endorsements could suggest that the *comparison class* of entities in the prior distribution used in our model might be gender-specific (i.e., when evaluating "Mary drinks beer." participants implicitly consider the distribution of frequencies for other women and not other men). -->
+<!-- Endorsement probabilities and 95\% credible intervals for these six items at each time interavl for each gender are showed in Figure \ref{fig:habituals-endorsement-gender-exploration-scatter}. -->
+<!-- We see no appreciable differences in endorsements for the two genders.  -->
+<!-- This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters. -->
+<!-- For all remaining analyses, we collapse across character gender when analyzing endorsements. -->
+
+#### Referent frequency baseline
+
+The simplest alternative hypothesis for habitual language endorsement is that the degree to which the habitual statement is acceptable is given by the referent frequency (Figure \@ref(fig:habituals-endorsement-figure) top-left). 
+Several features in our data argue against this hypothesis.
+<!-- It is clear that not all habitual statements are strongly assented to, even though it is true that all the events occurred with a non-zero frequency (i.e., they occurred at least 3 times before). -->
+When actions are very infrequent (3 times in a 5-year interval), habituals can receive strong agreement (e.g., \emph{writes novels}, \emph{climbs mountains}).
+When actions are relatively frequent (e.g., 3 times in a one month interval), habitual sentences can receive less than full endorsement (e.g., \emph{wears socks}, \emph{drinks coffee}). 
+In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g., between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
+In addition, we observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance), reflecting the fact that these statements are not altogether *false* even though the action is done very rarely.
+Overall, the referent log-frequency of action predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
+In addition, for actions that are done on the time scale of years or longer (lower median of frequency), referent frequency no longer explains endorsements ($r^2(`r r2.hab.infrequent.n`) = `r r2.habituls.infrequent.regression.freq`$; MSE =$`r mse.habituls.infrequent.regression.freq`$)
+
+
+<!-- This is unlikely to be the case based on , which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence.  -->
+
+
+#### Distinctiveness and referent frequency baseline
+
+In our empirically elicited priors, items differ in their mixture parameter reflecting the proportion of people who have done the action before (Figure \@ref(fig:habituals-prior-figure)).
+This could be seen as a measure of the *distinctiveness* of the action, analagous to *cue validity* in the case study of generic langauge.
+A plausible alternative hypothesis is thus that some simple combination of frequency and distinctiveness information predicts habitual endorsements. 
+Here, we articulate a regression model that uses participants' responses to the question about the mixture parameter $\phi$ (i.e., the proportion of people who have done the action before) as well as frequency to predict habitual endorsement. 
+
+```{r habituals-distinctiveness-counterexamples}
+
+format_endorsment_ci <- function(
+  df, estimate = "MAP_h", low = "low",
+  high = "high", sigfigs = 2){
+  return(paste(
+    round(df[[1,estimate]], sigfigs),
+    " [",
+    round(df[[1,low]], sigfigs),
+    ", ",
+    round(df[[1,high]], sigfigs),
+    "]", sep = ""))
+}
+
+movies.year.data <- format_endorsment_ci(filter(d.hab.endorsement.bayes, habitual == "goes to the movies", time_period == "year"))
+
+movies.year.regression.distinct <- format_endorsment_ci(filter(d.hab.endorse.regression.freq.mix, habitual == "goes to the movies",
+                                                        time_period == "year"),
+                                                        estimate = "prediction",
+                                                        low = "prediction_lower",
+                                                        high = "prediction_upper")
+
+banjo.2years.data <- format_endorsment_ci(filter(d.hab.endorsement.bayes, habitual == "plays the banjo", time_period == "2 years"))
+
+banjo.2years.regression.distinct <- format_endorsment_ci(filter(d.hab.endorse.regression.freq.mix, habitual == "plays the banjo",
+                                                        time_period == "2 years"),
+                                                        estimate = "prediction",
+                                                        low = "prediction_lower",
+                                                        high = "prediction_upper")
+```
+
+We find that this model is able to explain more of the variance in endorsements ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq.distinct`$; MSE=$`r mse.habituls.regression.freq.distinct`$). 
+Actions that are more rare across people (e.g., writing novels) are endorsed more overall. 
+Still, this model is not able to capture fine-grained details in endorsments.
+For example, going to the movies is relatively nondistinctive action (many people do it) and going three times in a year is not very frequent, and yet people still strongly endorse the habitual $`r movies.year.data`$, while this regression model predicts quite lower judgments $`r movies.year.regression.distinct`$.
+On the other hand, playing the banjo three times in the past two years is not very strong evidence for the habitual, according to participants $`r banjo.2years.data`$.
+Nevertheless, because playing the banjo is a distinct skill, the regression model wants to endorse the habitual strongly in this case $`r banjo.2years.regression.distinct`$.
+
+#### Fixed-threshold endorsement model
+
+We next examine an endorsement model based on a fixed-threshold semantics.
+A fixed-threshold model only conveys that a person *has done this action before*, analagous to how the quantifier "some" conveys that there exists at least one entity with the feature.
+As in Case Study 1, we incorporate this model into a Bayesian joint-inference model to simultaneously predict both the priors data and the endorsement data.
+We assume the referent feature-probability $h'$ being conveyed by $Endorse$ (Eq. \ref{eq:S1}) is the frequency provided to participants (e.g., 3 times in the past year).
+Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(h)$.
+To learn about the credible values of the model's parameters and generate predictions given those inferred parameter values, we collected 3 MCMC chains of 100,000 iterations, discarding the first 50,000 iterations for burn in.
+
+
+<!-- The above regression models are too rigid to explain the flexibility in habitual endorsements.  -->
+<!-- Our probabilistic RSA model has more flexibility than these models because of the introduction of prior knowledge.  -->
+<!-- Additionally, our theory posits that the flexibility in endorsements comes from an interaction of the prior knowledge with an uncertain threshold. -->
+<!-- To isolate the contribution of this interaction (prior knowledge with an uncertain threshold), we first show the predictions of a model that lacks the uncertainty over the threshold (i.e., it has a fixed threshold). -->
+
+<!-- The RSA model has a single free parameter---the speaker optimality parameter, $\alpha_1$, in Eq. \ref{eq:S1}.  -->
+<!-- As we did for the generics case study, we use Bayesian data analytic techniques to integrate over these parameters \cite{LW2014}, comparing the posterior predictive distribution to the empirical data in Expt. 2b. -->
+<!-- The Maximum A-Posteriori value and 95\% highest probability density interval for $\alpha_1$ is 19.3 [14.9,19.9] and $\alpha_2$ is 1.5 [1.4,1.6]. -->
+
+
+An endorsement model with fixed-threshold semantics has trouble differentiating between different habitual statements (Figure \ref{fig:habituals-endorsement-figure}, top-right: upper-left facet), as all of the items used in our experiment are literally true under a fixed-threshold semantics.
+In addition, the model exhibits a small dynamic range of endorsment, because the two options for the endorsement model (silence or a very low, fixed thresold) are only subtly different with respect to information conveyed.
+Another shortcoming of this fixed threshold is illuminated by our manipulation of target frequency.
+With a fixed threshold on what makes a statement true or false, any two points that lie above the threshold are indistinguishable. 
+Thus, this model makes the same predictions for different target frequencies in the same event.
+For example, the model endorses somebody who hikes three times every two years the same as somebody who hikes three times every month. 
+Overall, this model is poor at predicting the range of endorsement data ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.fixed`$; MSE=$`r mse.habituals.rsa.fixed`$).
+
+
+#### Uncertain-threshold endorsement model
+
+We used the same data analytic approach for the uncertain threshold endorsement model and performed the same Bayesian statistical inference over the model to learn about its parameters and predictions.
+As shown in Figure \@ref(fig:habituals-endorsement-figure) (top right: top right facet), the uncertain-threshold endorsement model does a good job of accounting for the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.uncertain`$; MSE=$`r mse.habituals.rsa.uncertain`$), including actions done on the time scale of years or more  ($r^2(`r r2.hab.rsa.infrequent.n`) = `r r2.habituals.rsa.uncertain.infrequent`$; MSE=$`r mse.habituals.rsa.uncertain.infrequent`$).
+Figure \@ref(fig:habituals-endorsement-figure) (bottom, insets) provides insight into how the model is able to do this. 
+An interpreter who hears a generalization interprets it relative the prior distribution over frequencies, which results in different points at which the generalization is good statement to assert. 
+Someone who smoked cigarettes 3 times last month is not fully someone who "smokes cigarettes", whereas the someone who went to the movies 3 times last month is fully a person who "goes to the movies". 
+Only the uncertain-threshold model is able to draw this fine distinction. 
+
+### Discussion
+
+In Expt. 2b, we manipulated the event type (e.g., drinks coffee vs. beer) as well as the frequency with which a person has done the action in the past (e.g., three times in the past week vs. year) and measured the corresponding endorsements for habitual statements.
+We saw tremendous flexibility in the frequencies that leads participants to endorse habituals. 
+Parallel to our analysis of generic statements, we articulated a number of alternative models and found that they were unable to explain the variability in endorsements. 
+The regression model that uses the distinctiveness of the action (as measured in Expt. 2a) and the frequency of action is the best alternative model to explain endorsements. 
+This model is not a predictive model, however; rather, it is a re-description of the data and helps us understand what the *predictive* endorsement model is doing. 
+
+In this case study, we manipulated rather than measured the target frequency (e.g., the frequency with which a person drinks coffee).
+By manipulating the target frequency, we have shown that it is causally related to habitual endorsements in the way predicted by our model. 
+The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect listeners' prior knowledge about the event in the question and an underspecified threshold criterion. 
+
+<!-- People are used to learning new information about others, and thus habitual language about people doing actions is particularly amenable to this kind of manipulation.  -->
+
+In Experiment 2b, we supplied participants with a statement about how often a person has done the action in the past and asked them to judge the correspoding habitual statement.
+This raises an interesting question: Does the feature-probability communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
+Across two follow-up experiments (Expts. 2c \& 2d), we address this question by manipulating and measuring *predictive frequency* (Expt. 2c) and habitual endorsement (Expt. 2d).
+
+<!-- The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action.  -->
+
+<!-- As another potential alternative hypothesis, we formulate a model of a speaker who judges the felicity of the habitual utterance based on simple summary statistics of the prior, such as the mean and variance. -->
+
+<!-- Only our pragmatic speaker model who reasons about a listener is able to capture the quantitative variability in our data. -->
+
+
+<!-- \begin{figure*}[t] -->
+<!-- \centering -->
+<!--   \includegraphics[width=\textwidth]{figs/expt3-4-scatters-camera.pdf} -->
+<!--   \caption{Left: Predicted log frequency as a function of past log frequency given to the participant (Expt. 3a; CIs suppressed and jitter added for visual clarity). -->
+<!--   Middle: Human endorsements of habitual sentences (Expt. 3b) vs. Predicted log frequency (Expt. 3a), with data for corresponding items from Expt. 2 (assumed to have the same predictive log frequency as baseline).  -->
+<!--   Right: Endorsements (Expt. 3b) vs. Speaker $S_2$ model predictions using empirically elicited predictive frequencies (Expt. 3a).} -->
+<!--   \label{fig:tj3} -->
+<!--   \vspace{-7pt} -->
+<!-- \end{figure*} -->
+
+
+## Experiment 2c: Measuring predictive frequency
+
+While past frequency is often a good indicator of future tendency, people change abruptly due to a variety of decisions and outside events.
+Does habitual language communicate probabilities in terms of past frequency or future expectations?
+On one hand, speakers can only *know* about what has happened in the past.
+On the other hand, language has a communicative function, and it would seem useful for speakers to convey what they *believe* will be the case in the future.
+
+In the following pair of experiments, we address this by introducing causal events that enable or prevent future actions (e.g., buying a pack of cigarettes; developing an allergy).
+In Expt. 2c, we measure *predictive frequency* both when past frequency alone is observed and when these causal factors are introduced.
+In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers.
+This allows us to test whether habituals are best explained by a speaker $S_1$ who communicates the objective past frequency or the subjective future frequency.
+
+
+```{r habituals-predictive-elicitation}
+d.hab.predictive <- read.csv(paste(
+  project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
+
+n.subj.hab.pred <- length(unique(d.hab.predictive$workerid))
+ave.seconds.hab.pred <-  d.hab.predictive %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+
+# participant reported this in the comments section (it was recorded as a symbol)
+d.hab.predictive[
+  (d.hab.predictive$workerid==44 & 
+     d.hab.predictive$item=="smokes cigarettes"),"response"] <- 5
+d.hab.predictive <- d.hab.predictive %>% mutate(response = as.numeric(as.character((response))))
+
+
+d.hab.predictive<- d.hab.predictive %>%
+  rowwise() %>%
+  mutate(
+    annualPredictiveRate =
+           annualRates[[as.character(past_interval)]]*response,
+    annualPastRate =
+           annualRates[[as.character(past_interval)]]*past_freq,
+    annualPredictiveRate = ifelse(
+      annualPredictiveRate == 0, 0.05, 
+      annualPredictiveRate),
+    logAnnualPredictiveRate = log(annualPredictiveRate),
+    logAnnualPastRate = log(annualPastRate)
+    )
+
+
+d.hab.predictive.summary <- d.hab.predictive %>%
+  group_by(condition, item, logAnnualPastRate) %>%
+  multi_boot_standard(col = "logAnnualPredictiveRate")
+
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
+       aes(x=logAnnualPastRate,
+                              y = mean,
+                              ymin = ci_lower, ymax = ci_upper,
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6, size = 4)+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency (log scale)")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+
+```
+
+
+
+### Methods
+
+We recruited `r n.subj.hab.pred` participants from MTurk, using the same criterion as Expt. 2b.
+The experiment took `r round(ave.seconds.hab.pred/60,1)` minutes on average and participants were compensated \$0.40.
+
+The procedure was identical to Expt. 2b except for the inclusion of a second sentence on a subset of trials and the use of a different dependent measure. 
+On all trials, participants were presented with a \emph{past frequency sentence} (same as Expt. 2b).
+Additionally, on one third of the trials, participants were presented with a \textbf{preventative sentence} (e.g. \emph{Yesterday, Bill quit smoking.}).
+On one third of the trials, participants were presented with an \textbf{enabling sentence} (\emph{Yesterday, Bill bought a pack of cigarettes.}) 
+The final third of trials had no additional evidence and were identical to Expt. 2b. 
+
+Only twenty-one of the original thirty-one items were used in order to shorten the experiment.
+To increase expected variability, participants saw only the frequencies that led to the most intermediate endorsement of the habitual in Expt. 2b. 
+In addition, we did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
+
+Participants were asked ``In the next \textsc{time window}, how many times do you think \textsc{person} does \textsc{event}?'', where the \textsc{time window} was the same as given in the \emph{past frequency statement}.
+
+
+```{r habituals-predictive-model}
+hab.predictive.bda.model <- '
+var model = function(){
+
+	var predictiveFrequency = {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+	}
+
+	mapData({data: data}, function(d){
+		observe(Gaussian(predictiveFrequency),
+        d.logAnnualPredictiveRate)
+	})
+
+  return predictiveFrequency
+}
+'
+```
+
+```{r habituals-predictive-model-run, cache = T, eval=F}
+items <- levels(factor(d.hab.predictive$item))
+conditions <- levels(factor(d.hab.predictive$condition))
+n_samples <- 5000
+rs.habituals.bda.predictive <- data.frame()
+
+for (it in items){
+  for (cn in conditions){
+     df.predictive.toPass <- d.hab.predictive %>%
+       filter(condition == cn, item == it)
+     
+    rs <- webppl(program_code = hab.predictive.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.predictive.toPass,
+       data_var = "data")
+    rs.habituals.bda.predictive <- bind_rows(
+        rs.habituals.bda.predictive, 
+        rs %>% 
+            mutate(item = it, condition = cn) 
+        )
+  }
+}
+```
+
+```{r eval = F}
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, fill = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+```{r habituals-predictive-bda-forwardSample, fig.width=14, eval=F}
+rs.habituals.bda.predictive.samples <- rs.habituals.bda.predictive %>% 
+  spread(Parameter, value) %>%
+  rowwise() %>%
+  mutate(
+    logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+  )
+
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+
+bind_rows(
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate),
+  rs.habituals.bda.predictive.samples %>% 
+    select(item, condition, logannualRate) %>%
+    rename(logAnnualPredictiveRate = logannualRate) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = src))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+#  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+#               position = position_dodge())+
+  facet_grid(condition ~ item )+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(-5,10)) +
+  #scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+```{r habituals-predictive-bda-summary, eval =F}
+rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>% 
+  spread(Parameter, value) %>%
+  rowwise() %>%
+  mutate(
+    logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+  ) %>%
+  gather(key, val, mu, sigma, logannualRate) %>%
+  group_by(item, condition, key) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+```
+
+```{r habituals-predictive-bda-figure, eval =F}
+fig.hab.freq.predictive.vs.past <- left_join(
+  rs.habituals.bda.predictive.summary %>% filter(key == "logannualRate"),
+  unique(d.hab.predictive %>% 
+    select(item, condition, logAnnualPastRate)
+  )) %>% ggplot(., 
+       aes(x=logAnnualPastRate, y = MAP, 
+                              ymin = cred_lower, ymax = cred_upper, 
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  scale_shape_manual(values=c(21,22,23, size = 4))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency MAP (log scale)")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+
+### Results
+
+<!-- We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies). -->
+<!-- As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance. -->
+<!-- $$ -->
+<!-- \ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic}) -->
+<!-- $$ -->
+
+
+Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
+We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
+This means that our model makes identical predictions for Expt. 2b whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
+Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
+
+
+```{r habituals-predictive-elicitation-predictions}
+lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
+     logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
+       (1 + condition | workerid) + 
+       (1 + condition | item)
+)
+lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
+```
+
+
+We confirm these observations using a linear mixed-effects model, predicting the log-transformed responses from the log-transormed past frequency and the experimental condition (baseline, preventative, enabling).
+To account for participant and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
+Confirming our predictions, the preventative information led to significantly lower predictions for future frequency, relative to the baseline condition (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","t value"],2)`$
+).
+There was also tendency for the enabling information to lead to higher predictions for future frequency, relative to baseline (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","t value"],2)`$
+).
+Finally, past frequency was a significant predictor of predicted future frequency (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","t value"],2)`$
+).
+
+
+
+## Experiment 2d: Endorsing habituals under predictive-manipulated conditions
+
+```{r habituals-predictive-endorsement}
+d.hab.predictive.endorsment <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives.csv", sep = ""))
+d.hab.predictive.endorsment.catch <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives-catch_trials.csv", sep = ""))
+
+
+n.subj.hab.pred.endorse <- length(unique(d.hab.predictive.endorsment$workerid))
+ave.seconds.hab.pred.endorse <-  d.hab.predictive.endorsment %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+d.hab.predictive.endorsment.condition.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0)) %>%
+  rename(item = habitual) %>%
+  group_by(condition) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.baseline.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'baseline')
+
+d.hab.predictive.endorsment.preventative.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'preventative')
+
+d.hab.predictive.endorsment.enabling.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'enabling')
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0),
+         time_period = factor(time_period,
+                              levels=c("month",
+                                       "2 months",
+                                       "year",
+                                       "2 years",
+                                       "5 years")),
+         condition = factor(condition,
+                            levels=c("enabling", "baseline", "preventative")),
+         hab_time = paste(habitual, time_period, sep='-')) %>%
+  rename(item = habitual) %>%
+  group_by(item, condition, hab_time, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment.summary,
+  d.hab.predictive.summary %>%
+    rename(logAnnualFutureRate = mean,
+         future_lower = ci_lower, future_upper = ci_upper)
+  # rs.habituals.bda.predictive.summary %>% 
+  #   filter(key == "logannualRate") %>%
+  #   rename(logAnnualFutureRate = MAP,
+  #        future_lower = cred_lower, future_upper = cred_upper)
+  # %>%
+  #   rowwise() %>%
+  #   mutate(future_lower = ifelse(future_lower < -4, -4, future_lower),
+  #          future_upper = ifelse(future_upper > 7, 7, future_upper))
+)
+
+r2.habituals.predictiveFreq <- compute_r2(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+mse.habituals.predictiveFreq <- compute_mse(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+
+
+
+fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
+  ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
+                 fill=condition, shape=condition,
+                 xmin = future_lower, xmax=future_upper,
+                 ymin=low, ymax = high))+
+  geom_errorbar(alpha=0.8)+
+  geom_errorbarh(alpha=0.8)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  geom_point(alpha = 1, size = 4)+
+  xlab("Predicted frequency (log scale)")+
+  ylab("Human habitual endorsement")+
+  scale_x_continuous(limits = c(-4.2,7.2), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  coord_fixed(ratio=11.4)+
+  scale_fill_solarized()+
+  guides(fill = F, shape = F)+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    )
+
+```
+
+```{r habituals-predictive-rsa}
+n_chains <- 3
+# n_samples <- 500000
+# burn <- n_samples / 2
+# lg <- 150
+model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
+model_prefix <- "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-"
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 50
+
+
+m.hab.pred.samp <- data.frame()
+m.hab.past.samp <- data.frame()
+
+
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "targetH_predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.pred.samp <- bind_rows(m.hab.pred.samp, mi %>% mutate(chain = i))
+
+  # mi.past <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "targetH_past-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
+
+#}
+# 
+# 
+# # 
+# save(m.hab.pred.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# # # 
+# save(m.hab.past.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-predictive-100000_burn50000_lag50_3chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-past-100000_burn50000_lag20_3chains.RData", sep = ""))
+
+
+
+m.hab.pastmodel.endorsement <- m.hab.past.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorsement <- m.hab.pred.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.predictive.endorsement
+  ) %>%
+    mutate(src = "predictive_model"),
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.pastmodel.endorsement
+  ) %>%
+    mutate(src = "past_model")
+)
+
+r2.habituals.rsa.past <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.past <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.predictive <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.predictive <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+r2.hab.rsa.predictive.n <- length(d.hab.predictive.endorsment.summary$MAP_h)
+
+habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - past frequency") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(shape = 21, size = 4)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  guides(fill = F)+
+  #theme(legend.position = "bottom")+
+  scale_fill_solarized()
+
+habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - predictive frequency") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(shape = 21, size = 4)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  #guides(fill = F)+
+  #theme(legend.position = "bottom")+
+  scale_fill_solarized()
+#habituals.predictive.predictive.model
+```
+
+```{r fig.height = 6, fig.width=14, echo = F, eval=F}
+m.hab.pred.samp %>%
+  filter(type == "predictive", C == "predictiveFreq", E == "sigma") %>%
+  #filter(type == "predictive", C == "endorsement") %>%
+#  mutate(E = as.numeric(as.character(E))) %>%
+  ggplot(., aes(x = val, fill = D))+
+  geom_histogram(position = position_dodge())+
+  #facet_grid(B~E)+
+  facet_grid(D~B)
+```
+
+```{r, eval = F}
+m.hab.predfreq.summary <- m.hab.pred.samp %>%
+  filter(type == "predictive", C == "predictiveFreq") %>%
+  group_by(B, D, E) %>%
+  summarize(MAP = estimate_mode(val)) %>% spread(E, MAP)
+
+left_join(m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Speaker model - past frequency",
+                                 "Speaker model - predictive frequency"
+                                 
+                                 ))) %>%
+  filter(src == "Speaker model - predictive frequency"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
+```
+
+
+```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 10, fig.height = 9.5, cache=F}
+legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
+
+# add the legend underneath the row we made earlier. Give it 10% of the height
+# of one plot (via rel_heights).
+
+grid.arrange(
+  arrangeGrob(
+    fig.hab.freq.predictive.vs.past, 
+    fig.hab.endorse.vs.predfreq, 
+    habituals.predictive.past.model, 
+    habituals.predictive.predictive.model + theme(legend.position="none"),
+    nrow=2, layout_matrix = cbind(c(1,3), c(2,4))),
+legend_b, nrow=2,heights=c(8, 1))
+
+
+#prow <- plot_grid(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, habituals.predictive.past.model, habituals.predictive.predictive.model #+ theme(legend.position="none"), labels = c("A", "B", "C", "D"), ncol = 2, align = 'v')
+  
+#plot_grid( prow, legend_b, ncol = 1, rel_heights = c(5, 0))
+```
+
+
+### Methods
+
+We recruited `r n.subj.hab.pred.endorse` participants from MTurk, using the same criterion as Expt. 2b.
+The experiment took `r round(ave.seconds.hab.pred.endorse / 60)` minutes on average on participants were compensated \$0.40 for their work.
+None of the participants had completed Expt. 2c.
+The only difference from Expt. 2c is the dependent measure. 
+On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2b).
+
+### Results
+
+There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure} B; green points).
+Still, frequency --- even predictive frequency --- does not perfectly explain the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.predictiveFreq`$; MSE = $`r mse.habituals.predictiveFreq`$). 
+
+When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\% highest probability density interval for the true endorsement probabilities per condition are: baseline = 
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.baseline.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.baseline.summary[[1,"high"]], 2)`
+], enabling = 
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.enabling.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.enabling.summary[[1,"high"]], 2)`
+], preventative = `r round(d.hab.predictive.endorsment.preventative.summary[[1,"MAP_h"]], 2)` [`r round(d.hab.predictive.endorsment.preventative.summary[[1,"low"]], 2)`,
+`r round(d.hab.predictive.endorsment.preventative.summary[[1,"high"]], 2)`
+]
+
+We use our formal model to test whether past or predictive frequency is what is being communicated by these statements.
+To formalize the predictive frequency speaker model, we use the mran predictive frequency data (Expt. 2c) as the $h$ that the speaker model $S$ (Eq. \ref{eq:S1}) is aiming to communicate. 
+The past frequency model is constructed using the past frequency supplied to participants as the $h$ that the speaker $S$ model is trying to communicate.
+
+We analyze this model in the same Bayesian data analysis regime as for our previous models.
+We use the same priors over the parameters as before, and learn about the posterior distribution by collecting three independent MCMC chains of 100,000 iterations (removing the first 50,000 for burn-in). 
+Figure \ref{fig:habituals-predictive-figure} (bottom, left and right) shows the resulting model predictions for the past frequency and the predictive frequency speaker models. 
+Participants judgments of the habitual statements was indeed influenced by the causal manipulations in the way predicted by the speaker model using the predictive frequency as input ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.predictive`$; MSE = $`r mse.habituals.rsa.predictive`$).
+The model based on past frequency does not make different predictions for the different causal manipulation conditions and does a poor job at explaining the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.past`$; MSE = $`r mse.habituals.rsa.past`$). 
+
+
+<!-- We use the mean predicted log frequency from Expt. 3a as the input to the speaker $S_1$ model to predict the felicity judgments measured in Expt. 3b. -->
+<!-- We infer the two model parameters using the same analysis approach in Expt. 2.  -->
+<!-- The model matches the data well ($r^2(63) = 0.91$; Figure \ref{fig:tj3}, right). -->
+<!-- The same model using the past frequency as the object of communication does not match the data at all ($r^2(63) = 0.02$). -->
+<!-- These results suggest that the felicity of habituals is based on an underlying scale of predicted future propensity, not merely the observed frequency in the past. -->
+
+Interestingly, we observe endorsements in this experiment that are appreciably higher than in Expt. 2 for the same items (Figure \ref{fig:tj3}, middle; red vs. purple points).
+This may be due, in part, to an effect of the experimental context on participants:
+in this experiment the overall population of frequencies is much lower (both because we selected moderate frequencies from Expt. 2 and because of the preventative information) and participants may infer that the experimenter believes this to be a representative range and adjust judgments accordingly.
+Future investigation into this issue is warranted.
+
+## Discussion
+
+Habitual language conveys generalizations about events and our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account the listener’s prior beliefs about the action (measured in Expt. 2a). 
+We saw that our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b).
+In Experiment 2b, we varied the type of event and the past frequency with which the person did the action, and found substantial graded variability in the endorsement judgments of people.
+By manipulating (rather than measuring) the target frequency with which a person does an action, we showed how alternative models were insufficient to account for this gradience.
+In particular, a fixed threshold model that has access to the same prior knowledge as our model and goes through the same information-theoretic decision making procedure as our speaker model is unable to make different predictions for different frequencies.
+Only our uncertain threshold model was able to precisely account for the wide range of endorsements.
+
+<!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
+<!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
+<!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
+In Experiments 2c \& 2d, we further investigated the nature of the underlying feature-probability scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 2c) and using that, with the model, to predict the felicity of habitual sentences (Expt. 2d). 
+To our knowledge, the experiments presented here are first empirical investigations into the truth conditions of habitual sentences and the first test of a formal psychological model of such generalizations in language.
+
+In these experiments, we directly manipulated the frequency that the speaker was trying to communicate while still measuring the priors over the feature-probability for the event.
+Thus, it is still possible that the feature-probability priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic and habitual endorsement but not directly causally related.
+In our final case study, we extend our theory to communicating generlizations about causes, and experimentally test whether the feature-probability priors are indeed causally related to endorsing generalizations in language.
+
+
+
+
+
+
+<!-- To anticipate our results, we find that only a model that uses the *predictive* feature-probabilities as the object of communication is able to explain the endorsement data, thus tying the phenomenology of *genericity* even more to subjective beliefs. -->
+
+
+<!-- Habituals are a particularly convenient case study for manipulating referent feature-probability. -->
+<!-- In the domain -->
+
+<!-- From a methodological standpoint, habituals are a particularly convenient domain for manipulating the referent feature-probability that a speaker aims to communicate.^[ -->
+<!--   While referent feature-probability can be manipulated for generalizations about categories (e.g., by stating the prevalence of feature in a kind), observers may have strongly constraining domain knowledge that heavily guides what feature-probabilities are likely (e.g., it's *a priori* very unlikely that 90% of a hypothetical novel kind---lorches---have broken wings). -->
+<!-- ] -->
+<!-- Due to the sociality of our species, we are often in the situation of being introduced to new people and learning new information about them. -->
+<!-- In addition, feature-probabilities of people doing actions can be expressed in an easily-interpretable rate information (e.g., "Last month, Mary smoked cigarettes 3 times.").^[ -->
+<!-- In this case study, we use frequencies or rates of people doing actions (e.g., *smoking cigarettes 3 times a month*) as our feature-probabilities for ease of interpretability.  -->
+<!-- A rate can be converted into a probability of the event occuring in some time window by computing the area under the curve of a Poisson distribution parametrized by the rate. -->
+<!-- ] -->
+
+
+
+
+
