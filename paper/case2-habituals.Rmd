@@ -10,19 +10,18 @@ We meet new people all the time, and hear about them at least as often.
 Habituals about people taking actions are of particular importance to social psychology because of their role in causal attribution [@Kelley1973] and intuitive theories of personality and behavior [@McGuire1986].
 Habitual language may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-We use the same computational model and follow the same general experimental structure as in the first case study. 
 We focus on present-tense habitual sentences of the form \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes."). 
-First, we measure the prior distribution over the feature-probabilities for different kinds of events (Expt. 2a).
-We do this using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b.
-Then, we test our model on endorsements of habitual sentences, manipulating the frequency of a referent person doing an action (Expt. 2b).
+We use the same computational model and follow the same general experimental structure as in the first case study. 
+First, we measure the prior distribution over the frequencies for different events/actions (e.g., how often different people smoke cigarttes; Expt. 2a).
+We then measure endorsements of generalizations about events (*habituals*), while manipulating the frequency with which the event occurs (e.g., how often Mary smokes; Expt. 2b), and use our computational model to predict the habitual endorsements. 
+<!-- We estimate the priors using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b. -->
 In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories.
-
 
 Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely her observations. 
 We have said that $h$ represents a probability that a speaker aims to convey.
 In two follow-up experiments, we ask whether $h$ represents the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past week) or the predictive rate of this event occurring in the near future (e.g., how often we should expect Mary to smoke next week).
-We do this by measuring participants' predictions about future rates when causal forces enable or prevent the action (Expt. 2c). 
-We separately measure endorsements under the same contexts (Expt. 2d) and use the prediction measurements (Expt. 2c) as the referent feature-probabilities $h$ that the endorsement model is trying to communicate.
+We do this by measuring participants' predictions about future frequencies when causal forces enable or prevent the action and separately measure endorsements of habituals under the same contexts (Expt. 2c).
+We then use our model to test whether habitual endorsements are based on past frequencies or future expectations.
 
 <!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
 <!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
@@ -46,13 +45,10 @@ We separately measure endorsements under the same contexts (Expt. 2d) and use th
 <!-- For example, the event of *smoking a cigarette* plausibly takes between 5 - 10 minutes, while the event of *wearing socks* probably lasts for several hours. -->
 <!-- We take as a starting point the fact that events can be segmented and aggregated; the relevant dimension becomes the frequency with which the event occurs. -->
 
-<!-- In our main test of the hypothesis, we collect felicity or truth judgments for habitual statements about people's actions. -->
-<!-- The computational model described in Eq. \ref{eq:S1} is fully specified except for the prior distribution over the frequency of an event $P(h)$, which plausibly varies across different kinds of events. -->
-<!-- First, we measure the prior distribution, and use it and the computational model to predict human endorsement of habitual statements. -->
 
 ## Experiment 2a: Measuring the feature-probability prior for events
 
-In this experiment we elicit the feature-probability prior $P(h)$ for different events in order to generate model predictions for corresponding habitual statements (measured in Expt. 2b \& 2d).
+In this experiment we elicit the prior distributions over frequencies $P(h)$ for different events in order to generate model predictions for corresponding habitual statements (measured in Expt. 2b \& 2c).
 For language about the behaviors of people, $P(h)$ represents a language user's background knowledge about the likely frequency of doing the behavior; this can be conceived as a distribution over *different people*, each of whom do the behavior with different rates.
 We designed our elicitation task to take advantage of the mixture-model representation of the feature-probability prior used in Expt. 1 (namely: that the distribution over a feature-probability can be represented as a mixture of probabilities from those with a stable causal mechanism that gives rise to the feature and those without such a mechanism).
 For background knowledge of people doing actions, we consider again two components^[
@@ -79,14 +75,11 @@ The experiment took on average 12 minutes and participants were compensated \$1.
 
 #### Materials
 
-We created thirty-one events organized into pairs or triplets from 5 different conceptual categories:
-<!-- We created twenty-seven events organized into pairs or triplets from 5 different conceptual categories:  -->
-food and drug (e.g. \emph{eats caviar}, \emph{eats peanut butter}), 
-work (e.g. \emph{sells things on eBay}, \emph{sells companies}), 
-clothing (e.g. \emph{wears a suit}, \emph{wears a bra}), 
-entertainment (e.g. \emph{watches professional football}, \emph{watches space launches}), and 
-hobbies (e.g. \emph{runs}, \emph{hikes}). 
-Items were chosen to intuitively cover a range of likely frequencies of action, as well as to provide a minimal comparison to another item by having a common superordinate action (e.g. \emph{eating} caviar vs. peanut butter).
+To construct our stimulus set, we choose actions from five categories of typical human behaviors: eating/consuming food and drug, work, wearing clothing, entertaining activities, and hobbies. 
+For each category, we created pairs or triplets of events that shared a superordinate actions (e.g. \emph{eating} caviar vs. peanut butter).
+The events were chosen to intuitively cover a range of likely frequencies.
+In total, thirty-one events were used.
+For a full list the stimulus set, see Table \mht{make table of stimuli}.
 
 #### Procedure
 
@@ -469,7 +462,6 @@ We observe a correlation in our items between the mean \% of Americans who have 
 Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often).
 This diversity is relevant because the speaker model (Eq. \ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
 
-
 To generate feature-probability prior distributions, we built a Bayesian mixture-model for this prior elicitation task, analagous to that used in Case Study 1 (Expt. 1b).
 The only difference is that we estimate the mixture component directly from responses to Question 1. 
 We assume that those who have not done the action before will probably not do the action in the future. 
@@ -562,9 +554,11 @@ Second, this methodology better captures the tails of the prior distribution (i.
 
 
 
-## Experiment 2b: Endorsing habitual statements
 
-We next explore the endorsements of habituals from the items whose feature-probability priors were measured the prior elicitation task (Expt. 2a). 
+
+## Experiment 2b: Habitual endorsements
+
+In this experiment, we elicit human endorsements for generalizations about events (*habituals*) while manipulating the frequency with which the target event occurs. 
 
 ### Method
 
@@ -575,19 +569,45 @@ To arrive at this number, we performed a Bayesian precision analysis to determin
 This analysis revealed a minimum sample size of 50 per item; since participants only completed about one third of the items, we recruited 150 participants.
 The experiment took 4 minutes on average and participants were compensated \$0.55 for their work.
 
-#### Procedure and materials
+#### Materials 
+
+Each event from Expt. 2a was then paired with between 2 - 4 frequencies, for which the habitual statement would be evaluated. 
+The frequencies were chosen specific to each event by simulating predictions of the endorsement model (Eq. \ref{eq:S1}) with the goal of maximizing the variability in endorsements across items.
+For example, relatively high frequencies were chosen \mht{(e.g., 3 times every week vs. 2 weeks vs. month)} for an item that was expected to occur rather often (e.g., "runs") because the model predicted that much of the variability in endorsement would occur in this range; for an item was expected to occur infrequently (e.g., "climbs mountains"), lower frequencies were chosen \mht{(e.g., )}.
+In total, \mht{93} unique items were created by pairing frequencies with events. 
+
+
+#### Procedure
 
 On each trial, participants were presented with a \emph{past frequency statement} for a given event of the form: "In the past M \{weeks, months, years\}, \textsc{person} \textsc{did x} 3 times".
 For example, "In the past month, Bill smoked cigarettes 3 times".
-The particular intervals used (\{weeks, months, years\}) were selected by simulating predictions of the endorsement model (Eq. \ref{eq:S1}) with the goal of yielding a range of predicted endorsement rates.
-The items were the same as in the prior elicitation task (Expt. 2a).
-
 Participants were asked whether they agreed or disagreed with the corresponding habitual sentence: "\textsc{person does x}" (e.g.,"Bill smokes cigarettes.").
 Participants completed thirty-seven trials, which were composed of the thirty-one items from the prior elicitation task randomly paired with either a male or female character name.
 Six of these items were then also paired with a name of the opposite gender (e.g., participants rated both a female character and a male character who drank beer).
 These were used for an exploratory analysis on differences in endorsements by gender of the target character.
 
-### Results
+<!-- The items were the same as in the prior elicitation task (Expt. 2a). -->
+
+### Results 
+
+<!-- The simplest alternative hypothesis for habitual language endorsement is that the degree to which the habitual statement is acceptable is given by the referent frequency (Figure \@ref(fig:habituals-endorsement-figure) top-left).  -->
+<!-- Several features in our data argue against this hypothesis. -->
+<!-- It is clear that not all habitual statements are strongly assented to, even though it is true that all the events occurred with a non-zero frequency (i.e., they occurred at least 3 times before). -->
+
+Habitual sentences were endorsed for a wide range of frequencies.
+When actions are very infrequent (3 times in a 5-year interval), habituals can receive strong agreement (e.g., \emph{writes novels}, \emph{climbs mountains}).
+When actions are relatively frequent (e.g., 3 times in a one month interval), habitual sentences can receive less than full endorsement (e.g., \emph{wears socks}, \emph{drinks coffee}). 
+In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g., between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
+In addition, we observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance), reflecting the fact that these statements are not altogether *false* even though the action is done very rarely.
+
+In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.
+This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{comparison class} is other people; not just other men or women).
+Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
+We now turn to our model-based analyses.
+For all analyses, we collapse across gender of the referent character,
+
+
+### Endorsement model comparison
 
 ```{r habituals-prior-mixture-summarize}
 d.hab.priors.mixture.summary <- d.hab.priors.filtered %>%
@@ -1278,11 +1298,15 @@ grid.arrange(fig.habituals.endorsement.vs.freq,
 
 <!-- For the six items for which data for characters of both genders were collected for each participant, we analyzed only the data from participants' first presentation of the item. -->
 Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold RSA model to better understand the data and the contribution of our model.
-For all analyses, we collapse across gender of the referent character.^[
-  In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.
-  This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{comparison class} is other people; not just other men or women).
-  Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
-]
+
+
+#### Frequency baseline
+
+Overall, the referent log-frequency of action predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
+In addition, for actions that are done on the time scale of years or longer (lower median of frequency), referent frequency no longer explains endorsements ($r^2(`r r2.hab.infrequent.n`) = `r r2.habituls.infrequent.regression.freq`$; MSE =$`r mse.habituls.infrequent.regression.freq`$).
+An account purely based on the referent frequency does not explain endorsements in this data set.
+Instead, we pursue an explanation where prior beliefs interact with an underspecified literal semantics to produce the pattern of habitual endorsement observed.
+
 <!-- Before comparing models, we perform an exploratory analysis on a subset of our data, exploring whether or not endorsements for items whose priors differed by gender will also differ. -->
 
 <!-- NOTE: Alternatively: We could not discuss this analysis (or, in a footnote). Since participants judged both genders for these items, we could only analyze their first gender and drop their second, for consistency with the other items. -->
@@ -1294,23 +1318,10 @@ For all analyses, we collapse across gender of the referent character.^[
 <!-- This suggests that, at least the minimal experimental contexts we are exploring, the comparison class is not different for female vs. male target characters. -->
 <!-- For all remaining analyses, we collapse across character gender when analyzing endorsements. -->
 
-#### Referent frequency baseline
-
-The simplest alternative hypothesis for habitual language endorsement is that the degree to which the habitual statement is acceptable is given by the referent frequency (Figure \@ref(fig:habituals-endorsement-figure) top-left). 
-Several features in our data argue against this hypothesis.
-<!-- It is clear that not all habitual statements are strongly assented to, even though it is true that all the events occurred with a non-zero frequency (i.e., they occurred at least 3 times before). -->
-When actions are very infrequent (3 times in a 5-year interval), habituals can receive strong agreement (e.g., \emph{writes novels}, \emph{climbs mountains}).
-When actions are relatively frequent (e.g., 3 times in a one month interval), habitual sentences can receive less than full endorsement (e.g., \emph{wears socks}, \emph{drinks coffee}). 
-In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g., between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
-In addition, we observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance), reflecting the fact that these statements are not altogether *false* even though the action is done very rarely.
-Overall, the referent log-frequency of action predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
-In addition, for actions that are done on the time scale of years or longer (lower median of frequency), referent frequency no longer explains endorsements ($r^2(`r r2.hab.infrequent.n`) = `r r2.habituls.infrequent.regression.freq`$; MSE =$`r mse.habituls.infrequent.regression.freq`$)
-
-
 <!-- This is unlikely to be the case based on , which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence.  -->
 
 
-#### Distinctiveness and referent frequency baseline
+#### Distinctiveness and frequency baseline
 
 In our empirically elicited priors, items differ in their mixture parameter reflecting the proportion of people who have done the action before (Figure \@ref(fig:habituals-prior-figure)).
 This could be seen as a measure of the *distinctiveness* of the action, analagous to *cue validity* in the case study of generic langauge.
@@ -1395,21 +1406,30 @@ Only the uncertain-threshold model is able to draw this fine distinction.
 
 ### Discussion
 
-In Expt. 2b, we manipulated the event type (e.g., drinks coffee vs. beer) as well as the frequency with which a person has done the action in the past (e.g., three times in the past week vs. year) and measured the corresponding endorsements for habitual statements.
-We saw tremendous flexibility in the frequencies that leads participants to endorse habituals. 
-Parallel to our analysis of generic statements, we articulated a number of alternative models and found that they were unable to explain the variability in endorsements. 
-The regression model that uses the distinctiveness of the action (as measured in Expt. 2a) and the frequency of action is the best alternative model to explain endorsements. 
-This model is not a predictive model, however; rather, it is a re-description of the data and helps us understand what the *predictive* endorsement model is doing. 
+
+Habitual sentence endorsement exhibits context-sensitivity directly parallel to that of generic sentences (Case Study 1).
+Habituals are endorsed for a wide range of frequencies, but show systematic patterns relative to the prior distribution of frequencies, as formalized by the uncertain-threshold model.
+Again, we articulated a number of alternative models and found that only the underspecified threshold model was able to explain the variability in endorsements. 
 
 In this case study, we manipulated rather than measured the target frequency (e.g., the frequency with which a person drinks coffee).
 By manipulating the target frequency, we have shown that it is causally related to habitual endorsements in the way predicted by our model. 
-The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect listeners' prior knowledge about the event in the question and an underspecified threshold criterion. 
+The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect listeners' prior knowledge about the event in the question. 
+
+In Expt. 2b, participants were given a statement about how often a person has done the action in the past and asked to judge the correspoding habitual statement.
+This raises an interesting question: Does the feature-probability communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
+In Expt. 2c, we investigate this question by manipulating and measuring *predictive frequency* and habitual endorsement, while keeping fixed past frequency.
+
+<!-- In Expt. 2b, we manipulated the frequency with which a person did an action in the past (e.g., three times in the past week vs. in the past year) for a wide range of events (e.g., drinks coffee vs. beer) and measured endorsements for the corresponding habitual statements. -->
+
+
+
+<!-- The regression model that uses the distinctiveness of the action (as measured in Expt. 2a) and the frequency of action is the best alternative model to explain endorsements.  -->
+<!-- This model is not a predictive model, however; rather, it is a re-description of the data and helps us understand what the *predictive* endorsement model is doing.  -->
+
 
 <!-- People are used to learning new information about others, and thus habitual language about people doing actions is particularly amenable to this kind of manipulation.  -->
 
-In Experiment 2b, we supplied participants with a statement about how often a person has done the action in the past and asked them to judge the correspoding habitual statement.
-This raises an interesting question: Does the feature-probability communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
-Across two follow-up experiments (Expts. 2c \& 2d), we address this question by manipulating and measuring *predictive frequency* (Expt. 2c) and habitual endorsement (Expt. 2d).
+
 
 <!-- The speaker model endorses the statement when the observed frequency is relatively high, compared to the prior distribution over people doing the action.  -->
 
@@ -1429,18 +1449,18 @@ Across two follow-up experiments (Expts. 2c \& 2d), we address this question by 
 <!-- \end{figure*} -->
 
 
-## Experiment 2c: Measuring predictive frequency
+## Experiment 2c: Observations vs. Predictions
 
 While past frequency is often a good indicator of future tendency, people change abruptly due to a variety of decisions and outside events.
 Does habitual language communicate probabilities in terms of past frequency or future expectations?
-On one hand, speakers can only *know* about what has happened in the past.
-On the other hand, language has a communicative function, and it would seem useful for speakers to convey what they *believe* will be the case in the future.
+On one hand, speakers can only *truly be certain* about what has happened in the past.
+On the other hand, language has a communicative function, and it would seem useful for speakers to convey their predictions of what will be the case in the future.
 
-In the following pair of experiments, we address this by introducing causal events that enable or prevent future actions (e.g., buying a pack of cigarettes; developing an allergy).
-In Expt. 2c, we measure *predictive frequency* both when past frequency alone is observed and when these causal factors are introduced.
-In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers.
-This allows us to test whether habituals are best explained by a speaker $S_1$ who communicates the objective past frequency or the subjective future frequency.
-
+We address this by introducing causal events that either enable or prevent future actions.
+In one condition, participants make a prediction about what will be the case in the future (*predictive frequency*).
+In another condition, participants decide whether or not to endorse the habitual sentence (as in Expt. 2b).
+<!-- In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers. -->
+We then compare two uncertain-thresholds models to each other: one which uses participants' ratings of *predictive frequency* as the object of communication and one which uses the *past frequency* (as was done for Expt. 2b).
 
 ```{r habituals-predictive-elicitation}
 d.hab.predictive <- read.csv(paste(
@@ -1500,25 +1520,6 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 
 ```
-
-
-
-### Methods
-
-We recruited `r n.subj.hab.pred` participants from MTurk, using the same criterion as Expt. 2b.
-The experiment took `r round(ave.seconds.hab.pred/60,1)` minutes on average and participants were compensated \$0.40.
-
-The procedure was identical to Expt. 2b except for the inclusion of a second sentence on a subset of trials and the use of a different dependent measure. 
-On all trials, participants were presented with a \emph{past frequency sentence} (same as Expt. 2b).
-Additionally, on one third of the trials, participants were presented with a \textbf{preventative sentence} (e.g. \emph{Yesterday, Bill quit smoking.}).
-On one third of the trials, participants were presented with an \textbf{enabling sentence} (\emph{Yesterday, Bill bought a pack of cigarettes.}) 
-The final third of trials had no additional evidence and were identical to Expt. 2b. 
-
-Only twenty-one of the original thirty-one items were used in order to shorten the experiment.
-To increase expected variability, participants saw only the frequencies that led to the most intermediate endorsement of the habitual in Expt. 2b. 
-In addition, we did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
-
-Participants were asked ``In the next \textsc{time window}, how many times do you think \textsc{person} does \textsc{event}?'', where the \textsc{time window} was the same as given in the \emph{past frequency statement}.
 
 
 ```{r habituals-predictive-model}
@@ -1661,53 +1662,6 @@ fig.hab.freq.predictive.vs.past <- left_join(
   ylab("Predicted frequency MAP (log scale)")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 ```
-
-### Results
-
-<!-- We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies). -->
-<!-- As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance. -->
-<!-- $$ -->
-<!-- \ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic}) -->
-<!-- $$ -->
-
-
-Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
-We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
-This means that our model makes identical predictions for Expt. 2b whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
-Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
-
-
-```{r habituals-predictive-elicitation-predictions}
-lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
-     logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
-       (1 + condition | workerid) + 
-       (1 + condition | item)
-)
-lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
-```
-
-
-We confirm these observations using a linear mixed-effects model, predicting the log-transformed responses from the log-transormed past frequency and the experimental condition (baseline, preventative, enabling).
-To account for participant and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
-Confirming our predictions, the preventative information led to significantly lower predictions for future frequency, relative to the baseline condition (
-$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Estimate"],2)`$;
-$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Std. Error"],2)`;$
-$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","t value"],2)`$
-).
-There was also tendency for the enabling information to lead to higher predictions for future frequency, relative to baseline (
-$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Estimate"],2)`$;
-$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Std. Error"],2)`;$
-$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","t value"],2)`$
-).
-Finally, past frequency was a significant predictor of predicted future frequency (
-$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Estimate"],2)`$;
-$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Std. Error"],2)`;$
-$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","t value"],2)`$
-).
-
-
-
-## Experiment 2d: Endorsing habituals under predictive-manipulated conditions
 
 ```{r habituals-predictive-endorsement}
 d.hab.predictive.endorsment <- read.csv(paste(
@@ -2027,15 +1981,82 @@ legend_b, nrow=2,heights=c(8, 1))
 ```
 
 
-### Methods
 
-We recruited `r n.subj.hab.pred.endorse` participants from MTurk, using the same criterion as Expt. 2b.
-The experiment took `r round(ave.seconds.hab.pred.endorse / 60)` minutes on average on participants were compensated \$0.40 for their work.
-None of the participants had completed Expt. 2c.
-The only difference from Expt. 2c is the dependent measure. 
-On each trial, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2b).
+
+
+### Method
+
+#### Participants
+
+We recruited `r n.subj.hab.pred + n.subj.hab.pred.endorse` participants from MTurk, using the same criterion as Expt. 2b.
+`r n.subj.hab.pred` were assigned to the *predictive frequency* condition and `r n.subj.hab.pred.endorse` were assigned to the *sentence endorsement* condition.
+The experiment took on average `r round(ave.seconds.hab.pred/60,1)` minutes (*predictive frequency*) and `r round(ave.seconds.hab.pred.endorse / 60)` minutes (*sentence endorsement*). 
+Participants were compensated \$0.40.
+
+#### Materials
+
+The events used were a subset of those used in Expts. 2a \& b (21 of the original 31).
+In addition, in order to increase the variability of responses across the experimental conditions, participants only saw the frequencies that led to the most intermediate endorsement of the habitual in Expt. 2b.
+We did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
+In addition, we crafted statements that were intended to either increase the frequency (*enabling*; e.g., "Yesterday, Bill bought a pack of cigarettes.") or decrease the frequency (*preventative*; "Yesterday, Bill quit smoking.") of the event in the future.
+See Table \mht{one table for Expt 2 stimuli} for a full list of the enabling and preventative information.
+
+#### Procedure
+
+The procedure was identical to Expt. 2b except for the inclusion of a second sentence on a subset of trials.
+On all trials, participants were presented with a \emph{past frequency sentence} (same as Expt. 2b).
+Additionally, trials either included \emph{preventative} information, \emph{enabling} information, or no additional information (identical to Expt. 2b), in equal proportions.
+
+In the *predictive frequency* condition, participants were asked ``In the next \textsc{time window}, how many times do you think \textsc{person} does \textsc{event}?'', where the \textsc{time window} was the same as given in the \emph{past frequency statement}.
+In the *sentence endorsement* condition, participants were asked if they agreed or disagreed with the corresponding habitual sentence (as in Expt. 2b).
+
+
 
 ### Results
+
+<!-- We analyze this data by building a simple Bayesian model of the measurement so that it may be integrated seamlessly into a joint model with the endorsement data (as we have done for all previous case studies). -->
+<!-- As we assumed for the prior elicitation task (Expt. 2a), we assume participant's responses for each event $i$ and condition $c$ are generated from a log-normal distribution with unknown mean and variance. -->
+<!-- $$ -->
+<!-- \ln d_{ic} \sim \text{Gaussian}(\mu_{ic}, \sigma_{ic}) -->
+<!-- $$ -->
+
+#### Predictive frequency
+
+Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
+We observe in the baseline condition that future frequency perfectly tracks past frequency (e.g., participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month). 
+This means that our model makes identical predictions for Expt. 2b whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
+Critically, we observe the preventative information appreciably decreasing and the enabling information slightly increasing predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
+
+
+```{r habituals-predictive-elicitation-predictions}
+lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
+     logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
+       (1 + condition | workerid) + 
+       (1 + condition | item)
+)
+lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
+```
+
+
+We confirm these observations using a linear mixed-effects model, predicting the log-transformed responses from the log-transormed past frequency and the experimental condition (baseline, preventative, enabling).
+To account for participant and item variability in this analysis, we also include random effects of intercept and condition for both participants and items.
+Confirming our predictions, the preventative information led to significantly lower predictions for future frequency, relative to the baseline condition (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionpreventative","t value"],2)`$
+).
+There was also tendency for the enabling information to lead to higher predictions for future frequency, relative to baseline (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["conditionenabling","t value"],2)`$
+).
+Finally, past frequency was a significant predictor of predicted future frequency (
+$\beta = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Estimate"],2)`$;
+$SE = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","Std. Error"],2)`;$
+$t = `r round(lmer.rs.hab.predictive.summary[["coefficients"]]["logAnnualPastRate","t value"],2)`$
+).
+
+#### Sentence endorsement
 
 There is a clear and consistent negative effect of preventative information on endorsements for the habitual sentence (Figure \ref{fig:habituals-predictive-figure} B; green points).
 Still, frequency --- even predictive frequency --- does not perfectly explain the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.predictiveFreq`$; MSE = $`r mse.habituals.predictiveFreq`$). 
@@ -2074,25 +2095,24 @@ Future investigation into this issue is warranted.
 
 ## Discussion
 
-Habitual language conveys generalizations about events and our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account the listener’s prior beliefs about the action (measured in Expt. 2a). 
-We saw that our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b).
-In Experiment 2b, we varied the type of event and the past frequency with which the person did the action, and found substantial graded variability in the endorsement judgments of people.
+Habitual language conveys generalizations about events and our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account a naive interpreter's prior beliefs about the action (measured in Expt. 2a). 
+Our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b \& c).
+In Expt. 2b, we varied the type of event and the past frequency with which the person did the action, and found graded endorsements of the corresponding habitual sentences.
 By manipulating (rather than measuring) the target frequency with which a person does an action, we showed how alternative models were insufficient to account for this gradience.
-In particular, a fixed threshold model that has access to the same prior knowledge as our model and goes through the same information-theoretic decision making procedure as our speaker model is unable to make different predictions for different frequencies.
+In particular, a fixed threshold model that has access to the same prior knowledge and uses the same information-theoretic decision rule as our uncertain-threshold model is unable to make different predictions for different frequencies.
 Only our uncertain threshold model was able to precisely account for the wide range of endorsements.
 
 <!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
 <!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
 <!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
-In Experiments 2c \& 2d, we further investigated the nature of the underlying feature-probability scale by introducing enabling and disabling causal evidence, measuring the predicted future frequency (Expt. 2c) and using that, with the model, to predict the felicity of habitual sentences (Expt. 2d). 
-To our knowledge, the experiments presented here are first empirical investigations into the truth conditions of habitual sentences and the first test of a formal psychological model of such generalizations in language.
+In Expt. 2c, we further investigated the nature of the underlying feature-probability scale by introducing enabling and preventative causal evidence.
+We used the empirically-measured predicted future frequency as the object of communication for our endorsement model.
+We found that the endorsement model that seeks to communicate its predictions (rather than its observations) is able to predict the influence of top-down moderators on habitual endorsement.
+<!-- To our knowledge, the experiments presented here are first empirical investigations into endorsements of habitual sentences and the first test of a formal psychological model of such generalizations in language. -->
 
 In these experiments, we directly manipulated the frequency that the speaker was trying to communicate while still measuring the priors over the feature-probability for the event.
-Thus, it is still possible that the feature-probability priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic and habitual endorsement but not directly causally related.
-In our final case study, we extend our theory to communicating generlizations about causes, and experimentally test whether the feature-probability priors are indeed causally related to endorsing generalizations in language.
-
-
-
+<!-- Thus, it is still possible that the feature-probability priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic and habitual endorsement but not directly causally related. -->
+In our final case study, we extend our theory to communicating generlizations about causal relationships, and experimentally manipulate the feature-probability priors to examine whether or not they are causally related to endorsing generalizations in language.
 
 
 
