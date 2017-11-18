@@ -13,10 +13,10 @@ This elicitation procedure includes measurements of the referent-category featur
 
 ## Experiment 1a: Generic endorsements
 
-In this experiment, we elicit human endorsements for thirty generic statements taken from the linguistic and psychological literature on generics [@Prasada2013].
+In this experiment, we elicit human endorsements for generalizations about categories (*generics*) taken from the linguistic and psychological literature on generics [@Prasada2013].
 The goal of this study is to observe a range of endorsements for generic statements about animal categories. 
 
-#### Method
+### Method
 ```{r eval = F}
 d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
                     "truth-judgments-n100.csv", sep = ""))
@@ -112,7 +112,7 @@ generics.endorsement.spectrum <- left_join(
   #geom_hline(yintercept = 0.25, lty = 3)
 ```
 
-##### Participants
+#### Participants
 
 We recruited 100 participants over Amazon's crowd-sourcing platform Mechanical Turk (MTurk).
 Participants were restricted to those with US IP addresses and with at least a 95\% MTurk work approval rating (the same criteria apply to all experiments reported). 
@@ -120,7 +120,7 @@ Participants were restricted to those with US IP addresses and with at least a 9
 5 participants self-reported a native language other than English; removing their data has no effect on the results reported. 
 The experiment took about 3 minutes and participants were compensated \$0.35.
 
-##### Procedure and materials
+#### Procedure and materials
 
 Participants were shown thirty generic sentences in a randomized order.
 They were asked to press one of two buttons (randomized between-participants) to signify whether they agreed or disagreed with the sentence (see Table 2 in Appendix for complete list). 
@@ -129,7 +129,7 @@ Approximately 10 true, 10 false, and 10 uncertain truth-value generics were sele
 As an attention check, participants were asked at the end of the trials which button corresponded to "Agree".
 4 participants were excluded for failing this trial.
 
-#### Results
+### Results
 
 ```{r generic-endorsement-manipulationcheck}
 # MHT's truth judgments of sentences
@@ -1501,7 +1501,7 @@ The fixed-threshold model, even with access to the full prior distribution $P(h)
 
 \mht{Outfit fixed-threshold model with noise parameter?}
 
-### Uncertain threshold RSA model
+#### Uncertain threshold model
 
 Our underspecified threshold model is the same as the fixed-threshold RSA model described above, except that rather than having a fixed threshold at $\theta = 0$, it has uncertainty over the threshold specified with a uniform prior distribution over $\theta$.
 We construct the same joint-inference Bayesian data analytic model as we did for the fixed-threshold analysis.
