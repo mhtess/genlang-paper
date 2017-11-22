@@ -1,29 +1,32 @@
 # Case Study 3: Causal Language
 
-Learning that an event consistently tends to result in another event serves as a foundation for an intuitive theory of causality [@Goodman2011; @Kemp2010a].
-Communicating generalizations about causally related events is potentially highly valuable because relevant data can be prohibitively expensive and no one individual can run all the experiments that she wants to run in a life time. 
-The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone. 
+Learning to that an event consistently tends to result in another event is a critical kind of generalization for understanding how the world works. 
+Adults and children can infer causal relationships from just a few examples [@Gopnik2000; @Schulz2004] and computational models have been used to formalize the problem of *elemental causal induction*, or learning a causal relationship from observational data [@Griffiths2005; @Kemp2010a].
+Having induced a causal relationship from observational data, people can communicate their causal knowledge using language. 
+Indeed, when causal relations are nonobvious, causal language helps children as young as 2-years learn those relations [@Bonawitz2010].
 
-Our framework for communicating generalizations makes predictions about statements conveying genericity about a category of causal events. 
-In this domain, an instance of the category is a single causal event, or *token causality* (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough). 
-<!-- [Gerstenberg] -->
-Ascribing causality to a singular pair of conjoined events is itself a challenging problem [e.g., @Gerstenberg2015how]. 
-Inducing the existence of an abstract cause from observational evidence also depends in complex ways on an observer's background theory of causality [e.g., @Griffiths2005; @Schulz2008a].
 
-Language provides a way to bypass the observational data needed to make a causal induction.
-Indeed, causal language faciliates causal learning for nonobvious causal relations in children as young as 2-years-old [@Bonawitz2010].
+<!-- Such *token causation*  -->
+<!-- serves as a foundation for an intuitive theory of causality [@Goodman2011; @Kemp2010a]. -->
+<!-- Recognizing an event as *causal* is a challenging problem [e.g., @Gerstenberg2015how]. -->
+<!-- Inducing a generalization  -->
+<!-- Communicating generalizations about causally related events is highly valuable because  -->
+<!-- relevant data can be prohibitively expensive and no one individual can run all the experiments that she wants to run in a life time.  -->
+<!-- The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone.  -->
+<!-- Our framework for communicating generalizations makes predictions about statements conveying genericity about a category of causal events.  -->
+<!-- In this domain, an instance of the category is a single causal event, or *token causality* (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough).  -->
+<!-- <!-- [Gerstenberg] -->
+<!-- Inducing the existence of an abstract cause from observational evidence also depends in complex ways on an observer's background theory of causality [e.g., @Griffiths2005; @Schulz2008a]. -->
+<!-- Language provides a way to bypass the observational data needed to make a causal induction. -->
 
 In this paper, we posit that feature-probability priors are a mediating representation between abstract conceptual structure and generalizations in language.
-In this last set of experiments, we test the causal relationship between the feature-probability priors and endorsements of generalizations about causes.
+In this last set of experiments, we explicitly test the relationship between the feature-probability priors and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
-In Experiment 3a, we manipulate participants' beliefs about a causal system and measure their updated beliefs, serving a manipulation check.
-In Experiment 3b, we test whether these manipulated priors give rise to different endorsements of causal statements.
+## Experiment 3a: Manipulating priors for causes
 
-## Experiment 3a: Manipulating the feature-probability priors for causes
-
-In this experiment, we introduce participants to statistics about novel causal forces and have them make predictions about future instances of those causes.
-This prediction task serves as a manipulation check for our feature-probability prior manipulation.
+In this experiment, we manipulate and measure participants' background knowledge in order to check whether or not manipulation of participants' background knowledge was successful. 
+Experiment 3b (*causal endorsement*) will then follow a mostly-identical experimental procedure.
 
 <!-- examine causal domains that vary as to whether or not probabilistic causes are plausible and whether or not a background cause of the event is intuitively present. -->
 <!-- We introduce participants to the results of several experiments about each domain and see how different experimental results update participants' beliefs about causal power in these domains. -->
@@ -98,52 +101,78 @@ The experiment took on average `r ave.minutes.cas` minutes and participants were
 <!-- The different kinds of system are described in more detail below. -->
 <!-- Participants are then told that the team of scientists is conducting experiments with different possible causes (e.g., different kinds of foods). -->
 
+#### Materials
+
+Participants were told a story of a scientific experiment testing different substances to produce an effect (either to make animals sleepy or plants grow tall). 
+Our cover stories were constructed so that the potential cause could have some plausible intuitive mechanism that could give rise to the proprety (e.g., a naturally occurring herb causing animals to be sleepy). 
+The two cover stories can be seen in Table \@ref(tab:causalItems).
+
+Participants were then shown "previous experimental results", which followed one of four distributions, shown in Figure \@ref(fig:causals-conditions). 
+In two of the conditions, participants saw results that were approximately all the same across the various experiments. 
+In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the "common deterministic" condition).
+In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the "common weak" condition).
+These distributions had the feeling that either there was some background cause which gave rise to the effect (e.g., a simple base rate) or that all substances were equally as efficacious at producing the effect.
+
+The two other conditions used distributions in which some experiments resulted in either no or very few succeses (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
+These are the "rare deterministic" and "rare weak" conditions, because the very existence of a greater than zero effect was "rare".
+These distributions had the feeling that the effect was somewhat rare and that only certain substances produced any effect.
+
+\begin{table}[]
+\centering
+\label{tab:causalMaterials}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lll}
+                   & Plants                                                                                                                                                                                                  & Animals                                                                                                                                                                                                                               \\
+Cover story        & On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers. & On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs. \\
+Evidence statement & Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall.                                                                                                              & Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.                                                                                                                                   
+\end{tabular}
+}
+\caption{Cover stories and evidence statements for the two sets of materials used in Expt. 3a\&b}
+\end{table}
+
+
+```{r causalExpt, fig.cap="Overview of Experiment 3. A: Results of previous experiments are shown one at a time. One of the results were lost. B: Particiapnts are asked to review results before continuing. C: Prior elicitation task. D: Causal endorsement task."}
+knitr::include_graphics("figs/causal-expt.pdf", dpi = 108)
+```
 
 #### Procedure
 
-The experiment is a single-trial experiment with 2 phases to the trial.
-In the first phase, participants are given a story about a causal domain.
-In the second phase, participants are asked to make a judgment corresponding to either the prior task or the endorsement task (described below). 
+Each participant saw only one cover story with one distribution of previous experiments (i.e., the experiment was a single trial).
+<!-- In the first part of the trial, participants learned about different substances' ability to produce an effect ("previous experimental results"). -->
+<!-- Participants read a cover story and clicked a button to show the results of successive previous experiments. -->
+<!-- For each previous experiment, participants were presented with an *evidence statement* as well as a numerical representation of the results shown in a table above the text. -->
+<!-- The table was filled in gradually with each successive experiment.  -->
+<!-- The results of one experiment was said to be lost, and a "?" was placed in the table (Figure \@ref(fig:causalExpt)).  -->
+<!-- (These lost results would be found in the *causal endorsement* task, Expt. 4b). -->
+<!-- Participants were instructed to take a final look at the results of all of the previous experiments before continuing.  -->
+<!-- Once participants clicked the "continue" button, they were brought to a new screen where they would make predictions about new substances that have yet to be tested (Figure \@ref(fig:causalExpt)). -->
+<!-- Participants saw a list of new substances and slider bars that ranged from 0 to 100.  -->
+<!-- The second phase serves as a measurement of participants' feature-probability priors. -->
 
-In the first phase, participants are told that they are an astronaut-scientist on a distant planet trying to figure out how some system works (how to make a certain kind of animal sleepy with different herbs or how to make a plant grow tall with different fertilizers). The story for the "sleepy animals" condition read:
+Participants were told that they were an astronaut-scientist on a distant planet trying to figure out how some system works (how to make a certain kind of animal sleepy with different herbs or how to make a plant grow tall with different fertilizers). The story for the "sleepy animals" condition read:
 
 \begin{quotation}
 You are an astronaut-scientist exploring a distant planet. 
-On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. 
+On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy.
 Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs.
 The results are shown below:
 \end{quotation}
 
 Participants then must click a button to show the results of the experiments.
-Experiment results appear one at a time (upon a click), and are described verbally (e.g., *Your team gave herb A to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.*) as well as displayed in a table showing the number of successes per number of attempts (always 100 per experiment). 
-Eleven "experiments" are shown, though one of the experiments had their results misplaced so they cannot report on the results at that point (the significance of this "missing experiment" will be described in Experiment 4b).
+Experiment results appear one at a time (upon a click), and are described in an *evidence statement* (e.g., "Your team gave herb A to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.") as well as displayed in a table showing the number of successes per number of attempts (always 100 per experiment). 
+Eleven "experiments" are shown, though the results of one experiment were said to be lost and a "?" was placed in the table (Figure \@ref(fig:causalExpt)). 
+(These lost results would be found in the *causal endorsement* task, Expt. 3b).
 After participants view the results of the 10 "experiments" (and 1 missing experiment), they are told to review the results of the experiments before continuing. 
 
-Upon proceeding to phase 2, the table of "experiment results" is removed and participants are told more experiments were conducted.
+Upon clicking the continue button, the table of "experiment results" is removed and participants are told more experiments were conducted.
 Participants were asked to predict the results of the next 5 experiments.
-Participants were given 5 slider bars ranging from 0 - 100, and asked to predict the next four treatments (e.g., herbs M, N, P, Q, and R). 
+Participants were given 5 slider bars ranging from 0 - 100, and asked to predict the next five substances (e.g., herbs M, N, P, Q, and R).
 
-#### Materials
+After responding, participants then completed an attention check survey where they were asked what the team of scientists were investigated (choosing a response from a drop-down menu with 12 options) and to input one of the numerical results they saw on the previous screen. 
+This attention check served to confirm that participants had encoded some part of both relevant aspects of the experiment (the domain and the frequencies). 
 
-Participants were either told a story of trying to make animals sleepy (described above) or trying to make plants grow tall. 
-The cover story for the "tall plants" condition read:
 
-\begin{quotation}
-You are an astronaut-scientist exploring a distant planet. 
-On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. 
-Your team runs experiments trying to make feps grow tall with different fertilizers. 
-The results are shown below:
-\end{quotation}
-
-Participants with either cover story were then exposed to one of four distributions of "experiment results", corresponding to our four experimental conditions, shown in Figure \ref{fig:causals-conditions}. 
-In two of the conditions, participants saw results that were all approximately the same across the various experiments. 
-In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the "common deterministic" condition).
-In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the "common weak" condition).
-
-The two other conditions used distributions in which some experiments resulted in either no or very few succeses (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
-These are the "rare deterministic" and "rare weak" conditions, because the very existence of a greater than zero effect was "rare".
-
-```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 4 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3, eval = F}
+```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 3 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3, eval = F}
 sample.dists <- bind_rows(
   data.frame(
     dist = "rare weak",
@@ -325,11 +354,11 @@ for (p in causal.priorParams$distribution){
 
 ### Results
 
-The distributions that resulted from participants predicting the causal efficacy of the new herbs / fertilizers are shown in Figure \ref{fig:figure-causals}.
+The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure \ref{fig:figure-causals}.
 These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
 We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
 
-```{r empirical-causal-prior-densities, eval = F, fig.width = 5, fig.height = 3, fig.caption="Empirical densities from the prediction task in the prior manipulation experiment (Expt. 4a)."}
+```{r empirical-causal-prior-densities, eval = F, fig.width = 5, fig.height = 3, fig.caption="Empirical densities from the prediction task in the prior manipulation experiment (Expt. 3a)."}
 
 d.cas.priors %>%
   filter(distribution %in% c("common_weak", "rare_deterministic", "rare_weak")) %>%
@@ -351,13 +380,8 @@ ggplot(., aes(x = response, fill = Distribution, color = Distribution))+
   guides(fill = F, color = F)
 ```
 
-### Model predictions
 
-... run RSA model using fixed parameters and MAP estimates of these priors ?
-
-
-
-## Experiment 3b: Endorsing Causal Language
+## Experiment 3b: Causal Endorsements
 
 In this experiment, we tested whether the manipulated priors of Expt. 3a are causally related to the endorsement of causal statements.
 
@@ -424,17 +448,15 @@ The experiment consisted of one trial and took on average `r ave.minutes.cas.end
 
 #### Procedure and materials
 
-The materials were the same as in Experiment 3a.
-Phase 1 of the experiment was identical to that of Experiment 3a.
-In phase 2 of the endorsement task, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
+The materials were the same as in Experiment 3a,
+The first part of the experimental trial was the same as in Expt. 3a (the table of "previous experiments"; Figure \@ref(fig:causalExpt)).
+Upon continuing past the first part of the trial, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
 The results are reported to the participant in terms of how many out of 100 of the attempts were successful. 
 Participants saw 1 of 2 reported frequencies: 20\% or 70\% (randomized between-subjects).
 Participants were then asked to judge the causal sentence (e.g., "Herb X makes the animals sleepy"). 
 Partipants responded by either clicking "Yes" or "No". 
 
-After responding, participants were then asked to recall what the herbs / fertilizers aimed to achieve (e.g., "make animals sleepy") and one of the ten results they saw on the previous page. 
-This attention check served to confirm that participants had encoded some part of both relevant aspects of the experiment (the domain and the frequencies). 
-
+After responding, participants completed the same attention check as Expt. 3a.
 
 ```{r causals-endorsement-fig, fig.width = 4, fig.height = 3, eval = F}
 
@@ -641,13 +663,13 @@ Our model predicted these effects again with strong quantitative accuracy ($r^2(
 
 In our third case study, we applied our same model to generalizations about causal events.
 In this domain, we succesfully manipulated participants' beliefs about the expected causal power in a domain (Expt. 3a).
-We did this for both unstructured distributions (*common weak*, *common strong*) and structured distributions (*rare weak*, *rare strong*). 
+This was done using both unimodal (*common weak*, *common strong*) and bimodal (*rare weak*, *rare strong*) distributions. 
 In Expt. 3b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
 In addition to further demonstrating the generality of this theory, these experiments show that the *feature-probability prior* $P(h)$ is causally related to endorsements of generalizations in language.
 To our knowledge, these are the first experiments to demonstrate how the probabilities of other categories having a feature can influence endorsing a generalization about a different category.
 
 In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall. 
-In addition to their plausibility, these causal events could have ambiguous causal power associated with them (e.g., it's plausible that there are herbs that only weakly make animals sleepy and it's also plausible that there are herbs that almost deterministically make animals sleepy).
+We chose these items because there was a plausible causal mechanism that could give rise to the property and these causal events could have ambiguous causal power associated with them (e.g., it's plausible that there are herbs that only weakly make animals sleepy and it's also plausible that there are herbs that almost deterministically make animals sleepy).
 These two features of the domains make them particularly amenable to manipulation.
 That is, people's abstract theories about these domains are flexible enough to permit such manipulations.
 
@@ -657,5 +679,3 @@ If this were happening in our domains, we would expect this to show up in the re
 For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analagous to our "deterministic" priors conditions. 
 Causal systems that demonstrate surprising or *a priori* unlikely effects (e.g., liquids melting concrete) could induce rarity about the existence of a non-zero causal power, analgous to our "rare" prior conditions. 
 Our theory would predict in these cases that differences in endorsement would be attributable to differences in the belief distribution over causal power. 
-
-
