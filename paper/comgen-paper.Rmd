@@ -90,6 +90,7 @@ library(jsonlite)
 library(gridExtra)
 library(lme4)
 library(knitr)
+library(kableExtra)
 library(cowplot)
 theme_set(theme_few())
 estimate_mode <- function(s) {
@@ -859,38 +860,39 @@ We do this by both measurning and manipulating background knowledge and feature-
 # General Discussion
 
 It is a remarkable fact that so much is learned from ideas expressed vaguely in words.
-Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements --- statements understood by even the youngest language users --- can display complex sensitivity to context.
+Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
 We have argued that the core meaning of such linguistic expressions is, in fact, simple, but underspecified. 
-To our knowledge, this is the first formal theory of generalizations in language that makes precise quantitative predictions about human endorsement data. 
+To our knowledge, this is the first formal theory of generalizations in language that makes precise quantitative predictions about human behavioral data. 
 
-As a formal theory of generalizations in language, we aim to unify significant swaths of language that are seemingly quite different from one another: generalizations about categories, events, and causes.
-What these expressions have in common is not surface-level features but *genericity*, the fact that these statements convey generalizations. 
-Indeed we have been able to capture the context-sensivity of these statements by positing a single underlying scale defined by the *feature-probability* (Expt. 1, 2a \& 2b, 3).
-This scale is defined by a subjective, predictive probability, not mere frequency (Expts. 2c \& 2d).
-We have shown that listeners' prior knowledge about this scale is causally related to their endorsement of statements of genericity (Expt. 3).
-Finally, our framework naturally accounts for a number of well-documented examples from the linguistics of generalizations about categories, or *generic language* (Expt. 1).
-In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below.
+As a formal theory of generalizations in language, we aim to unify significant swaths of language that are, on their surface, quite different from one another: generalizations about categories, events, and causes.
+<!-- What these expressions have in common is *genericity*, the fact that these statements convey generalizations.  -->
+We have been able to formalize a unified, core meaning using the underlying scale of *feature-probability*.
+We showed that all three kinds of generalizations exhibit the same kind of sensitivity to context (Expt. 1, 2a \& 2b, 3).
+Our framework naturally accounts for a number of classic examples from the semantics of *generic language* (Expt. 1).
+We provide an avenue for top-down moderators on language use, by elucidating the scale as defined by a subjective, predictive probability, not mere frequency (Expts. 2c \& 2d).
+Finally, we have shown that listeners' prior knowledge about the feature-probability scale is causally related to their endorsement of statements of genericity (Expt. 3).
+In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below
 
-The theory we present here has a number of desirable features that go beyond alternative accounts.
-The first is that our theory is accompanied by a formal model, which makes precise quantitative predictions about endorsments of statements that convey generalizations.
-The formal Bayesian model provides a clean separation of the semantics of a generalization from background, world knowledge.
-This is critical to understanding the contribution of a generalization in language above and beyond background knowledge.
-We believe this has been a stumbling block for formal semantic models that try to argue in one or another way for a statistical or probabilty based approach [@Cohen1999; @Nickel2008].
-As @Nickel2016 notes, genericity is particularly difficult to study because it intersects with many other phenomena in language (e.g., gradable adjectives in *Giraffes are tall*).
-We argue that it also intersects with world knowledge in subtle ways, and it is critical to accurately measure and describe world knowledge before making claims about the implications of a generalization *per se*.
-
-Our separation of world knowledge from the semantics of generics provides a substantial, but well-circumscribed role for conceptual structure to influence generic production and comprehension.
+<!-- The theory we present here goes beyond previous accounts in a number of useful ways. -->
+The foremost contribution of our theory is that it is accompanied by a formal model, which makes precise quantitative predictions about endorsments.
+The formal Bayesian model provides a clean separation of the semantics of a generalization (operationalized in terms of the likelihood function) from background, world knowledge (operationalized in terms of the prior).
+This formal separation is key improvement beyond previous accounts. 
+Previous accounts have either tried to account for context-sensitivity by baking it into the semantics [e.g., @Cohen1999] or positing a semantics that cannot be separated from world knowledge [e.g., @Leslie2008].
+Our model formalizes both the semantics of generalizations and the structure of world knowledge; this separation allows us to articulate a route for precise quantitative inlfuence of conceptual structure on generic language [c.f., @Leslie2008].
+<!-- Our separation of world knowledge from the semantics of generics provides a substantial, but well-circumscribed role for conceptual structure to influence generic production and comprehension. -->
 We do this without having to posit that conceptual structure and semantics are one in the same.
-This is important for applied Natural Language Processing research that seeks to draw inferences about particular entities from information conveyed in generalizations in text [e.g., @Herbelot2011].
-At the same time, this paves the way for articulating formal theories about conceptual structure and provides a route for precise, quantitative influence on generic language [c.f., @Leslie2008].
+This is makes it possible to connect with theories of formal semantics as well as applied Natural Language technologies that seeks to draw inferences from information conveyed in generalizations in text [e.g., @Herbelot2011].
+<!-- Statistical accounts in particular [@Cohen1999; @Nickel2008] -->
 
+<!-- @Nickel2016 notes that genericity is particularly challenging to study because it intersects with many other phenomena in natural language (e.g., gradable adjectives in "Giraffes are tall"). -->
+<!-- We agree, and add to this that genericity intersects with *world knowledge* in subtle ways, and it is critical to accurately describe and measure world knowledge before making claims about the semantics of a generalization. -->
 <!-- We used the most basic tests to validate our model: Production was examined in terms of *endorsement*, which can be seen as a special case of production when the only available alterantive utterances are the assertion or its negation. -->
 <!-- Comprehension was examined in terms of *implied prevalence*, which in our theory is most basic inference a hearer can make upon hearing a generalization. -->
 <!-- Though these are highly abstracted tests of the model, the modeling framework in principle allows for elaboration to a more complete production and comprehension model.  -->
 <!-- The model is a communicative model, which includes a component corresponding to *comprehension* of genericity (i.e., a listener model).  -->
 
-In the rest of this discussion, we discuss some key features of the theory that warrant future investigation and the relationship of our theories to extant theories of genericity.
-We conclude by sketching out arguments for other known philosophical puzzles in genericity.
+In the rest of this discussion, we elaborate some key features of the theory that warrant future investigation, sketch out arguments for other known philosophical puzzles in genericity, and situate our theory with respect to extant theories of genericity.
+<!-- We conclude by sketching out arguments for other known philosophical puzzles in genericity. -->
 
 ## The Comparison Class and the Question Under Discussion
 
@@ -1303,7 +1305,6 @@ The theory presented here gives one explanation of how we do so, providing a com
 
 ```{r child = 'appendix-bda.Rmd'}
 ```
-
 
 ```{r child = 'appendix-alternativeRSAmodels.Rmd'}
 ```
