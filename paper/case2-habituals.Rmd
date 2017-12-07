@@ -4,6 +4,13 @@
 <!-- Kelley, H. H. (1973). The processes of causal attribution. American psychologist, 28(2), 107-128. -->
 <!-- Orvis, B. R., Cunningham, J. D., & Kelley, H. H. (1975). A closer examination of causal inference: The roles of consensus, distinctiveness, and consistency information. Journal of Personality and Social Psychology, 32(4), 605-616. -->
 
+Segmenting the continuous stream of reality into events is a crucial task for cognition.
+We consider events as individuated entities as instances of a category. 
+For example, the event *Mary smoked a cigarette yesterday at 2:30pm*...
+
+Learning that an agent tends to exhibit a behavior is a special case of learning a generalization about an event. 
+The event, *the agent doing the action*,
+
 We meet new people all the time, and hear about them at least as often.
 *Habitual language* (e.g,. "Mary smokes."; "My car won't start.") conveys generalizations about events, including people doing actions. 
 <!-- In this case study, we focus on a particular class of events: people doing actions. -->
@@ -675,6 +682,14 @@ fig.habituals.endorsement.vs.freq <-
   coord_fixed(ratio = 7)+
   guides(fill = guide_colorbar(title = 'log annual rate',
                                ticks = F))
+```
+```{r habituals-items-table}
+d.hab.endorsement.items <- select(d.hab.endorsement, habitual, time_period) %>% distinct()
+
+d.hab.endorsement.items[with(d.hab.endorsement.items, order(habitual)), ] %>% 
+  kable(.) %>% #, format = "latex", longtable = T, booktabs = T, caption = "a caption") %>% 
+  #column_spec(3, width = "10cm")%>%
+  collapse_rows(columns = 1:2)
 ```
 
 
