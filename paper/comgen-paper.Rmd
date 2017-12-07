@@ -1306,7 +1306,7 @@ This is a promising area for future research.
 Categories are inherently unobservable. 
 You cannot see the category \textsc{dog}, only some number of instances of it.
 Yet we easily talk about these abstractions, conveying hard-won generalizations to each other and down through generations.
-The theory presented here gives one explanation of how we do so, providing a computational perspective on how we communicate generalizations and how beliefs play a central role in understanding language.
+The theory presented here gives one explanation of how we do so, providing a computational perspective on how we communicate generalizations and how beliefs play a central role in the meaning of words.
 
 
 # References 

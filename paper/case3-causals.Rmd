@@ -1,27 +1,46 @@
 # Case Study 3: Causal Language
 
-Learning to that an event consistently tends to result in another event is a critical kind of generalization for understanding how the world works. 
-Adults and children can infer causal relationships from just a few examples [@Gopnik2000; @Schulz2004] and computational models have been used to formalize the problem of *elemental causal induction*, or learning a causal relationship from observational data [@Griffiths2005; @Kemp2010a].
-Having induced a causal relationship from observational data, people can communicate their causal knowledge using language. 
-Indeed, when causal relations are nonobvious, causal language helps children as young as 2-years learn those relations [@Bonawitz2010].
+What is the meaning of the utterance: "Drinking moonshine makes you go blind"?
+A first pass could be *there exists a causal relationship between blindness and moonshine such that blindness causes moonshine*.
+Interestingly, this definition doesn't mention the increased risk in becoming blind from moonshine, but presumably it's more probable than the alternative (not drinking moonshine).
+We hypothesize that the semantics of the above statement (a *causal* statement) is underspecified and subject to the same context-sensitivity as generic and habitual language.
 
+We take language that conveys a causal relationship between two classes of things as our third case study: causal language, or *causals*.
+For simplicity, we identify the relevant dimension of the scale to be the conditional probability of the effect given the cause, though this representation will have problems for classic cases in causal reasoning. 
+Our goal is not to explain the phenomena of causal reasoning *per se*, but rather to adopt a semantics that could apply to the causal domain and test our theory on the language of causal relations.
+In particular, we aim to demonstrate empirically that our theory of the language of generalization posits constructs that are causally related to sentence endorsement.
 
-<!-- Such *token causation*  -->
-<!-- serves as a foundation for an intuitive theory of causality [@Goodman2011; @Kemp2010a]. -->
-<!-- Recognizing an event as *causal* is a challenging problem [e.g., @Gerstenberg2015how]. -->
-<!-- Inducing a generalization  -->
-<!-- Communicating generalizations about causally related events is highly valuable because  -->
-<!-- relevant data can be prohibitively expensive and no one individual can run all the experiments that she wants to run in a life time.  -->
-<!-- The history of civilizations has shown that it is incredibly useful to divide labor: Some members can investigate modifications to the food preparation procedures while others can examine different ways of cutting stone.  -->
-<!-- Our framework for communicating generalizations makes predictions about statements conveying genericity about a category of causal events.  -->
-<!-- In this domain, an instance of the category is a single causal event, or *token causality* (e.g., adding a particular amount of a particular kind of yeast to an actual piece of dough).  -->
-<!-- <!-- [Gerstenberg] -->
-<!-- Inducing the existence of an abstract cause from observational evidence also depends in complex ways on an observer's background theory of causality [e.g., @Griffiths2005; @Schulz2008a]. -->
-<!-- Language provides a way to bypass the observational data needed to make a causal induction. -->
 
 In this paper, we posit that feature-probability priors are a mediating representation between abstract conceptual structure and generalizations in language.
 In this last set of experiments, we explicitly test the relationship between the feature-probability priors and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
+
+
+The problem of *causal induction*---knowing that one thing causes another----has been studied extensively in human psychology  [@Cheng1992; @Cheng1997; @Griffiths2005; @Griffiths2009].
+Classically, this is cast as a problem of inducing an unobservable relation from observable data. 
+For example, assuming a controlled experiment: observing E whenever C is present, and the absence of E whenever C is absent, is strong evidence for concluding that C causes E.
+At the same time, individual events (e.g., observing $c_i$ and $e_i$) can be construed as *causal*, depending on whether $c_i$ is seen as a difference-maker for $e_i$ and how exactly $c_i$ made that difference [@Gerstenberg2015how].
+Going from covariation to causation, then, implies that during the events observed (the covariation), causal attribution was withheld: The events were not seen as causal at the time, only in retrospect.
+Alternatively, we may conclude there is no cause after first seeing events in-the-moment as causal.
+
+<!-- If we see individual events as causal (*token level* causation), then we may reach a point when we organize those events as instances of a category-level causal relation (*type level* causation). -->
+<!-- How do we tell others about what we learned? -->
+<!-- We use language of the form "C causes E". -->
+
+<!-- Recently, causal attribution of a single event (*token causation*) -->
+<!-- Adults and children can infer causal relationships from just a few examples [@Gopnik2000; @Schulz2004] and computational models have been used to formalize the problem of *elemental causal induction*, or learning a causal relationship from observational data [@Griffiths2005; @Kemp2010a]. -->
+<!-- Having induced a causal relationship from observational data, people communicate their causal knowledge using language.  -->
+<!-- Indeed, when causal relations are nonobvious, causal language helps children as young as 2-years learn those relations [@Bonawitz2010]. -->
+
+
+
+
+
+
+
+
+
+
 
 ## Experiment 3a: Manipulating priors for causes
 
