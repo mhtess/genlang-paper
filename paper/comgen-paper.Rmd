@@ -1141,77 +1141,82 @@ The precise implementation of these hypotheses we leave for future work.
 <!-- -- Mary handles the mail from antarctica (predictive propensity; also highlights domain restriction on events) -->
 <!-- - Glass breaks when struck. (so-called "disposition", but here: a generalization about the event of a glass being struck [already we are domain restricted]) -->
 
-
-
 ## Relationship to other theories
 
-To our knowledge, this is the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
-A number of other theories of genericity have been proposed in the linguistics and psychological literatures. 
-By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*.
-
-Semantic theories fall into one of two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to structured, conceptual representations (e.g., there is something about being K which causes it to F).
+To our knowledge, the present papaer presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
+A number of other theories of genericity have been proposed in the linguistics and psychological literatures.
+We now turn to situating our account with respect to these previous theories.
+<!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
+Semantic theories fall into one of two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to structured, conceptual representations (e.g., *there is something about being K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
 ### Statistical accounts
 
-Statistical accounts take the feature-probability to be fundamental: \emph{Birds lay eggs} means \emph{Birds, in general, lay eggs}. 
-Our probabilistic account has antecedents in @Cohen1999 's theory of generics as a frequency adverb (e.g., "generally").
-Similar to our formulation, Cohen looks to feature-probability as a metric against which generics get evaluated.
-For Cohen, there are two kinds of generic statements: "Absolute" and "Relative".
-"Absolute generics" have a meaning with a fixed threshold on feature-probability and that threshold is taken to be 0.5: $P(F\mid K)>0.5$. 
+#### Relative and absolute generics
+
+Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999 's theory of generics as a frequency adverb (e.g., "generally").
+For Cohen, the statement "Birds lay eggs" means "Generally, birds lay eggs", and then he takes up the task of explaining what "generally" means.
+He partitions generics into two types: *absolute* and *relative* generics.
+*Absolute generics* use a fixed, 50\% threshold on feature-probability: $P(F\mid K)>0.5$. 
 Roughly speaking, "Dogs have four legs" is true because a given dog is more likely than not to have four legs. 
-"Relative generics" on the other hand depend upon an alternative set of kinds (his notation: $Alt(K)$), similar to our comparison class.
-These statements (e.g., *Mosquitos carry malaria*) are true if an arbitrary member of the target kind is more likely than an arbitrary member of an alternative kind to have the feature.
+*Relative generics* depend upon an alternative set of kinds (his notation: $Alt(K)$), analogous to our comparison class.
+"Mosquitos carry malaria" is a relative generic: it is true because an arbitrary mosquito is more likely than an arbitrary member of an alternative kind to have the feature.
 
-There are two main points of deviation of our theory from Cohen's.
-First, though his theory is framed in terms of probabilities, it still relies upon a fixed threshold and only makes predictions about what is "true" or "false".
-Our theory posits that the meaning (i.e., threshold) is underspecified in the semantics and is inferred in context. 
-It is a probabilistic model and makes predictions about what is strongly endorsed, what is strongly rejected, and all of the shades in between.
-Second, Cohen draws the distinction between "Absolute" and "Relative" generics, providing different mechanisms to explain each; our underspecified threshold is able to handle both kinds of examples with the same basic machinery.
+Our uncertain-threshold model deviates from Cohen's account in two primary ways.
+First, though his theory is framed in terms of probabilities, it still utilities a fixed threshold semantics and thus is only able to make predictions about what is "true" and what is "false".
+In our theory, there is uncertainty about the core semantic meaning, and this uncertainty (though reduced in context) drives the model to make graded predictions about endorsement.
+Second, Cohen draws an *a priori* distinction between *Absolute* and *Relative* generics, and provides different mechanisms for each each.
+We used examples of both in our stimuli (Expt. 1) and found that our single model handles both without any addition assumptions, casting doubt on the *a priori* distinction between "absolute" and "relative".^[
+  For a related theory that aims to do away with the distinction between "absolute" and "relative"   adjectives, see @Lassiter2015.
+]
 
-It should be noted that another mechanism used in Cohen's theory is to contextually restrict the entities that go into the computation of feature-probability (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?).
-These entities are restricted to those that *could have some feature* in a (contextually-specified) alternative set of features (so called, $Alt(F)$). 
-For example, the property \emph{lays eggs} could induce a set of alternatives that all have to do with procreation (e.g., \emph{gives birth to live young}, \emph{undergoes mitosis}, ...).
-That is, *Robins lay eggs* can be evaluated as an "absolute generic" because the only individuals under consideration are the female members of kinds as only the female members can plausibly satisfy one or another of the alternatives having to do with procreation (i.e., the features in $Alt(F)$).
+We note additional machinery that Cohen's theory relies upon (and that is not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of feature-probability (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?).
+His theory posits that feature-probability is calculuated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$). 
+For example, the property "lays eggs" induces a set of alternatives that are associated with mechanisms of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...).
+Therefore, "Robins lay eggs" is evaluated as an *absolute generic* because only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other aternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
+The inferential machinery behind Cohen's domain restriction (i.e., what comrpises $Alt(F)$?) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[
+  However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks found in cognitive science.
+]
+However, we note that this mechanism may be implicit in our own theory: the prior distribution over the feature-probability of *lays eggs* presumably includes aspects of people's theories about reproduction (i.e., that only females lay eggs).
+Thus, there may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction. 
+
 <!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
-The inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].
-^[However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks found in cognitive science.]
-Because the mechanisms behind domain restriction plausibly require yet another pragmatic inference relying heavily on world knowledge, the theory we present here doesn't explicitly rely upon domain restriction.
-However, it's an open question whether there exists a reformulation of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction. 
 
-In the computational linguistics literature, a similar proposal about underspecification of generics has been made [@Herbelot2011].
-In their model, generics express a quantified relation, specifically either "Some", "Most", or "All".
-The task of the computational linguist, then, is to construct a set of features that accurately predicts (relative to human judgments) the quantified relationship expressed by the generic. 
-Though similar in spirit, our theory does not posit that quantified relations corresponding to the words "Some", "Most", or "All" are in any way primitive; rather, we use a continuous distribution over possible thresholds to represent the inherenent vagueness in quantificational meaning in generics.
-Additionally, by using a vague, underspecified threshold, our formulation naturally extends to habitual language, where quantified relations like "Most" or "All" are not directly applicable. 
+#### "Normal" accounts
 
-Our theory bears some conceptual similarity to a recent proposal in philosophy by @Sterken2015. 
-Sterken treats the generic as a kind of *indexical* (e.g., "this" or "I").
-She argues that kind of truth-conditional variability exhibited by generics is best accounted for by generics as indexicals where both domain restriction (described above) and "quantificational force" vary with context.
-We think our uncertain threshold model is a way of formalizing Sterken's "quantificational force", though we remain agnostic as to relationship between generics and indexicals. 
-As noted above, we have not yet formalized uncertainty about domain restriction but think this is a promising avenue for future research.
+The primary alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008].
+For example, "Dogs have four legs" is a good generalization event though, regrettably, not all dogs have four legs.
+However, were the world to function *normally*, then *all* dogs would have four legs (i.e., dogs would not be involved in freak-tractor accidents).
+The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and tereotyped language (e.g., "Boys are good at math").
+Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations.
+We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.
+Our notion of feature-probability is as a predictive probability, which incorporates background knowledge in order to make predictions about the future. 
 
-Other theorists under the quantificational or statistical banner draw on the intuition that generics seem to express something about what is *normal* in the world [@Asher1995; @Pelletier1997; @Nickel2008].
-For example, it is a regrettable but true fact that due to unfortunate circumstances, not all dogs have four legs.
-However, we might want to hold onto the idea that were the world to work *normally*, then *all* dogs would have four legs. 
-This idea has intuitive appeal for rejecting accidentally true generalizations (e.g., *Supreme Court justices have even social security numbers*; described above).
-It also may underly what is problematic about stereotyped language (e.g., *Boys are good at math*).
-Though we do not directly address "what is normal" with our theory, we argue that a speaker's beliefs about what is *probable* (which may relate to what is *normal*) plays a role in endorsing and interpreting generalizations.
-<!-- is central to the formulation of our theory of generics in a Bayesian cognitive model. -->
-Indeed, we have shown in Expt. 3 that speaker's beliefs about what is likely to be the case in the near future matters for endorsing generalizations above and beyond what is currently true in the world.
-Feature-probability in our theory is a predictive probability, which incorporates background knowledge in order to make predictions about the future. 
-The intersection of what is "normal" and an agent's predictive probability is another target for future research [though see @Icard2017 for some recent progress].
+#### Underquantification
+
+A proposal similar to our account concerning underspecification of generics has been made in the computational linguistics literature [so-called *underquantification*; @Herbelot2011].
+In their model, generics express an explicit quantified relation, specifically either "Some", "Most", or "All".
+The task of the computational linguist, then, is to construct a set of features that accurately predicts (relative to human judgments) the quantified relationship expressed by the generic [analagous to a quantifier version of the *implied prevalence* task used in @Gelman2003b; @Cimpian2010]. 
+Our semantic theory can be seen as a generalization of the *underquantification* to a continuous interval of possible meanings.
+This distinction is relevant for the acquisition of the language of generalizations; we do not think that quantified relations (e.g., "Some", "All") are in any way primary or special. 
+<!-- Formally, whereas the *underquantification* account posits that a generic is *ambiguous* between various meanings, we argue that the generic is *vague*, and has a continuum of possible meanings.  -->
+Additionally, by using a vague, underspecified threshold, our formulation naturally extends to other scales and other kinds of generalizations (e.g., habitual language), where quantified relations like "Most" or "All" are not directly applicable. 
+
+#### Generic as indexical
+
+@Sterken2015 has recently proposed an intruiging account of the context-sensitive of generic language by treating generics as a kind of *indexical* (e.g., "this" or "I").
+The variability of endorsements is then attributed to mechanisms of domain restriction (described above with @Cohen1999) and context-sensitive "quantificational force".
+Our uncertain-threshold semantics may be a precise formalization of @Sterken2015's "quantificational force" [and a generalization of *underquantification*, see above], and we have argued above that domain restriction is not a necessary mechanisms for the cases considered in this paper. 
+We leave for future work exploring how the context-sensitivity of an indexical may differ from the kind of context-sensitivity in our model.
 
 ### Conceptual accounts
 
 Conceptual accounts of generics emphasize the structure of generic knowledge [@Prasada2000], and view generic utterances as the way of expressing special mental relationships between kinds and properties [@Leslie2008; @Prasada2012].
-This perspective draws intuition from the fact that generics can express rich relationships between kinds and properties.
-Examples like *Lions roar.*  and *Bishops move diagonally.* seem to express something beyond a statistical relationship.
-If a lion lacked the capacity to roar, we might consider a less good example of being a lion; 
-if you start moving the bishop other ways besides diagonally, you cease to be playing chess.
-\emph{Bishops move diagonally} because those are the rules of the game, not because they \emph{tend to} move diagonally.
+This perspective draws intuition from the fact that generics can express rich, conceptual relationships between kinds and properties.
+That is, "Bishops move diagonally" not because of a statistical relationship, but rather, because those are the rules of the game; if you start moving the bishop other ways besides diagonally, you cease to be playing chess.
+If a lion lacked the capacity to roar, we might consider a less good example of being a lion because "lions roar".
 
-Perhaps the most influential conceptual account of generics is credited to @Leslie2007.
+The most influential conceptual account of generics is from @Leslie2007.
 For Leslie, generics are tied to the cognitive system's "default mode of generalization".
 The intuition comes from the fact that infants seem ready to make strong generalizations from small amounts of data [e.g., @Baldwin1993].
 This "default mode" comes equipped with the ability to single-out \emph{striking properties} (e.g., properties which are dangerous or appalling) as particularly useful aspects of the world to know about.
