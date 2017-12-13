@@ -1,5 +1,14 @@
 # Case Study 3: Causal Language
 
+
+<!-- delta_p = presence-absence -->
+<!-- cp = delta_p / normalization ... subset of relevant cases -->
+<!-- caus_supp ~ structure induction problem. -->
+<!--   - get to delta_p & cp assuming a different integration fn's -->
+
+<!-- caus_support = "" -->
+<!-- caus_strength = "This virus causes the disease." -->
+
 What is the meaning of the utterance: "Drinking moonshine makes you go blind"?
 A first pass could be *there exists a causal relationship between blindness and moonshine such that blindness causes moonshine*.
 Interestingly, this definition doesn't mention the increased risk in becoming blind from moonshine, but presumably it's more probable than the alternative (not drinking moonshine).
@@ -26,6 +35,8 @@ Alternatively, we may conclude there is no cause after first seeing events in-th
 <!-- If we see individual events as causal (*token level* causation), then we may reach a point when we organize those events as instances of a category-level causal relation (*type level* causation). -->
 <!-- How do we tell others about what we learned? -->
 <!-- We use language of the form "C causes E". -->
+
+
 
 <!-- Recently, causal attribution of a single event (*token causation*) -->
 <!-- Adults and children can infer causal relationships from just a few examples [@Gopnik2000; @Schulz2004] and computational models have been used to formalize the problem of *elemental causal induction*, or learning a causal relationship from observational data [@Griffiths2005; @Kemp2010a]. -->
@@ -140,10 +151,11 @@ These distributions had the feeling that the effect was somewhat rare and that o
 \centering
 \label{tab:causalMaterials}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{lll}
-                   & Plants                                                                                                                                                                                                  & Animals                                                                                                                                                                                                                               \\
-Cover story        & On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers. & On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs. \\
-Evidence statement & Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall.                                                                                                              & Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.                                                                                                                                   
+\begin{tabular}{|p{3cm}|p{6.5cm}|p{6.5cm}|}
+\hline
+                   & Plants                                                                                                                                                                                                  & Animals                                                                                                                                                                                                                               \\ \hline
+Cover story        & On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers. & On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs. \\ \hline
+Evidence statement & Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall.                                                                                                              & Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.    \\   \hline                                                                                                                            
 \end{tabular}
 }
 \caption{Cover stories and evidence statements for the two sets of materials used in Expt. 3a\&b}
