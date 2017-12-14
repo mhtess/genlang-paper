@@ -1,0 +1,161 @@
+"workerid","language","enjoyment","gender","age","problems","comments","asses","fairprice","education"
+0,"english",0,"Male",24,"","","Confused",".50",3
+1,"English",1,"Male",24,"no","Lots of sleepy kweps!","Yes","$0.25",2
+2,"english",0,"Female",32,"","","Yes",".25",2
+3,"english",0,"Male",37,"no","","Yes",".40",1
+4,"english",-1,"Male",36,"no","","Yes",".50",3
+5,"english",0,"Female",30,"","","Yes",".20",2
+6,"English",1,"Male",40,"no","","Yes","1.00",1
+7,"english",-1,"Male",27,"","","Yes","0.40",3
+8,"english",0,"Female",29,"N/A","","Yes",".75",3
+9,"0",-1,"Male",26,"dumb",NA,"Yes","",4
+10,"English",0,"Male",27,"no",NA,"Yes","1.00",1
+11,"English",1,"Female",34,"",NA,"Yes",".50",3
+12,"english",-1,"Male",25,"",NA,"No",".40",2
+13,"english",1,"Male",36,"no",NA,"Yes","0.25",4
+14,"english",0,"Female",23,"No",NA,"Yes","No",3
+15,"English",0,"Male",29,"no",NA,"Yes",".25",3
+16,"English",1,"Male",31,"no",NA,"Yes","0.50",1
+17,"english",-1,"Female",28,"",NA,"Yes","50",3
+18,"English ",0,"Female",29,"","","Yes","",2
+19,"English",0,"Male",30,"no","","Yes","yes",3
+20,"english",0,"Female",35,"none","","Yes",".50",2
+21,"Armenian",1,"Male",18,"","","Yes","25",1
+22,"english",-1,"Female",27,"","","Yes",".40",2
+23,"English",1,"Female",26,"no","","Yes",".40",3
+24,"English",1,"Male",37,"no","","Yes",".25",2
+25,"English",1,"Male",32,"","Fun experiment. Please design more HITs like this one.",NA,".25",3
+26,"english",1,"Male",23,"","","Yes","sure",3
+27,"English",0,"Female",33,"No","","Yes",".30",3
+28,"English",-1,"Male",32,"no","","Yes","1.00",1
+29,"English",0,"Male",23,"","","Yes",".25",3
+30,"English",1,"Male",35,"none","Thank you!","Yes",".40",3
+31,"English",0,"Male",31,"I think the last question that said ""Please list one of the numbers you saw on the first page"" was a bit confusing.  I entered the answer as ""99 of the 100 animals were made sleepy"" - because that&quotechars what I remembered as the result of experiment A","","Yes",".25",3
+32,"English",1,"Female",49,"no","no","Yes",".30",1
+33,"English",0,"Male",30,"no","thanks","Yes","$.50",3
+34,"Chinese",0,"Female",28,"internet error","","Yes","0.4",3
+35,"English",0,"Male",25,"I don&quotechart know what you meant by enter a numerical thing from the first page, but I put in 21 because thats how many were made tall by one of the fertilizers ","","Confused","$.25",3
+36,"english",1,"Female",28,"no","","Yes","yes",3
+37,"English",0,"Male",28,"","","Yes",".15",3
+38,"English",1,"Male",34,"no","","Yes",".35",3
+39,"English ",1,"Female",38,"no","","Yes",".30",2
+40,"English",0,"Male",26,"Not that I know of","Thanks","Confused",".25",2
+41,"English",0,"Female",38,"none","","Yes",".25",2
+42,"english",0,"Female",59,"Yes, the server wouldn&quotechart connect the first couple of times I tried. ","","Yes","0.25",2
+43,"English",0,"Female",55,"no","","Yes",".25",3
+44,"English",0,"Male",39,"no","none","Yes","0.50",4
+45,"English",1,"Female",36,"no","thank you!","Yes","yes",2
+46,"english",1,"Female",38,"no","","Yes","0.50",3
+47,"English",0,"Male",30,"None","","Yes","Yes",4
+48,"English",0,"Male",30,"Not at all.","","Yes",".30",3
+49,"English",1,"Female",65,"","fun survey/experiment","Yes","75",4
+50,"english",0,"Female",55,"no","","Yes","yes",4
+51,"English",0,"Male",35,"I&quotecharm not sure what ""one of the numerical results"" on the first page might me. I&quotecharm assuming a number like 98,99, 100 for the resulting number of zoovs made sleepy. However I completed the HIT to the best of my understanding.","","Yes","Yes",2
+52,"English",0,"Female",30,"None.","None, thank you.","Yes",".30",2
+53,"English",0,"Male",30,"","","Yes",".25",2
+54,"english",0,"Female",24,"No","","Yes","yes",2
+55,"english",0,"Male",47,"no","","Yes","0.50",3
+56,"english",0,"Female",34,"no","","Yes","yes",4
+57,"English",1,"Female",23,"No","No","Yes",".25",3
+58,"English",0,"Male",29,"No issues.","","Yes","yes",1
+59,"English",0,"Male",32,"none","","Yes",".30",2
+60,"English",1,"Female",38,"None","N/A","Yes","0.30",3
+61,"English",1,"Female",40,"no","No","Yes","0.25",4
+62,"english",0,"Male",25,"","","Yes","",3
+63,"English",1,"Male",27,"no","","Confused","yes",2
+64,"English",0,"Female",22,"No","","Yes","0.25",3
+65,"ENGLISH",1,"Female",53,"NONE","NONE","Yes",".25",3
+66,"English",1,"Female",31,"No","","Yes",".25",2
+67,"English",1,"Female",36,"nope","","Yes",".25",4
+68,"English",1,"Male",38,"no problems at all.  everything worked great","","Yes",".25",1
+69,"english",1,"Male",31,"","","No",".5",3
+70,"English",0,"Female",27,"I&quotecharm not sure what numerical values you were referring to. I didn&quotechart know if you meant one of the results or something else. I couldn&quotechart find what you were asking for.","","Yes",".50",3
+71,"English",1,"Female",40,"One score was not recorded","","Yes","2.00",2
+72,"english",0,"Male",38,"bo","","Yes",".30",1
+73,"English",0,"Male",24,"No problems","Thanks!","Yes","Yes",2
+74,"English",1,"Male",32,"","","Yes",".75 is fair",4
+75,"Bulgarian",1,"Female",25,"no","","Yes","It took me a little longer than advertised, so 30 cents would have been more fair",2
+76,"English",0,"Female",31,"no","","Yes",".50",2
+77,"English",1,"Female",37,"none","","Yes",".25",2
+78,"English",1,"Female",31,"No.","I really liked doing this HIT, it broke up the monotony of the norm.","Yes",".25",4
+79,"english",0,"Female",37,"There were no problems or bugs, but it was confusing in the last section when it asked to enter a numerical value from the first section.","","Yes",".50",3
+80,"English",1,"Male",38,"none","None","Yes","yes",2
+81,"english",0,"Female",29,"","","Yes","yes",2
+82,"English",1,"Male",24,"Nope!","Fun experiment!","Yes",".25",4
+83,"English",0,"Male",25,"No","","Yes","Yes",3
+84,"English",0,"Male",29,"No, I didn&quotechart have any problems.","","Yes","Yes I think it was fine.",2
+85,"English",0,"Male",18,"No.","No comments.","Yes","Yes.",1
+86,"English",0,"",NA,"","","Yes","$0.30",2
+87,"English",0,"Female",55,"no","no","Yes","25",3
+88,"vietnamese",0,"Female",24,"","","Yes",".5",3
+89,"English",0,"Female",36,"no","","Yes",".30",3
+90,"english",0,"Female",26,"no","","Yes","yes",3
+91,"English",0,"Male",27,"no","Have a good one :)","Yes","20 cents",3
+92,"English ",1,"Female",32,"no","","Yes",".25",3
+93,"English",0,"Male",31,"No","","Confused","Yes",3
+94,"english",0,"Male",33,"no","","Yes","yes",3
+95,"English",0,"Female",61,"no","","Yes","somewhat",4
+96,"English",0,"Male",30,"Nothing","","Yes","0.25",3
+97,"English",1,"Female",28,"No","","Yes","25 cents",3
+98,"arabic",1,"Female",36,"no","no","Yes","0.30",2
+99,"English",1,"Male",23,"none","I liked the time it took to do this, it was nice","Yes","fair",3
+100,"English",0,"Female",25,"no","","Yes","yes",1
+101,"English",1,"Female",29,"no","","Yes","yes",2
+102,"English",1,"Male",25,"","","Yes","0.30",2
+103,"english",0,"Male",37,"when judging how tall i thought the p[lants got there was no number value on the sliders i tried top estimate where i felt 20 would be on the sliders","","Yes",".50",1
+104,"English",0,"Female",44,"Six results were unknown. ","Prediction impossible. Number selection for five mystery was for fun.","Yes","Yes",2
+105,"English",1,"Male",35,"no","","Yes","25 cents",2
+106,"English",1,"Male",35,"no","","Yes","yes",4
+107,"English",1,"Female",49,"no","","Yes",".40",3
+108,"english",0,"Female",27,"","","Yes","",2
+109,"English",1,"Female",44,"N/A","","Yes",".35",1
+110,"ENGLISH",0,"Male",44,"","","Yes",".25",3
+111,"English",1,"Male",44,"no","Thanks","Yes","yes",3
+112,"English",1,"Male",51,"There were no problems or bugs","Thanks for the opportunity to participate and good luck with your research!","Yes","0.25",4
+113,"English",1,"Male",23,"","","Yes","0.25",2
+114,"English",0,"Female",36,"none","","Yes","50 cents",2
+115,"English",0,"Male",29,"no","no","Yes",".25",3
+116,"English",1,"Female",37,"no","","Yes","0.25",3
+117,"English",0,"Female",47,"No","","Yes","0.50",1
+118,"english",0,"Male",21,"no","","Yes",".25",2
+119,"English",0,"Male",26,"No","Great HIT.","Yes","Yes",1
+120,"english",0,"Male",33,"nope","","Yes","50",2
+121,"English",0,"Female",37,"No","","Yes","no",3
+122,"english",0,"Male",29,"none","","Confused","no",2
+123,"English",0,"Male",27,"No","None, thank you!","Yes","0.25",2
+124,"English",1,"Male",22,"no","","Yes","0.25",1
+125,"English",1,"Male",46,"no","no","Yes","$0.35",4
+126,"English",0,"Female",55,"No","None","Yes",".50",2
+127,"English",0,"Male",54,"no","Thank you.","Yes",".50",3
+128,"English",0,"Female",43,"no","","Yes","50",4
+129,"english",1,"Female",56,"None","Thank you!","Yes",".25",2
+130,"English",0,"Male",47,"no","none","Yes","0.25",2
+131,"english",1,"Male",43,"no","it was a little ""far out""  haha","Yes","0.25",2
+132,"english",0,"Male",33,"none","none","Yes","yes",4
+133,"English",1,"Male",23,"Nothing that I noticed","Thought it was fun and love surveys that aren&quotechart bubble hell","Yes","Definitely",1
+134,"English",1,"Male",34,"","","Yes",".50",4
+135,"English",0,"Male",24,"no","","Yes","1.00",3
+136,"Chinese",0,"Female",50,"no","no","Yes","0.35",4
+137,"English",0,"Female",33,"No","","Yes","Yes",2
+138,"English",0,"Male",45,"No","","Yes",".25",3
+139,"English",1,"Female",34,"No","","Yes",".20",3
+140,"English",0,"Female",39,"no","","Confused",".25",2
+141,"English",0,"Male",28,"No","","Yes","0.40",2
+142,"english",0,"Male",48,"no","","Yes",".40",4
+143,"English",0,"Other",54,"","","Confused","50",3
+144,"english",0,"Female",25,"no","","Confused","",2
+145,"English",1,"Female",43,"No.","","Yes",".25",3
+146,"English",1,"Male",48,"no","I did not experience any technical issues. The instructions were clear.","Yes","0.25",3
+147,"English",1,"Female",66,"no","fun study!","Yes","0.25",4
+148,"English",1,"Male",32,"","","Yes","0.05",2
+149,"english",0,"Male",31,"no","thanks","Yes",".25",2
+150,"English",0,"Female",42,"no","","Yes","yes",2
+151,"English",0,"Female",25,"","","Yes",".25",1
+152,"english",0,"Female",36,"no","","Yes",".25",3
+153,"English",0,"Male",40,"It didn show an exact number on the bar, I meant to do 19 to 21 on each one",NA,"Yes","50 cents",3
+154,"english",1,"Female",55,"0",NA,"Yes","yes",2
+155,"English",0,"Male",25,"There we no real way to tell if the next blins were going to be made sleepy or not.",NA,"Confused","0.25",3
+156,"English",0,"Female",58,"no",NA,"Yes",".75",3
+157,"English",1,"Male",27,"",NA,"Yes",".25",2
+158,"english",0,"Female",38,"none",NA,"Yes","low paying",3
+159,"English",1,"Male",32,"no",NA,"Yes","0.3",3

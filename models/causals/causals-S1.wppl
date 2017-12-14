@@ -8,13 +8,15 @@ var chain = last(process.argv) // load index as last command line index
 var targetUtterance = process.argv[process.argv.length - 2]
 
 var dataPath = "../../data/causals/",
- 		priorFile = dataPath + "priors/pilot-causals-7-prior-trials.csv",
+ 		priorFile = dataPath + "priors/causals-8-prior-trials.csv",
+    priorCatchFile = dataPath + "priors/causals-8-prior-catch_trials.csv",
  	  endorsementFile1 = dataPath + "endorsement/causals-8-20-trials.csv",
     endorsementFile2 = dataPath + "endorsement/causals-8-70-trials.csv",
     endorsementCatchFile1 = dataPath + "endorsement/causals-8-20-catch_trials.csv",
     endorsementCatchFile2 = dataPath + "endorsement/causals-8-70-catch_trials.csv";
 
-var d_prior = dataFrame(utils.readCSV(priorFile).data, ["response"]),
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["workerid","response"]),
+    d_prior_catch = dataFrame(utils.readCSV(priorCatchFile).data, ["workerid", "pass_numeric", "pass_story"]),
 		d_endorsement = _.flatten([
       map(function(d){return extend(d,
       {newWorkerid: d.workerid + "a"})},
@@ -32,17 +34,24 @@ var d_prior = dataFrame(utils.readCSV(priorFile).data, ["response"]),
       dataFrame(utils.readCSV(endorsementCatchFile2).data, ["pass_numeric", "pass_story"])
     )
     ]);
+// some participants were mischaracterized as failing the catch trial because they put something of the form "0/100" or "herb F: 19"
+var mischaracterized = [ 24, 48, 62, 94, 106, 110, 111, 112, 113, 116, 125, 132, 145, 155, 158 ];
 
 var data = {
-	prior: map(function(d){ return extend(d, {
+	prior: filter(function(di){
+    var catchData = _.filter(d_prior_catch, {workerid: di.workerid});
+    var pass_numeric = mischaracterized.indexOf(di.workerid) > -1 ? 1 : catchData[0].pass_numeric;
+    var pass = (pass_numeric + catchData[0].pass_story) == 2;
+    return pass
+  }, map(function(d){ return extend(d, {
 		avoided_endval: avoidEnds(d.response)
-  })}, d_prior),
+  })}, d_prior)),
 	endorsement: filter(function(di){
     var catchData = _.filter(d_catch, {newWorkerid: di.newWorkerid});
     var pass = (catchData[0].pass_numeric + catchData[0].pass_story) == 2;
     return pass;
   }, map(function(d){ return extend(d, {
-		binnedFreq:  utils.closest( d.frequency / 100, midBins)
+		binnedFreq:  utils.closest( midBins, d.frequency / 100)
 	})}, d_endorsement))
 };
 //
@@ -54,6 +63,12 @@ assert.ok(
   }, d_catch), "pass"))
 )
 
+assert.ok(
+	levels(data.prior, "workerid").length == (
+    sum(_.map(map(function(d){
+      return extend(d, {pass: (d.pass_numeric + d.pass_story) == 2 ? 1 : 0})
+    }, d_prior_catch), "pass")) + mischaracterized.length)
+)
 
 var utterancePrior = Infer({model: function(){
 	return uniformDraw(["causal","silence"])
