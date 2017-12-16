@@ -602,10 +602,13 @@ for (p in m.cas.fullmodel.prior.parameters.tidy$dist){
                                                    b = priorParams[["b"]]),
                                mix = priorParams[["mix"]]), 
                   utt = "generic")
- l0.rs <- webppl(l0.model, data = inputData, data_var = "data")
+ l0.rs <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+  l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+ l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
  cas.listener.predictions <- bind_rows(
    cas.listener.predictions, 
-   l0.rs %>% select(Parameter,value) %>% mutate(distribution = p)
+      l0.rs.prior %>% select(value) %>% mutate(distribution = p, Parameter = "state_Prior"),
+    l0.rs.posterior %>% select(value) %>% mutate(distribution = p, Parameter = "state_Posterior")
    )
 }
 
