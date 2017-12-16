@@ -364,10 +364,9 @@ rs.habituals.bda.prior.summary.wide <- left_join(
     select(-Variable) %>%
     rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
 )
-
-figure.habituals.priors.scatter <- left_join(rs.habituals.bda.prior.summary.wide,
-          d.hab.priors %>% select(item, category)) %>%
-ggplot(.,
+rs.habituals.bda.prior.summary.wide <- left_join(rs.habituals.bda.prior.summary.wide,
+          d.hab.priors %>% select(item, category)) 
+figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.prior.summary.wide,
        aes( x = mix_mean, xmin = mix_lower, xmax = mix_upper,
             y = sfreq_mean, ymin = sfreq_lower, ymax = sfreq_upper,
              fill = category))+
@@ -698,13 +697,19 @@ fig.habituals.endorsement.vs.freq <-
   guides(fill = guide_colorbar(title = 'log annual rate',
                                ticks = F))
 ```
-```{r habituals-items-table}
+
+
+```{r habituals-items-table, eval = F}
 d.hab.endorsement.items <- select(d.hab.endorsement, habitual, time_period) %>% distinct()
 
 d.hab.endorsement.items[with(d.hab.endorsement.items, order(habitual)), ] %>% 
-  kable(.) %>% #, format = "latex", longtable = T, booktabs = T, caption = "a caption") %>% 
+  kable(., 
+        format = "latex", longtable = T, booktabs = T,
+        caption = "Demo table") %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = 7)#%>%#, "hold_position")) %>%
   #column_spec(3, width = "10cm")%>%
-  collapse_rows(columns = 1:2)
+  #collapse_rows(columns = 1:2)
 ```
 
 
@@ -1921,11 +1926,11 @@ habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
                                       "predictive_model"
                                      ),
                       labels = c(
-                                 "Speaker model - past frequency",
-                                 "Speaker model - predictive frequency"
+                                 "Past-frequency endorsement model",
+                                 "Predictive-frequency endorsement model"
                                  
                                  ))) %>%
-  filter(src == "Speaker model - past frequency") %>%
+  filter(src == "Past-frequency endorsement model") %>%
   ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = condition))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
@@ -1949,11 +1954,12 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
                                       "predictive_model"
                                      ),
                       labels = c(
-                                 "Speaker model - past frequency",
-                                 "Speaker model - predictive frequency"
+                                 "Past-frequency endorsement model",
+                                 "Predictive-frequency endorsement model"
+                                
                                  
                                  ))) %>%
-  filter(src == "Speaker model - predictive frequency") %>%
+  #filter(src == "Predictive-frequency endorsement model") %>%
   ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = condition))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+
@@ -1964,7 +1970,7 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
   coord_fixed()+
-  xlab("Model prediction")+
+  xlab("\n Model prediction")+
   ylab("Human habitual endorsement")+
   facet_wrap(~src, nrow = 1)+
   #guides(fill = F)+
@@ -1996,33 +2002,33 @@ left_join(m.hab.predictive.endorse.rsa %>%
                                       "predictive_model"
                                      ),
                       labels = c(
-                                 "Speaker model - past frequency",
-                                 "Speaker model - predictive frequency"
+                                 "Endorsement model (past frequency)",
+                                 "Endorsement model (predictive frequency)"
                                  
                                  ))) %>%
-  filter(src == "Speaker model - predictive frequency"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
+  filter(src == "Endorsement model (predictive frequency)"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 10, fig.height = 9.5, cache=F}
+```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 13, fig.height = 3.5, cache=F}
 legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
 
 # add the legend underneath the row we made earlier. Give it 10% of the height
 # of one plot (via rel_heights).
 
-grid.arrange(
-  arrangeGrob(
-    fig.hab.freq.predictive.vs.past, 
-    fig.hab.endorse.vs.predfreq, 
-    habituals.predictive.past.model, 
-    habituals.predictive.predictive.model + theme(legend.position="none"),
-    nrow=2, layout_matrix = cbind(c(1,3), c(2,4))),
-legend_b, nrow=2,heights=c(8, 1))
-
-
-#prow <- plot_grid(fig.hab.freq.predictive.vs.past, fig.hab.endorse.vs.predfreq, habituals.predictive.past.model, habituals.predictive.predictive.model #+ theme(legend.position="none"), labels = c("A", "B", "C", "D"), ncol = 2, align = 'v')
-  
-#plot_grid( prow, legend_b, ncol = 1, rel_heights = c(5, 0))
+plot_grid(
+  fig.hab.freq.predictive.vs.past + 
+    theme(plot.margin = unit(c(6,3,6,6), "pt")),
+fig.hab.endorse.vs.predfreq + 
+  theme(plot.margin = unit(c(6,0,6,6), "pt")),
+# habituals.predictive.past.model + 
+#   theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab(""),
+habituals.predictive.predictive.model + 
+  theme(plot.margin = unit(c(0,0,6,0), "pt")) + 
+  theme(legend.position="none") + ylab(""),
+align = 'h', 
+labels = c("A","B","C"),
+hjust = -1, nrow =1 , rel_widths = c(1.2, 0.95, 1.6))
 ```
 
 
