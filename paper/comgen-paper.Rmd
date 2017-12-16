@@ -522,7 +522,7 @@ uncertain.threshold.call <- '
 '
 ```
 
-```{r}
+```{r simulationRuns}
 priorNames <- c(
   "doesntEatPeople", #"uniformRare", 
   "isFemale", 
@@ -575,7 +575,7 @@ for (p in priorNames){
 fig.sims.priors <- ggplot(sims.priors, aes(x = state, fill = PriorShape, color = PriorShape))+
     geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
     theme_few() +
-    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     ylab("Normalized probability density") +
     xlab("")+
@@ -607,7 +607,7 @@ fig.sims.uncertain.threshold <- sims.uncertain.thresholds %>% mutate(PriorShape 
                               ggplot(., aes(x = state, fill = PriorShape, color = PriorShape))+
     geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
     theme_few() +
-    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     xlab("") +
     ylab("") +
@@ -738,21 +738,21 @@ s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb,
   #   segment.color = 'grey37')+
   scale_fill_solarized()+
   scale_x_continuous(limits = c(0, 1), 
-                     breaks = c(0, 0.5, 1))+
-  scale_y_continuous(limits = c(-0.01, 1.01), 
                      breaks = c(0, 1))+
-                     #labels = c("False", "True"))+
-  coord_fixed(ratio = 1)+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 1),
+                     labels = c("False", "True"))+
+  #coord_fixed(ratio = 1)+
+  coord_flip()+
   facet_grid(example~.)+
   guides(fill = F)+
   ylab("Endorsement")+xlab("Referent feature-probability")+
-  theme(strip.text.y = element_text(angle = 0, hjust = 0), 
-        axis.title.x = element_text(hjust = 0)
+  theme(strip.text.y = element_text(angle = 0, hjust = 0)
+        #axis.title.x = element_text(hjust = 0)
         #axis.title.y = element_text(vjust = 0)
         )
   #ylab("Endorsement model prediction")+
   #xlab("Hypothesized feature-probability")
-#s1.simulations.scatter
 ```
 
 
@@ -762,9 +762,9 @@ p1 <- fig.sims.priors +
 p2 <- fig.sims.fixed.thresholds +
   theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
 p3 <- fig.sims.uncertain.threshold+
-  theme(plot.margin = unit(c(18,0,6,6), "pt"))+ 
+  theme(plot.margin = unit(c(18,2,6,6), "pt"))+ 
     theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
-p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,0), "pt"))
+p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,6), "pt"))
   
 prow <- plot_grid( p1 + theme(legend.position="none"),
            p2 + theme(legend.position="none"),
@@ -775,7 +775,7 @@ prow <- plot_grid( p1 + theme(legend.position="none"),
            hjust = -1,
            nrow = 1,
            #rel_widths = c(1.2, 3, 2)
-           rel_widths = c(1.2, 3, 1.1, 3)
+           rel_widths = c(1.2, 3, 1.05, 1.7)
            )
 prow
 ```

@@ -249,9 +249,11 @@ In total, each participant generated ten animal names and reported on the featur
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
 
 
-```{r generics-prior-task, fig.cap:"Test"}
-fig.priors.expt <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-bothStages.pdf", sep=""), scale = 1)
-fig.priors.expt
+```{r generics-prior-task, fig.cap="Prior elicitation task. A: Participants first generated animal names after seeing six example categories. B: One feature at a time, participants estimated the percentage of the category with the feature, for each category.", fig.height = 3}
+fig.priors.expt.stage1 <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-stage1.jpeg", sep=""), scale = 1)
+fig.priors.expt.stage2 <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-stage2.jpeg", sep=""), scale = 1)
+
+plot_grid(fig.priors.expt.stage1, fig.priors.expt.stage2, labels = "AUTO")
 ``` 
 
 <!-- \begin{figure} -->
@@ -886,11 +888,36 @@ save(m.gen.endorse.priors.posteriorPredictive, file = '../analysis/generics-prio
 
 ```
 
-```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 5, fig.cap="Cumulative density plots for prior distributions representing the feature-probability of eight different features. Distributions are the posterior predictive distributions for the Structured and Unstructured prior models, as well as the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
+```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="Cumulative density plots for prior distributions representing the feature-probability of eight different features. Distributions are the posterior predictive distributions for the Structured and Unstructured prior models, as well as the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
-ggplot(m.gen.endorse.priors.posteriorPredictive, 
+
+gen.priors.densities <- ggplot(m.gen.endorse.priors.posteriorPredictive %>%
+         filter(src == 'Data'), 
+           aes( x = prevalence))+
+           #aes( x = prevalence, color = src, lty = src))+
+    geom_density(aes(y = ..scaled..), adjust = 1.3, size = 1)+
+    #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #stat_ecdf(size = 1)+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    facet_wrap(~Property, nrow = 2)+
+    #scale_linetype_manual(values = c(1, 4, 3))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #coord_fixed()+
+    xlab("") +
+    ylab("Normalized probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+
+
+gen.priors.cdfs <-m.gen.endorse.priors.posteriorPredictive %>%
+  mutate(src = factor(src, levels = c("Data", "Structured", "Unstructured"),
+                      labels = c("Empirical distribution", 
+                                 "Mixture of Betas",
+                                 "Single Beta"))) %>%
+ggplot(.,
            aes( x = prevalence, color = src, lty = src))+
-      #geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
+    #geom_density(aes(y = ..scaled..), adjust = 1.3, size = 1)+
     #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
     stat_ecdf(size = 1)+
     scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
@@ -899,11 +926,28 @@ ggplot(m.gen.endorse.priors.posteriorPredictive,
     scale_linetype_manual(values = c(1, 4, 3))+
     scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-  coord_fixed()+
+    #coord_fixed()+
     xlab("Feature-probability") +
     ylab("Cumulative probability density")+
-    theme(legend.position = "bottom", legend.title = element_blank())
+    theme(legend.title = element_blank(), legend.position = 'bottom')
 
+
+
+gen.prior.fig1 <- gen.priors.densities +
+  theme(plot.margin = unit(c(10,0,0,0), "pt")) 
+gen.prior.fig2 <- gen.priors.cdfs  +
+  theme(plot.margin = unit(c(10,0,6,0), "pt")) 
+
+plot_grid( 
+ gen.prior.fig1, gen.prior.fig2,
+           align = 'vh',
+           labels = c("A", "B"),
+           hjust = -1,
+           nrow = 2,
+           rel_heights = c(1, 1.2)
+           #rel_widths = c(1.2, 3, 2)
+           #rel_widths = c(1, 1.3)
+           )
 ```
 
 
@@ -1402,16 +1446,19 @@ m.gen.fullmodel.prior.parameters.tidy <- m.gen.fullmodel.prior.parameters %>%
 
 gen.listener.predictions <- data.frame()
   
+# run interpreter model to generate "hypothetical intepretation" plots
 for (p in example.generics.properties){
  priorParams <- m.gen.fullmodel.prior.parameters.tidy %>% filter(property == p) 
  inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
                                                    b = priorParams[["b"]]),
                                mix = priorParams[["mix"]]), 
                   utt = "generic")
- l0.rs <- webppl(l0.model, data = inputData, data_var = "data")
+ l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+ l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
  gen.listener.predictions <- bind_rows(
    gen.listener.predictions, 
-   l0.rs %>% select(Parameter,value) %>% mutate(property = p)
+   l0.rs.prior %>% select(value) %>% mutate(property = p, Parameter = "state_Prior"),
+    l0.rs.posterior %>% select(value) %>% mutate(property = p, Parameter = "state_Posterior")
    )
 }
 
@@ -1422,32 +1469,31 @@ m.gen.fullmodel.target.prevalence <- m.samp %>%
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
-
-
 m.gen.speakerBeliefs <- m.samp %>%
   filter(type == "targetPrevalence") %>%
   mutate(Sentence = paste(category, property)) %>%
-  filter(Sentence %in% example.generics) 
+  filter(Sentence %in% example.generics) %>%
+  mutate(property = factor(property))
 
-m.samp.prev.params <- m.samp %>%
-    filter(type == "targetPrevalence") %>%
-    mutate(Sentence = paste(category, property)) %>%
-    filter(Sentence %in% example.generics) %>%
-    mutate(parameter = paste(param, property, category, sep = "_")) %>%
-    select(-param, -property, -category, -chain, -type) %>%
-    group_by(parameter) %>%
-    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
-    ungroup() %>%
-    separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
-    group_by(category, property, iteration) %>%
-    spread(parameter, val) %>%
-    rowwise() %>%
-    mutate(
-      a = mean*sampleSize,
-      b = (1-mean)*sampleSize,
-      val = rbeta(n = 1, shape1 = a, shape2 = b)
-      ) %>%
-    ungroup()
+# m.samp.prev.params <- m.samp %>%
+#     filter(type == "targetPrevalence") %>%
+#     mutate(Sentence = paste(category, property)) %>%
+#     filter(Sentence %in% example.generics) %>%
+#     mutate(parameter = paste(param, property, category, sep = "_")) %>%
+#     select(-param, -property, -category, -chain, -type) %>%
+#     group_by(parameter) %>%
+#     mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+#     ungroup() %>%
+#     separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
+#     group_by(category, property, iteration) %>%
+#     spread(parameter, val) %>%
+#     rowwise() %>%
+#     mutate(
+#       a = mean*sampleSize,
+#       b = (1-mean)*sampleSize,
+#       val = rbeta(n = 1, shape1 = a, shape2 = b)
+#       ) %>%
+#     ungroup()
 
 gen.inset.distributions <- bind_rows(
   gen.listener.predictions %>%
@@ -1465,17 +1511,20 @@ category.text.labels <- data.frame(property = c("dont eat people",
              x = c(0.3, 0.3, 0.47, 0.05, 0.6),
             y = c(0.45, 0.5, 0.45, 0.5, 0.26))
 
-generics.endorsement.insets <- gen.inset.distributions %>%
+gen.inset.distributions.refactored <- gen.inset.distributions %>%
   mutate(Parameter = factor(Parameter, levels = c("state_Prior",
                                                   "state_Posterior",
                                                   "speakerBeliefs"),
-                            labels = c("Listener Prior (Posterior given Silence)", 
-                                       "Listener Posterior given Generic", 
-                                       "Speaker Beliefs")),
+                            labels = c("Feature-probability Prior", 
+                                       "Interpretation given generalization", 
+                                       "Referent feature-probability")),
          property = fct_relevel(property,
                                 "have spots", "lay eggs","carry malaria", 
-                                "are female", "dont eat people") ) %>%
-  ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
+                                "are female", "dont eat people") )
+
+generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored, 
+                                      aes( x = value, fill = Parameter, 
+                 color = Parameter, lty = Parameter, alpha = Parameter ))+
   geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
   facet_wrap(~property, nrow = 1)+
   geom_label_repel(data = category.text.labels,
@@ -1497,11 +1546,49 @@ generics.endorsement.insets <- gen.inset.distributions %>%
 
 
 
-```{r generics-endorsement-figure, fig.width=12, fig.height=9.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent feature-probability alone (lower left) and feature-probability + cue validity (lower right). Bottom: Five example feature-probability priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent feature-probability. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
-grid.arrange(generics.endorsement.spectrum, 
-             generics.endorsement.models,
-             generics.endorsement.insets, ncol = 2,
-             layout_matrix = cbind(c(1,1,3), c(2,2,3)))
+```{r generics-endorsement-figure, fig.width = 11, fig.height=8.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent feature-probability alone (lower left) and feature-probability + cue validity (lower right). Bottom: Five example feature-probability priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent feature-probability. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
+
+fig.gen.endorse.data <- generics.endorsement.spectrum +
+  theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ggtitle("Feature-probability priors")
+fig.gen.endorse.models <- generics.endorsement.models +
+  theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ylab("")
+fig.gen.endorse.priors <- generics.endorsement.insets +
+  theme(plot.margin = unit(c(26,10,0,10), "pt"))
+
+#+ 
+    #theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
+#p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,6), "pt"))
+  
+fig.gen.endorse.toprow <- plot_grid(fig.gen.endorse.data,
+                                     fig.gen.endorse.models, 
+                                    # align = 'v',
+                                    #  axis = 'l',
+                                    labels = c("A", "B"),
+                                    rel_widths = c(0.9, 1))
+
+
+
+plot_grid(fig.gen.endorse.toprow,
+          fig.gen.endorse.priors,
+          labels = c("", "C"), nrow = 2, rel_heights = c(1.1, 0.6)
+          )
+# prow <- plot_grid( p1 + theme(legend.position="none"),
+#            p2 + theme(legend.position="none"),
+#            p3 + theme(legend.position="none"),
+#            p4,
+#            align = 'vh',
+#            labels = c("A", "B", "C"),
+#            hjust = -1,
+#            #nrow = 1,
+#            #rel_widths = c(1.2, 3, 2)
+#            rel_widths = c(1.2, 3, 1.05, 1.7)
+#            )
+
+# grid.arrange(generics.endorsement.spectrum, 
+#              generics.endorsement.models,
+#              generics.endorsement.insets, ncol = 2,
+#              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
+
 ```
 
 To evaluate this model, we examine the posterior distribution which represents what we should believe about the latent parameters of the model (referent feature-probabilities, feature-probability priors, and the single speaker optimality parameter) given the observed data, as well as what predictions of the model given these parameter values.
