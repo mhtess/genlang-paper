@@ -5,29 +5,44 @@
 <!-- Orvis, B. R., Cunningham, J. D., & Kelley, H. H. (1975). A closer examination of causal inference: The roles of consensus, distinctiveness, and consistency information. Journal of Personality and Social Psychology, 32(4), 605-616. -->
 
 Segmenting the continuous stream of reality into events is a crucial task for cognition.
-We consider events as individuated entities as instances of a category. 
-For example, the event *Mary smoked a cigarette yesterday at 2:30pm*...
+Once individuated, an event can be categorized as a kind of a event.
+For example, the event of Mary smoking at 2:30pm on January the 24th is an instance of *Mary smoking*. 
+Generalizations can be said of this event, in the form of *habitual language*: "Mary smokes".
 
-Learning that an agent tends to exhibit a behavior is a special case of learning a generalization about an event. 
-The event, *the agent doing the action*,
+Events are a broad class of entities. 
+In our second case study, we focus on habituals about people's behaviors that take the form: \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes.").  
+Habituals about people doing actions are interesting because a 
+Learning about the behaviors of others is useful because it tells us about what that person is like more generally [e.g., @Repacholi1997; @Seiver2013].
+When children describe their lives to other, a surprisingly large amount of the langauge produced concerns the actions of people close to them [e.g., "My brother works part-ti8me at the restaurant"; @McGuire1986].
+Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-We meet new people all the time, and hear about them at least as often.
-*Habitual language* (e.g,. "Mary smokes."; "My car won't start.") conveys generalizations about events, including people doing actions. 
+
+<!-- of particular importance to social psychology because of their role in causal attribution [@Kelley1973] and intuitive theories of personality and behavior [@]. -->
+
+<!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
+<!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
+<!-- A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant."). -->
+
+
+
+
+<!-- We meet new people all the time, and hear about them at least as often. -->
+<!-- *Habitual language* (e.g,. "Mary smokes."; "My car won't start.") conveys generalizations about events, including people doing actions.  -->
 <!-- In this case study, we focus on a particular class of events: people doing actions. -->
-Habituals about people taking actions are of particular importance to social psychology because of their role in causal attribution [@Kelley1973] and intuitive theories of personality and behavior [@McGuire1986].
-Habitual language may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-We focus on present-tense habitual sentences of the form \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes."). 
-We use the same computational model and follow the same general experimental structure as in the first case study. 
-First, we measure the prior distribution over the frequencies for different events/actions (e.g., how often different people smoke cigarttes; Expt. 2a).
-We then measure endorsements of generalizations about events (*habituals*), while manipulating the frequency with which the event occurs (e.g., how often Mary smokes; Expt. 2b), and use our computational model to predict the habitual endorsements. 
+
+<!-- We focus on present-tense habitual sentences of the form  -->
+To test the generality of our theory, we use the same computational model and follow the same general experimental structure as in the first case study. 
+First, we measure the prior distribution over the frequencies for different actions (e.g., how often different people smoke cigarttes; Expt. 2a).
+We then measure endorsements of generalizations about events (*habituals*), while manipulating the frequency with which the event occurs (e.g., how often Mary smokes; Expt. 2b), and use our computational model to predict habitual endorsements. 
 <!-- We estimate the priors using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b. -->
-In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories.
+By describing novel characters to participants, we are able to directly the manipulate the frequency (feature-probability) with which the referent does the action.
+<!-- In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories. -->
 
-Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely her observations. 
-We have said that $h$ represents a probability that a speaker aims to convey.
-In two follow-up experiments, we ask whether $h$ represents the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past week) or the predictive rate of this event occurring in the near future (e.g., how often we should expect Mary to smoke next week).
-We do this by measuring participants' predictions about future frequencies when causal forces enable or prevent the action and separately measure endorsements of habituals under the same contexts (Expt. 2c).
+Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect a speaker's expectations, not merely her observations. 
+Our computational model predicts endorsement rates given a referent-category feature-probability $h$. 
+Does $h$ represent the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past month) or the predictive rate of the event in the near future (e.g., how often we should expect Mary to smoke next week)?
+We extend our theory by measuring participants' predictions about future frequencies and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
 We then use our model to test whether habitual endorsements are based on past frequencies or future expectations.
 
 <!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
