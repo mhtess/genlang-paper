@@ -24,6 +24,9 @@ header-includes:
   - \usepackage{amsmath}
   - \usepackage{graphicx}
   - \usepackage{subcaption}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
 
 author_note: >
   This manuscript is currently in prep. Comments or suggestions should be directed to MHT.
