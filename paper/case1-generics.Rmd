@@ -248,12 +248,18 @@ This whole procedure was repeated two times (two trials).
 In total, each participant generated ten animal names and reported on the feature-probability of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 <!-- For a full list of the properties, and generic sentences used in Expt. 1b, see Table 2 (Appendix). -->
 
-\begin{figure}
-\centering
-    \includegraphics[width=\columnwidth]{figs/generics-prior-bothStages.pdf}
-    \caption{Design of Experiment 1b for eliciting prior knowledge about feature-probabilities. Left: Participants first generated animal names after seeing six example categories. Right: One feature at a time, participants estimated the percentage of the category with the feature, for each category.}
-    \label{fig:generics-prior-task}
-\end{figure}
+
+```{r generics-prior-task, fig.cap:"Test"}
+fig.priors.expt <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-bothStages.pdf", sep=""), scale = 1)
+fig.priors.expt
+``` 
+
+<!-- \begin{figure} -->
+<!-- \centering -->
+<!--     \includegraphics[width=\columnwidth]{figs/generics-prior-bothStages.pdf} -->
+<!--     \caption{Design of Experiment 1b for eliciting prior knowledge about feature-probabilities. Left: Participants first generated animal names after seeing six example categories. Right: One feature at a time, participants estimated the percentage of the category with the feature, for each category.} -->
+<!--     \label{fig:generics-prior-task} -->
+<!-- \end{figure} -->
 
 
 ### Results
@@ -1198,9 +1204,11 @@ We examine the predictions of the control model first.
 
 #### Fixed-threshold model
 
-The fixed-threshold model is a lesioned version of the unceratin-threshold model: It has access to the full prior distribution on feature-probabilities $P(h)$ and models endorsement as an information-theoretic decision of producing the generic vs. an alternative.
+The fixed-threshold model is a lesioned version of the unceratin-threshold model: It models endorsement as an information-theoretic decision of producing the generic vs. an alternative, and has access to the full prior distribution on feature-probabilities $P(h)$. 
 The only difference is that this model uses a fixed-threshold as the core meaning of a generic statement, rather than an uncertain threshold.
-For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).^[
+For this model, we use $\theta = 0$ (corresponding intutively to the semantics of the quantified "Some" statements).
+
+^[
   Other fixed-threshold models are possible (e.g., generic means "Most" $\theta = 0.5$) but require the further   specification of a noise-model for participants' responses in the cases where participants endorse the statement when it is literally false (e.g., "Mosquitos carry malaria" would be literally false under a $\theta = 0.5$ semantics).
 ]
 This is a strong alternative model to our uncertain-threshold model; the only difference concerns the threshold.
@@ -1212,18 +1220,18 @@ burn <- n_samples / 2
 lg <- 20
 
 model_prefix <- "results-generics-jointModel-S1-smntcs_"
-
+#fixed_model_prefix <- "results-generics-jointModel-wNoise-inferFixedThreshold-20bins-S1-smntcs_some-"
 # m.samp <- data.frame()
 # m.samp.fixed <- data.frame()
-# for (i in seq(1, n_chains)){
-#   mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-#   m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
-#   
-#   mi.fixed <- fread(paste(project.path,  "models/generics/results/", model_prefix,"some-",
+#for (i in seq(1, n_chains)){
+  #mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+  #                  n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  #m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+
+#   mi.fixed <- fread(paste(project.path,  "models/generics/results/", fixed_model_prefix,
 #                     n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
 #   m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
-#   }
+# }
 # 
 # save(m.samp,
 #      file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
@@ -1237,34 +1245,48 @@ model_prefix <- "results-generics-jointModel-S1-smntcs_"
 load(file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
-load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
-                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+load(file = paste(project.path, "models/generics/results/results-generics-jointModel-S1-some-inferFixedThreshold-noise-100000_burn50000_lag20_2chains.RData", sep = ""))
 
+# m.samp.fixed <- fread(paste(project.path,  "models/generics/results/", "results-generics-jointModel-wNoise-20bins-S1-smntcs_some-100000_burn50000_lag20_chain1.csv", sep = ""))
+# 
+# m.samp.fixed <- fread(paste(project.path,  "models/generics/results/", "results-generics-jointModel-wNoise-inferFixedThreshold-20bins-S1-smntcs_some-100000_burn50000_lag20_chain1.csv", sep = ""))
+# 
+# tail(m.samp.fixed)
+
+fixed.params.posterior <-  m.samp.fixed %>% 
+  filter(param %in% c("noise", "fixedThreshold")) %>%
+  group_by(param) %>% 
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
 
 m.gen.somemodel.endorsement <- m.samp.fixed %>%
-  filter(type == 'endorsement') %>%
+  filter(type == 'endorsement', param == "some") %>%
   group_by(type, param, property, category) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
-#model_prefix <- "results-generics-jointModel-10bins-S1-smntcs_"
-
-#m.samp <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-                     #20000, "_burn", 10000, "_lag", 20, "_chain", 2, ".csv", sep = ""))
-#m.samp <- fread("~/Documents/research/communicating-generalizations/models/generics/results/results-fullModel-s1-allowUPriors-refinedPriors-fixedNull-prevPriorFactorBugFixed-smtncsgeneric-100000_burn100000_chain1.csv")
-
-
+# m.gen.fullmodel.endorsement <- m.samp.samp %>%
+#   rename(type = Parameter, property = Property, category = Category, val = Value, param = Extra) %>%
+#   group_by(type, property, category, param) %>%
+#   summarize(MAP = estimate_mode(val),
+#             cred_upper = hdi_upper(val),
+#             cred_lower = hdi_lower(val))
 
 m.gen.fullmodel.endorsement <- m.samp %>%
- # filter(type == 'endorsement', param == 'generic') %>%
-  #filter(type == 'predictive', param == 'generic') %>%
-  filter(type == 'endorsement') %>%
+ filter(type == 'endorsement', param == 'generic') %>%
+  # filter(type == 'predictive', param == 'generic') %>%
+ # filter(type == 'endorsement') %>%
   group_by(type, param, property, category) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
+```
 
+```{r generic-model-scatters}
 m.gen.endorse.rsa <- bind_rows(
   left_join(
     d.gen.endorse.bayes,
@@ -1304,7 +1326,6 @@ mse.gen.rsa.fixed <- compute_mse(
   m.gen.endorse.rsa %>% filter(src == "some_model"),  
   "MAP", "MAP_h", sigfigs = 5
 )
-
 
 generics.endorsement.models <- bind_rows(
   d.gen.endorse.regression,

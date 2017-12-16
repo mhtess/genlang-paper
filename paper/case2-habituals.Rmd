@@ -904,19 +904,21 @@ model_prefix <- "results-habituals-jointModel-S1-"
 # m.hab.samp <- data.frame()
 # m.hab.fixed.samp <- data.frame()
 
-# for (i in seq(1, n_chains)){
-#   mi <- fread(paste(project.path,  "models/habituals/results/",
-#                     model_prefix, "smtncs_habitual-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-#   m.hab.samp <- bind_rows(m.hab.samp, mi %>% mutate(chain = i))
-# 
-#   mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
-#                     model_prefix, "smtncs_some-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-#   m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, mi.fixed %>% mutate(chain = i))
-# 
-# }
-# 
+for (i in seq(1, n_chains)){
+  # mi <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "smtncs_habitual-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # m.hab.samp <- bind_rows(m.hab.samp, mi %>% mutate(chain = i))
+
+  # mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "smtncs_some-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+  #                         "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_chain", i, ".csv", sep = ""))
+  # 
+  #m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, mi.fixed %>% mutate(chain = i))
+}
+
 # save(m.hab.samp,
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
@@ -925,12 +927,28 @@ model_prefix <- "results-habituals-jointModel-S1-"
 #      file = paste(project.path,  "models/habituals/results/", model_prefix, "some-",
 #                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
+# save(m.hab.fixed.samp,
+#      file = paste(project.path,  "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_2chains.RData", sep = ""))
+
 
 load(paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
-load(paste(project.path,  "models/habituals/results/", model_prefix, "some-",
-                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# load(paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+load(paste(project.path,  
+           "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_2chains.RData", sep = ""))
+
+
+# m.hab.fixed.samp <- fread(paste(project.path,  "models/habituals/results/",
+#                           "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_chain1.csv", sep = ""))
+
+fixed.hab.params.posterior <-  m.hab.fixed.samp %>% 
+  filter(B %in% c("noise", "fixedThreshold")) %>%
+  group_by(B) %>% 
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
 
 m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
   filter(type == 'predictive') %>%
@@ -989,9 +1007,6 @@ r2.habituals.rsa.uncertain.infrequent<- compute_r2(habituals.rsa.uncertain.infre
 mse.habituals.rsa.uncertain.infrequent <- compute_mse(habituals.rsa.uncertain.infrequent,
                                           "MAP_h", "MAP")
 
-
-
-
 habituals.endorsement.models <- bind_rows(
   d.hab.endorse.regression,
   left_join(
@@ -1008,8 +1023,8 @@ habituals.endorsement.models <- bind_rows(
                                       "regression_freq_distinct"
                                      ),
                       labels = c(
-                                 "Speaker model - fixed semantics",
-                                 "Speaker model - uncertain semantics",
+                                 "Fixed semantics model",
+                                 "Uncertain semantics model",
                                  "Referent frequency alone", "Distinctiveness + referent frequency"
                                  ))) %>%
   ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,

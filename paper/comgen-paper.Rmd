@@ -92,6 +92,7 @@ library(lme4)
 library(knitr)
 library(kableExtra)
 library(cowplot)
+library(magick)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -410,28 +411,36 @@ We simulate how these two factors change both literal interpretation and endorse
 <!-- Predictions for endorsement depend upon how well the listener's posterior on $h$  upon hearing a generalization matches an $h$ that the speaker wants to convey in comparison to how well the listener's prior matches (which would result from the speaker staying silent). -->
 <!-- For purposes of illustration, we present different hypothetical priors on feature-probabilities $P(h)$, together with listener $L$ posterior distributions on $h$ after hearing utterances corresponding to (i) the underspecified threshold semantics as well as (ii) a comparison model where the threshold is fixed near-0, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}). -->
 
-```{r simluationsModel, eval = T, cache = T}
-l0.model <- '
+
+```{r rsaHelpers}
+rsaHelpers <- '
 var probability = function(Dist, x) {
     return Math.exp(Dist.score(x));
 }
 var targetUtterance = "generic";
 
+var round = function(x){
+  return Math.round(x*1000)/1000
+}
 var utterancePrior = Infer({model: function(){
   return uniformDraw([targetUtterance,"silence"])
 }});
 
+var thetaBins = map(round, _.range(0.01, 0.98, 0.01))
+// var thetaBins = [
+//    0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+//    0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
+ // ]
 var thetaPrior = Infer({model: function(){
- return uniformDraw([
-   0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-   0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
- ])}
-});
+ return uniformDraw(thetaBins)
+}});
 
-var bins = [
-  0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-  0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
-];
+var bins = map(round, _.range(0.01, 0.99, 0.01))
+
+// var bins = [
+  // 0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+  // 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
+// ];
 
 var meaning = function(utt,state, theta) {
   return utt=="generic"? state > theta :
@@ -462,45 +471,58 @@ var statePrior = Infer({model: function(){
       }, bins )
     })
 }});
-
-var listener0 = cache(function(utterance) {
-  Infer({model: function(){
-    var state = sample(statePrior)
-    var state_prior = sample(statePrior)
-    var theta = utterance == "generic" ? sample(thetaPrior) : -99
-    condition(meaning(utterance, state, theta))
-    return {
-      state_Posterior: state, 
-      state_Prior: state_prior
-  }
- }})}, 10000)
+'
+```
 
 
-var continuousListener0 = function(utterance) {
+```{r rsaInterpretationModels, eval = T, cache = T}
+no.utterance.model <- '
+var noUtteranceInterpreter = function() {
   Infer({model: function(){
    var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-   var state_prior = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-//     var state = sample(flip(mixture) ? Beta( priorParams) : Delta({v:0}))
-//     var state_prior = sample(flip(mixture) ? Beta( priorParams) : Delta({v:0}))
-//    var theta = uniform(0,1)
-    factor(
-    (utterance == "generic") ? 
-      Math.log(state) : 
-    (state > 0.017) ? 0 : -Infinity
-    )
-    return {
-      state_Posterior: state, 
-      state_Prior: state_prior
-  }
+    return { state }
  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-
-
-
-//var out = {generic: listener0("generic"), some: listener0("some")}
-//out
-continuousListener0(data.utt[0])
 '
 
+fixed.threshold.model <- '
+var fixedThresholdInterpreter = function(threshold) {
+  Infer({model: function(){
+  // var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+  var state = sample(statePrior)
+  condition( state > threshold)
+    return {
+      state: state
+  }
+ // }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+ }, method: "enumerate"})}
+'
+
+uncertain.threshold.model <- '
+var uncertainThresholdInterpreter = function() {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    factor( Math.log(state) )
+    return {
+      state: state, 
+  }
+  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+'
+
+```
+
+```{r simulationCalls}
+fixed.threshold.calls <- '
+_.fromPairs(map(function(t){return [t, fixedThresholdInterpreter(t)]}, [0.1, 0.3, 0.5, 0.7, 0.9]))
+'
+no.utterance.call <- ' 
+  noUtteranceInterpreter()
+'
+uncertain.threshold.call <- '
+  uncertainThresholdInterpreter()
+'
+```
+
+```{r}
 priorNames <- c(
   "doesntEatPeople", #"uniformRare", 
   "isFemale", 
@@ -521,150 +543,127 @@ priorShapes <- list(
 )
 
 
+sims.fixed.thresholds <- data.frame()
+sims.priors <- data.frame()
+sims.uncertain.thresholds <- data.frame()
 
-
-all.simulations <- data.frame()
 for (p in priorNames){
-  for (u in c("generic")){
-    
-    inputData = list(prior = priorShapes[[p]], utt = u)
-    l0.rs <- webppl(l0.model, data = inputData, data_var = "data")
-    
-    # all.simulations <- bind_rows(all.simulations,
-    #                         bind_rows(
-    #                           data.frame(l0.rs$generic) %>%
-    #                             gather(key, val, -probs) %>%
-    #                              group_by(key, val) %>%
-    #                              summarize(prob = sum(probs)) %>%
-    #                             ungroup() %>%
-    #                               mutate(key = gsub("support.", "", key)) %>%
-    #                              separate(key, into = c("Parameter","Distribution")) %>%
-    #                               mutate(Distribution = gsub("Posterior", "Posterior_Generalization", Distribution)),
-    #                           data.frame(l0.rs$some) %>%
-    #                             gather(key, val, -probs) %>%
-    #                             group_by(key, val) %>%
-    #                             summarize(prob = sum(probs)) %>%
-    #                             ungroup() %>%
-    #                             mutate(key = gsub("support.", "", key)) %>%
-    #                             separate(key, into = c("Parameter","Distribution")) %>%
-    #                             mutate(Distribution = gsub("Posterior", "Posterior_0", Distribution)) %>%
-    #                             filter(Distribution != "Prior"),
-    #                           data.frame(l0.rs$most) %>%
-    #                             gather(key, val, -probs) %>%
-    #                             group_by(key, val) %>%
-    #                             summarize(prob = sum(probs)) %>%
-    #                             ungroup() %>%
-    #                             mutate(key = gsub("support.", "", key)) %>%
-    #                             separate(key, into = c("Parameter","Distribution")) %>%
-    #                             mutate(Distribution = gsub("Posterior", "Posterior_05", Distribution)) %>%
-    #                             filter(Distribution != "Prior")
-    #                         ) %>%
-    #                           mutate(PriorShape = p)
-    # )
-      all.simulations <- bind_rows(all.simulations,
-                                   l0.rs %>%
-                                  separate(Parameter, into = c("Parameter","Distribution")) %>%
-                                  mutate(Distribution = gsub("Posterior", "Posterior_Generalization", Distribution))
-                                  %>%
-                              mutate(PriorShape = p, utterance = u)
+
+  inputData = list(prior = priorShapes[[p]])
+  rs.fixed.threshold.model <- webppl(paste(rsaHelpers, fixed.threshold.model, fixed.threshold.calls, sep = '\n'), data = inputData, data_var = "data")
+  rs.uncertain.threshold.model <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+  rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
+
+  sims.fixed.thresholds <- bind_rows(sims.fixed.thresholds,
+    bind_rows(
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.1`) %>% rename(prob = probs), 20000), threshold = 0.1) ,
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.3`) %>% rename(prob = probs), 20000), threshold = 0.3),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.5`) %>% rename(prob = probs), 20000), threshold = 0.5),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.7`) %>% rename(prob = probs), 20000), threshold = 0.7),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.9`) %>% rename(prob = probs), 20000), threshold = 0.9)
+    ) %>% 
+      mutate(PriorShape = p)
     )
-  }
-  #print(p)
+
+  sims.uncertain.thresholds <- bind_rows(sims.uncertain.thresholds, rs.uncertain.threshold.model %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
+  sims.priors <- bind_rows(sims.priors, rs.prior %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
 }
 ```
+
+
+```{r cache = F}
+fig.sims.priors <- ggplot(sims.priors, aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
+    theme_few() +
+    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    ylab("Normalized probability density") +
+    xlab("")+
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    facet_grid(PriorShape~., scales = 'free')+
+    theme(strip.text.y = element_blank())
+```
+
+
+```{r cache = F}
+fig.sims.fixed.thresholds <- ggplot(sims.fixed.thresholds, aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.3)+
+    theme_few() +
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Feature-probability") +
+    ylab("") +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    facet_grid(PriorShape~threshold, scales = 'free')+
+    theme(strip.text.y = element_blank(), axis.title.x = element_text(hjust = 1))
+```
+
+```{r cache = F}
+fig.sims.uncertain.threshold <- sims.uncertain.thresholds %>% mutate(PriorShape = factor(PriorShape, 
+                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
+                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria"))) %>% 
+                              ggplot(., aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
+    theme_few() +
+    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("") +
+    ylab("") +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    facet_grid(PriorShape~., scales = 'free')+
+    theme(strip.text.y = element_blank())#element_text(angle = 0, hjust = 0))
+```
+
+```{r fig.width = 9, eval = F}
+p1 <- fig.sims.priors +
+  theme(plot.margin = unit(c(18,2,6,6), "pt")) #+ ggtitle("Feature-probability priors")
+p2 <- fig.sims.fixed.thresholds +
+  theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
+p3 <- fig.sims.uncertain.threshold+
+  theme(plot.margin = unit(c(18,0,6,6), "pt"))+ 
+    theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
+
+prow <- plot_grid( p1 + theme(legend.position="none"),
+           p2 + theme(legend.position="none"),
+           p3 + theme(legend.position="none"),
+           align = 'vh',
+           labels = c("A", "B", "C"),
+           hjust = -1,
+           nrow = 1,
+           #rel_widths = c(1.2, 3, 2)
+           rel_widths = c(1.2, 3, 1.2)
+           )
+#prow
+#legend <- get_legend(p1)
+
+#plot_grid( prow, legend, rel_widths = c(3, .3))
+```
+
+
 ```{r simluationEndorsementModel, eval = T, cache = T}
 s1.model <- '
-var probability = function(Dist, x) {
-    return Math.exp(Dist.score(x));
-}
-var targetUtterance = "generic";
-
-var utterancePrior = Infer({model: function(){
-  return uniformDraw([targetUtterance,"silence"])
-}});
-
-var thetaPrior = Infer({model: function(){
- return uniformDraw([
-   0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-   0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
- ])}
-});
-
-var bins = [
-  0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-  0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
-];
-
-var meaning = function(utt,state, theta) {
-  return utt=="generic"? state > theta :
-         utt=="generic is false"? state<=theta :
-         utt=="silence"? true :
-         utt=="some"? state>0.01:
-         utt=="most"? state> 0.5:
-         utt=="all"? state >= 0.99:
-         true
-}
-
-var mixture = data.mix[0];
-var priorParams = data.params[0];
-
-var statePrior = Infer({model: function(){
-  var component = flip(mixture);
-  return component ?
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta(priorParams), b) + Number.EPSILON
-      }, bins )
-    }) :
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
-      }, bins )
-    })
-}});
-
-var continuousListener0 = function(utterance) {
-  Infer({model: function(){
-   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-   var state_prior = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-    factor(
-    (utterance == "generic") ? 
-      Math.log(state) : 
-    (state > 0.017) ? 0 : -Infinity
-    )
-    return {
-      state_Posterior: state, 
-      state_Prior: state_prior
-  }
- }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-
-
-
-var listener0 = cache(function(utterance) {
+var interpreter = cache(function(utterance) {
   Infer({model: function(){
     var state = sample(statePrior)
-    var state_prior = sample(statePrior)
     var theta = utterance == "generic" ? sample(thetaPrior) : -99
     condition(meaning(utterance, state, theta))
-    return {
-      state_Posterior: state, 
-      state_Prior: state_prior
-  }
+    return state
  }})}, 10000)
+
 var alpha = 2
 
 var endorser = function(featureProb){
   Infer({model: function(){
     var endorsement = sample(utterancePrior)
-    var L0 = marginalize(listener0(endorsement), "state_Posterior")
+    var L0 = interpreter(endorsement)
     factor(alpha * L0.score(featureProb))
     return endorsement
   }})
 }
-
-
+// console.log(data.featureProb[0])
 probability(endorser(data.featureProb[0]), "generic")
 '
 
@@ -676,19 +675,20 @@ exampleGenerics <- c(
   "dogsBark",
   "mosquitosCarryMalaria"
   )
+
 exampleParameters <- list(
-  robinsAreFemale =  list(params = data.frame(a = 10, b = 10), mix = 1, featureProb = 0.5), 
-  robinsLayEggs =  list(params = data.frame(a = 10, b = 10), mix = 0.2, featureProb = 0.5), 
-  sharksDontEatPeople =  list(params = data.frame(a = 50, b = 1), mix = 1, featureProb = 0.8), 
-  dogsBark =  list(params = data.frame(a = 5, b = 1), mix = 0.4, featureProb = 0.9), 
-  kangaroosHaveSpots =  list(params = data.frame(a = 5, b = 1), mix = 0.7, featureProb = 0.1), 
-  mosquitosCarryMalaria =  list(params = data.frame(a = 1, b = 30), mix = 0.1, featureProb = 0.1)
+  robinsAreFemale =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 1), featureProb = 0.5), 
+  robinsLayEggs =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 0.2), featureProb = 0.5), 
+  sharksDontEatPeople =  list(prior = list(params = data.frame(a = 50, b = 1), mix = 1), featureProb = 0.8), 
+  dogsBark =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.4), featureProb = 0.9), 
+  kangaroosHaveSpots =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.7), featureProb = 0.1), 
+  mosquitosCarryMalaria =  list(prior = list(params = data.frame(a = 1, b = 30), mix = 0.1), featureProb = 0.1)
 )
 
 s1.simulations <- data.frame()
 for (p in exampleGenerics){
 
-    s1.rs <- webppl(s1.model, data = exampleParameters[[p]], data_var = "data")
+    s1.rs <- webppl(paste(rsaHelpers, s1.model, sep = "\n"), data = exampleParameters[[p]], data_var = "data")
     s1.simulations <- bind_rows(s1.simulations,
                                    data.frame(example = p, endorsement = s1.rs, featureProb = exampleParameters[[p]]["featureProb"] ))
     
@@ -700,32 +700,88 @@ for (p in exampleGenerics){
 s1.simulations.relabeled <- s1.simulations %>%
   mutate(example = factor(example, 
                           levels = c("dogsBark", "kangaroosHaveSpots", "sharksDontEatPeople", "robinsLayEggs", "robinsAreFemale", "mosquitosCarryMalaria"),
-                            labels = c("Dogs bark", "Kangaroos have spots", "Sharks don't eat people", "Robins lay eggs", "Robins are female", "Mosquitos carry malaria")))
+                            labels = 
+                            c("Dogs bark", "Kangaroos have spots", "Sharks don't eat people", "Robins lay eggs", "Robins are female", "Mosquitos carry malaria")
+                            #c("Dogs", "Kangaroos", "Sharks", "Robins ", "Robins", "Mosquitos")
+                          ))
 
-s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement))+
-  #geom_jitter(width = 0.1, shape = 21, size = 5)+
-  #ylab("Human endorsement probability")+
-  #xlab("Frequency of target")+
-  geom_label_repel(data = s1.simulations.relabeled, 
-                   aes( label = example, fill = example),
-                       color = 'white',
-    box.padding = unit(0.0, "lines"),
-    #point.padding = unit(1e-06, "lines"),
-    segment.color = 'grey37')+
+# s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement))+
+#   #geom_jitter(width = 0.1, shape = 21, size = 5)+
+#   #ylab("Human endorsement probability")+
+#   #xlab("Frequency of target")+
+#   geom_label_repel(data = s1.simulations.relabeled, 
+#                    aes( label = example, fill = example),
+#                        color = 'white',
+#     box.padding = unit(0.0, "lines"),
+#     #point.padding = unit(1e-06, "lines"),
+#     segment.color = 'grey37')+
+#   scale_fill_solarized()+
+#   scale_x_continuous(limits = c(0, 1), 
+#                      breaks = c(0, 0.5, 1))+
+#   scale_y_continuous(limits = c(-0.01, 1.01), 
+#                      breaks = c(0, 1),
+#                      labels = c("False", "True"))+
+#   coord_fixed(ratio = 1)+
+#   guides(fill = F)+
+#   ylab("Endorsement model prediction")+
+#   xlab("Hypothesized feature-probability")
+
+
+
+s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement, fill = example))+
+  geom_col(color = 'black')+
+  # geom_label_repel(data = s1.simulations.relabeled, 
+  #                  aes( label = example, fill = example),
+  #                      color = 'white',
+  #   box.padding = unit(0.0, "lines"),
+  #   #point.padding = unit(1e-06, "lines"),
+  #   segment.color = 'grey37')+
   scale_fill_solarized()+
   scale_x_continuous(limits = c(0, 1), 
                      breaks = c(0, 0.5, 1))+
   scale_y_continuous(limits = c(-0.01, 1.01), 
-                     breaks = c(0, 1),
-                     labels = c("False", "True"))+
+                     breaks = c(0, 1))+
+                     #labels = c("False", "True"))+
   coord_fixed(ratio = 1)+
+  facet_grid(example~.)+
   guides(fill = F)+
-  ylab("Endorsement model prediction")+
-  xlab("Hypothesized feature-probability")
-
+  ylab("Endorsement")+xlab("Referent feature-probability")+
+  theme(strip.text.y = element_text(angle = 0, hjust = 0), 
+        axis.title.x = element_text(hjust = 0)
+        #axis.title.y = element_text(vjust = 0)
+        )
+  #ylab("Endorsement model prediction")+
+  #xlab("Hypothesized feature-probability")
+#s1.simulations.scatter
 ```
 
-```{r simulations_l0, fig.cap = "Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions."}
+
+```{r simulations, fig.cap = "Computational model behavior. A: Prior distributions over feature-probabilities for 6 example generalizations. B: Different fixed thresholds (columns) give rise to different posterior interpretations. C: The interpreter model averages over all thresholds, producing posterior distributions that strongly depend upon the priors. D: Endorsement model predictions, assuming a particular referent feature-probability. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 12, cache=F}
+p1 <- fig.sims.priors +
+  theme(plot.margin = unit(c(18,2,6,6), "pt")) #+ ggtitle("Feature-probability priors")
+p2 <- fig.sims.fixed.thresholds +
+  theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
+p3 <- fig.sims.uncertain.threshold+
+  theme(plot.margin = unit(c(18,0,6,6), "pt"))+ 
+    theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
+p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,0), "pt"))
+  
+prow <- plot_grid( p1 + theme(legend.position="none"),
+           p2 + theme(legend.position="none"),
+           p3 + theme(legend.position="none"),
+           p4,
+           align = 'vh',
+           labels = c("A", "B", "C", "D"),
+           hjust = -1,
+           nrow = 1,
+           #rel_widths = c(1.2, 3, 2)
+           rel_widths = c(1.2, 3, 1.1, 3)
+           )
+prow
+```
+
+
+```{r eval = F}
 all.simulations.refactored <- all.simulations %>%
   mutate(Distribution = paste(Distribution, utterance, sep = "_")) %>%
   filter(Distribution != "Some", Distribution != "Most") %>%
@@ -769,9 +825,31 @@ l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value
   guides(fill = F, color = F)+
   theme(strip.text.y = element_text(angle = 0),
           legend.position = c(0.92, 0.35))
+
+
+  
+l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
+                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
+    geom_density(aes(y = ..scaled..),
+                 size = 0.6,  adjust = 1.5)+
+    theme_few() +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    scale_alpha_manual(values = c(0.7, 0.3))+
+    scale_linetype_manual(values = c(1, 3))+
+    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Feature-probability h") +
+    ylab("Scaled prior probability density") +
+  facet_wrap(~PriorShape, scales = 'free')+
+  guides(fill = F, color = F)+
+  theme(strip.text.y = element_text(angle = 0),
+          legend.position = c(0.92, 0.35))
+
+
 ```
 
-```{r simulations, fig.cap = "Model behavior. Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 14, fig.height=6, cache=F}
+```{r simulationsOld, eval = F, fig.cap = "Model behavior. Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 14, fig.height=6, cache=F}
 grid.arrange(l0.simulations.distributions, 
              s1.simulations.scatter, ncol = 3,
              layout_matrix = cbind(c(1,1), c(1,1), c(2, 2)))
@@ -1326,7 +1404,7 @@ To the contrary, underspecification can be efficient, given that context can be 
 In our work, context takes the form of shared beliefs about the property in question. 
 By leveraging this common ground, genericity provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
 
-The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a na\"{i}ve listener.  
+The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a naive listener.  
 Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012].
 Disagreements are also predicted when interlocutors fail to share background assumptions, which could be differences in the prior distributions on feature-probabilities or the comparison class.
 Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?). 

@@ -9,15 +9,15 @@
 <!-- caus_support = "" -->
 <!-- caus_strength = "This virus causes the disease." -->
 
-What is the meaning of the utterance: "Drinking moonshine makes you go blind"?
-A first pass could be *there exists a causal relationship between blindness and moonshine such that blindness causes moonshine*.
-Interestingly, this definition doesn't mention the increased risk in becoming blind from moonshine, but presumably it's more probable than the alternative (not drinking moonshine).
-We hypothesize that the semantics of the above statement (a *causal* statement) is underspecified and subject to the same context-sensitivity as generic and habitual language.
+Language about causal relationships manifests as a generalization.
+The utterance "Drinking moonshine makes you go blind" relates to "My grandpa's drinking moonshine made him go blind" in a way analagous to how "John smokes" relates to  "John smoked yesterday". 
+We explore this hypothesis in our third case study: causal language or *causals* (e.g., "A causes B").
 
-We take language that conveys a causal relationship between two classes of things as our third case study: causal language, or *causals*.
-For simplicity, we identify the relevant dimension of the scale to be the conditional probability of the effect given the cause, though this representation will have problems for classic cases in causal reasoning. 
-Our goal is not to explain the phenomena of causal reasoning *per se*, but rather to adopt a semantics that could apply to the causal domain and test our theory on the language of causal relations.
-In particular, we aim to demonstrate empirically that our theory of the language of generalization posits constructs that are causally related to sentence endorsement.
+The problem of *causal induction*---knowing that one thing causes another----has been studied extensively in human psychology  [@Cheng1992; @Cheng1997; @Griffiths2005; @Griffiths2009].
+Classically, this is cast as a problem of inducing an unobservable relation (*type causation*) from observable events or contingency data. 
+We take a different approaching, examining *type causation* by the language used to describe it (e.g., "A causes B").
+We assume that such language conveys a generalization about *token* or *actual causation* (e.g., "A caused B, in this instance") and that our theory of the language of generalizations extends in a natural way to describe *causal language*.
+Ascribing causation to an individual event (*token or actual causation*) is itself a complex, inferential process [e.g., depending on counterfactual reasoning; @Gerstenberg2015how], which we do not try to model here.
 
 
 In this paper, we posit that feature-probability priors are a mediating representation between abstract conceptual structure and generalizations in language.
@@ -25,12 +25,22 @@ In this last set of experiments, we explicitly test the relationship between the
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
 
-The problem of *causal induction*---knowing that one thing causes another----has been studied extensively in human psychology  [@Cheng1992; @Cheng1997; @Griffiths2005; @Griffiths2009].
-Classically, this is cast as a problem of inducing an unobservable relation from observable data. 
-For example, assuming a controlled experiment: observing E whenever C is present, and the absence of E whenever C is absent, is strong evidence for concluding that C causes E.
-At the same time, individual events (e.g., observing $c_i$ and $e_i$) can be construed as *causal*, depending on whether $c_i$ is seen as a difference-maker for $e_i$ and how exactly $c_i$ made that difference [@Gerstenberg2015how].
-Going from covariation to causation, then, implies that during the events observed (the covariation), causal attribution was withheld: The events were not seen as causal at the time, only in retrospect.
-Alternatively, we may conclude there is no cause after first seeing events in-the-moment as causal.
+
+
+<!-- Going from covariation to causation, as in the classic causal reasoning paradigms, then, actual involves two inferences  -->
+
+<!-- implies that during the events observed (the covariation), causal attribution was withheld: The events were not seen as causal at the time, only in retrospect. -->
+
+<!-- A first pass could be *there exists a causal relationship between blindness and moonshine such that blindness causes moonshine*. -->
+<!-- Interestingly, this definition doesn't mention the increased risk in becoming blind from moonshine, but presumably it's more probable than the alternative (not drinking moonshine). -->
+<!-- We hypothesize that the semantics of the above statement (a *causal* statement) is underspecified and subject to the same context-sensitivity as generic and habitual language. -->
+
+<!-- We take language that conveys a causal relationship between two classes of things as our third case study: causal language, or *causals*. -->
+<!-- For simplicity, we identify the relevant dimension of the scale to be the conditional probability of the effect given the cause, though this representation will have problems for classic cases in causal reasoning.  -->
+<!-- Our goal is not to explain the phenomena of causal reasoning *per se*, but rather to adopt a semantics that could apply to the causal domain and test our theory on the language of causal relations. -->
+<!-- In particular, we aim to demonstrate empirically that our theory of the language of generalization posits constructs that are causally related to sentence endorsement. -->
+
+
 
 <!-- If we see individual events as causal (*token level* causation), then we may reach a point when we organize those events as instances of a category-level causal relation (*type level* causation). -->
 <!-- How do we tell others about what we learned? -->
@@ -42,14 +52,6 @@ Alternatively, we may conclude there is no cause after first seeing events in-th
 <!-- Adults and children can infer causal relationships from just a few examples [@Gopnik2000; @Schulz2004] and computational models have been used to formalize the problem of *elemental causal induction*, or learning a causal relationship from observational data [@Griffiths2005; @Kemp2010a]. -->
 <!-- Having induced a causal relationship from observational data, people communicate their causal knowledge using language.  -->
 <!-- Indeed, when causal relations are nonobvious, causal language helps children as young as 2-years learn those relations [@Bonawitz2010]. -->
-
-
-
-
-
-
-
-
 
 
 
@@ -73,13 +75,29 @@ Experiment 3b (*causal endorsement*) will then follow a mostly-identical experim
 
 ```{r causal-priors-data}
 d.cas.priors <- read.csv(paste(project.path,
-                           "data/causals/priors/pilot-causals-7-prior-trials.csv",
+                           "data/causals/priors/causals-8-prior-trials.csv",
                            sep= ""))
+
+d.cas.priors.catch <- read.csv(paste(project.path,
+                           "data/causals/priors/causals-8-prior-catch_trials.csv",
+                           sep= ""))
+
+# some participants were mischaracterized as failing the catch trial because they put something of the form "0/100" or "herb F: 19" 
+mischaracterized <- c( 24, 48, 62, 94, 106, 110, 111, 112, 113, 116, 125, 132, 145, 155, 158)
+
+d.cas.priors <- left_join(d.cas.priors, d.cas.priors.catch) %>%
+  mutate(pass_numeric = ifelse(workerid %in% mischaracterized, 1, pass_numeric),
+         passBoth = ifelse(pass_numeric + pass_story == 2, 1, 0))
 
 n.subj.cas <- length(unique(d.cas.priors$workerid))
 
+n.subj.cas.failed <- length(unique(filter(d.cas.priors, passBoth == 0)$workerid))
+
+d.cas.priors <- d.cas.priors %>% filter(passBoth == 1)
+
 ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60, 1)
 ```
+
 
 ```{r causal-priors-runModel, cache = T}
 causal.distributions <- levels(factor(d.cas.priors$distribution))
@@ -385,12 +403,13 @@ for (p in causal.priorParams$distribution){
 
 ### Results
 
+
+`r n.subj.cas.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas-n.subj.cas.failed` responses for analysis.
 The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure \ref{fig:figure-causals}.
 These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
 We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
 
 ```{r empirical-causal-prior-densities, eval = F, fig.width = 5, fig.height = 3, fig.caption="Empirical densities from the prediction task in the prior manipulation experiment (Expt. 3a)."}
-
 d.cas.priors %>%
   filter(distribution %in% c("common_weak", "rare_deterministic", "rare_weak")) %>%
       mutate(Distribution = factor(distribution, 
@@ -505,8 +524,8 @@ ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low
 
 
 ```{r causals-fullmodel}
-n_chains <- 1
-n_samples <- 5000
+n_chains <- 2
+n_samples <- 100000
 burn <- n_samples / 2
 lg <- 5
 i <- 1
@@ -552,7 +571,7 @@ m.cas.fullmodel.endorsement <- m.cas.samp %>%
 ```
 
 
-```{r causal-model-insets, fig.width = 8, fig.height = 3.5, cache = T}
+```{r causal-model-insets, fig.width = 4, fig.height = 3.5, cache = T}
 m.cas.fullmodel.prior.parameters <- m.cas.samp %>%
   filter(type == "prior") %>%
   rename(variable = item, parameter = roundedFreq) %>%
@@ -590,31 +609,35 @@ for (p in m.cas.fullmodel.prior.parameters.tidy$dist){
    )
 }
 
-inset.color.order <- c( "#268bd2", "#dc322f","#d33682","#859900")
-
+#inset.color.order <- c( "#268bd2", "#dc322f","#d33682","#859900")
+inset.color.order <- c("#859900","#d33682","#dc322f", "#268bd2")
 
 causals.endorsement.insets <- cas.listener.predictions %>% 
     mutate(Parameter = factor(Parameter, 
                               levels = c("state_Prior","state_Posterior"),
-                            labels = c("Listener Prior (Posterior given Silence)",
-                                       "Listener Posterior given Causal")),
+                            labels = c("Feature-probability Prior (Expt. 3a)",
+                                       "Interpreter model posterior")),
     Distribution = factor(distribution, 
-                               levels = c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
-         labels = c("Common Deterministic", "Rare Deterministic",
-                    "Common Weak", "Rare Weak"))) %>%
+                               levels = c("rare_weak",  "common_weak", "rare_deterministic", "common_deterministic"),
+         labels = c("Weak, Rare", "Weak, Common", "Strong, Rare", "Strong, Common"))) %>%
   ggplot(., aes( x = value, fill = Distribution, color = Distribution, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
-  facet_wrap(~Distribution, nrow = 1)+
+  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
+  facet_wrap(~Distribution, nrow = 2)+
   scale_fill_manual(values =inset.color.order )+
   scale_color_manual(values = inset.color.order)+
-  scale_alpha_manual(values = c(0.1, 0.8))+
-  scale_linetype_manual(values = c(2, 1))+
+  scale_alpha_manual(values = c(0.8, 0.1))+
+  scale_linetype_manual(values = c(1, 2))+
   scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
   scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
   xlab("Feature-probability") +
   ylab("Scaled probability density")+
-  theme(legend.position = "bottom", legend.title = element_blank())+
-  guides(fill = F, color = F)
+  theme(legend.position = "bottom", 
+        legend.direction = 'vertical',
+        legend.title = element_blank(),
+        plot.margin = unit(c(16,6,6,6), "pt"))+
+  guides(fill = F, color = F, alpha = F)
+
+#causals.endorsement.insets
 ```
 
 ```{r}
@@ -644,34 +667,65 @@ figure.causals.endorsement <- bind_rows(
 ) %>%
   ungroup() %>%
   mutate(
-    src = factor(src, levels = c( "data", "model")),
+    src = factor(src, levels = c( "model", "data")),
     dist = factor(dist, 
            levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
            labels = c(
-                       "Rare Weak", "Common Weak","Rare Deterministic","Common Deterministic"))
+                       "Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common"))
     ) %>%
-  ggplot(., aes( x = dist, y = MAP, ymin = cred_lower, ymax = cred_upper, fill = dist,
-                        group = src, alpha = src))+
-  geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
-  geom_linerange(position = position_dodge(0.3), alpha = 1)+
-  #geom_line(position = position_dodge(0.3))+
+  ggplot(., aes( x = frequency, y = MAP, ymin = cred_lower, ymax = cred_upper, 
+                 color = dist, #linetype = dist, 
+                 shape = dist,
+                        group = dist#, 
+                 #alpha = src
+                 ))+
+  #geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
+  geom_linerange(position = position_dodge(8), alpha = 1, alpha=0.8)+
+  geom_line(position = position_dodge(8), alpha = 0.8, linetype = 3)+
+  geom_point(position = position_dodge(8), size = 2.25)+
   #theme(axis.text.x = element_text(angle = 90))+
-  geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  #geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   scale_alpha_manual(values = c(1, 0.3))+
+  scale_x_continuous(limits = c(10, 90), breaks = c(20, 70))+
   #scale_fill_solarized()+
-  scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
-  xlab("")+
-  ylab("Proportion Causal Endorsement")+
-  facet_grid(.~frequency)+
-  coord_flip()+
-  guides(fill = F)+
-  theme(legend.position = 'bottom', legend.direction = 'horizontal', legend.title = element_blank())
+  scale_color_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
+  xlab("Referent feature-probability")+
+  ylab("Causal Endorsement")+
+  facet_grid(.~src)+
+  #coord_flip()+
+  coord_fixed(ratio = 90)+
+  #guides(fill = F)+
+  guides(
+    shape=guide_legend(title="Background distribution"),
+    color=guide_legend(title="Background distribution")
+    )+
+  theme(
+    plot.margin = unit(c(0,6,0,6), "pt")
+    #legend.position = 'bottom', 
+    # legend.direction = 'horizontal', 
+    # legend.title = element_blank()
+  )
 ```
 
-```{r figure-causals, fig.width=11, fig.height=8, cache = T, fig.cap="Endorsing generalizations about causes. Top: Human elicited endorsements and model fit predictions for four manipulated prior distributions and two observed frequencies. Bottom: Feature-probability priors and listener posteriors upon hearing the generalization for the experimentally manipulated priors. These distributions are inferred using both data sources from Expt. 3 (analagous to the Bayesian data analytic approach outlined in Figure \\ref{fig:genericsModelDiagram})."}
-grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
-             layout_matrix = cbind(c(1,1,2)))
+```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Background, feature-probability prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Endorsement mode predictions, interpreter model posteriors, and feature-probability priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix."}
+
+prow <- plot_grid( 
+  figure.causals.endorsement + theme(legend.position="none"),
+  causals.endorsement.insets,# + theme(legend.position="none"),
+   align = 'h',
+   labels = c("A", "B"),
+   #hjust = -1,
+   nrow = 1,
+  rel_widths = c(1, 0.7),
+  rel_heights = c(1, 0.7)
+  )
+#legend <- get_legend(causals.endorsement.insets)
+
+#plot_grid( prow, legend, rel_widths = c(3, .3))
+prow
+#grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
+             #layout_matrix = cbind(c(1,1,2)))
 
 # ,
 #              habituals.endorsement.insets, ncol = 2,
@@ -680,7 +734,7 @@ grid.arrange(figure.causals.endorsement, causals.endorsement.insets, ncol = 1,
 
 ### Results
 
-`r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse.failed-n.subj.cas.endorse.failed` responses for analysis.
+`r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse-n.subj.cas.endorse.failed` responses for analysis.
 As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior. 
 These are shown for the different experimentally-manipulated priors and frequencies in Figure \ref{fig:causals-endorsement}.
 
