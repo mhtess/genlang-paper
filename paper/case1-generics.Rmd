@@ -1655,16 +1655,31 @@ Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos car
 ## Discussion
 
 Generic language is the premier case study for generalizations in language. 
-Generics have been studied extensively in the cognitive and developmental psychological literatures and have been shown to have deep implications for wide ranging phenomena from stereotype propogataion [@Rhodes2012] to motivation [@Cimpian2007].
-Heretofore, no formal model has made precise, quantitative predictions about the flexible endorsement patterns of generics (*Birds lay eggs* v. *are female*; *Mosquitos carry malaria*).
+Generics have been studied extensively in the cognitive and developmental psychological literatures and shown to have deep implications for wide ranging phenomena from stereotype propogation [@Rhodes2012] to motivation [@Cimpian2007].
+Heretofore, however, no formal model has been able to pass the most basic truth-functional tests of the semantics of generalizations, knowing when they are true and false.
+Determining the truth conditions is the first step towards articulating a formal theory of how the language updates beliefs.
 
-By measuring listeners' prior beliefs about the probability of the property across kinds and the feature-probability of the referent kind (e.g., the percentage of birds that lay eggs), we were able to show how a semantics based on probability is tenable in spite of alleged counterexamples.
-The key theoretical insight is that the threshold must be *underspecified* in the semantics and determined in context.
-The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the feature-probability that the endorser had in mind.
+We have demonstrated that a semantics based on the probability of the feature is tenable in spite of alleged counterexamples.
+The key theoretical insight is that the truth-functional semantics is *underspecified* yet still is able to formalize, using recent developments in probabilistic modeling.
+Our model provides a clean delineation of world knowledge (formalized as a prior distribution) from the semantics of generalizations. 
+We return to this point, and its implications for theory-building, in the general discussion. 
 
-In explaining the variable endorsements of generics, we measured the prior distribution over the probabilities of features across categories in addition to the probability of the feature in the referent-category (e.g., the percentage of robins that lay eggs) to model the endorsement data.
-Thus, we have shown how these measurements are related to generic endorsement via our model. 
-In our second case study, we extend the theory to the domain of events and provide the first evidence that the factors identified by our theory are causally related to endorsement. 
+<!-- The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the feature-probability that the endorser had in mind. -->
+
+In explaining the variable endorsements of generics, we related the referent-category feature-probability (e.g., the percentage of robins that lay eggs) to the endorsement of the generalization (e.g., "Robins lay eggs") via the feature-probability priors (e.g., the percentage of different kinds of animals that lay eggs). 
+In doing so, we used generic statements about familiar animal categories, which has long been the cleanest domain for testing semantic theories of generics by providing minimal comparison like "Robins lay eggs" vs. "... are female". 
+To model statements about familiar categories, we were forced to *measure* the relevant quantities in the model (i.e., the referent feature-probability and the feature-probability priors), which people have access to via their mental representations of the category. 
+We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent feature-probabilities (Case 2) and feature-probabilitiy priors (Case 3).
+In addition, we take this opportunty to highlight the generality of the theory, by performing these additional empirical tests in different domains for generalization: events and causes. 
+
+<!-- With a tenable quantitative theory in hand,  -->
+
+<!-- In our second case study, we provide a stricter test of the quantitative precision of our theory and  -->
+
+
+<!-- the probabilities of features across categories in addition to the probability of the feature in the referent-category (e.g., the percentage of robins that lay eggs) to model the endorsement data. -->
+<!-- Thus, we have shown how these measurements are related to generic endorsement via our model.  -->
+<!-- In our second case study, we extend the theory to the domain of events and provide the first evidence that the factors identified by our theory are causally related to endorsement.  -->
 <!-- This evidence is correlational in nature, however. -->
 <!-- We do not yet know if the variables that we are measuring are causally related to endorsement. -->
 
