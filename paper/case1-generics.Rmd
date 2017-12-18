@@ -6,8 +6,8 @@ Time after time, psychologists have shown that generics simply do not reduce to 
 
 Here, we take our first empirical look at how the *underspecified threshold* endorsement model predicts actual human endorsements of generic statements.
 We measure endorsement for thirty generic sentences that cover a range of conceptual distinctions [@Prasada2013]: *majority characteristic* (e.g., "Ducks have wings."),  *minority characteristic* (e.g., "Robins lay eggs."), *striking* (e.g. "Mosquitos carry malaria."),  *false generalization* (e.g., "Robins are female."), and *absent features* (e.g. "Lions lay eggs.").
-We further craft sentences to elicit the full range of acceptability judgments (intuitively: "true", "false", and "indeterminate") for generics with properties of low, medium, and high feature-probabilities (Expt. 1a).
-We examine generics about animal categories in order to reliably measure the prior belief distribution over the feature-probabilities $P(h)$ (Expt. 1b).
+We further craft sentences to elicit the full range of acceptability judgments (intuitively: "true", "false", and "indeterminate") for generics with properties of low, medium, and high referent-prevalence (Expt. 1a).
+We examine generics about animal categories in order to reliably measure the prior belief distribution over the prevalence of features $P(h)$ (Expt. 1b).
 This elicitation procedure includes measurements of the referent-category feature-probabilties $h'$ (e.g.,$P(x \text{ lays eggs} \mid x \text{ is a robin})$), allowing us to both generate predictions for the endorsement model (Eq. \ref{eq:S1}) as well as for simpler, alternative models. 
 
 ## Experiment 1a: Generic endorsements
@@ -104,7 +104,7 @@ generics.endorsement.spectrum <- left_join(
   #scale_y_continuous(limits = c(0,1), breaks = c(0, 0.5, 1))+
   scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
   scale_fill_continuous(breaks = c(0, 1), limits = c(0, 1))+
-  guides(fill = guide_colorbar(title = 'feature probability',
+  guides(fill = guide_colorbar(title = 'Prevalence',
                                ticks = F))+
   theme(legend.position = 'bottom')
   #geom_hline(yintercept = -0.25, lty = 3)+
@@ -212,18 +212,18 @@ indeterminate generics were agreed with \emph{less} likely than chance ($`r unce
 In addition to these categorical differences between our thirty generic statements, we find a contiuum of endorsement values (Figure \ \@ref(fig:generics-endorsement-figure) A).
 Such a continuum of judgments is already evidence against any theory that only predicts categorically whether a generic statement is true or false.
 Ideally, a complete theory of genericity should be able to explain statements that are endorsed completely, unendorsed completely, and all shades in between.
-We next measure the prior distribution over feature-probabilities and articulate a set of formal models that try to predict these endorsement data. 
+We next measure the prevalence prior distribution and articulate a set of formal models that try to predict these endorsement data. 
 
-## Experiment 1b: Feature-probability prior elicitation
+## Experiment 1b: Prevalence prior elicitation
 
-The feature-probability prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the probability of a given feature (e.g. \textsc{lays eggs}) across relevant categories. 
+The prevalence prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the probability of a given feature (e.g. \textsc{lays eggs}) across relevant categories. 
 To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are walking around and you come across an instance of your favorite kind of animal from Earth (e.g., a peregrine falcon). Ask yourself "is it female?" Your answer will probably depend upon the percentage of the category that you believe to be female (e.g., the percentage of female peregrine falcons, i.e., 50\%). Now, do you think it lays eggs? Your answer to this question will likely depend upon on what animal you're thinking of: If you're thinking of a peregrine falcon, the probability is similar to that of being female (50\%) because female peregrine falcons lay eggs; if you're thinking of a mammal, it's likely that it won't lay eggs (0\%) because most mammals give birth to live young. That is, the answer is either 50\% or 0\% depending on the kind of creature you are thinking of^[
 The subjective probability may, in fact, be non-zero and small for what we're calling 0\%. 
 Non-zero probabilities allow for the intuitive possibility of a dog that lays eggs potentially due to some strange generic mutation or the interaction of dog genetics with a strange environment. 
 ].
 
-This thought experiment decomposes the feature-probability prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the feature-probability given the kind $P(h \mid k)$.
-We will use this decomposition to measure the feature-probability prior $P(h) = \int_{k} P(h \mid k) \diff k$, and perform a structured Bayesian data-analysis to model the prior data.
+This thought experiment decomposes the prevalence prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the prevalence given the kind $P(h \mid k)$.
+We will use this decomposition to measure the prevalence prior $P(h) = \int_{k} P(h \mid k) \diff k$, and perform a structured Bayesian data-analysis to model the prior data.
 We measured prior distributions empirically for the set of properties (e.g., \textsc{lays eggs, carries malaria}; 21 in total) used in our generic sentences in Expt. 1a.
 To create a larger set of properties, we reverse-code responses for five properties to create their corresponding negative properties (e.g., we create a property "doesn't have beautiful feathers" by subtracting from 100\% the responses for "has beautiful feathers").
 
@@ -245,7 +245,7 @@ Participants were asked to fill in each row with the percentage of members of ea
 Eight property--columns in total appeared in the table.
 
 This whole procedure was repeated two times (two trials).
-In total, each participant generated ten animal names and reported on the feature-probability of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
+In total, each participant generated ten animal names and reported on the prevalence of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 
 ```{r generics-prior-task, fig.cap="Prior elicitation task. A: Participants first generated animal names after seeing six example categories. B: One feature at a time, participants estimated the percentage of the category with the feature, for each category.", fig.height = 3}
 fig.priors.expt.stage1 <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-stage1.jpeg", sep=""), scale = 1)
@@ -259,7 +259,7 @@ plot_grid(fig.priors.expt.stage1, fig.priors.expt.stage2, labels = "AUTO")
 
 There is a lot of diversity in the shapes of the elicited prior distributions (8 examples shown in Figure\  \@ref(fig:generic-endorsement-priors-figure) A), which is roughly consistent with the schematic prior distributions used in the *Model Simulations* section (Figure \  \@ref(fig:simulations) A).
 The property *being female* is present in almost all categories in almost exactly the same proportion, where as properties such as *laying eggs* or *having spots* exhibit more structure represented by the multimodality of these distributions. 
-*Being red* exists mostly at extremely low prevalence levels (i.e., 0 feature-probability) but also at high prevalence levels (e.g., 50\% or 100\%), whereas *carrying malaria* is really only present at low prevalence levels.
+*Being red* exists mostly at extremely low prevalence levels (i.e., 0 prevalence) but also at high prevalence levels (e.g., 50\% or 100\%), whereas *carrying malaria* is really only present at low prevalence levels.
 This diversity is important because the endorsement model makes different predictions depending on the shape of the prior.
 
 ### Quantitative modeling
@@ -269,12 +269,12 @@ In order to integrate the results of this prior measurement task into our model 
 We do this using a Bayesian mixture model, which assumes that the data generated for each property (e.g., \textsc{lay eggs}) comes from one of two underlying Beta distributions (*Mixture of Betas*).^[
   The Beta distribution is chosen because the support of this distribution is numerical values between 0 - 1, exactly the form of the response data in the prior elicitation task.
 ] 
-We specify one of these distributions *a priori* to represent kinds of animals who *do not have* a stable causal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}), which results in feature-probability or prevalence values close to or equal to 0.
+We specify one of these distributions *a priori* to represent kinds of animals who *do not have* a stable causal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}), which results in prevalence or prevalence values close to or equal to 0.
 This "null distribution" is potentially present for all features in exactly the same way.
 The second distribution represents kinds of animals who *do have* such a mechanism, and the two parameters of this distribution are not specified *a priori* and are not the same for all properties, but are inferred on a property-wise basis from participants' responses.
 The *Mixture of Betas* distribution has a third free parameter (for each property), the relative contribution of the "null distribution" (for example: we expect the "null distribution" to not contribute at all to properties like *being female*, for which almost all categories have at least some members with the property).
 To ensure the *Mixture of Betas* model of the prior is not overly complex, we fit an additional model that represents only a single underlying distribution (*Single Beta*) for a comparison.
-<!-- is flexible and can represent different shapes for different properties (e.g., the differences in feature-probability judgments for \textsc{lay eggs} vs. \text{has wings}). -->
+<!-- is flexible and can represent different shapes for different properties (e.g., the differences in prevalence judgments for \textsc{lay eggs} vs. \text{has wings}). -->
 For more details about model implementation and inference, see Appendix. 
 
 ```{r generic-endorsement-priors}
@@ -559,17 +559,17 @@ marginal.prior.likelihoods <- marginal.prior.likelihoods %>%
 roundedBF1 = round(mean(marginal.prior.likelihoods$logBF)/ 10000)*10000
 ```
 
-The prior distributions over feature-probabilities are well modeled as a mixture of two Beta distributions and not as a single Beta distribution (Figure\  \@ref(fig:generic-endorsement-priors-figure) B; red vs. blue lines). 
+The prior distributions over prevalence are well modeled as a mixture of two Beta distributions and not as a single Beta distribution (Figure\  \@ref(fig:generic-endorsement-priors-figure) B; red vs. blue lines). 
 The *Single Beta* model does okay for the *being female* distribution, but overly smooths the other distributions, washing out the latent structure in participants' responses.
 One prior that the *mixture of Betas* model does not perfectly capture is the prior distribution over the feature \textsc{lay eggs}.
 The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 100\%^[
-Similar phenomena have been observed in other feature-probability elicitation tasks when the referent-category is fixed [e.g., estimating only the percentage of *robins* that *lay eggs*; @Prasada2013]
+Similar phenomena have been observed in other prevalence elicitation tasks when the referent-category is fixed [e.g., estimating only the percentage of *robins* that *lay eggs*; @Prasada2013]
 ]; a simple two-component mixture model has no way to account for such a tri-modal distribution. 
 A more complex model (i.e., one with three mixture components) is necessary to perfectly account for this item.
 
 <!-- The Bayes Factor indicates the extent to which the data support one model over another. -->
-<!-- The overall Bayes Factor in terms of structured model (S) over the unstructured model (U) for the full feature-probability prior data set is approximately $\log BF_{SU} = `r roundedBF1`$, meaning that the structured hypothesis is approximately `r roundedBF1` orders of magnitude more likely than the unstructured hypothesis to account for the feature-probability prior data. -->
-<!-- Indeed, the data strongly suggests the feature-probability prior is structured. -->
+<!-- The overall Bayes Factor in terms of structured model (S) over the unstructured model (U) for the full prevalence prior data set is approximately $\log BF_{SU} = `r roundedBF1`$, meaning that the structured hypothesis is approximately `r roundedBF1` orders of magnitude more likely than the unstructured hypothesis to account for the prevalence prior data. -->
+<!-- Indeed, the data strongly suggests the prevalence prior is structured. -->
 
 
 ```{r generic-endorsement-priors-savageDickeyModel, eval = F}
@@ -903,7 +903,7 @@ ggplot(m.gen.endorse.priors.summary %>% filter(Parameter == 'phi') %>%
   ylab("MAP estimate and 95% HDI of Mixture parameter")
 ```
 
-```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over feature-probabilities for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prio and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
+```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prio and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
 
 gen.priors.densities <- ggplot(m.gen.endorse.priors.posteriorPredictive %>%
@@ -942,7 +942,7 @@ ggplot(.,
     scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     #coord_fixed()+
-    xlab("Feature-probability") +
+    xlab("prevalence") +
     ylab("Cumulative probability density")+
     theme(legend.title = element_blank(), legend.position = 'bottom')
 
@@ -971,11 +971,11 @@ plot_grid(
 ## Endorsement model comparison
 
 To understand the generative process of generic endorsement, we articulate a set of formal models that have been previously-proposed in the literature, an alternative-form of our proposed endorsement model, and our full endorsement model.
-As the simplest baseline hypothesis, we first explore how well referent-category feature-probability itself predicts generic endorsement (e.g., does the fraction of \textsc{robins} that \textsc{lay eggs} predict the felicity of *Robins lay eggs*?).
-As a secondary alternative hypothesis, we explore whether referent feature-probability and *cue validity*---the probability of a kind given the feature (described in more detail below)---predicts the endorsement data.
-We fit these models using standard maximum-likelihood techniques; we model uncertainty in the input measurements (i.e., referent feature-probability, cue validity) by bootstrapping those data.
+As the simplest baseline hypothesis, we first explore how well referent-category prevalence itself predicts generic endorsement (e.g., does the fraction of \textsc{robins} that \textsc{lay eggs} predict the felicity of *Robins lay eggs*?).
+As a secondary alternative hypothesis, we explore whether referent prevalence and *cue validity*---the probability of a kind given the feature (described in more detail below)---predicts the endorsement data.
+We fit these models using standard maximum-likelihood techniques; we model uncertainty in the input measurements (i.e., referent prevalence, cue validity) by bootstrapping those data.
 
-Our underspecified-threshold hypothesis models endorsement by considering how well the generalization would bring a naive interpreter's prior distribution on feature-probabilities $P(h)$ (e.g., the prevalence of laying eggs among other animals) in line with the referent-category feature-probability (e.g, the prevalence of laying eggs among robins).
+Our underspecified-threshold hypothesis models endorsement by considering how well the generalization would bring a naive interpreter's prior distribution on prevalence $P(h)$ (e.g., the prevalence of laying eggs among other animals) in line with the referent-category prevalence (e.g, the prevalence of laying eggs among robins).
 There are several substantive components to this hypothesis: (a) the prior distribution $P(h)$ is relevant, (b) endorsement is a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) the core semantics of a generalization is an uncertain threshold.
 As a control model, we assign a fixed semantics to the generalization (i.e., analogous to the quantified statements) but keep the prior and the decision-theoretic architecture in place. 
 This provides a strict test of the uncertain-threshold hypothesis (c).
@@ -1175,21 +1175,21 @@ mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.pre
 
 ### Baseline models
 
-#### Referent feature-probability
+#### Referent prevalence
 
-From the feature-probability prior data (Expt. 1b), we estimate participants' beliefs about the probability of a feature for the referent categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}).
+From the prevalence prior data (Expt. 1b), we estimate participants' beliefs about the probability of a feature for the referent categories (e.g., the percentage of \textsc{robins} that \textsc{lay eggs}).
 We find a little over half of the variance in the endorsement data is explained this way ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev`$; MSE=$`r mse.gen.regression.prev`$; Figure \  \@ref(fig:generic-endorsement-priors-figure), upper-right: lower-left facet). 
-The referent feature-probability baseline is a decent model of these data because our stimulus set includes generics that are true with high feature-probability properties (e.g., *Leopards have spots.*) and generics that are false with low feature-probability properties (e.g., *Leopards have wings.*). 
+The referent prevalence baseline is a decent model of these data because our stimulus set includes generics that are true with high prevalence properties (e.g., *Leopards have spots.*) and generics that are false with low prevalence properties (e.g., *Leopards have wings.*). 
 
-However, large deviations from an account based purely on referent feature-probabilities remain: Generics in which the referent-category has intermediate feature-probabilities (feature-probability quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{feature-probability} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by referent feature-probability ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
-This includes generics that are judged true with relatively low referent feature-probabilities (e.g., "Mosquitos carry malaria") and false with relatively high referent feature-probabilities (e.g., "Sharks don't eat people").
+However, large deviations from an account based purely on referent prevalence remain: Generics in which the referent-category has intermediate prevalence (prevalence quartiles 2 and 3: $`r round(100*intermediate.prev.quantiles[["25%"]])`\% < \text{prevalence} < `r  round(100*intermediate.prev.quantiles[["76%"]])`\%$), are not at all explained by referent prevalence ($r_{Q2,3}^2(`r r2.gen.n.intermedprev`) = `r r2.gen.regression.prev.intermedprev`$; MSE = $`r mse.gen.regression.prev.intermedprev`$).
+This includes generics that are judged true with relatively low referent prevalence (e.g., "Mosquitos carry malaria") and false with relatively high referent prevalence (e.g., "Sharks don't eat people").
 
-#### Cue validity and referent feature-probability
+#### Cue validity and referent prevalence
 
 ##### Model specification
 
 As a secondary baseline hypothesis, we explore whether prevalence and *cue validity* predict generic endorsementse.
-If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
+If prevalence is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
 *Cue validity* thus captures the distinctiveness of the feature for the category. 
 For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria. 
 Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though its role in generic meaning is controversial [@Leslie2007; @Leslie2008].
@@ -1197,13 +1197,13 @@ Empirically, cue validity is not a *necessary* criteron for generic endorsement 
 In addition, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
 
 
-We described in Expt 1b. that $P(h)$ can be decomposed into a prior on kinds $P(k)$ and the likelihood of a feature-probability given the kind $P(h \mid k)$.
-If there is a finite number of kinds in the feature-probability prior for a feature, and one knows the probability of the feature for each kind (i.e., $P(h \mid k)= P(f \mid k)$), then the cue validity of that feature for a particular kind is encoded in the feature-probability prior and can be derived via Bayes' Rule:
+We described in Expt 1b. that $P(h)$ can be decomposed into a prior on kinds $P(k)$ and the likelihood of a prevalence given the kind $P(h \mid k)$.
+If there is a finite number of kinds in the prevalence prior for a feature, and one knows the probability of the feature for each kind (i.e., $P(h \mid k)= P(f \mid k)$), then the cue validity of that feature for a particular kind is encoded in the prevalence prior and can be derived via Bayes' Rule:
 $$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
-Previous empirical studies of generic language, however, have not measured feature-probability priors and instead tried to estimate cue-validity by asking about the distinctiveness of features for given animals [e.g., @Khemlani2012]
+Previous empirical studies of generic language, however, have not measured prevalence priors and instead tried to estimate cue-validity by asking about the distinctiveness of features for given animals [e.g., @Khemlani2012]
 In keeping with this tradition, we measured cue validity using a free production paradigm, following @Cree2006.
 Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
-For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity as well as the *feature-probability prior derived cue validity*, see Appendix.
+For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity as well as the *prevalence prior derived cue validity*, see Appendix.
 
 ##### Results
 
@@ -1221,7 +1221,7 @@ reg.mosquitos.dont.carry <- d.gen.endorse.regression %>% filter(src == "regressi
 ```
 
 
-A linear model that uses predictors for both referent feature-probability and cue validity does a better job at explaning the endorsement data than just feature-probability alone ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev.cv`$; MSE=$`r mse.gen.regression.prev.cv`$).
+A linear model that uses predictors for both referent-prevalence and cue validity does a better job at explaning the endorsement data than just prevalence alone ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev.cv`$; MSE=$`r mse.gen.regression.prev.cv`$).
 This model is able to account for the endorsements of examples like "Mosquitos carry malaria" (model endorsement and bootstrapped-95\% confidence interval = `r round(reg.mosquitos.carry[[1,"prediction_mean"]], 2)` [`r round(reg.mosquitos.carry[[1,"prediction_ci_lower"]], 2)`,
 `r round(reg.mosquitos.carry[[1,"prediction_ci_upper"]], 2)`]) and "Lions have manes" (`r round(reg.lions.manes[[1,"prediction_mean"]], 2)` [`r round(reg.lions.manes[[1,"prediction_ci_lower"]], 2)`,
 `r round(reg.lions.manes[[1,"prediction_ci_upper"]], 2)`])), as these features are very diagnostic of the kind (human endorsement both $> 0.9$).
@@ -1234,17 +1234,17 @@ For example, "Robins lay eggs" still receives only intermediate endorsement by t
 
 "Robins lay eggs" and "Mosquitos don't carry malaria" highlight a shortcoming of a simple model based on cue validity.
 "Lays eggs" is a somewhat diagnostic feature for *birds*, but there are many kinds of birds, and the feature is not itself diagnostic for a particular kind of bird like "Robins".
-Negative properties (like, "not carrying malaria") are completely undiagnostic for almost every category (low cue validity), and the fitted regression model doesn't know how to penalize "Mosquitos don't carry malaria" because the feature-probability is high (most mosquitos don't carry malaria).
+Negative properties (like, "not carrying malaria") are completely undiagnostic for almost every category (low cue validity), and the fitted regression model doesn't know how to penalize "Mosquitos don't carry malaria" because the prevalence is high (most mosquitos don't carry malaria).
 A simple metric like cue validity is too blunt to capture these subtleties.
 
 ### Communicative endorsement models
 
 The model we propose for endorsing generalizations is a model of an agent that decides whether or not to say the generalization to a naive interpretor.
-The endorsement model (Eq. \ref{eq:S1}) decides whether or not to assert the generalization to a naive interpretor (Eq. \ref{eq:L0}) conditioned on a particular referent-category feature-probability $h'$ (e.g.,  the percentage of robins that lay eggs).
-We use the empirically estimated referent-category feature-probability (the same as used in the baseline regression model) as the referent-category feature-probability $h'$ in the endorsement model.
-The empirically measured priors from Expt. 1b are used as the literal interpreter's feature-probability prior $P(h)$.
+The endorsement model (Eq. \ref{eq:S1}) decides whether or not to assert the generalization to a naive interpretor (Eq. \ref{eq:L0}) conditioned on a particular referent-category prevalence $h'$ (e.g.,  the percentage of robins that lay eggs).
+We use the empirically estimated referent-category prevalence (the same as used in the baseline regression model) as the referent-category prevalence $h'$ in the endorsement model.
+The empirically measured priors from Expt. 1b are used as the literal interpreter's prevalence prior $P(h)$.
 
-To incorporate the measurements of these model components into our endorsement model, we build a single, Bayesian joint-inference model of the referent-category feature-probabilities $h'$, feature-probability priors $P(h)$ (both from Expt. 1b data), and the endorsement data (Expt. 1a). 
+To incorporate the measurements of these model components into our endorsement model, we build a single, Bayesian joint-inference model of the referent-category prevalence $h'$, prevalence priors $P(h)$ (both from Expt. 1b data), and the endorsement data (Expt. 1a). 
 Modeling the data from both Expt. 1a and 1b by a single, joint-inference model simultaneously makes explicit our assumptions about how these data were generated and is the proper way to represent the uncertainty in our measurement of the prior elicitation data (see Appendix and Figure\  \@ref(fig:genericsModelDiagram) for further model specification details).
 The endorsement model is then fully specified after setting the single optimality parameter $\lambda_1$ (in Eq. \ref{eq:S1}).
 To learn about the credible values of the parameters of the model and resulting model predictions, we ran an incrementalized version of MCMC [@Ritchie2016] for 3 chains of 100,000 iterations, discarding the first 50,000 for burnin.
@@ -1252,7 +1252,7 @@ To learn about the credible values of the parameters of the model and resulting 
 The number of parameters of this full data-analytic model is relatively large, and thus there is a concern that the parameters themselves (as opposed to the exact structure of our model) are doing the work. 
 To address this concern, we construct a strong, alternative model that uses the same data analytic strategy and only differs in the uncertain semantic threshold $\theta$ is replaced with a fixed-threshold. 
 To provide the strongest possible test, we make the fixed-threshold a parameter of the data-analytic model, to search for the best possible fixed-threshold. 
-Finally, a fixed-threshold model will have to accomodate responses that are inconsistent with the threshold (i.e., a participant endorsing the generalization when the referent feature-probability is low); we thus outfit this model with an *additional* noise parameter, to allow for random guessing. 
+Finally, a fixed-threshold model will have to accomodate responses that are inconsistent with the threshold (i.e., a participant endorsing the generalization when the referent prevalence is low); we thus outfit this model with an *additional* noise parameter, to allow for random guessing. 
 Thus, our fixed-threshold alternative model says that participants make an information-theoretic decision, taking into account the interpreter's prior distribution $P(h)$, using a fixed-threshold semantics, where deviations from a pure information-theoretic decision are accounted for by noise.
 This alternative model has 2 additional parameters to our uncertain threshold model (the fixed-threshold and the proportion of noise responses).
 We examine the predictions of this alternative model first.
@@ -1393,8 +1393,8 @@ generics.endorsement.models <- bind_rows(
                       labels = c("Fixed semantics model",
                                  "Uncertain semantics model",
                                  
-                                 "Feature-probability alone",
-                                 "Cue validity + Feature-probability"
+                                 "Prevalence",
+                                 "Cue validity + Prevalence"
                                  ))) %>%
   ggplot(., aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
@@ -1518,9 +1518,9 @@ gen.inset.distributions.refactored <- gen.inset.distributions %>%
   mutate(Parameter = factor(Parameter, levels = c("state_Prior",
                                                   "state_Posterior",
                                                   "speakerBeliefs"),
-                            labels = c("Feature-probability Prior", 
-                                       "Interpretation given generalization", 
-                                       "Referent feature-probability")),
+                            labels = c("Prevalence Prior", 
+                                       "Prevalence Posterior given generalization", 
+                                       "Referent Prevalence")),
          property = fct_relevel(property,
                                 "have spots", "lay eggs","carry malaria", 
                                 "are female", "dont eat people") )
@@ -1542,15 +1542,15 @@ generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored,
     scale_linetype_manual(values = c(3, 4, 1))+
     scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    xlab("Feature-probability") +
+    xlab("Prevalence") +
     ylab("Scaled probability density")+
     theme(legend.position = "bottom", legend.title = element_blank())
 ```
 
-```{r generics-endorsement-figure, fig.width = 11, fig.height=8.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent feature-probability alone (lower left) and feature-probability + cue validity (lower right). Bottom: Five example feature-probability priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent feature-probability. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
+```{r generics-endorsement-figure, fig.width = 11, fig.height=8.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). Bottom: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
 
 fig.gen.endorse.data <- generics.endorsement.spectrum +
-  theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ggtitle("Feature-probability priors")
+  theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ggtitle("prevalence priors")
 fig.gen.endorse.models <- generics.endorsement.models +
   theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ylab("")
 fig.gen.endorse.priors <- generics.endorsement.insets +
@@ -1592,12 +1592,12 @@ plot_grid(fig.gen.endorse.toprow,
 
 ```
 
-To evaluate the fixed-threhsold model, we examine the posterior distribution which represents what we should believe about the latent parameters of the model (referent feature-probabilities, feature-probability priors, the optimality, fixed-threshold, and noise parameters) given the observed data, as well as what predictions of the model given these parameter values.
+To evaluate the fixed-threhsold model, we examine the posterior distribution which represents what we should believe about the latent parameters of the model (referent prevalence, prevalence priors, the optimality, fixed-threshold, and noise parameters) given the observed data, as well as what predictions of the model given these parameter values.
 The Maximum A-Posteriori value and 95\% highest probability density interval for the inferred (fixed) threshold and noise parameters are `r round(fixed.threshold.posterior[[1,"MAP"]], 2)` [`r round(fixed.threshold.posterior[[1,"cred_lower"]], 2)`,
 `r round(fixed.threshold.posterior[[1,"cred_upper"]], 2)`] and `r round(generics.fixed.noise.posterior[[1,"MAP"]], 2)` [`r round(generics.fixed.noise.posterior[[1,"cred_lower"]], 2)`,
 `r round(generics.fixed.noise.posterior[[1,"cred_upper"]], 2)`], respectively.
-Importantly, the model recapitulates the prior elicitation data (e.g., the probability of laying eggs among various species) and the referent-category feature-probability data (e.g., the probability of laying eggs among robins) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1b).
-This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the feature-probability distributions). 
+Importantly, the model recapitulates the prior elicitation data (e.g., the probability of laying eggs among various species) and the referent-category prevalence data (e.g., the probability of laying eggs among robins) as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1b).
+This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the prevalence distributions). 
 
 ```{r fixed-threshold-examples}
 fixed.threshold.generics.examples <- c("Tigers eat people.", "Peacocks have beautiful feathers.", "Lions lay eggs.", "Mosquitos attack swimmers.")
@@ -1626,7 +1626,7 @@ Similarly, "Lions lay eggs" is judged to be just as bad as "Mosquitos attack swi
 This alternative model is unable to make these fine-grained distinctions because it must use the same semantic threshold in all contexts. 
 
 <!-- The model fails to distinguish any of the generic sentences because they are all somewhat true.  -->
-<!-- All items get endorsed by at least some participants; the model then infers that the referent feature-probability $h'$ must be greater than 0\%; but, if the referent feature-probability is greater than 0\%, the statement is 100\% true given the fixed-threshold semantics. -->
+<!-- All items get endorsed by at least some participants; the model then infers that the referent prevalence $h'$ must be greater than 0\%; but, if the referent prevalence is greater than 0\%, the statement is 100\% true given the fixed-threshold semantics. -->
 
 <!-- The endorsement model decides if it better to assert the 0\%-threshold statement or stay silent.  -->
 <!-- For some items, a fixed-threshold meaning carries some information-gain over silence (i.e., some model predictions \> 0.5).  -->
@@ -1643,14 +1643,14 @@ Thus, this model has two *fewer* parameters than the fixed-threshold model above
 
 As we see in Figure \ \@ref(fig:generics-endorsement-figure) (top right, top right subplot), the endorsement model that uses an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
 To gain some intuition for why that is the case, examine the bottom row of Figure \ref{fig:generics-endorsement-figure}.
-The blue, solid lined distribution corresponds to the speaker's beliefs about the probability of the feature for the referent-category (i.e., *referent feature-probability*).
+The blue, solid lined distribution corresponds to the speaker's beliefs about the probability of the feature for the referent-category (i.e., *referent prevalence*).
 The grey distribution shows the listener's prior distribution over probabilities of the feature (these are the corresponding Probability Density Functions of the Cumulative Density Functions shown in Figure \ \@ref(fig:generic-endorsement-priors-figure).
-It is also the listener $L_0$'s posterior on referent feature-probability upon hearing the silent utterance.
+It is also the listener $L_0$'s posterior on referent prevalence upon hearing the silent utterance.
 The red distribution shows the $L_0$ posterior upon hearing the generic utterance that corresponding to an uncertain threshold-semantics. 
 The speaker model decides when the generic utterance conveys information that would bring the listener's distribution more in line with the speaker's own distrubtion. 
 Thus, it finds that "Leopards have spots", "Robins lay eggs", and "Mosquitos carry malaria" are also useful things to say.
 "Robins are female" is neither good nor bad, as the information-content of the utterance is very small relative to silence.
-"Tigers don't eat people" is rather misleading, however; it doesn't bring the listener closer to the speaker's distribution, despite the speaker believing that the feature-probability is more than half. 
+"Tigers don't eat people" is rather misleading, however; it doesn't bring the listener closer to the speaker's distribution, despite the speaker believing that the prevalence is more than half. 
 
 ## Discussion
 
@@ -1664,12 +1664,12 @@ The key theoretical insight is that the truth-functional semantics is *underspec
 Our model provides a clean delineation of world knowledge (formalized as a prior distribution) from the semantics of generalizations. 
 We return to this point, and its implications for theory-building, in the general discussion. 
 
-<!-- The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the feature-probability that the endorser had in mind. -->
+<!-- The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the prevalence that the endorser had in mind. -->
 
-In explaining the variable endorsements of generics, we related the referent-category feature-probability (e.g., the percentage of robins that lay eggs) to the endorsement of the generalization (e.g., "Robins lay eggs") via the feature-probability priors (e.g., the percentage of different kinds of animals that lay eggs). 
+In explaining the variable endorsements of generics, we related the referent-category prevalence (e.g., the percentage of robins that lay eggs) to the endorsement of the generalization (e.g., "Robins lay eggs") via the prevalence priors (e.g., the percentage of different kinds of animals that lay eggs). 
 In doing so, we used generic statements about familiar animal categories, which has long been the cleanest domain for testing semantic theories of generics by providing minimal comparison like "Robins lay eggs" vs. "... are female". 
-To model statements about familiar categories, we were forced to *measure* the relevant quantities in the model (i.e., the referent feature-probability and the feature-probability priors), which people have access to via their mental representations of the category. 
-We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent feature-probabilities (Case 2) and feature-probabilitiy priors (Case 3).
+To model statements about familiar categories, we were forced to *measure* the relevant quantities in the model (i.e., the referent prevalence and the prevalence priors), which people have access to via their mental representations of the category. 
+We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent prevalence (Case 2) and feature-probabilitiy priors (Case 3).
 In addition, we take this opportunty to highlight the generality of the theory, by performing these additional empirical tests in different domains for generalization: events and causes. 
 
 <!-- With a tenable quantitative theory in hand,  -->
