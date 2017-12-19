@@ -247,17 +247,16 @@ This opens the door to understanding generalizations in pragmatic language under
 Generalizations are used to make predictions about properties of instances that an agent has yet to experience [@HumeTHN].
 People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find certain people typing.
 In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$.
-This prediction can be described by a conditional probability: $h = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **prevalence**.
+This prediction can be described by a conditional probability: $p_{fk} = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$, which we will refer to as the **prevalence**.
 The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
 The properties also vary (e.g., having fur, causing jitters, typing). 
-Yet the mathematical description of the inductive inference is always given by the prevalence $h$.
+Yet the mathematical description of the inductive inference is always given by the probability $p_{fk}$.
 
 How does one acquire such an inductive belief?
-One can observe instances of the category $k$ and note how many of them have $f$.
-These observations can support prediction to new instances by integrating them with one's prior expectations about the property [cf., @Gelman2003; @Keil1992].
+Observing instances of the category $k$ and noting how many of them have $f$ can support prediction to new instances when integrated with one's prior expectations about the property [cf., @Gelman2003; @Keil1992].
 For example, if you observe creatures that \textsc{have two legs}, you might infer that all creatures of that category have two legs.
 Observing new creatures with \textsc{broken wings}, however, leads to a much weaker prediction about other instances of the category having the property [@Nisbett1983].
-This kind of background knowledge can be represented formally as a probability distribution over the prevalence $h$: $P(h)$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(h \mid d) \propto P(d \mid h) \cdot P(h)$
+This kind of domain-specific knowledge about properties can be represented formally as a probability distribution over the prevalence $p_{f}$: $P(p_{f})$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(p_{f} \mid d) \propto P(d \mid p_{f}) \cdot P(p_{f})$
 
 Learning from observational evidence can only take you so far, though. 
 To learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*), one would much rather learn from others.
@@ -301,17 +300,16 @@ Fortunately, language has simple ways of encoding generalizations.
 
 ## Generalization from language
 
+The language of generalization manifests when a property is predicated of a category: "Ks F" (e.g., "Dogs bark", "Staring at the sun makes you go blind"). 
 Generalization from observations can be described as a predictive probability; it is intuitive then to posit that same quantity will be at the core of a semantic theory of the language of generalization.
 To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean value.
 One simple way is with a *threshold semantics*: An utterance is true if the relevant quantity is above a threshold.
-A threshold semantics for the language of generlizations would then apply to the *prevalence* $h$:
-\begin{equation}
-\denote{generalization}(h, \theta) = \{h>\theta\}
-\label{eq:semantics}
-\end{equation}
+A threshold semantics for a generalization about category K with property F would then apply to the *prevalence* $p_{fk}$:
+$\denote{K \text{ } F}(p_{fk}, \theta) = \{p_{fk} >\theta\}$
+
 Various attempts of this kind have been made before [e.g., @Cohen1999].
-We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $h$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.  
-$h$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief (due to background knowledge, see above).
+We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $p_{fk}$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.  
+$p_{fk}$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief due to background knowledge.
 
 <!-- We emphasize that this account is based on a probability $h$. -->
 <!-- The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the prevalence $h$.^[ -->
@@ -322,84 +320,97 @@ $h$ describes a latent belief and should not be confused with *frequency*, which
 
 ### Literal interpretation model
 
-Quantifier statements can be described using a similar threshold semantics: $\denote{some}(x) = \{h > 0\}; \denote{all} = \{h = 1\}$.
-So what threshold should be used for the generalizations? 
-What is $\theta$?
-Unlike quantified language, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
-That is, we hypothesize that $\theta$ is contextually-determined, in a way analagous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
+Quantifier statements can be described using a similar threshold semantics: $\denote{some \text{ } K \text{ } F}(p_{fk}) = \{p_{fk} > 0\}; \denote{all \text{ } K \text{ } F} = \{p_{fk} = 1\}$.
+So what threshold $\theta$? should be used for the generalizations? 
+Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
+That is, we hypothesize that $\theta$ is in part determined by contextual, in a way analagous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
 
-We formalize this underspecified semantics in a probabilistic model, where the underspecifed threshold $\theta$ is sampled from a uninformed prior distribution over possible thresholds $P(\theta)$ [cf., @Lassiter2013].
-After making explicit the relevant background knowledge $P(h)$, the model becomes:
+We formalize this underspecified semantics in a probabilistic model, where the underspecifed threshold $\theta$ is sampled from a uniform prior distribution over possible thresholds $P(\theta)$ [cf., @Lassiter2013].
+After making explicit the relevant background knowledge about the property $P(p_f)$, the model becomes:
 
 \begin{eqnarray}
-Interpret(h, \theta \mid u) &\propto& {\delta_{\denote{u}(h, \theta)} \cdot P(h) \cdot P(\theta)} \label{eq:L0}
+Lit(p_{fk}, \theta \mid u) &\propto& {\delta_{\denote{u}(p_{f}, \theta)} \cdot P(p_{f}) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-Equation \ref{eq:L0} ($Interpret$) is a literal interpretation model, that updates its beliefs about the prevalence $h$ according to the truth-functional meaning of the utterance $u$. 
-Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(h, \theta)}$ that returns probabilities proportional to $1$ when the utterance is true (i.e., when $h > \theta$) and $0$ otherwise.
+Equation \ref{eq:L0} ($Lit$) is a literal interpretation model, that updates its beliefs about the prevalence of a feature in the category described $p_{fk}$ according to the truth-functional meaning of the utterance $u_{KF}$. 
+Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(p_{fk}, \theta)}$ that returns probabilities proportional to $1$ when the utterance is true (i.e., when $p_{fk} > \theta$) and $0$ otherwise.
 
 \begin{eqnarray}
-\delta_{\denote{u_{gen}}(h, \theta)} &\propto  & \begin{cases}
-1 & \text{if } h > \theta \\
+\delta_{\denote{u_{KF}}(p_{fk}, \theta)} &\propto  & \begin{cases}
+1 & \text{if } p_{fk} > \theta \\
 0 & \text{otherwise}
 \end{cases}\label{eq:delta}
 \end{eqnarray}
 
-<!-- Finally, $h$ is sampled from a prior belief distribution $P(h)$, potentially informed by the property in question and discussed further below.  -->
-
 ### Endorsement model
 
-Given the above minimal model of literal interpretation, how do we decide when a statement conveying a generalization is true or not?
-We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization convey sufficient information to warrant the cost of producition? 
-We formalize this by considering how well the generalization would convey the prevalence $h$ to the $Interpret$ model (Eq. \ref{eq:L0})^[A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $h'$ that it wants to communicate.
-Rather, the endorser may have a distribution over $h'$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence. 
-In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorser's belief distribution:
-$Endorse(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{h\sim P_{k}} \ln{ \int_{\theta} Interpret(h, \theta \mid u)} \diff \theta )}$
-For the empirical case studies described below, these two versions of the model make almost identical predictions.
+Given the minimal model of literal interpretation described above, how do we decide when a statement conveying a generalization is true or not?
+We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization convey sufficient information to warrant the cost of production? 
+We formalize this by considering how well the generalization would convey the prevalence $p_{fk}$ to the $Lit$ model (Eq. \ref{eq:L0})^[
+  A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $p_{fk}$ that it wants to communicate.
+  Rather, the endorser may have a distribution over $p_{f}$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence. 
+  In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorsement model's belief distribution:
+  $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p_{fk}\sim P_{k}} \ln{ \int_{\theta} Lit(p_{fk}, \theta \mid u)} \diff \theta )}$
+  For the empirical case studies described below, these two versions of the model make almost identical predictions.
 ].
 
 \begin{equation} 
-Endorse(u \mid h = h') \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Interpret(h = h', \theta \mid u)  \diff \theta } )}
+S(u \mid p_{fk}) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Lit(p_{fk}, \theta \mid u)  \diff \theta } )}
 \label{eq:S1}
 \end{equation}
 
-The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$): $Interpret(h = h', \theta \mid u)$.
-$Endorse$ is not interested in communicating $\theta$ (in fact, it does not know $\theta$), and so integrates over the values of $\theta$.
+The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$): $Lit(p_{fk}, \theta \mid u)$.
+$S$ is not interested in communicating $\theta$ (in fact, it does not know $\theta$), and so integrates over the values of $\theta$.
 We assume the decision to endorse is an approximately rational one, with degree of rationality given by $\lambda$.
 The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances. 
-We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *Endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [cf., @Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$^[
-  This "null" alternative  to the generalization ("Ks F") can be realized in at least two other ways: the negation of the generalization (i.e., "It is   not the case that Ks F") or the negative generalization (i.e., "Ks do not F").
+We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [cf., @Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$^[
+  This "null" alternative  to the generalization ("Ks F") can be realized in at least two other ways: the negation of the generalization (i.e., "It is not the case that Ks F") or the negative generalization (i.e., "Ks do not F").
   All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
 ]
 
-
-Our endorsement model (Eq. \ref{eq:S1}) provides a straight-forward mapping from a *referent-category prevalence* $h'$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"). 
-It does this assuming a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is not $\theta$ is Eq. \ref{eq:S1}).
+Our endorsement model (Eq. \ref{eq:S1}) provides a straight-forward mapping from a *referent-category prevalence* $p_{fk}$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u = u_{KF} \mid p_{fk})$. 
+The model assumes a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
 This model can be seen as a special case of a Rational Speech Act model [@Frank2012; @Goodman2016], where there is only a single level of recursion and the space of possible utterances is maximally constrained. 
 
-<!-- Rather, the uncertainty over $\theta$ is resolved *internal* to the cognitive model, by reasoning about the literal semantics and the prior distribution over feature-probabilities $P(h)$. -->
 
-<!-- The endorsement model presented above is a special case of a family of rational models of communication that use an underspecified threshold-meaning for a generalization. -->
+### Prevalence priors and referent-prevalence
 
-<!-- Yet the *simple but underspecified* hypothesis defines a *family* of models (e.g., more levels of recursion: a listener who thinks about a speaker who thinks about a listener). -->
-<!-- The primary theoretical interest of this paper is to outline *a* formal account, rather than discuss possible variations within it.  -->
-<!-- However, there are interesting theoretical differences to be found within this family of models (e.g., if the inference about the threshold can be thought of as a *pragmatic inference* or just a mere *literal inference*). -->
-<!-- We discuss these alternative formulations and provide formal model comparison between these RSA models in the Appendix. -->
+Our model makes predictions about endorsing generalizations based on two externally-determined model components: The prevalence priors $P(p_f)$ in Eq. \ref{eq:L0} and the referent-prevalence $p_{fk}$ in Eqs. \ref{eq:S1} and \ref{eq:delta}.
+Referent-prevalence is the probability that an individual $x$ of the referent-category (e.g., "Dogs") will have the feature being predicated of the category (e.g., "...barks").
+We will return and refine this definition in Case Study 2, when considering generalizations about events.
+For now, the referent-prevalence is simply what determines the truth-conditional semantics. 
+Our hypothesis does not provide a mapping from the truth-conditional semantics directly to endorsement judgments, because $\theta$ is underspecified.
 
-<!-- The null alternative returns a posterior interpretation distribution that is identical with the prior $P(h)$. -->
+The truth-conditional threshold $\theta$ is resolved by the literal interpretation model $Lit$ (Eq. \ref{eq:L0}) by integrating prior belief about the feature in question---the *prevalence prior* $P(p_f)$---and the uncertain threshold $P(\theta)$ with the truth-functional semantics.
+Again, $P(\theta)$ is set to be a uniform distribution across all contexts, and thus, the generalization could in principle be felicitious with potentially any prevalence. 
+However, what the interpretation model believes *a priori* $P(p_f)$ must be considered before the endorsement model can say whether or not it would endorse the generalization. 
 
-<!-- Following the Rational Speech Act framework, the speaker (called $E$ for endorsement) is assumed to be an approximately rational Bayesian agent who produces utterances according to their utility $U$ with rationality governed by parameter $\lambda$, which acts as a soft-max function. -->
-<!-- Because we are interested in determining whether or not *prevalence* alone is sufficient to formalize generalizations in language, we define the endorsement utility as a function of only the utterance (say the generalization or stay silent) and the *referent-category prevalence* $h'$ (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$). -->
+Beliefs about properties result from internal conceptual models of the world. 
+These internal models have domain-specific features but should all give to the domain-general currency of probability.
+One way of constructing prior distributions over prevalence, without appealing directly to domain-specific conceptual knowledge, is by considering the prevalence of the feature among different categories.^[
+  An alternative way is to consider the prevalence of different features among the same category. 
+  We return to this point in the general discussion.
+]
+For example, many different kinds of animals *do not bark* (more precisely: have close to 0 exemplars who bark); thus, the prevalence prior for the feature *barks* $P(p_{barks})$ should have substantial probability mass near 0 .
+Furthermore, among the categories that do have exemplars which bark (e.g., *dogs*, *seals, ...), the probability is quite high that an exemplar will bark; thus, the prevalence prior should have substantial mass at relatively high values, potentially with quite a bit of uncertainty; Figure\ \@ref(fig:simulations)A; first row).
+Conceptual differences can manifest in these prevalence priors; for example, the prevalence prior for *lays eggs* should similiarly have substantial probability mass near 0 (since most animal categories do not have egg-layers) but should have a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property (Figure\ \@ref(fig:simulations)A; bottom row).
 
-<!-- The utility of an utterance is defined by how well it conveys the speaker's beliefs ($h'$) to a naive listener $Lit$, after integrating out her residual uncertainty about $\theta$. -->
+By encoding knowledge about other categories, the prevalence prior distributions are deeply connected to the construct of *cue validity*, or the probability that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs). 
+Indeed, previous studies have found cue validity to be highly correlated with endorsing generalizations about categories, or *generic language* [@Khemlani2012].
+Cue validity is defined for a particular category--feature pair, and relates to referent-prevalence by Bayes' Rule:
+$$ P(x \in k \mid x \in f) = \frac{P(x \in f \mid x \in k) \cdot P(x \in k)}{\sum_{k' \in K} P(x \in f \mid x \in k') \cdot P(x\in k')} $$
+In the prevalence prior $P(p_f)$, a category is represented only by its corresponding prevalence (i.e., a sample from the prevalence prior can be thought of as a category $k$, with the only information available about the category being the prevalence of the feature in that category $p_{fk}$). 
+Thus, $P(x \in k) = P(k) = P(p_{fk})$).
+The denominator of the cue validity expression above (the normalizing constant), then, is the expectation (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p_{f})] = \sum_{k' \in K} p_{fk'} \cdot P(p_{fk'} )$.
+This relationship reveals a potential shortcoming of a point estimate like *cue validity*; the prevalence prior potentially encodes structured, conceptual knowledge of the world, which would be lost by reducing it to a single value.
 
-<!-- The literal semantics for the generalization is the threshold function described above; the literal semantics for the option of staying silent carries no informational content:   -->
+<!-- These distributions can be thought of as distributions over categories, displaying only the prevalence for the property in question. -->
 
-<!-- \begin{equation}  -->
-<!-- U(u; h') =  \ln{ \int_{\theta} Lit(h = h', \theta \mid u)  \diff \theta } \label{eq:utility} -->
-<!-- \end{equation} -->
+<!-- F(left; filled colors) shows six prior distributions over feature-probabilities, representing the relevant background knowledge about each property. -->
+<!-- For example,   -->
 
-We implemented the model in the probabilisitic programming language WebPPL [@dippl].
+
+We implemented the model in the probabilistic programming language WebPPL [@dippl].
 The following simulations were implemented using the R package RWebPPL [@rwebppl] in the RMarkdown document that generated this paper text and figures.
 That document, as well as all other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
@@ -859,10 +870,7 @@ grid.arrange(l0.simulations.distributions,
 
 ```
 
-Figure\ \@ref(fig:simulations) (left; filled colors) shows six prior distributions over feature-probabilities, representing the relevant background knowledge about each property.
-These distributions can be thought of as distributions over categories, displaying only the prevalence for the property in question.
-For example, many different kinds of animals *do not bark*; thus, there is substantial probability mass near 0 for the prior distribution over the prevalence of \textsc{barks} (top left; solid pink distribution). 
-In addition, among the categories that do have instances that bark (e.g., \textsc{dogs}, \textsc{seals}, ...), the probability is quite high that an instance will bark; thus, the prevalence distribution has substantial mass at relatively high values, with the maximum probability-density occuring around 0.9 (though with quite a bit of uncertainty around this value).
+
 
 The lighter distribution is the interpretation distribution given by Eq. \ref{eq:L0}. 
 This gives the literal interpretation of a generalization about a previously unknown category (e.g., "Feps bark.") given the background knowledge about the property.
@@ -1277,12 +1285,12 @@ Thus, there may exist a refactorization of the uncertain threshold model to a fi
 
 #### "Normal" accounts
 
-The primary alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008].
-For example, "Dogs have four legs" is a good generalization event though, regrettably, not all dogs have four legs.
-However, were the world to function *normally*, then *all* dogs would have four legs (i.e., dogs would not be involved in freak-tractor accidents).
-The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and tereotyped language (e.g., "Boys are good at math").
-Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations.
-We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.
+The primary alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
+For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
+However, were the world to function *normally* (e.g., dogs would not be involved in freak-tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
+The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and stereotyped language (e.g., "Boys are good at math”).
+Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations. 
+We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations. 
 Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future. 
 
 #### Underquantification
@@ -1407,7 +1415,7 @@ To the contrary, underspecification can be efficient, given that context can be 
 In our work, context takes the form of shared beliefs about the property in question. 
 By leveraging this common ground, genericity provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
 
-The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a naive listener.  
+The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a naive listener.
 Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012].
 Disagreements are also predicted when interlocutors fail to share background assumptions, which could be differences in the prior distributions on prevalence or the comparison class.
 Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?). 
@@ -1428,11 +1436,12 @@ The theory presented here provides the first computational perspective on how we
 
 <div id = 'refs'></div>
 
-```{r child = 'appendix-cueValidity.Rmd'}
-```
-
 ```{r child = 'appendix-bda.Rmd'}
 ```
 
-```{r child = 'appendix-alternativeRSAmodels.Rmd'}
+```{r child = 'appendix-cueValidity.Rmd'}
 ```
+
+
+# ```{r child = 'appendix-alternativeRSAmodels.Rmd'}
+# ```
