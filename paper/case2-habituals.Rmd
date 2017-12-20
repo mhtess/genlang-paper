@@ -9,7 +9,7 @@ Just as with categories, generalization can occur over events of a particular ty
 When expressed in language, these generalizations take the form of *habitual language*: "Mary smokes".
 
 Events are a broad class of entities. 
-In our second case study, we focus on habituals about people's behaviors that take the form: \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes.").  
+In our second case study, we focus on habituals about people's behaviors that take the form: \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes"). 
 Learning about the behaviors of others is useful because they tell us about what that person is like more generally [e.g., @Repacholi1997; @Seiver2013].
 When children describe their lives to other, a surprisingly large amount of the langauge produced concerns the actions of people close to them [e.g., "My brother works part-time at the restaurant"; @McGuire1986].
 Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
@@ -264,9 +264,11 @@ var model = function(){
 '
 ```
 
-```{r habituals-prior-model-run, cache = T}
+```{r habituals-prior-model-run, cache = T, eval = F}
+
+n_samples <- 20000
 items <- levels(factor(d.hab.priors.filtered$item))
-n_samples <- 500
+
 rs.habituals.bda.prior <- data.frame()
 
 for (it in items){
@@ -302,9 +304,20 @@ for (it in items){
       separate(Parameter, into = c("Variable", "Parameter", "Gender"))
   )
 }
+save(rs.habituals.bda.prior, 
+     file = paste(project.path,  "models/habituals/results/", 
+                  "habituals-prior-", n_samples, "_burn", n_samples/2 , 
+                  ".RData", sep = ""))
+
 ```
 
-```{r habituals-prior-model-parameters, fig.width = 5, fig.height = 3}
+```{r habituals-prior-model-parameters, fig.width = 5}
+n_samples <- 20000
+items <- levels(factor(d.hab.priors.filtered$item))
+
+load(file = paste(project.path,  "models/habituals/results/", 
+                  "habituals-prior-", n_samples, "_burn", n_samples/2 , 
+                  ".RData", sep = ""))
 
 example.habituals <- c("smokes marijuana", "smokes cigarettes","drinks coffee",
                        "climbs mountains", "hikes", "runs", 
@@ -319,6 +332,8 @@ rs.habituals.bda.prior.summary <- rs.habituals.bda.prior %>%
             cred_upper = hdi_upper(value),
             cred_lower = hdi_lower(value)) %>%
   ungroup()
+
+
 rs.habituals.bda.prior.summary.wide <- left_join(
   rs.habituals.bda.prior.summary %>% filter(Variable == "mix") %>%
     select(-Variable) %>%
@@ -327,34 +342,44 @@ rs.habituals.bda.prior.summary.wide <- left_join(
     select(-Variable) %>%
     rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
 )
+
 rs.habituals.bda.prior.summary.wide <- left_join(rs.habituals.bda.prior.summary.wide,
-          d.hab.priors %>% select(item, category)) 
-figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.prior.summary.wide,
+          d.hab.priors %>% select(item, category) %>% distinct()) 
+
+figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.prior.summary.wide %>%
+                                            mutate(Gender = factor(Gender, levels = c("male", "female"))),
        aes( x = mix_mean, xmin = mix_lower, xmax = mix_upper,
             y = sfreq_mean, ymin = sfreq_lower, ymax = sfreq_upper,
-             fill = category))+
-    scale_shape_manual(values=c(21,22))+
-  #scale_color_solarized()+scale_fill_solarized()+
-  scale_fill_brewer(palette='Set1')+
-
-  geom_point(size=4, inherit.aes = F, 
-             aes(x = mix_mean,y = sfreq_mean,  fill = category,
-            shape = Gender),  alpha = 0.9)+
+             fill = Gender, shape = Gender))+
   geom_errorbar(alpha = 0.5)+
   geom_errorbarh( alpha = 0.5)+
-  xlab("% of Americans who have DONE ACTION")+
-  ylab("Log Frequency of DOING ACTION")+
+  scale_shape_manual(values=c(21,22))+
+  #scale_color_solarized()+scale_fill_solarized()+
+  scale_fill_brewer(palette='Set1')+
+  #scale_color_brewer(palette='Set1')+
+  geom_point(size=4, 
+            #  inherit.aes = F, 
+            #  aes(x = mix_mean,y = sfreq_mean,  fill = category,
+            # shape = Gender),  
+            alpha = 0.9)+
+
+  xlab("% have DONE ACTION")+
+  ylab("Frequency of DOING ACTION \n (log scale)")+
   #scale_
   coord_fixed(ratio = 1/8)+
-  theme(legend.title = element_text(hjust=0),
-        legend.position="bottom",
-        legend.direction="horizontal") +
+  guides(fill = F,  shape = F)+
+  theme(legend.title = element_blank(),#element_text(hjust=0),
+        legend.position=c(0.82,0.14),
+        legend.direction="vertical") +
         scale_y_continuous(limits = c(-1.5, 6.5), 
                      breaks = c(0, 2.5, 4, 5.9),
                      labels = c("annually", "monthly", "weekly", "daily"))+
   geom_text_repel(data = rs.habituals.bda.prior.summary.wide %>%
-                    filter(item %in% example.habituals, Gender == "female"), inherit.aes =F,
+                    filter(item %in% example.habituals, Gender == "female"), 
+                  inherit.aes =F,
                   aes(x = mix_mean,y = sfreq_mean, label = item), force = 5, size = 3)
+
+#figure.habituals.priors.scatter
 ```
 
 ```{r habituals-prior-model-forwardSample}
@@ -384,7 +409,7 @@ for (i in 1:1){
 }
 ```
 
-```{r habituals-prior-marginals-fig, fig.width = 4, fig.height = 4, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red)."}
+```{r habituals-prior-marginals-fig, fig.width = 7, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red).", cache = F}
 
 figure.habituals.priors.marginals <- bind_rows(
   d.hab.priors.samples %>% 
@@ -397,23 +422,27 @@ figure.habituals.priors.marginals <- bind_rows(
   ) %>%
   filter(item %in% example.habituals,
          src == 'model') %>%
-  mutate(item = factor(item, levels = example.habituals)) %>%
+  mutate(item = factor(item, levels = example.habituals),
+         gender = factor(gender, levels = c("male", "female"))) %>%
 ggplot(. , aes( x = val, color = gender))+
   geom_density(size = 0.8, aes( y = ..scaled.. ))+
   facet_wrap(~item, nrow = 4)+
   scale_color_solarized()+
   xlab("Frequency")+
-  ylab("Scaled prior density")+
+  ylab("Scaled probability density")+
   scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
   theme(strip.text.y = element_text(angle = 0),
-        legend.position = c(0.9, 0.12),
+        legend.position = c(0.9, 0.11),
+        legend.title = element_blank(),
         axis.text.x = element_text(angle = 90))+
     scale_x_continuous(limits = c(-5, 8), 
                      breaks = c(-5, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+
+#figure.habituals.priors.marginals
 ```
 
-```{r habituals-prior-figure, fig.width = 11, fig.height = 6, fig.cap="Feature-probability priors for events (Expt. 2a). Left: Inferred mixture mean parameter and stable frequency mean parameter for N events. Right: Reconstructed priors on rates from the structured, prior elicitation task. Priors are reconstructed by forward sampling using the inferred parameters in the structured model."}
+```{r habituals-prior-figure, fig.width = 11, fig.height = 6, fig.cap="Prevalence priors for events (Expt. 2a). Left: Mean mixture parameter and mean stable frequency parameter for 31 events. Right: Inferred priors on frequencies from the structured, prior elicitation task. Priors are reconstructed by forward sampling using the inferred parameters in the prior mixture model.", cache = F}
 grid.arrange(figure.habituals.priors.scatter, figure.habituals.priors.marginals, nrow = 1)
 ```
 
@@ -2264,26 +2293,34 @@ The model based on past frequency does not make different predictions for the di
 
 ## Discussion
 
-Habitual language conveys generalizations about events and our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account a naive interpreter's prior beliefs about the event (measured in Expt. 2a). 
+Habitual language conveys generalizations about events.
+Our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account a naive interpreter's prior beliefs about the event (measured in Expt. 2a). 
 Our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b \& c).
 In Expt. 2b, we varied the type of event and the past frequency with which the person did the action, and found graded endorsements of the corresponding habitual sentences.
 By manipulating (rather than measuring) the referent frequency with which a person does an action, we showed how alternative models were insufficient to account for the gradience in endorsement.
 In particular, a fixed threshold model that has access to the same prior knowledge and uses the same information-theoretic decision rule as our uncertain-threshold model is unable to make different predictions for different frequencies.
 Only our uncertain threshold model was able to precisely account for the wide range of endorsements.
 
+A regression model that takes into the frequency and the *distinctiveness* of the action does a reasonable job at explaining the variance in this data.
+We note that this kind of model is merely a re-decription of the data (and thus, the behavior of the uncertain threshold model), and does not represent a theory of the semantics of a generalization. 
+A theory of the semantics of a generalization must formalize the truth-conditions of the generalization as well as how those truth-conditions relate to endorsement. 
+This is precisely what our information-theoretic models do (both fixed- and uncertain-threshold).
+
 <!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
 <!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
 <!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
-In Expt. 2c, we further investigated the nature of the underlying prevalence scale by introducing enabling and preventative causal evidence.
+In Expt. 2c, we further investigated the nature of the underlying prevalence scale by introducing causal information that enabled and preventated future occurences of the action.
 We used the empirically-measured predicted future frequency as the object of communication for our endorsement model.
-We found that the endorsement model that seeks to communicate its predictions (rather than its observations) is able to account for the influence of top-down moderators on habitual endorsement.
+We found that the endorsement model that seeks to communicate its predictions (rather than its observations) is a better model of habitual endorsements under these situations.
+Predicted prevalence thus captures the infleunce of top-down moderators (e.g., intervening causal forces) on endorsement.
 <!-- To our knowledge, the experiments presented here are first empirical investigations into endorsements of habitual sentences and the first test of a formal psychological model of such generalizations in language. -->
 
-In these experiments, we introduced participants to novel actors and by doing so, were able to directly manipulated the frequency of a person doing the action.
-The kinds of events we used were familiar to participants (e.g., *running*) and so we measured the prevalence priors for those events.
-<!-- Thus, it is still possible that the feature-probability priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic and habitual endorsement but not directly causally related. -->
+In these experiments, we introduced participants to novel actors and, by doing so, were able to directly manipulate the frequency of a person doing the action.
+The kinds of events we used were familiar to participants (e.g., *running*) and thus we measured the prevalence priors for those events.
 In our final case study, we experimentally manipulate the prevalence priors, testing their causal influence over endorsements.
 In addition, we further we extend our theory to the language of causal relationships.
+
+<!-- Thus, it is still possible that the feature-probability priors that are central to our communicative theory of generalizations are somehow epiphenomenal, correlationally associated with generic and habitual endorsement but not directly causally related. -->
 
 <!-- To anticipate our results, we find that only a model that uses the *predictive* feature-probabilities as the object of communication is able to explain the endorsement data, thus tying the phenomenology of *genericity* even more to subjective beliefs. -->
 
