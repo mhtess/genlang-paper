@@ -216,14 +216,19 @@ We next measure the prevalence prior distribution and articulate a set of formal
 
 ## Experiment 1b: Prevalence prior elicitation
 
-The prevalence prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the probability of a given feature (e.g. \textsc{lays eggs}) across relevant categories. 
-To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are walking around and you come across an instance of your favorite kind of animal from Earth (e.g., a peregrine falcon). Ask yourself "is it female?" Your answer will probably depend upon the percentage of the category that you believe to be female (e.g., the percentage of female peregrine falcons, i.e., 50\%). Now, do you think it lays eggs? Your answer to this question will likely depend upon on what animal you're thinking of: If you're thinking of a peregrine falcon, the probability is similar to that of being female (50\%) because female peregrine falcons lay eggs; if you're thinking of a mammal, it's likely that it won't lay eggs (0\%) because most mammals give birth to live young. That is, the answer is either 50\% or 0\% depending on the kind of creature you are thinking of^[
-The subjective probability may, in fact, be non-zero and small for what we're calling 0\%. 
-Non-zero probabilities allow for the intuitive possibility of a dog that lays eggs potentially due to some strange generic mutation or the interaction of dog genetics with a strange environment. 
+The prevalence prior $P(h)$ in Eq. \ref{eq:L0} describes the belief distribution on the probability of a given feature (e.g., \textsc{lays eggs}) across relevant categories. 
+To get an intuition for the kind of knowledge encoded in this belief distribution, consider the following thought experiment: You are walking around and you come across an instance of your favorite kind of animal from Earth (e.g., a peregrine falcon). 
+Ask yourself "is it female?" 
+Your answer will probably depend upon the percentage of the category that you believe to be female (e.g., the percentage of female peregrine falcons, i.e., 50\%). 
+Now, do you think it lays eggs? 
+Your answer to this question will likely depend upon on what animal you're thinking of: If you're thinking of a peregrine falcon, the probability is similar to that of being female (50\%) because female peregrine falcons lay eggs; if you're thinking of a mammal, it's likely that it won't lay eggs (0\%) because most mammals give birth to live young. 
+That is, the answer is roughly either 50\% or 0\% depending on the kind of creature you are thinking of^[
+  The subjective probability may, in fact, be non-zero and small as opposed to 0. 
+  Non-zero probabilities allow for the intuitive possibility of a dog that lays eggs potentially due to some strange   generic mutation or the interaction of dog genetics with a strange environment. 
 ].
 
-This thought experiment decomposes the prevalence prior $P(h)$ into a prior on kinds $P(k)$ and then a conditional probability of the prevalence given the kind $P(h \mid k)$.
-We will use this decomposition to measure the prevalence prior $P(h) = \int_{k} P(h \mid k) \diff k$, and perform a structured Bayesian data-analysis to model the prior data.
+This thought experiment decomposes the prevalence prior $P(h)$ into a prior distribution on kinds $P(k)$ and then a conditional probability of the prevalence given the kind $P(h \mid k)$.
+We will use this decomposition to measure the prevalence prior $P(h) = \int_{k} P(h \mid k) \diff k$ and perform  Bayesian data analysis to accurately reconstruct the prevalence prior.
 We measured prior distributions empirically for the set of properties (e.g., \textsc{lays eggs, carries malaria}; 21 in total) used in our generic sentences in Expt. 1a.
 To create a larger set of properties, we reverse-code responses for five properties to create their corresponding negative properties (e.g., we create a property "doesn't have beautiful feathers" by subtracting from 100\% the responses for "has beautiful feathers").
 
@@ -1188,22 +1193,33 @@ This includes generics that are judged true with relatively low referent prevale
 
 ##### Model specification
 
-As a secondary baseline hypothesis, we explore whether prevalence and *cue validity* predict generic endorsementse.
-If prevalence is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs).
-*Cue validity* thus captures the distinctiveness of the feature for the category. 
-For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria. 
-Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012], though its role in generic meaning is controversial [@Leslie2007; @Leslie2008].
-Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence: "Dogs have four legs").
-In addition, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics.
+Cue validity is linearly related to a point-estimate of the prevalence prior distribution (see Model section and Appendix A).
+It thus implicitly captures information about other categories, though cannot capture the structure that is present in the prevalence priors.
+To show that this structure is important, we explore a secondary baseline model based on prevalence and cue validity.
 
+<!-- Whereas prevalence encodes a prediction about whether or not an entity $x$ of a certain kind $k$ will have the property $f$, $P(x \in f \mid x \in k)$, *cue validity* represents the inverse prediction: that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs). -->
+<!-- Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012]. -->
+<!-- For example, the truth of "Mosquitos carry malaria" can be explained by appealing to the fact that *only mosquitos* carry malaria, and htus if one learns that an entity carries malaria, that entity is probably a mosquito (high cue validity). -->
+<!-- Of course, cue validity is not a necessary feature of a true generic statament: "Dogs have four legs" is true despite the feature of having four legs being utterly undiagnostic for dogs. -->
 
-We described in Expt 1b. that $P(h)$ can be decomposed into a prior on kinds $P(k)$ and the likelihood of a prevalence given the kind $P(h \mid k)$.
-If there is a finite number of kinds in the prevalence prior for a feature, and one knows the probability of the feature for each kind (i.e., $P(h \mid k)= P(f \mid k)$), then the cue validity of that feature for a particular kind is encoded in the prevalence prior and can be derived via Bayes' Rule:
-$$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')} $$
-Previous empirical studies of generic language, however, have not measured prevalence priors and instead tried to estimate cue-validity by asking about the distinctiveness of features for given animals [e.g., @Khemlani2012]
-In keeping with this tradition, we measured cue validity using a free production paradigm, following @Cree2006.
-Participants ($n = 50$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
-For a detailed discussion of the results of this experiment and comparison to other measurements of cue validity as well as the *prevalence prior derived cue validity*, see Appendix.
+<!-- Cue validity is not unrelated to the prevalence prior.  -->
+<!-- The prevalence prior $P(h)$ is a probability distribution, which can decomposed into a distribution on kinds $P(k)$ and the likelihood of a prevalence given the kind $P(h \mid k)$. -->
+<!-- For simplicity, assume we have perfect knowledge of the prevalence for each kind: $P(h \mid k) = P(f \mid k)$. -->
+<!-- Then if the prevalence prior is composed of a finite number of kinds, the cue validity of that feature for a particular kind is given by Bayes' Rule: -->
+<!-- $$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{\sum_{k' \in K} P(f \mid k') \cdot P(k')}  = \frac{P(f \mid k) \cdot P(k)}{\mathbb{E}_{k' \sim P(k')}P(h \mid k')} $$ -->
+<!-- The normalizing constant in this equation is the expected value of the prevalence prior distribution.  -->
+<!-- though its role in generic meaning is controversial [@Leslie2007; @Leslie2008]. -->
+
+<!-- If prevalence is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), *cue validity* is the inverse probability:  -->
+<!-- *Cue validity* thus captures the distinctiveness of the feature for the category.  -->
+<!-- Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence:  -->
+<!-- In addition, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics. -->
+
+Though the cue validity of a particular (category, property) pair can be derived from the prevalence prior distribution, previous empirical studies of generic language have not done this.
+Instead, these studies estimate cue validity by asking a separate group of participants about the distinctiveness of features for given animals [e.g., @Khemlani2012], though different studies use different measurements. 
+Preliminary analysis of these different measurements revealed that a *free production* paradigm [@Cree2006] is preferred.
+Participants ($n = 100$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
+For a detailed analysis of different cue validity measurements and comparison to *prevalence prior derived cue validity*, see Appendix B.
 
 ##### Results
 
@@ -1220,7 +1236,6 @@ reg.lions.manes <- d.gen.endorse.regression %>% filter(src == "regression_Prev_C
 reg.mosquitos.dont.carry <- d.gen.endorse.regression %>% filter(src == "regression_Prev_Cuevalidity", sentence == "Mosquitos dont carry malaria.")
 ```
 
-
 A linear model that uses predictors for both referent-prevalence and cue validity does a better job at explaning the endorsement data than just prevalence alone ($r^2(`r r2.gen.n`) = `r r2.gen.regression.prev.cv`$; MSE=$`r mse.gen.regression.prev.cv`$).
 This model is able to account for the endorsements of examples like "Mosquitos carry malaria" (model endorsement and bootstrapped-95\% confidence interval = `r round(reg.mosquitos.carry[[1,"prediction_mean"]], 2)` [`r round(reg.mosquitos.carry[[1,"prediction_ci_lower"]], 2)`,
 `r round(reg.mosquitos.carry[[1,"prediction_ci_upper"]], 2)`]) and "Lions have manes" (`r round(reg.lions.manes[[1,"prediction_mean"]], 2)` [`r round(reg.lions.manes[[1,"prediction_ci_lower"]], 2)`,
@@ -1232,9 +1247,11 @@ For example, "Robins lay eggs" still receives only intermediate endorsement by t
 `r round(reg.mosquitos.dont.carry[[1,"prediction_ci_upper"]], 2)`]; human endorsement = `r round(reg.mosquitos.dont.carry[[1,"MAP_h"]], 2)` [`r round(reg.mosquitos.dont.carry[[1,"low"]], 2)`,
 `r round(reg.mosquitos.dont.carry[[1,"high"]], 2)`]).
 
-"Robins lay eggs" and "Mosquitos don't carry malaria" highlight a shortcoming of a simple model based on cue validity.
+"Robins lay eggs" and "Mosquitos don't carry malaria" highlight a shortcoming of reducing structured prevalence prior distributions to single point-estimates of cue validity.
 "Lays eggs" is a somewhat diagnostic feature for *birds*, but there are many kinds of birds, and the feature is not itself diagnostic for a particular kind of bird like "Robins".
-Negative properties (like, "not carrying malaria") are completely undiagnostic for almost every category (low cue validity), and the fitted regression model doesn't know how to penalize "Mosquitos don't carry malaria" because the prevalence is high (most mosquitos don't carry malaria).
+Thus, the cue validity is low even though robins are in the distinctive part of the "lays eggs" prevalence prior distribution (e.g., Fig.\ \@ref(fig:simulations)A bottom).
+Furthermore, cue validity glosses over the difference between "undiagnostic" features (features present in almost every category; e.g., "not carrying malaria") and "false" features (features that are absent a particular category; e.g., "lions" and "lay eggs"; see Appendix B for more discussion of this distinction).
+Such a model makes the wrong prediction for non-distinctive properties that in, absolute terms, have high prevalence but in relative terms, low prevalence (e.g., "Mosquitos don't carry malaria").
 A simple metric like cue validity is too blunt to capture these subtleties.
 
 ### Communicative endorsement models
