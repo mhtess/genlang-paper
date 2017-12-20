@@ -1,0 +1,54 @@
+# Appendix A: The Relationship between the Prevalence Prior and Cue Validity
+
+Cue validity is defined for a particular category--property pair (e.g., *mosquitos* and *carry malaria*), and relates to referent-prevalence (e.g., how many mosquitos carry malaria) via the prevalence of *carrying malaria* in other categories $k'$ by Bayes' Rule:
+$$ p(k \mid f) = \frac{p(f \mid k) \cdot p(k)}{Z} $$
+where $Z =  \sum_{k' \in K} p( f \mid k') \cdot p( k')$
+
+
+The prevalence prior $P(p_f)$ (Eq. \ref{eq:L0}) is a probability distribution over prevalence for different categories $k'$.
+For ease of exposition, let $x = p_f = p(f \mid k)$; that is, $P(x) = P(p_f)$.
+
+\underline{Claim:} The normalizing constant for computing cue validity is equal to the expected value of the prevalence prior distribution: $\mathbb{E}[P(x)] = Z$
+
+\underline{Proof:}
+
+By the definition of the expectation of a distribution: 
+
+\begin{eqnarray} \label{eq:expectation}
+\mathbb{E}[P(x)] & = & \sum\limits_{x} x \cdot p(x) 
+\end{eqnarray}
+
+The probability of a prevalence $x$ can be decomposed into the prior probability of a category $k$ and the likelihood of the prevalence $x$ given that category $k$: $p(x) = p(x \mid k) \cdot p(k)$. 
+We assume here, without loss of generality, that each category corresponds to one and only one prevalence $x$.
+Thus, $p(x \mid k) = 1$ if $k \in K_x$, a set of categories that have a given prevalence: $K_x = \{k' : p_{fk'} = x\}$. 
+Further,  e partition of the set of all categories $K$ into non-overlapping $K_x$s.
+Thus:
+
+\begin{eqnarray} \label{eq:prevToKinds}
+p(x) & = & \sum\limits_{k' \in K_x} p(x \mid k') \cdot p( k') \nonumber \\
+     & = & \sum\limits_{k' \in K_x} p(k')
+\end{eqnarray}
+
+since $\forall k' \in K_{x}:  p(x \mid k') = 1$.
+Returning to Eq. \ref{eq:expectation}, we have:
+
+\begin{eqnarray} \label{eq:eq3}
+\mathbb{E}[P(x)] & = & \sum\limits_{x} x \sum\limits_{k' \in K_x} p(k') \nonumber \\
+                  & = & \sum\limits_{x} \sum\limits_{k' \in K_x} x \cdot p(k')
+\end{eqnarray}
+
+The set of all partitioned subsets $K_x$ is in a one-to-one correspondence with the set of all prevalences $x$. Thus, we have:
+
+\begin{eqnarray} \label{eq:bijection}
+  & = & \sum\limits_{K_x} \sum\limits_{k' \in K_x} x \cdot p( k')
+\end{eqnarray}
+
+Then, since $\cup_{x}{K_x} = K$, we have
+
+\begin{eqnarray} \label{eq:partition}
+  & = & \sum\limits_{k' \in K} x \cdot p( k') \nonumber \\ 
+  & = & \sum\limits_{k' \in K} p(f \mid k') \cdot p( k') \nonumber \\ 
+  & = & Z
+\end{eqnarray}
+
+$\square.$
