@@ -13,67 +13,73 @@ substrRight <- function(x, n){
 
 # Appendix B: Measuring Cue Validity
 
-In considering generalizations about categories, or *generic language*, theories try to formalize the truth conditions by analogy to quantified statements (e.g., *some*, *most*, ...).
-Here, the prevalence of the feature, or $P(f \mid k)$, is the critical quantity.
-Quantifiers can be described as conditions on prevalence: 
-$$
-\denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\}
-$$
-The driving question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true?
-Fixed constraints on $\theta$ (e.g., $\theta = 0.5$) are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice (i.e., *Some mosquitos carry malaria*).
+<!-- ### Discussion (from main text priors expt) -->
+
+<!-- The feature-probability prior distribution $P_f(h)$ encodes beliefs about the feature-probability (or, probabilities) of a feature $f$ across different kinds. -->
+<!-- These distributions are structured and are best represented by a model with at least two distinct generative components: one corresponding to those kinds that only accidentally or transiently have the feature and one corresponding to those kinds with a stable causal mechanism that gives rise to the feature with some probability. -->
+
+<!-- The knowledge encoded by the prevalence prior distribution is similar to another theoretical construct discussed in the generics literature: cue validity. -->
+
+<!-- If feature-probability is the "forward probability" (e.g., one's predictions about whether or not an entity will lay eggs after learning that the entity is a robin), the inverse probability---$P(k \mid f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs)---is known as *cue validity*. -->
+<!-- For example, if one learns that an entity carries malaria, that entity is probably a mosquito because only mosquitos carry malaria; hence "carrying malaria" has high cue validity for mosquitos.  -->
 
 
-With respect to malaria-carrying mosquitos, @Leslie2007 notes that the mosquito is the only species to carry malaria. 
-The distinctiveness of *carrying malaria* then perhaps why *Mosquitos carry malaria* is true.
-More formally, the inverse probability --- the probability of the kind $k$ given the feature $f$: $P(k \mid f)$ --- might be able to save statistical-based approaches [@Leslie2007; @Khemlani2012].
-This inverse probability, referred to as *cue validity*, encodes the diagnosticity of the feature for the kind.
-For example, after learning that an entity *carries malaria*, the probability that the entity is a *mosquito* is very high. 
-
-As noted in the main text, cue validity can be derived from a prevalence prior composed of a finite number of kinds.
-This relationship follows from Bayes' Rule:
-
-$$
-P(x \in k | x \in f) = \frac{P(x \in f \mid x \in k) \cdot P(x \in k)}{\sum_{k'}P(x \in f \mid x \in k') \cdot P(x \in k')}
-$$
-
-where $x$ is an arbitrary entity, $k$ is a kind (represented as a collection of entities in the kind), and $f$ is a feature (represented as a collection of entities with the feature).
-However, in a generative model composed of a potentially infinite number of kinds, the cue validity of a feature for a particular kind is 0. 
-In our mixture model formulation of the prevalence prior, we explicitly represent the prevalence prior as a generative model with a potentially infinite number of kinds.
-In this formulation, the mixture parameter $\phi$ can be seen as a generalization of cue validity, to the case of potentially infinite numbers of kinds.
+<!-- However, we should not throw away the possibility that distributional information about the property is relevant.  -->
+<!-- The mixture parameter $\phi$ in the feature-probability prior distribution can be seen as a generalization of the construct of cue validity.  -->
+<!-- Recall that $\phi$ is the weighting between the two generative components of the feature-probability prior (i.e., the stable cause distribution $\mathcal{D}_{stable}$ and the transient cause distribution $\mathcal{D}_{transient}$). -->
 
 
-Cue validity is not itself sufficient to explain endorsements because of cases like *Dogs have four legs*, where many kinds have the feature. 
-However, one could argue for some integration of the two probabilities --- prevalence and cue validity.
-This is often used as the "statistical-based approach" and operationalized by measuring prevalence and cue validity, and using both measurements as predictors of generic endorsement in a logistic-regression of generic endorsement [@Khemlani2012; @Prasada2013].
+<!-- Alternatively, if the number of kinds in prior is not fixed (e.g., if it is the product of a generative model of kinds), cue validity is no longer well-defined (or, it is zero for all kinds).  -->
+<!-- This is for the same reason that for a probability distribution over the real numbers (a *continuous* probability distribution), the probability of any particular number is zero.  -->
+<!-- For example, consider the cue validity of "having wings" for \textsc{robins}: $P(\text{robin} \mid \text{has wings})$. -->
+<!-- The feature of "having wings" is somewhat diagnostic for the category of \textsc{birds} (and hence, $\phi$ is relatively low), but there are many kinds of birds and the feature is not particularly diagnostic for any given one of the subkinds (e.g., robins).  -->
+<!-- $phi$ is still relatively small in this case because it encodes information about the distribution across kinds and not just one particular kind. -->
+<!-- This is an important methodological point of departure in our work from previous work. -->
 
-In Expt. 1, we articulated this alternative model by measuring cue validity (and prevalence) and predicting generic endorsement from a regression model.
-In a small review of the literature, we discovered different methods for measuring cue validity, which lead to different results. 
-Therefore, here we propose three *a priori* desiderata that a measurement of cue validity should satisfy.
+<!-- The prevalence prior distribution, on the other hand, does not require that the set of categories be fixed.  -->
+<!-- It in fact may be one dimension of a higher-dimesional generative model of kinds and properties. -->
+<!-- Cue validity is conceptually related to the mixture parameter $\phi$ of the prevalence prior. -->
+<!-- However, cue validity requires knowledge of the referent-category $k$ -->
+
+<!-- In considering generalizations about categories, or *generic language*, theories try to formalize the truth conditions by analogy to quantified statements (e.g., *some*, *most*, ...). -->
+<!-- Here, the prevalence of the feature, or $P(f \mid k)$, is the critical quantity. -->
+<!-- Quantifiers can be described as conditions on prevalence:  -->
+<!-- $$ -->
+<!-- \denote{some} = \{P(f \mid k) > 0\}, \denote{most} = \{P(f \mid k) > 0.5\}, \denote{all} = \{P(f \mid k) = 1\} -->
+<!-- $$ -->
+<!-- The driving question for formal semantic theories has been: is there some threshold $\theta$ beyond which generic statements become true? -->
+<!-- Fixed constraints on $\theta$ (e.g., $\theta = 0.5$) are difficult to defend because of cases like *Mosquitos carry malaria*, where only the weakest threshold would suffice (i.e., *Some mosquitos carry malaria*). -->
+
+<!-- Cue validity is not itself sufficient to explain endorsements because of cases like *Dogs have four legs*, where many kinds have the feature.  -->
+<!-- However, one could argue for some integration of the two probabilities --- prevalence and cue validity. -->
+<!-- This is often used as the "statistical-based approach" and operationalized by measuring prevalence and cue validity, and using both measurements as predictors of generic endorsement in a logistic-regression of generic endorsement [@Khemlani2012; @Prasada2013]. -->
+
+In Experiment 1, we articulated an alternative model by measuring cue validity (and prevalence) and predicting generic endorsement from a regression model.
+In a small review of the literature, we discovered different methods for measuring cue validity; in piloting, these different methods lead to different results. 
+Therefore, we propose three *a priori* desiderata that a measurement of cue validity should satisfy.
 We describe two experiments that represent the primary methods for measuring cue validity and compare them with these desiderata in mind.
 Finally, we compare the cue validity measured using these different methods to cue validity derived from our prevalence prior elicitation task (Expt. 1a, main text).
 
-## Measuring cue validity
+## Desiderata
 
-Measuring cue validity involves collecting participants' judgments that relate to the probability of the kind given the feature.
-There are at least two distinct, prominent ways of measuring cue validity.
-One way is ask participants directly about the probability (or likelihood, odds, etc...) of the kind given the feature, using a likert scale or slider [@Khemlani2012; @Prasada2013].
-We'll call this approach the "direct question" approach.
-Another way is to supply participants with the feature alone and have them generate the kind or kinds [@Cree2006].
-We'll call this approach the "free production" approach. 
+Measuring cue validity involves collecting participants' judgments that relate to the probability that an exemplar is a member of a kind given that is has a feature : $P(x \in k \mid x \in f)$.
+There are several ways one could measure cue validity. 
+Here we consider two measures: One that has participants estimate the probability $P(x \in k \mid x \in f)$ directly, a common technique in the literature on generic language [e.g., @Khemlani2012; @Prasada2013], and another that has participants freely produce categories given a feature [i.e., draw a sample from the conditional distribution on kinds given a feature; @Cree2006].
+We will the former the *direct question* method and the latter the *free production* method.
 
-What criteria can we use to validate one measurement over the other?
-We propose three boundary cases *a priori* that the measurement should be able to satisfy.
-For each case, we provide four examples which will be used to evaluate each measure.
+Are the *direct question* and the *free productions* equally valid for measuring cue validity?
+We propose *a priori* three boundary conditions that the measurement should be able to satisfy.
+For each case, we provide four examples from our larger stimulus set on generics (Case Study 1) which will be used to evaluate each measure.
 
 \begin{enumerate}
-\item{Completely diagnostic features: We contend there are a number of features that only one (or very small) of categories contain. Examples include: \emph{carrying malaria} (mosquitos), \emph{carrying Lyme disease} (ticks), \emph{having manes} (lions), \emph{having pouches} (kangaroos). The cue validity of these features for the corresponding categories should be very high (close to 1).}
-\item{Completely absent features: For features that are completely absent in a kind, the cue validity should be extremely low or 0. There are many examples of these kinds of pairings; for example, \emph{has wings} (leopard), \emph{has a mane} (shark), *has spots* (kangaroo), *has a pouch* (tiger). }
-\item{Completely undiagnostic features: We contend there are a number of features that almost every category contains. Examples include: \emph{is female} (robin), \emph{is male} (lion), \emph{is juvenile} (kangaroo), \emph{is full-grown} (leopard). The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
+\item{Completely diagnostic features: Some features are only present in one (or a very small number) of categories. Examples include: \emph{carrying malaria} (mosquitos), \emph{carrying Lyme disease} (ticks, deer), \emph{having manes} (lions), \emph{having pouches} (marsupials, including most famously: kangaroos). The cue validity of these features for the corresponding categories should be very high (at least 0.5 and possibly close to 1).}
+\item{Completely absent features: Many features are completely absent in many kinds. For these, the cue validity should be extremely low or 0. There are infinite examples. The ones will use are \emph{has wings} (leopard), \emph{has a mane} (shark), *has spots* (kangaroo), *has a pouch* (tiger). }
+\item{Completely undiagnostic features: A number of features are shared by almost every category. The ones we will use are: \emph{is female} (robin), \emph{is male} (lion), \emph{is juvenile} (kangaroo), \emph{is full-grown} (leopard). The cue validity of these features for particular categories should be extremely low or 0. Learning that an entity is female tells you almost nothing about what kind of animal it is.}
 \end{enumerate}
 
 We collected cue validity ratings by running both a direct question and a free production experiment.
 For the free production experiment, the cue validity is the proportion of responses of the target category (e.g., "mosquitos") for the property (e.g., "carries malaria").
-Of primary interest is the measurement for the boundary conditions described above.
+Of primary interest is the measurement for the desiderata items described above.
 Links to the experiments can be found on \url{https://mhtess.github.io}.
 
 ## Experimental materials
@@ -106,7 +112,7 @@ The slider appeared with no handle present; participants had to click on the sli
 
 Participants completed the thirty target trials (corresponding to the thirty generic statements used in Expt. 1b) in addition to ten filler trials (total number of trials = 40).
 The filler trials were made up of random category -- property pairings.
-All trials were presented in a randomized order.
+Trials were presented in a randomized order.
 
 ## Free production experiment
 
@@ -114,7 +120,7 @@ All trials were presented in a randomized order.
 
 #### Participants
 
-We recruited 50 participants from Amazon's Mechanical Turk.
+We recruited 100 participants from Amazon's Mechanical Turk.
 Participants were restricted to those with U.S. IP addresses and who had at least a 95\% work approval rating.
 The experiment took on average 3 minutes and participants were compensated \$0.40 for their work.
 
@@ -129,11 +135,12 @@ What do you think it is?
 
 Participants responded by filling in a text box with their response.
 There were twenty-one trials in total, one for each property.
+No filler trials were used.
 Trials were presented in a randomized order.
 
 ### Free production data processing
 
-To process the free production, we forced all characters to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
+To process the free production, we forced all characters in a repsonse to lower case, removed spaces, and made all terms into singular terms (e.g., "lions" --> "lion").
 As well, "mosquito" was a commonly mispelled label; we counted anything that started with "mosqu", "mesqu", "misqu", "mosiq" as "mosquito". 
 
 To calculate confidence intervals for the free production data, we resampled participants (with replacement) and computed the proportion of responses that were of the target category (e.g., the proportion of "mosquito" responses for the cue "carries malaria"). We did this 1000 times to generate an empirical distribution from which 95\% intervals could be calculated.
@@ -141,24 +148,24 @@ To calculate confidence intervals for the free production data, we resampled par
 ## Results and Evaluation
 
 We are interested in the results of each measure (direct question and free production) for the three conditions corresponding to the desiderata outlined above. 
-To evaluate each measure, we selected four examples property--category pairs that we believe are unambiguously instances of the boundary conditions described above (these items are described above with the desiderata).
+To evaluate each measure, we selected four example property--category pairs that we believe are unambiguously instances of the boundary conditions described above (these items are described above with the desiderata).
 
 Figure \ref{fig:cv-bothquestions-barplots} (top) shows the results for the twelve items of interest for both measurements.
-We see that for the "false" features, both measures behave as desired (shown by the dotted line). 
-The cue validity of a feature that is false is zero or near-zero.
-For "diagnostic" features, both measures behave reasonably well.
-Learning that an entity has malaria strongly implies that it is a mosquito. 
-However, there are some subtle differences among our examples that only the free production measure picks up on.
+We see that for the "false" features, both measures behave as desired (hypothsized results shown by the dotted line): The cue validity of a feature that is false is zero or near-zero.
+For "diagnostic" features, both measures also behave reasonably: Learning that an entity has malaria strongly implies that it is a mosquito. 
+However, there is some evidence that the free production measurement is more sensitive than the direct-question measure.
 "Having a mane" is strongly diagnostic for a "lion" but also for a "horse" (and so the overall cue validity for lion is around 0.5).
 "Carrying Lyme disease" is mostly diagnostic for a "tick" but also "deer" (and thus, the cue validity for tick is not maximal).
+These subtle differences among "diagnostic" features is picked up by the free-production measure but not by the direct-question measure.
 
-The measures deviate in their characterization of the undiagnostic features. 
-Learning that an entity is female does not strongly imply that it is a robin, which is accurately reflected in the free production measure but not in the direct question measure.
+The measures deviate most strongly, however, in their characterization of the undiagnostic features. 
+Learning that an entity is female should not strongly imply that it is a robin, which is accurately reflected in the free production measure but not in the direct question measure.
 A similar phenomenon can be observed in direct question measure for the other undiagnostic features.
 Figure \ref{fig:cv-bothquestions-barplots} (bottom left) shows the raw empirical distributions of responses for the direct question measure. 
 We observe suggestive evidence that participants respond to this question for unidagnostic features in one of two ways: (i) reporting near-0 likelihood (accurate response) or (ii) reported near-0.5 likelihood. 
 This latter response option may be a pragmatic effect of asking the direct question and/or participants "opting out" of a response. 
-For example, in response to the question "There is a thing that is female. What are the odds that it is a robin?", a reasonable human response may be "I don't know". Participants may cope with the awkwardness of the question by placing the slider bar in the middle of the scale. 
+For example, in response to the question "There is a thing that is female. What are the odds that it is a robin?", a reasonable human response may be "I don't know". 
+Participants may cope with the awkwardness of the question by placing the slider bar in the middle of the scale. 
 
 ```{r directQuestion, echo = F}
 d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
@@ -208,7 +215,7 @@ d.cv.summary <- d.cv.targets %>%
 
 ```{r freeProduction, echo = F}
 d.cv.fp <- read.csv(paste(project.path, 
-                          data.path, "cue-validity-2-freeProduction-trials.csv", sep = ""))
+                          data.path, "cue-validity-2-freeProduction-trials-n100.csv", sep = ""))
 
 mosquito.mispellings <- c("mosqu", "mesqu", "misqu", "mosiq")
 
@@ -304,7 +311,6 @@ theoretical.cv <- data.frame(
 
 ```
 
-
 ```{r}
 cv.bothquestions.bars <- d.cv.bothtasks %>%
   ungroup() %>%
@@ -323,7 +329,6 @@ cv.bothquestions.bars <- d.cv.bothtasks %>%
   guides(color = F)
 ```
 
-
 ```{r dq.histogram}
 dq.histograms <- ggplot(d.cv.targets %>%
          filter(item %in% undiagnostic.props$item), aes( x = response ))+
@@ -334,11 +339,6 @@ dq.histograms <- ggplot(d.cv.targets %>%
   xlab("Direct question response")+
   ylab("Number of responses")
 ```
-
-
-
-
-
 
 ```{r}
 diagnostic.props <- data.frame(
@@ -407,7 +407,6 @@ d.gen.cv.all.summary <- left_join(
 
 ```
 
-
 ```{r cuevalidity-model-pk}
 wp.pkg.path <- paste(project.path, "models/generics/node_modules/utils/", sep = "")
 
@@ -464,7 +463,6 @@ for (p in gen.endorse.properties){
 #        paste(project.path, model.path, 
 #              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
 ```
-
 
 ```{r}
 md.fp <- left_join(left_join(
@@ -577,7 +575,6 @@ prevprior.cv.scatters <- bind_rows(
   facet_wrap(~src)
 ```
 
-
 ```{r cv-bothquestions-barplots, fig.height = 8, fig.width = 8, fig.cap="Top: Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals. Bottom left: Raw empirical distributions for direct question task. Bottom right: Correspondence between measured cue validity and prevalence prior derived cue validity."}
 grid.arrange(cv.bothquestions.bars, 
              dq.histograms, 
@@ -590,33 +587,33 @@ grid.arrange(cv.bothquestions.bars,
                                    ))
 ```
 
-
 ## Comparison with prevalence prior derived cue validity
 
-We can further understand our measures of cue validity by comparing them to cue validity derived from our prevalence prior elicitation task (Expt. 1a).
-Expt. 1a is not perfectly designed for this comparison, as we supplied participants with half of the animal categories that they rated. (Participants freely generated the other half). Thus, we do not have the best measurement of the prior probability of categories $P(k)$.
+To further understand these measures of cue validity, we compare them to cue validity derived from our prevalence prior elicitation task (Expt. 1a).
+Expt. 1a is not perfectly designed for this comparison, as we supplied participants with half of the animal categories that they rated (the other half was freely generated by participants); including these supplied categories was important to measure referent-prevalence of interest (e.g., the percentage of mosquitos that carry malaria). Including them in this analysis, however, potentially distorts the prior probability of categories $P(k)$. 
 
 In this analysis, we treat each category entry from Expt. 1a (participant free production or experimentally supplied category like mosquitos) as contributing to the prevalence prior.
 This will result in the prevalence prior favoring kinds that are easy to produce (like dogs and cats, which is plausibly a good approximation for $P(k)$) as well as favoring the experimentally supplied kinds (like mosquitos and robins).
 
 We compute cue validity from the prevalence prior using Bayes' rule. 
 Figure \ref{fig:cv-bothquestions-barplots} (bottom right) shows the two measurements of cue validity as they relate to the prevalence prior derived cue validity. 
-The prevalence prior derived cue validity is high associated with both measurements: $r_{direct}^2(`r n.dq`) = `r r2.dq`; MSE_{direct} = `r mse.dq`$ and $r_{free}^2(`r n.fp`) = `r r2.fp`; MSE_{free} = `r mse.fp`$.
-Of primary interest is how the measurements behave for for desiderata items. 
-We see that the prevalence prior derived cue validity converges with the free production measurement for the desiderata items ($r_{free}^2(`r n.fp.desid`) = `r r2.fp.desid`; MSE_{free} = `r mse.fp.desid`$), whereas the direct question measurement overestimates the cue validity of undiagnositic features ($r_{direct}^2(`r n.dq.desid`) = `r r2.dq.desid`; MSE_{direct} = `r mse.dq.desid`$).
-Interestingly, the direct question measurement consistently overestimates cue validity in comparison to the prevalence prior derived cue validity. 
+The prevalence prior derived cue validity is highly associated with both measurements: $r_{direct}^2(`r n.dq`) = `r r2.dq`$; $MSE_{direct} = `r mse.dq`$ and $r_{free}^2(`r n.fp`) = `r r2.fp`$; $MSE_{free} = `r mse.fp`$.
+Of primary interest is how the measurements behave for desiderata items. 
+We see that the prevalence prior derived cue validity converges with the free production measurement for the desiderata items ($r_{free}^2(`r n.fp.desid`) = `r r2.fp.desid`$; $MSE_{free} = `r mse.fp.desid`$), whereas the direct question measurement overestimates the cue validity of undiagnositic features ($r_{direct}^2(`r n.dq.desid`) = `r r2.dq.desid`$; $MSE_{direct} = `r mse.dq.desid`$).
+
+The points of largest deviation for the free-production measurement from the prevalence prior derived measurement occur where the prevalence prior derived measure rates the cue validity as relatively high when the free-production measure gives the item low cue validity (two black points in Fig. \ref{fig:cv-bothquestions-barplots} (right scatterplot) high X-value, low Y-value).
+These two items are: ("is red", "cardinal") and ("is white", "swan").
+These items should have low relatively cue validity and are overestimated by the prevalence prior because of the prior on categoryies $P(k)$ (i.e., because they were supplied to every participant and thus get a higher weighted in the prior for deriving cue validity).
+In comparison, the direct question measurement consistently overestimates cue validity relative to the prevalence prior. 
 
 
 ## Summary
 
-*Cue validity* is often used as a measurement for understanding generic truth conditions. 
-We articulated three *a priori* boundary conditions for a measurement of cue validity, because we observe different measurements being used in the literature. 
+*Cue validity* is a commonly used measurement for understanding generic truth conditions. 
+Because we observe different measurements being used in the literature, we articulated three *a priori* desiderata to validate a measure of cue validity.
 We found that the "free production" measurement (i.e., having participants generate categories given a feature), and not the direct question measurement (i.e., asking participants a likelihood judgment of the category given the feature), satisfied all three boundary conditions. 
 In addition, cue validity derived from our prevalence prior measurement (Expt. 1a) also satisfied these boundary conditions. 
 We conclude that researchers interested in generic truth conditions should use a free production paradigm for measuring cue validity.
-
-
-
 
 
 ```{r cvModel-uniformPrior, eval = F}
