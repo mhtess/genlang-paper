@@ -308,8 +308,8 @@ A threshold semantics for a generalization about category K with property F woul
 $\denote{K \text{ } F}(p_{fk}, \theta) = \{p_{fk} >\theta\}$
 
 Various attempts of this kind have been made before [e.g., @Cohen1999].
-We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $p_{fk}$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.  
-$p_{fk}$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief due to background knowledge.
+We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $p_{fk}$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.
+$p_{fk}$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief.
 
 <!-- We emphasize that this account is based on a probability $h$. -->
 <!-- The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the prevalence $h$.^[ -->
