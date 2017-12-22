@@ -633,7 +633,7 @@ inset.color.order <- c("#859900","#d33682","#dc322f", "#268bd2")
 causals.endorsement.insets <- cas.listener.predictions %>% 
     mutate(Parameter = factor(Parameter, 
                               levels = c("state_Prior","state_Posterior"),
-                            labels = c("Feature-probability Prior (Expt. 3a)",
+                            labels = c("Prevalence prior (Expt. 3a)",
                                        "Interpreter model posterior")),
     Distribution = factor(distribution, 
                                levels = c("rare_weak",  "common_weak", "rare_deterministic", "common_deterministic"),
@@ -726,7 +726,7 @@ figure.causals.endorsement <- bind_rows(
   )
 ```
 
-```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Background, feature-probability prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Endorsement mode predictions, interpreter model posteriors, and feature-probability priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix."}
+```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
 
 prow <- plot_grid( 
   figure.causals.endorsement + theme(legend.position="none"),
