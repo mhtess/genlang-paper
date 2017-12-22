@@ -1,0 +1,2101 @@
+"","workerid","property","trial_type","rt","trial_num","response","sentence","targetMention"
+"1",0,"carries malaria","free_production",7219,1,"mosquito","mosquito carries malaria",1
+"2",0,"eats people","free_production",5291,2,"shark","shark eats people",0
+"3",0,"is juvenile","free_production",5026,3,"tiger","tiger is juvenile",0
+"4",0,"has a mane","free_production",4163,4,"horse","horse has a mane",0
+"5",0,"is full-grown","free_production",5666,5,"bear","bear is full-grown",0
+"6",0,"doesn't carry Lyme disease","free_production",6871,6,"prayingmanti","prayingmanti doesn't carry Lyme disease",0
+"7",0,"is white","free_production",3773,7,"dove","dove is white",0
+"8",0,"doesn't eat people","free_production",3326,8,"cat","cat doesn't eat people",0
+"9",0,"is male","free_production",4376,9,"dog","dog is male",0
+"10",0,"doesn't attack swimmers","free_production",8200,10,"pelican","pelican doesn't attack swimmers",0
+"11",0,"is red","free_production",5688,11,"cardinal","cardinal is red",1
+"12",0,"lays eggs","free_production",5720,12,"turtle","turtle lays eggs",0
+"13",0,"carries Lyme disease","free_production",2807,13,"tick","tick carries Lyme disease",1
+"14",0,"has wings","free_production",4611,14,"bat","bat has wings",0
+"15",0,"has spots","free_production",10615,15,"ladybug","ladybug has spots",0
+"16",0,"is female","free_production",15334,16,"mare","mare is female",0
+"17",0,"doesn't carry malaria","free_production",3034,17,"fly","fly doesn't carry malaria",0
+"18",0,"attacks swimmers","free_production",3997,18,"eel","eel attacks swimmers",0
+"19",0,"doesn't have beautiful feathers","free_production",3665,19,"pig","pig doesn't have beautiful feathers",0
+"20",0,"has a pouch","free_production",3734,20,"kangaroo","kangaroo has a pouch",1
+"21",0,"has beautiful feathers","free_production",4477,21,"peacock","peacock has beautiful feathers",1
+"22",1,"doesn't eat people","free_production",14828,1,"ant","ant doesn't eat people",0
+"23",1,"is female","free_production",21819,2,"cat","cat is female",0
+"24",1,"has a mane","free_production",23348,3,"lion","lion has a mane",1
+"25",1,"carries Lyme disease","free_production",8546,4,"mosquito","mosquito carries Lyme disease",0
+"26",1,"is red","free_production",10507,5,"redant","redant is red",0
+"27",1,"doesn't carry Lyme disease","free_production",4983,6,"fly","fly doesn't carry Lyme disease",0
+"28",1,"has spots","free_production",14554,7,"beetle","beetle has spots",0
+"29",1,"has a pouch","free_production",4468,8,"kangaroo","kangaroo has a pouch",1
+"30",1,"doesn't have beautiful feathers","free_production",7836,9,"lizard","lizard doesn't have beautiful feathers",0
+"31",1,"has beautiful feathers","free_production",3468,10,"bird","bird has beautiful feathers",0
+"32",1,"doesn't attack swimmers","free_production",43645,11,"dog","dog doesn't attack swimmers",0
+"33",1,"doesn't carry malaria","free_production",7258,12,"dog","dog doesn't carry malaria",0
+"34",1,"eats people","free_production",8177,13,"crocodile","crocodile eats people",0
+"35",1,"is full-grown","free_production",5056,14,"dog","dog is full-grown",0
+"36",1,"lays eggs","free_production",4836,15,"chicken","chicken lays eggs",0
+"37",1,"has wings","free_production",2990,16,"bird","bird has wings",0
+"38",1,"attacks swimmers","free_production",3656,17,"shark","shark attacks swimmers",1
+"39",1,"carries malaria","free_production",8905,18,"mosquito","mosquito carries malaria",1
+"40",1,"is male","free_production",3774,19,"dog","dog is male",0
+"41",1,"is juvenile","free_production",9709,20,"puppy","puppy is juvenile",0
+"42",1,"is white","free_production",4156,21,"cow","cow is white",0
+"43",2,"has a pouch","free_production",5495,1,"kangaroo","kangaroo has a pouch",1
+"44",2,"doesn't attack swimmers","free_production",12388,2,"clownfish","clownfish doesn't attack swimmers",0
+"45",2,"attacks swimmers","free_production",4632,3,"shark","shark attacks swimmers",1
+"46",2,"eats people","free_production",12825,4,"lion","lion eats people",0
+"47",2,"doesn't have beautiful feathers","free_production",7279,5,"pigeon","pigeon doesn't have beautiful feathers",0
+"48",2,"has beautiful feathers","free_production",6711,6,"peacock","peacock has beautiful feathers",1
+"49",2,"has a mane","free_production",5857,7,"lion","lion has a mane",1
+"50",2,"carries Lyme disease","free_production",2908,8,"tick","tick carries Lyme disease",1
+"51",2,"carries malaria","free_production",7983,9,"mosquito","mosquito carries malaria",1
+"52",2,"is full-grown","free_production",7821,10,"elephant","elephant is full-grown",0
+"53",2,"doesn't eat people","free_production",7755,11,"cat","cat doesn't eat people",0
+"54",2,"is female","free_production",22538,12,"chicken","chicken is female",0
+"55",2,"has wings","free_production",7149,13,"hummingbird","hummingbird has wings",0
+"56",2,"doesn't carry malaria","free_production",4280,14,"dog","dog doesn't carry malaria",0
+"57",2,"doesn't carry Lyme disease","free_production",7223,15,"cat","cat doesn't carry Lyme disease",0
+"58",2,"is red","free_production",24154,16,"bird","bird is red",0
+"59",2,"has spots","free_production",10033,17,"leopard","leopard has spots",1
+"60",2,"is male","free_production",4241,18,"rooster","rooster is male",0
+"61",2,"lays eggs","free_production",5985,19,"chicken","chicken lays eggs",0
+"62",2,"is white","free_production",21088,20,"cat","cat is white",0
+"63",2,"is juvenile","free_production",6263,21,"kitten","kitten is juvenile",0
+"64",3,"carries Lyme disease","free_production",13743,1,"tick","tick carries Lyme disease",1
+"65",3,"is juvenile","free_production",6943,2,"kitten","kitten is juvenile",0
+"66",3,"is female","free_production",7496,3,"cat","cat is female",0
+"67",3,"has a mane","free_production",4296,4,"lion","lion has a mane",1
+"68",3,"carries malaria","free_production",9104,5,"mosquito","mosquito carries malaria",1
+"69",3,"doesn't attack swimmers","free_production",10216,6,"trout","trout doesn't attack swimmers",0
+"70",3,"is red","free_production",7304,7,"ladybug","ladybug is red",0
+"71",3,"eats people","free_production",9680,8,"shark","shark eats people",0
+"72",3,"has beautiful feathers","free_production",6888,9,"peacock","peacock has beautiful feathers",1
+"73",3,"has wings","free_production",6648,10,"eagle","eagle has wings",0
+"74",3,"attacks swimmers","free_production",18840,11,"shark","shark attacks swimmers",1
+"75",3,"doesn't have beautiful feathers","free_production",10952,12,"pidgeon","pidgeon doesn't have beautiful feathers",0
+"76",3,"doesn't carry malaria","free_production",7911,13,"ant","ant doesn't carry malaria",0
+"77",3,"doesn't carry Lyme disease","free_production",14047,14,"cheetah","cheetah doesn't carry Lyme disease",0
+"78",3,"doesn't eat people","free_production",4848,15,"dog","dog doesn't eat people",0
+"79",3,"is full-grown","free_production",8288,16,"elephant","elephant is full-grown",0
+"80",3,"has a pouch","free_production",6104,17,"kangaroo","kangaroo has a pouch",1
+"81",3,"lays eggs","free_production",3824,18,"chicken","chicken lays eggs",0
+"82",3,"is male","free_production",5448,19,"wolf","wolf is male",0
+"83",3,"is white","free_production",7248,20,"rabbit","rabbit is white",0
+"84",3,"has spots","free_production",10153,21,"duck","duck has spots",0
+"85",4,"doesn't have beautiful feathers","free_production",5243,1,"cat","cat doesn't have beautiful feathers",0
+"86",4,"carries malaria","free_production",4347,2,"mosquito","mosquito carries malaria",1
+"87",4,"is white","free_production",4683,3,"whale","whale is white",0
+"88",4,"has spots","free_production",13619,4,"giraffe","giraffe has spots",0
+"89",4,"attacks swimmers","free_production",3833,5,"shark","shark attacks swimmers",1
+"90",4,"lays eggs","free_production",4170,6,"fly","fly lays eggs",0
+"91",4,"has wings","free_production",7016,7,"fly","fly has wings",0
+"92",4,"is juvenile","free_production",14461,8,"tigercub","tigercub is juvenile",0
+"93",4,"doesn't carry malaria","free_production",3940,9,"cat","cat doesn't carry malaria",0
+"94",4,"doesn't attack swimmers","free_production",3993,10,"dog","dog doesn't attack swimmers",0
+"95",4,"eats people","free_production",5436,11,"shark","shark eats people",0
+"96",4,"doesn't eat people","free_production",3473,12,"cat","cat doesn't eat people",0
+"97",4,"carries Lyme disease","free_production",3692,13,"tick","tick carries Lyme disease",1
+"98",4,"has a pouch","free_production",4624,14,"kangaroo","kangaroo has a pouch",1
+"99",4,"is full-grown","free_production",3833,15,"kangaro","kangaro is full-grown",0
+"100",4,"is red","free_production",10712,16,"ladybug","ladybug is red",0
+"101",4,"doesn't carry Lyme disease","free_production",6697,17,"ladybug","ladybug doesn't carry Lyme disease",0
+"102",4,"has a mane","free_production",4510,18,"lion","lion has a mane",1
+"103",4,"is female","free_production",17224,19,"kangaroo","kangaroo is female",0
+"104",4,"is male","free_production",4749,20,"kangaroo","kangaroo is male",0
+"105",4,"has beautiful feathers","free_production",5060,21,"peacock","peacock has beautiful feathers",1
+"106",5,"carries malaria","free_production",75553,1,"mosquito","mosquito carries malaria",1
+"107",5,"is juvenile","free_production",7911,2,"monkey","monkey is juvenile",0
+"108",5,"eats people","free_production",7406,3,"tiger","tiger eats people",1
+"109",5,"has a pouch","free_production",10688,4,"kangaroo","kangaroo has a pouch",1
+"110",5,"doesn't have beautiful feathers","free_production",8532,5,"kiwi","kiwi doesn't have beautiful feathers",0
+"111",5,"has spots","free_production",9342,6,"leopard","leopard has spots",1
+"112",5,"carries Lyme disease","free_production",7894,7,"tick","tick carries Lyme disease",1
+"113",5,"lays eggs","free_production",3492,8,"hen","hen lays eggs",0
+"114",5,"has wings","free_production",6166,9,"bird","bird has wings",0
+"115",5,"doesn't eat people","free_production",19997,10,"frog","frog doesn't eat people",0
+"116",5,"is female","free_production",5804,11,"frog","frog is female",0
+"117",5,"doesn't carry malaria","free_production",6323,12,"frog","frog doesn't carry malaria",0
+"118",5,"doesn't carry Lyme disease","free_production",5610,13,"frog","frog doesn't carry Lyme disease",0
+"119",5,"is red","free_production",5893,14,"cardinal","cardinal is red",1
+"120",5,"doesn't attack swimmers","free_production",9544,15,"tuna","tuna doesn't attack swimmers",0
+"121",5,"has beautiful feathers","free_production",45046,16,"peacock","peacock has beautiful feathers",1
+"122",5,"is male","free_production",43818,17,"frog","frog is male",0
+"123",5,"attacks swimmers","free_production",76974,18,"shark","shark attacks swimmers",1
+"124",5,"has a mane","free_production",5124,19,"lion","lion has a mane",1
+"125",5,"is white","free_production",9894,20,"dove","dove is white",0
+"126",5,"is full-grown","free_production",5118,21,"cow","cow is full-grown",0
+"127",6,"carries Lyme disease","free_production",5765,1,"tick","tick carries Lyme disease",1
+"128",6,"has a mane","free_production",2995,2,"horse","horse has a mane",0
+"129",6,"is male","free_production",8441,3,"dog","dog is male",0
+"130",6,"doesn't carry Lyme disease","free_production",9476,4,"cat","cat doesn't carry Lyme disease",0
+"131",6,"eats people","free_production",8828,5,"lion","lion eats people",0
+"132",6,"is full-grown","free_production",6015,6,"poodle","poodle is full-grown",0
+"133",6,"has beautiful feathers","free_production",3499,7,"peacock","peacock has beautiful feathers",1
+"134",6,"doesn't eat people","free_production",5116,8,"pig","pig doesn't eat people",0
+"135",6,"has a pouch","free_production",3777,9,"kangaroo","kangaroo has a pouch",1
+"136",6,"doesn't carry malaria","free_production",4486,10,"dog","dog doesn't carry malaria",0
+"137",6,"doesn't attack swimmers","free_production",6589,11,"dolphin","dolphin doesn't attack swimmers",0
+"138",6,"has wings","free_production",5347,12,"eagle","eagle has wings",0
+"139",6,"is juvenile","free_production",4942,13,"kitten","kitten is juvenile",0
+"140",6,"attacks swimmers","free_production",3780,14,"shark","shark attacks swimmers",1
+"141",6,"lays eggs","free_production",3162,15,"chicken","chicken lays eggs",0
+"142",6,"carries malaria","free_production",10070,16,"mosquito","mosquito carries malaria",1
+"143",6,"is red","free_production",103387,17,"ladybug","ladybug is red",0
+"144",6,"is white","free_production",4737,18,"cat","cat is white",0
+"145",6,"is female","free_production",8255,19,"sparrow","sparrow is female",0
+"146",6,"has spots","free_production",5113,20,"cheetah","cheetah has spots",0
+"147",6,"doesn't have beautiful feathers","free_production",6311,21,"gazelle","gazelle doesn't have beautiful feathers",0
+"148",7,"has a mane","free_production",5643,1,"horse","horse has a mane",0
+"149",7,"lays eggs","free_production",4513,2,"chicken","chicken lays eggs",0
+"150",7,"doesn't carry malaria","free_production",9005,3,"cat","cat doesn't carry malaria",0
+"151",7,"has beautiful feathers","free_production",4721,4,"peacock","peacock has beautiful feathers",1
+"152",7,"is white","free_production",5752,5,"cat","cat is white",0
+"153",7,"doesn't attack swimmers","free_production",8463,6,"tuna","tuna doesn't attack swimmers",0
+"154",7,"has spots","free_production",5545,7,"dalmation","dalmation has spots",0
+"155",7,"doesn't eat people","free_production",9910,8,"giraffe","giraffe doesn't eat people",0
+"156",7,"is full-grown","free_production",5845,9,"elephant","elephant is full-grown",0
+"157",7,"carries malaria","free_production",5850,10,"mosquito","mosquito carries malaria",1
+"158",7,"is male","free_production",4970,11,"dog","dog is male",0
+"159",7,"eats people","free_production",4691,12,"lion","lion eats people",0
+"160",7,"is female","free_production",3376,13,"bear","bear is female",0
+"161",7,"has a pouch","free_production",4833,14,"kangaroo","kangaroo has a pouch",1
+"162",7,"is juvenile","free_production",4755,15,"joey","joey is juvenile",0
+"163",7,"carries Lyme disease","free_production",4468,16,"tick","tick carries Lyme disease",1
+"164",7,"doesn't carry Lyme disease","free_production",5846,17,"mosquito","mosquito doesn't carry Lyme disease",0
+"165",7,"is red","free_production",4854,18,"ladybug","ladybug is red",0
+"166",7,"attacks swimmers","free_production",3849,19,"shark","shark attacks swimmers",1
+"167",7,"has wings","free_production",6596,20,"beatle","beatle has wings",0
+"168",7,"doesn't have beautiful feathers","free_production",8618,21,"finch","finch doesn't have beautiful feathers",0
+"169",8,"carries Lyme disease","free_production",5924,1,"tick","tick carries Lyme disease",1
+"170",8,"doesn't have beautiful feathers","free_production",8760,2,"ostrich","ostrich doesn't have beautiful feathers",0
+"171",8,"carries malaria","free_production",7280,3,"mosquito","mosquito carries malaria",1
+"172",8,"attacks swimmers","free_production",6250,4,"shark","shark attacks swimmers",1
+"173",8,"has wings","free_production",6944,5,"butterfly","butterfly has wings",0
+"174",8,"has beautiful feathers","free_production",5354,6,"peacock","peacock has beautiful feathers",1
+"175",8,"doesn't eat people","free_production",7422,7,"giraffe","giraffe doesn't eat people",0
+"176",8,"doesn't carry Lyme disease","free_production",7245,8,"fly","fly doesn't carry Lyme disease",0
+"177",8,"has a pouch","free_production",3882,9,"kangaroo","kangaroo has a pouch",1
+"178",8,"doesn't carry malaria","free_production",5963,10,"moth","moth doesn't carry malaria",0
+"179",8,"lays eggs","free_production",2881,11,"hen","hen lays eggs",0
+"180",8,"is full-grown","free_production",5599,12,"elephant","elephant is full-grown",0
+"181",8,"is white","free_production",7781,13,"polarbear","polarbear is white",0
+"182",8,"is juvenile","free_production",9343,14,"rabbit","rabbit is juvenile",0
+"183",8,"is red","free_production",2766,15,"fox","fox is red",0
+"184",8,"has spots","free_production",5653,16,"leopard","leopard has spots",1
+"185",8,"eats people","free_production",10081,17,"lion","lion eats people",0
+"186",8,"doesn't attack swimmers","free_production",4840,18,"dolphin","dolphin doesn't attack swimmers",0
+"187",8,"is male","free_production",8194,19,"rooster","rooster is male",0
+"188",8,"is female","free_production",2884,20,"hen","hen is female",0
+"189",8,"has a mane","free_production",7554,21,"horse","horse has a mane",0
+"190",9,"is full-grown","free_production",5466,1,"dog","dog is full-grown",0
+"191",9,"has spots","free_production",6468,2,"giraffe","giraffe has spots",0
+"192",9,"attacks swimmers","free_production",2508,3,"shark","shark attacks swimmers",1
+"193",9,"is red","free_production",8483,4,"babboon","babboon is red",0
+"194",9,"has a pouch","free_production",2822,5,"kangaroo","kangaroo has a pouch",1
+"195",9,"lays eggs","free_production",2812,6,"spider","spider lays eggs",0
+"196",9,"doesn't have beautiful feathers","free_production",7109,7,"sparrow","sparrow doesn't have beautiful feathers",0
+"197",9,"eats people","free_production",5193,8,"alligator","alligator eats people",0
+"198",9,"is juvenile","free_production",7529,9,"hyena","hyena is juvenile",0
+"199",9,"is white","free_production",5487,10,"lemur","lemur is white",0
+"200",9,"doesn't eat people","free_production",7834,11,"guppie","guppie doesn't eat people",0
+"201",9,"has beautiful feathers","free_production",2978,12,"peacock","peacock has beautiful feathers",1
+"202",9,"carries Lyme disease","free_production",4214,13,"tick","tick carries Lyme disease",1
+"203",9,"is female","free_production",3723,14,"cat","cat is female",0
+"204",9,"doesn't carry Lyme disease","free_production",2842,15,"dog","dog doesn't carry Lyme disease",0
+"205",9,"doesn't carry malaria","free_production",5949,16,"ostrich","ostrich doesn't carry malaria",0
+"206",9,"carries malaria","free_production",3758,17,"mosquito","mosquito carries malaria",1
+"207",9,"doesn't attack swimmers","free_production",5907,18,"starfish","starfish doesn't attack swimmers",0
+"208",9,"has a mane","free_production",3034,19,"lion","lion has a mane",1
+"209",9,"is male","free_production",5523,20,"seahorse","seahorse is male",0
+"210",9,"has wings","free_production",7169,21,"bird","bird has wings",0
+"211",10,"doesn't attack swimmers","free_production",10226,1,"fish","fish doesn't attack swimmers",0
+"212",10,"is juvenile","free_production",6893,2,"maggot","maggot is juvenile",0
+"213",10,"doesn't eat people","free_production",5023,3,"cow","cow doesn't eat people",0
+"214",10,"is white","free_production",8240,4,"ermine","ermine is white",0
+"215",10,"doesn't have beautiful feathers","free_production",6570,5,"sparrow","sparrow doesn't have beautiful feathers",0
+"216",10,"eats people","free_production",5298,6,"alligator","alligator eats people",0
+"217",10,"has a pouch","free_production",19910,7,"echidna","echidna has a pouch",0
+"218",10,"doesn't carry malaria","free_production",6302,8,"cat","cat doesn't carry malaria",0
+"219",10,"attacks swimmers","free_production",6501,9,"jellyfish","jellyfish attacks swimmers",0
+"220",10,"has beautiful feathers","free_production",7533,10,"lovebird","lovebird has beautiful feathers",0
+"221",10,"has wings","free_production",11285,11,"starling","starling has wings",0
+"222",10,"carries Lyme disease","free_production",3118,12,"deer","deer carries Lyme disease",0
+"223",10,"doesn't carry Lyme disease","free_production",4168,13,"bear","bear doesn't carry Lyme disease",0
+"224",10,"is male","free_production",3768,14,"bull","bull is male",0
+"225",10,"is red","free_production",3905,15,"fox","fox is red",0
+"226",10,"carries malaria","free_production",3858,16,"mosquito","mosquito carries malaria",1
+"227",10,"is full-grown","free_production",6028,17,"fly","fly is full-grown",0
+"228",10,"lays eggs","free_production",4495,18,"echidna","echidna lays eggs",0
+"229",10,"is female","free_production",9568,19,"cow","cow is female",0
+"230",10,"has a mane","free_production",3710,20,"zebra","zebra has a mane",0
+"231",10,"has spots","free_production",3621,21,"leopard","leopard has spots",1
+"232",11,"carries malaria","free_production",6567,1,"mosquito","mosquito carries malaria",1
+"233",11,"is juvenile","free_production",6371,2,"bat","bat is juvenile",0
+"234",11,"is white","free_production",5836,3,"cat","cat is white",0
+"235",11,"attacks swimmers","free_production",5060,4,"shark","shark attacks swimmers",1
+"236",11,"doesn't attack swimmers","free_production",5273,5,"bas","bas doesn't attack swimmers",0
+"237",11,"doesn't eat people","free_production",10889,6,"bird","bird doesn't eat people",0
+"238",11,"doesn't carry Lyme disease","free_production",5027,7,"dog","dog doesn't carry Lyme disease",0
+"239",11,"doesn't carry malaria","free_production",4871,8,"bird","bird doesn't carry malaria",0
+"240",11,"is full-grown","free_production",3106,9,"cow","cow is full-grown",0
+"241",11,"has spots","free_production",7520,10,"leopard","leopard has spots",1
+"242",11,"doesn't have beautiful feathers","free_production",4704,11,"zebra","zebra doesn't have beautiful feathers",0
+"243",11,"lays eggs","free_production",4266,12,"chicken","chicken lays eggs",0
+"244",11,"has beautiful feathers","free_production",5343,13,"peacock","peacock has beautiful feathers",1
+"245",11,"has a mane","free_production",4506,14,"horse","horse has a mane",0
+"246",11,"has wings","free_production",5987,15,"mosquito","mosquito has wings",0
+"247",11,"eats people","free_production",4549,16,"shark","shark eats people",0
+"248",11,"has a pouch","free_production",5189,17,"kangaroo","kangaroo has a pouch",1
+"249",11,"is red","free_production",12655,18,"bird","bird is red",0
+"250",11,"is male","free_production",3964,19,"mule","mule is male",0
+"251",11,"carries Lyme disease","free_production",3348,20,"tick","tick carries Lyme disease",1
+"252",11,"is female","free_production",3465,21,"cow","cow is female",0
+"253",12,"carries malaria","free_production",6535,1,"mosquito","mosquito carries malaria",1
+"254",12,"has a pouch","free_production",5495,2,"kangaroo","kangaroo has a pouch",1
+"255",12,"has wings","free_production",3324,3,"bat","bat has wings",0
+"256",12,"attacks swimmers","free_production",6059,4,"shark","shark attacks swimmers",1
+"257",12,"carries Lyme disease","free_production",4323,5,"tick","tick carries Lyme disease",1
+"258",12,"doesn't carry Lyme disease","free_production",6595,6,"fly","fly doesn't carry Lyme disease",0
+"259",12,"is red","free_production",4857,7,"fox","fox is red",0
+"260",12,"doesn't eat people","free_production",30479,8,"squirrel","squirrel doesn't eat people",0
+"261",12,"is juvenile","free_production",8560,9,"puppy","puppy is juvenile",0
+"262",12,"eats people","free_production",3423,10,"bear","bear eats people",0
+"263",12,"doesn't attack swimmers","free_production",8844,11,"goldfish","goldfish doesn't attack swimmers",0
+"264",12,"lays eggs","free_production",4349,12,"chicken","chicken lays eggs",0
+"265",12,"has a mane","free_production",4625,13,"cat","cat has a mane",0
+"266",12,"has beautiful feathers","free_production",4583,14,"peacock","peacock has beautiful feathers",1
+"267",12,"is white","free_production",4428,15,"owl","owl is white",0
+"268",12,"is female","free_production",3691,16,"doe","doe is female",0
+"269",12,"is full-grown","free_production",7015,17,"buck","buck is full-grown",0
+"270",12,"doesn't have beautiful feathers","free_production",16603,18,"rat","rat doesn't have beautiful feathers",0
+"271",12,"is male","free_production",19353,19,"ram","ram is male",0
+"272",12,"has spots","free_production",13528,20,"cheetah","cheetah has spots",0
+"273",12,"doesn't carry malaria","free_production",8284,21,"stork","stork doesn't carry malaria",0
+"274",13,"carries Lyme disease","free_production",5934,1,"tick","tick carries Lyme disease",1
+"275",13,"is full-grown","free_production",7398,2,"cow","cow is full-grown",0
+"276",13,"is juvenile","free_production",8999,3,"fly","fly is juvenile",0
+"277",13,"eats people","free_production",22699,4,"lion","lion eats people",0
+"278",13,"is female","free_production",6630,5,"deer","deer is female",0
+"279",13,"has beautiful feathers","free_production",8618,6,"peacock","peacock has beautiful feathers",1
+"280",13,"has spots","free_production",9340,7,"cow","cow has spots",0
+"281",13,"is male","free_production",5170,8,"bull","bull is male",0
+"282",13,"has a mane","free_production",6791,9,"lion","lion has a mane",1
+"283",13,"lays eggs","free_production",5007,10,"snake","snake lays eggs",0
+"284",13,"carries malaria","free_production",8671,11,"mosquito","mosquito carries malaria",1
+"285",13,"doesn't attack swimmers","free_production",8936,12,"dog","dog doesn't attack swimmers",0
+"286",13,"doesn't have beautiful feathers","free_production",9649,13,"crow","crow doesn't have beautiful feathers",0
+"287",13,"is red","free_production",47966,14,"robin","robin is red",0
+"288",13,"has wings","free_production",6596,15,"cardinal","cardinal has wings",0
+"289",13,"attacks swimmers","free_production",5357,16,"shark","shark attacks swimmers",1
+"290",13,"doesn't carry malaria","free_production",10278,17,"cow","cow doesn't carry malaria",0
+"291",13,"doesn't eat people","free_production",5707,18,"cow","cow doesn't eat people",0
+"292",13,"has a pouch","free_production",11095,19,"koala","koala has a pouch",0
+"293",13,"doesn't carry Lyme disease","free_production",10982,20,"cow","cow doesn't carry Lyme disease",0
+"294",13,"is white","free_production",7358,21,"polarbear","polarbear is white",0
+"295",14,"carries Lyme disease","free_production",60733,1,"deer","deer carries Lyme disease",0
+"296",14,"has spots","free_production",10990,2,"leopard","leopard has spots",1
+"297",14,"lays eggs","free_production",11470,3,"chicken","chicken lays eggs",0
+"298",14,"doesn't have beautiful feathers","free_production",22079,4,"dog","dog doesn't have beautiful feathers",0
+"299",14,"has a pouch","free_production",40595,5,"kangaroo","kangaroo has a pouch",1
+"300",14,"is full-grown","free_production",12025,6,"cow","cow is full-grown",0
+"301",14,"carries malaria","free_production",37505,7,"mosquito","mosquito carries malaria",1
+"302",14,"doesn't attack swimmers","free_production",21025,8,"goldfish","goldfish doesn't attack swimmers",0
+"303",14,"is red","free_production",8642,9,"goldfish","goldfish is red",0
+"304",14,"doesn't carry malaria","free_production",6754,10,"cat","cat doesn't carry malaria",0
+"305",14,"is male","free_production",10906,11,"dog","dog is male",0
+"306",14,"is white","free_production",17665,12,"horse","horse is white",0
+"307",14,"has beautiful feathers","free_production",33624,13,"peacock","peacock has beautiful feathers",1
+"308",14,"doesn't carry Lyme disease","free_production",9983,14,"cat","cat doesn't carry Lyme disease",0
+"309",14,"doesn't eat people","free_production",9779,15,"fly","fly doesn't eat people",0
+"310",14,"has wings","free_production",6920,16,"bird","bird has wings",0
+"311",14,"eats people","free_production",15912,17,"shark","shark eats people",0
+"312",14,"has a mane","free_production",5722,18,"lion","lion has a mane",1
+"313",14,"is juvenile","free_production",10547,19,"tiger","tiger is juvenile",0
+"314",14,"attacks swimmers","free_production",6411,20,"shark","shark attacks swimmers",1
+"315",14,"is female","free_production",6287,21,"dog","dog is female",0
+"316",15,"is red","free_production",9124,1,"ladybug","ladybug is red",0
+"317",15,"has a pouch","free_production",5827,2,"kangaroo","kangaroo has a pouch",1
+"318",15,"is male","free_production",5004,3,"dog","dog is male",0
+"319",15,"is full-grown","free_production",9393,4,"bear","bear is full-grown",0
+"320",15,"doesn't have beautiful feathers","free_production",14681,5,"crow","crow doesn't have beautiful feathers",0
+"321",15,"doesn't attack swimmers","free_production",9054,6,"bird","bird doesn't attack swimmers",0
+"322",15,"doesn't eat people","free_production",6234,7,"elephant","elephant doesn't eat people",0
+"323",15,"lays eggs","free_production",6121,8,"cat","cat lays eggs",0
+"324",15,"carries malaria","free_production",10440,9,"mosquito","mosquito carries malaria",1
+"325",15,"is female","free_production",10932,10,"giraffe","giraffe is female",0
+"326",15,"has wings","free_production",5266,11,"bird","bird has wings",0
+"327",15,"is juvenile","free_production",11774,12,"worm","worm is juvenile",0
+"328",15,"has beautiful feathers","free_production",4538,13,"ostrich","ostrich has beautiful feathers",0
+"329",15,"doesn't carry Lyme disease","free_production",6216,14,"tiger","tiger doesn't carry Lyme disease",0
+"330",15,"is white","free_production",5876,15,"leopard","leopard is white",0
+"331",15,"has spots","free_production",6811,16,"leopard","leopard has spots",1
+"332",15,"carries Lyme disease","free_production",6139,17,"mosquito","mosquito carries Lyme disease",0
+"333",15,"has a mane","free_production",5310,18,"lion","lion has a mane",1
+"334",15,"doesn't carry malaria","free_production",10308,19,"tiger","tiger doesn't carry malaria",0
+"335",15,"eats people","free_production",23002,20,"shark","shark eats people",0
+"336",15,"attacks swimmers","free_production",3852,21,"shark","shark attacks swimmers",1
+"337",16,"is full-grown","free_production",12948,1,"butterfly","butterfly is full-grown",0
+"338",16,"has spots","free_production",16317,2,"cheetah","cheetah has spots",0
+"339",16,"is red","free_production",5630,3,"ladybug","ladybug is red",0
+"340",16,"has a pouch","free_production",5655,4,"kangaroo","kangaroo has a pouch",1
+"341",16,"doesn't eat people","free_production",8784,5,"horse","horse doesn't eat people",0
+"342",16,"has a mane","free_production",7125,6,"lion","lion has a mane",1
+"343",16,"is white","free_production",8671,7,"polarbear","polarbear is white",0
+"344",16,"doesn't carry Lyme disease","free_production",11183,8,"panda","panda doesn't carry Lyme disease",0
+"345",16,"eats people","free_production",7888,9,"tiger","tiger eats people",1
+"346",16,"has beautiful feathers","free_production",4631,10,"peacock","peacock has beautiful feathers",1
+"347",16,"has wings","free_production",4991,11,"fly","fly has wings",0
+"348",16,"doesn't attack swimmers","free_production",5848,12,"zebra","zebra doesn't attack swimmers",0
+"349",16,"attacks swimmers","free_production",3799,13,"shark","shark attacks swimmers",1
+"350",16,"lays eggs","free_production",5312,14,"seaturtle","seaturtle lays eggs",0
+"351",16,"is female","free_production",12072,15,"cat","cat is female",0
+"352",16,"is juvenile","free_production",11292,16,"aligator","aligator is juvenile",0
+"353",16,"doesn't carry malaria","free_production",12424,17,"sealion","sealion doesn't carry malaria",0
+"354",16,"carries Lyme disease","free_production",6536,18,"tick","tick carries Lyme disease",1
+"355",16,"doesn't have beautiful feathers","free_production",18359,19,"whale","whale doesn't have beautiful feathers",0
+"356",16,"carries malaria","free_production",12312,20,"mosquito","mosquito carries malaria",1
+"357",16,"is male","free_production",19255,21,"ram","ram is male",0
+"358",17,"is full-grown","free_production",8544,1,"preyingmatni","preyingmatni is full-grown",0
+"359",17,"has spots","free_production",22777,2,"ladybug","ladybug has spots",0
+"360",17,"has wings","free_production",5629,3,"mosquito","mosquito has wings",0
+"361",17,"is red","free_production",5368,4,"blackwidow","blackwidow is red",0
+"362",17,"has beautiful feathers","free_production",14840,5,"bluemacaw","bluemacaw has beautiful feathers",0
+"363",17,"is juvenile","free_production",6475,6,"ant","ant is juvenile",0
+"364",17,"is female","free_production",7462,7,"beetle","beetle is female",0
+"365",17,"eats people","free_production",5229,8,"termite","termite eats people",0
+"366",17,"lays eggs","free_production",9189,9,"duck","duck lays eggs",0
+"367",17,"carries malaria","free_production",6859,10,"mosquito","mosquito carries malaria",1
+"368",17,"is white","free_production",20212,11,"larva","larva is white",0
+"369",17,"doesn't carry malaria","free_production",7239,12,"wasp","wasp doesn't carry malaria",0
+"370",17,"doesn't carry Lyme disease","free_production",4042,13,"bee","bee doesn't carry Lyme disease",0
+"371",17,"doesn't eat people","free_production",12209,14,"rollypolly","rollypolly doesn't eat people",0
+"372",17,"carries Lyme disease","free_production",5246,15,"tick","tick carries Lyme disease",1
+"373",17,"doesn't attack swimmers","free_production",6859,16,"fly","fly doesn't attack swimmers",0
+"374",17,"doesn't have beautiful feathers","free_production",4727,17,"lizard","lizard doesn't have beautiful feathers",0
+"375",17,"is male","free_production",3158,18,"dog","dog is male",0
+"376",17,"attacks swimmers","free_production",3981,19,"leech","leech attacks swimmers",0
+"377",17,"has a mane","free_production",5531,20,"bee","bee has a mane",0
+"378",17,"has a pouch","free_production",5148,21,"kangaroo","kangaroo has a pouch",1
+"379",18,"has a mane","free_production",12516,1,"tiger","tiger has a mane",0
+"380",18,"doesn't have beautiful feathers","free_production",9944,2,"lizard","lizard doesn't have beautiful feathers",0
+"381",18,"doesn't carry Lyme disease","free_production",6413,3,"cat","cat doesn't carry Lyme disease",0
+"382",18,"doesn't carry malaria","free_production",4818,4,"turkey","turkey doesn't carry malaria",0
+"383",18,"has wings","free_production",4894,5,"owl","owl has wings",0
+"384",18,"has a pouch","free_production",4614,6,"kangaroo","kangaroo has a pouch",1
+"385",18,"carries malaria","free_production",6928,7,"bear","bear carries malaria",0
+"386",18,"is white","free_production",7390,8,"panda","panda is white",0
+"387",18,"is male","free_production",3631,9,"bear","bear is male",0
+"388",18,"doesn't attack swimmers","free_production",7779,10,"bas","bas doesn't attack swimmers",0
+"389",18,"doesn't eat people","free_production",3148,11,"bas","bas doesn't eat people",0
+"390",18,"is female","free_production",7404,12,"trout","trout is female",0
+"391",18,"has spots","free_production",5450,13,"eel","eel has spots",0
+"392",18,"is full-grown","free_production",4324,14,"bear","bear is full-grown",0
+"393",18,"is juvenile","free_production",9572,15,"cub","cub is juvenile",0
+"394",18,"eats people","free_production",4241,16,"shark","shark eats people",0
+"395",18,"is red","free_production",5269,17,"hippo","hippo is red",0
+"396",18,"has beautiful feathers","free_production",5418,18,"bluejay","bluejay has beautiful feathers",0
+"397",18,"lays eggs","free_production",4434,19,"chicken","chicken lays eggs",0
+"398",18,"attacks swimmers","free_production",5346,20,"shark","shark attacks swimmers",1
+"399",18,"carries Lyme disease","free_production",9180,21,"skunk","skunk carries Lyme disease",0
+"400",19,"has wings","free_production",8393,1,"butterfly","butterfly has wings",0
+"401",19,"is juvenile","free_production",8820,2,"rabbit","rabbit is juvenile",0
+"402",19,"has beautiful feathers","free_production",6895,3,"peacock","peacock has beautiful feathers",1
+"403",19,"is female","free_production",8417,4,"squirrel","squirrel is female",0
+"404",19,"is full-grown","free_production",5014,5,"horse","horse is full-grown",0
+"405",19,"is male","free_production",5810,6,"dog","dog is male",0
+"406",19,"doesn't eat people","free_production",5742,7,"cat","cat doesn't eat people",0
+"407",19,"is red","free_production",12641,8,"cardinal","cardinal is red",1
+"408",19,"has a mane","free_production",4662,9,"horse","horse has a mane",0
+"409",19,"carries malaria","free_production",7591,10,"mosquito","mosquito carries malaria",1
+"410",19,"is white","free_production",4966,11,"sheep","sheep is white",0
+"411",19,"has a pouch","free_production",5070,12,"kangaroo","kangaroo has a pouch",1
+"412",19,"has spots","free_production",5723,13,"leopard","leopard has spots",1
+"413",19,"eats people","free_production",9684,14,"shark","shark eats people",0
+"414",19,"doesn't carry Lyme disease","free_production",11432,15,"lion","lion doesn't carry Lyme disease",0
+"415",19,"attacks swimmers","free_production",7080,16,"shark","shark attacks swimmers",1
+"416",19,"doesn't have beautiful feathers","free_production",22775,17,"cat","cat doesn't have beautiful feathers",0
+"417",19,"lays eggs","free_production",5627,18,"hen","hen lays eggs",0
+"418",19,"doesn't carry malaria","free_production",8906,19,"dolphin","dolphin doesn't carry malaria",0
+"419",19,"carries Lyme disease","free_production",4507,20,"tick","tick carries Lyme disease",1
+"420",19,"doesn't attack swimmers","free_production",7254,21,"cat","cat doesn't attack swimmers",0
+"421",20,"is male","free_production",13437,1,"horse","horse is male",0
+"422",20,"is full-grown","free_production",7849,2,"dog","dog is full-grown",0
+"423",20,"lays eggs","free_production",7060,3,"spider","spider lays eggs",0
+"424",20,"carries malaria","free_production",7170,4,"mosquito","mosquito carries malaria",1
+"425",20,"has beautiful feathers","free_production",6944,5,"peacock","peacock has beautiful feathers",1
+"426",20,"has wings","free_production",5382,6,"bird","bird has wings",0
+"427",20,"has a mane","free_production",5259,7,"lion","lion has a mane",1
+"428",20,"is female","free_production",6361,8,"cat","cat is female",0
+"429",20,"doesn't eat people","free_production",5872,9,"lizard","lizard doesn't eat people",0
+"430",20,"doesn't have beautiful feathers","free_production",13166,10,"fly","fly doesn't have beautiful feathers",0
+"431",20,"is juvenile","free_production",12694,11,"bee","bee is juvenile",0
+"432",20,"is red","free_production",5430,12,"fox","fox is red",0
+"433",20,"eats people","free_production",5433,13,"bear","bear eats people",0
+"434",20,"carries Lyme disease","free_production",4825,14,"tick","tick carries Lyme disease",1
+"435",20,"has spots","free_production",5039,15,"cheeta","cheeta has spots",0
+"436",20,"has a pouch","free_production",4760,16,"kangaroo","kangaroo has a pouch",1
+"437",20,"attacks swimmers","free_production",5609,17,"shark","shark attacks swimmers",1
+"438",20,"is white","free_production",10064,18,"polarbear","polarbear is white",0
+"439",20,"doesn't carry malaria","free_production",16768,19,"nat","nat doesn't carry malaria",0
+"440",20,"doesn't carry Lyme disease","free_production",13680,20,"catapiller","catapiller doesn't carry Lyme disease",0
+"441",20,"doesn't attack swimmers","free_production",8233,21,"dolphin","dolphin doesn't attack swimmers",0
+"442",21,"is full-grown","free_production",5923,1,"human","human is full-grown",0
+"443",21,"eats people","free_production",9848,2,"wolf","wolf eats people",0
+"444",21,"doesn't have beautiful feathers","free_production",8582,3,"duck","duck doesn't have beautiful feathers",0
+"445",21,"has wings","free_production",3576,4,"bee","bee has wings",0
+"446",21,"attacks swimmers","free_production",4340,5,"goose","goose attacks swimmers",0
+"447",21,"is red","free_production",4098,6,"ladybug","ladybug is red",0
+"448",21,"carries malaria","free_production",5349,7,"mosquito","mosquito carries malaria",1
+"449",21,"is female","free_production",5386,8,"dog","dog is female",0
+"450",21,"has beautiful feathers","free_production",3866,9,"peacock","peacock has beautiful feathers",1
+"451",21,"doesn't eat people","free_production",7315,10,"cat","cat doesn't eat people",0
+"452",21,"is male","free_production",3367,11,"dog","dog is male",0
+"453",21,"has a pouch","free_production",3293,12,"kangaroo","kangaroo has a pouch",1
+"454",21,"is white","free_production",7396,13,"sheep","sheep is white",0
+"455",21,"has a mane","free_production",2855,14,"lion","lion has a mane",1
+"456",21,"doesn't carry malaria","free_production",7291,15,"cow","cow doesn't carry malaria",0
+"457",21,"lays eggs","free_production",3151,16,"chicken","chicken lays eggs",0
+"458",21,"is juvenile","free_production",13597,17,"duck","duck is juvenile",0
+"459",21,"doesn't attack swimmers","free_production",4903,18,"dolphin","dolphin doesn't attack swimmers",0
+"460",21,"has spots","free_production",2391,19,"cow","cow has spots",0
+"461",21,"doesn't carry Lyme disease","free_production",14048,20,"bull","bull doesn't carry Lyme disease",0
+"462",21,"carries Lyme disease","free_production",3247,21,"deer","deer carries Lyme disease",0
+"463",22,"is red","free_production",33773,1,"ant","ant is red",0
+"464",22,"doesn't eat people","free_production",4557,2,"cow","cow doesn't eat people",0
+"465",22,"has spots","free_production",13601,3,"dalmatian","dalmatian has spots",0
+"466",22,"has a mane","free_production",6867,4,"horse","horse has a mane",0
+"467",22,"is juvenile","free_production",10199,5,"puppy","puppy is juvenile",0
+"468",22,"carries Lyme disease","free_production",5273,6,"tick","tick carries Lyme disease",1
+"469",22,"has a pouch","free_production",5491,7,"opossum","opossum has a pouch",0
+"470",22,"carries malaria","free_production",4338,8,"mosquito","mosquito carries malaria",1
+"471",22,"is male","free_production",3947,9,"bull","bull is male",0
+"472",22,"is female","free_production",14361,10,"spider","spider is female",0
+"473",22,"has wings","free_production",3739,11,"bird","bird has wings",0
+"474",22,"is white","free_production",7459,12,"dove","dove is white",0
+"475",22,"attacks swimmers","free_production",4657,13,"shark","shark attacks swimmers",1
+"476",22,"is full-grown","free_production",7516,14,"dog","dog is full-grown",0
+"477",22,"doesn't have beautiful feathers","free_production",5222,15,"beetle","beetle doesn't have beautiful feathers",0
+"478",22,"doesn't attack swimmers","free_production",7673,16,"manatee","manatee doesn't attack swimmers",0
+"479",22,"lays eggs","free_production",4060,17,"turtle","turtle lays eggs",0
+"480",22,"doesn't carry Lyme disease","free_production",18638,18,"koala","koala doesn't carry Lyme disease",0
+"481",22,"eats people","free_production",5607,19,"tiger","tiger eats people",1
+"482",22,"doesn't carry malaria","free_production",6617,20,"alligator","alligator doesn't carry malaria",0
+"483",22,"has beautiful feathers","free_production",5101,21,"peacock","peacock has beautiful feathers",1
+"484",23,"has wings","free_production",6199,1,"bird","bird has wings",0
+"485",23,"has a pouch","free_production",7847,2,"kangaroo","kangaroo has a pouch",1
+"486",23,"has a mane","free_production",4997,3,"lion","lion has a mane",1
+"487",23,"doesn't carry Lyme disease","free_production",19824,4,"cockroache","cockroache doesn't carry Lyme disease",0
+"488",23,"is juvenile","free_production",7824,5,"dog","dog is juvenile",0
+"489",23,"is full-grown","free_production",8984,6,"gorilla","gorilla is full-grown",0
+"490",23,"is male","free_production",11272,7,"shark","shark is male",0
+"491",23,"attacks swimmers","free_production",7352,8,"shark","shark attacks swimmers",1
+"492",23,"is red","free_production",6777,9,"redpanda","redpanda is red",0
+"493",23,"doesn't have beautiful feathers","free_production",6432,10,"crow","crow doesn't have beautiful feathers",0
+"494",23,"has beautiful feathers","free_production",6142,11,"peacock","peacock has beautiful feathers",1
+"495",23,"carries malaria","free_production",8848,12,"mosquito","mosquito carries malaria",1
+"496",23,"is white","free_production",6008,13,"swan","swan is white",1
+"497",23,"doesn't carry malaria","free_production",9248,14,"polarbear","polarbear doesn't carry malaria",0
+"498",23,"is female","free_production",10752,15,"cat","cat is female",0
+"499",23,"doesn't attack swimmers","free_production",10280,16,"dolphin","dolphin doesn't attack swimmers",0
+"500",23,"has spots","free_production",6479,17,"cow","cow has spots",0
+"501",23,"eats people","free_production",8848,18,"maggot","maggot eats people",0
+"502",23,"carries Lyme disease","free_production",3936,19,"tick","tick carries Lyme disease",1
+"503",23,"lays eggs","free_production",5711,20,"chicken","chicken lays eggs",0
+"504",23,"doesn't eat people","free_production",11728,21,"goat","goat doesn't eat people",0
+"505",24,"eats people","free_production",12368,1,"lion","lion eats people",0
+"506",24,"doesn't carry Lyme disease","free_production",7400,2,"dog","dog doesn't carry Lyme disease",0
+"507",24,"carries Lyme disease","free_production",5224,3,"deer","deer carries Lyme disease",0
+"508",24,"is male","free_production",12271,4,"bird","bird is male",0
+"509",24,"is red","free_production",4417,5,"ball","ball is red",0
+"510",24,"lays eggs","free_production",4727,6,"hen","hen lays eggs",0
+"511",24,"doesn't eat people","free_production",5944,7,"dog","dog doesn't eat people",0
+"512",24,"attacks swimmers","free_production",5265,8,"shark","shark attacks swimmers",1
+"513",24,"carries malaria","free_production",6391,9,"mosquito","mosquito carries malaria",1
+"514",24,"is full-grown","free_production",8568,10,"elephant","elephant is full-grown",0
+"515",24,"has wings","free_production",4695,11,"bird","bird has wings",0
+"516",24,"is female","free_production",7263,12,"butterfly","butterfly is female",0
+"517",24,"doesn't carry malaria","free_production",8064,13,"tick","tick doesn't carry malaria",0
+"518",24,"is juvenile","free_production",10696,14,"rabbit","rabbit is juvenile",0
+"519",24,"doesn't attack swimmers","free_production",5097,15,"whale","whale doesn't attack swimmers",0
+"520",24,"has a mane","free_production",4903,16,"horse","horse has a mane",0
+"521",24,"has beautiful feathers","free_production",5177,17,"turkey","turkey has beautiful feathers",0
+"522",24,"doesn't have beautiful feathers","free_production",5167,18,"hen","hen doesn't have beautiful feathers",0
+"523",24,"has a pouch","free_production",7920,19,"kangaroo","kangaroo has a pouch",1
+"524",24,"is white","free_production",8184,20,"duck","duck is white",0
+"525",24,"has spots","free_production",25272,21,"leopard","leopard has spots",1
+"526",25,"is full-grown","free_production",15032,1,"butterfly","butterfly is full-grown",0
+"527",25,"has a pouch","free_production",4694,2,"kangaroo","kangaroo has a pouch",1
+"528",25,"is female","free_production",4345,3,"cow","cow is female",0
+"529",25,"carries Lyme disease","free_production",4564,4,"mosquito","mosquito carries Lyme disease",0
+"530",25,"has a mane","free_production",3040,5,"lion","lion has a mane",1
+"531",25,"is male","free_production",7294,6,"bull","bull is male",0
+"532",25,"doesn't have beautiful feathers","free_production",24500,7,"fish","fish doesn't have beautiful feathers",0
+"533",25,"eats people","free_production",7918,8,"shark","shark eats people",0
+"534",25,"carries malaria","free_production",4630,9,"mosquito","mosquito carries malaria",1
+"535",25,"lays eggs","free_production",5223,10,"chicken","chicken lays eggs",0
+"536",25,"has wings","free_production",6495,11,"dragonfly","dragonfly has wings",0
+"537",25,"doesn't attack swimmers","free_production",4159,12,"dolphin","dolphin doesn't attack swimmers",0
+"538",25,"is white","free_production",6407,13,"dove","dove is white",0
+"539",25,"is juvenile","free_production",5847,14,"puppy","puppy is juvenile",0
+"540",25,"is red","free_production",6469,15,"ladybug","ladybug is red",0
+"541",25,"has beautiful feathers","free_production",80049,16,"lovebird","lovebird has beautiful feathers",0
+"542",25,"attacks swimmers","free_production",18230,17,"shark","shark attacks swimmers",1
+"543",25,"doesn't carry Lyme disease","free_production",12486,18,"ant","ant doesn't carry Lyme disease",0
+"544",25,"has spots","free_production",10742,19,"leopard","leopard has spots",1
+"545",25,"doesn't carry malaria","free_production",19855,20,"cat","cat doesn't carry malaria",0
+"546",25,"doesn't eat people","free_production",4542,21,"bird","bird doesn't eat people",0
+"547",26,"doesn't carry malaria","free_production",15619,1,"fly","fly doesn't carry malaria",0
+"548",26,"attacks swimmers","free_production",18644,2,"pirahna","pirahna attacks swimmers",0
+"549",26,"has spots","free_production",9537,3,"leopard","leopard has spots",1
+"550",26,"is female","free_production",10022,4,"lion","lion is female",0
+"551",26,"has beautiful feathers","free_production",18693,5,"hummingbird","hummingbird has beautiful feathers",0
+"552",26,"lays eggs","free_production",7639,6,"chicken","chicken lays eggs",0
+"553",26,"doesn't attack swimmers","free_production",13189,7,"dolphin","dolphin doesn't attack swimmers",0
+"554",26,"is juvenile","free_production",11604,8,"bear","bear is juvenile",0
+"555",26,"has wings","free_production",7380,9,"bee","bee has wings",0
+"556",26,"is full-grown","free_production",8569,10,"horse","horse is full-grown",0
+"557",26,"carries Lyme disease","free_production",6102,11,"tick","tick carries Lyme disease",1
+"558",26,"is white","free_production",8774,12,"dove","dove is white",0
+"559",26,"is red","free_production",14500,13,"ladybug","ladybug is red",0
+"560",26,"is male","free_production",16334,14,"cat","cat is male",0
+"561",26,"doesn't carry Lyme disease","free_production",23006,15,"snail","snail doesn't carry Lyme disease",0
+"562",26,"carries malaria","free_production",8549,16,"mosquito","mosquito carries malaria",1
+"563",26,"doesn't eat people","free_production",22383,17,"koala","koala doesn't eat people",0
+"564",26,"eats people","free_production",15328,18,"polarbear","polarbear eats people",0
+"565",26,"doesn't have beautiful feathers","free_production",29485,19,"ostrich","ostrich doesn't have beautiful feathers",0
+"566",26,"has a mane","free_production",34246,20,"pony","pony has a mane",0
+"567",26,"has a pouch","free_production",6027,21,"kangaroo","kangaroo has a pouch",1
+"568",27,"has wings","free_production",4836,1,"butterfly","butterfly has wings",0
+"569",27,"doesn't eat people","free_production",4895,2,"cow","cow doesn't eat people",0
+"570",27,"doesn't have beautiful feathers","free_production",8543,3,"lizard","lizard doesn't have beautiful feathers",0
+"571",27,"has a mane","free_production",4030,4,"lion","lion has a mane",1
+"572",27,"doesn't carry Lyme disease","free_production",6712,5,"giraffe","giraffe doesn't carry Lyme disease",0
+"573",27,"carries Lyme disease","free_production",3705,6,"tick","tick carries Lyme disease",1
+"574",27,"eats people","free_production",4719,7,"alligator","alligator eats people",0
+"575",27,"carries malaria","free_production",5704,8,"mosquito","mosquito carries malaria",1
+"576",27,"doesn't carry malaria","free_production",7463,9,"bat","bat doesn't carry malaria",0
+"577",27,"has spots","free_production",3624,10,"leopard","leopard has spots",1
+"578",27,"has a pouch","free_production",4895,11,"kangaroo","kangaroo has a pouch",1
+"579",27,"is red","free_production",3896,12,"ladybug","ladybug is red",0
+"580",27,"is full-grown","free_production",6415,13,"jaguar","jaguar is full-grown",0
+"581",27,"is female","free_production",2975,14,"cat","cat is female",0
+"582",27,"is male","free_production",3176,15,"dog","dog is male",0
+"583",27,"has beautiful feathers","free_production",4624,16,"peacock","peacock has beautiful feathers",1
+"584",27,"is juvenile","free_production",7128,17,"lamb","lamb is juvenile",0
+"585",27,"doesn't attack swimmers","free_production",5776,18,"manatee","manatee doesn't attack swimmers",0
+"586",27,"lays eggs","free_production",3376,19,"chicken","chicken lays eggs",0
+"587",27,"is white","free_production",5329,20,"owl","owl is white",0
+"588",27,"attacks swimmers","free_production",3822,21,"shark","shark attacks swimmers",1
+"589",28,"is white","free_production",8925,1,"polarbear","polarbear is white",0
+"590",28,"is juvenile","free_production",4703,2,"kitten","kitten is juvenile",0
+"591",28,"doesn't have beautiful feathers","free_production",7681,3,"chicken","chicken doesn't have beautiful feathers",0
+"592",28,"has wings","free_production",8131,4,"pigeon","pigeon has wings",0
+"593",28,"carries Lyme disease","free_production",4963,5,"tick","tick carries Lyme disease",1
+"594",28,"lays eggs","free_production",6532,6,"chicken","chicken lays eggs",0
+"595",28,"has a mane","free_production",4900,7,"lion","lion has a mane",1
+"596",28,"attacks swimmers","free_production",6178,8,"shark","shark attacks swimmers",1
+"597",28,"carries malaria","free_production",11873,9,"mosquito","mosquito carries malaria",1
+"598",28,"is red","free_production",5522,10,"ladybug","ladybug is red",0
+"599",28,"has beautiful feathers","free_production",4727,11,"peacock","peacock has beautiful feathers",1
+"600",28,"is female","free_production",8782,12,"calicocat","calicocat is female",0
+"601",28,"has spots","free_production",6611,13,"dog","dog has spots",0
+"602",28,"is full-grown","free_production",3782,14,"bear","bear is full-grown",0
+"603",28,"doesn't eat people","free_production",5570,15,"rabbit","rabbit doesn't eat people",0
+"604",28,"doesn't carry Lyme disease","free_production",8178,16,"iguana","iguana doesn't carry Lyme disease",0
+"605",28,"doesn't carry malaria","free_production",8597,17,"wolf","wolf doesn't carry malaria",0
+"606",28,"has a pouch","free_production",4531,18,"kangaroo","kangaroo has a pouch",1
+"607",28,"is male","free_production",5271,19,"seahorse","seahorse is male",0
+"608",28,"eats people","free_production",8706,20,"shark","shark eats people",0
+"609",28,"doesn't attack swimmers","free_production",5287,21,"fish","fish doesn't attack swimmers",0
+"610",29,"has a pouch","free_production",7779,1,"kangaroo","kangaroo has a pouch",1
+"611",29,"is juvenile","free_production",5954,2,"puppy","puppy is juvenile",0
+"612",29,"doesn't have beautiful feathers","free_production",6236,3,"cat","cat doesn't have beautiful feathers",0
+"613",29,"has beautiful feathers","free_production",5160,4,"parrot","parrot has beautiful feathers",0
+"614",29,"doesn't carry malaria","free_production",6830,5,"dog","dog doesn't carry malaria",0
+"615",29,"has wings","free_production",8821,6,"mosquito","mosquito has wings",0
+"616",29,"has spots","free_production",4255,7,"cow","cow has spots",0
+"617",29,"is female","free_production",7487,8,"dog","dog is female",0
+"618",29,"is full-grown","free_production",7459,9,"fish","fish is full-grown",0
+"619",29,"has a mane","free_production",4541,10,"horse","horse has a mane",0
+"620",29,"eats people","free_production",5230,11,"polarbear","polarbear eats people",0
+"621",29,"is male","free_production",6671,12,"cat","cat is male",0
+"622",29,"doesn't attack swimmers","free_production",7216,13,"dolphin","dolphin doesn't attack swimmers",0
+"623",29,"lays eggs","free_production",4333,14,"chicken","chicken lays eggs",0
+"624",29,"is red","free_production",7062,15,"robin","robin is red",0
+"625",29,"carries malaria","free_production",6500,16,"mosquito","mosquito carries malaria",1
+"626",29,"is white","free_production",6325,17,"dove","dove is white",0
+"627",29,"carries Lyme disease","free_production",4124,18,"tick","tick carries Lyme disease",1
+"628",29,"attacks swimmers","free_production",3880,19,"shark","shark attacks swimmers",1
+"629",29,"doesn't eat people","free_production",7048,20,"grasshopper","grasshopper doesn't eat people",0
+"630",29,"doesn't carry Lyme disease","free_production",6693,21,"flamingo","flamingo doesn't carry Lyme disease",0
+"631",30,"carries Lyme disease","free_production",7557,1,"tick","tick carries Lyme disease",1
+"632",30,"is red","free_production",5833,2,"ant","ant is red",0
+"633",30,"has a pouch","free_production",10057,3,"kangaroo","kangaroo has a pouch",1
+"634",30,"eats people","free_production",27120,4,"shark","shark eats people",0
+"635",30,"attacks swimmers","free_production",22655,5,"alligator","alligator attacks swimmers",0
+"636",30,"doesn't have beautiful feathers","free_production",24347,6,"cat","cat doesn't have beautiful feathers",0
+"637",30,"has beautiful feathers","free_production",8949,7,"raven","raven has beautiful feathers",0
+"638",30,"carries malaria","free_production",7082,8,"mosquito","mosquito carries malaria",1
+"639",30,"doesn't carry Lyme disease","free_production",20350,9,"honeybee","honeybee doesn't carry Lyme disease",0
+"640",30,"doesn't carry malaria","free_production",5842,10,"butterfly","butterfly doesn't carry malaria",0
+"641",30,"is white","free_production",10996,11,"dove","dove is white",0
+"642",30,"doesn't attack swimmers","free_production",7222,12,"chicken","chicken doesn't attack swimmers",0
+"643",30,"has spots","free_production",6687,13,"pig","pig has spots",0
+"644",30,"has a mane","free_production",5707,14,"lion","lion has a mane",1
+"645",30,"lays eggs","free_production",7095,15,"spider","spider lays eggs",0
+"646",30,"is full-grown","free_production",15782,16,"bear","bear is full-grown",0
+"647",30,"has wings","free_production",6220,17,"crow","crow has wings",0
+"648",30,"is juvenile","free_production",5018,18,"kid","kid is juvenile",0
+"649",30,"is male","free_production",13903,19,"deer","deer is male",0
+"650",30,"doesn't eat people","free_production",29330,20,"chicken","chicken doesn't eat people",0
+"651",30,"is female","free_production",7887,21,"widow","widow is female",0
+"652",31,"has spots","free_production",9959,1,"ladybug","ladybug has spots",0
+"653",31,"is white","free_production",7191,2,"polarbear","polarbear is white",0
+"654",31,"doesn't attack swimmers","free_production",10208,3,"dolphin","dolphin doesn't attack swimmers",0
+"655",31,"attacks swimmers","free_production",6407,4,"shark","shark attacks swimmers",1
+"656",31,"is juvenile","free_production",10094,5,"cub","cub is juvenile",0
+"657",31,"doesn't carry malaria","free_production",29528,6,"cockroach","cockroach doesn't carry malaria",0
+"658",31,"lays eggs","free_production",9720,7,"eagle","eagle lays eggs",0
+"659",31,"eats people","free_production",15672,8,"crocodile","crocodile eats people",0
+"660",31,"is male","free_production",7938,9,"stallion","stallion is male",0
+"661",31,"has a pouch","free_production",7630,10,"kangaroo","kangaroo has a pouch",1
+"662",31,"has beautiful feathers","free_production",6567,11,"peacock","peacock has beautiful feathers",1
+"663",31,"doesn't have beautiful feathers","free_production",17616,12,"ostrich","ostrich doesn't have beautiful feathers",0
+"664",31,"is red","free_production",14943,13,"fireant","fireant is red",0
+"665",31,"is full-grown","free_production",11007,14,"mare","mare is full-grown",0
+"666",31,"carries malaria","free_production",7599,15,"mosquito","mosquito carries malaria",1
+"667",31,"has a mane","free_production",5984,16,"horse","horse has a mane",0
+"668",31,"doesn't eat people","free_production",81846,17,"aardvark","aardvark doesn't eat people",0
+"669",31,"has wings","free_production",7023,18,"dragonfly","dragonfly has wings",0
+"670",31,"carries Lyme disease","free_production",4016,19,"tick","tick carries Lyme disease",1
+"671",31,"is female","free_production",11721,20,"cow","cow is female",0
+"672",31,"doesn't carry Lyme disease","free_production",9798,21,"ant","ant doesn't carry Lyme disease",0
+"673",32,"eats people","free_production",9439,1,"bear","bear eats people",0
+"674",32,"is female","free_production",4877,2,"deer","deer is female",0
+"675",32,"lays eggs","free_production",4690,3,"duck","duck lays eggs",0
+"676",32,"has spots","free_production",5971,4,"giraffe","giraffe has spots",0
+"677",32,"attacks swimmers","free_production",4763,5,"shark","shark attacks swimmers",1
+"678",32,"is male","free_production",5385,6,"lion","lion is male",1
+"679",32,"has beautiful feathers","free_production",7080,7,"peacock","peacock has beautiful feathers",1
+"680",32,"doesn't have beautiful feathers","free_production",6635,8,"pigeon","pigeon doesn't have beautiful feathers",0
+"681",32,"is white","free_production",4011,9,"swan","swan is white",1
+"682",32,"is juvenile","free_production",4629,10,"hyena","hyena is juvenile",0
+"683",32,"doesn't attack swimmers","free_production",9224,11,"whale","whale doesn't attack swimmers",0
+"684",32,"has a pouch","free_production",13399,12,"kangaroo","kangaroo has a pouch",1
+"685",32,"doesn't carry malaria","free_production",7119,13,"dog","dog doesn't carry malaria",0
+"686",32,"is red","free_production",3859,14,"fox","fox is red",0
+"687",32,"has a mane","free_production",4488,15,"horse","horse has a mane",0
+"688",32,"doesn't carry Lyme disease","free_production",5534,16,"goose","goose doesn't carry Lyme disease",0
+"689",32,"is full-grown","free_production",11055,17,"aardvark","aardvark is full-grown",0
+"690",32,"doesn't eat people","free_production",4947,18,"mouse","mouse doesn't eat people",0
+"691",32,"carries Lyme disease","free_production",7463,19,"tick","tick carries Lyme disease",1
+"692",32,"has wings","free_production",7103,20,"sparrow","sparrow has wings",0
+"693",32,"carries malaria","free_production",6180,21,"mosquito","mosquito carries malaria",1
+"694",33,"doesn't carry Lyme disease","free_production",13943,1,"cat","cat doesn't carry Lyme disease",0
+"695",33,"is male","free_production",6692,2,"dog","dog is male",0
+"696",33,"has a pouch","free_production",6952,3,"kangaroo","kangaroo has a pouch",1
+"697",33,"is red","free_production",4052,4,"ladybug","ladybug is red",0
+"698",33,"doesn't eat people","free_production",5352,5,"go","go doesn't eat people",0
+"699",33,"attacks swimmers","free_production",5249,6,"shark","shark attacks swimmers",1
+"700",33,"doesn't attack swimmers","free_production",3887,7,"seel","seel doesn't attack swimmers",0
+"701",33,"carries malaria","free_production",8967,8,"mosquito","mosquito carries malaria",1
+"702",33,"is female","free_production",4988,9,"cat","cat is female",0
+"703",33,"is white","free_production",7763,10,"polarbear","polarbear is white",0
+"704",33,"has a mane","free_production",87514,11,"horse","horse has a mane",0
+"705",33,"is juvenile","free_production",12012,12,"ape","ape is juvenile",0
+"706",33,"has beautiful feathers","free_production",3658,13,"peacock","peacock has beautiful feathers",1
+"707",33,"has wings","free_production",2619,14,"bird","bird has wings",0
+"708",33,"is full-grown","free_production",5343,15,"frog","frog is full-grown",0
+"709",33,"doesn't have beautiful feathers","free_production",3894,16,"crow","crow doesn't have beautiful feathers",0
+"710",33,"doesn't carry malaria","free_production",5578,17,"gerbil","gerbil doesn't carry malaria",0
+"711",33,"eats people","free_production",3807,18,"alligator","alligator eats people",0
+"712",33,"lays eggs","free_production",5331,19,"chicken","chicken lays eggs",0
+"713",33,"carries Lyme disease","free_production",6420,20,"mosquito","mosquito carries Lyme disease",0
+"714",33,"has spots","free_production",5232,21,"leopard","leopard has spots",1
+"715",34,"attacks swimmers","free_production",29250,1,"piranha","piranha attacks swimmers",0
+"716",34,"doesn't eat people","free_production",7863,2,"cow","cow doesn't eat people",0
+"717",34,"eats people","free_production",12798,3,"bear","bear eats people",0
+"718",34,"doesn't have beautiful feathers","free_production",15518,4,"ostrich","ostrich doesn't have beautiful feathers",0
+"719",34,"is male","free_production",10711,5,"monkey","monkey is male",0
+"720",34,"carries malaria","free_production",10015,6,"mosquito","mosquito carries malaria",1
+"721",34,"has spots","free_production",10059,7,"leopard","leopard has spots",1
+"722",34,"is red","free_production",22800,8,"mite","mite is red",0
+"723",34,"is white","free_production",12911,9,"bunny","bunny is white",0
+"724",34,"doesn't attack swimmers","free_production",14483,10,"trout","trout doesn't attack swimmers",0
+"725",34,"has a pouch","free_production",10586,11,"platypu","platypu has a pouch",0
+"726",34,"has wings","free_production",9577,12,"robin","robin has wings",0
+"727",34,"is female","free_production",12638,13,"deer","deer is female",0
+"728",34,"has beautiful feathers","free_production",10980,14,"peacock","peacock has beautiful feathers",1
+"729",34,"doesn't carry Lyme disease","free_production",14557,15,"crocodile","crocodile doesn't carry Lyme disease",0
+"730",34,"lays eggs","free_production",10910,16,"snake","snake lays eggs",0
+"731",34,"doesn't carry malaria","free_production",14275,17,"earthworm","earthworm doesn't carry malaria",0
+"732",34,"has a mane","free_production",7321,18,"lion","lion has a mane",1
+"733",34,"is full-grown","free_production",14184,19,"elk","elk is full-grown",0
+"734",34,"is juvenile","free_production",9560,20,"panda","panda is juvenile",0
+"735",34,"carries Lyme disease","free_production",9644,21,"tick","tick carries Lyme disease",1
+"736",35,"carries Lyme disease","free_production",5835,1,"tick","tick carries Lyme disease",1
+"737",35,"has wings","free_production",3665,2,"fly","fly has wings",0
+"738",35,"is full-grown","free_production",6124,3,"rhino","rhino is full-grown",0
+"739",35,"doesn't carry malaria","free_production",5906,4,"dog","dog doesn't carry malaria",0
+"740",35,"has a mane","free_production",4368,5,"lion","lion has a mane",1
+"741",35,"doesn't eat people","free_production",14678,6,"giraffe","giraffe doesn't eat people",0
+"742",35,"attacks swimmers","free_production",19918,7,"shark","shark attacks swimmers",1
+"743",35,"has a pouch","free_production",7816,8,"kangaroo","kangaroo has a pouch",1
+"744",35,"carries malaria","free_production",4994,9,"mosquito","mosquito carries malaria",1
+"745",35,"is juvenile","free_production",42770,10,"monkey","monkey is juvenile",0
+"746",35,"doesn't attack swimmers","free_production",12238,11,"dolphin","dolphin doesn't attack swimmers",0
+"747",35,"is female","free_production",4678,12,"cat","cat is female",0
+"748",35,"is red","free_production",13806,13,"dragonfly","dragonfly is red",0
+"749",35,"eats people","free_production",13472,14,"leopard","leopard eats people",0
+"750",35,"is white","free_production",8980,15,"polarbear","polarbear is white",0
+"751",35,"has beautiful feathers","free_production",11370,16,"peacock","peacock has beautiful feathers",1
+"752",35,"has spots","free_production",13006,17,"cheetah","cheetah has spots",0
+"753",35,"doesn't carry Lyme disease","free_production",4764,18,"dog","dog doesn't carry Lyme disease",0
+"754",35,"is male","free_production",5594,19,"lion","lion is male",1
+"755",35,"doesn't have beautiful feathers","free_production",11556,20,"crow","crow doesn't have beautiful feathers",0
+"756",35,"lays eggs","free_production",26958,21,"hawk","hawk lays eggs",0
+"757",36,"has a mane","free_production",4224,1,"joomi","joomi has a mane",0
+"758",36,"has beautiful feathers","free_production",3878,2,"peacock","peacock has beautiful feathers",1
+"759",36,"carries malaria","free_production",4994,3,"mosquito","mosquito carries malaria",1
+"760",36,"is male","free_production",3948,4,"man","man is male",0
+"761",36,"has spots","free_production",7064,5,"leopard","leopard has spots",1
+"762",36,"eats people","free_production",3946,6,"hippo","hippo eats people",0
+"763",36,"is female","free_production",2789,7,"woman","woman is female",0
+"764",36,"doesn't eat people","free_production",3367,8,"dog","dog doesn't eat people",0
+"765",36,"has wings","free_production",2664,9,"bird","bird has wings",0
+"766",36,"is full-grown","free_production",3180,10,"elephant","elephant is full-grown",0
+"767",36,"doesn't attack swimmers","free_production",2637,11,"seal","seal doesn't attack swimmers",0
+"768",36,"lays eggs","free_production",2884,12,"turtle","turtle lays eggs",0
+"769",36,"is white","free_production",2919,13,"chicken","chicken is white",0
+"770",36,"doesn't have beautiful feathers","free_production",2616,14,"chicken","chicken doesn't have beautiful feathers",0
+"771",36,"is juvenile","free_production",4247,15,"crab","crab is juvenile",0
+"772",36,"has a pouch","free_production",2681,16,"kangaroo","kangaroo has a pouch",1
+"773",36,"is red","free_production",3450,17,"robin","robin is red",0
+"774",36,"attacks swimmers","free_production",2951,18,"shark","shark attacks swimmers",1
+"775",36,"carries Lyme disease","free_production",2772,19,"tick","tick carries Lyme disease",1
+"776",36,"doesn't carry Lyme disease","free_production",5631,20,"rabbit","rabbit doesn't carry Lyme disease",0
+"777",36,"doesn't carry malaria","free_production",5888,21,"flie","flie doesn't carry malaria",0
+"778",37,"has a mane","free_production",6623,1,"lion","lion has a mane",1
+"779",37,"attacks swimmers","free_production",7089,2,"shark","shark attacks swimmers",1
+"780",37,"eats people","free_production",7445,3,"mosquito","mosquito eats people",0
+"781",37,"has a pouch","free_production",3931,4,"kangaroo","kangaroo has a pouch",1
+"782",37,"has wings","free_production",5898,5,"bird","bird has wings",0
+"783",37,"doesn't have beautiful feathers","free_production",5594,6,"chicken","chicken doesn't have beautiful feathers",0
+"784",37,"has spots","free_production",3864,7,"dalmation","dalmation has spots",0
+"785",37,"doesn't attack swimmers","free_production",4701,8,"fish","fish doesn't attack swimmers",0
+"786",37,"carries Lyme disease","free_production",2971,9,"tick","tick carries Lyme disease",1
+"787",37,"is red","free_production",11977,10,"ladybug","ladybug is red",0
+"788",37,"is juvenile","free_production",7448,11,"joey","joey is juvenile",0
+"789",37,"lays eggs","free_production",5607,12,"flie","flie lays eggs",0
+"790",37,"doesn't carry Lyme disease","free_production",10775,13,"bird","bird doesn't carry Lyme disease",0
+"791",37,"has beautiful feathers","free_production",7193,14,"peacock","peacock has beautiful feathers",1
+"792",37,"is full-grown","free_production",7339,15,"giraffe","giraffe is full-grown",0
+"793",37,"is female","free_production",12582,16,"workerbee","workerbee is female",0
+"794",37,"doesn't carry malaria","free_production",6305,17,"tiger","tiger doesn't carry malaria",0
+"795",37,"doesn't eat people","free_production",4206,18,"dog","dog doesn't eat people",0
+"796",37,"is white","free_production",5156,19,"goat","goat is white",0
+"797",37,"is male","free_production",12176,20,"tiger","tiger is male",0
+"798",37,"carries malaria","free_production",5263,21,"mosquito","mosquito carries malaria",1
+"799",38,"is full-grown","free_production",9511,1,"cat","cat is full-grown",0
+"800",38,"has a pouch","free_production",6580,2,"kangaroo","kangaroo has a pouch",1
+"801",38,"carries Lyme disease","free_production",5376,3,"tick","tick carries Lyme disease",1
+"802",38,"lays eggs","free_production",4060,4,"chicken","chicken lays eggs",0
+"803",38,"is male","free_production",5398,5,"dog","dog is male",0
+"804",38,"doesn't attack swimmers","free_production",6706,6,"duck","duck doesn't attack swimmers",0
+"805",38,"doesn't eat people","free_production",6330,7,"mouse","mouse doesn't eat people",0
+"806",38,"doesn't carry malaria","free_production",37917,8,"cat","cat doesn't carry malaria",0
+"807",38,"is red","free_production",5390,9,"bird","bird is red",0
+"808",38,"has wings","free_production",4796,10,"bird","bird has wings",0
+"809",38,"doesn't carry Lyme disease","free_production",6924,11,"bird","bird doesn't carry Lyme disease",0
+"810",38,"doesn't have beautiful feathers","free_production",5986,12,"cat","cat doesn't have beautiful feathers",0
+"811",38,"is white","free_production",4366,13,"chicken","chicken is white",0
+"812",38,"is female","free_production",3264,14,"cat","cat is female",0
+"813",38,"carries malaria","free_production",4216,15,"bat","bat carries malaria",0
+"814",38,"is juvenile","free_production",3756,16,"kitten","kitten is juvenile",0
+"815",38,"has a mane","free_production",3256,17,"horse","horse has a mane",0
+"816",38,"has spots","free_production",3426,18,"cow","cow has spots",0
+"817",38,"attacks swimmers","free_production",6840,19,"alligator","alligator attacks swimmers",0
+"818",38,"eats people","free_production",6814,20,"alligator","alligator eats people",0
+"819",38,"has beautiful feathers","free_production",4984,21,"peacock","peacock has beautiful feathers",1
+"820",39,"doesn't carry malaria","free_production",13755,1,"dog","dog doesn't carry malaria",0
+"821",39,"doesn't attack swimmers","free_production",19142,2,"dolphin","dolphin doesn't attack swimmers",0
+"822",39,"lays eggs","free_production",7228,3,"duck","duck lays eggs",0
+"823",39,"is male","free_production",8401,4,"monkey","monkey is male",0
+"824",39,"is red","free_production",4111,5,"robin","robin is red",0
+"825",39,"carries malaria","free_production",7022,6,"mosquito","mosquito carries malaria",1
+"826",39,"is white","free_production",4944,7,"swan","swan is white",1
+"827",39,"attacks swimmers","free_production",7036,8,"shark","shark attacks swimmers",1
+"828",39,"has spots","free_production",10360,9,"leopard","leopard has spots",1
+"829",39,"is female","free_production",3998,10,"cat","cat is female",0
+"830",39,"has wings","free_production",2906,11,"bat","bat has wings",0
+"831",39,"has beautiful feathers","free_production",6778,12,"peacock","peacock has beautiful feathers",1
+"832",39,"doesn't carry Lyme disease","free_production",9164,13,"bird","bird doesn't carry Lyme disease",0
+"833",39,"doesn't have beautiful feathers","free_production",9293,14,"crow","crow doesn't have beautiful feathers",0
+"834",39,"has a mane","free_production",6365,15,"lion","lion has a mane",1
+"835",39,"has a pouch","free_production",5458,16,"kangaroo","kangaroo has a pouch",1
+"836",39,"eats people","free_production",8606,17,"tiger","tiger eats people",1
+"837",39,"is juvenile","free_production",26969,18,"monkey","monkey is juvenile",0
+"838",39,"doesn't eat people","free_production",5137,19,"dog","dog doesn't eat people",0
+"839",39,"is full-grown","free_production",4970,20,"elephant","elephant is full-grown",0
+"840",39,"carries Lyme disease","free_production",3456,21,"tick","tick carries Lyme disease",1
+"841",40,"doesn't carry Lyme disease","free_production",8856,1,"flea","flea doesn't carry Lyme disease",0
+"842",40,"carries Lyme disease","free_production",5384,2,"tick","tick carries Lyme disease",1
+"843",40,"is white","free_production",3212,3,"swan","swan is white",1
+"844",40,"has wings","free_production",5289,4,"robin","robin has wings",0
+"845",40,"is juvenile","free_production",3441,5,"deer","deer is juvenile",0
+"846",40,"doesn't have beautiful feathers","free_production",10495,6,"badger","badger doesn't have beautiful feathers",0
+"847",40,"is full-grown","free_production",8619,7,"grasshopper","grasshopper is full-grown",0
+"848",40,"lays eggs","free_production",4442,8,"butterfly","butterfly lays eggs",0
+"849",40,"is female","free_production",5747,9,"frog","frog is female",0
+"850",40,"has spots","free_production",4776,10,"deer","deer has spots",0
+"851",40,"has beautiful feathers","free_production",5368,11,"cardinal","cardinal has beautiful feathers",0
+"852",40,"doesn't carry malaria","free_production",8766,12,"cricket","cricket doesn't carry malaria",0
+"853",40,"is male","free_production",9565,13,"bullfrog","bullfrog is male",0
+"854",40,"has a mane","free_production",7956,14,"horse","horse has a mane",0
+"855",40,"has a pouch","free_production",5802,15,"koala","koala has a pouch",0
+"856",40,"carries malaria","free_production",7065,16,"mosquito","mosquito carries malaria",1
+"857",40,"doesn't attack swimmers","free_production",8367,17,"angelfish","angelfish doesn't attack swimmers",0
+"858",40,"doesn't eat people","free_production",32436,18,"kingfisherbird","kingfisherbird doesn't eat people",0
+"859",40,"attacks swimmers","free_production",18558,19,"anaconda","anaconda attacks swimmers",0
+"860",40,"is red","free_production",26895,20,"ladybug","ladybug is red",0
+"861",40,"eats people","free_production",18204,21,"tigershark","tigershark eats people",0
+"862",41,"doesn't have beautiful feathers","free_production",8859,1,"penguin","penguin doesn't have beautiful feathers",0
+"863",41,"doesn't carry Lyme disease","free_production",8945,2,"bee","bee doesn't carry Lyme disease",0
+"864",41,"is white","free_production",12684,3,"polarbear","polarbear is white",0
+"865",41,"is juvenile","free_production",5595,4,"calf","calf is juvenile",0
+"866",41,"carries Lyme disease","free_production",13281,5,"emu","emu carries Lyme disease",0
+"867",41,"lays eggs","free_production",6333,6,"chicken","chicken lays eggs",0
+"868",41,"has wings","free_production",7886,7,"bird","bird has wings",0
+"869",41,"has beautiful feathers","free_production",5500,8,"peacock","peacock has beautiful feathers",1
+"870",41,"is red","free_production",6230,9,"ant","ant is red",0
+"871",41,"has a pouch","free_production",5654,10,"kangaroo","kangaroo has a pouch",1
+"872",41,"is female","free_production",16235,11,"lion","lion is female",0
+"873",41,"doesn't attack swimmers","free_production",9038,12,"dolphin","dolphin doesn't attack swimmers",0
+"874",41,"carries malaria","free_production",6172,13,"mosquito","mosquito carries malaria",1
+"875",41,"has a mane","free_production",5686,14,"horse","horse has a mane",0
+"876",41,"is full-grown","free_production",8601,15,"elephant","elephant is full-grown",0
+"877",41,"doesn't eat people","free_production",7449,16,"fly","fly doesn't eat people",0
+"878",41,"attacks swimmers","free_production",5306,17,"shark","shark attacks swimmers",1
+"879",41,"has spots","free_production",10892,18,"leopard","leopard has spots",1
+"880",41,"doesn't carry malaria","free_production",8726,19,"wasp","wasp doesn't carry malaria",0
+"881",41,"is male","free_production",4631,20,"lion","lion is male",1
+"882",41,"eats people","free_production",7822,21,"tiger","tiger eats people",1
+"883",42,"has wings","free_production",9273,1,"bird","bird has wings",0
+"884",42,"is red","free_production",9059,2,"bird","bird is red",0
+"885",42,"doesn't carry malaria","free_production",65665,3,"bear","bear doesn't carry malaria",0
+"886",42,"doesn't eat people","free_production",44495,4,"hamster","hamster doesn't eat people",0
+"887",42,"eats people","free_production",25489,5,"bear","bear eats people",0
+"888",42,"doesn't attack swimmers","free_production",7735,6,"goldfish","goldfish doesn't attack swimmers",0
+"889",42,"doesn't carry Lyme disease","free_production",29469,7,"koalabear","koalabear doesn't carry Lyme disease",0
+"890",42,"is male","free_production",10925,8,"dog","dog is male",0
+"891",42,"is juvenile","free_production",14514,9,"puppy","puppy is juvenile",0
+"892",42,"carries malaria","free_production",21419,10,"mosquito","mosquito carries malaria",1
+"893",42,"lays eggs","free_production",23356,11,"chicken","chicken lays eggs",0
+"894",42,"has beautiful feathers","free_production",36520,12,"peacock","peacock has beautiful feathers",1
+"895",42,"has spots","free_production",14582,13,"leopard","leopard has spots",1
+"896",42,"is white","free_production",10083,14,"polarbear","polarbear is white",0
+"897",42,"carries Lyme disease","free_production",5482,15,"tick","tick carries Lyme disease",1
+"898",42,"has a mane","free_production",6655,16,"lion","lion has a mane",1
+"899",42,"has a pouch","free_production",7276,17,"kangaroo","kangaroo has a pouch",1
+"900",42,"attacks swimmers","free_production",8688,18,"shark","shark attacks swimmers",1
+"901",42,"is full-grown","free_production",6990,19,"dog","dog is full-grown",0
+"902",42,"doesn't have beautiful feathers","free_production",26797,20,"shark","shark doesn't have beautiful feathers",0
+"903",42,"is female","free_production",6890,21,"dog","dog is female",0
+"904",43,"carries Lyme disease","free_production",11710,1,"fly","fly carries Lyme disease",0
+"905",43,"doesn't have beautiful feathers","free_production",6207,2,"chicken","chicken doesn't have beautiful feathers",0
+"906",43,"has beautiful feathers","free_production",11887,3,"peacock","peacock has beautiful feathers",1
+"907",43,"lays eggs","free_production",4648,4,"fish","fish lays eggs",0
+"908",43,"doesn't attack swimmers","free_production",8944,5,"cat","cat doesn't attack swimmers",0
+"909",43,"is white","free_production",4631,6,"polarbear","polarbear is white",0
+"910",43,"is female","free_production",9320,7,"dog","dog is female",0
+"911",43,"carries malaria","free_production",4656,8,"mosquito","mosquito carries malaria",1
+"912",43,"doesn't carry malaria","free_production",5440,9,"elephant","elephant doesn't carry malaria",0
+"913",43,"has a mane","free_production",3137,10,"lion","lion has a mane",1
+"914",43,"is juvenile","free_production",4426,11,"kitten","kitten is juvenile",0
+"915",43,"eats people","free_production",5819,12,"tiger","tiger eats people",1
+"916",43,"has a pouch","free_production",3984,13,"kangaroo","kangaroo has a pouch",1
+"917",43,"is full-grown","free_production",8568,14,"bear","bear is full-grown",0
+"918",43,"doesn't eat people","free_production",7552,15,"ant","ant doesn't eat people",0
+"919",43,"is male","free_production",4464,16,"jaguar","jaguar is male",0
+"920",43,"has wings","free_production",4416,17,"bird","bird has wings",0
+"921",43,"has spots","free_production",36561,18,"butterfly","butterfly has spots",0
+"922",43,"attacks swimmers","free_production",3272,19,"shark","shark attacks swimmers",1
+"923",43,"doesn't carry Lyme disease","free_production",6152,20,"zebra","zebra doesn't carry Lyme disease",0
+"924",43,"is red","free_production",9784,21,"parrot","parrot is red",0
+"925",44,"lays eggs","free_production",13070,1,"chicken","chicken lays eggs",0
+"926",44,"doesn't attack swimmers","free_production",19486,2,"tunafish","tunafish doesn't attack swimmers",0
+"927",44,"carries Lyme disease","free_production",4556,3,"deer","deer carries Lyme disease",0
+"928",44,"doesn't carry Lyme disease","free_production",9037,4,"tiger","tiger doesn't carry Lyme disease",0
+"929",44,"is full-grown","free_production",4726,5,"lion","lion is full-grown",0
+"930",44,"doesn't eat people","free_production",6620,6,"horse","horse doesn't eat people",0
+"931",44,"carries malaria","free_production",7321,7,"mosquito","mosquito carries malaria",1
+"932",44,"doesn't carry malaria","free_production",5958,8,"bee","bee doesn't carry malaria",0
+"933",44,"is female","free_production",4387,9,"dog","dog is female",0
+"934",44,"is male","free_production",3330,10,"cat","cat is male",0
+"935",44,"has beautiful feathers","free_production",9704,11,"peacock","peacock has beautiful feathers",1
+"936",44,"has spots","free_production",65263,12,"leopard","leopard has spots",1
+"937",44,"is red","free_production",6968,13,"goldfish","goldfish is red",0
+"938",44,"has a mane","free_production",5513,14,"lion","lion has a mane",1
+"939",44,"has wings","free_production",4292,15,"bird","bird has wings",0
+"940",44,"has a pouch","free_production",6122,16,"kangaroo","kangaroo has a pouch",1
+"941",44,"is juvenile","free_production",15748,17,"ape","ape is juvenile",0
+"942",44,"is white","free_production",8172,18,"sheep","sheep is white",0
+"943",44,"doesn't have beautiful feathers","free_production",44850,19,"pigeon","pigeon doesn't have beautiful feathers",0
+"944",44,"attacks swimmers","free_production",15217,20,"tiger","tiger attacks swimmers",0
+"945",44,"eats people","free_production",23812,21,"mosquito","mosquito eats people",0
+"946",45,"doesn't attack swimmers","free_production",5634,1,"shark","shark doesn't attack swimmers",1
+"947",45,"doesn't carry Lyme disease","free_production",4330,2,"ant","ant doesn't carry Lyme disease",0
+"948",45,"lays eggs","free_production",3709,3,"chicken","chicken lays eggs",0
+"949",45,"carries malaria","free_production",4379,4,"mosquito","mosquito carries malaria",1
+"950",45,"is red","free_production",3639,5,"beetle","beetle is red",0
+"951",45,"doesn't have beautiful feathers","free_production",5718,6,"crow","crow doesn't have beautiful feathers",0
+"952",45,"has wings","free_production",3274,7,"eagle","eagle has wings",0
+"953",45,"doesn't eat people","free_production",6418,8,"dog","dog doesn't eat people",0
+"954",45,"doesn't carry malaria","free_production",3761,9,"ant","ant doesn't carry malaria",0
+"955",45,"is male","free_production",3226,10,"human","human is male",0
+"956",45,"is juvenile","free_production",3859,11,"chick","chick is juvenile",0
+"957",45,"attacks swimmers","free_production",4414,12,"shark","shark attacks swimmers",1
+"958",45,"is white","free_production",7674,13,"seal","seal is white",0
+"959",45,"has beautiful feathers","free_production",3011,14,"peacock","peacock has beautiful feathers",1
+"960",45,"has a pouch","free_production",4498,15,"kangaroo","kangaroo has a pouch",1
+"961",45,"carries Lyme disease","free_production",2644,16,"tick","tick carries Lyme disease",1
+"962",45,"has spots","free_production",2743,17,"cheetah","cheetah has spots",0
+"963",45,"eats people","free_production",4865,18,"alligator","alligator eats people",0
+"964",45,"has a mane","free_production",2455,19,"horse","horse has a mane",0
+"965",45,"is female","free_production",3311,20,"hen","hen is female",0
+"966",45,"is full-grown","free_production",8605,21,"cat","cat is full-grown",0
+"967",46,"lays eggs","free_production",5253,1,"chicken","chicken lays eggs",0
+"968",46,"doesn't attack swimmers","free_production",8901,2,"butterfly","butterfly doesn't attack swimmers",0
+"969",46,"has a mane","free_production",5836,3,"horse","horse has a mane",0
+"970",46,"is full-grown","free_production",7081,4,"bear","bear is full-grown",0
+"971",46,"is juvenile","free_production",5340,5,"rabbit","rabbit is juvenile",0
+"972",46,"eats people","free_production",6414,6,"lion","lion eats people",0
+"973",46,"doesn't have beautiful feathers","free_production",11105,7,"monkey","monkey doesn't have beautiful feathers",0
+"974",46,"carries Lyme disease","free_production",10760,8,"mouse","mouse carries Lyme disease",0
+"975",46,"is female","free_production",5074,9,"frog","frog is female",0
+"976",46,"doesn't eat people","free_production",9072,10,"hummingbird","hummingbird doesn't eat people",0
+"977",46,"has spots","free_production",4568,11,"leopard","leopard has spots",1
+"978",46,"is white","free_production",6650,12,"polarbear","polarbear is white",0
+"979",46,"has wings","free_production",5341,13,"hawk","hawk has wings",0
+"980",46,"attacks swimmers","free_production",4719,14,"shark","shark attacks swimmers",1
+"981",46,"is male","free_production",6830,15,"pig","pig is male",0
+"982",46,"has beautiful feathers","free_production",5540,16,"peacock","peacock has beautiful feathers",1
+"983",46,"doesn't carry malaria","free_production",7811,17,"raccoon","raccoon doesn't carry malaria",0
+"984",46,"is red","free_production",7222,18,"redpanda","redpanda is red",0
+"985",46,"doesn't carry Lyme disease","free_production",5725,19,"goat","goat doesn't carry Lyme disease",0
+"986",46,"carries malaria","free_production",6328,20,"mosquito","mosquito carries malaria",1
+"987",46,"has a pouch","free_production",4848,21,"kangaroo","kangaroo has a pouch",1
+"988",47,"has wings","free_production",7453,1,"bird","bird has wings",0
+"989",47,"is female","free_production",5358,2,"dog","dog is female",0
+"990",47,"carries malaria","free_production",5474,3,"mosquito","mosquito carries malaria",1
+"991",47,"eats people","free_production",7544,4,"crocodile","crocodile eats people",0
+"992",47,"is full-grown","free_production",9115,5,"spider","spider is full-grown",0
+"993",47,"lays eggs","free_production",6459,6,"fish","fish lays eggs",0
+"994",47,"carries Lyme disease","free_production",7692,7,"tick","tick carries Lyme disease",1
+"995",47,"is white","free_production",8156,8,"zebra","zebra is white",0
+"996",47,"has a mane","free_production",4872,9,"horse","horse has a mane",0
+"997",47,"doesn't eat people","free_production",5409,10,"bunny","bunny doesn't eat people",0
+"998",47,"doesn't carry Lyme disease","free_production",8011,11,"ant","ant doesn't carry Lyme disease",0
+"999",47,"doesn't carry malaria","free_production",7026,12,"butterfly","butterfly doesn't carry malaria",0
+"1000",47,"is juvenile","free_production",7355,13,"chimpanzee","chimpanzee is juvenile",0
+"1001",47,"doesn't attack swimmers","free_production",5384,14,"goldfish","goldfish doesn't attack swimmers",0
+"1002",47,"doesn't have beautiful feathers","free_production",7622,15,"ostrich","ostrich doesn't have beautiful feathers",0
+"1003",47,"attacks swimmers","free_production",4929,16,"shark","shark attacks swimmers",1
+"1004",47,"has a pouch","free_production",5034,17,"kangaroo","kangaroo has a pouch",1
+"1005",47,"is male","free_production",7340,18,"bear","bear is male",0
+"1006",47,"has spots","free_production",5207,19,"leopard","leopard has spots",1
+"1007",47,"is red","free_production",4446,20,"cardinal","cardinal is red",1
+"1008",47,"has beautiful feathers","free_production",5444,21,"peacock","peacock has beautiful feathers",1
+"1009",48,"has spots","free_production",24606,1,"dog","dog has spots",0
+"1010",48,"is male","free_production",13972,2,"cow","cow is male",0
+"1011",48,"is female","free_production",13117,3,"sheep","sheep is female",0
+"1012",48,"doesn't have beautiful feathers","free_production",11557,4,"insect","insect doesn't have beautiful feathers",0
+"1013",48,"doesn't carry Lyme disease","free_production",8579,5,"insect","insect doesn't carry Lyme disease",0
+"1014",48,"is juvenile","free_production",36419,6,"foal","foal is juvenile",0
+"1015",48,"has beautiful feathers","free_production",20014,7,"bird","bird has beautiful feathers",0
+"1016",48,"doesn't eat people","free_production",6709,8,"cat","cat doesn't eat people",0
+"1017",48,"doesn't carry malaria","free_production",7790,9,"kitten","kitten doesn't carry malaria",0
+"1018",48,"carries malaria","free_production",19277,10,"mosquito","mosquito carries malaria",1
+"1019",48,"attacks swimmers","free_production",6643,11,"shark","shark attacks swimmers",1
+"1020",48,"carries Lyme disease","free_production",85268,12,"insect","insect carries Lyme disease",0
+"1021",48,"eats people","free_production",7211,13,"lion","lion eats people",0
+"1022",48,"has a pouch","free_production",18978,14,"kangaroo","kangaroo has a pouch",1
+"1023",48,"is red","free_production",47998,15,"bug","bug is red",0
+"1024",48,"doesn't attack swimmers","free_production",8031,16,"bird","bird doesn't attack swimmers",0
+"1025",48,"is full-grown","free_production",5977,17,"bear","bear is full-grown",0
+"1026",48,"lays eggs","free_production",4949,18,"chicken","chicken lays eggs",0
+"1027",48,"has a mane","free_production",19753,19,"horse","horse has a mane",0
+"1028",48,"has wings","free_production",4070,20,"bird","bird has wings",0
+"1029",48,"is white","free_production",10761,21,"cat","cat is white",0
+"1030",49,"has a pouch","free_production",4905,1,"marsupial","marsupial has a pouch",0
+"1031",49,"doesn't attack swimmers","free_production",6133,2,"fish","fish doesn't attack swimmers",0
+"1032",49,"is full-grown","free_production",7512,3,"matureanimal","matureanimal is full-grown",0
+"1033",49,"carries malaria","free_production",3432,4,"fly","fly carries malaria",0
+"1034",49,"doesn't have beautiful feathers","free_production",4454,5,"ostrich","ostrich doesn't have beautiful feathers",0
+"1035",49,"has wings","free_production",4559,6,"housefly","housefly has wings",0
+"1036",49,"is red","free_production",4880,7,"cardinal","cardinal is red",1
+"1037",49,"eats people","free_production",9423,8,"crocodile","crocodile eats people",0
+"1038",49,"has beautiful feathers","free_production",3551,9,"peacock","peacock has beautiful feathers",1
+"1039",49,"is white","free_production",9520,10,"bichon","bichon is white",0
+"1040",49,"doesn't carry Lyme disease","free_production",5015,11,"dog","dog doesn't carry Lyme disease",0
+"1041",49,"attacks swimmers","free_production",2352,12,"shark","shark attacks swimmers",1
+"1042",49,"doesn't carry malaria","free_production",3168,13,"cat","cat doesn't carry malaria",0
+"1043",49,"is female","free_production",6208,14,"femaleanimal","femaleanimal is female",0
+"1044",49,"has spots","free_production",3359,15,"leopard","leopard has spots",1
+"1045",49,"has a mane","free_production",2639,16,"lion","lion has a mane",1
+"1046",49,"doesn't eat people","free_production",3416,17,"dog","dog doesn't eat people",0
+"1047",49,"is male","free_production",3847,18,"maleanimal","maleanimal is male",0
+"1048",49,"carries Lyme disease","free_production",4016,19,"tick","tick carries Lyme disease",1
+"1049",49,"lays eggs","free_production",5896,20,"robin","robin lays eggs",1
+"1050",49,"is juvenile","free_production",7671,21,"puppy","puppy is juvenile",0
+"1051",50,"has beautiful feathers","free_production",5015,1,"bird","bird has beautiful feathers",0
+"1052",50,"has wings","free_production",4351,2,"butterflyuu","butterflyuu has wings",0
+"1053",50,"has a pouch","free_production",4207,3,"kangaroo","kangaroo has a pouch",1
+"1054",50,"lays eggs","free_production",5665,4,"pigeon","pigeon lays eggs",0
+"1055",50,"doesn't carry malaria","free_production",4641,5,"dog","dog doesn't carry malaria",0
+"1056",50,"carries malaria","free_production",4648,6,"raccoon","raccoon carries malaria",0
+"1057",50,"eats people","free_production",3548,7,"tiger","tiger eats people",1
+"1058",50,"is juvenile","free_production",5327,8,"cat","cat is juvenile",0
+"1059",50,"is male","free_production",6245,9,"horse","horse is male",0
+"1060",50,"is red","free_production",6466,10,"cardinal","cardinal is red",1
+"1061",50,"is full-grown","free_production",6263,11,"lizard","lizard is full-grown",0
+"1062",50,"doesn't attack swimmers","free_production",6065,12,"turtle","turtle doesn't attack swimmers",0
+"1063",50,"has a mane","free_production",3053,13,"horse","horse has a mane",0
+"1064",50,"doesn't carry Lyme disease","free_production",3544,14,"cat","cat doesn't carry Lyme disease",0
+"1065",50,"doesn't have beautiful feathers","free_production",4373,15,"pigeon","pigeon doesn't have beautiful feathers",0
+"1066",50,"is female","free_production",2931,16,"squirrel","squirrel is female",0
+"1067",50,"has spots","free_production",4426,17,"hyena","hyena has spots",0
+"1068",50,"carries Lyme disease","free_production",5927,18,"porcupine","porcupine carries Lyme disease",0
+"1069",50,"doesn't eat people","free_production",4758,19,"seal","seal doesn't eat people",0
+"1070",50,"attacks swimmers","free_production",2756,20,"shark","shark attacks swimmers",1
+"1071",50,"is white","free_production",8583,21,"butterfly","butterfly is white",0
+"1072",51,"doesn't have beautiful feathers","free_production",4802,1,"pidgeon","pidgeon doesn't have beautiful feathers",0
+"1073",51,"is male","free_production",2738,2,"lion","lion is male",1
+"1074",51,"is female","free_production",3176,3,"cat","cat is female",0
+"1075",51,"is red","free_production",3008,4,"rooster","rooster is red",0
+"1076",51,"has a pouch","free_production",3352,5,"kangaroo","kangaroo has a pouch",1
+"1077",51,"is juvenile","free_production",4828,6,"bearcub","bearcub is juvenile",0
+"1078",51,"carries malaria","free_production",10174,7,"mosquito","mosquito carries malaria",1
+"1079",51,"doesn't carry Lyme disease","free_production",13279,8,"ant","ant doesn't carry Lyme disease",0
+"1080",51,"doesn't carry malaria","free_production",5009,9,"scorpion","scorpion doesn't carry malaria",0
+"1081",51,"is full-grown","free_production",4136,10,"bear","bear is full-grown",0
+"1082",51,"has spots","free_production",2680,11,"jaguar","jaguar has spots",0
+"1083",51,"is white","free_production",2922,12,"polarbear","polarbear is white",0
+"1084",51,"lays eggs","free_production",3033,13,"chicken","chicken lays eggs",0
+"1085",51,"has beautiful feathers","free_production",11229,14,"flamingo","flamingo has beautiful feathers",0
+"1086",51,"eats people","free_production",3956,15,"shark","shark eats people",0
+"1087",51,"has wings","free_production",3437,16,"dove","dove has wings",0
+"1088",51,"has a mane","free_production",4862,17,"lion","lion has a mane",1
+"1089",51,"attacks swimmers","free_production",2702,18,"shark","shark attacks swimmers",1
+"1090",51,"carries Lyme disease","free_production",3475,19,"tick","tick carries Lyme disease",1
+"1091",51,"doesn't attack swimmers","free_production",7443,20,"whale","whale doesn't attack swimmers",0
+"1092",51,"doesn't eat people","free_production",7068,21,"giraffe","giraffe doesn't eat people",0
+"1093",52,"attacks swimmers","free_production",6652,1,"shark","shark attacks swimmers",1
+"1094",52,"has beautiful feathers","free_production",9082,2,"peacock","peacock has beautiful feathers",1
+"1095",52,"is male","free_production",7804,3,"dog","dog is male",0
+"1096",52,"has spots","free_production",5400,4,"leopard","leopard has spots",1
+"1097",52,"doesn't eat people","free_production",4392,5,"cat","cat doesn't eat people",0
+"1098",52,"doesn't carry Lyme disease","free_production",8020,6,"ladybug","ladybug doesn't carry Lyme disease",0
+"1099",52,"has wings","free_production",5561,7,"butterfly","butterfly has wings",0
+"1100",52,"doesn't have beautiful feathers","free_production",6526,8,"ostrich","ostrich doesn't have beautiful feathers",0
+"1101",52,"has a pouch","free_production",3851,9,"kangaroo","kangaroo has a pouch",1
+"1102",52,"doesn't attack swimmers","free_production",4273,10,"dolphin","dolphin doesn't attack swimmers",0
+"1103",52,"is full-grown","free_production",11497,11,"giraffee","giraffee is full-grown",0
+"1104",52,"carries Lyme disease","free_production",6615,12,"tick","tick carries Lyme disease",1
+"1105",52,"is red","free_production",6863,13,"camel","camel is red",0
+"1106",52,"eats people","free_production",4896,14,"shark","shark eats people",0
+"1107",52,"carries malaria","free_production",5104,15,"mosquito","mosquito carries malaria",1
+"1108",52,"is juvenile","free_production",6151,16,"bear","bear is juvenile",0
+"1109",52,"has a mane","free_production",3302,17,"horse","horse has a mane",0
+"1110",52,"doesn't carry malaria","free_production",3377,18,"fly","fly doesn't carry malaria",0
+"1111",52,"is white","free_production",4235,19,"polarbear","polarbear is white",0
+"1112",52,"is female","free_production",4497,20,"kitten","kitten is female",0
+"1113",52,"lays eggs","free_production",4464,21,"chicken","chicken lays eggs",0
+"1114",53,"carries malaria","free_production",4704,1,"mosquito","mosquito carries malaria",1
+"1115",53,"lays eggs","free_production",7130,2,"chicken","chicken lays eggs",0
+"1116",53,"is male","free_production",3180,3,"whale","whale is male",0
+"1117",53,"eats people","free_production",4138,4,"bear","bear eats people",0
+"1118",53,"is red","free_production",4464,5,"ladybug","ladybug is red",0
+"1119",53,"is white","free_production",3984,6,"seal","seal is white",0
+"1120",53,"doesn't carry Lyme disease","free_production",3959,7,"pigeon","pigeon doesn't carry Lyme disease",0
+"1121",53,"has a pouch","free_production",3805,8,"kangaroo","kangaroo has a pouch",1
+"1122",53,"has wings","free_production",3698,9,"bee","bee has wings",0
+"1123",53,"carries Lyme disease","free_production",8432,10,"bug","bug carries Lyme disease",0
+"1124",53,"has beautiful feathers","free_production",3635,11,"peacock","peacock has beautiful feathers",1
+"1125",53,"doesn't carry malaria","free_production",4334,12,"cat","cat doesn't carry malaria",0
+"1126",53,"doesn't have beautiful feathers","free_production",3640,13,"dog","dog doesn't have beautiful feathers",0
+"1127",53,"is full-grown","free_production",6153,14,"panda","panda is full-grown",0
+"1128",53,"doesn't eat people","free_production",6533,15,"hamster","hamster doesn't eat people",0
+"1129",53,"has a mane","free_production",2707,16,"horse","horse has a mane",0
+"1130",53,"attacks swimmers","free_production",5044,17,"shark","shark attacks swimmers",1
+"1131",53,"has spots","free_production",4917,18,"zebra","zebra has spots",0
+"1132",53,"is juvenile","free_production",3744,19,"giraffe","giraffe is juvenile",0
+"1133",53,"doesn't attack swimmers","free_production",3994,20,"bear","bear doesn't attack swimmers",0
+"1134",53,"is female","free_production",5843,21,"spider","spider is female",0
+"1135",54,"has spots","free_production",3883,1,"cow","cow has spots",0
+"1136",54,"has wings","free_production",4135,2,"bird","bird has wings",0
+"1137",54,"is white","free_production",9971,3,"whitetiger","whitetiger is white",0
+"1138",54,"is female","free_production",3813,4,"kitten","kitten is female",0
+"1139",54,"carries malaria","free_production",3156,5,"mosquito","mosquito carries malaria",1
+"1140",54,"is juvenile","free_production",5175,6,"dog","dog is juvenile",0
+"1141",54,"lays eggs","free_production",2710,7,"chicken","chicken lays eggs",0
+"1142",54,"is male","free_production",2082,8,"dog","dog is male",0
+"1143",54,"doesn't attack swimmers","free_production",9131,9,"catfish","catfish doesn't attack swimmers",0
+"1144",54,"has beautiful feathers","free_production",20230,10,"ostrich","ostrich has beautiful feathers",0
+"1145",54,"doesn't have beautiful feathers","free_production",5810,11,"chicken","chicken doesn't have beautiful feathers",0
+"1146",54,"doesn't carry malaria","free_production",6112,12,"bird","bird doesn't carry malaria",0
+"1147",54,"doesn't carry Lyme disease","free_production",2935,13,"dog","dog doesn't carry Lyme disease",0
+"1148",54,"is full-grown","free_production",2442,14,"dog","dog is full-grown",0
+"1149",54,"doesn't eat people","free_production",5071,15,"cat","cat doesn't eat people",0
+"1150",54,"carries Lyme disease","free_production",2816,16,"tick","tick carries Lyme disease",1
+"1151",54,"is red","free_production",7600,17,"redant","redant is red",0
+"1152",54,"has a mane","free_production",1992,18,"lion","lion has a mane",1
+"1153",54,"has a pouch","free_production",3158,19,"kangaroo","kangaroo has a pouch",1
+"1154",54,"eats people","free_production",3752,20,"tiger","tiger eats people",1
+"1155",54,"attacks swimmers","free_production",3632,21,"shark","shark attacks swimmers",1
+"1156",55,"is full-grown","free_production",8852,1,"deer","deer is full-grown",0
+"1157",55,"eats people","free_production",6666,2,"bear","bear eats people",0
+"1158",55,"attacks swimmers","free_production",3917,3,"shark","shark attacks swimmers",1
+"1159",55,"is juvenile","free_production",7384,4,"bunny","bunny is juvenile",0
+"1160",55,"lays eggs","free_production",4364,5,"chicken","chicken lays eggs",0
+"1161",55,"carries Lyme disease","free_production",4081,6,"tick","tick carries Lyme disease",1
+"1162",55,"doesn't carry malaria","free_production",9086,7,"roach","roach doesn't carry malaria",0
+"1163",55,"doesn't eat people","free_production",10213,8,"lizard","lizard doesn't eat people",0
+"1164",55,"has spots","free_production",16393,9,"dog","dog has spots",0
+"1165",55,"carries malaria","free_production",5181,10,"mosquito","mosquito carries malaria",1
+"1166",55,"is red","free_production",10413,11,"ladybug","ladybug is red",0
+"1167",55,"has beautiful feathers","free_production",5752,12,"peacock","peacock has beautiful feathers",1
+"1168",55,"has a pouch","free_production",4752,13,"kangaroo","kangaroo has a pouch",1
+"1169",55,"doesn't carry Lyme disease","free_production",13663,14,"cat","cat doesn't carry Lyme disease",0
+"1170",55,"is female","free_production",14822,15,"cow","cow is female",0
+"1171",55,"is male","free_production",7170,16,"bull","bull is male",0
+"1172",55,"has wings","free_production",5301,17,"hawk","hawk has wings",0
+"1173",55,"has a mane","free_production",3868,18,"horse","horse has a mane",0
+"1174",55,"is white","free_production",7918,19,"rabbit","rabbit is white",0
+"1175",55,"doesn't attack swimmers","free_production",10152,20,"goldfish","goldfish doesn't attack swimmers",0
+"1176",55,"doesn't have beautiful feathers","free_production",6943,21,"rhino","rhino doesn't have beautiful feathers",0
+"1177",56,"has a mane","free_production",9389,1,"lion","lion has a mane",1
+"1178",56,"is female","free_production",10703,2,"tigres","tigres is female",0
+"1179",56,"carries Lyme disease","free_production",30201,3,"tick","tick carries Lyme disease",1
+"1180",56,"is white","free_production",13288,4,"snowleopard","snowleopard is white",0
+"1181",56,"lays eggs","free_production",4551,5,"chicken","chicken lays eggs",0
+"1182",56,"has spots","free_production",5408,6,"tiger","tiger has spots",0
+"1183",56,"eats people","free_production",4488,7,"snake","snake eats people",0
+"1184",56,"is red","free_production",6769,8,"chipmunk","chipmunk is red",0
+"1185",56,"is juvenile","free_production",4527,9,"monkey","monkey is juvenile",0
+"1186",56,"carries malaria","free_production",10945,10,"beetle","beetle carries malaria",0
+"1187",56,"doesn't have beautiful feathers","free_production",69224,11,"goose","goose doesn't have beautiful feathers",0
+"1188",56,"attacks swimmers","free_production",4255,12,"shark","shark attacks swimmers",1
+"1189",56,"has a pouch","free_production",3895,13,"kangaroo","kangaroo has a pouch",1
+"1190",56,"doesn't attack swimmers","free_production",5055,14,"dolphin","dolphin doesn't attack swimmers",0
+"1191",56,"doesn't carry malaria","free_production",7497,15,"magpie","magpie doesn't carry malaria",0
+"1192",56,"has beautiful feathers","free_production",4783,16,"peacock","peacock has beautiful feathers",1
+"1193",56,"is male","free_production",4472,17,"horse","horse is male",0
+"1194",56,"doesn't eat people","free_production",4809,18,"dog","dog doesn't eat people",0
+"1195",56,"doesn't carry Lyme disease","free_production",5952,19,"cat","cat doesn't carry Lyme disease",0
+"1196",56,"is full-grown","free_production",5470,20,"bear","bear is full-grown",0
+"1197",56,"has wings","free_production",6113,21,"crow","crow has wings",0
+"1198",57,"has wings","free_production",5000,1,"bird","bird has wings",0
+"1199",57,"is white","free_production",6360,2,"bird","bird is white",0
+"1200",57,"attacks swimmers","free_production",3359,3,"shark","shark attacks swimmers",1
+"1201",57,"is red","free_production",4204,4,"cardinal","cardinal is red",1
+"1202",57,"is male","free_production",9481,5,"monkey","monkey is male",0
+"1203",57,"doesn't carry Lyme disease","free_production",5112,6,"dog","dog doesn't carry Lyme disease",0
+"1204",57,"is female","free_production",3502,7,"cat","cat is female",0
+"1205",57,"has a mane","free_production",5470,8,"lion","lion has a mane",1
+"1206",57,"lays eggs","free_production",4179,9,"bird","bird lays eggs",0
+"1207",57,"carries malaria","free_production",9870,10,"mosquito","mosquito carries malaria",1
+"1208",57,"has spots","free_production",4390,11,"leopard","leopard has spots",1
+"1209",57,"carries Lyme disease","free_production",6057,12,"mite","mite carries Lyme disease",0
+"1210",57,"has beautiful feathers","free_production",5794,13,"peacock","peacock has beautiful feathers",1
+"1211",57,"doesn't attack swimmers","free_production",3888,14,"dolphin","dolphin doesn't attack swimmers",0
+"1212",57,"is full-grown","free_production",4634,15,"gorilla","gorilla is full-grown",0
+"1213",57,"is juvenile","free_production",6736,16,"koala","koala is juvenile",0
+"1214",57,"doesn't have beautiful feathers","free_production",4987,17,"raven","raven doesn't have beautiful feathers",0
+"1215",57,"doesn't carry malaria","free_production",4164,18,"cat","cat doesn't carry malaria",0
+"1216",57,"eats people","free_production",3532,19,"lion","lion eats people",0
+"1217",57,"doesn't eat people","free_production",14796,20,"sheep","sheep doesn't eat people",0
+"1218",57,"has a pouch","free_production",6520,21,"kangaroo","kangaroo has a pouch",1
+"1219",58,"eats people","free_production",7861,1,"dinosaur","dinosaur eats people",0
+"1220",58,"is male","free_production",7551,2,"lion","lion is male",1
+"1221",58,"is white","free_production",7791,3,"swan","swan is white",1
+"1222",58,"is red","free_production",33711,4,"newt","newt is red",0
+"1223",58,"has beautiful feathers","free_production",7071,5,"peacock","peacock has beautiful feathers",1
+"1224",58,"carries Lyme disease","free_production",7959,6,"spider","spider carries Lyme disease",0
+"1225",58,"doesn't have beautiful feathers","free_production",9623,7,"seagull","seagull doesn't have beautiful feathers",0
+"1226",58,"is female","free_production",7279,8,"cat","cat is female",0
+"1227",58,"carries malaria","free_production",66471,9,"mosquito","mosquito carries malaria",1
+"1228",58,"has a pouch","free_production",6448,10,"kangaroo","kangaroo has a pouch",1
+"1229",58,"doesn't eat people","free_production",5880,11,"dog","dog doesn't eat people",0
+"1230",58,"is juvenile","free_production",7552,12,"puppy","puppy is juvenile",0
+"1231",58,"is full-grown","free_production",9544,13,"zebra","zebra is full-grown",0
+"1232",58,"lays eggs","free_production",5224,14,"bird","bird lays eggs",0
+"1233",58,"doesn't carry Lyme disease","free_production",8136,15,"kitten","kitten doesn't carry Lyme disease",0
+"1234",58,"attacks swimmers","free_production",5104,16,"shark","shark attacks swimmers",1
+"1235",58,"has spots","free_production",11679,17,"leopard","leopard has spots",1
+"1236",58,"has a mane","free_production",5072,18,"horse","horse has a mane",0
+"1237",58,"has wings","free_production",12080,19,"eagle","eagle has wings",0
+"1238",58,"doesn't attack swimmers","free_production",7799,20,"goldfish","goldfish doesn't attack swimmers",0
+"1239",58,"doesn't carry malaria","free_production",12968,21,"beetle","beetle doesn't carry malaria",0
+"1240",59,"attacks swimmers","free_production",7908,1,"fish","fish attacks swimmers",0
+"1241",59,"doesn't carry Lyme disease","free_production",6458,2,"dog","dog doesn't carry Lyme disease",0
+"1242",59,"doesn't carry malaria","free_production",7221,3,"camel","camel doesn't carry malaria",0
+"1243",59,"lays eggs","free_production",3141,4,"chicken","chicken lays eggs",0
+"1244",59,"is female","free_production",4378,5,"cat","cat is female",0
+"1245",59,"has a mane","free_production",2230,6,"horse","horse has a mane",0
+"1246",59,"has beautiful feathers","free_production",2648,7,"peacock","peacock has beautiful feathers",1
+"1247",59,"is male","free_production",3513,8,"horse","horse is male",0
+"1248",59,"carries Lyme disease","free_production",2386,9,"tick","tick carries Lyme disease",1
+"1249",59,"doesn't eat people","free_production",5377,10,"penguin","penguin doesn't eat people",0
+"1250",59,"is white","free_production",3676,11,"swan","swan is white",1
+"1251",59,"has spots","free_production",2893,12,"dalmation","dalmation has spots",0
+"1252",59,"carries malaria","free_production",3326,13,"mosquito","mosquito carries malaria",1
+"1253",59,"doesn't attack swimmers","free_production",11636,14,"bird","bird doesn't attack swimmers",0
+"1254",59,"is juvenile","free_production",6944,15,"kangaroo","kangaroo is juvenile",1
+"1255",59,"eats people","free_production",3289,16,"tiger","tiger eats people",1
+"1256",59,"has a pouch","free_production",3270,17,"kangaroo","kangaroo has a pouch",1
+"1257",59,"doesn't have beautiful feathers","free_production",5146,18,"pidgeon","pidgeon doesn't have beautiful feathers",0
+"1258",59,"is full-grown","free_production",5324,19,"horse","horse is full-grown",0
+"1259",59,"is red","free_production",3934,20,"ladybug","ladybug is red",0
+"1260",59,"has wings","free_production",2964,21,"bird","bird has wings",0
+"1261",60,"has spots","free_production",3933,1,"zebra","zebra has spots",0
+"1262",60,"carries Lyme disease","free_production",3866,2,"tick","tick carries Lyme disease",1
+"1263",60,"doesn't eat people","free_production",5624,3,"cow","cow doesn't eat people",0
+"1264",60,"attacks swimmers","free_production",2583,4,"shark","shark attacks swimmers",1
+"1265",60,"doesn't carry malaria","free_production",4416,5,"dog","dog doesn't carry malaria",0
+"1266",60,"is red","free_production",6619,6,"salamander","salamander is red",0
+"1267",60,"has beautiful feathers","free_production",5495,7,"ostrich","ostrich has beautiful feathers",0
+"1268",60,"has a pouch","free_production",6335,8,"kangaroo","kangaroo has a pouch",1
+"1269",60,"doesn't have beautiful feathers","free_production",5593,9,"dog","dog doesn't have beautiful feathers",0
+"1270",60,"is female","free_production",3368,10,"dog","dog is female",0
+"1271",60,"is juvenile","free_production",2532,11,"dog","dog is juvenile",0
+"1272",60,"is male","free_production",1917,12,"dog","dog is male",0
+"1273",60,"eats people","free_production",5519,13,"shark","shark eats people",0
+"1274",60,"has wings","free_production",4503,14,"chicken","chicken has wings",0
+"1275",60,"is full-grown","free_production",2423,15,"dog","dog is full-grown",0
+"1276",60,"doesn't carry Lyme disease","free_production",2580,16,"dog","dog doesn't carry Lyme disease",0
+"1277",60,"lays eggs","free_production",4615,17,"hen","hen lays eggs",0
+"1278",60,"carries malaria","free_production",4523,18,"mosquito","mosquito carries malaria",1
+"1279",60,"is white","free_production",3268,19,"dog","dog is white",0
+"1280",60,"has a mane","free_production",3252,20,"lion","lion has a mane",1
+"1281",60,"doesn't attack swimmers","free_production",8714,21,"dolphin","dolphin doesn't attack swimmers",0
+"1282",61,"carries malaria","free_production",6365,1,"mosquito","mosquito carries malaria",1
+"1283",61,"has beautiful feathers","free_production",3262,2,"bird","bird has beautiful feathers",0
+"1284",61,"has a pouch","free_production",3415,3,"kangaroo","kangaroo has a pouch",1
+"1285",61,"has wings","free_production",3702,4,"bird","bird has wings",0
+"1286",61,"is female","free_production",4472,5,"butterfly","butterfly is female",0
+"1287",61,"lays eggs","free_production",44200,6,"duck","duck lays eggs",0
+"1288",61,"doesn't attack swimmers","free_production",4343,7,"dolphin","dolphin doesn't attack swimmers",0
+"1289",61,"carries Lyme disease","free_production",3183,8,"tick","tick carries Lyme disease",1
+"1290",61,"attacks swimmers","free_production",3192,9,"shark","shark attacks swimmers",1
+"1291",61,"doesn't carry Lyme disease","free_production",4032,10,"cat","cat doesn't carry Lyme disease",0
+"1292",61,"doesn't have beautiful feathers","free_production",2696,11,"cat","cat doesn't have beautiful feathers",0
+"1293",61,"is red","free_production",4872,12,"redrobin","redrobin is red",0
+"1294",61,"is full-grown","free_production",7704,13,"bear","bear is full-grown",0
+"1295",61,"eats people","free_production",2624,14,"bear","bear eats people",0
+"1296",61,"is white","free_production",3280,15,"polarbear","polarbear is white",0
+"1297",61,"doesn't eat people","free_production",6447,16,"duck","duck doesn't eat people",0
+"1298",61,"is male","free_production",16713,17,"lion","lion is male",1
+"1299",61,"is juvenile","free_production",4194,18,"rabbit","rabbit is juvenile",0
+"1300",61,"has a mane","free_production",3005,19,"lion","lion has a mane",1
+"1301",61,"has spots","free_production",3584,20,"leopard","leopard has spots",1
+"1302",61,"doesn't carry malaria","free_production",3215,21,"leopard","leopard doesn't carry malaria",0
+"1303",62,"is white","free_production",10034,1,"horse","horse is white",0
+"1304",62,"attacks swimmers","free_production",6407,2,"shark","shark attacks swimmers",1
+"1305",62,"doesn't carry Lyme disease","free_production",7425,3,"fish","fish doesn't carry Lyme disease",0
+"1306",62,"carries malaria","free_production",8638,4,"mosquito","mosquito carries malaria",1
+"1307",62,"has wings","free_production",7321,5,"bird","bird has wings",0
+"1308",62,"eats people","free_production",3517,6,"bear","bear eats people",0
+"1309",62,"lays eggs","free_production",3455,7,"bird","bird lays eggs",0
+"1310",62,"is male","free_production",5376,8,"lion","lion is male",1
+"1311",62,"is red","free_production",3230,9,"cardinal","cardinal is red",1
+"1312",62,"carries Lyme disease","free_production",3288,10,"tick","tick carries Lyme disease",1
+"1313",62,"doesn't eat people","free_production",14734,11,"bunny","bunny doesn't eat people",0
+"1314",62,"is juvenile","free_production",26712,12,"alligator","alligator is juvenile",0
+"1315",62,"has spots","free_production",3638,13,"leopard","leopard has spots",1
+"1316",62,"doesn't have beautiful feathers","free_production",5670,14,"buzzard","buzzard doesn't have beautiful feathers",0
+"1317",62,"is full-grown","free_production",9567,15,"giraffe","giraffe is full-grown",0
+"1318",62,"has a pouch","free_production",2656,16,"kangaroo","kangaroo has a pouch",1
+"1319",62,"has a mane","free_production",2522,17,"horse","horse has a mane",0
+"1320",62,"has beautiful feathers","free_production",4493,18,"peacock","peacock has beautiful feathers",1
+"1321",62,"doesn't attack swimmers","free_production",5776,19,"dolphin","dolphin doesn't attack swimmers",0
+"1322",62,"doesn't carry malaria","free_production",6831,20,"fish","fish doesn't carry malaria",0
+"1323",62,"is female","free_production",5212,21,"manatee","manatee is female",0
+"1324",63,"has a pouch","free_production",5187,1,"kangaroo","kangaroo has a pouch",1
+"1325",63,"is white","free_production",7285,2,"polarbear","polarbear is white",0
+"1326",63,"doesn't carry malaria","free_production",11077,3,"dog","dog doesn't carry malaria",0
+"1327",63,"lays eggs","free_production",3269,4,"chicken","chicken lays eggs",0
+"1328",63,"is female","free_production",4211,5,"deer","deer is female",0
+"1329",63,"has beautiful feathers","free_production",5012,6,"peacock","peacock has beautiful feathers",1
+"1330",63,"attacks swimmers","free_production",3632,7,"shark","shark attacks swimmers",1
+"1331",63,"is male","free_production",5536,8,"deer","deer is male",0
+"1332",63,"doesn't eat people","free_production",5846,9,"panda","panda doesn't eat people",0
+"1333",63,"doesn't attack swimmers","free_production",5086,10,"dolphin","dolphin doesn't attack swimmers",0
+"1334",63,"eats people","free_production",4247,11,"lion","lion eats people",0
+"1335",63,"doesn't carry Lyme disease","free_production",5760,12,"dog","dog doesn't carry Lyme disease",0
+"1336",63,"doesn't have beautiful feathers","free_production",2245,13,"dog","dog doesn't have beautiful feathers",0
+"1337",63,"is full-grown","free_production",2895,14,"dog","dog is full-grown",0
+"1338",63,"carries Lyme disease","free_production",3064,15,"tick","tick carries Lyme disease",1
+"1339",63,"carries malaria","free_production",3472,16,"mosquito","mosquito carries malaria",1
+"1340",63,"has a mane","free_production",7010,17,"lion","lion has a mane",1
+"1341",63,"has wings","free_production",4584,18,"butterfly","butterfly has wings",0
+"1342",63,"has spots","free_production",4713,19,"cheetah","cheetah has spots",0
+"1343",63,"is juvenile","free_production",10949,20,"n/a","n/a is juvenile",0
+"1344",63,"is red","free_production",2850,21,"fox","fox is red",0
+"1345",64,"is red","free_production",6599,1,"ant","ant is red",0
+"1346",64,"has wings","free_production",5214,2,"bird","bird has wings",0
+"1347",64,"carries Lyme disease","free_production",4072,3,"rat","rat carries Lyme disease",0
+"1348",64,"doesn't carry Lyme disease","free_production",5033,4,"horse","horse doesn't carry Lyme disease",0
+"1349",64,"doesn't attack swimmers","free_production",5650,5,"fish","fish doesn't attack swimmers",0
+"1350",64,"is full-grown","free_production",5065,6,"lion","lion is full-grown",0
+"1351",64,"doesn't eat people","free_production",7421,7,"zebra","zebra doesn't eat people",0
+"1352",64,"has spots","free_production",17466,8,"dalmatian","dalmatian has spots",0
+"1353",64,"doesn't have beautiful feathers","free_production",5390,9,"dog","dog doesn't have beautiful feathers",0
+"1354",64,"attacks swimmers","free_production",36079,10,"octopu","octopu attacks swimmers",0
+"1355",64,"lays eggs","free_production",2723,11,"hen","hen lays eggs",0
+"1356",64,"eats people","free_production",6512,12,"tiger","tiger eats people",1
+"1357",64,"has a mane","free_production",6849,13,"lion","lion has a mane",1
+"1358",64,"has a pouch","free_production",7431,14,"kangaroo","kangaroo has a pouch",1
+"1359",64,"is male","free_production",3835,15,"dog","dog is male",0
+"1360",64,"doesn't carry malaria","free_production",8178,16,"deer","deer doesn't carry malaria",0
+"1361",64,"is white","free_production",4317,17,"polarbear","polarbear is white",0
+"1362",64,"is female","free_production",5897,18,"liones","liones is female",0
+"1363",64,"is juvenile","free_production",32765,19,"puppy","puppy is juvenile",0
+"1364",64,"carries malaria","free_production",17463,20,"fish","fish carries malaria",0
+"1365",64,"has beautiful feathers","free_production",57616,21,"bird","bird has beautiful feathers",0
+"1366",65,"eats people","free_production",5282,1,"lion","lion eats people",0
+"1367",65,"doesn't have beautiful feathers","free_production",20352,2,"brownbird","brownbird doesn't have beautiful feathers",0
+"1368",65,"attacks swimmers","free_production",2709,3,"shark","shark attacks swimmers",1
+"1369",65,"is female","free_production",3036,4,"ladybug","ladybug is female",0
+"1370",65,"has a mane","free_production",3822,5,"dog","dog has a mane",0
+"1371",65,"is juvenile","free_production",11619,6,"puppy","puppy is juvenile",0
+"1372",65,"carries malaria","free_production",3189,7,"mosquito","mosquito carries malaria",1
+"1373",65,"is full-grown","free_production",2783,8,"tiger","tiger is full-grown",0
+"1374",65,"doesn't eat people","free_production",3211,9,"cat","cat doesn't eat people",0
+"1375",65,"is white","free_production",3933,10,"polarbear","polarbear is white",0
+"1376",65,"lays eggs","free_production",2948,11,"hen","hen lays eggs",0
+"1377",65,"has spots","free_production",2400,12,"cheetah","cheetah has spots",0
+"1378",65,"doesn't carry Lyme disease","free_production",8278,13,"dog","dog doesn't carry Lyme disease",0
+"1379",65,"has beautiful feathers","free_production",4830,14,"peacock","peacock has beautiful feathers",1
+"1380",65,"has wings","free_production",3610,15,"bird","bird has wings",0
+"1381",65,"is male","free_production",3592,16,"lion","lion is male",1
+"1382",65,"doesn't attack swimmers","free_production",12471,17,"starfish","starfish doesn't attack swimmers",0
+"1383",65,"carries Lyme disease","free_production",3429,18,"tick","tick carries Lyme disease",1
+"1384",65,"is red","free_production",6176,19,"ladybug","ladybug is red",0
+"1385",65,"has a pouch","free_production",3228,20,"kangaroo","kangaroo has a pouch",1
+"1386",65,"doesn't carry malaria","free_production",3894,21,"cat","cat doesn't carry malaria",0
+"1387",66,"doesn't attack swimmers","free_production",10224,1,"goldfish","goldfish doesn't attack swimmers",0
+"1388",66,"carries malaria","free_production",9960,2,"mosquito","mosquito carries malaria",1
+"1389",66,"lays eggs","free_production",5276,3,"chicken","chicken lays eggs",0
+"1390",66,"is red","free_production",5418,4,"ladybug","ladybug is red",0
+"1391",66,"doesn't carry Lyme disease","free_production",16065,5,"shark","shark doesn't carry Lyme disease",0
+"1392",66,"is full-grown","free_production",3934,6,"dog","dog is full-grown",0
+"1393",66,"is female","free_production",4022,7,"cat","cat is female",0
+"1394",66,"doesn't eat people","free_production",5606,8,"rabbit","rabbit doesn't eat people",0
+"1395",66,"has beautiful feathers","free_production",3596,9,"peacock","peacock has beautiful feathers",1
+"1396",66,"is white","free_production",7522,10,"polarbear","polarbear is white",0
+"1397",66,"is male","free_production",3840,11,"bear","bear is male",0
+"1398",66,"has a mane","free_production",3508,12,"lion","lion has a mane",1
+"1399",66,"has spots","free_production",3780,13,"leopard","leopard has spots",1
+"1400",66,"doesn't carry malaria","free_production",11957,14,"bluewhale","bluewhale doesn't carry malaria",0
+"1401",66,"eats people","free_production",11380,15,"tiger","tiger eats people",1
+"1402",66,"doesn't have beautiful feathers","free_production",6431,16,"ostrich","ostrich doesn't have beautiful feathers",0
+"1403",66,"is juvenile","free_production",6741,17,"hyena","hyena is juvenile",0
+"1404",66,"has wings","free_production",5556,18,"cardinal","cardinal has wings",0
+"1405",66,"has a pouch","free_production",4678,19,"kangaroo","kangaroo has a pouch",1
+"1406",66,"attacks swimmers","free_production",4613,20,"shark","shark attacks swimmers",1
+"1407",66,"carries Lyme disease","free_production",3125,21,"tick","tick carries Lyme disease",1
+"1408",67,"carries malaria","free_production",7319,1,"mosquito","mosquito carries malaria",1
+"1409",67,"attacks swimmers","free_production",4859,2,"shark","shark attacks swimmers",1
+"1410",67,"carries Lyme disease","free_production",7999,3,"bedbug","bedbug carries Lyme disease",0
+"1411",67,"doesn't carry malaria","free_production",4875,4,"dog","dog doesn't carry malaria",0
+"1412",67,"eats people","free_production",3380,5,"shark","shark eats people",0
+"1413",67,"has wings","free_production",3586,6,"bird","bird has wings",0
+"1414",67,"doesn't carry Lyme disease","free_production",4025,7,"dog","dog doesn't carry Lyme disease",0
+"1415",67,"has a mane","free_production",3740,8,"lion","lion has a mane",1
+"1416",67,"is white","free_production",4424,9,"shark","shark is white",1
+"1417",67,"is male","free_production",3187,10,"dog","dog is male",0
+"1418",67,"doesn't have beautiful feathers","free_production",4195,11,"dog","dog doesn't have beautiful feathers",0
+"1419",67,"doesn't eat people","free_production",2567,12,"dog","dog doesn't eat people",0
+"1420",67,"is juvenile","free_production",5664,13,"dog","dog is juvenile",0
+"1421",67,"is female","free_production",2486,14,"dog","dog is female",0
+"1422",67,"is red","free_production",4990,15,"cardinal","cardinal is red",1
+"1423",67,"has spots","free_production",7835,16,"cheetah","cheetah has spots",0
+"1424",67,"has beautiful feathers","free_production",3849,17,"bird","bird has beautiful feathers",0
+"1425",67,"is full-grown","free_production",4720,18,"dog","dog is full-grown",0
+"1426",67,"has a pouch","free_production",4193,19,"kangaroo","kangaroo has a pouch",1
+"1427",67,"doesn't attack swimmers","free_production",2818,20,"dog","dog doesn't attack swimmers",0
+"1428",67,"lays eggs","free_production",3690,21,"bird","bird lays eggs",0
+"1429",68,"has wings","free_production",7281,1,"bird","bird has wings",0
+"1430",68,"has a mane","free_production",5215,2,"horse","horse has a mane",0
+"1431",68,"is full-grown","free_production",5806,3,"elephant","elephant is full-grown",0
+"1432",68,"attacks swimmers","free_production",7278,4,"shark","shark attacks swimmers",1
+"1433",68,"is female","free_production",4255,5,"doe","doe is female",0
+"1434",68,"is juvenile","free_production",4595,6,"fawn","fawn is juvenile",0
+"1435",68,"doesn't carry malaria","free_production",16334,7,"malemosquito","malemosquito doesn't carry malaria",0
+"1436",68,"carries Lyme disease","free_production",4414,8,"tick","tick carries Lyme disease",1
+"1437",68,"is male","free_production",8949,9,"bull","bull is male",0
+"1438",68,"lays eggs","free_production",3522,10,"hen","hen lays eggs",0
+"1439",68,"is red","free_production",3718,11,"fox","fox is red",0
+"1440",68,"doesn't have beautiful feathers","free_production",8707,12,"penguin","penguin doesn't have beautiful feathers",0
+"1441",68,"has a pouch","free_production",5262,13,"kangaroo","kangaroo has a pouch",1
+"1442",68,"doesn't eat people","free_production",7674,14,"cat","cat doesn't eat people",0
+"1443",68,"has beautiful feathers","free_production",4685,15,"peacock","peacock has beautiful feathers",1
+"1444",68,"carries malaria","free_production",5077,16,"mosquito","mosquito carries malaria",1
+"1445",68,"eats people","free_production",5049,17,"lion","lion eats people",0
+"1446",68,"doesn't carry Lyme disease","free_production",7318,18,"mouse","mouse doesn't carry Lyme disease",0
+"1447",68,"is white","free_production",5922,19,"polarbear","polarbear is white",0
+"1448",68,"has spots","free_production",5259,20,"leopard","leopard has spots",1
+"1449",68,"doesn't attack swimmers","free_production",4915,21,"fish","fish doesn't attack swimmers",0
+"1450",69,"is juvenile","free_production",5278,1,"small","small is juvenile",0
+"1451",69,"has wings","free_production",7010,2,"flie","flie has wings",0
+"1452",69,"carries malaria","free_production",4941,3,"mosquito","mosquito carries malaria",1
+"1453",69,"eats people","free_production",5986,4,"bear","bear eats people",0
+"1454",69,"has a pouch","free_production",4353,5,"kangaroo","kangaroo has a pouch",1
+"1455",69,"doesn't have beautiful feathers","free_production",5156,6,"pidgeon","pidgeon doesn't have beautiful feathers",0
+"1456",69,"doesn't attack swimmers","free_production",5345,7,"goldfish","goldfish doesn't attack swimmers",0
+"1457",69,"has a mane","free_production",3179,8,"horse","horse has a mane",0
+"1458",69,"is white","free_production",4885,9,"unicorn","unicorn is white",0
+"1459",69,"lays eggs","free_production",3569,10,"bird","bird lays eggs",0
+"1460",69,"doesn't carry Lyme disease","free_production",9642,11,"fly","fly doesn't carry Lyme disease",0
+"1461",69,"has spots","free_production",4816,12,"leopard","leopard has spots",1
+"1462",69,"doesn't carry malaria","free_production",6598,13,"bear","bear doesn't carry malaria",0
+"1463",69,"is full-grown","free_production",3768,14,"big","big is full-grown",0
+"1464",69,"doesn't eat people","free_production",5365,15,"horse","horse doesn't eat people",0
+"1465",69,"is red","free_production",4276,16,"tiger","tiger is red",0
+"1466",69,"carries Lyme disease","free_production",3368,17,"tick","tick carries Lyme disease",1
+"1467",69,"attacks swimmers","free_production",3584,18,"shark","shark attacks swimmers",1
+"1468",69,"is female","free_production",3950,19,"chicken","chicken is female",0
+"1469",69,"has beautiful feathers","free_production",4819,20,"peacock","peacock has beautiful feathers",1
+"1470",69,"is male","free_production",4268,21,"dog","dog is male",0
+"1471",70,"doesn't eat people","free_production",10966,1,"cockroach","cockroach doesn't eat people",0
+"1472",70,"has a pouch","free_production",16988,2,"kangaroo","kangaroo has a pouch",1
+"1473",70,"is female","free_production",7968,3,"dog","dog is female",0
+"1474",70,"lays eggs","free_production",2649,4,"spider","spider lays eggs",0
+"1475",70,"has a mane","free_production",3158,5,"horse","horse has a mane",0
+"1476",70,"is male","free_production",3613,6,"cat","cat is male",0
+"1477",70,"is full-grown","free_production",7005,7,"fly","fly is full-grown",0
+"1478",70,"eats people","free_production",3729,8,"snake","snake eats people",0
+"1479",70,"carries malaria","free_production",2795,9,"flea","flea carries malaria",0
+"1480",70,"is juvenile","free_production",12788,10,"duck","duck is juvenile",0
+"1481",70,"is red","free_production",2963,11,"ladybug","ladybug is red",0
+"1482",70,"doesn't attack swimmers","free_production",4717,12,"fish","fish doesn't attack swimmers",0
+"1483",70,"doesn't carry malaria","free_production",7826,13,"hippopotamu","hippopotamu doesn't carry malaria",0
+"1484",70,"has spots","free_production",3258,14,"cheetah","cheetah has spots",0
+"1485",70,"doesn't have beautiful feathers","free_production",8985,15,"crow","crow doesn't have beautiful feathers",0
+"1486",70,"has beautiful feathers","free_production",4341,16,"swan","swan has beautiful feathers",0
+"1487",70,"has wings","free_production",6901,17,"pigeon","pigeon has wings",0
+"1488",70,"doesn't carry Lyme disease","free_production",20602,18,"monkey","monkey doesn't carry Lyme disease",0
+"1489",70,"attacks swimmers","free_production",2987,19,"shark","shark attacks swimmers",1
+"1490",70,"carries Lyme disease","free_production",4519,20,"tick","tick carries Lyme disease",1
+"1491",70,"is white","free_production",4258,21,"zebra","zebra is white",0
+"1492",71,"is juvenile","free_production",4426,1,"cub","cub is juvenile",0
+"1493",71,"eats people","free_production",5574,2,"bear","bear eats people",0
+"1494",71,"has a pouch","free_production",5458,3,"kangaroo","kangaroo has a pouch",1
+"1495",71,"doesn't attack swimmers","free_production",5689,4,"dolphin","dolphin doesn't attack swimmers",0
+"1496",71,"is white","free_production",5177,5,"polarbear","polarbear is white",0
+"1497",71,"is red","free_production",10025,6,"cloverbeetle","cloverbeetle is red",0
+"1498",71,"doesn't eat people","free_production",6926,7,"rabbit","rabbit doesn't eat people",0
+"1499",71,"attacks swimmers","free_production",3764,8,"shark","shark attacks swimmers",1
+"1500",71,"lays eggs","free_production",3773,9,"chicken","chicken lays eggs",0
+"1501",71,"has a mane","free_production",6872,10,"horse","horse has a mane",0
+"1502",71,"is female","free_production",6970,11,"doe","doe is female",0
+"1503",71,"doesn't have beautiful feathers","free_production",6032,12,"dog","dog doesn't have beautiful feathers",0
+"1504",71,"doesn't carry malaria","free_production",7530,13,"bee","bee doesn't carry malaria",0
+"1505",71,"doesn't carry Lyme disease","free_production",13899,14,"dragonfly","dragonfly doesn't carry Lyme disease",0
+"1506",71,"has spots","free_production",3128,15,"dog","dog has spots",0
+"1507",71,"has beautiful feathers","free_production",4376,16,"peacock","peacock has beautiful feathers",1
+"1508",71,"carries Lyme disease","free_production",3288,17,"tick","tick carries Lyme disease",1
+"1509",71,"is male","free_production",4221,18,"bull","bull is male",0
+"1510",71,"is full-grown","free_production",21120,19,"fly","fly is full-grown",0
+"1511",71,"carries malaria","free_production",6730,20,"mosquito","mosquito carries malaria",1
+"1512",71,"has wings","free_production",4061,21,"bee","bee has wings",0
+"1513",72,"lays eggs","free_production",8391,1,"chicken","chicken lays eggs",0
+"1514",72,"doesn't carry malaria","free_production",8692,2,"rabbit","rabbit doesn't carry malaria",0
+"1515",72,"carries Lyme disease","free_production",4856,3,"tick","tick carries Lyme disease",1
+"1516",72,"has a pouch","free_production",5004,4,"kangaroo","kangaroo has a pouch",1
+"1517",72,"has spots","free_production",4568,5,"leopard","leopard has spots",1
+"1518",72,"is white","free_production",6760,6,"polarbear","polarbear is white",0
+"1519",72,"attacks swimmers","free_production",4071,7,"shark","shark attacks swimmers",1
+"1520",72,"doesn't attack swimmers","free_production",5176,8,"dolphin","dolphin doesn't attack swimmers",0
+"1521",72,"is red","free_production",5317,9,"ladybug","ladybug is red",0
+"1522",72,"doesn't have beautiful feathers","free_production",5256,10,"seagull","seagull doesn't have beautiful feathers",0
+"1523",72,"carries malaria","free_production",4851,11,"mosquito","mosquito carries malaria",1
+"1524",72,"doesn't eat people","free_production",12653,12,"pigeon","pigeon doesn't eat people",0
+"1525",72,"has a mane","free_production",4408,13,"lion","lion has a mane",1
+"1526",72,"is female","free_production",5388,14,"doe","doe is female",0
+"1527",72,"doesn't carry Lyme disease","free_production",4263,15,"hen","hen doesn't carry Lyme disease",0
+"1528",72,"is full-grown","free_production",5636,16,"elk","elk is full-grown",0
+"1529",72,"has beautiful feathers","free_production",5096,17,"peacock","peacock has beautiful feathers",1
+"1530",72,"eats people","free_production",5204,18,"tiger","tiger eats people",1
+"1531",72,"is male","free_production",5828,19,"buck","buck is male",0
+"1532",72,"is juvenile","free_production",6646,20,"cat","cat is juvenile",0
+"1533",72,"has wings","free_production",4532,21,"bird","bird has wings",0
+"1534",73,"has wings","free_production",8344,1,"bird","bird has wings",0
+"1535",73,"lays eggs","free_production",7338,2,"chicken","chicken lays eggs",0
+"1536",73,"has spots","free_production",12125,3,"leopard","leopard has spots",1
+"1537",73,"doesn't have beautiful feathers","free_production",24137,4,"chicken","chicken doesn't have beautiful feathers",0
+"1538",73,"has beautiful feathers","free_production",6450,5,"peacock","peacock has beautiful feathers",1
+"1539",73,"attacks swimmers","free_production",8466,6,"shark","shark attacks swimmers",1
+"1540",73,"is juvenile","free_production",7783,7,"kitten","kitten is juvenile",0
+"1541",73,"doesn't attack swimmers","free_production",13278,8,"salmon","salmon doesn't attack swimmers",0
+"1542",73,"is male","free_production",8311,9,"dog","dog is male",0
+"1543",73,"is full-grown","free_production",14965,10,"dog","dog is full-grown",0
+"1544",73,"doesn't carry malaria","free_production",8650,11,"grasshopper","grasshopper doesn't carry malaria",0
+"1545",73,"is white","free_production",6018,12,"polarbear","polarbear is white",0
+"1546",73,"carries malaria","free_production",4933,13,"mosquito","mosquito carries malaria",1
+"1547",73,"is female","free_production",5152,14,"dog","dog is female",0
+"1548",73,"eats people","free_production",16992,15,"cougar","cougar eats people",0
+"1549",73,"carries Lyme disease","free_production",4151,16,"tick","tick carries Lyme disease",1
+"1550",73,"doesn't eat people","free_production",3754,17,"dog","dog doesn't eat people",0
+"1551",73,"is red","free_production",22627,18,"ladybug","ladybug is red",0
+"1552",73,"doesn't carry Lyme disease","free_production",8536,19,"cat","cat doesn't carry Lyme disease",0
+"1553",73,"has a pouch","free_production",4612,20,"kangaroo","kangaroo has a pouch",1
+"1554",73,"has a mane","free_production",3492,21,"horse","horse has a mane",0
+"1555",74,"attacks swimmers","free_production",5471,1,"shark","shark attacks swimmers",1
+"1556",74,"doesn't carry Lyme disease","free_production",6713,2,"beetle","beetle doesn't carry Lyme disease",0
+"1557",74,"eats people","free_production",6674,3,"lion","lion eats people",0
+"1558",74,"has a mane","free_production",2282,4,"lion","lion has a mane",1
+"1559",74,"has a pouch","free_production",3149,5,"kangaroo","kangaroo has a pouch",1
+"1560",74,"is male","free_production",8275,6,"ant","ant is male",0
+"1561",74,"is female","free_production",5245,7,"liones","liones is female",0
+"1562",74,"doesn't attack swimmers","free_production",5155,8,"fish","fish doesn't attack swimmers",0
+"1563",74,"carries malaria","free_production",83960,9,"mosquito","mosquito carries malaria",1
+"1564",74,"has wings","free_production",3999,10,"bird","bird has wings",0
+"1565",74,"has spots","free_production",7160,11,"ladybug","ladybug has spots",0
+"1566",74,"doesn't carry malaria","free_production",4739,12,"bird","bird doesn't carry malaria",0
+"1567",74,"carries Lyme disease","free_production",3110,13,"tick","tick carries Lyme disease",1
+"1568",74,"is full-grown","free_production",7409,14,"cat","cat is full-grown",0
+"1569",74,"doesn't eat people","free_production",3710,15,"cat","cat doesn't eat people",0
+"1570",74,"is white","free_production",4436,16,"bunny","bunny is white",0
+"1571",74,"is juvenile","free_production",4181,17,"fly","fly is juvenile",0
+"1572",74,"has beautiful feathers","free_production",3716,18,"peacock","peacock has beautiful feathers",1
+"1573",74,"lays eggs","free_production",2348,19,"chicken","chicken lays eggs",0
+"1574",74,"doesn't have beautiful feathers","free_production",3326,20,"ostrich","ostrich doesn't have beautiful feathers",0
+"1575",74,"is red","free_production",8582,21,"ladybug","ladybug is red",0
+"1576",75,"has wings","free_production",11673,1,"dragonfly","dragonfly has wings",0
+"1577",75,"is female","free_production",6379,2,"doe","doe is female",0
+"1578",75,"is full-grown","free_production",7572,3,"horse","horse is full-grown",0
+"1579",75,"doesn't eat people","free_production",6276,4,"cow","cow doesn't eat people",0
+"1580",75,"doesn't have beautiful feathers","free_production",5761,5,"pigeon","pigeon doesn't have beautiful feathers",0
+"1581",75,"lays eggs","free_production",4261,6,"spider","spider lays eggs",0
+"1582",75,"is red","free_production",6097,7,"cardinal","cardinal is red",1
+"1583",75,"carries Lyme disease","free_production",4256,8,"tick","tick carries Lyme disease",1
+"1584",75,"doesn't carry Lyme disease","free_production",6762,9,"badger","badger doesn't carry Lyme disease",0
+"1585",75,"has a pouch","free_production",5506,10,"kangaroo","kangaroo has a pouch",1
+"1586",75,"doesn't attack swimmers","free_production",5223,11,"guppy","guppy doesn't attack swimmers",0
+"1587",75,"is male","free_production",6601,12,"seahorse","seahorse is male",0
+"1588",75,"is juvenile","free_production",5441,13,"fawn","fawn is juvenile",0
+"1589",75,"has beautiful feathers","free_production",4526,14,"peacock","peacock has beautiful feathers",1
+"1590",75,"carries malaria","free_production",5799,15,"mosquito","mosquito carries malaria",1
+"1591",75,"attacks swimmers","free_production",9006,16,"piranha","piranha attacks swimmers",0
+"1592",75,"has spots","free_production",7296,17,"dalmatian","dalmatian has spots",0
+"1593",75,"is white","free_production",18350,18,"wolf","wolf is white",0
+"1594",75,"has a mane","free_production",4362,19,"lion","lion has a mane",1
+"1595",75,"eats people","free_production",8188,20,"shark","shark eats people",0
+"1596",75,"doesn't carry malaria","free_production",5886,21,"giraffe","giraffe doesn't carry malaria",0
+"1597",76,"lays eggs","free_production",19655,1,"chicken","chicken lays eggs",0
+"1598",76,"doesn't attack swimmers","free_production",27544,2,"dolphin","dolphin doesn't attack swimmers",0
+"1599",76,"has spots","free_production",26839,3,"butterfly","butterfly has spots",0
+"1600",76,"carries Lyme disease","free_production",9495,4,"tick","tick carries Lyme disease",1
+"1601",76,"doesn't carry malaria","free_production",15400,5,"zebra","zebra doesn't carry malaria",0
+"1602",76,"eats people","free_production",19463,6,"lion","lion eats people",0
+"1603",76,"attacks swimmers","free_production",4895,7,"shark","shark attacks swimmers",1
+"1604",76,"is red","free_production",13040,8,"wolf","wolf is red",0
+"1605",76,"has a mane","free_production",35970,9,"horse","horse has a mane",0
+"1606",76,"carries malaria","free_production",19573,10,"mosquito","mosquito carries malaria",1
+"1607",76,"doesn't have beautiful feathers","free_production",6567,11,"dog","dog doesn't have beautiful feathers",0
+"1608",76,"is female","free_production",8551,12,"human","human is female",0
+"1609",76,"is juvenile","free_production",16711,13,"human(boy)","human(boy) is juvenile",0
+"1610",76,"doesn't eat people","free_production",10886,14,"mouse","mouse doesn't eat people",0
+"1611",76,"has wings","free_production",28791,15,"robin","robin has wings",0
+"1612",76,"is white","free_production",15232,16,"polarbear","polarbear is white",0
+"1613",76,"has beautiful feathers","free_production",5880,17,"peacock","peacock has beautiful feathers",1
+"1614",76,"is full-grown","free_production",9416,18,"ape","ape is full-grown",0
+"1615",76,"doesn't carry Lyme disease","free_production",23152,19,"guppie","guppie doesn't carry Lyme disease",0
+"1616",76,"has a pouch","free_production",6312,20,"kangeroo","kangeroo has a pouch",0
+"1617",76,"is male","free_production",9592,21,"human","human is male",0
+"1618",77,"has spots","free_production",5801,1,"dog","dog has spots",0
+"1619",77,"has beautiful feathers","free_production",3797,2,"bird","bird has beautiful feathers",0
+"1620",77,"carries Lyme disease","free_production",4527,3,"tick","tick carries Lyme disease",1
+"1621",77,"is full-grown","free_production",10073,4,"bear","bear is full-grown",0
+"1622",77,"has wings","free_production",4754,5,"bird","bird has wings",0
+"1623",77,"lays eggs","free_production",3596,6,"chicken","chicken lays eggs",0
+"1624",77,"has a mane","free_production",3325,7,"lion","lion has a mane",1
+"1625",77,"is juvenile","free_production",5325,8,"cub","cub is juvenile",0
+"1626",77,"eats people","free_production",8336,9,"shark","shark eats people",0
+"1627",77,"is red","free_production",4222,10,"robin","robin is red",0
+"1628",77,"doesn't carry Lyme disease","free_production",6078,11,"cat","cat doesn't carry Lyme disease",0
+"1629",77,"is white","free_production",9497,12,"polarbear","polarbear is white",0
+"1630",77,"doesn't attack swimmers","free_production",7908,13,"goldfish","goldfish doesn't attack swimmers",0
+"1631",77,"has a pouch","free_production",4047,14,"kangaroo","kangaroo has a pouch",1
+"1632",77,"carries malaria","free_production",4767,15,"mosquito","mosquito carries malaria",1
+"1633",77,"is female","free_production",5443,16,"liones","liones is female",0
+"1634",77,"doesn't eat people","free_production",21149,17,"tuna","tuna doesn't eat people",0
+"1635",77,"doesn't carry malaria","free_production",5729,18,"ant","ant doesn't carry malaria",0
+"1636",77,"doesn't have beautiful feathers","free_production",10203,19,"bull","bull doesn't have beautiful feathers",0
+"1637",77,"is male","free_production",7122,20,"lion","lion is male",1
+"1638",77,"attacks swimmers","free_production",8460,21,"shark","shark attacks swimmers",1
+"1639",78,"has beautiful feathers","free_production",6654,1,"parot","parot has beautiful feathers",0
+"1640",78,"has wings","free_production",7016,2,"butterfly","butterfly has wings",0
+"1641",78,"is juvenile","free_production",9419,3,"worm","worm is juvenile",0
+"1642",78,"carries Lyme disease","free_production",3859,4,"tick","tick carries Lyme disease",1
+"1643",78,"carries malaria","free_production",4782,5,"mosquito","mosquito carries malaria",1
+"1644",78,"is male","free_production",4624,6,"camel","camel is male",0
+"1645",78,"doesn't attack swimmers","free_production",5227,7,"dolphin","dolphin doesn't attack swimmers",0
+"1646",78,"doesn't have beautiful feathers","free_production",6540,8,"alligator","alligator doesn't have beautiful feathers",0
+"1647",78,"has a pouch","free_production",8616,9,"kangaroo","kangaroo has a pouch",1
+"1648",78,"has spots","free_production",5863,10,"giraffe","giraffe has spots",0
+"1649",78,"is full-grown","free_production",4856,11,"elephant","elephant is full-grown",0
+"1650",78,"is red","free_production",5669,12,"ladybug","ladybug is red",0
+"1651",78,"is white","free_production",11383,13,"polarbear","polarbear is white",0
+"1652",78,"is female","free_production",7374,14,"cow","cow is female",0
+"1653",78,"has a mane","free_production",4500,15,"horse","horse has a mane",0
+"1654",78,"attacks swimmers","free_production",4257,16,"shark","shark attacks swimmers",1
+"1655",78,"lays eggs","free_production",4577,17,"chicken","chicken lays eggs",0
+"1656",78,"doesn't carry Lyme disease","free_production",4758,18,"monkey","monkey doesn't carry Lyme disease",0
+"1657",78,"doesn't carry malaria","free_production",5296,19,"lion","lion doesn't carry malaria",0
+"1658",78,"eats people","free_production",6048,20,"tiger","tiger eats people",1
+"1659",78,"doesn't eat people","free_production",7927,21,"anteater","anteater doesn't eat people",0
+"1660",79,"has a mane","free_production",3831,1,"horse","horse has a mane",0
+"1661",79,"doesn't carry Lyme disease","free_production",5407,2,"fox","fox doesn't carry Lyme disease",0
+"1662",79,"carries malaria","free_production",7744,3,"mosquito","mosquito carries malaria",1
+"1663",79,"has wings","free_production",3042,4,"bird","bird has wings",0
+"1664",79,"is male","free_production",5549,5,"fish","fish is male",0
+"1665",79,"doesn't attack swimmers","free_production",21348,6,"tadpole","tadpole doesn't attack swimmers",0
+"1666",79,"carries Lyme disease","free_production",3095,7,"tick","tick carries Lyme disease",1
+"1667",79,"doesn't carry malaria","free_production",7472,8,"elephant","elephant doesn't carry malaria",0
+"1668",79,"eats people","free_production",3976,9,"lion","lion eats people",0
+"1669",79,"has a pouch","free_production",3562,10,"kangeroo","kangeroo has a pouch",0
+"1670",79,"is red","free_production",4722,11,"ladybug","ladybug is red",0
+"1671",79,"doesn't eat people","free_production",7313,12,"cardinal","cardinal doesn't eat people",0
+"1672",79,"has beautiful feathers","free_production",3682,13,"peacock","peacock has beautiful feathers",1
+"1673",79,"lays eggs","free_production",3955,14,"ostrich","ostrich lays eggs",0
+"1674",79,"doesn't have beautiful feathers","free_production",5497,15,"pigeon","pigeon doesn't have beautiful feathers",0
+"1675",79,"is white","free_production",2996,16,"dove","dove is white",0
+"1676",79,"is female","free_production",14710,17,"elephant","elephant is female",0
+"1677",79,"is juvenile","free_production",4465,18,"pony","pony is juvenile",0
+"1678",79,"has spots","free_production",5474,19,"leopard","leopard has spots",1
+"1679",79,"is full-grown","free_production",5249,20,"horse","horse is full-grown",0
+"1680",79,"attacks swimmers","free_production",3005,21,"shark","shark attacks swimmers",1
+"1681",80,"is full-grown","free_production",7894,1,"horse","horse is full-grown",0
+"1682",80,"has spots","free_production",7168,2,"dog","dog has spots",0
+"1683",80,"is red","free_production",17376,3,"ladybug","ladybug is red",0
+"1684",80,"carries malaria","free_production",10024,4,"mosquito","mosquito carries malaria",1
+"1685",80,"has wings","free_production",7264,5,"bird","bird has wings",0
+"1686",80,"lays eggs","free_production",6704,6,"spider","spider lays eggs",0
+"1687",80,"is white","free_production",6088,7,"dog","dog is white",0
+"1688",80,"attacks swimmers","free_production",4151,8,"shark","shark attacks swimmers",1
+"1689",80,"is male","free_production",6968,9,"lion","lion is male",1
+"1690",80,"has a pouch","free_production",10208,10,"kangaroo","kangaroo has a pouch",1
+"1691",80,"doesn't carry malaria","free_production",5311,11,"cat","cat doesn't carry malaria",0
+"1692",80,"has a mane","free_production",6383,12,"horse","horse has a mane",0
+"1693",80,"doesn't attack swimmers","free_production",6143,13,"dolphin","dolphin doesn't attack swimmers",0
+"1694",80,"eats people","free_production",18968,14,"bear","bear eats people",0
+"1695",80,"is juvenile","free_production",10688,15,"bearcub","bearcub is juvenile",0
+"1696",80,"has beautiful feathers","free_production",6487,16,"peacock","peacock has beautiful feathers",1
+"1697",80,"doesn't eat people","free_production",8848,17,"cat","cat doesn't eat people",0
+"1698",80,"doesn't carry Lyme disease","free_production",30263,18,"trout","trout doesn't carry Lyme disease",0
+"1699",80,"carries Lyme disease","free_production",23216,19,"rat","rat carries Lyme disease",0
+"1700",80,"doesn't have beautiful feathers","free_production",6695,20,"deer","deer doesn't have beautiful feathers",0
+"1701",80,"is female","free_production",18993,21,"peacock","peacock is female",0
+"1702",81,"has beautiful feathers","free_production",15893,1,"bird","bird has beautiful feathers",0
+"1703",81,"carries Lyme disease","free_production",18325,2,"rat","rat carries Lyme disease",0
+"1704",81,"is full-grown","free_production",8040,3,"horse","horse is full-grown",0
+"1705",81,"is juvenile","free_production",26507,4,"larva","larva is juvenile",0
+"1706",81,"carries malaria","free_production",19075,5,"mosquito","mosquito carries malaria",1
+"1707",81,"doesn't carry Lyme disease","free_production",22938,6,"tick","tick doesn't carry Lyme disease",1
+"1708",81,"attacks swimmers","free_production",4905,7,"shark","shark attacks swimmers",1
+"1709",81,"is female","free_production",12786,8,"cat","cat is female",0
+"1710",81,"has spots","free_production",13746,9,"cheetah","cheetah has spots",0
+"1711",81,"doesn't carry malaria","free_production",45406,10,"grasshopper","grasshopper doesn't carry malaria",0
+"1712",81,"doesn't eat people","free_production",7952,11,"dog","dog doesn't eat people",0
+"1713",81,"is male","free_production",9218,12,"kangaroo","kangaroo is male",0
+"1714",81,"doesn't attack swimmers","free_production",4271,13,"dolphin","dolphin doesn't attack swimmers",0
+"1715",81,"has wings","free_production",11968,14,"bat","bat has wings",0
+"1716",81,"has a mane","free_production",7053,15,"horse","horse has a mane",0
+"1717",81,"has a pouch","free_production",5003,16,"kangaroo","kangaroo has a pouch",1
+"1718",81,"doesn't have beautiful feathers","free_production",51704,17,"hamster","hamster doesn't have beautiful feathers",0
+"1719",81,"lays eggs","free_production",4054,18,"chicken","chicken lays eggs",0
+"1720",81,"eats people","free_production",8681,19,"shark","shark eats people",0
+"1721",81,"is red","free_production",6026,20,"redbird","redbird is red",0
+"1722",81,"is white","free_production",4124,21,"duck","duck is white",0
+"1723",82,"carries Lyme disease","free_production",39327,1,"mosquito","mosquito carries Lyme disease",0
+"1724",82,"is red","free_production",18748,2,"cat","cat is red",0
+"1725",82,"carries malaria","free_production",8546,3,"mosquito","mosquito carries malaria",1
+"1726",82,"has beautiful feathers","free_production",31150,4,"peacock","peacock has beautiful feathers",1
+"1727",82,"has a pouch","free_production",28197,5,"kangaroo","kangaroo has a pouch",1
+"1728",82,"attacks swimmers","free_production",10911,6,"shark","shark attacks swimmers",1
+"1729",82,"eats people","free_production",9646,7,"lion","lion eats people",0
+"1730",82,"lays eggs","free_production",21449,8,"chicken","chicken lays eggs",0
+"1731",82,"has a mane","free_production",16535,9,"lion","lion has a mane",1
+"1732",82,"has spots","free_production",22008,10,"zebra","zebra has spots",0
+"1733",82,"is full-grown","free_production",19868,11,"dog","dog is full-grown",0
+"1734",82,"has wings","free_production",9543,12,"eagle","eagle has wings",0
+"1735",82,"is juvenile","free_production",7613,13,"horse","horse is juvenile",0
+"1736",82,"doesn't eat people","free_production",7123,14,"dog","dog doesn't eat people",0
+"1737",82,"is male","free_production",7040,15,"donkey","donkey is male",0
+"1738",82,"is female","free_production",21590,16,"hen","hen is female",0
+"1739",82,"doesn't carry Lyme disease","free_production",16119,17,"cat","cat doesn't carry Lyme disease",0
+"1740",82,"doesn't carry malaria","free_production",7908,18,"dog","dog doesn't carry malaria",0
+"1741",82,"doesn't attack swimmers","free_production",8353,19,"monkey","monkey doesn't attack swimmers",0
+"1742",82,"is white","free_production",16392,20,"polarbear","polarbear is white",0
+"1743",82,"doesn't have beautiful feathers","free_production",28927,21,"ostrich","ostrich doesn't have beautiful feathers",0
+"1744",83,"doesn't eat people","free_production",71744,1,"bird","bird doesn't eat people",0
+"1745",83,"is male","free_production",16613,2,"dog","dog is male",0
+"1746",83,"is female","free_production",54613,3,"cat","cat is female",0
+"1747",83,"has beautiful feathers","free_production",7199,4,"bird","bird has beautiful feathers",0
+"1748",83,"carries malaria","free_production",15146,5,"cow","cow carries malaria",0
+"1749",83,"lays eggs","free_production",8171,6,"chicken","chicken lays eggs",0
+"1750",83,"doesn't carry Lyme disease","free_production",20383,7,"dog","dog doesn't carry Lyme disease",0
+"1751",83,"attacks swimmers","free_production",7374,8,"shark","shark attacks swimmers",1
+"1752",83,"doesn't have beautiful feathers","free_production",13758,9,"crow","crow doesn't have beautiful feathers",0
+"1753",83,"doesn't carry malaria","free_production",14134,10,"beetle","beetle doesn't carry malaria",0
+"1754",83,"is juvenile","free_production",33617,11,"dog","dog is juvenile",0
+"1755",83,"has wings","free_production",7458,12,"bird","bird has wings",0
+"1756",83,"has a mane","free_production",6531,13,"horse","horse has a mane",0
+"1757",83,"is red","free_production",5610,14,"bird","bird is red",0
+"1758",83,"is white","free_production",7533,15,"swan","swan is white",1
+"1759",83,"has spots","free_production",5298,16,"dog","dog has spots",0
+"1760",83,"is full-grown","free_production",21102,17,"elephant","elephant is full-grown",0
+"1761",83,"carries Lyme disease","free_production",17252,18,"rat","rat carries Lyme disease",0
+"1762",83,"has a pouch","free_production",25300,19,"kangaroo","kangaroo has a pouch",1
+"1763",83,"doesn't attack swimmers","free_production",8972,20,"whale","whale doesn't attack swimmers",0
+"1764",83,"eats people","free_production",11858,21,"tiger","tiger eats people",1
+"1765",84,"has spots","free_production",10906,1,"giraffe","giraffe has spots",0
+"1766",84,"has a mane","free_production",4491,2,"horse","horse has a mane",0
+"1767",84,"attacks swimmers","free_production",4238,3,"shark","shark attacks swimmers",1
+"1768",84,"doesn't carry malaria","free_production",19992,4,"pig","pig doesn't carry malaria",0
+"1769",84,"is full-grown","free_production",10493,5,"tiger","tiger is full-grown",0
+"1770",84,"is red","free_production",5480,6,"bird","bird is red",0
+"1771",84,"doesn't carry Lyme disease","free_production",7733,7,"bird","bird doesn't carry Lyme disease",0
+"1772",84,"doesn't attack swimmers","free_production",4377,8,"dolphin","dolphin doesn't attack swimmers",0
+"1773",84,"has a pouch","free_production",5330,9,"kangaroo","kangaroo has a pouch",1
+"1774",84,"is juvenile","free_production",187765,10,"bear","bear is juvenile",0
+"1775",84,"is male","free_production",514311,11,"lion","lion is male",1
+"1776",84,"is white","free_production",5102,12,"polarbear","polarbear is white",0
+"1777",84,"has beautiful feathers","free_production",4999,13,"toucan","toucan has beautiful feathers",0
+"1778",84,"carries malaria","free_production",5238,14,"mosquito","mosquito carries malaria",1
+"1779",84,"doesn't eat people","free_production",4384,15,"mice","mice doesn't eat people",0
+"1780",84,"carries Lyme disease","free_production",7402,16,"tick","tick carries Lyme disease",1
+"1781",84,"lays eggs","free_production",6506,17,"goose","goose lays eggs",0
+"1782",84,"has wings","free_production",5050,18,"eagle","eagle has wings",0
+"1783",84,"is female","free_production",6894,19,"hippo","hippo is female",0
+"1784",84,"doesn't have beautiful feathers","free_production",6351,20,"whale","whale doesn't have beautiful feathers",0
+"1785",84,"eats people","free_production",4386,21,"tiger","tiger eats people",1
+"1786",85,"carries Lyme disease","free_production",5685,1,"tick","tick carries Lyme disease",1
+"1787",85,"is male","free_production",9260,2,"lion","lion is male",1
+"1788",85,"doesn't carry Lyme disease","free_production",7042,3,"cow","cow doesn't carry Lyme disease",0
+"1789",85,"has spots","free_production",5770,4,"leopard","leopard has spots",1
+"1790",85,"is full-grown","free_production",6136,5,"giraffe","giraffe is full-grown",0
+"1791",85,"is red","free_production",3720,6,"fox","fox is red",0
+"1792",85,"is female","free_production",11120,7,"koalabear","koalabear is female",0
+"1793",85,"is white","free_production",7590,8,"polarbear","polarbear is white",0
+"1794",85,"attacks swimmers","free_production",4129,9,"shark","shark attacks swimmers",1
+"1795",85,"eats people","free_production",12464,10,"lion","lion eats people",0
+"1796",85,"has a mane","free_production",5160,11,"horse","horse has a mane",0
+"1797",85,"doesn't eat people","free_production",5176,12,"dog","dog doesn't eat people",0
+"1798",85,"carries malaria","free_production",10018,13,"mosquito","mosquito carries malaria",1
+"1799",85,"doesn't have beautiful feathers","free_production",18066,14,"cardinal","cardinal doesn't have beautiful feathers",0
+"1800",85,"has beautiful feathers","free_production",7798,15,"peacock","peacock has beautiful feathers",1
+"1801",85,"has wings","free_production",4610,16,"bird","bird has wings",0
+"1802",85,"is juvenile","free_production",5686,17,"pony","pony is juvenile",0
+"1803",85,"doesn't carry malaria","free_production",4394,18,"cat","cat doesn't carry malaria",0
+"1804",85,"lays eggs","free_production",5006,19,"cow","cow lays eggs",0
+"1805",85,"has a pouch","free_production",5233,20,"koalabear","koalabear has a pouch",0
+"1806",85,"doesn't attack swimmers","free_production",9111,21,"leopard","leopard doesn't attack swimmers",0
+"1807",86,"lays eggs","free_production",8874,1,"chicken","chicken lays eggs",0
+"1808",86,"doesn't attack swimmers","free_production",7459,2,"dolphin","dolphin doesn't attack swimmers",0
+"1809",86,"is juvenile","free_production",14654,3,"chimpanzee","chimpanzee is juvenile",0
+"1810",86,"has beautiful feathers","free_production",7322,4,"macaw","macaw has beautiful feathers",0
+"1811",86,"is female","free_production",4747,5,"cow","cow is female",0
+"1812",86,"doesn't eat people","free_production",8848,6,"butterfly","butterfly doesn't eat people",0
+"1813",86,"carries malaria","free_production",4326,7,"mosquito","mosquito carries malaria",1
+"1814",86,"is full-grown","free_production",4069,8,"elephant","elephant is full-grown",0
+"1815",86,"attacks swimmers","free_production",3826,9,"shark","shark attacks swimmers",1
+"1816",86,"eats people","free_production",5661,10,"crocodile","crocodile eats people",0
+"1817",86,"doesn't have beautiful feathers","free_production",17578,11,"wasp","wasp doesn't have beautiful feathers",0
+"1818",86,"has spots","free_production",3634,12,"giraffe","giraffe has spots",0
+"1819",86,"carries Lyme disease","free_production",3896,13,"tick","tick carries Lyme disease",1
+"1820",86,"doesn't carry malaria","free_production",19908,14,"polarbear","polarbear doesn't carry malaria",0
+"1821",86,"has wings","free_production",4041,15,"eagle","eagle has wings",0
+"1822",86,"is male","free_production",4069,16,"bull","bull is male",0
+"1823",86,"has a pouch","free_production",4055,17,"kangaroo","kangaroo has a pouch",1
+"1824",86,"is white","free_production",6763,18,"polarbear","polarbear is white",0
+"1825",86,"has a mane","free_production",6468,19,"lion","lion has a mane",1
+"1826",86,"doesn't carry Lyme disease","free_production",11643,20,"turtle","turtle doesn't carry Lyme disease",0
+"1827",86,"is red","free_production",3861,21,"cardinal","cardinal is red",1
+"1828",87,"is female","free_production",8991,1,"deer","deer is female",0
+"1829",87,"is male","free_production",5882,2,"dog","dog is male",0
+"1830",87,"has beautiful feathers","free_production",5010,3,"peacock","peacock has beautiful feathers",1
+"1831",87,"attacks swimmers","free_production",4438,4,"shark","shark attacks swimmers",1
+"1832",87,"lays eggs","free_production",5772,5,"chicken","chicken lays eggs",0
+"1833",87,"is white","free_production",4329,6,"dove","dove is white",0
+"1834",87,"has wings","free_production",4070,7,"eagle","eagle has wings",0
+"1835",87,"carries Lyme disease","free_production",11286,8,"tick","tick carries Lyme disease",1
+"1836",87,"doesn't attack swimmers","free_production",6734,9,"dolphin","dolphin doesn't attack swimmers",0
+"1837",87,"doesn't carry Lyme disease","free_production",15974,10,"spider","spider doesn't carry Lyme disease",0
+"1838",87,"eats people","free_production",8194,11,"lion","lion eats people",0
+"1839",87,"carries malaria","free_production",7526,12,"mosquito","mosquito carries malaria",1
+"1840",87,"doesn't carry malaria","free_production",5236,13,"fly","fly doesn't carry malaria",0
+"1841",87,"has a pouch","free_production",6596,14,"kangaroo","kangaroo has a pouch",1
+"1842",87,"doesn't eat people","free_production",15313,15,"cat","cat doesn't eat people",0
+"1843",87,"is full-grown","free_production",7721,16,"dog","dog is full-grown",0
+"1844",87,"is juvenile","free_production",11867,17,"cub","cub is juvenile",0
+"1845",87,"is red","free_production",7334,18,"redrobin","redrobin is red",0
+"1846",87,"has a mane","free_production",17980,19,"horse","horse has a mane",0
+"1847",87,"has spots","free_production",6245,20,"poodle","poodle has spots",0
+"1848",87,"doesn't have beautiful feathers","free_production",14544,21,"pigeon","pigeon doesn't have beautiful feathers",0
+"1849",88,"has a pouch","free_production",8977,1,"kangaroo","kangaroo has a pouch",1
+"1850",88,"is juvenile","free_production",13160,2,"kitten","kitten is juvenile",0
+"1851",88,"is female","free_production",3670,3,"cat","cat is female",0
+"1852",88,"is white","free_production",3727,4,"rabbit","rabbit is white",0
+"1853",88,"is male","free_production",5459,5,"dog","dog is male",0
+"1854",88,"carries malaria","free_production",4188,6,"mosquito","mosquito carries malaria",1
+"1855",88,"has a mane","free_production",3679,7,"horse","horse has a mane",0
+"1856",88,"doesn't carry malaria","free_production",11755,8,"snake","snake doesn't carry malaria",0
+"1857",88,"attacks swimmers","free_production",5506,9,"shark","shark attacks swimmers",1
+"1858",88,"is full-grown","free_production",9039,10,"elephant","elephant is full-grown",0
+"1859",88,"doesn't eat people","free_production",11844,11,"giraffe","giraffe doesn't eat people",0
+"1860",88,"lays eggs","free_production",3826,12,"duck","duck lays eggs",0
+"1861",88,"doesn't have beautiful feathers","free_production",5721,13,"crow","crow doesn't have beautiful feathers",0
+"1862",88,"has wings","free_production",21214,14,"dove","dove has wings",0
+"1863",88,"doesn't carry Lyme disease","free_production",15181,15,"caterpillar","caterpillar doesn't carry Lyme disease",0
+"1864",88,"eats people","free_production",8937,16,"alligator","alligator eats people",0
+"1865",88,"carries Lyme disease","free_production",4688,17,"tick","tick carries Lyme disease",1
+"1866",88,"doesn't attack swimmers","free_production",12941,18,"flounder","flounder doesn't attack swimmers",0
+"1867",88,"has spots","free_production",3905,19,"cheetah","cheetah has spots",0
+"1868",88,"has beautiful feathers","free_production",3671,20,"peacock","peacock has beautiful feathers",1
+"1869",88,"is red","free_production",6865,21,"cardinal","cardinal is red",1
+"1870",89,"is white","free_production",21928,1,"polarbear","polarbear is white",0
+"1871",89,"lays eggs","free_production",6065,2,"chicken","chicken lays eggs",0
+"1872",89,"doesn't carry Lyme disease","free_production",28940,3,"cat","cat doesn't carry Lyme disease",0
+"1873",89,"eats people","free_production",10562,4,"lion","lion eats people",0
+"1874",89,"is full-grown","free_production",8177,5,"racoon","racoon is full-grown",0
+"1875",89,"has spots","free_production",11819,6,"cheetah","cheetah has spots",0
+"1876",89,"doesn't eat people","free_production",10119,7,"turtle","turtle doesn't eat people",0
+"1877",89,"doesn't carry malaria","free_production",7273,8,"dog","dog doesn't carry malaria",0
+"1878",89,"carries malaria","free_production",5881,9,"mosquito","mosquito carries malaria",1
+"1879",89,"is juvenile","free_production",11065,10,"redpanda","redpanda is juvenile",0
+"1880",89,"is red","free_production",16675,11,"butterfly","butterfly is red",0
+"1881",89,"carries Lyme disease","free_production",7889,12,"tick","tick carries Lyme disease",1
+"1882",89,"has beautiful feathers","free_production",59988,13,"peacock","peacock has beautiful feathers",1
+"1883",89,"doesn't have beautiful feathers","free_production",31362,14,"crow","crow doesn't have beautiful feathers",0
+"1884",89,"has a mane","free_production",6193,15,"horse","horse has a mane",0
+"1885",89,"doesn't attack swimmers","free_production",10393,16,"dolphin","dolphin doesn't attack swimmers",0
+"1886",89,"is female","free_production",12066,17,"pig","pig is female",0
+"1887",89,"has wings","free_production",8025,18,"eagle","eagle has wings",0
+"1888",89,"attacks swimmers","free_production",4481,19,"shark","shark attacks swimmers",1
+"1889",89,"is male","free_production",12873,20,"bull","bull is male",0
+"1890",89,"has a pouch","free_production",4353,21,"kangaroo","kangaroo has a pouch",1
+"1891",90,"is male","free_production",5807,1,"bull","bull is male",0
+"1892",90,"has wings","free_production",5091,2,"bee","bee has wings",0
+"1893",90,"eats people","free_production",9399,3,"lion","lion eats people",0
+"1894",90,"has a pouch","free_production",7943,4,"opossum","opossum has a pouch",0
+"1895",90,"is full-grown","free_production",14208,5,"horse","horse is full-grown",0
+"1896",90,"doesn't carry malaria","free_production",6167,6,"spider","spider doesn't carry malaria",0
+"1897",90,"doesn't have beautiful feathers","free_production",25136,7,"babybird","babybird doesn't have beautiful feathers",0
+"1898",90,"lays eggs","free_production",13087,8,"chicken","chicken lays eggs",0
+"1899",90,"doesn't attack swimmers","free_production",35935,9,"manatee","manatee doesn't attack swimmers",0
+"1900",90,"doesn't eat people","free_production",9385,10,"cow","cow doesn't eat people",0
+"1901",90,"is red","free_production",5600,11,"cardinal","cardinal is red",1
+"1902",90,"attacks swimmers","free_production",5128,12,"shark","shark attacks swimmers",1
+"1903",90,"is white","free_production",6584,13,"swan","swan is white",1
+"1904",90,"has a mane","free_production",4856,14,"horse","horse has a mane",0
+"1905",90,"is female","free_production",11784,15,"cow","cow is female",0
+"1906",90,"is juvenile","free_production",7015,16,"joey","joey is juvenile",0
+"1907",90,"carries malaria","free_production",6263,17,"mosquito","mosquito carries malaria",1
+"1908",90,"doesn't carry Lyme disease","free_production",9920,18,"butterfly","butterfly doesn't carry Lyme disease",0
+"1909",90,"has spots","free_production",3514,19,"leopard","leopard has spots",1
+"1910",90,"carries Lyme disease","free_production",3152,20,"tick","tick carries Lyme disease",1
+"1911",90,"has beautiful feathers","free_production",30808,21,"peacock","peacock has beautiful feathers",1
+"1912",91,"has spots","free_production",12406,1,"salamander","salamander has spots",0
+"1913",91,"doesn't eat people","free_production",11779,2,"sloth","sloth doesn't eat people",0
+"1914",91,"lays eggs","free_production",6545,3,"chicken","chicken lays eggs",0
+"1915",91,"is red","free_production",6853,4,"bird","bird is red",0
+"1916",91,"is full-grown","free_production",5139,5,"tiger","tiger is full-grown",0
+"1917",91,"is juvenile","free_production",4405,6,"cub","cub is juvenile",0
+"1918",91,"attacks swimmers","free_production",10765,7,"shark","shark attacks swimmers",1
+"1919",91,"has a mane","free_production",7860,8,"lion","lion has a mane",1
+"1920",91,"doesn't attack swimmers","free_production",11244,9,"penguin","penguin doesn't attack swimmers",0
+"1921",91,"has wings","free_production",5015,10,"butterfly","butterfly has wings",0
+"1922",91,"is male","free_production",4595,11,"donkey","donkey is male",0
+"1923",91,"is female","free_production",12534,12,"tasmaniandevil","tasmaniandevil is female",0
+"1924",91,"carries malaria","free_production",7522,13,"mosquito","mosquito carries malaria",1
+"1925",91,"doesn't carry Lyme disease","free_production",16706,14,"butterfly","butterfly doesn't carry Lyme disease",0
+"1926",91,"doesn't have beautiful feathers","free_production",8486,15,"monkey","monkey doesn't have beautiful feathers",0
+"1927",91,"doesn't carry malaria","free_production",6857,16,"lynx","lynx doesn't carry malaria",0
+"1928",91,"is white","free_production",5083,17,"polarbear","polarbear is white",0
+"1929",91,"carries Lyme disease","free_production",4504,18,"tick","tick carries Lyme disease",1
+"1930",91,"has beautiful feathers","free_production",4126,19,"bird","bird has beautiful feathers",0
+"1931",91,"has a pouch","free_production",4752,20,"kangaroo","kangaroo has a pouch",1
+"1932",91,"eats people","free_production",5414,21,"tiger","tiger eats people",1
+"1933",92,"carries Lyme disease","free_production",11663,1,"tick","tick carries Lyme disease",1
+"1934",92,"is white","free_production",14555,2,"opossum","opossum is white",0
+"1935",92,"has a pouch","free_production",8085,3,"kangaroo","kangaroo has a pouch",1
+"1936",92,"is red","free_production",7786,4,"ladybug","ladybug is red",0
+"1937",92,"is female","free_production",8007,5,"doe","doe is female",0
+"1938",92,"is juvenile","free_production",6757,6,"calf","calf is juvenile",0
+"1939",92,"doesn't have beautiful feathers","free_production",6770,7,"crow","crow doesn't have beautiful feathers",0
+"1940",92,"lays eggs","free_production",5959,8,"chicken","chicken lays eggs",0
+"1941",92,"has a mane","free_production",5631,9,"horse","horse has a mane",0
+"1942",92,"is male","free_production",5433,10,"lion","lion is male",1
+"1943",92,"carries malaria","free_production",10448,11,"mosquito","mosquito carries malaria",1
+"1944",92,"has wings","free_production",9063,12,"bat","bat has wings",0
+"1945",92,"doesn't attack swimmers","free_production",7227,13,"dolphin","dolphin doesn't attack swimmers",0
+"1946",92,"doesn't carry malaria","free_production",8435,14,"sloth","sloth doesn't carry malaria",0
+"1947",92,"doesn't eat people","free_production",17383,15,"grasshopper","grasshopper doesn't eat people",0
+"1948",92,"attacks swimmers","free_production",14614,16,"jellyfish","jellyfish attacks swimmers",0
+"1949",92,"has beautiful feathers","free_production",8468,17,"peacock","peacock has beautiful feathers",1
+"1950",92,"eats people","free_production",11950,18,"cougar","cougar eats people",0
+"1951",92,"is full-grown","free_production",7317,19,"elephant","elephant is full-grown",0
+"1952",92,"doesn't carry Lyme disease","free_production",6829,20,"fish","fish doesn't carry Lyme disease",0
+"1953",92,"has spots","free_production",7887,21,"leapord","leapord has spots",0
+"1954",93,"doesn't attack swimmers","free_production",163131,1,"dog","dog doesn't attack swimmers",0
+"1955",93,"is white","free_production",49171,2,"samoyed","samoyed is white",0
+"1956",93,"doesn't eat people","free_production",8294,3,"panda","panda doesn't eat people",0
+"1957",93,"doesn't carry malaria","free_production",134540,4,"cocoon","cocoon doesn't carry malaria",0
+"1958",93,"lays eggs","free_production",7060,5,"chicken","chicken lays eggs",0
+"1959",93,"is red","free_production",274656,6,"redbug","redbug is red",0
+"1960",93,"has a mane","free_production",12665,7,"malelion","malelion has a mane",0
+"1961",93,"attacks swimmers","free_production",21757,8,"backswimmerbug","backswimmerbug attacks swimmers",0
+"1962",93,"is juvenile","free_production",31447,9,"juvenilehormone","juvenilehormone is juvenile",0
+"1963",93,"has spots","free_production",26671,10,"butterfly","butterfly has spots",0
+"1964",93,"doesn't carry Lyme disease","free_production",49362,11,"cat","cat doesn't carry Lyme disease",0
+"1965",93,"is female","free_production",37331,12,"femalepanda","femalepanda is female",0
+"1966",93,"has beautiful feathers","free_production",30185,13,"peacock","peacock has beautiful feathers",1
+"1967",93,"has wings","free_production",5679,14,"bird","bird has wings",0
+"1968",93,"eats people","free_production",6693,15,"bear","bear eats people",0
+"1969",93,"doesn't have beautiful feathers","free_production",6326,16,"chicken","chicken doesn't have beautiful feathers",0
+"1970",93,"has a pouch","free_production",16289,17,"pouchedmammal","pouchedmammal has a pouch",0
+"1971",93,"carries Lyme disease","free_production",3846,18,"tick","tick carries Lyme disease",1
+"1972",93,"carries malaria","free_production",6501,19,"mosquito","mosquito carries malaria",1
+"1973",93,"is full-grown","free_production",13612,20,"bee","bee is full-grown",0
+"1974",93,"is male","free_production",41502,21,"maledog","maledog is male",0
+"1975",94,"attacks swimmers","free_production",6418,1,"sealion","sealion attacks swimmers",0
+"1976",94,"eats people","free_production",8448,2,"mosquito","mosquito eats people",0
+"1977",94,"carries Lyme disease","free_production",3714,3,"tick","tick carries Lyme disease",1
+"1978",94,"carries malaria","free_production",4882,4,"mosquito","mosquito carries malaria",1
+"1979",94,"has a pouch","free_production",8511,5,"wallaby","wallaby has a pouch",0
+"1980",94,"is male","free_production",4906,6,"human","human is male",0
+"1981",94,"lays eggs","free_production",10040,7,"platypu","platypu lays eggs",0
+"1982",94,"doesn't carry malaria","free_production",4419,8,"dog","dog doesn't carry malaria",0
+"1983",94,"doesn't have beautiful feathers","free_production",5925,9,"frog","frog doesn't have beautiful feathers",0
+"1984",94,"has beautiful feathers","free_production",11432,10,"raven","raven has beautiful feathers",0
+"1985",94,"has a mane","free_production",5179,11,"horse","horse has a mane",0
+"1986",94,"is juvenile","free_production",3879,12,"human","human is juvenile",0
+"1987",94,"is white","free_production",3323,13,"human","human is white",0
+"1988",94,"is full-grown","free_production",4888,14,"human","human is full-grown",0
+"1989",94,"doesn't carry Lyme disease","free_production",3557,15,"cat","cat doesn't carry Lyme disease",0
+"1990",94,"is female","free_production",5846,16,"human","human is female",0
+"1991",94,"has spots","free_production",4952,17,"frog","frog has spots",0
+"1992",94,"doesn't eat people","free_production",5976,18,"human","human doesn't eat people",0
+"1993",94,"has wings","free_production",4904,19,"penguin","penguin has wings",0
+"1994",94,"doesn't attack swimmers","free_production",10121,20,"goldfish","goldfish doesn't attack swimmers",0
+"1995",94,"is red","free_production",10970,21,"redpanda","redpanda is red",0
+"1996",95,"has wings","free_production",5128,1,"bird","bird has wings",0
+"1997",95,"is red","free_production",5476,2,"lobster","lobster is red",0
+"1998",95,"is white","free_production",6307,3,"polarbear","polarbear is white",0
+"1999",95,"is female","free_production",5729,4,"butterfly","butterfly is female",0
+"2000",95,"doesn't eat people","free_production",4151,5,"cat","cat doesn't eat people",0
+"2001",95,"is full-grown","free_production",5798,6,"dog","dog is full-grown",0
+"2002",95,"eats people","free_production",4546,7,"lion","lion eats people",0
+"2003",95,"has beautiful feathers","free_production",4499,8,"bird","bird has beautiful feathers",0
+"2004",95,"carries malaria","free_production",5575,9,"deer","deer carries malaria",0
+"2005",95,"carries Lyme disease","free_production",2821,10,"deer","deer carries Lyme disease",0
+"2006",95,"has spots","free_production",8837,11,"leopard","leopard has spots",1
+"2007",95,"is juvenile","free_production",5349,12,"panda","panda is juvenile",0
+"2008",95,"has a pouch","free_production",4886,13,"kangaroo","kangaroo has a pouch",1
+"2009",95,"has a mane","free_production",3996,14,"lion","lion has a mane",1
+"2010",95,"lays eggs","free_production",4337,15,"chicken","chicken lays eggs",0
+"2011",95,"doesn't carry malaria","free_production",4831,16,"dog","dog doesn't carry malaria",0
+"2012",95,"doesn't carry Lyme disease","free_production",6952,17,"dog","dog doesn't carry Lyme disease",0
+"2013",95,"doesn't have beautiful feathers","free_production",5086,18,"cat","cat doesn't have beautiful feathers",0
+"2014",95,"is male","free_production",6751,19,"lion","lion is male",1
+"2015",95,"attacks swimmers","free_production",3896,20,"shark","shark attacks swimmers",1
+"2016",95,"doesn't attack swimmers","free_production",7971,21,"goldfish","goldfish doesn't attack swimmers",0
+"2017",96,"has a pouch","free_production",6288,1,"kangaroo","kangaroo has a pouch",1
+"2018",96,"is white","free_production",4918,2,"zebra","zebra is white",0
+"2019",96,"attacks swimmers","free_production",4291,3,"shark","shark attacks swimmers",1
+"2020",96,"is female","free_production",9241,4,"elephant","elephant is female",0
+"2021",96,"has beautiful feathers","free_production",5300,5,"peacock","peacock has beautiful feathers",1
+"2022",96,"is red","free_production",6627,6,"ladybug","ladybug is red",0
+"2023",96,"eats people","free_production",4886,7,"tiger","tiger eats people",1
+"2024",96,"is juvenile","free_production",18295,8,"lion","lion is juvenile",0
+"2025",96,"has a mane","free_production",5231,9,"lion","lion has a mane",1
+"2026",96,"doesn't have beautiful feathers","free_production",4943,10,"penguin","penguin doesn't have beautiful feathers",0
+"2027",96,"doesn't eat people","free_production",13285,11,"moth","moth doesn't eat people",0
+"2028",96,"carries Lyme disease","free_production",3985,12,"tick","tick carries Lyme disease",1
+"2029",96,"is full-grown","free_production",6723,13,"rhino","rhino is full-grown",0
+"2030",96,"has spots","free_production",20932,14,"cheetah","cheetah has spots",0
+"2031",96,"has wings","free_production",4507,15,"eagle","eagle has wings",0
+"2032",96,"carries malaria","free_production",4722,16,"mosquito","mosquito carries malaria",1
+"2033",96,"doesn't carry Lyme disease","free_production",8038,17,"fruitfly","fruitfly doesn't carry Lyme disease",0
+"2034",96,"doesn't attack swimmers","free_production",3781,18,"dolphin","dolphin doesn't attack swimmers",0
+"2035",96,"is male","free_production",7853,19,"stingray","stingray is male",0
+"2036",96,"lays eggs","free_production",3085,20,"chicken","chicken lays eggs",0
+"2037",96,"doesn't carry malaria","free_production",32266,21,"flea","flea doesn't carry malaria",0
+"2038",97,"is white","free_production",8903,1,"moth","moth is white",0
+"2039",97,"carries malaria","free_production",11271,2,"mosquito","mosquito carries malaria",1
+"2040",97,"is full-grown","free_production",7360,3,"bear","bear is full-grown",0
+"2041",97,"is red","free_production",13600,4,"cardinalbird","cardinalbird is red",0
+"2042",97,"has a mane","free_production",6389,5,"lion","lion has a mane",1
+"2043",97,"has wings","free_production",12007,6,"robin","robin has wings",0
+"2044",97,"is female","free_production",6216,7,"cat","cat is female",0
+"2045",97,"has a pouch","free_production",9024,8,"kangaroo","kangaroo has a pouch",1
+"2046",97,"doesn't carry Lyme disease","free_production",10856,9,"frog","frog doesn't carry Lyme disease",0
+"2047",97,"eats people","free_production",10880,10,"tiger","tiger eats people",1
+"2048",97,"lays eggs","free_production",10256,11,"alligator","alligator lays eggs",0
+"2049",97,"has spots","free_production",7736,12,"leopard","leopard has spots",1
+"2050",97,"is juvenile","free_production",7723,13,"dog","dog is juvenile",0
+"2051",97,"doesn't carry malaria","free_production",13421,14,"toad","toad doesn't carry malaria",0
+"2052",97,"doesn't eat people","free_production",7112,15,"worm","worm doesn't eat people",0
+"2053",97,"doesn't have beautiful feathers","free_production",9480,16,"gorilla","gorilla doesn't have beautiful feathers",0
+"2054",97,"carries Lyme disease","free_production",6008,17,"deer","deer carries Lyme disease",0
+"2055",97,"is male","free_production",17463,18,"seahorse","seahorse is male",0
+"2056",97,"doesn't attack swimmers","free_production",14392,19,"eagle","eagle doesn't attack swimmers",0
+"2057",97,"has beautiful feathers","free_production",7297,20,"parrot","parrot has beautiful feathers",0
+"2058",97,"attacks swimmers","free_production",7583,21,"shark","shark attacks swimmers",1
+"2059",98,"attacks swimmers","free_production",5404,1,"shark","shark attacks swimmers",1
+"2060",98,"is male","free_production",6760,2,"dog","dog is male",0
+"2061",98,"is red","free_production",5676,3,"ladybug","ladybug is red",0
+"2062",98,"doesn't carry Lyme disease","free_production",5593,4,"bee","bee doesn't carry Lyme disease",0
+"2063",98,"doesn't attack swimmers","free_production",5568,5,"dolphin","dolphin doesn't attack swimmers",0
+"2064",98,"doesn't eat people","free_production",9654,6,"llama","llama doesn't eat people",0
+"2065",98,"carries Lyme disease","free_production",4855,7,"tick","tick carries Lyme disease",1
+"2066",98,"eats people","free_production",5159,8,"bear","bear eats people",0
+"2067",98,"lays eggs","free_production",5312,9,"eagle","eagle lays eggs",0
+"2068",98,"has a pouch","free_production",6688,10,"kangaroo","kangaroo has a pouch",1
+"2069",98,"has wings","free_production",4992,11,"fly","fly has wings",0
+"2070",98,"is full-grown","free_production",5327,12,"lion","lion is full-grown",0
+"2071",98,"doesn't have beautiful feathers","free_production",6290,13,"elephant","elephant doesn't have beautiful feathers",0
+"2072",98,"has a mane","free_production",6213,14,"lion","lion has a mane",1
+"2073",98,"has beautiful feathers","free_production",6149,15,"peacock","peacock has beautiful feathers",1
+"2074",98,"carries malaria","free_production",6482,16,"mosquito","mosquito carries malaria",1
+"2075",98,"is juvenile","free_production",5051,17,"puppy","puppy is juvenile",0
+"2076",98,"doesn't carry malaria","free_production",5654,18,"wasp","wasp doesn't carry malaria",0
+"2077",98,"is white","free_production",7658,19,"polarbear","polarbear is white",0
+"2078",98,"has spots","free_production",5886,20,"leopard","leopard has spots",1
+"2079",98,"is female","free_production",4545,21,"cat","cat is female",0
+"2080",99,"attacks swimmers","free_production",4717,1,"shark","shark attacks swimmers",1
+"2081",99,"is male","free_production",10061,2,"camel","camel is male",0
+"2082",99,"has spots","free_production",7701,3,"leopard","leopard has spots",1
+"2083",99,"doesn't carry malaria","free_production",12493,4,"fly","fly doesn't carry malaria",0
+"2084",99,"doesn't carry Lyme disease","free_production",8216,5,"horse","horse doesn't carry Lyme disease",0
+"2085",99,"is white","free_production",5436,6,"polarbear","polarbear is white",0
+"2086",99,"has beautiful feathers","free_production",4545,7,"peacock","peacock has beautiful feathers",1
+"2087",99,"eats people","free_production",4105,8,"lion","lion eats people",0
+"2088",99,"doesn't eat people","free_production",5420,9,"hamster","hamster doesn't eat people",0
+"2089",99,"is juvenile","free_production",4482,10,"hyena","hyena is juvenile",0
+"2090",99,"lays eggs","free_production",3021,11,"chicken","chicken lays eggs",0
+"2091",99,"carries Lyme disease","free_production",2633,12,"tick","tick carries Lyme disease",1
+"2092",99,"doesn't have beautiful feathers","free_production",6317,13,"goose","goose doesn't have beautiful feathers",0
+"2093",99,"is female","free_production",3245,14,"hen","hen is female",0
+"2094",99,"has a pouch","free_production",5652,15,"kangaroo","kangaroo has a pouch",1
+"2095",99,"carries malaria","free_production",6509,16,"mosquito","mosquito carries malaria",1
+"2096",99,"doesn't attack swimmers","free_production",8616,17,"carp","carp doesn't attack swimmers",0
+"2097",99,"has a mane","free_production",6466,18,"horse","horse has a mane",0
+"2098",99,"has wings","free_production",4418,19,"bird","bird has wings",0
+"2099",99,"is red","free_production",3267,20,"cardinal","cardinal is red",1
+"2100",99,"is full-grown","free_production",3962,21,"horse","horse is full-grown",0
