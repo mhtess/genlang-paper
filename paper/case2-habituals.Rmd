@@ -670,7 +670,7 @@ d.hab.endorsement.items[with(d.hab.endorsement.items, order(habitual)), ] %>%
   #collapse_rows(columns = 1:2)
 ```
 
-```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.', eval=F}
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.'}
 gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
                     "wears a bra", "wears a watch", "wears a suit")
 
@@ -964,7 +964,7 @@ fixed.hab.params.posterior <-  m.hab.fixed.samp %>%
 
 hab.uncertain.threshold.s1opt <- m.hab.samp %>% 
   filter(type == "param") %>%
-  group_by(param) %>%
+  group_by(B) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
@@ -1165,7 +1165,6 @@ ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper
         #legend.position =c(1,1),
         legend.justification = c(1,1)
         )
-habituals.endorsement.models
 ```
 
 ```{r habituals-simulation-model}
@@ -1693,13 +1692,15 @@ In Expt. 2c, we investigate this question by teasing apart *past* from *predicti
 
 ## Experiment 2c: What is prevalence?
 
-While past frequency is often a good indicator of future tendency, people change abruptly due to a variety of decisions and outside events.
+While past frequency is often a good indicator of future tendency, the future is under no obligation to mimic the past.
 Does habitual language communicate probabilities in terms of past frequency or future expectations?
 On one hand, speakers can only be certain about what has happened in the past.
-On the other hand, language has a communicative function, and it would seem useful for speakers to convey their predictions of what will be the case in the future.
+On the other hand, language has a communicative function, and it would be useful for speakers to convey their predictions of what will be the case in the future.
 
-We address this by introducing causal events that either enable or prevent future actions.
-In one condition, participants make a prediction about what will be the case in the future (*predictive frequency*).
+People can change their behavior abruptly due to a variety of decisions and outside events.
+We introduce these causal events into our minimal endorsement paradigm and measure their influence on endorsement.
+<!-- that either enable or prevent future actions. -->
+To provide the appropriate model-based analysis, participants in one condition make a prediction about what will be the case in the future (*predictive frequency*).
 In another condition, participants decide whether or not to endorse the habitual sentence (as in Expt. 2b).
 <!-- In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers. -->
 We then compare two uncertain-thresholds models to each other: one which uses participants' ratings of *predictive frequency* as the object of communication and one which uses the *past frequency* (as was done for Expt. 2b).
@@ -1740,6 +1741,9 @@ d.hab.predictive.summary <- d.hab.predictive %>%
   group_by(condition, item, logAnnualPastRate) %>%
   multi_boot_standard(col = "logAnnualPredictiveRate")
 
+r.hab.pred.past.baseline.freq <- round(with(d.hab.predictive.summary %>% filter(condition == "baseline"), cor(logAnnualPastRate, mean)), 3)
+n.hab.pred.past.baseline.freq <- length(filter(d.hab.predictive.summary, condition == "baseline")$mean)
+
 fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
        aes(x=logAnnualPastRate,
                               y = mean,
@@ -1761,8 +1765,8 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
   ylab("Predicted frequency (log scale)")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
 
-```
 
+```
 
 ```{r habituals-predictive-model}
 hab.predictive.bda.model <- '
@@ -2250,7 +2254,7 @@ The events used were a subset of those used in Expts. 2a \& b (21 of the origina
 In addition, we crafted statements that were intended to either increase the frequency (*enabling*; e.g., "Yesterday, Bill bought a pack of cigarettes.") or decrease the frequency (*preventative*; "Yesterday, Bill quit smoking.") of the event in the future.
 In order to increase the potential variability of responses across the experimental conditions, participants only saw the frequencies that led to the most intermediate endorsement of the habitual in Expt. 2b.
 We did not include separate trials for both male and female names for the select items we did in Expt. 2b, since we saw no differences in their endorsements of the habitual.
-See Table \mht{one table for Expt 2 stimuli} for a full list of the enabling and preventative information.
+See Appendix D for a full list of the enabling and preventative information.
 
 #### Procedure
 
@@ -2272,10 +2276,10 @@ In the *sentence endorsement* condition, participants were asked if they agreed 
 
 #### Predictive frequency
 
-Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future frequency as a function of the past frequency given to the participant and the type of causal information given. 
-We observe in the baseline condition that future frequency perfectly tracks past frequency. 
+Figure \ref{fig:habituals-predictive-figure} (left) shows the mean predicted future rate as a function of the past rate given to the participant and the type of causal information given. 
+We observe in the baseline condition that future frequency perfectly tracks past frequency ($r(`r n.hab.pred.past.baseline.freq`) = `r r.hab.pred.past.baseline.freq`$). 
 That is, participants believe if a person smoked cigarettes 3 times last month, they will smoke cigarettes 3 times next month. 
-This result implies that our model makes identical predictions for Expt. 2b whether the target is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
+This result implies that our model makes identical predictions for Expt. 2b whether the referent is past frequency or expected future frequency (indicating, as expected, that we must look to the new data to distinguish these models).
 Critically, we observe the preventative information strongly decreases and the enabling information slightly increases predicted frequency (Figure \ref{fig:habituals-predictive-elicitation} left; blue and green dots).
 
 
@@ -2327,10 +2331,10 @@ When collapsing across items, the Bayesian Maximum A-Posteriori estimate and 95\
 <!-- Future investigation into this issue is warranted. -->
 
 We use our formal model to test whether past or predictive frequency matters for endorsement.
-To formalize the predictive frequency speaker model, we use the mean predictive frequency as the referent-prevalence $h'$ that the endorsement model (Eq. \ref{eq:S1}) conditions on. 
+To formalize the predictive frequency speaker model, we use the mean predictive frequency as the referent-prevalence $p_{fk}$ that the endorsement model (Eq. \ref{eq:S1}) conditions on. 
 The past frequency model is constructed using the past frequency supplied to participants as the referent-prevalence.
 We analyze this model in the same Bayesian data analysis regime as for our previous models.
-We use the same priors over the parameters as before, and learn about the posterior distribution by collecting three independent MCMC chains of 100,000 iterations (removing the first 50,000 for burn-in). 
+We use the same priors over the parameters as before and learn about the posterior distribution by collecting three independent MCMC chains of 100,000 iterations (removing the first 50,000 for burn-in). 
 Figure \ref{fig:habituals-predictive-figure}C shows the resulting model predictions for the past frequency and the predictive frequency endorsement models. 
 Participants' judgments of the habitual statements was indeed influenced by the causal manipulations *in the way predicted* by the endorsement model that uses the predictive frequency as the object of communication ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.predictive`$; MSE = $`r mse.habituals.rsa.predictive`$).
 The model based on past frequency does not make different predictions for the different causal manipulation conditions and does a poor job at explaining the endorsements ($r^2(`r r2.hab.rsa.predictive.n`) = `r r2.habituals.rsa.past`$; MSE = $`r mse.habituals.rsa.past`$). 

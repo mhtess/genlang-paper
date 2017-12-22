@@ -274,8 +274,10 @@ In order to integrate the results of this prior measurement task into our model 
 We do this using a Bayesian mixture model, which assumes that the data generated for each property (e.g., \textsc{lay eggs}) comes from one of two underlying Beta distributions (*Mixture of Betas*).^[
   The Beta distribution is chosen because the support of this distribution is numerical values between 0 - 1, exactly the form of the response data in the prior elicitation task.
 ] 
-We specify one of these distributions *a priori* to represent kinds of animals who *do not have* a stable causal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}), which results in prevalence or prevalence values close to or equal to 0.
-This "null distribution" is potentially present for all features in exactly the same way.
+We specify one of these distributions *a priori* to represent kinds of animals who *do not have* a stable causal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}), which results in prevalence or prevalence values close to or equal to 0.^[
+  This assumption is similar in spirit that employed by *Hurdle Models* of epidemiological data, where the observed count of zeros is often substantially greater than one would expect from standard models, such as the Poisson [e.g., when modeling adverse reactions to vaccines; @hurdleModels]
+]
+This "null distribution" is potentially present for all features in exactly the same way (i.e., the lack of producing the feature).
 The second distribution represents kinds of animals who *do have* such a mechanism, and the two parameters of this distribution are not specified *a priori* and are not the same for all properties, but are inferred on a property-wise basis from participants' responses.
 The *Mixture of Betas* distribution has a third free parameter (for each property), the relative contribution of the "null distribution" (for example: we expect the "null distribution" to not contribute at all to properties like *being female*, for which almost all categories have at least some members with the property).
 To ensure the *Mixture of Betas* model of the prior is not overly complex, we fit an additional model that represents only a single underlying distribution (*Single Beta*) for a comparison.
