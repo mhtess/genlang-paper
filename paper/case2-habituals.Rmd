@@ -15,39 +15,24 @@ When children describe their lives to other, a surprisingly large amount of the 
 Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
 
-<!-- of particular importance to social psychology because of their role in causal attribution [@Kelley1973] and intuitive theories of personality and behavior [@]. -->
-
-<!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
-<!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
-<!-- A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant."). -->
-
-
-
-
-<!-- We meet new people all the time, and hear about them at least as often. -->
-<!-- *Habitual language* (e.g,. "Mary smokes."; "My car won't start.") conveys generalizations about events, including people doing actions.  -->
-<!-- In this case study, we focus on a particular class of events: people doing actions. -->
-
-
-<!-- We focus on present-tense habitual sentences of the form  -->
 To test the generality of our theory, we use the same computational model and follow the same general experimental structure as in the first case study. 
-First, we measure the prevalence prior distribution for different actions (e.g., how often different people smoke cigarttes; Expt. 2a).
-We then measure endorsements of generalizations about events (*habituals*), while manipulating the frequency with which the event occurs (e.g., how often Mary smokes; Expt. 2b), and use our computational model to predict habitual endorsements. 
+We take event analogue of prevalence to be the *rate* with which the event occurs (e.g., how often Mary smokes).
+For the generalization "Mary smokes", instances of the category being generalized are *instances of Mary* and if for the instance to have the feature, it means the instance of Mary is one in which she is smoking.
+We test this by first measuring the prevalence (rate) prior distribution for various actions (e.g., how often different people smoke cigarttes; Expt. 2a).
+We then measure endorsements of habitual statements while manipulating the *referent-prevalence*  (Expt. 2b), and use our computational model to predict habitual endorsements. 
 <!-- We estimate the priors using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b. -->
-By describing novel characters to participants, we are able to directly the manipulate the frequency (prevalence) with which the referent does the action.
+By describing novel characters to participants, we are able to directly the manipulate the *referent-prevalence* (rate), which we were unable to do for generalizations about familiar categories.
 <!-- In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories. -->
 
 Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect a speaker's expectations, not merely her observations. 
-Our computational model predicts endorsement rates given a referent-prevalence $h$. 
-Does prevalence represent the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past month) or the predictive rate of the event in the near future (e.g., how often we should expect Mary to smoke next week)?
-We extend our theory by measuring participants' predictions about future frequencies and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
+Our computational model predicts endorsement rates given a referent-prevalence $p_{fk}$. 
+Does prevalence represent the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past month) or the predictive probability of the event in the near future (e.g., how often we should expect Mary to smoke next week)?
+We extend our theory by measuring participants' predictions about future rates and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
 We then use our model to test whether habitual endorsements are based on past frequencies or future expectations.
 
 <!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
 <!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
 <!-- A surprisingly large number of utterances (over 85\% in their study) were about people, and roughly two-thirds of those utterances used action verbs (e.g., "My brother works part-time at the restaurant."). -->
-
-
 
 <!-- This set of experiments is organized as follows. -->
 <!-- In the **Event Prior Elicitation** study (Expt. 1), -->
@@ -68,21 +53,16 @@ We then use our model to test whether habitual endorsements are based on past fr
 
 ## Experiment 2a: Measuring the prevalence prior for events
 
-In this experiment we elicit the prior distributions over frequencies for different events in order to generate model predictions for corresponding habitual statements (measured in Expt. 2b \& 2c).
-For language about the behaviors of people, $P(h)$ represents a language user's background knowledge about the  frequency of doing the behavior; this can be conceived as a distribution over *different people*, each of whom do the behavior with different rates.
-We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1 (namely: that the distribution over prevalence can be represented as a mixture of those with a stable causal mechanism that gives rise to the feature and those without such a mechanism).
-For background knowledge of people doing actions, we consider again two components^[
+In order to generate model predictions for corresponding habitual statement, we first elicit the prior distributions over rates for different events.
+For language about the behaviors of people, $P(p_f)$ represents a language user's background knowledge about the rates with which people do a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
+We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1 .
+In particular, we assume, to a first approximation, that the distribution over prevalence can be represented as a mixture of those who tend to do the action with a stable rate and those who do not.^[
   In the case of event knowledge about people, we expect there to be several more than just these two possibilities represented in the prior, corresponding to individuals with different traits or demographics.
   We assume here a simple structure so as to not make the specification of the prior overly complex.
-], which we operationalize by *people who have done the action before* and *people who have not the action before*.
-We measure how often people do the action, among those who have done it before, as well as the people's beliefs about the how many people have done the action before; we assume for simplicity that people who have never done the action before will rarely do the action. 
-
-
-<!-- In Expt. 1a, we discovered that feature-probability prior distribution can be modeled by a mixture model with two components. -->
-<!-- The first component (the "stable cause" component) represents the normal, stable probability of the feature, among those categories that normally have the feature. -->
-<!-- The second component (the "unstable" or "transient cause" component) represents the probability of the property among those categories who do not typically have the property.  -->
-<!-- This second component will usually result in feature-probabilities of 0\% (e.g., 0\% of lions have lay eggs), but could produce non-zero probabilities (e.g., in some hypothetical world, a lion who has undergone weird genetic mutations may lay eggs).  -->
-
+]
+With the further assumption that, all else being equal, past is predictive of future behavior, we operationalize these two kinds of people as *people who have done the action before* and *people who have not the action before*.
+We design this experiment to measure participants' beliefs about the relative proportion of these two kinds of people (as a measure of the mixture parameter in the model) as well as the rate at which people (who have done the action before) do the action (as a measure of the mean of stable-rate people).
+We will aassume for simplicity that people who have never done the action before will rarely or never do the action. 
 
 
 ### Method
@@ -96,31 +76,31 @@ The experiment took on average 12 minutes and participants were compensated \$1.
 #### Materials
 
 To construct our stimulus set, we choose actions from five categories of typical human behaviors: eating/consuming food and drug, work, wearing clothing, entertaining activities, and hobbies. 
-For each category, we created pairs or triplets of events that shared a superordinate actions (e.g. \emph{eating} caviar vs. peanut butter).
+For each category, we created pairs or triplets of events that shared a superordinate actions (e.g. *writing* poems vs. novels).
 The events were chosen to intuitively cover a range of likely frequencies.
 In total, thirty-one events were used.
-For a full list the stimulus set, see \mht{Appendix}.
+For a full list the stimulus set, see Appendix D.
 
 #### Procedure
 
-For each event, participants were asked two questions, with different dependent measures:
+For each event, participants were asked two questions, with different dependent measures. 
+These questions were designed to measure the two central components of the prevalence prior model.
+We anticipated there to be different beliefs about the rates and relative proportions of peopel depending on whether an actor is male or female, so we asked about both genders separately.
 
 \begin{enumerate}
 \item ``How many \{men, women\} have \textsc{done action} before?'' \\
 
-Participants responded ``N out of every J.'' by entering a number for N and choosing J from a drop-down menu (options: \{1000 - 10 million\}; default: 1000).
+Participants responded ``N out of every J.'' by entering a number for N and choosing J from a drop-down menu (options: \{1000 - 10 million\}, incremented by 10x; default setting: 1000).
 
 \item ``For a typical \{man, woman\} who has \textsc{done action}  before, how frequently does he or she \textsc{do action}?''\\  
 
-Participants responded ``M times in K.'' by entering a number for M and choosing K from a drop-down menu (options: \{week, month, year, 5 years\}; default: year).
+Participants responded ``M times in K.'' by entering a number for M and choosing K from a drop-down menu (options: \{week, month, year, 5 years\}; default setting: year).
 \end{enumerate}
 
-For example, one set of prompts read: "How many women have smoked cigarettes before?"; "For a typical woman who has smoked cigarettes before, how frequently does he smoke cigarettes?"
-The difference in meaning of these questions was explained to participants on an instructions page before the experimental trials and tested for recall on a subsequent trial.
-They responded to this attention check by selecting an option from a drop-down menu consisting of four options. 
-For the experimental trials, we anticipated there to be different beliefs about the frequency of events depending on whether the actor is male or female, so we asked about both genders.
+For example, one set of prompts read: "How many women have smoked cigarettes before?"; "For a typical woman who has smoked cigarettes before, how frequently does she smoke cigarettes?"
 Participants answered both questions for both genders on each slide (4 questions total per slide, order of male / female randomized between-subjects), and every participant completed all 31 items in a randomized order.
-
+The difference in meaning of these questions was explained to participants on an instructions page before the experimental trials and tested for recall on a subsequent trial.
+Participants responded to this attention check by selecting an option from a drop-down menu consisting of four options (one correct description of the questions and three distractors). 
 
 ```{r habituals-prior-data}
 annualRates = list("5 years" = 1/5, "2 years" = 1/2,
@@ -343,6 +323,9 @@ rs.habituals.bda.prior.summary.wide <- left_join(
     rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
 )
 
+# for displaying in text
+n.items.habituals.prior.modeling <- length(rs.habituals.bda.prior.summary.wide$item)
+
 rs.habituals.bda.prior.summary.wide <- left_join(rs.habituals.bda.prior.summary.wide,
           d.hab.priors %>% select(item, category) %>% distinct()) 
 
@@ -378,8 +361,6 @@ figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.prior.summary.wide %>
                     filter(item %in% example.habituals, Gender == "female"), 
                   inherit.aes =F,
                   aes(x = mix_mean,y = sfreq_mean, label = item), force = 5, size = 3)
-
-#figure.habituals.priors.scatter
 ```
 
 ```{r habituals-prior-model-forwardSample}
@@ -460,19 +441,19 @@ grid.arrange(figure.habituals.priors.scatter, figure.habituals.priors.marginals,
 
 All participants responded correctly to both questions in the attention check trial, so all collected data was used in the analysis.
 Question 1 elicits the proportion of people who have done an action before. 
-We rescale this to be a number between 0 and 1, and assume it was generated from a Beta distribution: $d_{Q1} \sim \text{Beta}(\gamma_{Q1}, \xi_{Q1})$. 
-Question 2 elicits the rate or frequency with which a person (who has done the action before) does the action.
-We model this as generated by a log-normal distribution: $\ln d_{Q2} \sim \text{Gaussian}(\mu_{Q2}, \sigma_{Q2})$.
+We rescale this to be a number between 0 and 1, and assume it was generated from a Beta distribution: $d_{1} \sim \text{Beta}(\gamma, \xi)$. 
+Question 2 elicits the rate with which a person (who has done the action before) does the action.
+We model this as generated by a log-normal distribution: $\ln d_{2} \sim \text{Gaussian}(\mu, \sigma)$.
 Each item was modeled independently for each gender.
 We learned about the credible values of the parameters by running MCMC for 100,000 iterations, discarding the first 50,000 for burnin.
 
 The priors elicited cover a range of possible parameter values as intended (Figure \@ref(fig:priorScatter), scatter):
-We observe a correlation in our items between the mean \% of Americans who have \textsc{done action} before (Question 1) and the mean log-frequency of action (Question 2) ($r_{1,2} = 0.74$).
+We observe a correlation in our items between the mean \% of Americans who have \textsc{done action} before (Question 1) and the mean log-frequency of action (Question 2) ($r_{1,2}(`r  n.items.habituals.prior.modeling`) = `r round(with(rs.habituals.bda.prior.summary.wide, cor(mix_mean, sfreq_mean)),2)`$).
 Items in our data set that tend to be more popular actions also tend to be more frequent actions (e.g., \emph{wears socks}) and visa-versa (e.g., \emph{steals cars}), though there are notable exceptions (e.g., \emph{plays the banjo} is not popular but done frequently when done at all, as is \emph{smokes cigarettes}; \emph{goes to the movies} is a popular activity though not done particularly often).
 This diversity is relevant because the speaker model (Eq. \ref{eq:S1}) will endorse habitual sentences (e.g., \emph{Sam goes to the movies vs. the ballet.}) contingent on the shape of the prior distribution. 
 
 To generate prevalence prior distributions, we built a Bayesian mixture-model for this prior elicitation task, analagous to that used in Case Study 1 (Expt. 1b).
-The only difference is that we estimate the mixture component directly from responses to Question 1. 
+The only difference is that we estimate the mixture component $\phi$ directly from responses to Question 1. 
 We assume that those who have not done the action before will probably not do the action in the future. 
 With these assumptions, the prevalence distribution is given by:
 
@@ -673,12 +654,6 @@ When actions are relatively frequent (e.g., 3 times in a one month interval), ha
 In our data, actions completed with a high frequency (3 times in a one week interval) receive at a minimum 75\% endorsement, though there is still variability among them (e.g., between 10-25\% of people disagree with \emph{wears a watch} and \emph{wears a bra}).
 In addition, we observe that none of our items receive less than 25\% endorsement (i.e., a maximum of about 75\% of participants disagree with the felicity of the utterance), reflecting the fact that these statements are not altogether *false* even though the action is done very rarely.
 
-In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(93) = 0.91$.
-This may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, the \emph{comparison class} is other people; not just other men or women).
-Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
-We now turn to our model-based analyses.
-For all analyses, we collapse across gender of the referent character,
-
 
 ### Endorsement model comparison
 
@@ -700,7 +675,7 @@ gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
                     "wears a bra", "wears a watch", "wears a suit")
 
 d.hab.bayes.gendered <- d.hab.endorsement %>%
-  filter(habitual %in% gendered.items) %>%
+  #filter(habitual %in% gendered.items) %>%
   group_by(habitual, characterGender, time_period) %>%
   summarize(k = sum(response), n = n()) %>%
   ungroup() %>%
@@ -726,26 +701,60 @@ d.hab.bayes.gendered.wide <- left_join(
 )
 
 r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
+n.habituals.gendered.analysis <- length(d.hab.bayes.gendered.wide$habitual)
+r.habituals.gendered.analysis <- round(with(d.hab.bayes.gendered.wide, cor(map_female, map_male)), 3)
 
-ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
-                 xmin = low_female, ymin = low_male,
-                 xmax = high_female, ymax = high_male, fill = habitual))+
-  geom_text_repel(data = d.hab.bayes.gendered.wide %>%
-                    filter(time_period== "month"), aes(label = habitual,
-                                                       color = habitual),
-                  force = 3, nudge_x = -1, segment.size = 0.3)+
-  guides(fill = F, color = F)+
-  geom_abline(intercept = 0, slope = 1, lty = 3)+
-  geom_point(shape = 21)+
-  geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
-  scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
-  scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
-  coord_fixed()+
-  xlab("Habitual endorsement (female character)")+
-  ylab("Habitual endorsement (male character)")+
-  scale_fill_solarized()+
-  scale_color_solarized()
 
+d.hab.bayes.gendered.subset <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.subset.wide <- left_join(
+    d.hab.bayes.gendered.subset %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered.subset %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
+)
+
+n.habituals.gendered.subset.analysis <- length(d.hab.bayes.gendered.subset.wide$habitual)
+r.habituals.gendered.subset.analysis <- round(with(d.hab.bayes.gendered.subset.wide, cor(map_female, map_male)), 3)
+
+# ggplot(d.hab.bayes.gendered.wide, aes( x = map_female, y = map_male,
+#                  xmin = low_female, ymin = low_male,
+#                  xmax = high_female, ymax = high_male, fill = habitual))+
+#   geom_text_repel(data = d.hab.bayes.gendered.wide %>%
+#                     filter(time_period== "month"), aes(label = habitual,
+#                                                        color = habitual),
+#                   force = 3, nudge_x = -1, segment.size = 0.3)+
+#   guides(fill = F, color = F)+
+#   geom_abline(intercept = 0, slope = 1, lty = 3)+
+#   geom_point(shape = 21)+
+#   geom_errorbar(alpha = 0.3) + geom_errorbarh(alpha = 0.3)+
+#   scale_x_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+#   scale_y_continuous(limits = c(0,1), breaks = c(0,0.5,1))+
+#   coord_fixed()+
+#   xlab("Habitual endorsement (female character)")+
+#   ylab("Habitual endorsement (male character)")+
+#   scale_fill_solarized()+
+#   scale_color_solarized()
+# r2.habituals.gendered
+#n.habituals.gendered.subset.analysis
+#r.habituals.gendered.subset.analysis
 ```
 
 ```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
@@ -946,14 +955,23 @@ load(paste(project.path,
 #                           "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_chain1.csv", sep = ""))
 
 fixed.hab.params.posterior <-  m.hab.fixed.samp %>% 
-  filter(B %in% c("noise", "fixedThreshold")) %>%
+  filter(type == "param") %>%
+  #filter(B %in% c("noise", "fixedThreshold")) %>%
   group_by(B) %>% 
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+hab.uncertain.threshold.s1opt <- m.hab.samp %>% 
+  filter(type == "param") %>%
+  group_by(param) %>%
   summarize(MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
 fixed.threshold.hab.posterior <- filter(fixed.hab.params.posterior, B == "fixedThreshold")
 fixed.noise.hab.posterior <- filter(fixed.hab.params.posterior, B == "noise")
+hab.fixed.threshold.s1opt <- filter(fixed.hab.params.posterior, B == "speakerOptimality")
 
 m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
   filter(type == 'predictive') %>%
@@ -1147,7 +1165,7 @@ ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper
         #legend.position =c(1,1),
         legend.justification = c(1,1)
         )
-#habituals.endorsement.models
+habituals.endorsement.models
 ```
 
 ```{r habituals-simulation-model}
@@ -1473,18 +1491,28 @@ fig.hab.endorse.priors <- habituals.endorsement.insets +
 #              layout_matrix = cbind(c(1,1,3), c(2,2,3)))
 ```
 
-<!-- For the six items for which data for characters of both genders were collected for each participant, we analyzed only the data from participants' first presentation of the item. -->
-Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold endorsement model to better understand the data and the contribution of our model.
 
-#### Frequency baseline
+In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(`r n.habituals.gendered.analysis`) = `r r.habituals.gendered.analysis`$.
+Endorsements are even more highly correlated for the six events we anticipated differences by referent-gender:  $r(`r n.habituals.gendered.subset.analysis`) = `r r.habituals.gendered.subset.analysis`$
+This lack of a difference may be because the felicity of habitual sentences depends on a comparison to individuals of both genders (i.e, in minimal contexts such as this, habituals are evaluated with respect to *other people*, not just other men or other women).
+Less interestingly, the lack of a difference may be the result of gender being not very salient in our paradigm, perhaps because the names used were not sufficiently gendered.
+
+We now turn to our model-based analyses to better understand the endorsement data and the contribution of our model.
+For all analyses, we collapse across gender of the referent character for endorsement judgments.
+Parallel to our analysis of generic language endorsements, we articulate a set of simple regression models and an alternative to our uncertain-threshold endorsement model.
+Analyses which use the rate prior distribution $P(p_f)$ (all models except "referent frequency" regression) use a 50\% mixture of the inferred priors for each gender to construct a single prior distribution.
+To model the uncertainty in the input measurements, we bootstrap the data for the regression models and we construct joint-inference, Bayesian data analytic models for the information-theoretic endorsement models (fixed-threshold and uncertain-thresold).
+
+#### Referent frequency
 
 To understand the role of frequency in habitual endorsement, we use the frequency supplied to the participants in our experiment as a predictor in a linear model. 
-This model predicts the same endorsement level for two actions done with the same frequency. 
+This model predicts the same endorsement level for two actions done with the same rate. 
 Obvious counterexamples exist in our data set:
-While participants are willing to endorse that a person "... climbs mountains" having done it 3 times in the past *year*, they are less willing to say that a person "... hikes" and not willing to say that a person "... runs"  (Figure \@ref(fig:habituals-endorsement-figure) A).
-Overall, the referent-frequency (log-frequency of action) predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
+While participants are willing to endorse that a person "... climbs mountains" having done it 3 times in the past *year*, they are less willing to say that a person "... hikes" and not willing to say that a person "... runs".
+Some actions done with a relative high rate (e.g., 3 times in a month) do not receive full endorsement (e.g., *smokes cigarettes*; Figure \@ref(fig:habituals-endorsement-figure) A).
+Overall, the referent-frequency (in log-scale) predicts only a fraction of the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituls.regression.freq`$; MSE=$`r mse.habituls.regression.freq`$). 
 In addition, for actions that are done on the time scale of years or longer (lower median of frequency), referent frequency no longer explains endorsements ($r^2(`r r2.hab.infrequent.n`) = `r r2.habituls.infrequent.regression.freq`$; MSE =$`r mse.habituls.infrequent.regression.freq`$).
-The prevalence baseline does appreciably worse in this data set in comparison to the generics data set (Case Study 1) because of the larger stimulus set and presence of multiple referent-frequencies per item.
+The prevalence baseline does appreciably worse in this data set in comparison to the generics data set (Case Study 1) because we designed the stimulus set to be critical of a referent-frequency model.
 <!-- An account purely based on the referent frequency does not explain endorsements in this data set. -->
 <!-- Instead, we pursue an explanation where prior beliefs interact with an underspecified literal semantics to produce the pattern of habitual endorsement observed. -->
 
@@ -1501,11 +1529,12 @@ The prevalence baseline does appreciably worse in this data set in comparison to
 
 <!-- This is unlikely to be the case based on , which shows the correspondence between the frequency of the event (transformed to a log times-per-year scale) and the human-judged felicity of the corresponding habitual sentence.  -->
 
-#### Distinctiveness and frequency baseline
+#### Distinctiveness and referent frequency
 
 In our empirically elicited priors, items differ the proportion of people who have done the action before (the *mixture parameter* of the mixture model; Figure \@ref(fig:habituals-prior-figure)).
-This parameter can be viewed as a measure of the *distinctiveness* of the action, analagous to *cue validity* in the case study of generic langauge.
-We again construct a regression model that treats endorsement as a linear combination of frequency and distinctiveness information. 
+This mixture parameter is a major contributor to the mean of the prevalence prior distribution, and thus is relates to the *cue validity* of a particular feature for a particular individual (see Appendix A for a derivation of the relationship between the prevalence prior and cue validity).
+Thus, we take this parameter as an index of the *distinctiveness* of the action, analagous to *cue validity* in the case study of generic langauge.
+We construct a regression model that treats endorsement as a linear combination of frequency and distinctiveness information. 
 We use participants' responses to the question about the mixture parameter $\phi$ (i.e., the proportion of people who have done the action before) as well as frequency given to participants to predict habitual endorsement. 
 
 ```{r habituals-distinctiveness-counterexamples}
@@ -1548,13 +1577,12 @@ Nevertheless, because playing the banjo is a distinct skill, the regression mode
 
 #### Fixed-threshold endorsement model
 
-We next examine an endorsement model based on a fixed-threshold semantics.
-A fixed-threshold model commits the habitual to conveying that a person *does the action with some frequency*, and that frequency is common to all actions.
-As in Case Study 1, we incorporate this model into a Bayesian joint-inference model to infer the fixed-threshold and simultaneously predict both the priors data and the endorsement data.
-Because we observe no difference between the felicity judgments for habituals of male and female characters, we use a 50\% mixture of the inferred priors for each gender to construct a single frequency distribution $P(p_f)$, which we use for both fixed-threshold and uncertain-threshold models.
-We assume the referent-prevalence $h'$ being conveyed by the endorsement model (Eq. \ref{eq:S1}) is the frequency provided to participants (e.g., 3 times in the past year).
-Additionally, to account for statements that would be literally false under this model (frequencies that fall below the fixed threshold), we include an additional noise parameter, as we did in Case Study 1. 
-To learn about the credible values of the model's parameters and generate predictions given those inferred parameter values, we collected 3 MCMC chains of 100,000 iterations, discarding the first 50,000 iterations for burn in.
+We next examine an information-theoretic endorsement model based on a fixed-threshold semantics.
+A fixed-threshold model commits the habitual to conveying that a person *does the action with some rate*, and the threshold on rates is common to all actions.
+As in Case Study 1, we incorporate this model into a Bayesian joint-inference model to infer the fixed-threshold and simultaneously predict both the priors data and the endorsement data (for more details on model implementation, see Appendix C).
+We assume the referent-prevalence $p_{fk}$ being conveyed by the endorsement model (Eq. \ref{eq:S1}) is the frequency provided to participants (e.g., 3 times in the past year).
+Additionally, to account for statements that would be literally false under this model (frequencies that fall below the fixed threshold), we include an additional noise parameter, as we did for the fixed-threshold model in Case Study 1. 
+To learn about the credible values of the model's parameters and generate predictions given those inferred parameter values, we collected 2 MCMC chains of 100,000 iterations, discarding the first 50,000 iterations for burn in.
 
 ```{r hab-fixed-parameters}
 ```
@@ -1563,20 +1591,21 @@ To learn about the credible values of the model's parameters and generate predic
 ```
 
 
-
-
-The fixed-threshold model exhibits a small dynamic range of endorsements. 
 The data analytic model infers that a low threshold is likely: the inferred threshold in units of number of times per year is `r round(exp(fixed.threshold.hab.posterior[[1,"MAP"]]), 2)` [`r round(exp(fixed.threshold.hab.posterior[[1,"cred_lower"]]), 2)`,
 `r round(exp(fixed.threshold.hab.posterior[[1,"cred_upper"]]), 2)`].
-The lowest frequency used in our data set was $0.6$ times per year (3 times every 5 years).
+Compare this with the lowest referent-frequency used in our data set: $0.6$ times per year (3 times every 5 years).
 Thus, all of the utterances evaluated under this fixed-threshold model were literally true.
-Therefore, the lowest endorsement this model can apply to an utterance is 0.5 (since both the habitual and silence are always true).
+As a result, the lowest endorsement this model can apply to an utterance is 0.5 (since both the habitual and silence are always true).
+The fixed-threshold model exhibits a small dynamic range of endorsements, similar to the referent-frequency model.
 
-Differences in endorsement rate are due to the informativeness of the fixed-threshold model.
-This varies by items, but not by frequency within an item, analogous to how "some" is equally true of 20\% or 50\%.
+A fixed-threshold utterance updates the interpreter model's beliefs differentially depending on the item.
+For instance, it's highly unlikely that a random person *climbs mountains* with any non-zero rate; thus this model fully endorses "Mary climbs mountains" even with low-frequency (Figure \@ref(fig:habituals-endorsement-figure) A).
+However, the model doesn't differentiate doing the same action with different frequencies.
+It is equally true that a person does an action *with some frequency* for any frequency greater than zero, analogous to how "some Ks F" is equally true if 20\% or 50\% of Ks F.
 
-The data-analytic model infers that `r 100*round(fixed.noise.hab.posterior[[1,"MAP"]], 2)`% [`r 100*round(fixed.noise.hab.posterior[[1,"cred_lower"]], 2)`,
-`r 100*round(fixed.noise.hab.posterior[[1,"cred_upper"]], 2)`] of the data is noise.
+Finally, the data-analytic model infers that `r 100*round(fixed.noise.hab.posterior[[1,"MAP"]], 2)`% [`r 100*round(fixed.noise.hab.posterior[[1,"cred_lower"]], 2)`,
+`r 100*round(fixed.noise.hab.posterior[[1,"cred_upper"]], 2)`] of the data is noise and that the speaker optimality parameter is `r round(hab.fixed.threshold.s1opt[[1,"MAP"]], 2)` [`r round(hab.fixed.threshold.s1opt[[1,"cred_lower"]], 2)`,
+`r round(hab.fixed.threshold.s1opt[[1,"cred_upper"]], 2)`].
 
 <!-- That is, the best way this model has to deal with the endorsement data is to say there is some arbitrary threshold and a large percentage of deviations are due to noise.  -->
 <!-- Thus, our identical data analytic strategy paired with a fixed-threshold model is unable to predict the range of endorsements ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.fixed`$; MSE=$`r mse.habituals.rsa.fixed`$).^[ -->
@@ -1611,11 +1640,11 @@ The data-analytic model infers that `r 100*round(fixed.noise.hab.posterior[[1,"M
 #### Uncertain-threshold endorsement model
 
 We used the same data analytic approach for the uncertain threshold endorsement model and performed the same Bayesian statistical inference over the model to learn about its parameters and predictions. 
-Again, this model has two fewer parameters than the fixed-threshold model (no threshold parameter and no extrinsic noise process).
-As shown in Figure \@ref(fig:habituals-endorsement-figure) (top right: top right facet), the uncertain-threshold endorsement model does a good job of accounting for the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.uncertain`$; MSE=$`r mse.habituals.rsa.uncertain`$), including actions done on the time scale of years or more  ($r^2(`r r2.hab.rsa.infrequent.n`) = `r r2.habituals.rsa.uncertain.infrequent`$; MSE=$`r mse.habituals.rsa.uncertain.infrequent`$).
-Figure \@ref(fig:habituals-endorsement-figure)C provides insight into how the model is able to do this. 
+Again, this model has two fewer parameters than the fixed-threshold model (no fixed-threshold parameter and no extrinsic noise process).
+As shown in Figure \@ref(fig:habituals-endorsement-figure)B, the uncertain-threshold endorsement model does a good job of accounting for the variability in responses ($r^2(`r r2.hab.n`) = `r r2.habituals.rsa.uncertain`$; MSE=$`r mse.habituals.rsa.uncertain`$), including actions done on the time scale of years or more  ($r^2(`r r2.hab.rsa.infrequent.n`) = `r r2.habituals.rsa.uncertain.infrequent`$; MSE=$`r mse.habituals.rsa.uncertain.infrequent`$).
+Figure \@ref(fig:habituals-endorsement-figure)C provides insight into how the model achieves this. 
 An interpreter who hears a generalization interprets it relative the prior distribution over frequencies, which results in different points at which the generalization is good statement to assert. 
-Someone who smoked cigarettes 3 times last month is not fully someone who "smokes cigarettes", whereas the someone who went to the movies 3 times last month is fully a person who "goes to the movies". 
+Someone who smoked cigarettes 3 times last month is not fully someone who "smokes cigarettes", whereas someone who went to the movies 3 times last month more a person who "goes to the movies". 
 Only the uncertain-threshold model is able to draw this fine distinction. 
 
 ### Discussion
@@ -1624,13 +1653,13 @@ Habitual language exhibits context-sensitivity directly parallel to that of gene
 Habituals are endorsed for a wide range of frequencies, but show systematic patterns relative to the prior distribution of frequencies, as formalized by the uncertain-threshold model.
 Again, we articulated a number of alternative models and found that only the underspecified threshold model was able to explain the variability in endorsements. 
 
-In this case study, we manipulated rather than measured the target frequency (e.g., the frequency with which a person drinks coffee).
+In this case study, we manipulated rather than measured the referent frequency (e.g., the frequency with which a person drinks coffee).
 By manipulating the target frequency, we have shown that it is causally related to habitual endorsements in the way predicted by our model (and in a way that a fixed-threshold model cannot account for). 
-The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect interpreters' prior knowledge about the event in the question. 
+The relationship is not linear (or log-linear), however; habitual endorsements vary in complex ways that reflect interpreters' prior knowledge about the event in question. 
 
 In Expt. 2b, participants were given a statement about how often a person has done the action in the past and asked to judge the corresponding habitual statement.
 This design potentially confounds an important distinction for the language of generalization: Does the prevalence communicated by a generalization indicate an objective, past frequency or a subjective, future expectation?
-In Expt. 2c, we investigate this question by manipulating and measuring *predictive frequency* and habitual endorsement, while keeping past frequency fixed.
+In Expt. 2c, we investigate this question by teasing apart *past* from *predictive frequency* and measuring its influence on habitual endorsement.
 
 <!-- In Expt. 2b, we manipulated the frequency with which a person did an action in the past (e.g., three times in the past week vs. in the past year) for a wide range of events (e.g., drinks coffee vs. beer) and measured endorsements for the corresponding habitual statements. -->
 
