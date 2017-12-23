@@ -179,8 +179,23 @@ Evidence statement & Your team gave fertilizer B to 100 different feps. Of those
 \end{table}
 
 
-```{r causalExpt, fig.cap="Overview of Experiment 3. A: Results of previous experiments are shown one at a time. One of the results were lost. B: Particiapnts are asked to review results before continuing. C: Prior elicitation task. D: Causal endorsement task."}
-knitr::include_graphics("figs/causal-expt.pdf", dpi = 108)
+```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. B: Prior elicitation task: Participants predict the results of the next 5 experiments. D: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10}
+caus.exp.1 <- ggdraw() + draw_image("figs/causal-expt-1.jpeg", scale = 1) +
+  theme(plot.margin = unit(c(2,0,0,0), "pt")) 
+caus.exp.2 <- ggdraw() + draw_image("figs/causal-expt-2.jpeg", scale = 1)+
+  theme(plot.margin = unit(c(2,0,0,0), "pt")) 
+caus.exp.3 <- ggdraw() + draw_image("figs/causal-expt-3.jpeg", scale = 1)+
+  theme(plot.margin = unit(c(2,0,0,0), "pt")) 
+caus.exp.4 <- ggdraw() + draw_image("figs/causal-expt-prior.jpeg", scale = 1)
+caus.exp.5 <- ggdraw() + draw_image("figs/causal-expt-endorse.jpeg", scale = 1)
+
+caus.exp.toprow <- plot_grid(caus.exp.1, caus.exp.2, caus.exp.3, labels = c("A", "B", "C"), nrow = 1, align = 'vh')
+
+title <- ggdraw() + draw_label("Prevalence prior manipulation")
+plot_grid(
+  plot_grid(title, caus.exp.toprow, ncol=1, rel_heights=c(0.1, 1)),
+  plot_grid(add_sub(caus.exp.4, "Prior elicitation"), add_sub(caus.exp.5,"Causal endorsement"), labels = c("D", "E"), nrow = 1),
+  nrow = 2)
 ```
 
 #### Procedure
@@ -643,6 +658,8 @@ causals.endorsement.insets <- cas.listener.predictions %>%
   facet_wrap(~Distribution, nrow = 2)+
   scale_fill_manual(values =inset.color.order )+
   scale_color_manual(values = inset.color.order)+
+  geom_vline(xintercept = 0.2, lty = 3)+
+  geom_vline(xintercept = 0.7, lty = 3)+
   scale_alpha_manual(values = c(0.8, 0.1))+
   scale_linetype_manual(values = c(1, 2))+
   scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
@@ -726,7 +743,7 @@ figure.causals.endorsement <- bind_rows(
   )
 ```
 
-```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
+```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Vertical lines denote referent-prevalence levels for the causal endorsement task. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
 
 prow <- plot_grid( 
   figure.causals.endorsement + theme(legend.position="none"),

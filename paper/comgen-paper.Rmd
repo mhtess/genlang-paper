@@ -766,7 +766,7 @@ s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb,
   coord_flip()+
   facet_grid(example~.)+
   guides(fill = F)+
-  ylab("Endorsement")+xlab("Referent prevalence")+
+  ylab("")+xlab("Referent prevalence")+
   theme(strip.text.y = element_text(angle = 0, hjust = 0)
         #axis.title.x = element_text(hjust = 0)
         #axis.title.y = element_text(vjust = 0)
@@ -776,7 +776,7 @@ s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb,
 ```
 
 
-```{r simulations, fig.cap = "Computational model behavior. A: Prior distributions over the prevalence of a feature in a category for 6 example features B: Different fixed thresholds (columns) give rise to different posterior interpretations. C: The interpreter model averages over all thresholds, producing posterior distributions that strongly depend upon the priors. D: Endorsement model predictions, assuming a particular referent-prevalence. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 12, cache=F}
+```{r simulations, fig.cap = "Computational model behavior. A: Prior distributions over the prevalence of a feature in a category for 6 example features B: Different fixed thresholds (columns) give rise to different partial interpretations. C: The interpreter model averages over all thresholds, producing posterior distributions that strongly depend upon the priors. D: Endorsement model predictions, assuming a particular referent-prevalence. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 12, cache=F}
 p1 <- fig.sims.priors +
   theme(plot.margin = unit(c(18,2,6,6), "pt")) #+ ggtitle("prevalence priors")
 p2 <- fig.sims.fixed.thresholds +
@@ -786,16 +786,17 @@ p3 <- fig.sims.uncertain.threshold+
     theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
 p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,6), "pt"))
   
-prow <- plot_grid( p1 + theme(legend.position="none"),
-           p2 + theme(legend.position="none"),
-           p3 + theme(legend.position="none"),
-           p4,
+prow <- plot_grid( 
+  add_sub(p1 + theme(legend.position="none"), "Prevalence priors"),
+  add_sub(p2 + theme(legend.position="none"), "Partial interpretations given fixed-thresholds"),
+  add_sub(p3 + theme(legend.position="none"), "Full interpretations"),
+  add_sub(p4, "Endorsement"),
            align = 'vh',
            labels = c("A", "B", "C", "D"),
            hjust = -1,
            nrow = 1,
            #rel_widths = c(1.2, 3, 2)
-           rel_widths = c(1.2, 3, 1.05, 1.7)
+           rel_widths = c(1.2, 2.9, 1.15, 1.7)
            )
 prow
 ```
