@@ -16,10 +16,10 @@ We explore this hypothesis in our third case study: causal language or *causals*
 The problem of *causal induction*---knowing that one thing causes another----has been studied extensively in human psychology  [@Cheng1992; @Cheng1997; @Griffiths2005; @Griffiths2009].
 Classically, this is cast as a problem of inducing an unobservable relation (*type causation*) from observable events or contingency data. 
 We take a different approaching, examining *type causation* by the language used to describe it (e.g., "A causes B").
-We assume that such language conveys a generalization about *token* or *actual causation* (e.g., "A caused B, in this instance") and that our theory of the language of generalizations extends in a natural way to describe *causal language*.
+We explore the idea that such language conveys a generalization about *token* or *actual causation* (e.g., "A caused B, in this instance") and that our theory of the language of generalizations extends in a natural way to describe *causal language*.
 Ascribing causation to an individual event (*token or actual causation*) is itself a complex, inferential process [e.g., depending on counterfactual reasoning; @Gerstenberg2015how], which we do not try to model here.
 
-In this paper, we posit thatprevalence priors are a mediating representation between abstract conceptual structure and generalizations in language.
+In this paper, we posit that prevalence priors are a mediating representation between abstract conceptual structure and generalizations in language.
 In this last set of experiments, we explicitly test the relationship between the prevalence priors and endorsements of generalizations about causes.
 Also, by designing the experiments in the domain of causal language, we further demonstrate the generality of our theory of communicating generalizations.
 
