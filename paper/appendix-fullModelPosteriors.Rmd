@@ -11,7 +11,6 @@ library(xtable)
 library(tidyverse)
 library(forcats)
 library(langcog)
-library(data.table)
 library(coda)
 library(ggthemes)
 library(ggrepel)
@@ -111,6 +110,13 @@ load(file = paste(project.path,  "models/generics/results/", model_prefix, "gene
 load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
+# m.samp <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
+#                      10000, "_burn", 5000, "_lag", 20, "_chain", 4, ".csv", sep = ""))
+# 
+# m.samp <- m.samp %>%
+#   filter(param != "score")
+# 
+# m.samp <- m.samp %>% mutate(chain = 0)
 ```
 
 
@@ -140,7 +146,7 @@ d.prior.summary <- d.prior %>%
   filter(sentence %in% full_sentences) %>%
   mutate(prevalence = prevalence / 100) %>%
   group_by(Category, Property) %>%
-  multi_boot_standard(column = "prevalence")
+  multi_boot_standard(col = "prevalence")
 ```
 
 
@@ -149,6 +155,7 @@ d.prior.summary <- d.prior %>%
 #Forward sample Target Prevalence from posterior on parameters
 m.samp.prev.params <- m.samp %>%
     filter(type == "targetPrevalence") %>%
+    #filter(type == "withinKind") %>%
     mutate(parameter = paste(param, property, category, sep = "_")) %>%
     select(-param, -property, -category, -chain, -type) %>%
     #mutate(item = paste(parameter, property, sep = "_")) %>%
@@ -250,6 +257,10 @@ left_join(
 
 
 ```{r gen-prevprior-forward}
+
+m.samp <- m.samp %>% filter(!(param == "prevalencePrior")) %>%
+  mutate(param = factor(param, levels = c("isPresent", "prevalenceGivenPresent"),
+                        labels = c("")))
 #Forward sample from posterior on parameters
 m.samp.prior.params <- m.samp %>%
     filter(type == "prior") %>%
@@ -261,7 +272,7 @@ m.samp.prior.params <- m.samp %>%
     ungroup() %>%
     select(-item)
   
-  m.samp.prevalence.prior <- m.samp.prior.params %>%
+m.samp.prevalence.prior <- m.samp.prior.params %>%
     group_by(parameter, property, iteration) %>%
     spread(parameter, val) %>%
     rowwise() %>%

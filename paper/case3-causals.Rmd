@@ -564,7 +564,7 @@ model_prefix <- "pilot-results-causals-jointModel-S1-"
 
 m.cas.samp <- data.frame()
 for (i in seq(1, n_chains)){
-  mi <- fread(paste(project.path,  "models/causals/results/", 
+  mi <- read_csv(paste(project.path,  "models/causals/results/", 
                     model_prefix, "smntcs_causal-",
                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
   m.cas.samp <- bind_rows(m.cas.samp, mi %>% mutate(chain = i))

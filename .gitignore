@@ -1,9 +1,8 @@
 packrat/lib-R/
 packrat/lib/
-paper/figs/
 paper/*.html
+paper/figs/
 *.fff
-*.tex
 *.ttt
 *_cache
 .Rprofile
@@ -12,6 +11,7 @@ comgen-paper.Rproj
 paper/generics-paper.pdf
 paper/library.bib
 packrat/lib*/
+packrat/src*/
 .Rhistory
 paper/comgen-paper.pdf
 models/*/results/*.csv
@@ -20,3 +20,9 @@ paper/*pdf
 */webppl-csv/
 *.json
 paper/coverletter.synctex.gz
+*.aux
+*.bbl
+*.log
+*.out
+*.blg
+*.synctex.gz
