@@ -178,11 +178,6 @@ Source: CRAN
 Version: 0.8-69
 Hash: 6cb09ceba757189aff90eb9bb72c8983
 
-Package: formatR
-Source: CRAN
-Version: 1.5
-Hash: 258cf79a8dbeedf1c981cdb53837d2af
-
 Package: ggplot2
 Source: CRAN
 Version: 2.2.1
