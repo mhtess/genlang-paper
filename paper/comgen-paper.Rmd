@@ -78,7 +78,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
 
 ```{r libraries, cache = F}
 library(papaja)
-#library(formatR)
+library(formatR)
 library(rwebppl)
 library(xtable)
 library(tidyverse)
