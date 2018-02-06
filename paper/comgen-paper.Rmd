@@ -94,6 +94,7 @@ library(knitr)
 library(kableExtra)
 library(cowplot)
 library(magick)
+library(viridis)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
