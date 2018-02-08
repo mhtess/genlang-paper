@@ -68,6 +68,174 @@ Experiment 3b (*causal endorsement*) will then follow a mostly-identical experim
 <!-- In other domains, probabilistic causes are plausible: Giving a sick animal a certain medication may sometimes make it better and other times it won't.  -->
 <!-- Finally, some events could have multiple possible causes: Testing whether or not a drug makes an animal *blink* might be difficult because animals will tend to *blink* even without intervention.  -->
 
+```{r}
+genericEndorsementPriorModelHelpers <- '
+var eps = 0.01;//Number.EPSILON;
+var log = function(x){ return Math.log(x) }
+var exp = function(x){ return Math.exp(x) }
+
+var avoidEndPoints = function(x){
+  x == 0 ? eps : 
+  x == 1 ? 1 - eps : 
+  x
+}
+
+var betaShape = function(params){
+  return {
+      a: params.g * params.d,
+      b : (1-params.g) * params.d
+  }
+}
+
+var preprocessedResponses = map(function(d){
+  return avoidEndPoints(d / 100)
+}, data)
+'
+
+
+structuredPriorModel <- '
+var model = function(){
+  var phi = uniformDrift({a:0, b: 1, width:0.2});
+  var g = uniformDrift({a:0, b: 1, width:0.2});
+  var d = uniformDrift({a:0, b: 100, width:5});
+  var stableParams = betaShape({g, d})
+  var stableComponent = Beta(stableParams)
+  var transientComponent = Beta({a:1, b:100})
+  mapData({data: preprocessedResponses}, function(d){
+    factor( log(
+      phi * exp(stableComponent.score(d)) +
+      (1 - phi) * exp(transientComponent.score(d))
+    ))
+  })
+  return {g, d, phi}
+}
+'
+
+unstructuredPriorModel <- '
+var model = function(){
+  var g = uniformDrift({a:0, b: 1, width:0.2});
+  var d = uniformDrift({a:0, b: 100, width:5});
+  var stableParams = betaShape({g, d})
+  var stableComponent = Beta(stableParams)
+  mapData({data: preprocessedResponses}, function(d){
+    factor(stableComponent.score(d))
+  })
+  return {g, d}
+}
+'
+genericEndorsementPriorModel <- paste(genericEndorsementPriorModelHelpers, structuredPriorModel, sep = "\n")
+```
+
+```{r rsaHelpers}
+rsaHelpers <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var targetUtterance = "generic";
+
+var round = function(x){
+  return Math.round(x*1000)/1000
+}
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaBins = map(round, _.range(0.01, 0.98, 0.01))
+// var thetaBins = [
+//    0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+//    0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
+ // ]
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var bins = map(round, _.range(0.01, 0.99, 0.01))
+
+// var bins = [
+  // 0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+  // 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
+// ];
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state>0.01:
+         utt=="most"? state> 0.5:
+         utt=="all"? state >= 0.99:
+         true
+}
+
+var mixture = data.prior.mix[0];
+var priorParams = data.prior.params[0];
+
+var statePrior = Infer({model: function(){
+  var component = flip(mixture);
+  return component ?
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta(priorParams), b) + Number.EPSILON
+      }, bins )
+    }) :
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
+      }, bins )
+    })
+}});
+'
+```
+
+```{r rsaInterpretationModels}
+no.utterance.model <- '
+var noUtteranceInterpreter = function() {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    return { state }
+ }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+'
+
+fixed.threshold.model <- '
+var fixedThresholdInterpreter = function(threshold) {
+  Infer({model: function(){
+  // var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+  var state = sample(statePrior)
+  condition( state > threshold)
+    return {
+      state: state
+  }
+ // }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+ }, method: "enumerate"})}
+'
+
+uncertain.threshold.model <- '
+var uncertainThresholdInterpreter = function() {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    factor( Math.log(state) )
+    return {
+      state: state, 
+  }
+  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+'
+
+```
+
+```{r simulationCalls}
+fixed.threshold.calls <- '
+_.fromPairs(map(function(t){return [t, fixedThresholdInterpreter(t)]}, [0.1, 0.3, 0.5, 0.7, 0.9]))
+'
+no.utterance.call <- ' 
+  noUtteranceInterpreter()
+'
+uncertain.threshold.call <- '
+  uncertainThresholdInterpreter()
+'
+```
+
+
 
 
 ### Method
