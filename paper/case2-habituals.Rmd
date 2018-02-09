@@ -465,8 +465,6 @@ habituals.endorsement.bars <- ggplot(md.hab.long, aes ( y = prediction, ymin = p
 ```
 
 ```{r habitual-endorsment-scatters}
-#View(md.hab)
-
 habituals.endorsement.models <- md.hab %>% mutate(src = factor(src, levels = c(
                                       "regression_freq", 
                                       "regression_freq_distinct",
@@ -799,7 +797,7 @@ In another condition, participants decide whether or not to endorse the habitual
 <!-- In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers. -->
 We then compare two uncertain-thresholds models to each other: one which uses participants' ratings of *predictive frequency* as the object of communication and one which uses the *past frequency* (as was done for Expt. 2b).
 
-```{r}
+```{r loadCase2PredictiveData, cache =F}
 load("cached_results/case2_predictive_data.RData")
 #d.hab.predictive.endorsment.summary, d.hab.predictive.summary, n.subj.hab.pred.endorse, ave.seconds.hab.pred.endorse,n.subj.hab.pred, ave.seconds.hab.pred, d.hab.predictive.endorsment.condition.summary, lmer.rs.hab.predictive.summary
 ```
@@ -827,12 +825,16 @@ d.hab.predictive.endorsment.enabling.summary <- d.hab.predictive.endorsment.cond
 
 
 ```{r fighabfreq_predictive_vs_past, cache = F}
-fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary %>%
+                                            ungroup() %>%
+                                            mutate(condition = factor(condition,
+                                                                      levels = c("preventative", "baseline", "enabling"))) %>%
+                                            mutate(src = 'Manipulation check'),
        aes(x=logAnnualPastRate,
                               y = mean,
                               ymin = ci_lower, ymax = ci_upper,
                               fill = condition, shape=condition))+
-  geom_jitter(position = position_jitter(width = .13), alpha = 0.6, size = 4)+
+  geom_jitter(position = position_jitter(width = .13), size = 4)+
   scale_shape_manual(values=c(21,22,23))+
   geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
   # #geom_errorbar(width=0.1)+
@@ -842,15 +844,18 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
   scale_y_continuous(limits = c(-3,6),
                      breaks = c(-3, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  facet_wrap(~src)+
   guides(fill=F, shape=F)+
-  scale_fill_solarized()+
-  xlab("Past frequency (log scale)")+
-  ylab("Predicted frequency (log scale)")+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+  scale_fill_viridis(discrete = T)+
+  xlab("Past frequency")+
+  ylab("Predicted frequency")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.x = element_text(vjust = 1),
+        axis.title.y = element_text(vjust = 1))
 ```
 
 
-```{r habituals-predictive-endorsement, cache = F}
+```{r habituals-predictive-endorsement, cache = F, eval = F}
 
 fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
   ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
@@ -875,11 +880,9 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
     legend.position="bottom",
     legend.direction="horizontal"
     )
-
-fig.hab.endorse.vs.predfreq
 ```
 
-```{r habituals-predictive-rsa, cache = F}
+```{r habituals-predictive-rsa, cache = T, eval=T}
 n_chains <- 3
 # n_samples <- 500000
 # burn <- n_samples / 2
@@ -1037,30 +1040,99 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 13, fig.height = 3.5, cache=F}
-legend_b <- get_legend(habituals.predictive.predictive.model + theme(legend.position="bottom"))
 
-# add the legend underneath the row we made earlier. Give it 10% of the height
-# of one plot (via rel_heights).
+```{r habituals-predictive-endorsement-bars}
+pred.items.of.interest <- c("climbs mountains","steals cars", "steals chewing gum",
+                            "writes novels", "hikes","plays the banjo",
+                            "smokes marijuana","runs","watches space launches",
+                            "smokes cigarettes","drinks coffee")
 
+habituals.endorsement.pred.bars <- m.hab.predictive.endorse.allModels %>%
+  mutate(condition = factor(condition, levels = c("preventative", "baseline", "enabling")),
+         src =factor(src , levels = c("human data","predictive_model", "regression_pastfreq",
+                                      "regression_futurefreq","past_model"),
+                     labels= c("Human data", "Uncertain semantics  \n(Predictive frequency)", "regression_pastfreq",
+                               "Regression              \n(Predictive frequency)", "Uncertain semantics\n(Past frequency)      ")),
+         hab_time = gsub("-","\n(", hab_time),
+         hab_time = paste(hab_time, ")", sep = ""),
+         hab_time = factor(hab_time, 
+                           levels = c("climbs mountains\n(5 years)","steals cars\n(5 years)", "steals chewing gum\n(5 years)",
+                            "writes novels\n(5 years)", "watches space launches\n(2 years)", "hikes\n(year)","plays the banjo\n(year)",
+                            "smokes marijuana\n(year)","runs\n(2 months)","drinks coffee\n(month)",
+                            "smokes cigarettes\n(month)"))) %>%
+  filter(src != "regression_pastfreq",
+         item %in% pred.items.of.interest) %>%
+ggplot(., 
+       aes (y = MAP, ymin = cred_lower, ymax = cred_upper, 
+            x = hab_time, fill = condition))+
+  #geom_abline(intercept = 0, slope = 1, lty = 3)+
+  #geom_linerange(alpha = 0.15)+
+  geom_col(position = position_dodge(0.7), color = 'black', width = 0.7)+
+  geom_linerange(alpha = 0.7, size = 1, position = position_dodge(0.7))+
+  #geom_point(shape = 21, size = 3)+
+  #scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  scale_fill_viridis(discrete = T)+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  #coord_fixed()+
+  ylab("Habitual endorsement")+
+  xlab("Item (past frequency: 3 times per interval)")+
+  facet_grid(src~., scales = 'free')+
+  theme(strip.text.y = element_text(hjust = 0, angle = 0),#, vjust = 1),
+        axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45,
+                                   lineheight = 0.7),
+        legend.position = "bottom")
+```
+
+```{r habituals-predictive-endorsement-scatters, cache = F}
+habituals.endorsement.pred.scatters <- m.hab.predictive.endorse.allModels %>%
+  mutate(condition = factor(condition, levels = c("preventative", "baseline", "enabling")),
+         src =factor(src , levels = c("human data", "regression_pastfreq",
+                                     "past_model", "regression_futurefreq",
+                                      "predictive_model"),
+                     labels= c("Human data","regression_pastfreq", 
+                                "Uncertain semantics (Past)", "Linear model (Predictive frequency)","Uncertain semantics (Predictive)"))) %>%
+  filter(!(src %in% c("Human data", "regression_pastfreq"))) %>%
+ggplot(., 
+       aes (x = MAP, xmin = cred_lower, xmax = cred_upper, 
+            y = MAP_h, ymin= low, ymax = high, fill = condition,
+            shape = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  #geom_linerange(alpha = 0.15)+
+  #geom_col(position = position_dodge(0.7), color = 'black', width = 0.7)+
+  geom_linerange(alpha = 0.7, size = 1)+
+  geom_errorbarh()+
+  geom_point(size = 3)+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_shape_manual(values=c(21,22,23))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  scale_fill_viridis(discrete = T)+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  ylab("Habitual endorsement")+
+  xlab("Model prediction")+
+  facet_grid(.~src, scales = 'free')+
+  theme(legend.position = "right")
+```
+
+
+```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 14,  fig.asp = 0.6, cache=F}
 plot_grid(
+  habituals.endorsement.pred.bars +
+    theme(plot.margin = unit(c(6,6,6,6), "pt"), legend.position="none",
+          axis.title.x = element_blank()),
   plot_grid(
     fig.hab.freq.predictive.vs.past + 
-      theme(plot.margin = unit(c(6,3,6,6), "pt")),
-  fig.hab.endorse.vs.predfreq + 
-    theme(plot.margin = unit(c(6,0,6,6), "pt")),
-  # habituals.predictive.past.model + 
-  #   theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab(""),
-  habituals.predictive.predictive.model + 
-    theme(plot.margin = unit(c(0,0,6,0), "pt")) + 
-    theme(legend.position="none") + ylab(""),
-  align = 'h', axis = 'l',
-  labels = c("A","B","C"),
-  #hjust = -1,
-  nrow =1 , rel_widths = c(1.2, 0.95, 1.6)),
-  legend_b, nrow = 2, rel_heights = c(1, 0.2))
-  
-  #legend_b
+     theme(plot.margin = unit(c(0,6,0,0), "pt"), legend.position="none",
+           axis.text = element_text(size = 8),
+           axis.title = element_text(size = 9)),
+    habituals.endorsement.pred.scatters +
+      theme(plot.margin = unit(c(0,0,12,12), "pt"),
+            legend.position = c(1.1,1.1)),
+    labels = c("B", "C"),
+    nrow = 1,  axis = 'tblr', rel_widths = c(1, 1.8)), 
+  labels = c("A", ""), 
+  nrow = 2, align = 'v', axis = 'lr', rel_heights = c(3.1, 1.5))
 ```
 
 
