@@ -876,7 +876,7 @@ We leave for future work the precise implementation of the acquisition model we 
 
 ## Other philosophical puzzles
 
-We aimed to balance two competing goals in designing our experimental stimuli: (1)  including familiar, philosophically puzzling examples that have been discussed in the vast literature on generic language and (2) introducing novel stimuli that provide targeted tests of our model.
+In this paper, we aimed to balance two competing goals in designing our experimental stimuli: (1) including some familiar, philosophically puzzling examples that have been discussed in the vast literature on generic language and (2) introducing novel stimuli that provide targeted tests of our model vis-a-vis alternative models.
 In this section, we discuss how a few other previously-discussed troubling examples of generalizations could be addressed in our communicative framework.
 We consider the five following examples:
 
@@ -887,34 +887,34 @@ We consider the five following examples:
 5. Women are submissive.
 
 Imagine there is a job in the local beaurocrat's office to handle the mail from Antarctica and this job is assigned to Mary;  to date, however, there has never been any mail from Antarctica [@Cohen1999]. 
-That is, the statement "Mary has handled mail from Antarctica" is false.
-Sentence (1) is still thought to be true despite zero actual instances of the event.
-We think (1) is a boundary case of generalizations expressing predictive probabilities, which we elucidated in Expt. 2c.
-In in that study, we experimentally dissociated predictive probability from past frequency, and saw that only a model that took into account predictive probability could explain participants' endorsements of generalizations.
-We expect the same to be true here, elucidated by the intuition that: were there to be any mail coming from Antarctica, Mary would handle it. 
+That is, the statement "Mary *has handled* mail from Antarctica" is false.
+Sentence (1) is still thought to be intuitively true despite zero actual instances of the event.
+In our framework, we treat Sentence (1) is a boundary case of generalizations expressing predictive probabilities.
+In Expt. 2c., we experimentally dissociated predictive probability from past frequency, and saw that only a model that took into account predictive probability could explain participants' endorsements of generalizations.
+We expect the same to be true with Mary, elucidated by the intuition that: were there to be any mail coming from Antarctica, Mary would handle it. 
 Past frequency or actual prevalence in the world often tracks predictive probabilities, but language users' internal models of how the world works can lead them in certain situations to expect something different in the future.
 
-Our focus on predictive probability makes even new prediction about some classic puzzles.
+Our focus on predictive probability makes even novel predictions about some classic puzzles.
 Sentence (2) is the conceptual opposite of sentence (1).
 Imagine that currently every Supreme Court Justice has a social security number which is an *even number*. 
-Sentence (2) is still considered false, every though the property holds in 100\% of the category [@Cohen1999].
-We predict this phenomenon is the result of abstract, intuitive theories guiding us to reject observed frequencies in forming our subjective probabilities.
-That is, because observers strongly believe selection for the Supreme Court is not influenced by one's social security number, speakers would assign a roughly 50\% subjective probability that the \emph{next} justice would have an even social security number.
-Then, given that the all professions would have roughly the same probability of having employees with even social security numbers, Sentence (2) would be similar to "Birds are female". 
+Sentence (2) is still considered false, every though the property holds in exactly 100\% of the category [@Cohen1999].
+We predict the rejection of Sentence (2) is the result of abstract, intuitive theories guiding our subjective probabilities.
+That is, because observers strongly believe one's social security number does not infleunce selection for the Supreme Court, speakers would assign a roughly 50\% subjective probability that the *next* justice would have an even social security number.
+Then, if we constructed the comparison class by considering other professionals, Sentence (2) would be rated similarly by our model as "Birds are female", because all professions have roughly the same probability of having employees with even social security numbers. 
 However, were we to learn much more surprising information---for instance, if every Supreme Court Justice in U.S. history had a social security number which was a *prime number*---the shear suspiciousness could compel an observer to revise their theory of the domain (appealing perhaps to a conspiracy), update their subjective probability of future instances, and then accept the generic. 
 That is, we predict there are situations where statements like (2) could be considered felicitious generalizations.
 
 
 Understanding how a semantic representation *composes* is another critical test for a theory of generalizations in language.
 @Nickel2008 suggests Sentence (3) is semantically equivalent to: "Elephants live in Africa and elephants live in Asia".
-Stastistical account of generalizations have trouble with this kind of conjunction: It cannot be the case that *most* (more than half) elephants live in Africa and *most* (more than half) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which we would rather not have to posit.
-However, this is the only interpretation if the generalization is given a fixed, majority based quantificational account (e.g., if the generic means *most*).
-Our theory does not provide a fixed semantics for the generalizations, but an uncertain one, which can be updated as more information comes in.
-In fact, with prior knowledge weighting against the existence of *international elephants* and without any further semantic assumptions, our model infers that some elephants live in Africa and others live in Asia (and they are different elephants).^[
+Stastistical accounts of generalizations have trouble with this kind of conjunction: It cannot be the case that *most* (more than half) elephants live in Africa and *most* (more than half) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which we would rather not have to posit.
+This is the only interpretation available if the generalization is given a fixed, majority based quantificational semantics (e.g., if the generic means *most*).
+Our theory does not provide a fixed semantics for generalizations, but an uncertain one, which can be updated as more information comes in.
+In fact, with prior knowledge pushing against the existence of *international elephants* and without any further semantic assumptions, our model can interpret Sentence (3) as meaning some elephants live in Africa and that different ones live in Asia.^[
   An implementation of this example can be found: [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
 ]
-Importantly, the model believes that most lives in Africa, when it only hears that "Elephants live in Africa", and only later revises it's beliefs to a weaker "some"-like interpretation after hearing they live in Asia as well.
-Our model flexibly accomodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise interpretation of single utterances.
+Importantly, an incremental parsing of Sentence (3) leads our model to first believe that *most* elephants live in Africa (when it only hears that "Elephants live in Africa"), and then later believe that *some* elephants live in Africa (while others live in Asia) after hearing the end of the utterance ("...and Asia").
+Our model flexibly accomodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise meaning of the utterance.
 
 <!-- Instead, the statement should be glossed as *some elephants live in Africa* and *some elephants live in Asia*, and perhaps taken collectively, *most elephants live in either Africa or Asia* [@Nickel2008].  -->
 <!-- This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia." -->
@@ -926,37 +926,35 @@ Our model flexibly accomodates new evidence that might otherwise contradict prev
 
 Sentence (4), strikes hearers as *odd* or perhaps *false*, despite the vast majority of books being paperback. 
 Why?
-A first observation is that the sentence is constructed by pairing a category ("Books") with a property that describes a strict subset ("paperbacks" is short-hand for "paperback books"). 
-We expect intuitions about this statement to generalize to other examples expressing an analogous relation (e.g., "Pastas are spaghetti", "Animals are humans").
-We hypothesize that the strangeness of these examples has to do an inflexible relationship between the comparison class and the referent-prevalence.
-Assume that the comparison class is constructed by considering the *predicability* of the property [in the sense of @Keil1979, originally from @Sommers1963].^[
+We first observe that the sentence is constructed by pairing a category ("Books") with a property that describes a strict subset (i.e., "paperbacks", or "paperback books"). 
+We hypothesize that the strangeness of this example has to do an inflexible relationship between the comparison class and the referent-prevalence.
+Assume that the comparison class is constructed by considering the *predicability of the property* [in the sense of @Keil1979, originally from @Sommers1963].^[
   Note that this assumption is consistent with the comparison classes we have assumed in our three case studies.
 ]
 Then, "is a paperback" can only be informatively said of individual books, because these are the only objects that can plausibly have the property; that is, world knowledge gives us that an elephant cannot be predicated (either true or falsely) by the property "is a paperback".^[
-  Note that this idea is similar to @Cohen1999's notion of "Relative generics", which have truth conditions that are determined by a comparison to an alternative set of Ks (his   Alt(K), our comparison class) which is composed of Ks that could satisfy some F in an an alternative set of Fs.
+  Note that this idea is related to @Cohen1999's notion of "Relative generics" (described more fully below), which have truth conditions that are determined by a comparison to an alternative set of Ks (his   Alt(K), our comparison class) which is composed of Ks that could satisfy some F in an alternative set of Fs.
 ]
-The relevant aggregations of entities, then, are collection of books, potentially including books of different genres or publication eras among other such sub-categories.
-Then, given that "books" is the superordinate category of "kinds of books", the referent-category prevalence cannot be different from the mean of the prevalence prior.
-Finally, given this prevalence prior and the referent-prevalence, our endorsement model would predict "Books are paperbacks" is neither true nor untrue, in the a way analogous to "Robins are female". 
+The relevant aggregations of entities (i.e., of individual books), then, are collections of books (e.g., books of different genres or publication eras among other such sub-categories).
+Then, given that "books" is the superordinate category of "kinds of books", the referent-category prevalence (the % of books that are paperbacks) is the mean of the prevalence prior (the average of the % of sub-classes of books that are paperbacks).
+Given this prevalence prior and the referent-prevalence, our endorsement model would predict "Books are paperbacks" is neither true nor untrue, in a way analogous to "Robins are female". 
+We expect these intuitions to generalize to other examples expressing an analogous relation (e.g., "Pastas are spaghetti", "Animals are humans").
+
  
 ```{r booksArePaperbacks, fig.cap="Sketch of an argument for why 'Books are paperbacks' sounds odd. The feature 'is paperback' can only be predicated (in the sense of @Keil1979) of individual books, which are organized into collections (here, by genre). The prevalence prior is constructed by aggregating these collections of books. Then the prevalence of 'is paperbook' for the category of 'books' can never be higher than the mean of the prior distribution. The endorsement model would give this sentence a rating of 0.5, corresponding to neither true nor false."}
 knitr::include_graphics("figs/books-paperbacks.pdf", dpi = 108)
 ```
 
-Finally, sometimes a property is widespread relative to other kinds or groups, and it might be so systemic that we would believe it to be the case in the future, but speakers still might find it avertise to actually endorse the generalization.
+Finally, a property can be widespread relative to other kinds or groups as well as being so systemic that we would predict it to be the case in the future, and speakers still might find it aversive to actually endorse the generalization.
 Such is the situation with Sentence (5) [@Haslanger2011]. 
 Due of a variety of socio-cultural reasons, @Haslanger2011 argues that women tend to be submissive (more so than men, and many other social categories), yet still cautions against asserting (5).
 In our **Model Simulations** section, we showed that the genearlization often implies the property is widespread, even with relatively uninformed prior beliefs about the property. 
-If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth. ^[
-  Note that this can straight-forwardly capture the central phenomena of @Cimpian2010.
-].
-The current formulation of the model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated in the mind of the listener).
-However, if states of the world (or, listener's beliefs about states of the world) correspond to different subjective values, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
+If the generalization conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth [@Cimpian2010].
+The current formulation of our model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated in the mind of the listener).
+However, if states of the world (or, listener's beliefs about states of the world) have different *subjective values*, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
 This kind of extension to rational models of communication has already been used to account for a variety of phenomena in *polite language* use [@Yoon2016; @Yoon2017].
-We propose adopting such a value-based utility structure for states of the world for language about social categories: If the speaker found states of the world where the probability of the feature is high (e.g., a world where many women were submissive) as undesirable, then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such a generalization.
-We find this possibilitity intruiging and leave it for future work.
+We propose adopting such a value-based utility structure for states of the world for language about social categories: If the speaker found states of the world where the probability of the feature is high as undesirable (e.g., a world where many women were submissive), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such a generalization.
 
-In sum, we've tried to argue that our information-theoretic communicative model couched in general cognitive framework can be used to explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
+In sum, we've tried to argue that our information-theoretic communicative model couched in our general cognitive framework can be used to explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
 The precise implementation of these hypotheses we leave for future work.
 
 <!-- -- Books are paperbacks. (failure of the constrast class) -->
@@ -973,14 +971,14 @@ To our knowledge, the present paper presents the first formal theory of generici
 A number of other theories of genericity have been proposed in the formal semantics  literatures.
 <!-- We now turn to situating our account with respect to these previous theories. -->
 <!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
-These theories fall into two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to structured, conceptual representations (e.g., *there is something about being K which causes it to F*).
+These theories fall into two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to conceptual representations (e.g., *there is something about being K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
-The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 was described above.
+The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 has been described above.
 We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
 Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
 For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
-We believe this provides a more unifying view of generics, giving a single metric as the basic currency for the language of generalizations: probability. 
+We believe this provides a more unifying view of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
 
 
 <!-- ### Conceptual accounts -->
@@ -1102,35 +1100,35 @@ In contrast, we posit an uncertain threshold which is resolved through a Bayesia
 <!-- Second, Cohen draws an *a priori* distinction between *Absolute* and *Relative* generics, and provides different mechanisms for each each. -->
 <!-- We used examples of both in our stimuli (Expt. 1) and found that our single model handles both without any addition assumptions, casting doubt on the *a priori* distinction between "absolute" and "relative". -->
 
-<!-- We note additional machinery that Cohen's theory relies upon (and that is not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?). -->
-<!-- His theory posits that prevalence is calculuated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$).  -->
-<!-- For example, the property "lays eggs" induces a set of alternatives that are associated with mechanisms of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...). -->
-<!-- Therefore, "Robins lay eggs" is evaluated as an *absolute generic* because only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other aternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$). -->
-<!-- The inferential machinery behind Cohen's domain restriction (i.e., what comrpises $Alt(F)$?) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[ -->
-<!--   However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks found in cognitive science. -->
-<!-- ] -->
-<!-- However, we note that this mechanism may be implicit in our own theory: the prior distribution over the prevalence of *lays eggs* presumably includes aspects of people's theories about reproduction (i.e., that only females lay eggs). -->
-<!-- Thus, there may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction.  -->
+We note additional machinery that Cohen's theory relies upon (and that is not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?).
+His theory posits that prevalence is calculuated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$).
+For example, the property "lays eggs" induces a set of alternatives that are associated with mechanisms of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...).
+"Robins lay eggs" is evaluated as an *absolute generic* as only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other aternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
+The inferential machinery behind Cohen's domain restriction (i.e., what comprises $Alt(F)$) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[
+  However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks used in cognitive science.
+]
+However, we note that this mechanism may be implicit in our own theory: the prior distribution over the prevalence of *lays eggs* presumably includes aspects of people's theories about reproduction (i.e., that only females lay eggs).
+Thus, there may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction.
 
 <!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
 
 ### Generic as indexical
 
-@Sterken2015 has recently proposed an intruiging account of the context-sensitive of generic language by treating generics as a kind of *indexical* (e.g., "this" or "I").
-The variability of endorsements is then attributed to mechanisms of domain restriction (described above with @Cohen1999) and context-sensitive "quantificational force".
-Our uncertain-threshold semantics may be a precise formalization of @Sterken2015's "quantificational force" (and a generalization of *underquantification*, see above), and we have argued above that domain restriction is not a necessary mechanisms for the cases considered in this paper. 
-We leave for future work exploring how the context-sensitivity of an indexical may differ from the kind of context-sensitivity in our model.
-
+@Sterken2015 has proposed analyzing generic statements as inherently context-sensitive, analagous to *indexicals* (e.g., "this" or "I").
+Variability of endorsements is attributed by @Sterken2015 to context-sensitive "quantificational force" as well as domain-restrictor [of the kind used by @Cohen1999, and many others].
+Our uncertain-threshold semantics can be seen be a particular formalization of @Sterken2015's context-sensitive "quantificational force". 
+We have not had need for employing domain restriction on the categories, though as noted above, it is a potential avenue for future development.
+<!-- Finally, how the context-sensitivity of an indexical differs from the kind of context-sensitivity with an uncertain-threshold is an important question for future research. -->
 
 ### "Normal" accounts
 
-The primary alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
+A popular alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
 For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
 However, were the world to function *normally* (e.g., dogs would not be involved in freak-tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
 The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and stereotyped language (e.g., "Boys are good at math”).
 Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations. 
-We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations. 
-Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future. 
+<!-- We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.  -->
+<!-- Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future.  -->
 
 ### Underquantification
 
@@ -1138,23 +1136,23 @@ A proposal similar to our account concerning underspecification of generics has 
 In their model, generics express an explicit quantified relation, specifically either "Some", "Most", or "All".
 The task of the computational linguist, then, is to construct a set of features that accurately predicts (relative to human judgments) the quantified relationship expressed by the generic [analagous to a quantifier version of the *implied prevalence* task used in @Gelman2003b; @Cimpian2010]. 
 Our semantic theory can be seen as a generalization of the *underquantification* to a continuous interval of possible meanings.
-This distinction is relevant for the acquisition of the language of generalizations; we do not think that quantified relations (e.g., "Some", "All") are in any way primary or special. 
+This distinction is relevant for the acquisition of the language of generalizations; we do not take as primary the quantified relations (e.g., "Some", "All").
 <!-- Formally, whereas the *underquantification* account posits that a generic is *ambiguous* between various meanings, we argue that the generic is *vague*, and has a continuum of possible meanings.  -->
-Additionally, by using a vague, underspecified threshold, our formulation naturally extends to other scales and other kinds of generalizations (e.g., habitual language), where quantified relations like "Most" or "All" are not directly applicable. 
+Additionally, by using an underspecified threshold, our formulation naturally extends to other scales and other kinds of generalizations (e.g., habitual language), where quantified relations like "Most" or "All" are not directly applicable. 
 
 # Conclusion
 
 It might seem paradoxical that a part of language that is so common in communication and central to learning should be vague. 
 Shouldn't speakers and teachers want to express their ideas as crisply as possible?
-To the contrary, underspecification can be efficient, given that context can be used to resolve  uncertainty in meaning [@Piantadosi2012].
-In our work, context takes the form of shared beliefs about the property in question. 
-By leveraging this common ground, genericity provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
+To the contrary, underspecification can be efficient, given that context can be relied upon to resolve uncertainty in the moment [@Piantadosi2012].
+In our work, context takes the form of shared beliefs between speakers and listeners. 
+By leveraging this common ground, the language of generalizations provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
 
-The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a naive listener.
+The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong impression to a naive listener.
 Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012].
-Disagreements are also predicted when interlocutors fail to share background assumptions, which could be differences in the prior distributions on prevalence or the comparison class.
+Disagreements are also predicted when interlocutors fail to share background assumptions, which could manifest as differences in the prior distributions on prevalence or what goes into the comparison class.
 Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?). 
-This is a promising area for future research.
+This is an important area for future research.
 
 Categories are inherently unobservable. 
 You cannot see the category \textsc{dog}, only some number of instances of it.
