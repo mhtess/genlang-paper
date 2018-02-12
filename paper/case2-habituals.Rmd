@@ -103,10 +103,12 @@ The difference in meaning of these questions was explained to participants on an
 Participants responded to this attention check by selecting an option from a drop-down menu consisting of four options (one correct description of the questions and three distractors). 
 
 ```{r habituals-priors-subfigs, fig.width = 8}
-example.habituals <- c("smokes marijuana", "smokes cigarettes","drinks coffee",
+example.habituals <- c(#"smokes marijuana", 
+                       "smokes cigarettes","drinks coffee",
                        "climbs mountains", "hikes", "runs", 
-                       "wears a suit", "wears a watch", "wears socks", 
-                       "writes poems", "goes to the movies", "plays the banjo"
+                       #"wears a suit", "wears a watch", "wears socks", 
+                       #"writes poems", 
+                       "goes to the movies"#, "plays the banjo"
                        )
 annualRates = list("5 years" = 1/5, "2 years" = 1/2,
                    "year" = 1, "6 months" = 2, "2 months" = 6,
@@ -123,12 +125,12 @@ figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.posterior.predictive.
            y = empirical_mean, ymin = ci_lower, ymax = ci_upper, color = gender))+
   facet_wrap(~measurement, scales = 'free', nrow = 2)+
   scale_color_solarized()+
-  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
-    geom_label_repel(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
-                    filter(item %in% example.habituals, gender == "female"), 
-                  inherit.aes =F,
-                  aes(x = MAP,y = empirical_mean, label = item), force = 15, size = 3)+
   geom_point()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  geom_label_repel(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+                    filter(item %in% example.habituals, gender == "female"), 
+                  inherit.aes =F, segment.alpha = 0.1,label.size = 0.15,
+                  aes(x = MAP,y = empirical_mean, label = item), force = 15, size = 2)+
   coord_fixed()+
   xlab("Model posterior predictive")+
   ylab("Empirical means")+
@@ -443,7 +445,12 @@ In addition, we observe that none of our items receive less than 25\% endorsemen
 
 
 ```{r habituals-endorsement-bars, fig.width = 8}
-habituals.endorsement.bars <- ggplot(md.hab.long, aes ( y = prediction, ymin = prediction_lower, ymax = prediction_upper,
+habituals.endorsement.bars <- ggplot(md.hab.long %>%
+                                       mutate(src = factor(src, levels = c(
+                                         "Human data", "Uncertain semantics",
+                                         "Fixed semantics", "Referent frequency",
+                                         "Distinctiveness +\n referent frequency"
+                                       ))), aes ( y = prediction, ymin = prediction_lower, ymax = prediction_upper,
                   x = time_period, fill = logAnnualRate))+
   #geom_abline(intercept = 0, slope = 1, lty = 3)+
   #geom_linerange(alpha = 0.15)+
