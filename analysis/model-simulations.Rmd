@@ -213,9 +213,6 @@ for (p in priorNames){
 ```
 
 
-
-
-
 ```{r simluationEndorsementModelRuns}
 s1.model <- '
 var interpreter = cache(function(utterance) {
@@ -279,12 +276,215 @@ s1.simulations.relabeled <- s1.simulations %>%
 
 ```
 
-```{r}
-save(sims.priors, sims.uncertain.thresholds, sims.fixed.thresholds,s1.simulations.relabeled, file = "../paper/cached_results/modelSims-priors_fixedT_uncertainT_speaker.RData")
+```{r saveResults}
+#save(sims.priors, sims.uncertain.thresholds, sims.fixed.thresholds,s1.simulations.relabeled, file = "../paper/cached_results/modelSims-priors_fixedT_uncertainT_speaker.RData")
 ```
 
 
+# Schematic (uniform prior) figure
 
+```{r schematicModel}
+schematicModel <- '
+var round = function(x){
+  return Math.round(x*100)/100
+}
+
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+
+var avoidEnds = function(x){
+  return x >= 1 ? 0.99 : x == 0 ? 0.01 : x
+}
+
+var lb = 0, ub = 1, diff = 0.05;
+var bins = _.range(lb, ub + diff, diff)
+
+var DiscreteBeta = function(a, b){
+  Infer({model: function(){
+    categorical({
+      vs:bins,
+      ps:map(function(x){
+        Math.exp(Beta({a, b}).score(avoidEnds(x)))
+      }, bins)
+    })
+  }})
+}
+
+var utterances = [
+  "gen",
+  "null"
+];
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw(utterances)
+}});
+
+var meaning = function(words, state, threshold){
+  return words == "gen" ? state > threshold :
+  true
+};
+
+var speakerOptimality = 3;
+var speakerOptimality2 = 1;
+
+var fixedThetalistener0 = cache(function(utterance, threshold) {
+  Infer({model: function(){
+    var state = sample(DiscreteBeta(1, 1));
+    var m = meaning(utterance, state, threshold);
+    condition(m);
+    return state;
+  }})
+}, 10000);
+
+var greaterThanThresholdBins = _.range(lb, ub, diff)
+var lessThanThresholdBins = _.range(lb+diff, ub+diff, diff)
+
+var litInterpreter = cache(function(utterance) {
+  Infer({model: function(){
+    var threshold = uniformDraw(greaterThanThresholdBins)
+
+    var state = sample(DiscreteBeta(1, 1));
+    var m = meaning(utterance, state, threshold);
+    condition(m);
+    return state
+  }})
+}, 10000);
+
+var speaker1 = cache(function(state) {
+  Infer({model: function(){
+    var utterance = sample(utterancePrior);
+    var L0 = litInterpreter(utterance);
+    factor(speakerOptimality*L0.score(state));
+    return utterance;
+  }})
+}, 10000);
+'
+
+listenerCall <- '
+_.fromPairs(map(function(u){
+  var post = litInterpreter(u)
+  return [u, post]
+}, utterances))
+'
+
+speakerCall <- '
+_.flatten(
+    map(function(s){
+      var speakProbs = speaker1(s)
+       return {  
+          state: s,
+          "gen": Math.exp(speakProbs.score("gen")),
+          "null": Math.exp(speakProbs.score("null"))
+        }
+    }, bins)
+)
+'
+
+literalListenerCall <- '
+_.flatten(_.flatten(
+map(function(tH){
+    var l0posterior = fixedThetalistener0("gen", tH)
+    display(expectation(l0posterior))
+    map(function(s){
+       return {  
+          state: s,
+          theta:tH, 
+          literalPosterior: Math.exp(l0posterior.score(s))
+        }
+    }, bins)
+}, greaterThanThresholdBins)
+))
+'
+```
+
+### Fixed thresholds
+
+
+```{r schematicFixed}
+rs.wp.l0 <- webppl(paste(schematicModel, literalListenerCall,  sep = '\n'))
+
+
+fig.l0.thresholds <- ggplot(rs.wp.l0, aes( x = state, 
+                                           y = literalPosterior, 
+                                       group = theta))+
+  geom_line(size = 2)+
+  geom_vline(aes(xintercept = theta), 
+             color = 'darkred', size = 2)+
+  #scale_color_solarized()+
+  scale_x_continuous(breaks = c(0, 0.5, 1))+
+  scale_y_continuous(breaks = c(0, 0.5, 1))+
+  #scale_color_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  ggtitle("truth-functional threshold = ")+
+  ylab("Literal listener posterior probability")+
+  xlab("Degree of happiness")+
+  facet_wrap(~theta)+
+  theme(text = element_text(size = 16))
+```
+
+
+Integrate out threshold (full interpretation model)
+
+```{r schematicUncertain}
+rs.listener.wp <- webppl(paste(schematicModel, listenerCall,  sep = '\n'))
+
+rs.listener.wp.tidy <- bind_rows(
+  data.frame(rs.listener.wp$gen) %>% 
+    mutate(utterance = "gen"),
+  data.frame(rs.listener.wp$null) %>% 
+    mutate(utterance = "null")
+)
+
+
+rs.listener.wp.tidy.samples <- get_samples(
+  rs.listener.wp.tidy %>% rename(prob = probs), 10000)
+
+ggplot(rs.listener.wp.tidy.samples, 
+       aes( x = support,fill = utterance, color = utterance))+
+  geom_density(alpha = 0.4, size = 1.3)+
+  scale_fill_solarized()+
+  scale_color_solarized()+
+  xlab("prevalence")+
+  ylab("Posterior probability density")+
+  scale_x_continuous(breaks =c(0, 1))+
+  scale_y_continuous(breaks = c(0, 2))+
+  #guides(fill = F, color = F)+
+  ggtitle("prevalence posterior")
+
+#ggsave("figs/lassiterL1_posteriors_wCost1,5_alpha1.png", width = 6, height = 4)
+```
+
+
+```{r schematicEndorsement}
+rs.wp <- webppl(paste(schematicModel, speakerCall,  sep = '\n'))
+
+rs.tidy <- data.frame(rs.wp) %>%
+  gather(utt, prob, -state)
+
+fig.thresholds <- ggplot(rs.tidy %>%
+                           mutate(utt = factor(utt,
+                                               levels=c("null","gen"))), 
+                         aes( x = state, y = prob, fill = utt))+
+  geom_col( 
+           color = 'black')+
+  #facet_wrap(~happy_theta)+
+  scale_x_continuous(breaks = c(0, 0.5, 1))+
+  scale_y_continuous(breaks = c(0, 0.5, 1))+
+  ggtitle("truth-functional threshold = ")+
+  ylab("Speaker probability of saying 'happy'")+
+  xlab("Degree of happiness")+
+  theme(text = element_text(size = 16))+
+  scale_fill_solarized()
+
+fig.thresholds
+#ggsave(fig.thresholds, 
+ #      file = "figs/lassiterS1_uttXstateXtheta_wCost.pdf", width = 7, height = 7)
+```
+
+```{r}
+save(rs.wp.l0, rs.listener.wp.tidy.samples, rs.tidy,
+     file = "../paper/cached_results/modelSims-uniform_fixedT_uncertainT_speaker.RData")
+```
 
 # Misc extra
 
