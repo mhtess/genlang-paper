@@ -136,11 +136,12 @@ possible titles:
 
 # Introduction 
 
-Learning that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to thrive in our open-ended world.
-Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding that lightning strikes tall objects).
-It thus is important that language allow us to communicate such *generalizations* to each other.
-By sharing generalizations, we flourish collectively without individually needing to taste potentially-poisonous plants or personally witness many lightning strikes.
-Flexibly communicating generalizations from one generation to the next may be a foundational mechanism behind the faithful transmission of knowledge necessary for cumulative cultural evolution [@Tomasello1999; @Henrich2015].
+<!-- Learning that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to thrive in our open-ended world. -->
+Extracting generalizable knowledge that extends beyond the present context is crucial to thrive in our open-ended, dynamic world. 
+Yet such knowledge can be difficult to acquire: The relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding that lightning strikes tall objects).
+Fortunately, we are not bound to acquiring generalizations on our own; language allow us to communicate generalizations between each other.
+By sharing generalizable knowledge, we flourish collectively without individually needing to taste potentially-poisonous plants or personally witness many lightning strikes.
+Furthermore, flexibly communicating generalizations from one generation to the next may be a mechanism by which culture can cumulatively evolve [@Tomasello1999; @Henrich2015].
 
 <!-- Generalizations can be acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. \ndg{cite older stuff. eg hume} -->
 <!-- Cooperative teachers can facilitate inductive learning by supplying helpful observations to the learner [@Csibra2009; @Tomasello1999; @Butler2012]. -->
@@ -149,13 +150,17 @@ Flexibly communicating generalizations from one generation to the next may be a 
 <!-- Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization. -->
 <!-- \ndg{this par doesn't really do much} -->
 
-The language of generalization is often studied via *generic language* (or, *generics*): simple statements predicating properties of categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
-Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which children as young as 2 appreciate [@Cimpian2008].
+Certain linguistic expressions encode generalizations.
+The *language of generalization* is most commonly studied with *generic language* (or, *generics*), generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
+<!-- Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008].  -->
+In contrast to statements about concrete individuals or events (e.g., "Rufus is friendly"), generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dog}) and convey information that extends beyond the here and now, a fact which children as young as 2 appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
 Generics are just one case in the language of generalization, however; events can be described in generalization (*habitual language*; e.g., "Mary swims after work.") as well as causal relationships (*causal language*; e.g., "Staring at the sun makes you go blind.").
-Every language, it is believed, can express generalization [@Behrens2005; @Carlson1995] and is central to the growth of conceptual knowledge [@Gelman2004].
-Considering generalization as a singular phenomenon in language, thus, promises to provide understanding of a wide variety of linguistic expressions with powerful implications.
+It is believed every language can express generalization [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
+<!-- Thus, an understanding of the language of generalization that extends to a wide variety of types (e.g., categories, events, causes)  -->
+
+<!-- Thus, an understanding of generalization as a singular phenomenon in language  -->
+<!-- promises to provide an understanding of a wide variety of linguistic expressions with rich meanings. -->
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
 <!-- Individual entities can also be talked about in generalization, using so-called  -->
@@ -163,43 +168,47 @@ Considering generalization as a singular phenomenon in language, thus, promises 
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite their ubiquity and relative simplicity, there have been few formal models of the language of generalization and none that have made precise, quantitative predictions to match human intuitions. 
-The major challenge in formalization is determining *what makes the statements true or false*.
+Despite its ubiquity and relative morphosyntactic simplicity, there have been few formal models of the language of generalization and none that have made precise, quantitative predictions to match human intuitions. 
+The major challenge in formalizing generalization in language is determining *what makes the statements true or false*.
 When we hear "Dogs bark", it sounds like a universal statement, as in "All dogs bark".
-But the property does not apply to all dogs: Basenji dogs are barkless^[
-http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
-], for example.
+But the property does not apply to all dogs: Basenji dogs are barkless,
+<!-- ^[ -->
+<!-- http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html -->
+<!-- ],  -->
+for example.
 The generalization could signal something weaker like "Most dogs bark".
 However, most mosquitos do not carry malaria (in fact, only a tiny fraction do), but "Mosquitos carry malaria" is intuitively true.
 <!-- *most mosquitos* do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true. -->
-The only quantifier that would permit such a statement would be "some" (e.g., "Some mosquitos carry malaria").
-But weakening the generalization to mean "some" is too permissive: some robins are female (in fact, half of them are), but asserting "Robins are female" seems odd.
+The only *quantifier* that would permit such a statement would be "some" (e.g., "Some mosquitos carry malaria").
+But weakening the generalization to mean "some" is too permissive: Some robins are female (in fact, half of them are), but asserting "Robins are female" seems odd.
 Even more perplexing: Those very same female robins lay eggs, and "Robins lay eggs" is a perfectly fine thing to say.
 
-These observations have led to the conclusion that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not the only parameter in the meaning of generalizations.
-Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
+These observations have led to the conclusion that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not the only factor that goes into making a generalization true or false.
+The predominantly studied generic statements are thought to refer to *kinds* [@Leslie2008] and thus may the linguistic manifestation of special, kind--property relations [@Prasada2000; @Prasada2012]. 
+<!-- Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012].  -->
 "Bishops move diagonally" not because bishops tend to move diagonally but rather because those are the rules of the game.
-It's been suggested that the mind has cognitive primitives that directly dictate what generalizations are true or false.
-One such primitive is the ability to priviledge *characteristic features*: For an animal, their mode of reproduction is a characteristic feature. 
-Thus, whatever their mode of reproduction may be will make a true generic statement (e.g., "Robins lay eggs"), regardless of the actual prevalence of the feature.
-*Horrifying* or *striking* information is also priviledged and creates true generics, which is why "Mosquitos carry malaria" is true
+The study of what makes generalizations true or false then reduces to a study of concepts [@carlson2009concepts] and kind--property relations [@Prasada2013].
+<!-- It's been suggested that the mind has cognitive primitives that directly dictate what generalizations are true or false. -->
+<!-- One such primitive is the ability to priviledge *characteristic features*: For an animal, their mode of reproduction is a characteristic feature.  -->
+<!-- Thus, whatever their mode of reproduction may be will make a true generic statement (e.g., "Robins lay eggs"), regardless of the actual prevalence of the feature. -->
+<!-- *Horrifying* or *striking* information is also priviledged and creates true generics, which is why "Mosquitos carry malaria" is true -->
 
-Yet, generics convey more than just rich, conceptual relations [@Nickel2008; @Nickel2016; @Sterken2015]. 
-Purely arbitrary relationships can result in true generics.
-<!-- Arbitrary relationships are also expressed with generics:  -->
-"Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false.
-Ravens and toasters have no priviledged relationship to each other, but the statement "Ravens are bigger than toasters" is still a true generalization.
-Conceptual accounts must be supplemented with the proviso that, in some situations, the actual prevalence of the feature matters for making generalizations true.
+Yet, purely arbitrary relationships can result in true generalizations [@Nickel2008; @Nickel2016; @Sterken2015].
+Ravens and toasters have no priviledged relationship to each other, but "Ravens are bigger than toasters" is still true.
+An understanding of generalizations just in terms of conceptual relations must be supplemented with the proviso that, in some situations, the actual prevalence of the feature matters for making generalizations true.
 
-What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [e.g., @Prasada2013].
+<!-- Furthermore, how conceptual accounts of the language of generalizations should extend beyond category generalizations (i.e., generics) is less clear.  -->
+<!-- "Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false. -->
+
+What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [@Prasada2013].
 But insofar as there is a single class of linguistic expressions that convey generalization, there should be something common to them all: a general, unified semantic core.
 In this paper, we propose such a semantic core for the language of generalization.
 To do so, we look to probability, the universal currency of belief and a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
 Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
-To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the information-theoretic function of a generalization by explicitly modeling the background knowledge a language interpreter would use when understanding such language.
+To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the information-theoretic function of a generalization by explicitly modeling the background knowledge a language interpreter would bring to bear when understanding generalizations.
 We create an endorsement model based on this interpretation hypothesis, providing the first formal theory that makes quantitative predictions about what makes generalizations in language true or false.
 The assumptions of the theory, and in turn, the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.
-Though concepts such as *striking properties* are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
+Though conceptual structure of kind discussed of the sort discussed by Leslie and Prasada are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
 
 
 <!-- The test of a unified semantic core is its ability to explain what makes the statements true or false. -->
@@ -238,11 +247,11 @@ Though concepts such as *striking properties* are not explicitly formalized in o
 
 The paper is organized as follows. 
 In Section 1, we formalize the hypothesis that the core of meaning of a generalization in language is simple but *underspecified*, articulate a thory of relevant background knowledge used to understand a generalization in language, and develop a computational model of endorsement around these components.
-The endorsement model's predictions depend upon the background knowledge and the probability communicated, which we demonstrate via simulation.
+The endorsement model's predictions depend upon the background knowledge and the prevalence communicated, which we demonstrate via simulation.
 Sections 2 - 4 present our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
-Across these three case studies, we both measure and manipulate background knowledge and the probability communicated, measuring their effects on endorsement. 
+Across these three case studies, we both measure and manipulate background knowledge and the prevalence communicated, measuring their effects on endorsement. 
 We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements, where alterantive models fall short.
-This work opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language.
+This work opens the door to understanding generalizations in richer, pragmatic language understanding contexts and building models that learn abstract knowledge from language.
 
 <!-- (cumulative $r^2(N) = 0.XX$). -->
 <!-- In the final section of the paper, we discuss the generality of our approach and pave a path to unifying the extant psychological, linguistic, and philosophical literatures on generalization in language. -->
