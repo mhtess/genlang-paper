@@ -7,7 +7,7 @@ author:
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "450 Serra Mall, Bldg. 420, Rm. 316, Stanford, CA 94305"
-    email         : "mtessler@stanford.edu"
+    email         : "mhtessler@stanford.edu"
   - name          : "Noah D. Goodman"
     affiliation   : "1"
 
@@ -52,6 +52,7 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : no
+toc               : yes
 
 lang              : "english"
 class             : "man"
@@ -169,7 +170,7 @@ It is believed every language can express generalization [@Behrens2005; @Carlson
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite its ubiquity and relative morphosyntactic simplicity, there have been few formal models of the language of generalization and none that have made precise, quantitative predictions that match human intuitions. 
+Despite its ubiquity and relative morphosyntactic simplicity, the language of generalization has been addressed by few formal models of and none that have made precise, quantitative predictions that match human intuitions. 
 The major challenge in formalizing generalization in language is determining what makes the statements true or false.
 When we hear "Dogs bark", it sounds like a universal statement, as in "All dogs bark".
 But the property does not apply to all dogs: Basenji dogs are barkless,
@@ -322,9 +323,10 @@ Fortunately, language provides simple ways of communicating generalizations.
 
 ## The language of generalization
 
-The language of generalization is easy to spot when a property is predicated of a category: "Ks F" (e.g., "Dogs bark").
+The language of generalization is easy to spot when a property, that could project onto an individual, is predicated of a category (e.g., "Dogs are friendly"; *barks* could apply to an individual as in "This dog is friendly").
 This is often called *generic language* or *generics* [@Carlson1977].
-But generalization can also manifest when describing an individual (*habitual language*; e.g., "John smokes").
+Generic statements can be contrasted with kind-denoting statements which use properties that can only apply to the category as a whole (e.g., "Dinosaurs are extinct"; *extinct* is not a property that could apply to an individual).
+Generalization can also manifest when describing an individual (*habitual language*; e.g., "John smokes").
 Verbs like *causes* or *makes* also seem to convey generalization, in this case, about an instance of a causal event (*causal language*; e.g., "Staring at the sun makes you go blind"). ^[
   We adopt this somewhat idiosyncratic categorization in order to emphasize the different semantic types predicated. 
   Some authors refer to all of these types as *generics*.
