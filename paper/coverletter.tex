@@ -13,7 +13,7 @@
 \makeatletter
 \def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
 \makeatother
-
+ 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT MARGINS
 %----------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 \topmargin -1in
 \longindentation 0.50\textwidth
 \parindent 0.4in
-
+ 
 %----------------------------------------------------------------------------------------
 %	SENDER INFORMATION
 %----------------------------------------------------------------------------------------
@@ -115,49 +115,72 @@
 
 \opening{Dear Editor,}
 
-We enclose the manuscript \emph{Communicating Generalizations} to be considered for publication in \emph{Psychological Review}. 
-This paper explores the linguistic means by which generalizations about categories, events, and causality are communicated.  
-We present a Bayesian model of understanding generalizations in language, and show that it predicts human judgments with high quantitative accuracy across several experiments.
-We probe the theory in more detail, and find that the semantics of generic language depend in a fundamental way on subjective beliefs. 
+We enclose the manuscript \emph{The Language of Generalization} to be considered for publication in \emph{Psychological Review}. 
+This paper explores the linguistic means by which generalizations are communicated.  
+We present a Bayesian model of endorsing generalizations and show that it predicts human judgments with high quantitative accuracy across several experiments in diverse domains.
+The theory suggests that the language of generalizations can be understood in terms of a simple semantic theory that operates over beliefs, represented as probability.
 
 Understanding how the world works requires learning generalizations. 
-The kinds of observations that would facilitate such learning, however, can be rare (e.g., \emph{figuring out that lightning strikes tall objects}) or costly (e.g., \emph{learning that certain plants are poisonous}).
-We don't need to need taste every plant to figure out which ones are poisonous; we don't need to stand under objects of various heights to learn that lightning strikes tall objects.
-Language allow us to communicate generalizations to each other.
+The kinds of observations that would facilitate such learning, however, may be rare (e.g., \emph{figuring out that lightning strikes tall objects}) or costly (e.g., \emph{learning that certain plants are poisonous}).
+We do not need to need taste every plant to figure out which ones are poisonous; we don't need to stand under objects of various heights to learn that lightning strikes tall objects.
+Language allow us to learn generalizations from each other.
 
-The language of generalizations is often studied in what's called \emph{generic language} (e.g., ~\emph{Birds fly}).
-Generic utterances are common in everyday conversation (\emph{Movie theaters are cold.}), the speech of young children (\emph{Slides aren't for grown ups!}), child-directed speech (\emph{Dogs are friendly.}), political and scientific discourse (\emph{Politicians make promises.}, \emph{Psychology experiments don't replicate.}), stereotypes (\emph{Boys are good at math.}), motivation (\emph{Big girls eat broccoli!}), and many other facets of experience.
-Generalizations can be transmitted about more than just categories.
-\emph{Habitual language} conveys generalizations about events (e.g., ~\emph{Mary swims after work}).
-\emph{Causal language} conveys generalizations about causal events (e.g., ~\emph{Staring at the sun makes you go blind}).
+The language of generalization is most commonly studied in predications of categories (e.g., ~\emph{Birds fly}), otherwise known as \emph{generic language}.
+But different semantic types can described in generalization, including events (\emph{habitual language}; e.g., ~\emph{Mary swims after work}) and causal relationships (\emph{causal language}; e.g., ~\emph{Staring at the sun makes you go blind}).
+Generalizations are ubiquitous in everyday conversation (\emph{Movie theaters are cold.}), the speech of young children (\emph{Slides aren't for grown ups!}), child-directed speech (\emph{Dogs are friendly.}), political and scientific discourse (\emph{Politicians make promises.}, \emph{Psychology experiments don't replicate.}), stereotypes (\emph{Boys are good at math.}), motivation (\emph{Big girls eat broccoli!}), and many other facets of experience.
 
-Though this type of language is found everywhere, the meaning of generalizations in language is philosophically puzzling and has resisted precise formalization. 
-The major issue in formalizing generalizations in language is determining what makes such statements true or false.
-Consider generic utterances:
-Generics are often about characteristic properties contained by a majority (e.g., \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g., \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
-Indeed, \emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier (i.e., \emph{some}) would suffice. 
-Some have taken this evidence to suggest that generics must express special mental relationships between kinds and properties, but arbitrary generalizations --- which seem only to depend on the actual statistics of the world --- can also be conveyed with generics (e.g., \emph{Ravens are bigger than toasters}).
-There have been a few formal models proposed for generic language, but none that have made precise, quantitative predictions about human endorsement patterns.
 
-Analogous phenomena can be observed in habitual and causal language.
+%Given that inductive generalization can be described by probability (e.g., the probability that the next instance of the category will have a feature), it seems natural that the core meaning generalizations in language would relate to this predictive probability.
+Despite the ubiquity of the language, its meaning is philosophically puzzling and has resisted precise formalization. 
+%However, the language of generalizations displays extreme sensitivities to context, which has heretofore crippled previous attempts to formalize this major function of language. 
+%Though this type of language is found everywhere, the meaning of generalization is philosophically puzzling and has resisted precise formalization. 
+%The major issue in formalizing the language of generalizations is determining what makes such statements true or false.
+For example, generics can describe properties contained by a majority (e.g., \emph{Dogs bark}) but still can be felicitous based on only a minority displaying the property (e.g., \emph{Robins lay eggs}, even though only adult, female, fertile robins do). 
+\emph{Mosquitos carry malaria} sounds true, even though only 1\% of them do, highlighting that the acceptability of generics can be so flexible as to include cases where only the weakest quantifier (i.e., \emph{some}) would suffice. 
+Habitual and causal language display similar context-sensitivites:
 If John smokes once a year, one might hesitate to endorse the statement \emph{John smokes}.
 Yet, climbing a mountain once a year makes John really seem like he \emph{climbs mountains}.
 \emph{Drinking moonshine makes you go blind} and so does \emph{staring at the sun}, but neither statement conveys precise information about the relative risk.
 
-In this paper, we propose that the core meaning of generalizations in language is \emph{simple but underspecified}.
-We adopt a formalism for the truth conditions of this language which has antecedents in formal semantics: a threshold function (e.g., the statement is true if the frequency is greater than some criterion $\theta$).
-The critical novelty of our approach is that the criterion $\theta$ is left underspecified in the language, and must be resolved in context.
-We instantiate this idea in a state-of-the-art probabilistic model of communication, and operationalize \emph{endorsement} (i.e., felicity or agreement with a statement) as a speaker's decision about whether or not to say the generalization to a naive listener.
-We show how this simple model naturally explains \emph{flexible truth conditions} via interlocutors' beliefs about the property or event in the question.
-Across our three case studies, we both \emph{measure and manipulate} prior knowledge, showing that it is strongly and causally related (via our model) to endorsement. 
-Using the case study of habitual language, we go on to further interrogate the semantic scale from which generalizations are evaluated.
-We find that speakers' subjective beliefs about what is likely to be the case in the future, and not the objective truth about what has been the case in the past is what drives endorsements. 
-Across our case studies, we show very strong agreement between the predictions of our model with empirical human data; additionally, we do so in situations where simpler models would not suffice. 
-This novel approach for generalizations in language opens up a number of interesting questions about the nature of conceptual structure and its linguistic traces, which we discuss at the end of the paper.
+%Some have taken this evidence to suggest that generics cannot be understood in terms of how prevalent the property is, instead appealing to special mental relationships between certain kinds and certain properties.
+%There have been a few formal models proposed for generic language, but none that have made precise, quantitative predictions about human endorsement patterns.
+
+%The dominant view in psychology has been to focus on special conceptual relations that supposedly determine what makes the language the generalization true or false.
+In this paper, we take the context-sensitivity of generalizations seriously and formalize the hypothesis that the core meaning of generalizations is \emph{simple but underspecified}. 
+We embed this idea in a simple, rational model of communication and use it to address the fundamental question: What makes the language of generalizations true or false?
+Our answer is that endorsement (true or false?) is a speaker's decision about whether or not to say the generalization to a naive listener.
+Our model is the first formal model to make precise quantitative predictions about the language of generalization.
+
+We have previously received peer-review of a similar manuscript submitted to other top-ranking journals including \emph{Psychological Review}.
+Those reviews questioned how much our work advances our understanding of the language of generalization and highlighted the need for comparison to other models. 
+This manuscript differs from previous submissions in two major ways.
+%We show how this model naturally explains the flexibility in endorsement patterns via interlocutors' prior beliefs about the property or event in the question.
+The empirical and much of the philosophical literatures has been focused on generalizations about categories, or generic language, which our previous manuscript also focused on.
+In this paper, we investigate three case studies: generalizations about categories, events, and causes. 
+Immediately we see the generality of our formal model: We are able to explain context-sensitive endorsements across these three domains without adopting domain-specific assumptions.
+Furthermore, each case study naturally lends methodological advantages to provide further tests of our model.
+With event generalizations, we are able to interrogate the underlying semantic scale, and find that speakers' subjective beliefs about what is likely to be the case in the future, and not the objective truth about what has been the case in the past, is what drives endorsements. 
+With causal generalizations, we are able to \emph{manipulate} (rather than merely measure) prior knowledge, and show it is in fact causally related to endorsement. 
+Finally, we develop three alternative models: two linear models based on empirically-elicited statistical knowledge and one rich, cognitive model which lacks the \emph{underspecification of meaning} at the core of our hypothesis. 
+These alternative models fail to account for key aspects of the context-sensitivity that is observed in the data and that our full model predicts.
+These alternative models and the empirical paradigms used provide strong tests of the theoretical contribution of our paper. 
+%This novel approach for generalizations in language opens up a number of interesting questions about the nature of conceptual structure and its linguistic traces, which we discuss at the end of the paper.
+
+
+
+%, which we use to make precise, quantitative predictions about sentence endorsement. 
+% introduce the first formal model of generalizations in language and use it to make 
+% this hypothesis in a probabilistic model of language understanding.  that the core 
+%We adopt a formalism for the truth conditions of this language which has antecedents in formal semantics: a threshold function (e.g., the statement is true if the prevalence is greater than some criterion $\theta$).
+%Attempts of this kind have been proposed before but none have been formalized into a model that makes predictions about human judgments. 
+%The critical novelty of our approach is that the criterion $\theta$ is left underspecified in the language, and must be resolved in context.
+%We instantiate this idea in a state-of-the-art probabilistic model of communication, and operationalize \emph{endorsement} (i.e., felicity or agreement with a statement) 
+
+
 
 This work will be of strong interest to psychologists, as well as linguists, philosophers, and computer scientists interested in language and interaction.
 The puzzles of generalizations in language are immediately compelling to a general audience, the more so because of their connections to cognitive development, cultural transmission of knowledge, and propagation of stereotypes.
-Our solution represents the first formal model of generic language to be validated by quantitative agreement with human behavioral data.
+Our solution represents the first formal model of generalization in language to be validated by quantitative agreement with human behavioral data.
 It is not, however, uncontroversial: we champion a statistical view that has been often dismissed in the literature.
 Indeed, in presentations around the world we have found this work to excite broad interest and engagement.
 
