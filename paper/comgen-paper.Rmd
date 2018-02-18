@@ -1,5 +1,5 @@
 ---
-title             : "The language of generalization: Probability, vagueness, and interaction"
+title             : "The language of generalization"
 shorttitle        : "The language of generalization"
 
 author: 
@@ -7,7 +7,7 @@ author:
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "450 Serra Mall, Bldg. 420, Rm. 316, Stanford, CA 94305"
-    email         : "mtessler@stanford.edu"
+    email         : "mhtessler@stanford.edu"
   - name          : "Noah D. Goodman"
     affiliation   : "1"
 
@@ -52,6 +52,7 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : no
+toc               : yes
 
 lang              : "english"
 class             : "man"
@@ -78,7 +79,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
 
 ```{r libraries, cache = F}
 library(papaja)
-#library(formatR)
+library(formatR)
 library(rwebppl)
 library(xtable)
 library(tidyverse)
@@ -94,6 +95,7 @@ library(knitr)
 library(kableExtra)
 library(cowplot)
 library(magick)
+library(viridis)
 theme_set(theme_few())
 estimate_mode <- function(s) {
   d <- density(s)
@@ -132,13 +134,15 @@ possible titles:
 - The language of generalization: Probability, vagueness, and interaction
 -->
 
+
 # Introduction 
 
-Learning that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to thrive in our open-ended world.
-Yet such knowledge can be difficult to acquire: Relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding that lightning strikes tall objects).
-It thus is important that language allow us to communicate such *generalizations* to each other.
-By sharing generalizations, we flourish collectively without individually needing to taste potentially-poisonous plants or personally witness many lightning strikes.
-Flexibly communicating generalizations from one generation to the next may be a foundational mechanism behind the faithful transmission of knowledge necessary for cumulative cultural evolution [@Tomasello1999; @Henrich2015].
+<!-- Learning that an object tends to have a property, an entity tends to exhibit a behavior, or a cause tends to produce an effect can be crucial to thrive in our open-ended world. -->
+Acquiring understanding that extends beyond the present context is crucial to thrive in our open-ended, dynamic world. 
+Yet such knowledge can be difficult to extract from the environment: The relevant observations may be costly (e.g., learning that a plant is poisonous) or rare (e.g., understanding that lightning strikes tall objects).
+Fortunately, we are not bound to acquiring generalizations on our own; language allow us to communicate generalizations between each other.
+By sharing generalizable knowledge, we flourish collectively without individually needing to taste potentially-poisonous plants or personally witness many lightning strikes.
+Furthermore, flexibly communicating generalizations from one generation to the next may be a mechanism by which culture can cumulatively evolve [@Tomasello1999; @Henrich2015].
 
 <!-- Generalizations can be acquired from the world by drawing inductive inferences from observations [@Baldwin1993; @Xu2008; @Dewar2010]. \ndg{cite older stuff. eg hume} -->
 <!-- Cooperative teachers can facilitate inductive learning by supplying helpful observations to the learner [@Csibra2009; @Tomasello1999; @Butler2012]. -->
@@ -147,13 +151,18 @@ Flexibly communicating generalizations from one generation to the next may be a 
 <!-- Objects have many properties though; when speakers attach properties to kind-labels (e.g., "Dogs bark"), listeners hear a generalization. -->
 <!-- \ndg{this par doesn't really do much} -->
 
-The language of generalization is often studied via *generic language* (or, *generics*): simple statements predicating properties of categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
-Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008]. 
-In contrast to *particular statements* (e.g., "Rufus is friendly") which describe individual entities or situations and can be verified through observation, generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dogs}) and convey information that extends beyond the present context, a fact which children as young as 2 appreciate [@Cimpian2008].
+<!-- Certain linguistic expressions encode generalizations. -->
+<!-- Language provides multiple, distinct ways of encoding generalizations. -->
+The *language of generalization* is most commonly studied with *generic language* (*generics*) or generalizations about categories [e.g., "Dogs are friendly"; @Carlson1977; @Cohen1999; @Leslie2007; @Nickel2008].
+<!-- Generics are ubiquitous in everyday conversation as well as in child-directed speech [@Gelman2008].  -->
+In contrast to statements about concrete individuals or events (e.g., "Rufus is friendly"), generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dog}) and convey information that extends beyond the here and now, a fact which children as young as 2 appreciate [@Cimpian2008].
 <!-- Additionally, generics are the primary way by which speakers discuss social categories, and thus are key to propagating stereotypes [@Gelman2004; @Rhodes2012; @Leslie2015] and impacting motivation [@Cimpian2010]. -->
 Generics are just one case in the language of generalization, however; events can be described in generalization (*habitual language*; e.g., "Mary swims after work.") as well as causal relationships (*causal language*; e.g., "Staring at the sun makes you go blind.").
-Every language, it is believed, can express generalization [@Behrens2005; @Carlson1995] and is central to the growth of conceptual knowledge [@Gelman2004].
-Considering generalization as a singular phenomenon in language, thus, promises to provide understanding of a wide variety of linguistic expressions with powerful implications.
+It is believed every language can express generalization [@Behrens2005; @Carlson1995] and that such language is central to the growth of conceptual knowledge [@Gelman2004].
+<!-- Thus, an understanding of the language of generalization that extends to a wide variety of types (e.g., categories, events, causes)  -->
+
+<!-- Thus, an understanding of generalization as a singular phenomenon in language  -->
+<!-- promises to provide an understanding of a wide variety of linguistic expressions with rich meanings. -->
 
 <!-- Generic statements ascribing properties to categories are just one kind of generalization found in language.  -->
 <!-- Individual entities can also be talked about in generalization, using so-called  -->
@@ -161,43 +170,47 @@ Considering generalization as a singular phenomenon in language, thus, promises 
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite their ubiquity and relative simplicity, there have been few formal models of the language of generalization and none that have made precise, quantitative predictions to match human intuitions. 
-The major challenge in formalization is determining *what makes the statements true or false*.
+Despite its ubiquity and relative morphosyntactic simplicity, the language of generalization has been addressed by few formal models of and none that have made precise, quantitative predictions that match human intuitions. 
+The major challenge in formalizing generalization in language is determining what makes the statements true or false.
 When we hear "Dogs bark", it sounds like a universal statement, as in "All dogs bark".
-But the property does not apply to all dogs: Basenji dogs are barkless^[
-http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html
-], for example.
+But the property does not apply to all dogs: Basenji dogs are barkless,
+<!-- ^[ -->
+<!-- http://strangesounds.org/2014/09/basenji-dogs-basenjis-dont-bark-howl.html -->
+<!-- ],  -->
+for example.
 The generalization could signal something weaker like "Most dogs bark".
-However, most mosquitos do not carry malaria (in fact, only a tiny fraction do), but "Mosquitos carry malaria" is intuitively true.
+However, *most* mosquitos do not carry malaria (in fact, only a tiny fraction do), but "Mosquitos carry malaria" is intuitively true.
 <!-- *most mosquitos* do not carry malaria, while the statement "Mosquitos carry malaria" is intuitively true. -->
-The only quantifier that would permit such a statement would be "some" (e.g., "Some mosquitos carry malaria").
-But weakening the generalization to mean "some" is too permissive: some robins are female (in fact, half of them are), but asserting "Robins are female" seems odd.
+The only *quantifier* that would permit such a statement would be *some* (e.g., "Some mosquitos carry malaria").
+But weakening the generalization to mean *some* is too permissive: Some robins are female (in fact, half of them are), but endorsing "Robins are female" seems odd.
 Even more perplexing: Those very same female robins lay eggs, and "Robins lay eggs" is a perfectly fine thing to say.
 
-These observations have led to the conclusion that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not the only parameter in the meaning of generalizations.
-Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. 
+These observations have led some to conclude that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not the only factor that goes into making a generalization true or false.
+The predominantly studied generic statements are thought to refer to *kinds* [@Leslie2008] and thus may the linguistic manifestation of special, kind--property relations [@Prasada2000; @Prasada2012]. 
+<!-- Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012].  -->
 "Bishops move diagonally" not because bishops tend to move diagonally but rather because those are the rules of the game.
-It's been suggested that the mind has cognitive primitives that directly dictate what generalizations are true or false.
-One such primitive is the ability to priviledge *characteristic features*: For an animal, their mode of reproduction is a characteristic feature. 
-Thus, whatever their mode of reproduction may be will make a true generic statement (e.g., "Robins lay eggs"), regardless of the actual prevalence of the feature.
-*Horrifying* or *striking* information is also priviledged and creates true generics, which is why "Mosquitos carry malaria" is true
+The study of what makes generalizations true or false then reduces to a study of concepts [@carlson2009concepts] and kind--property relations [@Prasada2013].
+<!-- It's been suggested that the mind has cognitive primitives that directly dictate what generalizations are true or false. -->
+<!-- One such primitive is the ability to priviledge *characteristic features*: For an animal, their mode of reproduction is a characteristic feature.  -->
+<!-- Thus, whatever their mode of reproduction may be will make a true generic statement (e.g., "Robins lay eggs"), regardless of the actual prevalence of the feature. -->
+<!-- *Horrifying* or *striking* information is also priviledged and creates true generics, which is why "Mosquitos carry malaria" is true -->
 
-Yet, generics convey more than just rich, conceptual relations [@Nickel2008; @Nickel2016; @Sterken2015]. 
-Purely arbitrary relationships can result in true generics.
-<!-- Arbitrary relationships are also expressed with generics:  -->
-"Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false.
-Ravens and toasters have no priviledged relationship to each other, but the statement "Ravens are bigger than toasters" is still a true generalization.
-Conceptual accounts must be supplemented with the proviso that, in some situations, the actual prevalence of the feature matters for making generalizations true.
+Yet, purely arbitrary relationships can also result in true generalizations [@Nickel2008; @Nickel2016; @Sterken2015].
+Ravens and toasters have no privileged relationship to each other, but "Ravens are bigger than toasters" is still true.
+An understanding of generalizations just in terms of conceptual relations must be supplemented with the proviso that, in some situations, the actual statistics of the feature matters for making generalizations true.
 
-What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [e.g., @Prasada2013].
+<!-- Furthermore, how conceptual accounts of the language of generalizations should extend beyond category generalizations (i.e., generics) is less clear.  -->
+<!-- "Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false. -->
+
+What we are left with is hybrid theories, which try to classify different kinds of generalizations and the various inferences they support [@Prasada2013].
 But insofar as there is a single class of linguistic expressions that convey generalization, there should be something common to them all: a general, unified semantic core.
 In this paper, we propose such a semantic core for the language of generalization.
 To do so, we look to probability, the universal currency of belief and a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
 Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
-To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the information-theoretic function of a generalization by explicitly modeling the background knowledge a language interpreter would use when understanding such language.
+To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the communicative function of a generalization by explicitly modeling the background knowledge a language interpreter would bring to bear when understanding generalizations.
 We create an endorsement model based on this interpretation hypothesis, providing the first formal theory that makes quantitative predictions about what makes generalizations in language true or false.
 The assumptions of the theory, and in turn, the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.
-Though concepts such as *striking properties* are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
+Though conceptual structure of kind discussed of the sort discussed by Leslie and Prasada are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration.
 
 
 <!-- The test of a unified semantic core is its ability to explain what makes the statements true or false. -->
@@ -235,12 +248,12 @@ Though concepts such as *striking properties* are not explicitly formalized in o
 <!-- We then go on to manipulate the relevant factors, showing they are causally related via our model to generic endorsement and interpretation.  -->
 
 The paper is organized as follows. 
-In Section 1, we formalize the hypothesis that the core of meaning of a generalization in language is simple but *underspecified*, articulate a thory of relevant background knowledge used to understand a generalization in language, and develop a computational model of endorsement around these components.
-The endorsement model's predictions depend upon the background knowledge and the probability communicated, which we demonstrate via simulation.
-Sections 2 - 4 present our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
-Across these three case studies, we both measure and manipulate background knowledge and the probability communicated, measuring their effects on endorsement. 
-We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements, where alterantive models fall short.
-This work opens the door to understanding generalizations in pragmatic language understanding contexts and building models of learning from language.
+In Section 1, we formalize the hypothesis that the core of meaning of a generalization in language is simple but *underspecified*, articulate a theory of relevant background knowledge used to understand a generalization in language, and develop a computational model of endorsement around these components.
+The endorsement model's predictions depend upon the background knowledge and the prevalence communicated, which we demonstrate via simulation.
+Sections 2-4 present our three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
+Across these three case studies, we both measure and manipulate background knowledge and the prevalence communicated, measuring their effects on endorsement. 
+We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements, where alternative models fall short.
+This work opens the door to understanding generalizations in richer, pragmatic language understanding contexts and building models that learn abstract knowledge from language.
 
 <!-- (cumulative $r^2(N) = 0.XX$). -->
 <!-- In the final section of the paper, we discuss the generality of our approach and pave a path to unifying the extant psychological, linguistic, and philosophical literatures on generalization in language. -->
@@ -248,23 +261,29 @@ This work opens the door to understanding generalizations in pragmatic language 
 
 # Computational Framework
 
-Generalizations are used to make predictions about properties of instances that an agent has yet to experience [@HumeTHN].
-People readily predict that a new dog will have fur, drinking a new cup of coffee will cause jitters, and a new day will find certain people typing.
-In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have property $f$.
-This prediction can be described by a conditional probability: $p_{fk} = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ (formally, be in the set of things that have $f$) given that it is in $k$, which we will refer to as the **prevalence**.
-The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine grained types (a person on a given day).
-The properties also vary (e.g., having fur, causing jitters, typing). 
-Yet the mathematical description of the inductive inference is always given by the probability $p_{fk}$.
+Generalizations are used to make predictions about properties of instances or events that an agent has yet to experience [@HumeTHN].
+People readily predict that the next dog will have fur, drinking another cup of coffee will cause jitters, and a new day will find people that we know doing what they habitually do. 
+In each case, we assign a specific exemplar $x$ to a category $k$, and make a prediction that it will have feature $f$.
+This prediction can be described by a conditional probability: $p(f \mid k) = P(x \in f \mid x \in k)$, the probability that $x$ will have $f$ given that it is in $k$ (formally, an instance of $k$ will be in the set of things that have $f$), which we will refer to as the *prevalence*.
+In particular, we define *prevalence* as a latent sense that a future instance of a category would have a particular property; others might call this projectibility [@Goodman1955].
+The targets of our predictions can vary widely: They may be objects (a dog), events (a coffee drink), or more fine-grained types (a person on a particular day).
+The properties also vary (e.g., having fur, causing jitters, going to the gym).
+Yet the mathematical description of the inductive belief is always given by a probability $p(f \mid k)$.
 
-How does one acquire such an inductive belief?
-Observing instances of the category $k$ and noting how many of them have $f$ can support prediction to new instances when integrated with one's prior expectations about the property [cf., @Gelman2003; @Keil1992].
-For example, if you observe creatures that \textsc{have two legs}, you might infer that all creatures of that category have two legs.
-Observing new creatures with \textsc{broken wings}, however, leads to a much weaker prediction about other instances of the category having the property [@Nisbett1983].
-This kind of domain-specific knowledge about properties can be represented formally as a probability distribution over the prevalence $p_{f}$: $P(p_{f})$ [@Kemp2008], and observational data $d$ can update one's beliefs via Bayes' Rule: $P(p_{f} \mid d) \propto P(d \mid p_{f}) \cdot P(p_{f})$
+<!-- How do we come to know things?  -->
+How does one acquire inductive beliefs?
+If you *observe* wugs that have two legs, you might infer that all wugs have two legs.
+But not all properties have such strong projectibility (prevalence).
+Seeing a wug with broken wings tells you comparatively less about other wugs having broken wings [@Nisbett1983].
+Abstract, potentially domain-specific, beliefs about properties can be represented by a probability distribution over the prevalence $P(p_{fk})$ [@Kemp2008].^[
+  We adopt the following notational simplification: $p_{fk} = p(f \mid k)$. 
+]
+Learning, then, can proceed via Bayes' Rule: $P(p_{fk} \mid d) \propto P(d \mid p_{fk}) \cdot P(p_{fk})$ given one's observational data $d$ and the observer's beliefs about the generative process that resulted in the observed data---the likelihood $P(d \mid p_{fk})$.
 
-Learning from observational evidence can only take you so far, though. 
-To learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*) or events that are statistically rare (e.g., *lightning strikes tall objects*), one would much rather learn from others.
-Fortunately, language has simple ways of encoding generalizations.
+<!-- But we do not always have access to  -->
+Observational data $d$ is not always available, however.
+Instead, we must listen to others to learn about properties that are costly to observe (e.g., *staring at the sun makes you go blind*), events that are statistically unlikely (e.g., *lightning strikes tall objects*), or just aspects of the world that we have yet to experience.
+Fortunately, language provides simple ways of communicating generalizations.
 
 
 <!-- Here, $P(d \mid h)$ is the observer's generative model of the observed data.  -->
@@ -302,18 +321,34 @@ Fortunately, language has simple ways of encoding generalizations.
 <!-- How do we acquire these generalizations? -->
 <!-- For abstract, generalizable knowledge to remain in a culture, it must be faithfully transmitted between individuals and across generations [@Tomasello1999], and language provides simple ways to communicate generalizations. -->
 
-## Generalization from language
+## The language of generalization
 
-The language of generalization manifests when a property is predicated of a category: "Ks F" (e.g., "Dogs bark", "Staring at the sun makes you go blind"). 
-Generalization from observations can be described as a predictive probability; it is intuitive then to posit that same quantity will be at the core of a semantic theory of the language of generalization.
-To connect to the semantic tools of *truth values* [@Montague1973], we must relate the scalar quantity of probability to a Boolean value.
-One simple way is with a *threshold semantics*: An utterance is true if the relevant quantity is above a threshold.
-A threshold semantics for a generalization about category K with property F would then apply to the *prevalence* $p_{fk}$:
-$\denote{K \text{ } F}(p_{fk}, \theta) = \{p_{fk} >\theta\}$
+The language of generalization is easy to spot when a property, that could project onto an individual, is predicated of a category (e.g., "Dogs are friendly"; *barks* could apply to an individual as in "This dog is friendly").
+This is often called *generic language* or *generics* [@Carlson1977].
+Generic statements can be contrasted with kind-denoting statements which use properties that can only apply to the category as a whole (e.g., "Dinosaurs are extinct"; *extinct* is not a property that could apply to an individual).
+Generalization can also manifest when describing an individual (*habitual language*; e.g., "John smokes").
+Verbs like *causes* or *makes* also seem to convey generalization, in this case, about an instance of a causal event (*causal language*; e.g., "Staring at the sun makes you go blind"). ^[
+  We adopt this somewhat idiosyncratic categorization in order to emphasize the different semantic types predicated. 
+  Some authors refer to all of these types as *generics*.
+  Still, however, the primary "generics" investigated in the literature have been generalizations about categories ("Ks F").
+]
+Psychologists, linguists, and philosophers have long studied the language of generalization, as it appears very simple (e.g., syntactically) yet its meaning is difficult to formalize.^[
+  We take up the problem of formalizing a *meaning* for the language of generalization as opposed to the problem of *identifying* generalizations. 
+  Syntax alone is neither necessary nor sufficient for a listener to know that the sentence conveys a generalization  (e.g., indefinite singulars can encode generalizations: "A dog has four legs" and bare plurals may not: "Dogs are on my front lawn").
+  Our analysis thus begins once a sentence has been disambiguated as conveying a generalization. 
+]
 
-Various attempts of this kind have been made before [e.g., @Cohen1999].
-We distinguish our proposal from previous ones by emphasizing the cognitive underpinnings of $p_{fk}$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements.
-$p_{fk}$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief.
+If generalization from observations can be described by a probability $p_{fk}$, it is natural to posit that same construct will be at the heart of a semantic theory of the language of generalization.
+The semantic tools of *truth values* provide a way to update a state of knowledge by relating the semantic quantity (probability) to  Boolean values [@Montague1973].
+The simplest way to relate a scalar quantity like probability is via a *threshold semantics*: The utterance is true if the relevant scalar value is above a threshold.
+Thus, the simplest semantics for a generalization about category $k$ with property $f$ is a threshold on the *prevalence*: $\denote{K \text{ } F}(p_{fk}, \theta) = \{p_{fk} >\theta\}$.
+
+Attempts of this kind have been made before in formal semantics [e.g., by positing that $\theta = 0.5$; @Cohen1999], but heretofore no model has made precise, quantitative predictions about adult judgments. 
+In addition to articulating an explicit semantic hypothesis, we present a Bayesian cognitive model that uses this semantics in order to update its beliefs from language.
+We then ask: When would a rational speaker choose to produce a generalization (vs. staying silent) to update the Bayesian model's state of knowledge?
+
+<!-- We distinguish our proposal from previous ones by emphasizing the predictive nature of $p_{fk}$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements. -->
+<!-- $p_{fk}$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief. -->
 
 <!-- We emphasize that this account is based on a probability $h$. -->
 <!-- The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the prevalence $h$.^[ -->
@@ -324,19 +359,22 @@ $p_{fk}$ describes a latent belief and should not be confused with *frequency*, 
 
 ### Literal interpretation model
 
-Quantifier statements can be described using a similar threshold semantics: $\denote{some \text{ } K \text{ } F}(p_{fk}) = \{p_{fk} > 0\}; \denote{all \text{ } K \text{ } F} = \{p_{fk} = 1\}$.
-So what threshold $\theta$? should be used for the generalizations? 
-Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$.
-That is, we hypothesize that $\theta$ is in part determined by contextual, in a way analagous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
+The simplest semantics for a generalization is a threshold function: $\denote{gen}(p_{fk}, \theta) = \{p_{fk} >\theta\}$, but what threshold is appropriate?
+Quantifier statements can be described using particular values of $\theta$: $\denote{some}(p_{fk}) = \{p_{fk} > 0\}$; $\denote{all} = \{p_{fk} = 1\}$.
+The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice. 
+Rather than throw out the threshold-semantics, we posit this semantics is *underspecified*.
+We hypothesize that $\theta$ is determined by context in a way analogous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
 
-We formalize this underspecified semantics in a probabilistic model, where the underspecifed threshold $\theta$ is sampled from a uniform prior distribution over possible thresholds $P(\theta)$ [cf., @Lassiter2013].
-After making explicit the relevant background knowledge about the property $P(p_f)$, the model becomes:
+<!-- So what threshold $\theta$? should be used for the generalizations?  -->
+<!-- Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$. -->
+
+We formalize this underspecified semantics in a Bayesian cognitive model, where the threshold $\theta$ is sampled from a uniform prior distribution over possible thresholds $P(\theta)$ [@Lassiter2013; @Lassiter2015; cf., @Qing2014].
+The model also has prior knowledge about the property $P(p_fk)$ and literal interpretation is given by updating these prior beliefs according the truth-functional meaning of utterance $u$:
 
 \begin{eqnarray}
-Lit(p_{fk}, \theta \mid u) &\propto& {\delta_{\denote{u}(p_{f}, \theta)} \cdot P(p_{f}) \cdot P(\theta)} \label{eq:L0}
+Lit(p_{fk}, \theta \mid u) &\propto& {\delta_{\denote{u}(p_{fk}, \theta)} \cdot P(p_{fk}) \cdot P(\theta)} \label{eq:L0}
 \end{eqnarray}
 
-Equation \ref{eq:L0} ($Lit$) is a literal interpretation model, that updates its beliefs about the prevalence of a feature in the category described $p_{fk}$ according to the truth-functional meaning of the utterance $u_{KF}$. 
 Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(p_{fk}, \theta)}$ that returns probabilities proportional to $1$ when the utterance is true (i.e., when $p_{fk} > \theta$) and $0$ otherwise.
 
 \begin{eqnarray}
@@ -346,70 +384,73 @@ Formally, the truth-functional meaning is represented by the Kronecker delta fun
 \end{cases}\label{eq:delta}
 \end{eqnarray}
 
+Following @Lassiter2015, we defined $P(\theta)$ to be a uniform distribution over the support of $P(p_{fk})$.
+
 ### Endorsement model
 
-Given the minimal model of literal interpretation described above, how do we decide when a statement conveying a generalization is true or not?
-We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization convey sufficient information to warrant the cost of production? 
-We formalize this by considering how well the generalization would convey the prevalence $p_{fk}$ to the $Lit$ model (Eq. \ref{eq:L0})^[
+Given the above model of literal interpretation, how do we decide when a statement conveying a generalization is true or not?
+We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization convey the appropriate information to the naive interpreter? 
+We formalize this by considering how well the generalization would convey the prevalence $p_{fk}$ to the $Lit$ model (Eq. \ref{eq:L0}).^[
   A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $p_{fk}$ that it wants to communicate.
   Rather, the endorser may have a distribution over $p_{f}$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence. 
   In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorsement model's belief distribution:
   $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p_{fk}\sim P_{k}} \ln{ \int_{\theta} Lit(p_{fk}, \theta \mid u)} \diff \theta )}$
   For the empirical case studies described below, these two versions of the model make almost identical predictions.
-].
+]
 
 \begin{equation} 
 S(u \mid p_{fk}) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Lit(p_{fk}, \theta \mid u)  \diff \theta } )}
 \label{eq:S1}
 \end{equation}
 
-The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$): $Lit(p_{fk}, \theta \mid u)$.
-$S$ is not interested in communicating $\theta$ (in fact, it does not know $\theta$), and so integrates over the values of $\theta$.
-We assume the decision to endorse is an approximately rational one, with degree of rationality given by $\lambda$.
+The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$: $Lit(p_{fk}, \theta \mid u)$.
+$S$ does not know $\theta$ and integrates over the interpreter's posterior beliefs about $\theta$.
+Following Bayesian decision theory, we assume the decision to endorse is approximately rational, with degree of rationality given by $\lambda$.
 The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances. 
-We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [cf., @Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$^[
-  This "null" alternative  to the generalization ("Ks F") can be realized in at least two other ways: the negation of the generalization (i.e., "It is not the case that Ks F") or the negative generalization (i.e., "Ks do not F").
+We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [@Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$.^[
+  This "null" alternative to the generalization ("Ks F") can be realized in at least two other ways: the negation of the generalization (i.e., "It is not the case that Ks F") or the negative generalization (i.e., "Ks do not F").
   All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
 ]
 
-Our endorsement model (Eq. \ref{eq:S1}) provides a straight-forward mapping from a *referent-category prevalence* $p_{fk}$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u = u_{KF} \mid p_{fk})$. 
+Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from a *referent-category prevalence* $p_{fk}$  (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u = u_{KF} \mid p_{fk})$. 
 The model assumes a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
-This model can be seen as a special case of a Rational Speech Act model [@Frank2012; @Goodman2016], where there is only a single level of recursion and the space of possible utterances is maximally constrained. 
+This model can be seen as a special case of a Rational Speech Act model [@Frank2012; @Goodman2016] with only a single level of recursion and the space of possible utterances maximally constrained; the endorsement model is a "speaker", while the interpretation model is a "listener". 
 
+### Prevalence priors
 
-### Prevalence priors and referent-prevalence
+The uncertain, truth-conditional threshold $\theta$ is resolved by the literal interpretation model $Lit$ (Eq. \ref{eq:L0}) by integrating the model's prior beliefs about the feature in question---the *prevalence prior* $P(p_{fk})$---with the underspecified semantics.
+Because $P(\theta)$ is assumed to be a uniform distribution across all contexts, a generalization could in principle be felicitous with any referent-prevalence. 
+However, the interpretation model's prior beliefs $P(p_{fk})$ must be considered before the endorsement model can say whether or not would it want to update those beliefs by endorsing the statement. 
 
-Our model makes context-sensitive predictions about endorsing generalizations based on two model components: The prevalence priors $P(p_f)$ in Eq. \ref{eq:L0} and the referent-prevalence $p_{fk}$ in Eqs. \ref{eq:S1} and \ref{eq:delta}.
-Referent-prevalence is the probability that an individual $x$ of the referent-category (e.g., "Dogs") will have the feature being predicated of the category (e.g., "...barks").
-We will return and refine this definition in Case Study 2, when considering generalizations about events.
-For now, the referent-prevalence is simply a probability that determines the truth-conditional semantics. 
-Our hypothesis does not provide a mapping from the referent-prevalence directly to endorsement judgments, however, because $\theta$ is underspecified.
-
-The uncertain, truth-conditional threshold $\theta$ is resolved by the literal interpretation model $Lit$ (Eq. \ref{eq:L0}) by integrating prior beliefs about the feature in question---the *prevalence prior* $P(p_f)$---with the truth-functional semantics.
-Again, $P(\theta)$ is set to be a uniform distribution across all contexts, and thus, the generalization could in principle be felicitious with potentially any referent-prevalence. 
-However, interpretation model's *a priori* beliefs $P(p_f)$ must be considered before the endorsement model can say whether or not it would endorse the generalization. 
+<!-- Our model makes context-sensitive predictions about endorsing generalizations based on two model components: The prevalence priors $P(p_fk)$ in Eq. \ref{eq:L0} and the referent-prevalence $p_{fk}$ in Eqs. \ref{eq:S1} and \ref{eq:delta}. -->
+<!-- Referent-prevalence is the probability that an individual $x$ of the referent-category (e.g., *dogs*) will have the feature being predicated of the category (e.g., *barks*). -->
+<!-- We will return and refine this definition in Case Study 2. -->
+<!-- For now, the referent-prevalence is simply a probability that determines the truth-conditional semantics.  -->
+<!-- Our hypothesis does not provide a complete mapping from the referent-prevalence directly to endorsement judgments, however, because $\theta$ is underspecified. -->
+<!-- These internal models may have domain-specific features but can be described by the domain-general currency of inductive belief: probability. -->
 
 Beliefs about properties result from internal conceptual models of the world. 
-These internal models have domain-specific features but should all give to the domain-general currency of inductive reasoning: probability.
-One way of constructing prior distributions over prevalence, without appealing directly to domain-specific conceptual knowledge, is by considering the prevalence of the feature among different categories.
-For example, many different kinds of animals *do not bark* (more precisely: have close to 0 exemplars who bark); thus, the prevalence prior for the feature *barks* $P(p_{barks})$ should have substantial probability mass near 0, because what one would expect for a randomly-sampled category is that it has 0 or close to 0 exemplars that bark.
-Furthermore, among the categories that do have exemplars which bark (e.g., *dogs*, *seals*, ...), the probability is quite high that an exemplar will bark; thus, the prevalence prior should have substantial mass at relatively high values, potentially with quite a bit of uncertainty; Figure\ \@ref(fig:simulations)A; first row).
-Conceptual differences can manifest in these prevalence priors in the form of multi-modal distributions; for example, the prevalence prior for *lays eggs* should similiarly have substantial probability mass near 0 (since most animal categories do not have egg-layers) but should have a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property (Figure\ \@ref(fig:simulations)A; bottom row).
+Without appealing to domain specific knowledge, one can construct a prior distributions over prevalence by considering the prevalence of the feature among *different* categories.
+For example, many different kinds of animals *do not bark* (more precisely: have close to 0 exemplars who bark); thus, the prevalence prior for the feature *barks* $P(p_{barks})$ should have substantial probability mass near 0, because one would expect a randomly-sampled category to have 0 or close to 0 exemplars that bark.
+Furthermore, among the categories that do have exemplars which bark (e.g., *dogs*, *seals*, ...), the probability is quite high that an exemplar will bark; thus, the corresponding prevalence prior would have some probability mass at relatively high prevalences, potentially with some uncertainty (Figure\ \@ref(fig:simulations); column 1).
+Abstract beliefs between different kinds of categories could manifest in these prevalence priors in the form of multi-modal distributions; for example, the prevalence prior for *lays eggs* should similarly have substantial probability mass near 0 (since many animal categories do not have egg-layers) but should have a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property (Figure\ \@ref(fig:simulations); column 4).
 
-By encoding knowledge about other categories, the prevalence prior distributions are deeply connected to the construct of *cue validity*, or the probability that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs). 
-*Cue validity* implicitly encodes knowledge of other categories and has been shown to be  highly correlated with endorsing *generic sentences*, or generalizations about categories [@Khemlani2012].
-Cue validity is defined for a particular (category, property) pair (as is referent-prevalence), and relates to referent-prevalence by Bayes' Rule:
-\begin{equation}
-P( k \mid  f) = \frac{P( f \mid  k) \cdot P( k)}{\sum\limits_{k' \in K} P( f \mid k') \cdot P( k')} \label{eq:cuevalidity}
-\end{equation}
-Since *cue validity* implicitly encodes knowledge of other categories (by summing over $k'$) and the prevalence prior explicitly encodes knowledge of other categories, how are these two constructs related?
-In the prevalence prior $P(p_f)$, a category is represented only by its corresponding prevalence (i.e., a sample from the prevalence prior can be thought of as a category $k$, with the only information available about the category being the prevalence of the feature in that category $p_{fk}$). 
-Thus, $P(p_{fk}) = P(k_{f})$.
-The denominator of Eq. \ref{eq:cuevalidity} (which encodes knowledge of other categories), then, is the expected value (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p_{f})] = \sum_{k' \in K} p_{fk'} \cdot P(p_{fk'} )$.
-For a more thorough derivation of this relationship, see Appendix A.
-The fact that the prevalence prior distribution relates only via its mean value to *cue validity* reveals a potential shortcoming of cue validity: By reducing a distribution to a point estimate, the structure of the distribution is lost. 
-This is particularly problematic for prevalence distributions that encode conceptual knowledge via multimodal distributions (e.g., Fig. \@ref(fig:simulations)A; bottom row); the mean of a multimodal distribution is not a good representation of that distribution. 
-We return to this point empirically in Case Study 1.
+By encoding knowledge about other categories, the prevalence prior distributions are deeply connected to the construct of *cue validity*, or the probability that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not an entity is a mosquito, upon learning that it carries malaria), shown to be highly correlated with endorsements of generics [@Khemlani2012].
+*Cue validity* implicitly encodes knowledge of other categories $k'$ by averaging over those categories via the denominator in Bayes' Rule:
+$P( k \mid  f) = \frac{P( f \mid  k) \cdot P( k)}{\sum\limits_{k' \in K} P( f \mid k') \cdot P( k')}$.
+Since cue validity is defined for a particular category--property pair, it can be seen as a point estimate of the prevalence prior distribution.
+In particular: The normalizing constant for calculating cue validity ($\sum_{k' \in K} p_{fk'} \cdot P(p_{fk'} )$) is the expected value (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p_{fk})]$.
+For a more detailed derivation of this relationship, see Appendix A.
+
+
+<!-- Since *cue validity* implicitly encodes knowledge of other categories (by summing over $k'$) and the prevalence prior explicitly encodes knowledge of other categories, how are these two constructs related? -->
+<!-- In the prevalence prior $P(p_f)$, a category is represented only by its corresponding prevalence (i.e., a sample from the prevalence prior can be thought of as a category $k$, with the only information available about the category being the prevalence of the feature in that category $p_{fk}$).  -->
+<!-- Thus, $P(p_{fk}) = P(k_{f})$. -->
+
+<!-- cut on 2/9: -->
+<!-- The fact that the prevalence prior distribution relates only via its mean value to *cue validity* reveals a potential shortcoming of cue validity: By reducing a distribution to a point estimate, the structure of the distribution is lost.  -->
+<!-- This is particularly problematic for prevalence distributions that encode conceptual knowledge via multimodal distributions (e.g., Fig. \@ref(fig:simulations)A; bottom row); the mean of a multimodal distribution is not a good representation of that distribution.  -->
+<!-- We return to this point empirically in Case Study 1. -->
 
 <!-- These distributions can be thought of as distributions over categories, displaying only the prevalence for the property in question. -->
 
@@ -421,8 +462,7 @@ We return to this point empirically in Case Study 1.
 The endorsement model defined in the previous section explicitly predicts that the variability in endorsements for generalizations in language can be explained by two factors: (i) the prevalence communicated in the category under discussion $p_{fk}$ in Eq. \ref{eq:S1} (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) and (ii) the background knowledge about prevalences $P(p_f)$ (Eq. \ref{eq:L0}).
 We simulate how these two factors change both literal interpretation and endorsement using schematic parameter values based on intuition from classic examples in the literature on generic language.
 We implemented these and all subsequent Bayesian models in the probabilistic programming language WebPPL [@dippl].
-The following simulations were implemented using the R package RWebPPL in the RMarkdown document that generated this paper text and figures.
-That document, as well as all other models, analysis, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
+All models, analyses, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
 <!-- depends upon the probability that utterance vs. silence accurate conveys to a naive listener a. -->
 <!-- This probability of successful communication is given by $L(h \mid u, \theta)$ (Eq. \ref{eq:S1}) and depends upon the listener's *a priori* beliefs about the prevalence in question: $P(h)$ (Eq. \ref{eq:L0}), as well as the referent-category prevalence $h$ (Eq. \ref{eq:S1}). -->
@@ -430,475 +470,182 @@ That document, as well as all other models, analysis, data and links to experime
 <!-- For purposes of illustration, we present different hypothetical priors on feature-probabilities $P(h)$, together with listener $L$ posterior distributions on $h$ after hearing utterances corresponding to (i) the underspecified threshold semantics as well as (ii) a comparison model where the threshold is fixed near-0, corresponding intuitively to the quantifier *some* (Figure \ref{fig:simulations}). -->
 
 
-```{r rsaHelpers}
-rsaHelpers <- '
-var probability = function(Dist, x) {
-    return Math.exp(Dist.score(x));
-}
-var targetUtterance = "generic";
+```{r loadCachedSimulations, cache = F}
+load("cached_results/modelSims-priors_fixedT_uncertainT_speaker.RData") # sims.priors, sims.fixed.thresholds, sims.uncertain.thresholds, s1.simulations.relabeled
+load("cached_results/modelSims-uniform_fixedT_uncertainT_speaker.RData") # rs.wp.l0, rs.listener.wp.tidy.samples, rs.tidy
 
-var round = function(x){
-  return Math.round(x*1000)/1000
-}
-var utterancePrior = Infer({model: function(){
-  return uniformDraw([targetUtterance,"silence"])
-}});
 
-var thetaBins = map(round, _.range(0.01, 0.98, 0.01))
-// var thetaBins = [
-//    0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-//    0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
- // ]
-var thetaPrior = Infer({model: function(){
- return uniformDraw(thetaBins)
-}});
-
-var bins = map(round, _.range(0.01, 0.99, 0.01))
-
-// var bins = [
-  // 0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-  // 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
-// ];
-
-var meaning = function(utt,state, theta) {
-  return utt=="generic"? state > theta :
-         utt=="generic is false"? state<=theta :
-         utt=="silence"? true :
-         utt=="some"? state>0.01:
-         utt=="most"? state> 0.5:
-         utt=="all"? state >= 0.99:
-         true
-}
-
-var mixture = data.prior.mix[0];
-var priorParams = data.prior.params[0];
-
-var statePrior = Infer({model: function(){
-  var component = flip(mixture);
-  return component ?
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta(priorParams), b) + Number.EPSILON
-      }, bins )
-    }) :
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
-      }, bins )
-    })
-}});
-'
+s1.simulations.relabeled.2 <- left_join(
+  s1.simulations.relabeled %>%  
+    mutate(PriorShape = factor(example, 
+                               levels = c("Dogs bark",
+                                          "Kangaroos have spots",
+                                          "Sharks don't eat people",
+                                                      "Robins lay eggs",
+                                                      "Robins are female",
+                                                      "Mosquitos carry malaria"),
+                               labels = c("bark", "have spots", "don't eat people", 
+                                          "lay eggs", "are female", "carry malaria")),
+              category = c("sharks", "robins", "robins", "kangaroos", "dogs", "mosquitos"),
+              xlabpos = c(0.8, 0.5, 0.5, 0.325, 0.85, 0.325),
+              ylabpos = c(0.12, 0.25, 0.25, 0.12, 0.12, 0.12)
+           ),
+                       data.frame(src =  c(rep("Prevalence priors", 6), rep("Interpretation posteriors",6 )),
+                                  example = with(s1.simulations.relabeled, c(as.character(example), as.character(example))))
+ ) %>%
+   mutate(featureProb = ifelse(as.character(src) == "Prevalence priors", featureProb, -99),
+          xlabpos = ifelse(as.character(src) == "Prevalence priors", xlabpos, -99))
 ```
 
 
-```{r rsaInterpretationModels, eval = T, cache = T}
-no.utterance.model <- '
-var noUtteranceInterpreter = function() {
-  Infer({model: function(){
-   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-    return { state }
- }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-'
+```{r uniformPriorSimulation, fig.cap = "Computational model behavior. A: Interpretation model posteriors assuming different fixed thresholds. High thresholds rule out more world-states (prevalence levels), leaving fewer world-states among which to distribute the full probability mass. B: Full interpretation model marginalizes over possible thresholds to return a posterior distribution that favors higher prevalence levels in a graded manner. C: Endorsement model predicts higher rates of endorsemens as prevalence levels increase.", fig.width = 13, fig.asp = 0.3, out.width = "100%", fig.align = "center", cache = F}
 
-fixed.threshold.model <- '
-var fixedThresholdInterpreter = function(threshold) {
-  Infer({model: function(){
-  // var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-  var state = sample(statePrior)
-  condition( state > threshold)
-    return {
-      state: state
-  }
- // }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
- }, method: "enumerate"})}
-'
-
-uncertain.threshold.model <- '
-var uncertainThresholdInterpreter = function() {
-  Infer({model: function(){
-   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-    factor( Math.log(state) )
-    return {
-      state: state, 
-  }
-  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-'
-
-```
-
-```{r simulationCalls}
-fixed.threshold.calls <- '
-_.fromPairs(map(function(t){return [t, fixedThresholdInterpreter(t)]}, [0.1, 0.3, 0.5, 0.7, 0.9]))
-'
-no.utterance.call <- ' 
-  noUtteranceInterpreter()
-'
-uncertain.threshold.call <- '
-  uncertainThresholdInterpreter()
-'
-```
-
-```{r simulationRuns}
-priorNames <- c(
-  "doesntEatPeople", #"uniformRare", 
-  "isFemale", 
-  "laysEggs", 
-  #"eatsFood", 
-  "barks",
-  "carriesMalaria",
-  "hasSpots"
- # "areSick"
-  )
-priorShapes <- list(
-  isFemale =  list(params = data.frame(a = 10, b = 10), mix = 1), 
-  laysEggs =  list(params = data.frame(a = 10, b = 10), mix = 0.4), 
-  doesntEatPeople =  list(params = data.frame(a = 50, b = 1), mix = 1), 
-  barks =  list(params = data.frame(a = 5, b = 1), mix = 0.4), 
-  hasSpots =  list(params = data.frame(a = 5, b = 1), mix = 0.7), 
-  carriesMalaria =  list(params = data.frame(a = 2, b = 10), mix = 0.4)
-)
+fig.l0.thresholds <- ggplot(rs.wp.l0 %>% 
+                              mutate(theta = round(theta, 2)) %>%
+                              filter(theta %in% c(0, 0.25, 0.50, 0.75)), aes( x = state, 
+                                           y = literalPosterior, 
+                                       group = theta))+
+  geom_line(size = 1)+
+  geom_vline(aes(xintercept = theta), 
+             color = 'darkred', size = 1)+
+  scale_x_continuous(breaks = c(0, 1))+
+  scale_y_continuous(breaks = c(0, 0.2))+
+  ylab("Posterior probability mass")+
+  xlab("Prevalence")+
+  facet_wrap(~theta, nrow = 1)+
+  ggtitle("Fixed-threshold interpretations")
 
 
-sims.fixed.thresholds <- data.frame()
-sims.priors <- data.frame()
-sims.uncertain.thresholds <- data.frame()
-
-for (p in priorNames){
-
-  inputData = list(prior = priorShapes[[p]])
-  rs.fixed.threshold.model <- webppl(paste(rsaHelpers, fixed.threshold.model, fixed.threshold.calls, sep = '\n'), data = inputData, data_var = "data")
-  rs.uncertain.threshold.model <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
-  rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
-
-  sims.fixed.thresholds <- bind_rows(sims.fixed.thresholds,
-    bind_rows(
-      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.1`) %>% rename(prob = probs), 20000), threshold = 0.1) ,
-      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.3`) %>% rename(prob = probs), 20000), threshold = 0.3),
-      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.5`) %>% rename(prob = probs), 20000), threshold = 0.5),
-      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.7`) %>% rename(prob = probs), 20000), threshold = 0.7),
-      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.9`) %>% rename(prob = probs), 20000), threshold = 0.9)
-    ) %>% 
-      mutate(PriorShape = p)
-    )
-
-  sims.uncertain.thresholds <- bind_rows(sims.uncertain.thresholds, rs.uncertain.threshold.model %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
-  sims.priors <- bind_rows(sims.priors, rs.prior %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
-}
-```
-
-
-```{r cache = F}
-fig.sims.priors <- ggplot(sims.priors, aes(x = state, fill = PriorShape, color = PriorShape))+
-    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
-    theme_few() +
-    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    ylab("Normalized probability density") +
-    xlab("")+
-    scale_color_solarized()+
-    scale_fill_solarized()+
-    facet_grid(PriorShape~., scales = 'free')+
-    theme(strip.text.y = element_blank())
-```
-
-
-```{r cache = F}
-fig.sims.fixed.thresholds <- ggplot(sims.fixed.thresholds, aes(x = state, fill = PriorShape, color = PriorShape))+
-    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.3)+
-    theme_few() +
-    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    xlab("Prevalence of the feature in a category") +
-    ylab("") +
-    scale_color_solarized()+
-    scale_fill_solarized()+
-    facet_grid(PriorShape~threshold, scales = 'free')+
-    theme(strip.text.y = element_blank(), axis.title.x = element_text(hjust = 1))
-```
-
-```{r cache = F}
-fig.sims.uncertain.threshold <- sims.uncertain.thresholds %>% mutate(PriorShape = factor(PriorShape, 
-                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
-                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria"))) %>% 
-                              ggplot(., aes(x = state, fill = PriorShape, color = PriorShape))+
-    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
-    theme_few() +
-    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    xlab("") +
-    ylab("") +
-    scale_color_solarized()+
-    scale_fill_solarized()+
-    facet_grid(PriorShape~., scales = 'free')+
-    theme(strip.text.y = element_blank())#element_text(angle = 0, hjust = 0))
-```
-
-```{r fig.width = 9, eval = F}
-p1 <- fig.sims.priors +
-  theme(plot.margin = unit(c(18,2,6,6), "pt")) #+ ggtitle("prevalence priors")
-p2 <- fig.sims.fixed.thresholds +
-  theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
-p3 <- fig.sims.uncertain.threshold+
-  theme(plot.margin = unit(c(18,0,6,6), "pt"))+ 
-    theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
-
-prow <- plot_grid( p1 + theme(legend.position="none"),
-           p2 + theme(legend.position="none"),
-           p3 + theme(legend.position="none"),
-           align = 'vh',
-           labels = c("A", "B", "C"),
-           hjust = -1,
-           nrow = 1,
-           #rel_widths = c(1.2, 3, 2)
-           rel_widths = c(1.2, 3, 1.2)
-           )
-#prow
-#legend <- get_legend(p1)
-
-#plot_grid( prow, legend, rel_widths = c(3, .3))
-```
-
-
-```{r simluationEndorsementModel, eval = T, cache = T}
-s1.model <- '
-var interpreter = cache(function(utterance) {
-  Infer({model: function(){
-    var state = sample(statePrior)
-    var theta = utterance == "generic" ? sample(thetaPrior) : -99
-    condition(meaning(utterance, state, theta))
-    return state
- }})}, 10000)
-
-var alpha = 2
-
-var endorser = function(featureProb){
-  Infer({model: function(){
-    var endorsement = sample(utterancePrior)
-    var L0 = interpreter(endorsement)
-    factor(alpha * L0.score(featureProb))
-    return endorsement
-  }})
-}
-// console.log(data.featureProb[0])
-probability(endorser(data.featureProb[0]), "generic")
-'
-
-exampleGenerics <- c(
-  "sharksDontEatPeople",
-  "robinsAreFemale", 
-  "robinsLayEggs", 
-  "kangaroosHaveSpots",
-  "dogsBark",
-  "mosquitosCarryMalaria"
-  )
-
-exampleParameters <- list(
-  robinsAreFemale =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 1), featureProb = 0.5), 
-  robinsLayEggs =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 0.2), featureProb = 0.5), 
-  sharksDontEatPeople =  list(prior = list(params = data.frame(a = 50, b = 1), mix = 1), featureProb = 0.8), 
-  dogsBark =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.4), featureProb = 0.9), 
-  kangaroosHaveSpots =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.7), featureProb = 0.1), 
-  mosquitosCarryMalaria =  list(prior = list(params = data.frame(a = 1, b = 30), mix = 0.1), featureProb = 0.1)
-)
-
-s1.simulations <- data.frame()
-for (p in exampleGenerics){
-
-    s1.rs <- webppl(paste(rsaHelpers, s1.model, sep = "\n"), data = exampleParameters[[p]], data_var = "data")
-    s1.simulations <- bind_rows(s1.simulations,
-                                   data.frame(example = p, endorsement = s1.rs, featureProb = exampleParameters[[p]]["featureProb"] ))
-    
-}
-
-```
-
-```{r}
-s1.simulations.relabeled <- s1.simulations %>%
-  mutate(example = factor(example, 
-                          levels = c("dogsBark", "kangaroosHaveSpots", "sharksDontEatPeople", "robinsLayEggs", "robinsAreFemale", "mosquitosCarryMalaria"),
-                            labels = 
-                            c("Dogs bark", "Kangaroos have spots", "Sharks don't eat people", "Robins lay eggs", "Robins are female", "Mosquitos carry malaria")
-                            #c("Dogs", "Kangaroos", "Sharks", "Robins ", "Robins", "Mosquitos")
-                          ))
-
-# s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement))+
-#   #geom_jitter(width = 0.1, shape = 21, size = 5)+
-#   #ylab("Human endorsement probability")+
-#   #xlab("Frequency of target")+
-#   geom_label_repel(data = s1.simulations.relabeled, 
-#                    aes( label = example, fill = example),
-#                        color = 'white',
-#     box.padding = unit(0.0, "lines"),
-#     #point.padding = unit(1e-06, "lines"),
-#     segment.color = 'grey37')+
-#   scale_fill_solarized()+
-#   scale_x_continuous(limits = c(0, 1), 
-#                      breaks = c(0, 0.5, 1))+
-#   scale_y_continuous(limits = c(-0.01, 1.01), 
-#                      breaks = c(0, 1),
-#                      labels = c("False", "True"))+
-#   coord_fixed(ratio = 1)+
-#   guides(fill = F)+
-#   ylab("Endorsement model prediction")+
-#   xlab("Hypothesized prevalence")
-
-
-
-s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement, fill = example))+
-  geom_col(color = 'black')+
-  # geom_label_repel(data = s1.simulations.relabeled, 
-  #                  aes( label = example, fill = example),
-  #                      color = 'white',
-  #   box.padding = unit(0.0, "lines"),
-  #   #point.padding = unit(1e-06, "lines"),
-  #   segment.color = 'grey37')+
+fig.fullInterpretation = ggplot(rs.listener.wp.tidy.samples %>%
+                           mutate(utterance = factor(utterance,
+                                               levels=c("null","gen"),
+                                               labels =c("silence", "generalization"))), 
+       aes( x = support,fill = utterance, color = utterance))+
+  geom_density(alpha = 0.4, size = 1.3)+
   scale_fill_solarized()+
-  scale_x_continuous(limits = c(0, 1), 
-                     breaks = c(0, 1))+
-  scale_y_continuous(limits = c(-0.01, 1.01), 
-                     breaks = c(0, 1),
-                     labels = c("False", "True"))+
-  #coord_fixed(ratio = 1)+
-  coord_flip()+
-  facet_grid(example~.)+
-  guides(fill = F)+
-  ylab("")+xlab("Referent prevalence")+
-  theme(strip.text.y = element_text(angle = 0, hjust = 0)
-        #axis.title.x = element_text(hjust = 0)
-        #axis.title.y = element_text(vjust = 0)
-        )
-  #ylab("Endorsement model prediction")+
-  #xlab("Hypothesized prevalence")
+  scale_color_solarized()+
+  xlab("Prevalence")+
+  ylab("Posterior probability density")+
+  scale_x_continuous(breaks =c(0, 1))+
+  scale_y_continuous(breaks = c(0, 1.5))+
+  guides(fill = guide_legend(reverse = T), color = guide_legend(reverse = T))+
+  ggtitle("Uncertain-threshold interpretation")+
+  theme(legend.position = c(0.25, 0.8))
+
+
+fig.endorsement.thresholds <- ggplot(rs.tidy %>%
+                           mutate(utt = factor(utt,
+                                               levels=c("null","gen"))), 
+                         aes( x = state, y = prob, fill = utt, color = utt))+
+  geom_col(size = 1, alpha = 0.4, color= 'black')+
+  scale_x_continuous(breaks = c(0, 0.5, 1))+
+  scale_y_continuous(breaks = c(0, 0.5, 1))+
+  ylab("Endorsement probability")+
+  xlab("Prevalence (Speaker beliefs)")+
+  ggtitle("Endorsement predictions")+
+  scale_fill_solarized()+
+  scale_color_solarized()+
+  guides(fill = F, color = F)
+
+cowplot::plot_grid(
+  fig.l0.thresholds,
+  fig.fullInterpretation,
+  fig.endorsement.thresholds,
+  nrow = 1, labels = c("A", "B", "C"),
+  align = 'h',
+  rel_widths = c(1.5, 1, 1)
+)
 ```
 
 
-```{r simulations, fig.cap = "Computational model behavior. A: Prior distributions over the prevalence of a feature in a category for 6 example features B: Different fixed thresholds (columns) give rise to different partial interpretations. C: The interpreter model averages over all thresholds, producing posterior distributions that strongly depend upon the priors. D: Endorsement model predictions, assuming a particular referent-prevalence. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 12, cache=F}
-p1 <- fig.sims.priors +
-  theme(plot.margin = unit(c(18,2,6,6), "pt")) #+ ggtitle("prevalence priors")
-p2 <- fig.sims.fixed.thresholds +
-  theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
-p3 <- fig.sims.uncertain.threshold+
-  theme(plot.margin = unit(c(18,2,6,6), "pt"))+ 
-    theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
-p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(18,0,6,6), "pt"))
-  
-prow <- plot_grid( 
-  add_sub(p1 + theme(legend.position="none"), "Prevalence priors"),
-  add_sub(p2 + theme(legend.position="none"), "Partial interpretations given fixed-thresholds"),
-  add_sub(p3 + theme(legend.position="none"), "Full interpretations"),
-  add_sub(p4, "Endorsement"),
-           align = 'vh',
-           labels = c("A", "B", "C", "D"),
-           hjust = -1,
-           nrow = 1,
-           #rel_widths = c(1.2, 3, 2)
-           rel_widths = c(1.2, 2.9, 1.15, 1.7)
-           )
-prow
-```
+```{r simulations, fig.cap = "Model simulations assuming different prevalence priors. Top: Prior distributions over the prevalence of a feature for 6 example features. Shapes of the priors were chosen to intuitively correspond to the properties labeling the distributions. Arrows show intuitive referent-category prevalence for a target category. Bottom: The interpreter model posterior distributions over prevalence upon hearing a generalization about a novel category. Numbers at bottom correspond to endorsement model predictions for endorsing the generalization for  the referent-category whose prevalence is shown in the top facets (e.g., \"Mosquitos carry malaria\").", fig.width = 9, fig.asp = 0.37, out.width = "100%", fig.align = "center", cache=F}
 
-
-```{r eval = F}
-all.simulations.refactored <- all.simulations %>%
-  mutate(Distribution = paste(Distribution, utterance, sep = "_")) %>%
-  filter(Distribution != "Some", Distribution != "Most") %>%
-  mutate(Distribution = factor(Distribution, levels = 
-                                c( "Prior_generic", "Posterior_Generalization_generic"),
-                                labels = c( "Prior/Silence", "Generalization")
-                             # c("Prior_some",  "Posterior_Generalization_generic", "Posterior_Generalization_some"),
-                             #    labels = c("Prior/Silence",  "Generalization (Uncertain threshold)", "Fixed threshold")
-                             ),
-         PriorShape = factor(PriorShape, 
-                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
-                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria")
-                            # levels = c("uniform", "barks","laysEggs","carriesMalaria","isFemale"),
-                             #labels = c("uniform", "bark","lay eggs","carry malaria","are female")
-                                  #"eatsFood","areSick", "uniformRare", 
-                                  #"carriesMalaria"
-                                  )
-         )
-
-l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
-                #lty = Distribution, 
-                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
-    geom_density(aes(y = ..scaled..),
-                 size = 0.6,  adjust = 1.5)+
-    #geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
+fig.sims.priors <- ggplot(
+  bind_rows(sims.priors %>% 
+              mutate(src = 'priors'),
+            sims.uncertain.thresholds %>% 
+              mutate(src = 'posteriors')
+            ) %>% mutate(PriorShape = 
+                           factor(PriorShape,  
+                                  levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
+                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria")),
+                         src = factor(src, levels = c("priors", "posteriors"),
+                                      labels = c("Prevalence priors", 
+                                                 "Interpretation posteriors"))), 
+  aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
     theme_few() +
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    # geom_rect(data = s1.simulations.relabeled.2,
+    #           aes(xmin = featureProb - 0.05, xmax = featureProb + 0.05, ymin = 0.0, ymax = 0.15),
+    #           fill = 'black', inherit.aes =F)+
+    geom_segment(data = s1.simulations.relabeled.2,
+              aes(x = featureProb, xend = featureProb, 
+                  yend = 0.02, y = 0.2), size = 1,
+              fill = 'black', inherit.aes =F, arrow = arrow(length = unit(0.2, "cm"),
+                                                            type = 'open'))+
+    geom_label(data = s1.simulations.relabeled.2,
+                aes(x = xlabpos, y=0.25, label = category),
+                label.padding = unit(0.075, "lines"),
+                  family = 'Palatino', fontface = 'bold', size = 3.2, inherit.aes =F, force = 15)+
+    ylab("Normalized probability density") +
+    xlab("Prevalence")+
     scale_color_solarized()+
     scale_fill_solarized()+
-    scale_alpha_manual(values = c(0.7, 0.3))+
-    scale_linetype_manual(values = c(1, 3))+
-    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-   #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    #scale_linetype_manual(values = c(3, 4, 2, 1))+
-    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    xlab("Prevalence of feature in a category") +
-    ylab("Scaled probability density") +
-  facet_wrap(~PriorShape, scales = 'free')+
-  guides(fill = F, color = F)+
-  theme(strip.text.y = element_text(angle = 0),
-          legend.position = c(0.92, 0.35))
+    facet_grid(src~PriorShape, scales = 'free')+
+    theme(strip.text.y = element_text(angle = 0, hjust =0),
+          legend.position = "none", 
+          plot.margin=unit(c(0.5,0.5,1.5,0.5),"cm"))
 
 
-  
-l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
-                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
-    geom_density(aes(y = ..scaled..),
-                 size = 0.6,  adjust = 1.5)+
-    theme_few() +
-    scale_color_solarized()+
-    scale_fill_solarized()+
-    scale_alpha_manual(values = c(0.7, 0.3))+
-    scale_linetype_manual(values = c(1, 3))+
-    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    xlab("Prevalence of feature in a category") +
-    ylab("Scaled probability density") +
-  facet_wrap(~PriorShape, scales = 'free')+
-  guides(fill = F, color = F)+
-  theme(strip.text.y = element_text(angle = 0),
-          legend.position = c(0.92, 0.35))
-
-
+ggdraw(fig.sims.priors) + 
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Dogs bark"),endorsement))[[1]], 2), 
+             0.12, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Kangaroos have spots"),endorsement))[[1]], 2), 
+             0.25, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Sharks don't eat people"),endorsement))[[1]], 2),
+             0.36, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Robins lay eggs"),endorsement))[[1]], 2), 
+             0.48, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Robins are female"),endorsement))[[1]], 2), 
+             0.6, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label(round(unique(select(filter(s1.simulations.relabeled.2, example == "Mosquitos carry malaria"),endorsement))[[1]], 2), 
+             0.72, 0.12, fontface = "italic", fontfamily = "Times") +
+  draw_label("Endorsement Prediction", 0.885, 0.12, size = 10)
 ```
 
-```{r simulationsOld, eval = F, fig.cap = "Model behavior. Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 14, fig.height=6, cache=F}
-grid.arrange(l0.simulations.distributions, 
-             s1.simulations.scatter, ncol = 3,
-             layout_matrix = cbind(c(1,1), c(1,1), c(2, 2)))
+The literal interpretation model computes a posterior distribution on prevalence by considering different possible thresholds $\theta$.
+Figure\ \@ref(fig:uniformPriorSimulation) shows different components of the model behavior assuming a uniform prevalence prior. 
+If the threshold were to be very high (e.g., $\theta = 0.75$), only the highest prevalence levels would be consistent with the utterance (Figure\ \@ref(fig:uniformPriorSimulation)A, right).
+As the threshold decreases, more and more prevalence levels would be true  (Figure\ \@ref(fig:simulations)A).
+Roughly speaking, the uncertain-threshold interpretation model averages over these possibilities, resulting in a posterior distribution that favors higher prevalence levels because they are consistent with more thresholds (Figure\ \@ref(fig:uniformPriorSimulation)B).
+The endorsement model inverts the interpretation model and predicts higher rates of endorsement as the speaker's belief about the prevalence (referent-prevalence) increases (Figure\ \@ref(fig:uniformPriorSimulation)C). 
 
-```
+<!-- This reasoning process favors lower thresholds because they are consistent with more prevalences. -->
+<!-- Low thresholds (e.g., $\theta = 0.25$) rule out very few possibilities (only $p_{fk} \leq 0.25$), and thus an interpretation with a low-threshold still has a lot of uncertainty about the prevalence (Figure\ \@ref(fig:simulations)A, left).  -->
+<!-- Higher thresholds  (e.g., $\theta = 0.75$) rule out many possibilities; an interpretation with this threshold has correspondingly less uncertainty about the prevalence (Figure\ \@ref(fig:simulations)A, right). -->
+<!-- The flip-side of this is that the endorsement model is less likely to produce an utterance with a low-threshold in mind, because the end result would be, from an information-theoretic perspective, similar to staying silent (a posterior not very different from the prior). -->
+<!-- Higher thresholds (e.g., $\theta = 0.9$) rule out more possibilities and thus would be highly informative, but the interpretation model must balance this with the prior probabilities of the prevalences implied by the threshold (Figure\ \@ref(fig:simulations)A).  -->
+<!-- The result of this reasoning process is a trade-off between highly informative thresholds and the prior probabilities of the prevalences implied by those thresholds. -->
 
-The literal interpretation model computes a posterior distribution on prevalence by considering different possible thresholds $\theta$ (Figure\ \@ref(fig:simulations)B).
-Low thresholds (e.g., $\theta = 0.1$) rule out very few possibilities (only $p_{fk} \leq 0.1$), and thus are quite likely given that its consistent with much of the prevalence prior.
-The flip-side of this is that the endorsement model is less likely to produce an utterance with a low-threshold in mind, because the end result would be similar to staying silent (a posterior not very different from the prior).
-Higher thresholds (e.g., $\theta = 0.9$) rule out more possibilities and thus would be highly informative, but the interpretation model must balance this with the prior probabilities of the prevalences implied by the threshold (Figure\ \@ref(fig:simulations)A). 
+The uncertain-threshold model's interpretations are highly sensitive to the shape of the prevalence priors (Figure\ \@ref(fig:simulations)).
+Hearing "Ks bark" tells the literal interpreter that *almost all* Ks bark, though there is a good deal of uncertainty in the precise quantity (column 1).
+"Ks lay eggs" has a strikingly different interpretation: It means "Half of Ks lay eggs" (column 4).
+The interpretation model can also derive very weak interpretation, as shown in the  *carries malaria* distribution (column 6).
 
-The result of this reasoning process is a trade-off between highly informative thresholds and the prior probabilities of the prevalences implied by those thresholds.
-The prevalence-based interpretations of generalizations of novel categories are shown in Figure\ \@ref(fig:simulations)C.
-These interpretations depend heavily on the prevalence priors (different rows).
-Hearing "Ks bark" tells the literal interpretor that *almost all* Ks bark, though there is a good deal of uncertainty in the precise quantity (top row; pink).
-"Ks lay eggs" has a strikingly different interpretation: It means "Half of Ks lay eggs" (4th row; green).
-The literal interpreter can also derive very weak interpretation, as shwon in the  \textsc{carries malaria} distribution (bottom row, purple).
-
-The endorsement model (Eq. \ref{eq:S1}) predicts endorsement probabilities based on the literal interpretation of the utterance and the referent-category prevalence (e.g., how many robins lay eggs).
-Predictions for a few classic examples from the generics literature are shown in (Figure\ \@ref(fig:simulations)D).
+The endorsement model (Eq. \ref{eq:S1}) predicts endorsement probabilities based on the literal interpretation of the utterance and the referent-category prevalence (e.g., how many robins lay eggs; shown in arrows in Figure\ \@ref(fig:simulations)A).
+Predictions for a few examples are shown in the bottom row of Figure\ \@ref(fig:simulations).
 In accord with intuition, the endorsement model predicts "Dogs bark", "Robins lay eggs", and "Mosquitos carry malaria" are all true, despite the referent-prevalences varying substantially between these three examples. 
-Intruigingly, the model predicts "Robins are female" (which has the same prevalence as "Robins lay eggs") should receive intermediate endorsement: It is neither true nor false.
-To understand this prediction, examine the interpretation distribution for the \textsc{are female} distribution: It is identical with the prior (Figure\ \@ref(fig:simulations) A vs. C; blue distributions).
+Intriguingly, the model predicts "Robins are female" (which has the same prevalence as "Robins lay eggs") should receive intermediate endorsement: It is neither true nor false.
+To understand this prediction, examine the interpretation distribution for the *are female* property: It is identical with the prior (Figure\ \@ref(fig:simulations); column 5; top vs. bottom row).
 The endorsement model decides that is neither better nor worse to produce the generalization than to stay silent, as they both carry the same information content.
 This example can be contrasted with cases such as "Sharks don't eat people" and "Kangaroos have spots", which the model thinks would be misleading to say (i.e., better to say nothing).
 
-These simulations show how the model predicted endorsement depends upon the background knowledge about the property $P(p_f)$ as well as the prevalence $p_{fk}$ communicated. 
-We chose schematic values for each of these, and saw that the endorsement model recapitulates standard intuitions about the truth or falsity of classic examples from the generics literature.
+These simulations show how the model predicted endorsement depends upon the background knowledge about the property $P(p_f)$ as well as the referent-prevalence $p_{fk}$ communicated. 
+We chose schematic values for each of these, and saw that the endorsement model recovers standard intuitions about the truth or falsity of classic examples from the generics literature.
 In what follows, we test this theory for a wide range of generalizations, including generalizations of different types (categories, events, and causes).
-We do this by both measurning and manipulating background knowledge and referent-prevalence and relate it to human elicited endorsements of generalizations.
+We do this by both measuring and manipulating background knowledge and referent-prevalence and relate it to human elicited endorsements of generalizations.
 
 <!-- The literal interpretation of a generalization about a previously unknown category (e.g., "Feps bark.") is given by Eq. \ref{eq:L0} and shown in  -->
 
@@ -972,27 +719,40 @@ We do this by both measurning and manipulating background knowledge and referent
 
 It is a remarkable fact that so much is learned from ideas expressed vaguely in words.
 Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
-We have argued that the core meaning of such linguistic expressions is, in fact, simple, but underspecified. 
+We have argued that the core meaning of such linguistic expressions is simple, but underspecified. 
 To our knowledge, this is the first formal theory of generalizations in language that makes precise quantitative predictions about human behavioral data. 
 
-As a formal theory of generalizations in language, we aim to unify significant swaths of language that are, on their surface, quite different from one another: generalizations about categories, events, and causes.
-<!-- What these expressions have in common is *genericity*, the fact that these statements convey generalizations.  -->
-We have been able to formalize a unified, core meaning using the underlying scale of *prevalence*.
-We showed that all three kinds of generalizations exhibit the same kind of sensitivity to context (Expt. 1, 2a \& 2b, 3).
-Our framework naturally accounts for a number of classic examples from the semantics of *generic language* (Expt. 1).
-We provide an avenue for top-down moderators on language use, by elucidating the scale as defined by a subjective, predictive probability, not mere frequency (Expts. 2c \& 2d).
-Finally, we have shown that listeners' prior knowledge about the prevalence of the feature in a category is causally related to their endorsement of statements of genericity (Expt. 3).
-In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below
+As a formal theory of the language of generalization, our framework aims to unify large swaths of language that are, on their surface, quite distinct from one another: "Birds lay eggs", "Sally smokes", "Herb X makes animals sleepy".
+<!-- What these expressions have in common is not surface features but generalization (also referred to as *genericity*). -->
+We have formalized a unified, core meaning of generalization in language using the underlying scale of predictive probability or *prevalence*.
+We showed that endorsements of all three types of generalizations exhibit the same sensitivity to a background distribution comprised of other categories (Expt. 1, 2a \& 2b, 3).
+As well, our framework naturally accounts for a number of logically puzzling category generalizations (Expt. 1) and provides an avenue for top-down moderators on language use, by elucidating the semantic scale as defined by a subjective, predictive probability, not mere frequency (Expt. 2c).
+Finally, we have shown that listeners' prior knowledge about the prevalence of the feature in other categories is directly influences their endorsement of generalizations for the same category (Expt. 3).
+<!-- In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below. -->
+
+
+
+In this paper, we proposed a model for interpreting and endorsing generalizations in language by formalizing a simple semantic theory in a communicative model with shared background knowledge.
+Our pair of models can be seen as a special case of a Rational Speech Act model, a rational framework of pragmatic language understanding [@Frank2012; @Goodman2016].
+The endorsement model, which we use to generate predictions for our three case studies, is a special case of a speaker model who can only produce one of two utterances: the generalization or silence. 
+The interpreter model is a "literal listener", who updates its beliefs by averaging over plausibly thresholds given prior knowledge and the simple truth-functional meaning.
+
 
 <!-- The theory we present here goes beyond previous accounts in a number of useful ways. -->
-The foremost contribution of our theory is that it is accompanied by a formal model, which makes precise quantitative predictions about endorsments.
-The formal Bayesian model provides a clean separation of the semantics of a generalization (operationalized in terms of the likelihood function) from background, world knowledge (operationalized in terms of the prior).
-This formal separation is key improvement beyond previous accounts. 
-Previous accounts have either tried to account for context-sensitivity by baking it into the semantics [e.g., @Cohen1999] or positing a semantics that cannot be separated from world knowledge [e.g., @Leslie2008].
-Our model formalizes both the semantics of generalizations and the structure of world knowledge; this separation allows us to articulate a route for precise quantitative inlfuence of conceptual structure on generic language [c.f., @Leslie2008].
+<!-- The foremost contribution of our theory is that it is accompanied by a formal model, which makes precise quantitative predictions about endorsments. -->
+The formal Bayesian model we articulate provides a clean separation of the semantics of a generalization from background, world knowledge.
+This formal separation is a key advancement beyond previous accounts, which have either aimed to account for context-sensitivity by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics, described below; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
+Our model formalizes a simple meaning for generalizations and investigates the structure of world knowledge that could give rise to the context-sensitivities observed in the data.
+That is, we provide a route for precise quantitative influence of conceptual knowledge on generic language by way of shared background knowledge between speakers and listeners.
+In the rest of this discussion, we elaborate some key features of the theory that warrant further investigation, sketch out arguments for other known philosophical puzzles in genericity, and situate our theory with respect to extant theories of genericity.
+
+
+
+
+
 <!-- Our separation of world knowledge from the semantics of generics provides a substantial, but well-circumscribed role for conceptual structure to influence generic production and comprehension. -->
-We do this without having to posit that conceptual structure and semantics are one in the same.
-This is makes it possible to connect with theories of formal semantics as well as applied Natural Language technologies that seeks to draw inferences from information conveyed in generalizations in text [e.g., @Herbelot2011].
+<!-- We do this without having to posit that conceptual structure and semantics are one in the same. -->
+<!-- This is makes it possible to connect with theories of formal semantics as well as applied Natural Language technologies that seeks to draw inferences from information conveyed in generalizations in text [e.g., @Herbelot2011]. -->
 <!-- Statistical accounts in particular [@Cohen1999; @Nickel2008] -->
 
 <!-- @Nickel2016 notes that genericity is particularly challenging to study because it intersects with many other phenomena in natural language (e.g., gradable adjectives in "Giraffes are tall"). -->
@@ -1002,109 +762,94 @@ This is makes it possible to connect with theories of formal semantics as well a
 <!-- Though these are highly abstracted tests of the model, the modeling framework in principle allows for elaboration to a more complete production and comprehension model.  -->
 <!-- The model is a communicative model, which includes a component corresponding to *comprehension* of genericity (i.e., a listener model).  -->
 
-In the rest of this discussion, we elaborate some key features of the theory that warrant future investigation, sketch out arguments for other known philosophical puzzles in genericity, and situate our theory with respect to extant theories of genericity.
 <!-- We conclude by sketching out arguments for other known philosophical puzzles in genericity. -->
 
-## A step towards communicating generalizations
 <!-- Implicit aspects of language use: The comparison class and question under discussion -->
 
-In this paper, we proposed a model for interpreting and endorsing generalizations in language by formalizing a simple semantic theory in a probabilistic model with structured, prior knowledge.
-Our pair of models can be seen as a special case of a Rational Speech Act model, a rational framework of pragmatic language understanding [@Frank2012; @Goodman2016].
-Our endorsement model, which we use to generate predictions for our three case studies, can be seen as a special case of a speaker model who can only produce one of two utterances: the generalization or silence. 
-Our interpreter model can be seen as a kind of "literal listener", who does not do any sort of pragmatic or communicative reasoning. 
-Our modeling framework could thus naturally be extended to more faithful models of pragamtic communication of generalizations, to explore when and how people choose to communicate their abstract knowledge when they have more options than in a two-alternative forced-choice task.
-The view of our endorsement model as a minimal communicative model highlights aspects of our modeling approach for further future development. 
-
-### The comparison class
-
-Our model of an interpreter, or naive listener, has access to implicit statistics of the event or property in question, represented by the prior belief distribution over the prevalence $P(h)$.
-The prevalence priors for a property, event, or cause are constructed by considering *other possible* categories having the property, people doing the action, or causes producing the effect.
-Collectively, these other kinds, people, or causes form *comparison classes* against which the referent-category is evaluated.
-Thus, the prevalence prior $P(h)$ is constructed with respect *the comparison class* $C$: $P_C(h)$.
-
-The existence of comparison classes is uncontroversial in the study of *vague* or *underspecified* language [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
-Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analagous to the context-sensitivity of the language of generalizations explored in this paper.
-Thus, we conclude generic, habitual, and causal language can be seen as a special case of *vague language*. 
-
-The construction of a comparison class adds another layer of flexibility into the use of generalizations in language. 
-Objects can be conceptualized and categorized in multiple ways, giving rise to multiple, logically-possible comparison classes (e.g., a robin is a bird, is an animal, is an object). 
-We have begun doing work investigating how pragmatic reasoning can help constrain this open-ended problem [@Tessler2017].
-Even if interlocutors coordinate on a particular comparison class, they may disagree about the prevalences for other *other categories* in the class.
-That is, our model makes the prediction that the acceptance or rejection of the statement "Humans cause global warming" or "Muslims are terrorists" depends upon a speaker's beliefs about how *other forces* (e.g., plate tectonics) influence the climate or how often other social categories (e.g., neo-nazis) commit acts of terrorism.
-Indeed, we saw in Expt. 3 how the statistics of other causes can influence the endorsement of a single generalization (e.g., "Herb C makes animals sleepy").
-Understanding how knowledge of the comparison class influences language use is an exciting new area for future research in the language of generalizations.
-
-### Question under discussion
-
-Rational models of communication, of the kind we have developed in this paper, are required to make explicit a speaker's assumptions about the goal of communication, otherwise known as the Question Under Discussion or QUD [@roberts1996qud]. 
-We have made a very minimalist assumption, that the goal of communication (at least, for purposes of endorsement) is the prevalence.
-However, the choice in constructing a comparison class can be thought of as the result of addressing a particular QUD.
-For example, the comparison classes used in our case studies were with respect to the target category (*other animals*, *other people*, *other possible causes*); thus, our model addresses the implicit QUDs of "*what* has feature?", "*who* does action?", or "*what* causes effect?".
-Were the QUDs to be reversed (e.g., "what features does category have?", "what does person do?", "what effects does cause bring about?"), the comparison classes would need to be constructed with respect to the feature (e.g., *other features*, *other actions*, *other effects*).
-
-The QUD is thus another layer of flexibility that makes understanding generalizations so challenging.
-The same sentence can be used to address multiple QUDs [@KrifkaGenericBookFocus].
-The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law."; imagine in a pedagogical context) or a feature-wise comparison class (i.e., "Lawyers care about the law *(as opposed to justice, doing what's morally right, ...)*" e.g., when said sardonically).
-In this work, we focused on category-wise comparison classes for methodological convenience. 
-<!-- In our three case studies, the *category-wise* comparison classes are fixed to *other people*, *other causes*, or *other kinds*, even as we vary the features. -->
-<!-- *Feature-wise* comparison classes are likely to be modulated by the feature itself. -->
-Future work should investigate the feature-wise reading of generalizations, and explore what cues listeners adopt for one or the other interpretation.
-
-<!-- In the minimal contexts employed in our experiments, this is a reasonable assumption. -->
-<!-- There is a different assumption we could have made, however: Another clear way to construct the comparison class is with respect to other features.  -->
-<!-- This *feature-wise* comparison class would correspond to addressing the implicit QUDs: *what does \textsc{person} do?*, *what effects does \textsc{cause} bring about?*, and *what features does \textsc{kind} have?* -->
+<!-- to explore when and how people choose to communicate their abstract knowledge when they have more options than in a two-alternative forced-choice task. -->
+<!-- The view of our endorsement model as a minimal communicative model highlights aspects of our modeling approach for further future development.  -->
 
 
+## Prior knowledge and kind representations
 
-<!-- Throughout our experiments in this work, we have focused on sentences about animals.  -->
-<!-- In addition to being the main focus of past theoretical and empirical work, focusing on animals is methodologically convenient as the comparison class for generics about animals is quite naturally \emph{animals}. -->
-<!-- When we look beyond generics about animals, deciding what goes into a comparison class becomes less clear. -->
-<!-- There are some hints that the comparison class can be derived with respect to the property [@Keil1979], but may involve pragmatic reasoning as well. -->
-<!-- For example, the statement "iPhones are useful" could be in comparison to other forms of technology (like a desktop computer), while "iPhones are heavy" could really only be informative relative to other handheld devices. -->
+Our theory assumes that listeners and speakers share relevant background knowledge (in the form of a *prevalence prior*) against which generalizations are interpreted.
+Given this representation of background knowledge (*prevalence prior*), language interfaces with conceptual knowledge via *prevalence*. 
+Previous psychological and philosophical work on generics has looked beyond prevalence and focused on kinds and their conceptual relations to properties [@Leslie2007; @Leslie2008; @Prasada2013].
+Indeed, we see generics as describing kinds, but argue that the reason why particular generics are licensed in a context concerns the information conveyed to a listener relative to their background knowledge, formalized with by prevalence prior.
+In the right situations, this shared background knowledge can presuppose beliefs about natural kinds and richly structured relations between categories and the properties [a la @Prasada2013].
+In other situations, relevant background knowledge may be merely correlational in nature.
 
-<!-- The incorporation of a comparison class into the study of generic language might help elucidate other puzzles concerning generics. -->
-<!-- Recent work in philosophy and linguistics, for instance, suggest generic language is context-sensitive [@Nickel2008; Sterken2015]. -->
-<!-- @Nickel2008 points out that \emph{Dobermans have floppy ears} may be true in the context of a discussion of evolutionary biology but that \emph{Dobermans have pointy ears} is true in a discussion of dog breeding. -->
-<!-- Our theory provides a hint from where to begin to understand this context sensitivity: the comparison class. -->
-<!-- Different conversational contexts could bring to mind different comparison classes, in a way analogous to the context-sensitivity of  gradable adjectives (e.g., \emph{tall}).  -->
-<!-- Hearing that "Abigail is tall" means different things is Abigail is 20 years old or if she is 4.  -->
-<!-- Future work will be needed to explore whether a pragmatic inference approach is also relevant to establishing the comparison class, and what background knowledge about properties, categories, and context is relevant. -->
 
-## Structured prior knowledge
+Conceptual structure including higher-order abstractions can be formalized in probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
+We believe such probabilistic concept representations can be adopted as a formal analog to intuitive theories of natural kinds [@Gelman2003; @Keil1992].
+We do not assume a particular view of natural kinds in our model, but note that viewing natural kinds as richly structured categories with clusters of non-obvious properties is compatible with our information-theoretic communicative theory. 
+The important commonality among different domain-specific background theories is that they each have a statistical layer to them (i.e., they each give rise to beliefs about *prevalence*), which language interfaces with via the tools of truth-functional semantics.
+Thus, our theory provides a separation between background knowledge and the semantics of generalizations; the interface between the two is predictive probability or *prevalence*. 
+Future work should investigate formalizations of attested differences in background knowledge about properties [e.g., @Prasada2013's *principled*, *statistical*, and *causal* connections] and their corresponding influence on generic endorsement via prevalence priors. 
 
-<!-- -- add tomasello about learning about how to take turns, as a generalization about an event type which is the event of how the game is supposed to be played -->
+<!-- Our approach makes the strong claim that predictive probabilities are the connective tissue between conceptual knowledge and the semantics of generalizations. -->
+<!-- That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding speaker beliefs or listener prevalence distributions, which can occur for multiple reasons (e.g., by changing the comparison class). -->
+<!-- We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to quantitatively different prevalence priors, even while keeping the comparison class fixed.  -->
+<!-- In Expt. 3 we showed that these prevalence distributions are causally related to endorsement. -->
 
-Previous psychological and philosophical work on generics has looked beyond prevalence and focused on conceptual distinctions and relations [@Gelman2003; @Prasada2013; @Leslie2007; @Leslie2008].
-Prasada has argued for a distinction between \emph{characteristic} properties (e.g., "Diapers are absorbent") and \emph{statistical} properties (e.g., "Diapers are white").
-Leslie suggests information that is striking (e.g., "Tigers eat people") is ecologically useful and thus permitted to be a generic.
-Gelman outlines how generics tend to express \emph{essential} qualities that are relatively timeless and enduring. 
-Where in the probability-based semantics could such conceptual distinctions come into play?
 
-Our approach makes the strong claim that beliefs about predicted prevalence are the connective tissue between conceptual knowledge and the semantics of generic language.
-That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding prevalence distributions.
-Modulations of prevalence distributions can occur for multiple reasons (e.g., by changing the comparison class) as described in the previous section.
-We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to quantitatively different prevalence priors, even while keeping the comparison class fixed. 
-In Expt. 3 we showed that these prevalence distributions are causally related to endorsement.
+In our modeling work, we found that the empirical data which underlie the prevalence prior distributions are best modeled by a mixture-model with two mixture components.
+Such a prior distribution draws qualitative distinctions between different kinds of categories by virtue of the prevalence prior model representing multiple distinct components. 
+Actual conceptual knowledge against which generalizations are interpreted is most likely far-richer than simply a two-component mixture-model.
+We note, however, that a richer model of the prior is not necessary to account for the context-sensitive endorsement patterns we observe in our empirical data. 
 
-It is natural to ask how prevalence might reflect conceptual knowledge.
-We found that empirical prevalence distributions are structured in a mixture-model that plausibly reflects intuitions about causal mechanisms underlying different properties; the differences in shape of these distributions in turn led to variable endorsements of generalizations. 
-It is plausible that richer conceptual knowledge also influences these distributions, such as higher-order conceptual knowledge about the nature of properties and categories [@Gelman2003; @Keil1992].
-Indeed, conceptual structure in general, including higher-order abstractions, can be captured by probabilisitic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
-Future work will be needed to explore whether probabilistic representations of conceptual knowledge can capture the relations identified in other accounts of generics (such as principled, essential, and striking properties), and whether the effect of these relations can then be adequately described via their impact on prevalence priors.
+The rational model of communication that we have developed in this paper makes explicit a speaker's assumptions about the goals of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud]. 
+Our simple endorsement model assumes that the goal of communication is the prevalence (Eq.\ref{eq:S1}).
+In other words, the endorsement decision is computed with respect to the prevalence information conveyed to the listener.
+Richer communicative contexts will surely need to elaborate the QUD to fit more appropriately with the informational goals of the context in which generalizations are produced.
+We note, however, that the endorsement model makes almost identical predictions for the data presented in this paper if the QUD is assumed to be about the abstract parameters of the background knowledge (e.g., which mixture component the referent is part of) as opposed to the prevalence itself.
+This observation is promising for the future goal of integrating communicative goals about kinds or conceptual structure into the information-theoretic communicative framework presented here.
+
+<!-- Primarily investigated through generic language (category generalizations), this perspective holds that generics are the linguistic outlet of the mind's default mode of representing kinds [@Leslie2007] and "...an adequate account of the meanings of generic sentences requires an understanding of the ways in which we represent connections between kinds and properties [p.406; @Prasada2013]." -->
+<!-- @Prasada2006 and later @Prasada2013 distinguish properties that have *principled connections* to kinds, *statistical connections*, and *causal connections*.  -->
+
+
+<!-- Leslie suggests information that is striking (e.g., "Tigers eat people") is ecologically useful and thus permitted to be a generalization, even if the property is not widespread. -->
+<!-- Prasada has argued that *characteristic* properties (e.g., "Diapers are absorbent") and *statistical* properties (e.g., "Diapers are white") are  -->
+<!-- Gelman outlines how generics tend to express *essential* qualities that are relatively timeless and enduring.  -->
+<!-- Where in the probability-based semantics could such conceptual distinctions come into play? -->
+
+<!-- Inferential role semantics -->
+<!-- We take the view the causal relations only does anything because it implies statistical regularities, and these statistical regularities are what our linguistic model depends on. -->
+
+<!-- - what are habituals like under Leslie? -->
+
+<!-- probabilistic treatment of kinds vs. of causality -->
+<!-- conceptual representation vs. causal structure -->
+
+<!-- rational rules: concepts are relatively definitional (with some probabilistic structure on those definitions) -->
+<!-- - leslie: my kinds are your probabilistic concept representations -->
+<!-- - the reason why particular generics are licensed. not that there are kinds and that generics communicate about them. -->
+  <!-- - fundamentally communicative element to what the prevalence is and why a generic would sound good in a praticular case (information relative to the prevalence prior) -->
+  
+<!-- - Ellen: causality implies a mechanism, not just a statistical relation. -->
+<!-- - are there parts of the  -->
+<!-- - essentialism: different generative models that imply the same statistics with different causal relations (but orthogonal) -->
+
 
 ## Communicating predictive probabilities
 
 This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
-In previous accounts, prevalence is treated as synonymous with the frequency of the feature in the category. 
-We make the important distinction that probability can be more general than frequency, and in our account, underlies speakers' subjective, predictions about the future and is subject to top-down moderator.
-Expts. 2c \& 2d that showed using participants' \emph{predictions} about the future as the object of communication in our formal model perfectly tracked habitual endorsement, when the present frequency would make the wrong prediction.
+We distinguish this construct from other uses of *prevalence* in the literature, namely the usage as synonymous with frequency.
+<!-- the distinction that what is communicated is probability not frequency. -->
+<!-- In previous accounts, prevalence is treated as synonymous with the frequency of the feature in the category.  -->
+Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
+Predictions about the presence of a feature can be the result of beliefs about internal causes of the feature [e.g., in an essentialist view of natural kinds; @Gelman2003] or merely correlational happenstance.
+What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability or *prevalence*.
 
-Communicating probabilities might seem contrary to a basic tenet in cognitive psychology, that human cognition falls short when reasoning about probabilities [@Tversky1974].
-Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding the *language used* to convey *explicit probabilties* [cf., @Levinson1995]. 
-Rather than conveying *explicit probabilities*, generalizations we argue convey *implicit probabilities*, which are easier to understand and quite useful for statistical reasoning.
-Given the relationship to *vague language* (described above), we argue that the utterance "70% of birds fly" is analagous to saying that "John is 6'3"", while saying "Birds fly" is more similar to saying "John is tall".
+<!-- Expts. 2c \& 2d that showed using participants' *predictions* about the future as the object of communication in our formal model perfectly tracked habitual endorsement, when the present frequency would make the wrong prediction. -->
+
+Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
+Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding the language used to convey explicit probabilities [cf., @Levinson1995]. 
+Rather than conveying *explicit probabilities*, generalizations we argue convey *implicit probabilities*.
+In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to utterance "John is tall".
 The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
-Indeed, young children are actually quite good about reasoning about probabilities, but in ways that are not explicit or tied to language [@Gweon2010; @Dewar2010].
+Indeed, young children are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the actual language of probability [@Xu2008; @xu2009statistical].
 
 <!-- One might also question the feature of our computational model that the speaker is explicitly trying to communicate $h$, her subjective probability.  -->
 <!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the referent-category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
@@ -1138,100 +883,145 @@ Indeed, young children are actually quite good about reasoning about probabiliti
 
 
 
-## Acquiring the language of generalizations
+## The comparison class
 
-The linguistic outlet for generalizations about categories---so called, *generic language*---has received tremendous attention from psychologists, linguists, and philosophers.
-Generic language is one of the earliest emerging forms of complex, compositional language.
-Somewhere between two and three years of age, children recognize that generics convey a generalization about a category, not directly tied to concrete instances in a scene [@Cimpian2008].
-Generics are common in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004] and are believed to be central to the growth of conceptual knowledge [@Gelman2004], 
+The probabilistic communicative model we introduce in this paper assumes shared background 
+<!-- Our model of an interpreter, or naive listener, has access to implicit  -->
+statistics of the event or property in question, represented by the prior belief distribution over the prevalence $P(h)$.
+We constructed prevalence priors for a property, event, or cause by considering *other possible* categories having the property, people doing the action, or causes producing the effect.
+Collectively, these other kinds, people, or causes form *comparison classes* against which the referent-category is evaluated.
+Thus, the prevalence prior $P(h)$ is actually a conditional distribution constructed with respect some comparison class $C$: $P(h \mid C)$.
 
-What is perhaps surprising from a formal perspective is that generic language is far from trivial to characterize. 
-If generics convey something about the probabilty of a feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...).
-The extreme flexibility of generic meaning (e.g., "Birds lay eggs" vs. "Birds are female") stands in stark contrast to its early emergence in development.
-In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge *later* in development [@Brandone2014; @Gelman2015], and are often confused for generic statements [@Leslie2012a].
-This has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) is not approrpriate for generic language [@Leslie2008].
+The existence of comparison classes is uncontroversial in the study of *vague* or *underspecified* language [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
+Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity of the language of generalizations explored in this paper.
+An important problem for comparison classes for both gradable adjectives and generalizations is that the comparison class often goes unsaid (e.g., "John is tall for a person" is often produced as just "John is tall").
 
-We think rejecting the normal tools of truth-functional semantics for generics would be throwing out the baby with the bathwater.
-When we consider the acquisition problem, there are three aspects of meaning that a child must acquire for a truth-functional quantifier semantics $\denote{u}(h, \theta) = \{h :h > \theta\}$: 
-(1) the dimension being described (i.e., the probability $h$),
-(2) the polarity of the relation (i.e., $>$ vs. $<$), and 
+Uncertainty about the comparison class adds yet more opportunity for miscommunication, deceit, or just faultless disagreement to the language of generalization.
+Even if interlocutors roughly coordinate on a particular comparison class (e.g., agreeing that they are talking *relative to other animals*), they may disagree about the prevalences for other categories in the comparison class.
+That is, our model makes the prediction that the acceptance or rejection of controversial statements (e.g., "Muslims are terrorists") depends upon a speaker's beliefs about how often other categories exhibit the property (e.g., neo-nazis committing acts of terrorism).
+In Expt. 3, we empirically demonstrated the influence of other categories on endorsement of a generalization.
+Understanding how knowledge of the comparison class influences language use is an exciting new area for future research in the language of generalizations.
+
+Finally, interlocutors may not only fail to coordinate on what categories are in the comparison class, the prevalences that may be assumed for the constituent categories of the comparison class, but the very nature of *how* the comparison class should be constructed.
+The comparison classes used in our case studies were with always respect to the *category* (*other animals*, *other people*, *other possible causes*); thus, our model addresses the implicit QUD of "*what* has feature?".
+Were the QUD to be reversed (e.g., "what features does the category have?"), the comparison classes would be constructed with respect to the *feature* (e.g., *other features*, *other actions*, *other effects*).
+It's long been noted that the same generalization can be used to address multiple QUDs [@KrifkaGenericBookFocus], and we posit that differences in interpretation are the result of multiple distinct comparison classes competing for influence.
+The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law."; imagine in a pedagogical context) or a feature-wise comparison class (i.e., "Lawyers care about the law *(as opposed to justice, doing what's morally right, ...)*" e.g., when said sardonically).
+In this work, we focused on category-wise comparison classes purely for methodological convenience.
+Future work should investigate the factors that give rise to feature-wise interpretations of generalizations, and how the relevant comparison classes are constructed. 
+
+
+
+
+<!-- Thus, we conclude generic, habitual, and causal language can be seen as a special case of *vague language*.  -->
+<!-- The construction of a comparison class adds another layer of flexibility into the use of generalizations in language. -->
+<!-- Objects can be conceptualized and categorized in multiple ways, giving rise to multiple, logically-possible comparison classes (e.g., a robin is a bird, is an animal, is an object).  -->
+<!-- We have begun doing work investigating how pragmatic reasoning can help constrain this open-ended problem [@Tessler2017]. -->
+
+
+<!-- ### Question under discussion -->
+
+
+
+<!-- However, the choice in constructing a comparison class can be thought of as the result of addressing a particular QUD. -->
+<!-- The QUD is thus another layer of flexibility that makes understanding generalizations so challenging. -->
+<!-- In the minimal contexts employed in our experiments, this is a reasonable assumption. -->
+<!-- There is a different assumption we could have made, however: Another clear way to construct the comparison class is with respect to other features.  -->
+<!-- This *feature-wise* comparison class would correspond to addressing the implicit QUDs: *what does \textsc{person} do?*, *what effects does \textsc{cause} bring about?*, and *what features does \textsc{kind} have?* -->
+
+
+
+<!-- Throughout our experiments in this work, we have focused on sentences about animals.  -->
+<!-- In addition to being the main focus of past theoretical and empirical work, focusing on animals is methodologically convenient as the comparison class for generics about animals is quite naturally \emph{animals}. -->
+<!-- When we look beyond generics about animals, deciding what goes into a comparison class becomes less clear. -->
+<!-- There are some hints that the comparison class can be derived with respect to the property [@Keil1979], but may involve pragmatic reasoning as well. -->
+<!-- For example, the statement "iPhones are useful" could be in comparison to other forms of technology (like a desktop computer), while "iPhones are heavy" could really only be informative relative to other handheld devices. -->
+
+<!-- The incorporation of a comparison class into the study of generic language might help elucidate other puzzles concerning generics. -->
+<!-- Recent work in philosophy and linguistics, for instance, suggest generic language is context-sensitive [@Nickel2008; Sterken2015]. -->
+<!-- @Nickel2008 points out that \emph{Dobermans have floppy ears} may be true in the context of a discussion of evolutionary biology but that \emph{Dobermans have pointy ears} is true in a discussion of dog breeding. -->
+<!-- Our theory provides a hint from where to begin to understand this context sensitivity: the comparison class. -->
+<!-- Different conversational contexts could bring to mind different comparison classes, in a way analogous to the context-sensitivity of  gradable adjectives (e.g., \emph{tall}).  -->
+<!-- Hearing that "Abigail is tall" means different things is Abigail is 20 years old or if she is 4.  -->
+<!-- Future work will be needed to explore whether a pragmatic inference approach is also relevant to establishing the comparison class, and what background knowledge about properties, categories, and context is relevant. -->
+
+
+
+
+## Acquiring the language of generalization
+
+<!-- The linguistic outlet for generalizations about categories---so called, *generic language*---has received tremendous attention from psychologists, linguists, and philosophers. -->
+<!-- Generic language is one of the earliest emerging forms of complex, compositional language. -->
+<!-- Somewhere between two and three years of age, children recognize that generics convey a generalization about a category, not directly tied to concrete instances in a scene [@Cimpian2008]. -->
+
+Perhaps the most surprising aspect of the language of generalization is how difficult it is to formalize, given how common it is in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004].
+<!-- from a formal perspective is that generic language is far from trivial to characterize.  -->
+<!-- Generalizations are common in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004] and are believed to be central to the growth of conceptual knowledge [@Gelman2004], -->
+Generalizations are often contrasted with quantifier language (e.g., "some", "most", "all", ...), which is in fact *easier* to formalize, but more difficult for young children to acquire [@Brandone2014; @Gelman2015].
+<!-- If generics convey something about the probabilty of a feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...). -->
+<!-- The extreme flexibility of generic meaning (e.g., "Birds lay eggs" vs. "Birds are female") stands in stark contrast to its early emergence in development. -->
+<!-- In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge *later* in development [@Brandone2014; @Gelman2015], and are often confused for generic statements [@Leslie2012a]. -->
+This asymmetry between the simplicity of the formal theory and the age of acquisition has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) is inappropriate for generalizations  [@Leslie2008].
+
+Rejecting the tools of truth-functional semantics for generalizations would be throwing the baby out with the bathwater.
+The acquisition of a threshold-based truth-functional meaning $\denote{u}(h, \theta) = \{h :h > \theta\}$ requires learning at least three distinct aspects of meaning: 
+(1) the *dimension* being described (i.e., probability $h$),
+(2) the *polarity* of the relation (i.e., $>$ vs. $<$), and 
 (3) the value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
-Upon learning the meaning has to do with probability and that it stands in a positive relation to some standard $\theta$, a rational learner would adopt a prior distribution over possible thresholds $\theta$, as a form of *lexical uncertainty* [@Bergen2016].
-This prior could then be updated with more data to acquire a fixed meaning.
-However, for the generic statement, the language learner is done once she acquires aspects (1) and (2).
-In our model, $\theta$ is left underspecified in the semantics and is inferred in context.
-Thus, in this sketch of an acquisition model, a child would first acquire generic language, and from that, carve out more precise meanings for quantified language.
+Upon acquiring the dimension and the polarity, a rational learner should represent uncertainty over possible thresholds $\theta$.
+Upon repeated cross-situational data, this prior could be updated towards acquiring a fixed meaning.
+However, for generalizations, no fixed threshold is required; the language of generalization is learned once aspects (1) and (2) are understood.
+<!-- In our model, $\theta$ is left underspecified in the semantics and is inferred in context. -->
+This informal analysis predicts that a child would first acquire the language of generalizations, and from that, carve out more precise meanings for quantified language, consistent with the developmental data.
 
-The uniform prior over the threshold $\theta$ in the truth-functional threshold semantics (as we have assumed in our model) provides a secondary argument for why acquiring our semantics for generics should be easy.
-Uniform uncertainty over values in the unit interval $[0, 1]$ for threshold $\theta$ in a threshold-function is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the prevalence $h$ *itself*: 
-
-$$
-\int_{0}^{1} \delta_{h > \theta} \diff \theta =  h
-$$
-This *soft semantics* (corresponding intuitively to a meaning like "the higher the probability, the better the utterance", or simply "more is better") is perhaps the simplest semantics one could imagine.
+There is a secondary argument for why our semantics presents an easy learning problem.
+<!-- The uniform prior over the threshold $\theta$ in the truth-functional semantics (as we have assumed in our model) provides a secondary argument for why acquiring our semantics for generics should be easy. -->
+Uniform uncertainty over values in the unit interval $[0, 1]$ for threshold $\theta$ in a threshold-function (as we have assumed in our model) is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the degree itself, in this case prevalence $h$: $\int_{0}^{1} \delta_{h > \theta} \diff \theta =  h$
+This *soft semantics* (corresponding intuitively to a meaning like "the higher the probability, the better", or simply "more is better") is perhaps the simplest quantitative semantics one could posit.
 The difficulty in acquiring the meaning of quantifiers is then a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
 We leave for future work the precise implementation of the acquisition model we sketch out here.
 
 ## Other philosophical puzzles
 
-In our experiments, we have tried to include classic, philosophically puzzling examples of generalizations in language in addition to crafting novel stimuli that provide stricter tests of the main hypothesis.
-In this section, we consider some other previously-discussed troubling examples of generalizations and sketch out arguments rooted in our theoretical framework to demonstrate how our theory could account for these cases. 
+In this paper, we aimed to balance two competing goals in designing our experimental stimuli: (1) including some familiar, philosophically puzzling examples that have been discussed in the vast literature on generic language and (2) introducing novel stimuli that provide targeted tests of our model vis-a-vis alternative models.
+In this section, we discuss how a few other previously-discussed troubling examples of generalizations could be addressed in our communicative framework.
 We consider the five following examples:
 
-1. Books are paperbacks.
-2. Mary handles the mail from Antarctica.
-3. Supreme Court Justices have even social security numbers.
-4. Elephants live in Africa and Asia.
+1. Mary handles the mail from Antarctica.
+2. Supreme Court Justices have even social security numbers.
+3. Elephants live in Africa and Asia.
+4. Books are paperbacks.
 5. Women are submissive.
 
-Sentence (1), strikes hearers as *odd* or perhaps *false*, despite the vast majority of books being paperback. 
-Why?
-A first observation is that the sentence is constructed by pairing a category ("Books") with a property that describes a strict subset ("paperbacks" is short-hand for "paperback books"). 
-We expect intuitions about this statement to generalize to other examples expressing an analogous relation (e.g., "Pastas are spaghetti", "Animals are humans").
-We hypothesize that the strangeness of these examples has to do an inflexible relationship between the comparison class and the referent-prevalence.
-Assume that the comparison class is constructed by considering the *predicability* of the property [in the sense of @Keil1979, originally from @Sommers1963].^[
-  Note that this assumption is consistent with the comparison classes we have assumed in our three case studies.
-]
-Then, "is a paperback" can only be informatively said of individual books, because these are the only objects that can plausibly have the property; that is, world knowledge gives us that an elephant cannot be predicated (either true or falsely) by the property "is a paperback".^[
-  Note that this idea is similar to @Cohen1999's notion of "Relative generics", which have truth conditions that are determined by a comparison to an alternative set of Ks (his   Alt(K), our comparison class) which is composed of Ks that could satisfy some F in an an alternative set of Fs.
-]
-The relevant aggregations of entities, then, are collection of books, potentially including books of different genres or publication eras among other such sub-categories.
-Then, given that "books" is the superordinate category of "kinds of books", the referent-category prevalence cannot be different from the mean of the prevalence prior.
-Finally, given this prevalence prior and the referent-prevalence, our endorsement model would predict "Books are paperbacks" is neither true nor untrue, in the a way analogous to "Robins are female". 
- 
-```{r booksArePaperbacks, fig.cap="Sketch of an argument for why 'Books are paperbacks' sounds odd. The feature 'is paperback' can only be predicated (in the sense of @Keil1979) of individual books, which are organized into collections (here, by genre). The prevalence prior is constructed by aggregating these collections of books. Then the prevalence of 'is paperbook' for the category of 'books' can never be higher than the mean of the prior distribution. The endorsement model would give this sentence a rating of 0.5, corresponding to neither true nor false."}
-knitr::include_graphics("figs/books-paperbacks.pdf", dpi = 108)
-```
-
-
-Imagine there is a job in the local beaurocrat's office to handle the mail from Antarctica and this job is assigned to Mary;  to date, however, there has never been any mail from Antarctica [@Cohen1999]. 
-That is, the statement "Mary has handled mail from Antarctica" is false.
-Sentence (2) is still thought to be true despite zero actual instances of the event.
-We think (2) is a boundary case of generalizations expressing predictive probabilities, which we elucidated in Expt. 2c.
-In in that study, we experimentally dissociated predictive probability from past frequency, and saw that only a model that took into account predictive probability could explain participants' endorsements of generalizations.
-We expect the same to be true here, elucidated by the intuition that: were there to be any mail coming from Antarctica, Mary would handle it. 
+Imagine there is a job in the local bureaucrat's office to handle the mail from Antarctica and this job is assigned to Mary;  to date, however, there has never been any mail from Antarctica [@Cohen1999]. 
+That is, the statement "Mary *has handled* mail from Antarctica" is false.
+Sentence (1) is still thought to be intuitively true despite zero actual instances of the event.
+In our framework, we treat Sentence (1) is a boundary case of generalizations expressing predictive probabilities.
+In Expt. 2c., we experimentally dissociated predictive probability from past frequency, and saw that only a model that took into account predictive probability could explain participants' endorsements of generalizations.
+We expect the same to be true with Mary, elucidated by the intuition that: were there to be any mail coming from Antarctica, Mary would handle it. 
 Past frequency or actual prevalence in the world often tracks predictive probabilities, but language users' internal models of how the world works can lead them in certain situations to expect something different in the future.
 
-Our focus on predictive probability makes even new prediction about some classic puzzles.
-Sentence (3) is the conceptual opposite of sentence (2).
+Our focus on predictive probability makes even novel predictions about some classic puzzles.
+Sentence (2) is the conceptual opposite of sentence (1).
 Imagine that currently every Supreme Court Justice has a social security number which is an *even number*. 
-Sentence (3) is still considered false, every though the property holds in 100\% of the category [@Cohen1999].
-We predict this phenomenon is the result of abstract, intuitive theories guiding us to reject observed frequencies in forming our subjective probabilities.
-That is, because observers strongly believe selection for the Supreme Court is not influenced by one's social security number, speakers would assign a roughly 50\% subjective probability that the \emph{next} justice would have an even social security number.
-Then, given that the all professions would have roughly the same probability of having employees with even social security numbers, Sentence (3) is again similar to "Birds are female". 
-However, were we to learn much more surprising information---for instance, if every Supreme Court Justice in U.S. history had a social security number which was a *prime number*---the shear suspiciousness could compel an observer to revise their theory of the domain (appealing perhaps to a conspiracy), update their subjective probability of future instances, and then accept the generic. 
-That is, we predict there are situations where statements like (3) could be considered felicitious generalizations.
+Sentence (2) is still considered false, every though the property holds in exactly 100\% of the category [@Cohen1999].
+We predict the rejection of Sentence (2) is the result of abstract, intuitive theories guiding our subjective probabilities.
+That is, because observers strongly believe one's social security number does not influence selection for the Supreme Court, speakers would assign a roughly 50\% subjective probability that the *next* justice would have an even social security number.
+Then, if we constructed the comparison class by considering other professionals, Sentence (2) would be rated similarly by our model as "Birds are female", because all professions have roughly the same probability of having employees with even social security numbers. 
+However, were we to learn much more surprising information---for instance, if every Supreme Court Justice in U.S. history had a social security number which was a *prime number*---the shear auspiciousness could compel an observer to revise their theory of the domain (appealing perhaps to a conspiracy), update their subjective probability of future instances, and then accept the generic. 
+That is, we predict there are situations where statements like (2) could be considered felicitous generalizations.
+
 
 Understanding how a semantic representation *composes* is another critical test for a theory of generalizations in language.
-@Nickel2008 suggests Sentence (4) is semantically equivalent to: "Elephants live in Africa and elephants live in Asia".
-Stastistical account of generalizations have trouble with this kind of conjunction: It cannot be the case that *most* (more than half) elephants live in Africa and *most* (more than half) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which we would rather not have to posit.
-However, this is the only interpretation if the generalization is given a fixed, majority based quantificational account (e.g., if the generic means *most*).
-Our theory does not provide a fixed semantics for the generalizations, but an uncertain one, which can be updated as more information comes in.
-In fact, with a strong constraint against the existence of *international elephants* but with any further semantic assumptions, our model infers that some elephants live in Africa and other lives in Asia.^[
+@Nickel2008 suggests Sentence (3) is semantically equivalent to: "Elephants live in Africa and elephants live in Asia".
+Statistical accounts of generalizations have trouble with this kind of conjunction: It cannot be the case that *most* (more than half) elephants live in Africa and *most* (more than half) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which we would rather not have to posit.
+This is the only interpretation available if the generalization is given a fixed, majority based quantificational semantics (e.g., if the generic means *most*).
+Our theory does not provide a fixed semantics for generalizations, but an uncertain one, which can be updated as more information comes in.
+In fact, with prior knowledge pushing against the existence of *international elephants* and without any further semantic assumptions, our model can interpret Sentence (3) as meaning some elephants live in Africa and that different ones live in Asia.^[
   An implementation of this example can be found: [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
 ]
-Importantly, the model believes that most lives in Africa, when it only hears that "Elephants live in Africa", and only later revises it's beliefs to a weaker "some"-like interpretation after hearing they live in Asia as well.
-Our model flexibly accomodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise interpretation of single utterances.
+Importantly, an incremental parsing of Sentence (3) leads our model to first believe that *most* elephants live in Africa (when it only hears that "Elephants live in Africa"), and then later believe that *some* elephants live in Africa (while others live in Asia) after hearing the end of the utterance ("...and Asia").
+Our model flexibly accommodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise meaning of the utterance.
 
 <!-- Instead, the statement should be glossed as *some elephants live in Africa* and *some elephants live in Asia*, and perhaps taken collectively, *most elephants live in either Africa or Asia* [@Nickel2008].  -->
 <!-- This reading of (3) gives it the same semantic content as two statements: "Elephants live in Africa. Elephants live in Asia." -->
@@ -1241,20 +1031,37 @@ Our model flexibly accomodates new evidence that might otherwise contradict prev
 <!-- When the model then hears "Elephants live in Asia", the model updates its beliefs to accomodate this second statement,  -->
 <!-- This is possible because our model has uncertainty over the semantic thresholds in the generic claim. -->
 
-Finally, sometimes a property is widespread relative to other kinds or groups, and it might be so systemic that we would believe it to be the case in the future, but speakers still might find it avertise to actually endorse the generalization.
+Sentence (4), strikes hearers as *odd* or perhaps *false*, despite the vast majority of books being paperback. 
+Why?
+We first observe that the sentence is constructed by pairing a category ("Books") with a property that describes a strict subset (i.e., "paperbacks", or "paperback books"). 
+We hypothesize that the strangeness of this example has to do an inflexible relationship between the comparison class and the referent-prevalence.
+Assume that the comparison class is constructed by considering the *predicability of the property* [in the sense of @Keil1979, originally from @Sommers1963].^[
+  Note that this assumption is consistent with the comparison classes we have assumed in our three case studies.
+]
+Then, "is a paperback" can only be informatively said of individual books, because these are the only objects that can plausibly have the property; that is, world knowledge gives us that an elephant cannot be predicated (either true or falsely) by the property "is a paperback".^[
+  Note that this idea is related to @Cohen1999's notion of "Relative generics" (described more fully below), which have truth conditions that are determined by a comparison to an alternative set of Ks (his   Alt(K), our comparison class) which is composed of Ks that could satisfy some F in an alternative set of Fs.
+]
+The relevant aggregations of entities (i.e., of individual books), then, are collections of books (e.g., books of different genres or publication eras among other such sub-categories).
+Then, given that "books" is the superordinate category of "kinds of books", the referent-category prevalence (the % of books that are paperbacks) is the mean of the prevalence prior (the average of the % of sub-classes of books that are paperbacks).
+Given this prevalence prior and the referent-prevalence, our endorsement model would predict "Books are paperbacks" is neither true nor untrue, in a way analogous to "Robins are female". 
+We expect these intuitions to generalize to other examples expressing an analogous relation (e.g., "Pastas are spaghetti", "Animals are humans").
+
+ 
+```{r booksArePaperbacks, fig.cap="Sketch of an argument for why 'Books are paperbacks' sounds odd. The feature 'is paperback' can only be predicated (in the sense of @Keil1979) of individual books, which are organized into collections (here, by genre). The prevalence prior is constructed by aggregating these collections of books. Then the prevalence of 'is paperbook' for the category of 'books' can never be higher than the mean of the prior distribution. The endorsement model would give this sentence a rating of 0.5, corresponding to neither true nor false."}
+knitr::include_graphics("figs/books-paperbacks.pdf", dpi = 108)
+```
+
+Finally, a property can be widespread relative to other kinds or groups as well as being so systemic that we would predict it to be the case in the future, and speakers still might find it aversive to actually endorse the generalization.
 Such is the situation with Sentence (5) [@Haslanger2011]. 
 Due of a variety of socio-cultural reasons, @Haslanger2011 argues that women tend to be submissive (more so than men, and many other social categories), yet still cautions against asserting (5).
-In our **Model Simulations** section, we showed that the genearlization often implies the property is widespread, even with relatively uninformed prior beliefs about the property. 
-If the generic conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth. ^[
-  Note that this can straight-forwardly capture the central phenomena of @Cimpian2010.
-].
-The current formulation of the model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated in the mind of the listener).
-However, if states of the world (or, listener's beliefs about states of the world) correspond to different subjective values, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
+In our **Model Simulations** section, we showed that the generalization often implies the property is widespread, even with relatively uninformed prior beliefs about the property. 
+If the generalization conveys the property is in fact more widespread than the speaker herself might believe, this can lead to a distortion of the truth [@Cimpian2010].
+The current formulation of our model is relatively ambivalent about the deviations of the listener's beliefs from the speaker's belief (i.e., the speaker doesn't mind that the prevalence that she believes to be true will be exaggerated in the mind of the listener).
+However, if states of the world (or, listener's beliefs about states of the world) have different *subjective values*, speakers who take into the account the subjective utilities of the listener may produce language that deviates from what a pure informational transmission speaker might say.
 This kind of extension to rational models of communication has already been used to account for a variety of phenomena in *polite language* use [@Yoon2016; @Yoon2017].
-We propose adopting such a value-based utility structure for states of the world for language about social categories: If the speaker found states of the world where the probability of the feature is high (e.g., a world where many women were submissive) as undesirable, then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such a generalization.
-We find this possibilitity intruiging and leave it for future work.
+We propose adopting such a value-based utility structure for states of the world for language about social categories: If the speaker found states of the world where the probability of the feature is high as undesirable (e.g., a world where many women were submissive), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such a generalization.
 
-In sum, we've tried to argue that our information-theoretic communicative model couched in general cognitive framework can be used to explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
+In sum, we've tried to argue that our information-theoretic communicative model couched in our general cognitive framework can be used to explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
 The precise implementation of these hypotheses we leave for future work.
 
 <!-- -- Books are paperbacks. (failure of the constrast class) -->
@@ -1265,122 +1072,71 @@ The precise implementation of these hypotheses we leave for future work.
 <!-- -- Mary handles the mail from antarctica (predictive propensity; also highlights domain restriction on events) -->
 <!-- - Glass breaks when struck. (so-called "disposition", but here: a generalization about the event of a glass being struck [already we are domain restricted]) -->
 
-## Relationship to other theories
+## Relationship to other semantic theories
 
-To our knowledge, the present papaer presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
-A number of other theories of genericity have been proposed in the linguistics and psychological literatures.
-We now turn to situating our account with respect to these previous theories.
+To our knowledge, the present paper presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
+A number of other theories of genericity have been proposed in the formal semantics  literature.
+<!-- We now turn to situating our account with respect to these previous theories. -->
 <!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
-Semantic theories fall into one of two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to structured, conceptual representations (e.g., *there is something about being K which causes it to F*).
+These theories fall into two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to conceptual representations (e.g., *there is something about being K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
-### Statistical accounts
+The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 has been described above.
+We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
+Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
+For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
+We believe this provides a more unifying view of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
 
-#### Relative and absolute generics
 
-Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999 's theory of generics as a frequency adverb (e.g., "generally").
-For Cohen, the statement "Birds lay eggs" means "Generally, birds lay eggs", and then he takes up the task of explaining what "generally" means.
-He partitions generics into two types: *absolute* and *relative* generics.
-*Absolute generics* use a fixed, 50\% threshold on prevalence: $P(F\mid K)>0.5$. 
-Roughly speaking, "Dogs have four legs" is true because a given dog is more likely than not to have four legs. 
-*Relative generics* depend upon an alternative set of kinds (his notation: $Alt(K)$), analogous to our comparison class.
-"Mosquitos carry malaria" is a relative generic: it is true because an arbitrary mosquito is more likely than an arbitrary member of an alternative kind to have the feature.
+<!-- ### Conceptual accounts -->
 
-Our uncertain-threshold model deviates from Cohen's account in two primary ways.
-First, though his theory is framed in terms of probabilities, it still utilities a fixed threshold semantics and thus is only able to make predictions about what is "true" and what is "false".
-In our theory, there is uncertainty about the core semantic meaning, and this uncertainty (though reduced in context) drives the model to make graded predictions about endorsement.
-Second, Cohen draws an *a priori* distinction between *Absolute* and *Relative* generics, and provides different mechanisms for each each.
-We used examples of both in our stimuli (Expt. 1) and found that our single model handles both without any addition assumptions, casting doubt on the *a priori* distinction between "absolute" and "relative".^[
-  For a related theory that aims to do away with the distinction between "absolute" and "relative"   adjectives, see @Lassiter2015.
-]
+<!-- Conceptual accounts of generics emphasize the structure of generic knowledge [@Prasada2000], and view generic utterances as the way of expressing special mental relationships between kinds and properties [@Leslie2008; @Prasada2012]. -->
+<!-- These accounts start with the perspective that generics express rich, conceptual relationships between kinds and properties. -->
+<!-- That is, "Bishops move diagonally" not because of a statistical relationship, but rather, because those are the rules of the game; if you start moving the bishop other ways besides diagonally, you cease to be playing chess. -->
 
-We note additional machinery that Cohen's theory relies upon (and that is not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?).
-His theory posits that prevalence is calculuated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$). 
-For example, the property "lays eggs" induces a set of alternatives that are associated with mechanisms of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...).
-Therefore, "Robins lay eggs" is evaluated as an *absolute generic* because only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other aternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
-The inferential machinery behind Cohen's domain restriction (i.e., what comrpises $Alt(F)$?) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[
-  However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks found in cognitive science.
-]
-However, we note that this mechanism may be implicit in our own theory: the prior distribution over the prevalence of *lays eggs* presumably includes aspects of people's theories about reproduction (i.e., that only females lay eggs).
-Thus, there may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction. 
 
-<!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
+<!-- If a lion lacked the capacity to roar, we might consider a less good example of being a lion because "lions roar". -->
 
-#### "Normal" accounts
+<!-- The most influential conceptual account of generics is from @Leslie2007. -->
+<!-- For Leslie, generics are tied to the cognitive system's "default mode of generalization", which infants seem ready to make use of by drawing strong generalizations from small amounts of data [e.g., @Baldwin1993]. -->
+<!-- Leslie's "default mode" comes equipped with the ability to single-out *striking properties* (e.g., properties which are dangerous or appalling) as particularly useful aspects of the world to know about. -->
+<!-- Hence, "Mosquitos carry malaria" is true because malaria can kill you and is useful to know about. -->
 
-The primary alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
-For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
-However, were the world to function *normally* (e.g., dogs would not be involved in freak-tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
-The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and stereotyped language (e.g., "Boys are good at math”).
-Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations. 
-We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations. 
-Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future. 
-
-#### Underquantification
-
-A proposal similar to our account concerning underspecification of generics has been made in the computational linguistics literature [so-called *underquantification*; @Herbelot2011].
-In their model, generics express an explicit quantified relation, specifically either "Some", "Most", or "All".
-The task of the computational linguist, then, is to construct a set of features that accurately predicts (relative to human judgments) the quantified relationship expressed by the generic [analagous to a quantifier version of the *implied prevalence* task used in @Gelman2003b; @Cimpian2010]. 
-Our semantic theory can be seen as a generalization of the *underquantification* to a continuous interval of possible meanings.
-This distinction is relevant for the acquisition of the language of generalizations; we do not think that quantified relations (e.g., "Some", "All") are in any way primary or special. 
-<!-- Formally, whereas the *underquantification* account posits that a generic is *ambiguous* between various meanings, we argue that the generic is *vague*, and has a continuum of possible meanings.  -->
-Additionally, by using a vague, underspecified threshold, our formulation naturally extends to other scales and other kinds of generalizations (e.g., habitual language), where quantified relations like "Most" or "All" are not directly applicable. 
-
-#### Generic as indexical
-
-@Sterken2015 has recently proposed an intruiging account of the context-sensitive of generic language by treating generics as a kind of *indexical* (e.g., "this" or "I").
-The variability of endorsements is then attributed to mechanisms of domain restriction (described above with @Cohen1999) and context-sensitive "quantificational force".
-Our uncertain-threshold semantics may be a precise formalization of @Sterken2015's "quantificational force" (and a generalization of *underquantification*, see above), and we have argued above that domain restriction is not a necessary mechanisms for the cases considered in this paper. 
-We leave for future work exploring how the context-sensitivity of an indexical may differ from the kind of context-sensitivity in our model.
-
-### Conceptual accounts
-
-Conceptual accounts of generics emphasize the structure of generic knowledge [@Prasada2000], and view generic utterances as the way of expressing special mental relationships between kinds and properties [@Leslie2008; @Prasada2012].
-These accounts start with the perspective that generics express rich, conceptual relationships between kinds and properties.
-That is, "Bishops move diagonally" not because of a statistical relationship, but rather, because those are the rules of the game; if you start moving the bishop other ways besides diagonally, you cease to be playing chess.
-If a lion lacked the capacity to roar, we might consider a less good example of being a lion because "lions roar".
-
-The most influential conceptual account of generics is from @Leslie2007.
-For Leslie, generics are tied to the cognitive system's "default mode of generalization", which infants seem ready to make use of by drawing strong generalizations from small amounts of data [e.g., @Baldwin1993].
-Leslie's "default mode" comes equipped with the ability to single-out \emph{striking properties} (e.g., properties which are dangerous or appalling) as particularly useful aspects of the world to know about.
-Hence, "Mosquitos carry malaria" is true because malaria can kill you and is useful to know about.
-
-This accounts predicts that generics that convey striking properties should be endorsed even when they are relatively rare in the category (i.e., low referent-prevalence; e.g., "Sharks attack swimmers").
-Indeed, naturalistic examples (e.g., "Sharks attack swimmers") and artificial examples (e.g., "Lorches have purple feathers")  supplemented with striking information (e.g.,"These feathers are as sharp as needles and can easily get lodged in you, causing massive bleeding") are endorsed when the prevalence is quite low (e.g., 30\% of lorches have purple feathers; @Cimpian2010; see Expt. 1 for naturalistic cases).
-In pilot work, using a paradigm similar to the prior manipulation paradigm employed in the causal language experiments (Expt. 3a), we have observed that the prior distribution over the prevalence $P(h)$ change when supplied information about the dangerousness of the feature.
-That is, our pilot work suggests that experiments that experimentally induce beliefs about the dangerousness of a feature also manipulate the prevalence priors. 
-Thus, our model would also predict these effects, but by way of the prevalence priors rather than some direct connection between generics and striking features.
+<!-- This accounts predicts that generics that convey striking properties should be endorsed even when they are relatively rare in the category (i.e., low referent-prevalence; e.g., "Sharks attack swimmers"). -->
+<!-- Indeed, naturalistic examples (e.g., "Sharks attack swimmers") and artificial examples (e.g., "Lorches have purple feathers")  supplemented with striking information (e.g.,"These feathers are as sharp as needles and can easily get lodged in you, causing massive bleeding") are endorsed when the prevalence is quite low (e.g., 30\% of lorches have purple feathers; @Cimpian2010; see Expt. 1 for naturalistic cases). -->
+<!-- In pilot work, using a paradigm similar to the prior manipulation paradigm employed in the causal language experiments (Expt. 3a), we have observed that the prior distribution over the prevalence $P(h)$ change when supplied information about the dangerousness of the feature. -->
+<!-- That is, our pilot work suggests that experiments that experimentally induce beliefs about the dangerousness of a feature also manipulate the prevalence priors.  -->
+<!-- Thus, our model would also predict these effects, but by way of the prevalence priors rather than some direct connection between generics and striking features. -->
 <!-- However, we do not dispute that extra-linguistic factors can play a role in endorsements of generalizations (e.g., a speaker may not *want* a hearer to believe the generalization, which she herself knows to be true, or visa versa; more on this below). -->
 
-Of course, not all generics convey striking or appalling information (e.g., "Birds lay eggs").
-Leslie's default mode, thus, also distinguishes *negative counter-instances* of a property (e.g., a bird that doesn't lay eggs, such as a male bird) from *positive counter-instances*  (e.g., a hypothetical bird that bears live young)
-The conceptual account argues that generics are much less reasonable when *positive* counter-instances exist. 
-For example, "Birds are female" seems weird because *being male* is a *positive* counter-instance of *being female*, but since there are no birds that bear live young (i.e., no *positive counter-instances*),  "Birds lay eggs" is fine.
-In the current version of our theory, both kinds of counter-instances influence the referent-category feature-probabilities, though only positive counter-instances could impact the statistical details of the comparison class (in particular, when constructed with respect to the feature; see discussion about the Comparison Class).
-Thus, the notion of *positive* and *negative* counter-instances may result from a particular way of looking at the constructs posited in our model, namely prevalences within- and across- categories or features.
+<!-- Of course, not all generics convey striking or appalling information (e.g., "Birds lay eggs"). -->
+<!-- Leslie's default mode, thus, also distinguishes *negative counter-instances* of a property (e.g., a bird that doesn't lay eggs, such as a male bird) from *positive counter-instances*  (e.g., a hypothetical bird that bears live young) -->
+<!-- The conceptual account argues that generics are much less reasonable when *positive* counter-instances exist.  -->
+<!-- For example, "Birds are female" seems weird because *being male* is a *positive* counter-instance of *being female*, but since there are no birds that bear live young (i.e., no *positive counter-instances*),  "Birds lay eggs" is fine. -->
+<!-- In the current version of our theory, both kinds of counter-instances influence the referent-category feature-probabilities, though only positive counter-instances could impact the statistical details of the comparison class (in particular, when constructed with respect to the feature; see discussion about the Comparison Class). -->
+<!-- Thus, the notion of *positive* and *negative* counter-instances may result from a particular way of looking at the constructs posited in our model, namely prevalences within- and across- categories or features. -->
 
-Finally, generics are not limited to conveying rich, conceptual information; they are also used to describe facts of the world. 
-"Ravens are bigger than toasters" is a true statement, but not because of a rich relationship between ravens and toasters.
-"Barns are red" because most barns are red.
-If farmers around the world decided to paint their barns green, the things they would be painting would still be barns; in that world, we might say "Barns are green".
-Thus, conceptual accounts must be supplemented with the proviso that in ceratin situations, the statistics of the world are relevant. 
+<!-- Finally, generics are not limited to conveying rich, conceptual information; they are also used to describe facts of the world.  -->
+<!-- "Ravens are bigger than toasters" is a true statement, but not because of a rich relationship between ravens and toasters. -->
+<!-- "Barns are red" because most barns are red. -->
+<!-- If farmers around the world decided to paint their barns green, the things they would be painting would still be barns; in that world, we might say "Barns are green". -->
+<!-- Thus, conceptual accounts must be supplemented with the proviso that in ceratin situations, the statistics of the world are relevant.  -->
 
-Our view is that subjective probabilities can be formed either from worldly observations or because of the structure of people's mental representations.
-In the last fifteen years, there has been tremendous progress in formalizing 
-Rich, structural mental representations can be formalized in probabilistic models, which can be used to derive quantitative predictions about inferences derived from that knowledge [@Tenenbaum2011]. 
-For example, @Kemp2008 introduced a model for learning different kinds of structural relationships between objects and properties (e.g., taxonomies, social cliques, dominance relations).
-@Goodmanconcepts argue that concepts and intuitive theories can be constructed from elementary random primitives using insights from *probabilistic programmming*. 
+<!-- Our view is that subjective probabilities can be formed either from worldly observations or because of the structure of people's mental representations. -->
+<!-- In the last fifteen years, there has been tremendous progress in formalizing  -->
+<!-- Rich, structural mental representations can be formalized in probabilistic models, which can be used to derive quantitative predictions about inferences derived from that knowledge [@Tenenbaum2011].  -->
+<!-- For example, @Kemp2008 introduced a model for learning different kinds of structural relationships between objects and properties (e.g., taxonomies, social cliques, dominance relations). -->
+<!-- @Goodmanconcepts argue that concepts and intuitive theories can be constructed from elementary random primitives using insights from *probabilistic programmming*.  -->
 
-In this paper, we take a minimalist approach to modeling conceptual structure, incorporating only what is necessary into the interpreter's background knowledge, the prior on prevalence $P(h)$.
-In our Bayesian data analysis of background knowledge, we use a mixture model that reflects basic knowledge about kinds and properties (e.g., that most kinds don't have most properites).  
-It's plausible that more richly structured knowledge of the kind described by @Prasada2013 and @Leslie2007 can be incorporating into the general probabilsitic framework that we use here.
+<!-- In this paper, we take a minimalist approach to modeling conceptual structure, incorporating only what is necessary into the interpreter's background knowledge, the prior on prevalence $P(h)$. -->
+<!-- In our Bayesian data analysis of background knowledge, we use a mixture model that reflects basic knowledge about kinds and properties (e.g., that most kinds don't have most properites).   -->
+<!-- It's plausible that more richly structured knowledge of the kind described by @Prasada2013 and @Leslie2007 can be incorporating into the general probabilsitic framework that we use here. -->
+
+
+
 <!-- In Expt. 1a, we discovered that a mixture model is necessary to account for intuitions about the prevalence across different categories. -->
 <!-- This minimally structured model  -->
 
-The key point of divergence then between the conceptual accounts and our view concerns the core, semantic meaning of a generic statement.
-Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
-For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
-We believe this provides a more unifying view of generics, giving a single metric as the basic currency of generic meaning: probability. 
 
 
 <!-- @Prasada2006 and later @Prasada2013 distinguish between \emph{principled}, \emph{statistical}, and \emph{causal} relations within concepts. -->
@@ -1428,21 +1184,82 @@ We believe this provides a more unifying view of generics, giving a single metri
 <!-- Recent work suggests that utterances that fail to refer to specific entities or events could pragmatically imply generic meaning [@Crone2016cogsci]. -->
 <!-- Incorporating these insights about generic identification into an information-theoretic, communicative perspective is a natural extension of this work. -->
 
+<!-- ### Statistical accounts -->
 
+### Relative and absolute generics
+
+Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999 's theory of generics as a frequency adverb (e.g., "generally").
+Cohen treats generics as comprising two qualitatively different types: *relative* and *absolute* generics.
+<!-- For Cohen, the statement "Birds lay eggs" means "Generally, birds lay eggs", and then he takes up the task of explaining what "generally" means. -->
+*Absolute generics* use a fixed, 50\% threshold on prevalence: $P(F\mid K)>0.5$. 
+That is, if a particular instance is more likely than not to have the feature, then the absolute generic is true. 
+By contrast, *relative generics* are true based on a comparison to an alternative set of kinds (his notation: $Alt(K)$), analogous to our comparison class.
+"Mosquitos carry malaria" is true because an arbitrary mosquito is more likely than an arbitrary member of an alternative kind to have the feature.
+
+In our model, we do not draw a *relative* vs. *absolute* distinction, instead treating all generics as relative. 
+Attested differences in endorsement and interpretation, then, emerge through the interplay of prior knowledge.^[
+  For a related theory argument against the "relative" / "absolute" distinction for gradable adjectives, see @Lassiter2015.
+]
+Further, though Cohen's theory is framed in terms of probabilities, it is a fully semantic, fixed-threshold account which only makes deterministic predictions about what is true and what is false.
+In contrast, we posit an uncertain threshold which is resolved through a Bayesian interpretation model; our theory is a joint semantic--pragmatic theory. 
+
+<!-- In our theory, there is uncertainty about the core semantic meaning, and this uncertainty (though reduced in context) drives the model to make graded predictions about endorsement. -->
+<!-- Second, Cohen draws an *a priori* distinction between *Absolute* and *Relative* generics, and provides different mechanisms for each each. -->
+<!-- We used examples of both in our stimuli (Expt. 1) and found that our single model handles both without any addition assumptions, casting doubt on the *a priori* distinction between "absolute" and "relative". -->
+
+We note additional machinery that Cohen's theory relies upon (and that is not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of *laying eggs* among *robins*?).
+His theory posits that prevalence is calculated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$).
+For example, the property "lays eggs" induces a set of alternatives that are associated with mechanisms of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...).
+"Robins lay eggs" is evaluated as an *absolute generic* as only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other alternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
+The inferential machinery behind Cohen's domain restriction (i.e., what comprises $Alt(F)$) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[
+  However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks used in cognitive science.
+]
+However, we note that this mechanism may be implicit in our own theory: the prior distribution over the prevalence of *lays eggs* presumably includes aspects of people's theories about reproduction (i.e., that only females lay eggs).
+Thus, there may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain restriction.
+
+<!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
+
+### Generic as indexical
+
+@Sterken2015 has proposed analyzing generic statements as inherently context-sensitive, analogous to *indexicals* (e.g., "this" or "I").
+Variability of endorsements is attributed by @Sterken2015 to context-sensitive "quantificational force" as well as domain-restriction [of the kind used by @Cohen1999, and many others].
+Our uncertain-threshold semantics can be seen be a particular formalization of @Sterken2015's context-sensitive "quantificational force". 
+We have not had need for employing domain restriction on the categories, though as noted above, it is a potential avenue for future development.
+<!-- Finally, how the context-sensitivity of an indexical differs from the kind of context-sensitivity with an uncertain-threshold is an important question for future research. -->
+
+### "Normal" accounts
+
+A popular alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
+For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
+However, were the world to function *normally* (e.g., dogs would not be involved in freak-tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
+The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers"; described above) and stereotyped language (e.g., "Boys are good at math”).
+Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations. 
+<!-- We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.  -->
+<!-- Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future.  -->
+
+### Underquantification
+
+A proposal similar to our account concerning underspecification of generics has been made in the computational linguistics literature [so-called *underquantification*; @Herbelot2011].
+In their model, generics express an explicit quantified relation, specifically either "Some", "Most", or "All".
+The task of the computational linguist, then, is to construct a set of features that accurately predicts (relative to human judgments) the quantified relationship expressed by the generic [analogous to a quantifier version of the *implied prevalence* task used in @Gelman2003b; @Cimpian2010]. 
+Our semantic theory can be seen as a generalization of the *underquantification* to a continuous interval of possible meanings.
+This distinction is relevant for the acquisition of the language of generalizations; we do not take as primary the quantified relations (e.g., "Some", "All").
+<!-- Formally, whereas the *underquantification* account posits that a generic is *ambiguous* between various meanings, we argue that the generic is *vague*, and has a continuum of possible meanings.  -->
+Additionally, by using an underspecified threshold, our formulation naturally extends to other scales and other kinds of generalizations (e.g., habitual language), where quantified relations like "Most" or "All" are not directly applicable. 
 
 # Conclusion
 
 It might seem paradoxical that a part of language that is so common in communication and central to learning should be vague. 
 Shouldn't speakers and teachers want to express their ideas as crisply as possible?
-To the contrary, underspecification can be efficient, given that context can be used to resolve  uncertainty in meaning [@Piantadosi2012].
-In our work, context takes the form of shared beliefs about the property in question. 
-By leveraging this common ground, genericity provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
+To the contrary, underspecification can be efficient, given that context can be relied upon to resolve uncertainty in the moment [@Piantadosi2012].
+In our work, context takes the form of shared beliefs between speakers and listeners. 
+By leveraging this common ground, the language of generalizations provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
 
-The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong generalization to a naive listener.
+The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong impression to a naive listener.
 Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012].
-Disagreements are also predicted when interlocutors fail to share background assumptions, which could be differences in the prior distributions on prevalence or the comparison class.
+Disagreements are also predicted when interlocutors fail to share background assumptions, which could manifest as differences in the prior distributions on prevalence or what goes into the comparison class.
 Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?). 
-This is a promising area for future research.
+This is an important area for future research.
 
 Categories are inherently unobservable. 
 You cannot see the category \textsc{dog}, only some number of instances of it.

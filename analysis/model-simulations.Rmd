@@ -1,0 +1,738 @@
+---
+title: "Lang-gen model simulations"
+output: html_notebook
+---
+
+
+```{r libraries, cache = F}
+library(papaja)
+library(formatR)
+library(rwebppl)
+library(xtable)
+library(tidyverse)
+library(forcats)
+library(langcog)
+library(coda)
+library(ggthemes)
+library(ggrepel)
+library(jsonlite)
+library(gridExtra)
+library(lme4)
+library(knitr)
+library(kableExtra)
+library(cowplot)
+library(magick)
+theme_set(theme_few())
+estimate_mode <- function(s) {
+  d <- density(s)
+  return(d$x[which.max(d$y)])
+}
+hdi_upper<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","upper"])
+}
+hdi_lower<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","lower"])
+}
+logmeanexp <- function(x){
+  x.num <- as.numeric(x)
+  xstar = max(x.num)
+  return(xstar + log(mean(exp(x.num - xstar))))
+}
+
+compute_r2 <- function(df,v1, v2, sigfigs = 3){
+  return(format(cor(df[[v1]], df[[v2]])^2, digits = sigfigs))
+}
+
+compute_mse <- function(df, v1, v2, sigfigs = 3){
+  return(format(mean( (df[[v1]]-df[[v2]])^2), digits = sigfigs))
+}
+
+project.path <- "../"
+options("scipen"=10) 
+```
+
+# RSA model
+
+```{r rsaHelpers}
+rsaHelpers <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var targetUtterance = "generic";
+
+var round = function(x){
+  return Math.round(x*1000)/1000
+}
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaBins = map(round, _.range(0.01, 0.98, 0.01))
+// var thetaBins = [
+//    0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+//    0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
+ // ]
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var bins = map(round, _.range(0.01, 0.99, 0.01))
+
+// var bins = [
+  // 0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+  // 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
+// ];
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state>0.01:
+         utt=="most"? state> 0.5:
+         utt=="all"? state >= 0.99:
+         true
+}
+
+var mixture = data.prior.mix[0];
+var priorParams = data.prior.params[0];
+
+var statePrior = Infer({model: function(){
+  var component = flip(mixture);
+  return component ?
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta(priorParams), b) + Number.EPSILON
+      }, bins )
+    }) :
+    categorical({
+      vs: bins,
+      ps: map(function(b) {
+        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
+      }, bins )
+    })
+}});
+'
+```
+
+```{r rsaInterpretationModels}
+no.utterance.model <- '
+var noUtteranceInterpreter = function() {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    return { state }
+ }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+'
+
+fixed.threshold.model <- '
+var fixedThresholdInterpreter = function(threshold) {
+  Infer({model: function(){
+  // var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+  var state = sample(statePrior)
+  condition( state > threshold)
+    return {
+      state: state
+  }
+ // }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+ }, method: "enumerate"})}
+'
+
+uncertain.threshold.model <- '
+var uncertainThresholdInterpreter = function() {
+  Infer({model: function(){
+   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
+    factor( Math.log(state) )
+    return {
+      state: state, 
+  }
+  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+'
+
+```
+
+```{r simulationCalls}
+fixed.threshold.calls <- '
+_.fromPairs(map(function(t){return [t, fixedThresholdInterpreter(t)]}, [0.1, 0.3, 0.5, 0.7, 0.9]))
+'
+no.utterance.call <- ' 
+  noUtteranceInterpreter()
+'
+uncertain.threshold.call <- '
+  uncertainThresholdInterpreter()
+'
+```
+
+```{r simulationRuns}
+priorNames <- c(
+  "doesntEatPeople", #"uniformRare", 
+  "isFemale", 
+  "laysEggs", 
+  #"eatsFood", 
+  "barks",
+  "carriesMalaria",
+  "hasSpots"
+ # "areSick"
+  )
+priorShapes <- list(
+  isFemale =  list(params = data.frame(a = 10, b = 10), mix = 1), 
+  laysEggs =  list(params = data.frame(a = 10, b = 10), mix = 0.4), 
+  doesntEatPeople =  list(params = data.frame(a = 50, b = 1), mix = 1), 
+  barks =  list(params = data.frame(a = 5, b = 1), mix = 0.4), 
+  hasSpots =  list(params = data.frame(a = 5, b = 1), mix = 0.7), 
+  carriesMalaria =  list(params = data.frame(a = 2, b = 10), mix = 0.4)
+)
+
+
+sims.fixed.thresholds <- data.frame()
+sims.priors <- data.frame()
+sims.uncertain.thresholds <- data.frame()
+
+for (p in priorNames){
+
+  inputData = list(prior = priorShapes[[p]])
+  rs.fixed.threshold.model <- webppl(paste(rsaHelpers, fixed.threshold.model, fixed.threshold.calls, sep = '\n'), data = inputData, data_var = "data")
+  rs.uncertain.threshold.model <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+  rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
+
+  sims.fixed.thresholds <- bind_rows(sims.fixed.thresholds,
+    bind_rows(
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.1`) %>% rename(prob = probs), 20000), threshold = 0.1) ,
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.3`) %>% rename(prob = probs), 20000), threshold = 0.3),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.5`) %>% rename(prob = probs), 20000), threshold = 0.5),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.7`) %>% rename(prob = probs), 20000), threshold = 0.7),
+      mutate(get_samples(data.frame(rs.fixed.threshold.model$`0.9`) %>% rename(prob = probs), 20000), threshold = 0.9)
+    ) %>% 
+      mutate(PriorShape = p)
+    )
+
+  sims.uncertain.thresholds <- bind_rows(sims.uncertain.thresholds, rs.uncertain.threshold.model %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
+  sims.priors <- bind_rows(sims.priors, rs.prior %>% select(value) %>% rename(state = value) %>% mutate(PriorShape = p))
+}
+```
+
+
+```{r simluationEndorsementModelRuns}
+s1.model <- '
+var interpreter = cache(function(utterance) {
+  Infer({model: function(){
+    var state = sample(statePrior)
+    var theta = utterance == "generic" ? sample(thetaPrior) : -99
+    condition(meaning(utterance, state, theta))
+    return state
+ }})}, 10000)
+
+var alpha = 2
+
+var endorser = function(featureProb){
+  Infer({model: function(){
+    var endorsement = sample(utterancePrior)
+    var L0 = interpreter(endorsement)
+    factor(alpha * L0.score(featureProb))
+    return endorsement
+  }})
+}
+// console.log(data.featureProb[0])
+probability(endorser(data.featureProb[0]), "generic")
+'
+
+exampleGenerics <- c(
+  "sharksDontEatPeople",
+  "robinsAreFemale", 
+  "robinsLayEggs", 
+  "kangaroosHaveSpots",
+  "dogsBark",
+  "mosquitosCarryMalaria"
+  )
+
+exampleParameters <- list(
+  robinsAreFemale =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 1), featureProb = 0.5), 
+  robinsLayEggs =  list(prior = list(params = data.frame(a = 10, b = 10), mix = 0.2), featureProb = 0.5), 
+  sharksDontEatPeople =  list(prior = list(params = data.frame(a = 50, b = 1), mix = 1), featureProb = 0.8), 
+  dogsBark =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.4), featureProb = 0.9), 
+  kangaroosHaveSpots =  list(prior = list(params = data.frame(a = 5, b = 1), mix = 0.7), featureProb = 0.1), 
+  mosquitosCarryMalaria =  list(prior = list(params = data.frame(a = 1, b = 30), mix = 0.1), featureProb = 0.1)
+)
+
+s1.simulations <- data.frame()
+for (p in exampleGenerics){
+
+    s1.rs <- webppl(paste(rsaHelpers, s1.model, sep = "\n"), data = exampleParameters[[p]], data_var = "data")
+    s1.simulations <- bind_rows(s1.simulations,
+                                   data.frame(example = p, endorsement = s1.rs, featureProb = exampleParameters[[p]]["featureProb"] ))
+    
+}
+
+
+s1.simulations.relabeled <- s1.simulations %>%
+  mutate(example = factor(example, 
+                          levels = c("dogsBark", "kangaroosHaveSpots", "sharksDontEatPeople", "robinsLayEggs", "robinsAreFemale", "mosquitosCarryMalaria"),
+                            labels = 
+                            c("Dogs bark", "Kangaroos have spots", "Sharks don't eat people", "Robins lay eggs", "Robins are female", "Mosquitos carry malaria")
+                            #c("Dogs", "Kangaroos", "Sharks", "Robins ", "Robins", "Mosquitos")
+                          ))
+
+
+```
+
+```{r saveResults}
+#save(sims.priors, sims.uncertain.thresholds, sims.fixed.thresholds,s1.simulations.relabeled, file = "../paper/cached_results/modelSims-priors_fixedT_uncertainT_speaker.RData")
+```
+
+
+# Schematic (uniform prior) figure
+
+```{r schematicModel}
+schematicModel <- '
+var round = function(x){
+  return Math.round(x*100)/100
+}
+
+var isNegation = function(utt){
+  return (utt.split("_")[0] == "not")
+};
+
+var avoidEnds = function(x){
+  return x >= 1 ? 0.99 : x == 0 ? 0.01 : x
+}
+
+var lb = 0, ub = 1, diff = 0.05;
+var bins = _.range(lb, ub + diff, diff)
+
+var DiscreteBeta = function(a, b){
+  Infer({model: function(){
+    categorical({
+      vs:bins,
+      ps:map(function(x){
+        Math.exp(Beta({a, b}).score(avoidEnds(x)))
+      }, bins)
+    })
+  }})
+}
+
+var utterances = [
+  "gen",
+  "null"
+];
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw(utterances)
+}});
+
+var meaning = function(words, state, threshold){
+  return words == "gen" ? state > threshold :
+  true
+};
+
+var speakerOptimality = 3;
+var speakerOptimality2 = 1;
+
+var fixedThetalistener0 = cache(function(utterance, threshold) {
+  Infer({model: function(){
+    var state = sample(DiscreteBeta(1, 1));
+    var m = meaning(utterance, state, threshold);
+    condition(m);
+    return state;
+  }})
+}, 10000);
+
+var greaterThanThresholdBins = _.range(lb, ub, diff)
+var lessThanThresholdBins = _.range(lb+diff, ub+diff, diff)
+
+var litInterpreter = cache(function(utterance) {
+  Infer({model: function(){
+    var threshold = uniformDraw(greaterThanThresholdBins)
+
+    var state = sample(DiscreteBeta(1, 1));
+    var m = meaning(utterance, state, threshold);
+    condition(m);
+    return state
+  }})
+}, 10000);
+
+var speaker1 = cache(function(state) {
+  Infer({model: function(){
+    var utterance = sample(utterancePrior);
+    var L0 = litInterpreter(utterance);
+    factor(speakerOptimality*L0.score(state));
+    return utterance;
+  }})
+}, 10000);
+'
+
+listenerCall <- '
+_.fromPairs(map(function(u){
+  var post = litInterpreter(u)
+  return [u, post]
+}, utterances))
+'
+
+speakerCall <- '
+_.flatten(
+    map(function(s){
+      var speakProbs = speaker1(s)
+       return {  
+          state: s,
+          "gen": Math.exp(speakProbs.score("gen")),
+          "null": Math.exp(speakProbs.score("null"))
+        }
+    }, bins)
+)
+'
+
+literalListenerCall <- '
+_.flatten(_.flatten(
+map(function(tH){
+    var l0posterior = fixedThetalistener0("gen", tH)
+    display(expectation(l0posterior))
+    map(function(s){
+       return {  
+          state: s,
+          theta:tH, 
+          literalPosterior: Math.exp(l0posterior.score(s))
+        }
+    }, bins)
+}, greaterThanThresholdBins)
+))
+'
+```
+
+### Fixed thresholds
+
+
+```{r schematicFixed}
+rs.wp.l0 <- webppl(paste(schematicModel, literalListenerCall,  sep = '\n'))
+
+
+fig.l0.thresholds <- ggplot(rs.wp.l0, aes( x = state, 
+                                           y = literalPosterior, 
+                                       group = theta))+
+  geom_line(size = 2)+
+  geom_vline(aes(xintercept = theta), 
+             color = 'darkred', size = 2)+
+  #scale_color_solarized()+
+  scale_x_continuous(breaks = c(0, 0.5, 1))+
+  scale_y_continuous(breaks = c(0, 0.5, 1))+
+  #scale_color_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  ggtitle("truth-functional threshold = ")+
+  ylab("Literal listener posterior probability")+
+  xlab("Degree of happiness")+
+  facet_wrap(~theta)+
+  theme(text = element_text(size = 16))
+```
+
+
+Integrate out threshold (full interpretation model)
+
+```{r schematicUncertain}
+rs.listener.wp <- webppl(paste(schematicModel, listenerCall,  sep = '\n'))
+
+rs.listener.wp.tidy <- bind_rows(
+  data.frame(rs.listener.wp$gen) %>% 
+    mutate(utterance = "gen"),
+  data.frame(rs.listener.wp$null) %>% 
+    mutate(utterance = "null")
+)
+
+
+rs.listener.wp.tidy.samples <- get_samples(
+  rs.listener.wp.tidy %>% rename(prob = probs), 10000)
+
+ggplot(rs.listener.wp.tidy.samples, 
+       aes( x = support,fill = utterance, color = utterance))+
+  geom_density(alpha = 0.4, size = 1.3)+
+  scale_fill_solarized()+
+  scale_color_solarized()+
+  xlab("prevalence")+
+  ylab("Posterior probability density")+
+  scale_x_continuous(breaks =c(0, 1))+
+  scale_y_continuous(breaks = c(0, 2))+
+  #guides(fill = F, color = F)+
+  ggtitle("prevalence posterior")
+
+#ggsave("figs/lassiterL1_posteriors_wCost1,5_alpha1.png", width = 6, height = 4)
+```
+
+
+```{r schematicEndorsement}
+rs.wp <- webppl(paste(schematicModel, speakerCall,  sep = '\n'))
+
+rs.tidy <- data.frame(rs.wp) %>%
+  gather(utt, prob, -state)
+
+fig.thresholds <- ggplot(rs.tidy %>%
+                           mutate(utt = factor(utt,
+                                               levels=c("null","gen"))), 
+                         aes( x = state, y = prob, fill = utt))+
+  geom_col( 
+           color = 'black')+
+  #facet_wrap(~happy_theta)+
+  scale_x_continuous(breaks = c(0, 0.5, 1))+
+  scale_y_continuous(breaks = c(0, 0.5, 1))+
+  ggtitle("truth-functional threshold = ")+
+  ylab("Speaker probability of saying 'happy'")+
+  xlab("Degree of happiness")+
+  theme(text = element_text(size = 16))+
+  scale_fill_solarized()
+
+fig.thresholds
+#ggsave(fig.thresholds, 
+ #      file = "figs/lassiterS1_uttXstateXtheta_wCost.pdf", width = 7, height = 7)
+```
+
+```{r}
+save(rs.wp.l0, rs.listener.wp.tidy.samples, rs.tidy,
+     file = "../paper/cached_results/modelSims-uniform_fixedT_uncertainT_speaker.RData")
+```
+
+# Misc extra
+
+old scatter plot version of endorsements
+```{r}
+#s1.simulations.scatter <-
+  
+  ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement))+
+  #geom_jitter(width = 0.1, shape = 21, size = 5)+
+  #ylab("Human endorsement probability")+
+  #xlab("Frequency of target")+
+  geom_point()+
+  #geom_label_repel(data = s1.simulations.relabeled,
+   #                aes( label = example, fill = example),
+  #                     color = 'white',
+    #box.padding = unit(0.0, "lines"),
+    #point.padding = unit(1e-06, "lines"),
+    #segment.color = 'grey37')+
+  scale_fill_solarized()+
+  scale_x_continuous(limits = c(0, 1),
+                     breaks = c(0, 0.5, 1))+
+  scale_y_continuous(limits = c(-0.01, 1.01),
+                     breaks = c(0, 1),
+                     labels = c("False", "True"))+
+  coord_fixed(ratio = 1)+
+  guides(fill = F)+
+  ylab("Endorsement model prediction")+
+  xlab("Hypothesized prevalence")
+
+```
+
+
+```{r eval = F}
+all.simulations.refactored <- all.simulations %>%
+  mutate(Distribution = paste(Distribution, utterance, sep = "_")) %>%
+  filter(Distribution != "Some", Distribution != "Most") %>%
+  mutate(Distribution = factor(Distribution, levels = 
+                                c( "Prior_generic", "Posterior_Generalization_generic"),
+                                labels = c( "Prior/Silence", "Generalization")
+                             # c("Prior_some",  "Posterior_Generalization_generic", "Posterior_Generalization_some"),
+                             #    labels = c("Prior/Silence",  "Generalization (Uncertain threshold)", "Fixed threshold")
+                             ),
+         PriorShape = factor(PriorShape, 
+                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
+                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria")
+                            # levels = c("uniform", "barks","laysEggs","carriesMalaria","isFemale"),
+                             #labels = c("uniform", "bark","lay eggs","carry malaria","are female")
+                                  #"eatsFood","areSick", "uniformRare", 
+                                  #"carriesMalaria"
+                                  )
+         )
+
+l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
+                #lty = Distribution, 
+                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
+    geom_density(aes(y = ..scaled..),
+                 size = 0.6,  adjust = 1.5)+
+    #geom_bar(stat = 'identity', position = position_dodge(), color = 'black')+
+    theme_few() +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    scale_alpha_manual(values = c(0.7, 0.3))+
+    scale_linetype_manual(values = c(1, 3))+
+    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+   #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_linetype_manual(values = c(3, 4, 2, 1))+
+    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence of feature in a category") +
+    ylab("Scaled probability density") +
+  facet_wrap(~PriorShape, scales = 'free')+
+  guides(fill = F, color = F)+
+  theme(strip.text.y = element_text(angle = 0),
+          legend.position = c(0.92, 0.35))
+
+
+  
+l0.simulations.distributions <- ggplot(all.simulations.refactored, aes(x = value, #y = prob, 
+                color = PriorShape, fill = PriorShape, group = Distribution, alpha = Distribution, linetype = Distribution))+
+    geom_density(aes(y = ..scaled..),
+                 size = 0.6,  adjust = 1.5)+
+    theme_few() +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    scale_alpha_manual(values = c(0.7, 0.3))+
+    scale_linetype_manual(values = c(1, 3))+
+    scale_x_continuous(breaks = c(0, 0.5, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence of feature in a category") +
+    ylab("Scaled probability density") +
+  facet_wrap(~PriorShape, scales = 'free')+
+  guides(fill = F, color = F)+
+  theme(strip.text.y = element_text(angle = 0),
+          legend.position = c(0.92, 0.35))
+
+
+```
+
+```{r simulationsOld, eval = F, fig.cap = "Model behavior. Prior distributions over feature-probabilities (Left; grey) and listener model posterior distributions upon hearing an utterance with an uncertain threshold (Middle; red) and a fixed threshold (Right; blue), for five different schematic prior distributions. The uncertain threshold (Middle; red) is hypothesized to correspond to utterances that convey generalizations, while the fixed threshold (Right; blue) is a control model. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 14, fig.height=6, cache=F}
+grid.arrange(l0.simulations.distributions, 
+             s1.simulations.scatter, ncol = 3,
+             layout_matrix = cbind(c(1,1), c(1,1), c(2, 2)))
+
+```
+
+
+```{r fim.sims.fixd.thresholds, cache = F}
+fig.sims.fixed.thresholds <- ggplot(sims.fixed.thresholds, aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.3)+
+    theme_few() +
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("") +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    facet_grid(PriorShape~threshold, scales = 'free')+
+    theme(strip.text.y = element_blank()) 
+          #axis.title.x = element_text(hjust = 1))
+```
+
+```{r figs.sim.posterior, cache = F}
+fig.sims.uncertain.threshold <- sims.uncertain.thresholds %>% mutate(PriorShape = factor(PriorShape, 
+                             levels = c("barks", "hasSpots", "doesntEatPeople", "laysEggs", "isFemale", "carriesMalaria"),
+                            labels = c("bark", "have spots", "don't eat people", "lay eggs", "are female", "carry malaria"))) %>% 
+                              ggplot(., aes(x = state, fill = PriorShape, color = PriorShape))+
+    geom_density(aes(y = ..scaled..), size = 0.6, alpha = 0.7)+
+    theme_few() +
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("") +
+    scale_color_solarized()+
+    scale_fill_solarized()+
+    facet_grid(.~PriorShape, scales = 'free')+
+    theme(strip.text.y = element_blank())#element_text(angle = 0, hjust = 0))
+```
+
+```{r fig.sims.endorsement}
+s1.simulations.scatter <- ggplot(s1.simulations.relabeled, aes( x = featureProb, y = endorsement, fill = example,
+                                                                label = example))+
+  geom_col(color = 'black')+
+   #geom_text(vjust="inward",hjust="inward")+
+  geom_label(data = s1.simulations.relabeled,
+                   aes( label = example),
+             vjust="inward",hjust="inward",
+             color = 'white')+
+  # geom_label_repel(data = s1.simulations.relabeled,
+  #                  aes( label = example),
+  #                      color = 'white',
+  #   box.padding = unit(0.0, "lines"),
+  #   #point.padding = unit(1e-06, "lines"),
+  #   segment.color = 'grey37')+
+  scale_fill_solarized()+
+  scale_x_continuous(limits = c(0, 1), 
+                     breaks = c(0, 1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 1),
+                     labels = c("False", "True"))+
+  #coord_fixed(ratio = 1)+
+  coord_flip()+
+  facet_grid(example~.)+
+  guides(fill = F)+
+  ylab("")+xlab("Referent prevalence")+
+  theme(#strip.text.y = element_text(angle = 0, hjust = 0)
+        strip.text.y = element_blank()
+        #axis.title.x = element_text(hjust = 0)
+        #axis.title.y = element_text(vjust = 0)
+        )
+  #ylab("Endorsement model prediction")+
+  #xlab("Hypothesized prevalence")
+```
+
+
+```{r simulationsOld2, fig.cap = "Computational model behavior. A: Prior distributions over the prevalence of a feature in a category for 6 example features B: Different fixed thresholds (columns) give rise to different partial interpretations. C: The interpreter model averages over all thresholds, producing posterior distributions that strongly depend upon the priors. D: Endorsement model predictions, assuming a particular referent-prevalence. Shapes of the priors were chosen to intuitivly correspond to properties labeling the distributions.", fig.width = 12, fig.asp = 0.6, out.width = "95%", cache=F, eval=F}
+
+# p1 <- fig.sims.priors +
+#   theme(plot.margin = unit(c(6,0,6,0), "pt")) #+ ggtitle("prevalence priors")
+# p2 <- fig.sims.fixed.thresholds +
+#   theme(plot.margin = unit(c(6,0,6,0), "pt")) + ylab("")
+# p3 <- fig.sims.uncertain.threshold+
+#   theme(plot.margin = unit(c(6,6,6,0), "pt"))+ 
+#     theme(strip.text.y = element_blank())#+ ggtitle("Interpreter model posterior")
+# p4 <- s1.simulations.scatter + theme(plot.margin = unit(c(6,0,6,6), "pt"))
+# 
+# sim.prevalence.prior.title <- ggdraw() + draw_label("Prevalence priors", fontface='bold')
+# sim.prevalence.partial.title <- ggdraw() + draw_label("Partial interpretations given fixed-thresholds", fontface='bold')
+# 
+# sim.prevalence.posterior.title <- ggdraw() + draw_label("Prevalence posterior (interpretation)", fontface='bold')
+# 
+# sim.endorsement.title <- ggdraw() + draw_label("Endorsement prediction", fontface='bold', hjust = 0.47)
+
+# prow <- plot_grid( 
+#   plot_grid(sim.prevalence.prior.title, 
+#             p1 + theme(legend.position="none"), ncol=1, rel_heights=c(0.1, 1)),
+#   plot_grid(sim.prevalence.partial.title, 
+#             p2 + theme(legend.position="none"), ncol=1, rel_heights=c(0.1, 1)),
+#   plot_grid(sim.prevalence.posterior.title, 
+#             p3 + theme(legend.position="none"), ncol=1, rel_heights=c(0.1, 1)),
+#   plot_grid(sim.endorsement.title, 
+#             p4, ncol=1, rel_heights=c(0.1, 1)),
+#            align = 'vh',
+#            labels = c("A", "B", "C", "D"),
+#            hjust = -1,
+#            nrow = 1,
+#            #rel_widths = c(1.2, 3, 2)
+#            rel_widths = c(1.2, 2.9, 1.4, 1.4)
+#            )
+
+
+prow <- plot_grid( 
+  plot_grid(sim.prevalence.prior.title, 
+            p1 + theme(legend.position="none"), ncol=1, rel_heights=c(0.1, 1)),
+  plot_grid(sim.prevalence.posterior.title, 
+            p3 + theme(legend.position="none"), ncol=1, rel_heights=c(0.1, 1)),
+  # plot_grid(sim.endorsement.title, 
+  #           p4, ncol=1, rel_heights=c(0.1, 1)),
+           align = 'vh',
+           labels = c("A", "B"),
+           hjust = -1,
+           nrow = 2,
+           #rel_widths = c(1.2, 3, 2)
+           #rel_widths = c(1.2, 2.9, 1.4, 1.4),
+            rel_heights = c(1,1)
+           )
+
+
+# prow <- plot_grid(
+#   add_sub(p1 + theme(legend.position="none"), "Prevalence priors"),
+#   add_sub(p2 + theme(legend.position="none"), "Partial interpretations given fixed-thresholds"),
+#   add_sub(p3 + theme(legend.position="none"), "Full interpretations"),
+#   add_sub(p4, "Endorsement"),
+#            align = 'vh',
+#            labels = c("A", "B", "C", "D"),
+#            hjust = -1,
+#            nrow = 1,
+#            #rel_widths = c(1.2, 3, 2)
+#            rel_widths = c(1.2, 2.9, 1.15, 1.7)
+#            )
+
+s1.simulations.relabeled
+ggdraw(add_sub(fig.sims.priors, 
+          expression(
+            paste(S("Sharks don't eat people | x = 0.8" ), " = ", 0.4)), size=12, hjust =0))
+
+#prow
+```
+
+

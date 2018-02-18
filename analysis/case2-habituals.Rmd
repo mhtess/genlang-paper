@@ -1,0 +1,1782 @@
+---
+title: "Analysis for Case 2 (habituals)"
+output: html_notebook
+---
+
+```{r libraries, cache = F}
+library(papaja)
+library(formatR)
+library(rwebppl)
+library(xtable)
+library(tidyverse)
+library(forcats)
+library(langcog)
+library(coda)
+library(ggthemes)
+library(ggrepel)
+library(jsonlite)
+library(gridExtra)
+library(lme4)
+library(knitr)
+library(kableExtra)
+library(cowplot)
+library(magick)
+library(viridis)
+library(tidyboot)
+theme_set(theme_few())
+estimate_mode <- function(s) {
+  d <- density(s)
+  return(d$x[which.max(d$y)])
+}
+hdi_upper<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","upper"])
+}
+hdi_lower<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","lower"])
+}
+logmeanexp <- function(x){
+  x.num <- as.numeric(x)
+  xstar = max(x.num)
+  return(xstar + log(mean(exp(x.num - xstar))))
+}
+
+compute_r2 <- function(df,v1, v2, sigfigs = 3){
+  return(format(cor(df[[v1]], df[[v2]])^2, digits = sigfigs))
+}
+
+compute_mse <- function(df, v1, v2, sigfigs = 3){
+  return(format(mean( (df[[v1]]-df[[v2]])^2), digits = sigfigs))
+}
+
+project.path <- "../"
+options("scipen"=10) 
+```
+
+
+# Experiment 2a: Prevalence priors
+
+```{r habituals-prior-data}
+annualRates = list("5 years" = 1/5, "2 years" = 1/2,
+                   "year" = 1, "6 months" = 2, "2 months" = 6,
+                   "month" = 12, "2 weeks" = 26 ,"week" = 52)
+
+d.hab.priors <- read.csv(paste(project.path, "data/habituals/priors/", "habituals-priors.csv", sep = ""))
+
+d.hab.priors <- d.hab.priors %>%
+  mutate(comparisonTime_men = as.character(comparisonTime_men),
+         comparisonTime_women = as.character(comparisonTime_women),
+         item = as.character(item),
+         item = ifelse(item == "sell things on eBay", "sells things on eBay", item)) %>%
+  rowwise() %>%
+  mutate(
+    mixture_male = nPersons_men / comparisonNum_men,
+    mixture_female = nPersons_women / comparisonNum_women,
+    dayRate_male = ifelse(comparisonTime_men == "week", nInstances_men / 7,
+                   ifelse(comparisonTime_men == "month", nInstances_men / 30,
+                   ifelse(comparisonTime_men == "year", nInstances_men / 365,
+                   ifelse(comparisonTime_men == "5 years", 
+                          nInstances_men / (5*365), -99)))),
+    dayRate_female = ifelse(comparisonTime_women == "week", nInstances_women / 7,
+                   ifelse(comparisonTime_women == "month", nInstances_women / 30,
+                   ifelse(comparisonTime_women == "year", nInstances_women / 365,
+                   ifelse(comparisonTime_women == "5 years", 
+                          nInstances_women / (5*365), -99)))),
+    annualRate_male = dayRate_male * 365,
+    annualRate_female = dayRate_female * 365
+  )
+
+
+d.hab.priors.filtered <- filter(d.hab.priors, 
+       !(
+         (mixture_male == 0) ||   (mixture_female == 0) ||   
+           (dayRate_male == 0) ||   (dayRate_female == 0)  )
+       )
+
+
+
+df.hab.priors.filtered.tidy <- bind_rows(
+   d.hab.priors.filtered %>%
+      select(item, starts_with("annualRate")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("annualRate_", "", gender),
+             logval = log(val),
+             measurement = "annualRate"), 
+   d.hab.priors.filtered %>% 
+      select(item, starts_with("mixture")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("mixture_", "", gender)) %>%
+      rowwise() %>%
+      mutate(val = ifelse(val == 1, 0.9999, 
+                          ifelse(val == 0, 0.000001, val)),
+             measurement = "mixture_avoidedEnds",
+             logval = val)
+)
+
+
+df.hab.priors.filtered.summary <- df.hab.priors.filtered.tidy %>%
+  group_by(item, gender, measurement) %>%
+  tidyboot_mean(column = logval)
+```
+
+```{r habituals-prior-forwardsample}
+# this is basically bootstrapping and combining using the structured model
+
+d.hab.priors.samples <- data.frame()
+for (i in 1:100){
+  
+  d.hab.priors.samples <- bind_rows(
+    d.hab.priors.samples,
+    d.hab.priors.filtered %>% 
+    select(workerid, item, starts_with("annualRate"), 
+           starts_with("mixture")) %>%
+    rowwise() %>%
+    mutate(
+      stable_male = rbinom(n = 1, size = 1, prob = mixture_male),
+       freq_male = ifelse(stable_male == 1, annualRate_male, 0.007),
+       stable_female = rbinom(n = 1, size = 1, prob = mixture_female),
+       freq_female = ifelse(stable_female == 1, annualRate_female, 0.007)
+       ) %>%
+    select(item, freq_male, freq_female) %>%
+    gather(gender, val, freq_male, freq_female) %>%
+  mutate(gender = gsub("freq_", "", gender))
+  )
+}
+
+```
+
+```{r habituals-prior-model}
+hab.prior.bda.model <- '
+var betaShape = function(p){
+  return {a: p.g * p.d, b: (1-p.g) * p.d}
+};
+
+var model = function(){
+	var mixtureParams = {
+		male: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    },
+		female: {
+      g: uniformDrift({a: 0, b: 1, width: 0.2}),
+      d: uniformDrift({a: 0, b: 100, width: 5})
+    }
+	};
+
+	var mixtureShapes = {
+		male: betaShape(mixtureParams.male),
+		female: betaShape(mixtureParams.female)
+	};
+
+	mapData({data: data.mixture}, function(d){
+    Beta(mixtureShapes[d.gender]).score(d.val) == -Infinity ? display(JSON.stringify(d)) : null
+     // display(Beta(mixtureShapes[d.gender]).score(d.val))
+		observe(Beta(mixtureShapes[d.gender]), d.val)
+	})
+
+	var stableFrequency = {
+		male: {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+		},
+		female: {
+			mu: uniformDrift({a:-5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+		}
+	}
+
+	mapData({data: data.frequency}, function(d){
+    Gaussian(stableFrequency[d.gender]).score(d.logval) == -Infinity ? 
+        display(JSON.stringify(d)) : null
+    // display(Gaussian(stableFrequency[d.gender]).score(d.logval))
+		observe(Gaussian(stableFrequency[d.gender]), d.logval)
+	})
+
+	var existenceProb = {
+		male: beta(mixtureShapes.male),
+		female: beta(mixtureShapes.female)
+	};
+
+	var freqWhenPresent = {
+		male: gaussian(stableFrequency.male),
+		female: gaussian(stableFrequency.female)
+	}
+
+  var marginalFreq = {
+    male: flip(existenceProb.male) ? freqWhenPresent.male : -5,
+    female: flip(existenceProb.female) ? freqWhenPresent.female : -5,
+  }
+
+  return {
+    mix_mean_male : mixtureParams.male.g,
+    mix_mean_female : mixtureParams.female.g,
+    mix_samplesize_male : mixtureParams.male.d,
+    mix_samplesize_female : mixtureParams.female.d,
+    stableFreq_mean_male : stableFrequency.male.mu,
+    stableFreq_mean_female :stableFrequency.female.mu,
+    stableFreq_sd_male : stableFrequency.male.sigma,
+    stableFreq_sd_female :stableFrequency.female.sigma,
+    marginalFreq_NA_male: marginalFreq.male,
+    marginalFreq_NA_female: marginalFreq.female
+  }
+}
+'
+```
+
+```{r habituals-prior-model-run, cache = T, eval = F}
+
+n_samples <- 20000
+items <- levels(factor(d.hab.priors.filtered$item))
+
+rs.habituals.bda.prior <- data.frame()
+
+for (it in items){
+  
+ df.prior.toPass <- list(
+   frequency = d.hab.priors.filtered %>%
+      filter(item == it) %>%
+      select(item, starts_with("annualRate")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("annualRate_", "", gender),
+             logval = log(val)),
+   mixture = d.hab.priors.filtered %>% 
+      filter(item == it) %>%
+      select(item, starts_with("mixture")) %>%
+      gather(gender, val, -item) %>%
+      mutate(gender = gsub("mixture_", "", gender)) %>%
+      rowwise() %>%
+      mutate(val = ifelse(val == 1, 0.9999, 
+                          ifelse(val == 0, 0.000001, val)))
+  )
+ 
+  rs <- webppl(program_code = hab.prior.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.prior.toPass,
+       data_var = "data")
+  
+  rs.habituals.bda.prior <- bind_rows(
+    rs.habituals.bda.prior, 
+    rs %>% 
+      mutate(item = it) %>% 
+      separate(Parameter, into = c("Variable", "Parameter", "Gender"))
+  )
+}
+# save(rs.habituals.bda.prior, 
+#      file = paste(project.path,  "models/habituals/results/", 
+#                   "habituals-prior-", n_samples, "_burn", n_samples/2 , 
+#                   ".RData", sep = ""))
+
+```
+
+```{r habituals-prior-model-parameters, fig.width = 5}
+n_samples <- 20000
+items <- levels(factor(d.hab.priors.filtered$item))
+
+load(file = paste(project.path,  "models/habituals/results/", 
+                  "habituals-prior-", n_samples, "_burn", n_samples/2 , 
+                  ".RData", sep = ""))
+
+example.habituals <- c("smokes marijuana", "smokes cigarettes","drinks coffee",
+                       "climbs mountains", "hikes", "runs", 
+                       "wears a suit", "wears a watch", "wears socks", 
+                       "writes poems", "goes to the movies", "plays the banjo"
+                       )
+
+rs.habituals.bda.prior.summary <- rs.habituals.bda.prior %>%
+  filter(Parameter == "mean") %>%
+  group_by(Variable, Gender, item) %>%
+  summarize(MAP = estimate_mode(value),
+            cred_upper = hdi_upper(value),
+            cred_lower = hdi_lower(value)) %>%
+  ungroup()
+
+
+rs.habituals.bda.prior.summary.wide <- left_join(
+  rs.habituals.bda.prior.summary %>% filter(Variable == "mix") %>%
+    select(-Variable) %>%
+    rename(mix_mean = MAP, mix_upper = cred_upper, mix_lower = cred_lower),
+  rs.habituals.bda.prior.summary %>% filter(Variable == "stableFreq") %>%
+    select(-Variable) %>%
+    rename(sfreq_mean = MAP, sfreq_upper = cred_upper, sfreq_lower = cred_lower)
+)
+
+# for displaying in text
+n.items.habituals.prior.modeling <- length(rs.habituals.bda.prior.summary.wide$item)
+
+rs.habituals.bda.prior.summary.wide <- left_join(rs.habituals.bda.prior.summary.wide,
+          d.hab.priors %>% select(item, category) %>% distinct())  %>%
+                mutate(Gender = factor(Gender, levels = c("male", "female")))
+
+
+
+figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.prior.summary.wide,
+       aes( x = mix_mean, xmin = mix_lower, xmax = mix_upper,
+            y = sfreq_mean, ymin = sfreq_lower, ymax = sfreq_upper,
+             fill = Gender, shape = Gender))+
+  geom_errorbar(alpha = 0.5)+
+  geom_errorbarh( alpha = 0.5)+
+  scale_shape_manual(values=c(21,22))+
+  #scale_color_solarized()+scale_fill_solarized()+
+  scale_fill_brewer(palette='Set1')+
+  #scale_color_brewer(palette='Set1')+
+  geom_point(size=4, 
+            #  inherit.aes = F, 
+            #  aes(x = mix_mean,y = sfreq_mean,  fill = category,
+            # shape = Gender),  
+            alpha = 0.9)+
+
+  xlab("% have DONE ACTION")+
+  ylab("Frequency of DOING ACTION \n (log scale)")+
+  #scale_
+  coord_fixed(ratio = 1/8)+
+  guides(fill = F,  shape = F)+
+  theme(legend.title = element_blank(),#element_text(hjust=0),
+        legend.position=c(0.82,0.14),
+        legend.direction="vertical") +
+        scale_y_continuous(limits = c(-1.5, 6.5), 
+                     breaks = c(0, 2.5, 4, 5.9),
+                     labels = c("annually", "monthly", "weekly", "daily"))+
+  geom_text_repel(data = rs.habituals.bda.prior.summary.wide %>%
+                    filter(item %in% example.habituals, Gender == "female"), 
+                  inherit.aes =F,
+                  aes(x = mix_mean,y = sfreq_mean, label = item), force = 5, size = 3)
+```
+
+
+```{r priors_posteriorPredictive_measurementSpace}
+rs.habituals.bda.posterior.predictive.measurementSpace <- left_join(
+  rs.habituals.bda.prior.summary %>%
+    rename(measurement = Variable,
+           gender = Gender) %>%
+    mutate(measurement = factor(measurement, 
+                        levels = c("mix","stableFreq"),
+                        labels = c("mixture_avoidedEnds", "annualRate"))),
+  df.hab.priors.filtered.summary
+  )
+
+
+ggplot(rs.habituals.bda.posterior.predictive.measurementSpace,
+       aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
+           y = empirical_mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_point()+
+  facet_wrap(~measurement, scales = 'free')+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)
+
+```
+
+
+
+```{r habituals-prior-model-forwardSample}
+rs.habituals.bda.prior.spread <- rs.habituals.bda.prior %>% 
+  mutate(param = paste(Variable, Parameter, sep = "_")) %>%
+  select(-Variable, -Parameter, -Chain) %>%
+  spread(param, value) 
+
+rs.habituals.bda.prior.samples <- data.frame()
+for (i in 1:1){
+  rs.habituals.bda.prior.samples <- bind_rows(
+    rs.habituals.bda.prior.samples,
+    rs.habituals.bda.prior.spread %>%
+    rowwise() %>%
+    mutate(
+      a = mix_mean * mix_samplesize,
+      b = (1 - mix_mean) * mix_samplesize,
+      theta = rbeta(n = 1, shape1 = a, shape2 = b),
+      stable = rbinom(n = 1, size = 1, prob = theta),
+      logannualRate = ifelse(stable == 1, 
+                             rnorm(n = 1, 
+                                   mean = stableFreq_mean, 
+                                   sd = stableFreq_sd), -5),
+       annualRate =  exp(logannualRate)
+    )
+  )
+}
+```
+
+```{r habituals-prior-marginals-fig, fig.width = 7, fig.cap="Reconstructed priors on frequency from the structured, prior elicitation task (Expt. 2a). Priors are reconstructed by bootstrapping and forward sampling using the structured model (data, blue) or using Bayesian data analysis on the structured model (model, red).", cache = F}
+
+habituals.priors.marginals <- bind_rows(
+  d.hab.priors.samples %>% 
+    mutate(src = 'data', 
+           val = log(val)),
+  rs.habituals.bda.prior.samples %>%
+    rename(gender = Gender, val = logannualRate) %>%
+    select(gender, item, val) %>%
+    mutate(src = 'model')
+)
+
+save(habituals.priors.marginals, rs.habituals.bda.posterior.predictive.measurementSpace,rs.habituals.bda.prior.summary.wide, file = "../paper/cached_results/case2_priors_parametersPredictives.RData")
+
+figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
+  filter(item %in% example.habituals,
+         src == 'model') %>%
+  mutate(item = factor(item, levels = example.habituals),
+         gender = factor(gender, levels = c("male", "female"))), 
+  aes( x = val, color = gender))+
+  geom_density(size = 0.8, aes( y = ..scaled.. ))+
+  facet_wrap(~item, nrow = 4)+
+  scale_color_solarized()+
+  xlab("Frequency")+
+  ylab("Scaled probability density")+
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
+  theme(strip.text.y = element_text(angle = 0),
+        legend.position = c(0.9, 0.11),
+        legend.title = element_blank(),
+        axis.text.x = element_text(angle = 90))+
+    scale_x_continuous(limits = c(-5, 8), 
+                     breaks = c(-5, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))
+
+#figure.habituals.priors.marginals
+```
+
+
+```{r}
+figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.posterior.predictive.measurementSpace,
+       aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
+           y = empirical_mean, ymin = ci_lower, ymax = ci_upper, color = gender))+
+  facet_wrap(~measurement, scales = 'free', nrow = 2)+
+  scale_color_solarized()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+    geom_label_repel(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+                    filter(item %in% example.habituals, gender == "female"), 
+                  inherit.aes =F,
+                  aes(x = MAP,y = empirical_mean, label = item), force = 15, size = 3)+
+  geom_point()+
+  coord_fixed()+
+  xlab("Model posterior predictive")+
+  ylab("Empirical means")+
+  theme(legend.position = c(0.86, 0.09))
+
+
+figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
+  filter(val > -4.9) %>%
+  mutate(gender = factor(gender, levels = c("female", "male"))), 
+  aes( x = val, color = gender, lty = src))+
+  geom_density(size = 0.4, aes( y = ..scaled.. ))+
+  facet_wrap(~item, nrow = 4)+
+  geom_rect(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+               filter(gender == 'male', measurement == "% people who have done action before"), 
+            aes(xmin = -5, xmax = -4.5, ymin = 0, ymax = MAP),
+              fill = "#268bd2", 
+            color = 'black',
+             inherit.aes = F)+
+  geom_rect(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+               filter(gender == 'female', measurement == "% people who have done action before"), 
+            aes(xmin = -4.25, xmax = -3.75,
+                                            ymin = 0, ymax = MAP),
+            fill = "#cb4b16",
+            color = 'black',
+             inherit.aes = F)+
+  scale_color_solarized()+
+  xlab("Frequency")+
+  ylab("Scaled probability density")+
+  scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
+  theme(legend.position = c(0.93, -0.1),
+        legend.title = element_blank(),
+        legend.box = 'vertical',
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 1),
+        legend.margin=margin(t=0, r=0, b=-0.25, l=0, unit="cm"),
+    strip.text = element_text(size = 7))+
+  scale_x_continuous(
+      limits = c(-5, 8),
+      breaks = c(-5, 0, 2.5, 4, 5.9),
+      labels = c("almost never", "annually", "monthly", "weekly", "daily")
+      )+
+  guides(color = F)
+```
+
+
+```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, fig.cap="Prevalence priors for events (Expt. 2a). A: Mixture-model posterior predictions in comparison to the empirical mean responses for the two prior elicitation questions. Items cover the full spectrum of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (same as the \\emph{proportion of people who have done action before} scatter-plot), reflecting the (inverse) rarity of the event across people.", cache = F}
+cowplot::plot_grid(
+  figure.habituals.priors.scatter + theme(plot.margin = unit(c(6,6,6,0), "pt")), 
+  figure.habituals.priors.marginals + theme(plot.margin = unit(c(6,0,6,6), "pt")),
+  labels = c("A", "B"), #nrow = 1,
+  align = 'h',
+  rel_widths = c(1, 3)
+  )
+```
+
+## Experiment 2b: Habitual endorsements
+
+#### Load and summarize data
+
+```{r habituals-endorsement}
+d.hab.endorsement.catch <- read.csv(paste(project.path, "data/habituals/endorsement/", 
+                    "habituals-endorsement-catch_trials.csv", sep = ""))
+
+d.hab.endorsement <- read.csv(paste(project.path, "data/habituals/endorsement/", 
+                    "habituals-endorsement.csv", sep = ""))
+
+d.hab.priors.mixture.summary <- d.hab.priors.filtered %>%
+  select(item, starts_with("mixture_")) %>%
+  gather(key, value, -item) %>%
+  group_by(item) %>%
+  tidyboot_mean( column = value)
+
+d.hab.endorsement <- left_join(
+  left_join(d.hab.endorsement, 
+           d.hab.endorsement.catch %>% 
+             select(workerid, pass)
+           ) %>%
+  filter(pass == 1),
+    d.hab.priors.mixture.summary %>% rename(habitual = item, mixture = mean, mix_low = ci_lower, mix_high = ci_upper)) %>%
+  mutate(response = ifelse(as.character(response) == "agree-key", 1, 0)) %>%
+  rowwise() %>%
+  mutate(
+    annualRate = annualRates[[as.character(time_period)]]*n_instances,
+    logAnnualRate = log(annualRate)
+  )
+
+d.hab.endorsement.bayes <- d.hab.endorsement %>% 
+  group_by(habitual, logAnnualRate, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+example.habituals <- c("climbs mountains_year", "hikes_year", "runs_year",
+                       "goes to the movies_month", "smokes cigarettes_month")
+fig.habituals.endorsement.vs.freq <- 
+  ggplot(d.hab.endorsement.bayes, aes( x = logAnnualRate, y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
+  geom_jitter(width = 0.1, shape = 21, size = 5)+
+  ylab("Human endorsement probability")+
+  xlab("Frequency of target")+
+  geom_label_repel(data = d.hab.endorsement.bayes %>% 
+                    mutate(sentence = paste(habitual, time_period, sep = "_")) %>%
+                    filter(sentence %in% example.habituals), aes( label = habitual ),
+                       color = 'black', fill = 'white',
+    box.padding = unit(0.35, "lines"),
+    point.padding = unit(1e-06, "lines"),
+    segment.color = 'grey37', segment.size=0.7, nudge_x= 1.1, nudge_y = -0.1)+
+  scale_x_continuous(limits = c(-1,6), 
+                     breaks = c(-1, 0, 0.7, 2.5, 4, 5.9),
+                     labels = c("three years", "annually", "bi-annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-0.01, 1.01), 
+                     breaks = c(0, 0.5, 1))+
+  scale_fill_viridis(breaks = c(0, 5))+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")+
+  coord_fixed(ratio = 7)+
+  guides(fill = guide_colorbar(title = 'log annual rate',
+                               ticks = F))
+
+rs.habituals.bda.posterior.predictive.measurementSpace
+```
+
+
+#### Gender item stuff
+
+```{r habituals-endorsement-gender-exploration-scatter, fig.cap='Exploratory analysis of endorsements of habitual statements by gender of target character (e.g., "Mary drinks beer" vs. "John...") for six events that displayed appreciable differences in the prior elicitation. Labeled points all correspond to the time period of 3 times / month.'}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  #filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.wide <- left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
+)
+
+r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
+n.habituals.gendered.analysis <- length(d.hab.bayes.gendered.wide$habitual)
+r.habituals.gendered.analysis <- round(with(d.hab.bayes.gendered.wide, cor(map_female, map_male)), 3)
+
+
+d.hab.bayes.gendered.subset <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+d.hab.bayes.gendered.subset.wide <- left_join(
+    d.hab.bayes.gendered.subset %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    rename(map_female = MAP_h, low_female = low, high_female = high) %>%
+    select(-characterGender),
+  d.hab.bayes.gendered.subset %>%
+    select(habitual, characterGender, time_period, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    rename(map_male = MAP_h, low_male = low, high_male = high) %>%
+    select(-characterGender)
+)
+
+n.habituals.gendered.subset.analysis <- length(d.hab.bayes.gendered.subset.wide$habitual)
+r.habituals.gendered.subset.analysis <- round(with(d.hab.bayes.gendered.subset.wide, cor(map_female, map_male)), 3)
+save(d.hab.bayes.gendered.wide, d.hab.bayes.gendered.subset.wide,
+     file = "../paper/cached_results/case2_endorsement_genderItemAnalysis.RData")
+```
+
+
+#### Regression models
+
+```{r habituals-regression-models}
+glm.hab.endorse.freq <- glm(response ~ logAnnualRate, 
+              data = d.hab.endorsement, family = 'binomial')
+
+glm.hab.endorse.freq.distinct <- glm(response ~ logAnnualRate + mixture, 
+              data = d.hab.endorsement, family = 'binomial')
+
+
+d.hab.endorse.freq.mix.uniq <- unique(select(
+    d.hab.endorsement, habitual, logAnnualRate, time_period, 
+    mixture, mix_low, mix_high
+  ))
+
+d.hab.endorse.freq.mix.uniq.lower <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_low)
+
+d.hab.endorse.freq.mix.uniq.upper <- d.hab.endorse.freq.mix.uniq %>% 
+  select(-mixture) %>% 
+  rename(mixture = mix_high)
+
+d.hab.endorse.regression.freq <- left_join(
+  d.hab.endorsement.bayes,
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq, ., type = "response"), 
+      prediction_lower = prediction,
+      prediction_upper = prediction,
+      src = "regression_freq"
+      )
+)
+
+
+
+# n.b.: Since distinctiveness is being captured by "mix", the lower the "mix", the higher the endorsement. Thus, lower bound of errorbars are computed with upper estimate of "mix"
+d.hab.endorse.regression.freq.mix <- left_join(
+  d.hab.endorsement.bayes,
+  d.hab.endorse.freq.mix.uniq %>%
+    mutate(
+      prediction = predict(glm.hab.endorse.freq.distinct, ., type = "response"),
+      prediction_lower =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.upper, type = "response"),
+      prediction_upper =  predict(glm.hab.endorse.freq.distinct, d.hab.endorse.freq.mix.uniq.lower, type = "response"),
+      src = "regression_freq_distinct"
+      )
+)
+
+d.hab.endorse.regression <- bind_rows(d.hab.endorse.regression.freq, d.hab.endorse.regression.freq.mix) %>%
+  mutate(sqErr = (MAP_h-prediction)^2)
+
+
+save(d.hab.endorse.regression.freq.mix,
+     d.hab.endorse.regression.freq,
+     d.hab.endorse.regression, file = "../paper/cached_results/case2_endorsement_regressionResults.RData")
+
+r2.hab.n <- length(d.hab.endorse.regression.freq$MAP_h)
+
+r2.habituls.regression.freq <- compute_r2(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq <- compute_mse(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+r2.habituls.regression.infrequent.freq <- d.hab.endorse.regression.freq %>%
+  filter(logAnnualRate < 1.1)
+
+r2.hab.infrequent.n <- length(r2.habituls.regression.infrequent.freq$MAP_h)
+
+r2.habituls.infrequent.regression.freq <- compute_r2(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.infrequent.regression.freq <- compute_mse(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+     
+r2.habituls.regression.freq.distinct <- compute_r2(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq.distinct <- compute_mse(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+```
+
+
+#### RSA models
+
+```{r habituals-fullmodel, fig.width = 8}
+n_chains <- 3
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 20
+model_prefix <- "results-habituals-jointModel-S1-"
+
+# m.hab.samp <- data.frame()
+#  m.hab.fixed.samp <- data.frame()
+
+#for (i in seq(1, n_chains)){
+  # mi <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "smtncs_habitual-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # m.hab.samp <- bind_rows(m.hab.samp, mi %>% mutate(chain = i))
+
+  # mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "smtncs_some-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   mi.fixed <- fread(paste(project.path,  "models/habituals/results/",
+#                           "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_chain", i, ".csv", sep = ""))
+#   #
+#   m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, mi.fixed %>% mutate(chain = i))
+# }
+
+# save(m.hab.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# 
+# save(m.hab.fixed.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+# save(m.hab.fixed.samp,
+#      file = paste(project.path,  "models/habituals/results/results-habituals-jointModel-inferFixedThreshold-noise-S1-smtncs_some-100000_burn50000_lag20_2chains.RData", sep = ""))
+
+
+load(paste(project.path,  "models/habituals/results/", model_prefix, "habitual-",
+                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+# load(paste(project.path,  "models/habituals/results/", model_prefix, "some-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+load(paste(project.path,
+           "models/habituals/results/results-habituals-jointModel-inferFixedThreshold-noise-S1-smtncs_some-100000_burn50000_lag20_2chains.RData", sep = ""))
+# load(paste(project.path,  "results-habituals-jointModel-inferFixedThresholdCts-noise-S1-smtncs_some-100000_burn50000_lag20_2chains.RData", sep = ""))
+
+
+# m.hab.fixed.samp <- fread(paste(project.path,  "models/habituals/results/",
+#                           "results-habituals-jointModel-inferFixedThreshold-S1-smtncs_some-100000_burn50000_lag20_chain1.csv", sep = ""))
+
+fixed.hab.params.posterior <-  m.hab.fixed.samp %>% 
+  filter(type == "param") %>%
+  #filter(B %in% c("noise", "fixedThreshold")) %>%
+  group_by(B) %>% 
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+hab.uncertain.threshold.s1opt <- m.hab.samp %>% 
+  filter(type == "param") %>%
+  group_by(B) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+
+m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
+  filter(type == 'predictive') %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.fullmodel.endorsement <- m.hab.samp %>%
+  filter(type == 'predictive') %>%
+  rename(habitual = B, time_period = D, binned_freq = E) %>%
+  group_by(habitual, time_period, binned_freq) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.endorsement.bayes,
+    m.hab.fullmodel.endorsement
+  ) %>%
+    mutate(src = "habituals_model"),
+  left_join(
+    d.hab.endorsement.bayes,
+    m.hab.somemodel.endorsement
+  ) %>%
+    mutate(src = "some_model")
+)
+
+r2.habituals.rsa.fixed <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.fixed <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.uncertain <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+
+habituals.rsa.uncertain.infrequent <- m.hab.endorse.rsa %>% filter(src == "habituals_model", logAnnualRate < 1.1)
+
+r2.hab.rsa.infrequent.n <- length(habituals.rsa.uncertain.infrequent$MAP_h)
+
+r2.habituals.rsa.uncertain.infrequent<- compute_r2(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain.infrequent <- compute_mse(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+
+md.hab <- bind_rows(
+  d.hab.endorse.regression,
+  left_join(
+    m.hab.endorse.rsa %>% 
+    rename(prediction = MAP, prediction_lower = cred_lower, prediction_upper = cred_upper),
+    d.hab.endorse.regression %>% 
+    select(habitual, time_period, logAnnualRate, mixture)
+  )
+)
+
+
+
+
+example.habituals.actions <- separate(data.frame(example.habituals), 
+                                      example.habituals, 
+                                      into=c("action", "time_period"), sep = "_")$action
+
+example.habituals <- c( 
+                       #"wears a watch", "wears socks", 
+                       "writes poems", "writes novels",
+                      "goes to the movies", "watches space launches",
+                      "smokes cigarettes","drinks coffee",
+                       "climbs mountains","hikes", "runs"
+                       )
+
+md.hab.long <- bind_rows(
+  md.hab %>% 
+    filter(habitual %in% example.habituals) %>% 
+    select(-low, -high, -MAP_h, -mean, -k, -n, -a, -b),
+  md.hab %>%
+      filter(habitual %in% example.habituals) %>% 
+      select(-mean, -k, -n, -a, -b, -prediction, -prediction_lower, -prediction_upper) %>%
+      rename(prediction = MAP_h, prediction_lower = low, prediction_upper = high) %>%
+      mutate(src = 'data')  
+) %>%
+  mutate(time_period = factor(time_period, levels = c("5 years", "2 years", "year",
+                                                      "6 months", 
+                                                      "2 months", "month", 
+                                                      "2 weeks", 
+                                                      "week")),
+         habitual = factor(habitual, levels = example.habituals),
+         src = factor(src, levels = c("data",
+                                      "regression_freq", 
+                                      "regression_freq_distinct",
+                                      "some_model",
+                                      "habituals_model"
+                                     ),
+                      labels = c("Human data",
+                                 "Referent frequency", 
+                                 "Distinctiveness +\n referent frequency",
+                                 "Fixed semantics",
+                                 "Uncertain semantics"
+                                 )))
+
+habituals.endorsement.bars <- ggplot(md.hab.long, aes ( y = prediction, ymin = prediction_lower, ymax = prediction_upper,
+                  x = time_period, fill = logAnnualRate))+
+  #geom_abline(intercept = 0, slope = 1, lty = 3)+
+  #geom_linerange(alpha = 0.15)+
+  geom_col(position = position_dodge(), color = 'black', width = 0.7)+
+  geom_errorbar(alpha = 0.7, width = 0.3)+
+  #geom_point(shape = 21, size = 3)+
+  #scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  scale_fill_viridis()+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  ylab("Habitual endorsement")+
+  xlab("Frequency")+
+  facet_grid(src~habitual, scales = 'free')+
+  theme(strip.text.y = element_text(hjust = 0, angle = 0),#, vjust = 1),
+        axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45),
+        legend.position = "bottom") +
+   guides(fill = F)
+#habituals.endorsement.bars
+#fixed.hab.params.posterior
+#fixed.hab.params.posterior
+```
+
+
+#### Simulations for insets
+
+```{r habituals-simulation-model}
+l0.hab.model <- '
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var betaShape = function(p){
+  return {a: p.g * p.d, b: (1-p.g) * p.d}
+};
+
+var probBins = [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9];
+
+var targetUtterance = "habitual";
+
+
+var roundTo3 = function(x){
+  return Math.round(x * 10000) / 10000
+}
+
+var lowerBound = -5, upperBound = 10, binWidth = 0.5;
+
+var stateBins =  _.range(
+  lowerBound, upperBound, binWidth
+)
+
+var thetaBins = map2(function(b1, b2){
+  var diff = Math.abs(b2 - b1) / 2;
+  return roundTo3(diff+ b1);
+}, stateBins.slice(0, stateBins.length-1), stateBins.slice(1))
+
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state> _.min(thetaBins):
+         true
+}
+
+
+var priorParams = data.priorParams[0];
+
+var stable_female_params = betaShape({
+  g: priorParams.mixture_female_mean, d: priorParams.mixture_female_samplesize
+})
+
+var stable_male_params = betaShape({
+  g: priorParams.mixture_male_mean, d: priorParams.mixture_male_samplesize
+})
+
+// this marginalizes out the mixture parameter
+var statePrior = Infer({model: function(){
+  var gender = flip(0.5) ? "female" : "male";
+  return gender == "female" ? // 
+    flip(
+        categorical({
+          vs: probBins,
+          ps: map(function(b) {
+            return probability(Beta(stable_female_params), b) + Number.EPSILON
+          }, probBins )
+        })
+    ) ? // stable female distribution
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) : // unstable female distribution
+    _.min(stateBins) : 
+    flip(        
+      categorical({
+          vs: probBins,
+          ps: map(function(b) {
+            return probability(Beta(stable_male_params), b) + Number.EPSILON
+          }, probBins )
+      })
+    ) ? 
+      categorical({
+        vs: stateBins,
+        ps: map(function(b) {
+          return probability(Gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }), b) + Number.EPSILON
+        }, stateBins )
+      }) :
+    _.min(stateBins)
+}});
+
+var listener0 = cache(function(utterance) {
+  Infer({model: function(){
+    var state = sample(statePrior)
+    var state_prior = sample(statePrior)
+    var theta = utterance == "habitual" ? sample(thetaPrior) : -99
+    condition(meaning(utterance, state, theta))
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }})}, 10000)
+
+var continuousListener0 = function(utterance) {
+  Infer({model: function(){
+   var state = flip(0.5) ? 
+        flip(beta(stable_female_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }) : delta({v:-5}) :
+        flip(beta(stable_male_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }) : delta({v:-5})
+   var state_prior = flip(0.5) ? 
+        flip(beta(stable_female_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_female_mean, 
+                sigma: priorParams.stableFreq_female_samplesize
+          }) : delta({v:lowerBound}) :
+        flip(beta(stable_male_params)) ? 
+          gaussian({
+                mu: priorParams.stableFreq_male_mean, 
+                sigma: priorParams.stableFreq_male_samplesize
+          }) : delta({v:lowerBound})
+    var theta = uniform(lowerBound, upperBound)
+    condition(
+      (utterance == "habitual") ? 
+      state > theta : 
+      (state > _.min(lowerBound))
+    )
+    return {
+      state_Posterior: state, 
+      state_Prior: state_prior
+  }
+ }, method: "rejection", samples: 10000, burn:5000, verbose: T})}
+
+continuousListener0(data.utt[0])
+'
+```
+
+```{r habituals-model-insets, fig.width = 4.75, fig.height = 1.5, cache = T}
+example.habituals.actions <- separate(data.frame(example.habituals), 
+                                      example.habituals, 
+                                      into=c("action", "time_period"), sep = "_")$action
+
+m.hab.fullmodel.prior.parameters <- m.hab.samp %>%
+  filter(type == "prior", B %in% example.habituals.actions) %>%
+  rename(action = B, variable = C, gender = D, parameter = E) %>%
+  group_by(action, variable, gender, parameter) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+# use MAP estimates to generate L(h | generic) & L(h | silence) predictions
+
+m.hab.fullmodel.prior.parameters.tidy <- m.hab.fullmodel.prior.parameters %>%
+  ungroup() %>%
+  select(action, variable, gender, parameter, MAP) %>%
+  mutate(param = paste(variable, gender, parameter, sep = "_")) %>%
+  select(-variable, -gender, -parameter) %>%
+  spread(param, MAP)
+
+hab.listener.predictions <- data.frame()
+  
+for (p in example.habituals.actions){
+ priorParams <- m.hab.fullmodel.prior.parameters.tidy %>% filter(action == p) 
+ 
+ inputData = list(priorParams = priorParams,
+                  utt = "habitual")
+ 
+ l0.rs <- webppl(l0.hab.model, data = inputData, data_var = "data")
+ 
+ hab.listener.predictions <- bind_rows(
+   hab.listener.predictions, 
+   l0.rs %>% select(Parameter,value) %>% mutate(action = p)
+   )
+ 
+}
+
+# m.gen.fullmodel.target.prevalence <- m.samp %>%
+#   filter(type == "withinKind") %>%
+#   group_by(param, property, category) %>%
+#   summarize(MAP = estimate_mode(val),
+#             cred_upper = hdi_upper(val),
+#             cred_lower = hdi_lower(val))
+
+# m.gen.speakerBeliefs <- m.samp %>%
+#   filter(type == "withinKind") %>%
+#   mutate(Sentence = paste(category, property)) %>%
+#   filter(Sentence %in% example.generics) 
+
+# m.gen.speakerBeliefs <- m.samp.prev.params <- m.samp %>%
+#     filter(type == "targetPrevalence") %>%
+#     mutate(Sentence = paste(category, property)) %>%
+#     filter(Sentence %in% example.generics) %>%
+#     mutate(parameter = paste(param, property, category, sep = "_")) %>%
+#     select(-param, -property, -category, -chain, -type) %>%
+#     group_by(parameter) %>%
+#     mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+#     ungroup() %>%
+#     separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
+#     group_by(category, property, iteration) %>%
+#     spread(parameter, val) %>%
+#     rowwise() %>%
+#     mutate(
+#       a = mean*sampleSize,
+#       b = (1-mean)*sampleSize,
+#       val = rbeta(n = 1, shape1 = a, shape2 = b)
+#       ) %>%
+#     ungroup()
+
+# gen.inset.distributions <- bind_rows(
+#   gen.listener.predictions %>%
+#     mutate(category = NA),
+#   m.gen.speakerBeliefs %>%
+#     select(property, val) %>%
+#     rename(value = val) %>%
+#     mutate(Parameter = "speakerBeliefs")
+# )
+# 
+# 
+# category.text.labels <- data.frame(property = c("dont eat people", 
+#                       "carry malaria", "lay eggs",  "are female", "have spots"),
+#              category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
+#              x = c(0.3, 0.3, 0.47, 0.05, 0.6),
+#             y = c(0.45, 0.5, 0.45, 0.5, 0.26))
+hab.listener.predictions
+
+m.hab.endorse.rsa
+hab.uncertain.threshold.s1opt
+fixed.hab.params.posterior
+md.hab
+md.hab.long
+md.hab
+hab.listener.predictions
+```
+
+```{r saveModels}
+save(m.hab.endorse.rsa, hab.uncertain.threshold.s1opt, fixed.hab.params.posterior,
+     md.hab.long, md.hab, hab.listener.predictions,
+     file = "../paper/cached_results/case2_endorsement_rsaModelResults.RData")
+```
+
+
+#### Gender exploratory stuff
+
+
+```{r habituals-items-table, eval = F}
+d.hab.endorsement.items <- select(d.hab.endorsement, habitual, time_period) %>% distinct()
+
+d.hab.endorsement.items[with(d.hab.endorsement.items, order(habitual)), ] %>% 
+  kable(., 
+        format = "latex", longtable = T, booktabs = T,
+        caption = "Demo table") %>% 
+  kable_styling(latex_options = c("repeat_header"),
+                font_size = 7)#%>%#, "hold_position")) %>%
+  #column_spec(3, width = "10cm")%>%
+  #collapse_rows(columns = 1:2)
+```
+
+
+```{r habituals-endorsement-gender-exploration, results="asis", eval = F}
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+d.hab.bayes.gendered <- d.hab.endorsement %>%
+  filter(habitual %in% gendered.items) %>%
+  group_by(habitual, characterGender) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+
+left_join(
+    d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "female") %>%
+    mutate(female = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high,  -characterGender),
+  d.hab.bayes.gendered %>%
+    select(habitual, characterGender, MAP_h, low, high) %>%
+    filter(characterGender == "male") %>%
+    #rename(male_MAP, male_low = low, male_high = high) %>%
+    mutate(male = paste(as.character(round(MAP_h, 2)), " [",
+                        as.character(round(low, 2)), ", ",
+                        as.character(round(high, 2)), "]", sep = "")) %>%
+    select(-MAP_h, -low, -high, -characterGender)
+    #rename(female_MAP, female_low = low, female_high = high)
+) %>% xtable(.,
+         caption = c("Exploratory analysis of endorsements of habitual statements by gender for six properties of interest, collapsed across frequencies."),
+        label = c("tab:habituals-endorsement-gender")) %>%
+print(., type = "latex", 
+      tabular.environment = "tabularx", width = "\\textwidth",
+      scalebox='0.75',
+      include.rownames = FALSE, comment = F)
+```
+
+## Experiment 2c: What is prevalence?
+
+```{r habituals-predictive-elicitation}
+d.hab.predictive <- read.csv(paste(
+  project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
+
+n.subj.hab.pred <- length(unique(d.hab.predictive$workerid))
+ave.seconds.hab.pred <-  d.hab.predictive %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+
+# participant reported this in the comments section (it was recorded as a symbol)
+d.hab.predictive[
+  (d.hab.predictive$workerid==44 & 
+     d.hab.predictive$item=="smokes cigarettes"),"response"] <- 5
+d.hab.predictive <- d.hab.predictive %>% mutate(response = as.numeric(as.character((response))))
+
+
+d.hab.predictive<- d.hab.predictive %>%
+  rowwise() %>%
+  mutate(
+    annualPredictiveRate =
+           annualRates[[as.character(past_interval)]]*response,
+    annualPastRate =
+           annualRates[[as.character(past_interval)]]*past_freq,
+    annualPredictiveRate = ifelse(
+      annualPredictiveRate == 0, 0.05, 
+      annualPredictiveRate),
+    logAnnualPredictiveRate = log(annualPredictiveRate),
+    logAnnualPastRate = log(annualPastRate)
+    )
+
+
+d.hab.predictive.summary <- d.hab.predictive %>%
+  group_by(condition, item, logAnnualPastRate) %>%
+  tidyboot_mean(column = logAnnualPredictiveRate)
+
+r.hab.pred.past.baseline.freq <- round(with(d.hab.predictive.summary %>% filter(condition == "baseline"), cor(logAnnualPastRate, mean)), 3)
+n.hab.pred.past.baseline.freq <- length(filter(d.hab.predictive.summary, condition == "baseline")$mean)
+
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
+       aes(x=logAnnualPastRate,
+                              y = mean,
+                              ymin = ci_lower, ymax = ci_upper,
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6, size = 4)+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency (log scale)")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+
+
+d.hab.predictive.summary
+```
+
+```{r habituals-predictive-model}
+hab.predictive.bda.model <- '
+var model = function(){
+
+	var predictiveFrequency = {
+			mu: uniformDrift({a: -5, b:10, width: 2}),
+			sigma: uniformDrift({a:0, b:10, width: 1})
+	}
+
+	mapData({data: data}, function(d){
+		observe(Gaussian(predictiveFrequency),
+        d.logAnnualPredictiveRate)
+	})
+
+  return predictiveFrequency
+}
+'
+```
+
+```{r habituals-predictive-model-run, cache = T, eval=F}
+items <- levels(factor(d.hab.predictive$item))
+conditions <- levels(factor(d.hab.predictive$condition))
+n_samples <- 5000
+rs.habituals.bda.predictive <- data.frame()
+
+for (it in items){
+  for (cn in conditions){
+     df.predictive.toPass <- d.hab.predictive %>%
+       filter(condition == cn, item == it)
+     
+    rs <- webppl(program_code = hab.predictive.bda.model,
+       model_var = "model",
+       inference_opts = list(method = "MCMC", samples = n_samples,
+                             burn = n_samples / 2),
+       data = df.predictive.toPass,
+       data_var = "data")
+    rs.habituals.bda.predictive <- bind_rows(
+        rs.habituals.bda.predictive, 
+        rs %>% 
+            mutate(item = it, condition = cn) 
+        )
+  }
+}
+```
+
+```{r eval = F}
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, fill = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+```{r habituals-predictive-bda-forwardSample, fig.width=14, eval=F}
+# rs.habituals.bda.predictive.samples <- rs.habituals.bda.predictive %>% 
+#   spread(Parameter, value) %>%
+#   rowwise() %>%
+#   mutate(
+#     logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+#   )
+
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = condition))+
+#  geom_density(size = 1, aes( y = ..scaled.. ))+
+  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+               position = position_dodge())+
+  facet_wrap(~item, scales = 'free')+
+  scale_color_solarized()+
+  #scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
+  scale_x_continuous(limits = c(-5,10)) +
+  theme(strip.text.y = element_text(angle = 0))
+
+bind_rows(
+  d.hab.predictive %>% 
+    mutate(src = 'data') %>% 
+    select(item, condition, src, logAnnualPredictiveRate),
+  rs.habituals.bda.predictive.samples %>% 
+    select(item, condition, logannualRate) %>%
+    rename(logAnnualPredictiveRate = logannualRate) %>%
+    mutate(src = 'model') 
+  ) %>%
+ggplot(. , aes( x = logAnnualPredictiveRate, color = src))+
+  geom_density(size = 1, aes( y = ..scaled.. ))+
+#  geom_histogram(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]),
+#               position = position_dodge())+
+  facet_grid(condition ~ item )+
+  scale_color_solarized()+
+  scale_x_continuous(limits = c(-5,10)) +
+  #scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
+  theme(strip.text.y = element_text(angle = 0))
+```
+
+```{r habituals-predictive-bda-summary, eval =F}
+rs.habituals.bda.predictive.summary <- rs.habituals.bda.predictive %>% 
+  spread(Parameter, value) %>%
+  rowwise() %>%
+  mutate(
+    logannualRate = rnorm(n = 1, mean = mu, sd = sigma)
+  ) %>%
+  gather(key, val, mu, sigma, logannualRate) %>%
+  group_by(item, condition, key) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+```
+
+```{r habituals-predictive-bda-figure, eval =F}
+fig.hab.freq.predictive.vs.past <- left_join(
+  rs.habituals.bda.predictive.summary %>% filter(key == "logannualRate"),
+  unique(d.hab.predictive %>% 
+    select(item, condition, logAnnualPastRate)
+  )) %>% ggplot(., 
+       aes(x=logAnnualPastRate, y = MAP, 
+                              ymin = cred_lower, ymax = cred_upper, 
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), alpha = 0.6)+
+  scale_shape_manual(values=c(21,22,23, size = 4))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'black')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-4,7), 
+                     breaks = c(-4, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  guides(fill=F, shape=F)+
+  scale_fill_solarized()+
+  xlab("Past frequency (log scale)")+
+  ylab("Predicted frequency MAP (log scale)")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
+```
+
+```{r habituals-predictive-endorsement}
+d.hab.predictive.endorsment <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives.csv", sep = ""))
+d.hab.predictive.endorsment.catch <- read.csv(paste(
+  project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives-catch_trials.csv", sep = ""))
+
+
+n.subj.hab.pred.endorse <- length(unique(d.hab.predictive.endorsment$workerid))
+ave.seconds.hab.pred.endorse <-  d.hab.predictive.endorsment %>% select(workerid, rt) %>%
+      group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
+      summarize(total = mean(totalSec))
+
+d.hab.predictive.endorsment.condition.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0)) %>%
+  rename(item = habitual) %>%
+  group_by(condition) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.baseline.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'baseline')
+
+d.hab.predictive.endorsment.preventative.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'preventative')
+
+d.hab.predictive.endorsment.enabling.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'enabling')
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1) %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0),
+         time_period = factor(time_period,
+                              levels=c("month",
+                                       "2 months",
+                                       "year",
+                                       "2 years",
+                                       "5 years")),
+         condition = factor(condition,
+                            levels=c("enabling", "baseline", "preventative")),
+         hab_time = paste(habitual, time_period, sep='-')) %>%
+  rename(item = habitual) %>%
+  group_by(item, condition, hab_time, time_period) %>%
+  summarize(k = sum(response), n = n()) %>%
+  ungroup() %>%
+  mutate(a = 1 + k,
+         b = 1 + n - k,
+         low  = qbeta(.025, a, b),
+         high = qbeta(.975, a, b),
+         MAP_h = (a-1)/(a+b-2),
+         mean = a / (a + b))
+
+d.hab.predictive.endorsment.summary <- left_join(
+  d.hab.predictive.endorsment.summary,
+  d.hab.predictive.summary %>%
+    rename(logAnnualFutureRate = mean,
+         future_lower = ci_lower, future_upper = ci_upper) %>%
+    select(-n)
+  # rs.habituals.bda.predictive.summary %>% 
+  #   filter(key == "logannualRate") %>%
+  #   rename(logAnnualFutureRate = MAP,
+  #        future_lower = cred_lower, future_upper = cred_upper)
+  # %>%
+  #   rowwise() %>%
+  #   mutate(future_lower = ifelse(future_lower < -4, -4, future_lower),
+  #          future_upper = ifelse(future_upper > 7, 7, future_upper))
+)
+
+r2.habituals.predictiveFreq <- compute_r2(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+mse.habituals.predictiveFreq <- compute_mse(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+
+
+
+fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
+  ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
+                 fill=condition, shape=condition,
+                 xmin = future_lower, xmax=future_upper,
+                 ymin=low, ymax = high))+
+  geom_errorbar(alpha=0.8)+
+  geom_errorbarh(alpha=0.8)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  geom_point(alpha = 1, size = 4)+
+  xlab("Predicted frequency (log scale)")+
+  ylab("Human endorsement")+
+  scale_x_continuous(limits = c(-4.2,7.2), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  coord_fixed(ratio=11.4)+
+  scale_fill_solarized()+
+  guides(fill = F, shape = F)+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    )
+
+
+```
+
+
+
+
+
+
+
+```{r habituals-predictive-rsa}
+n_chains <- 3
+# n_samples <- 500000
+# burn <- n_samples / 2
+# lg <- 150
+model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
+model_prefix <- "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-"
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 50
+
+
+m.hab.pred.samp <- data.frame()
+m.hab.past.samp <- data.frame()
+
+
+# for (i in seq(1, n_chains)){
+#   mi <- fread(paste(project.path,  "models/habituals/results/",
+#                     model_prefix, "targetH_predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+#   m.hab.pred.samp <- bind_rows(m.hab.pred.samp, mi %>% mutate(chain = i))
+
+  # mi.past <- fread(paste(project.path,  "models/habituals/results/",
+  #                   model_prefix, "targetH_past-",
+  #                   n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  # m.hab.past.samp <- bind_rows(m.hab.past.samp, mi.past %>% mutate(chain = i))
+
+#}
+# 
+# 
+# # 
+# save(m.hab.pred.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "predictive-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+# # # 
+# save(m.hab.past.samp,
+#      file = paste(project.path,  "models/habituals/results/", model_prefix, "past-",
+#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-predictive-100000_burn50000_lag50_3chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-past-100000_burn50000_lag20_3chains.RData", sep = ""))
+
+
+
+m.hab.pastmodel.endorsement <- m.hab.past.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorsement <- m.hab.pred.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.predictive.endorsement
+  ) %>%
+    mutate(src = "predictive_model"),
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.pastmodel.endorsement
+  ) %>%
+    mutate(src = "past_model")
+)
+
+r2.habituals.rsa.past <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.past <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.predictive <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.predictive <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+r2.hab.rsa.predictive.n <- length(d.hab.predictive.endorsment.summary$MAP_h)
+
+habituals.predictive.past.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Past-frequency endorsement model",
+                                 "Predictive-frequency endorsement model"
+                                 
+                                 ))) %>%
+  filter(src == "Past-frequency endorsement model") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition,
+                  shape = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(size = 4)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  guides(fill = F)+
+  #theme(legend.position = "bottom")+
+  scale_fill_solarized()
+
+habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Past-frequency endorsement model",
+                                 "Predictive-frequency endorsement model"
+                                
+                                 
+                                 ))) %>%
+  #filter(src == "Predictive-frequency endorsement model") %>%
+  ggplot(., aes ( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = condition, shape = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.7)+
+  geom_errorbarh(alpha = 0.7)+
+  geom_point(size = 4)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  xlab("\n Model prediction")+
+  ylab("Human habitual endorsement")+
+  facet_wrap(~src, nrow = 1)+
+  #guides(fill = F)+
+  #theme(legend.position = "bottom")+
+  scale_fill_solarized()
+#habituals.predictive.predictive.model
+```
+
+```{r fig.height = 6, fig.width=14, echo = F, eval=F}
+m.hab.pred.samp %>%
+  filter(type == "predictive", C == "predictiveFreq", E == "sigma") %>%
+  #filter(type == "predictive", C == "endorsement") %>%
+#  mutate(E = as.numeric(as.character(E))) %>%
+  ggplot(., aes(x = val, fill = D))+
+  geom_histogram(position = position_dodge())+
+  #facet_grid(B~E)+
+  facet_grid(D~B)
+```
+
+```{r, eval = F}
+m.hab.predfreq.summary <- m.hab.pred.samp %>%
+  filter(type == "predictive", C == "predictiveFreq") %>%
+  group_by(B, D, E) %>%
+  summarize(MAP = estimate_mode(val)) %>% spread(E, MAP)
+
+left_join(m.hab.predictive.endorse.rsa %>%
+  mutate(src = factor(src, levels = c( 
+                                      "past_model",
+                                      "predictive_model"
+                                     ),
+                      labels = c(
+                                 "Endorsement model (past frequency)",
+                                 "Endorsement model (predictive frequency)"
+                                 
+                                 ))) %>%
+  filter(src == "Endorsement model (predictive frequency)"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
+```
+
+
+
+
+```{r habituals-predictive-elicitation-predictions}
+lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
+     logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
+       (1 + condition | workerid) + 
+       (1 + condition | item)
+)
+lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
+```
+
+```{r}
+save(d.hab.predictive.endorsment.summary, d.hab.predictive.summary, 
+     n.subj.hab.pred.endorse, ave.seconds.hab.pred.endorse, 
+     n.subj.hab.pred, ave.seconds.hab.pred, d.hab.predictive.endorsment.condition.summary, 
+     lmer.rs.hab.predictive.summary,
+     file = "../paper/cached_results/case2_predictive_data.RData")
+```
