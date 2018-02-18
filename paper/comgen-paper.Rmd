@@ -1,5 +1,5 @@
 ---
-title             : "The language of generalization"
+title             : "The Language of Generalization"
 shorttitle        : "The language of generalization"
 
 author: 
