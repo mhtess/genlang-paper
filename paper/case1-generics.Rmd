@@ -1,12 +1,12 @@
 # Case Study 1: Generic Language
 
-Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propagation [@Rhodes2012], and motivation [@Cimpian2007], as well as many other facets of everyday reasoning.
-In addition, generics have been the case study of choice for the semantics of the language of generalization because of their vexing similarity to quantified statements (e.g., "Most dogs bark").
-Time after time, psychologists have shown that generics simply do not reduce to quantified statements [e.g., @Khemlani2012, @Prasada2013, @Cimpian2010].
+Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") have received substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propagation [@Rhodes2012], motivation [@Cimpian2007], and many other facets of everyday reasoning.
+In addition, generics have been the case study of choice for the semantics of the language of generalization because of their tantalizing similarity to quantified statements (e.g., "Most dogs bark").
+However, intuitions and empirical data argue that generics simply do not reduce to quantified statements [e.g., @Khemlani2012, @Prasada2013, @Cimpian2010].
 
 Here, we take our first empirical look at how the *underspecified threshold* endorsement model predicts actual human endorsements of generic statements.
-We measure endorsement for thirty generic sentences that cover a range of conceptual distinctions [@Prasada2013]: *majority characteristic* (e.g., "Ducks have wings."),  *minority characteristic* (e.g., "Robins lay eggs."), *striking* (e.g. "Mosquitos carry malaria."),  *false generalization* (e.g., "Robins are female."), and *absent features* (e.g. "Lions lay eggs.").
-We further craft sentences to elicit the full range of acceptability judgments (intuitively: "true", "false", and "indeterminate") for generics with properties of low, medium, and high referent-prevalence (Expt. 1a).
+We measure endorsement for thirty generic sentences that cover a range of conceptual distinctions previously discussed in the empirical literature on generics [@Prasada2013]: characteristic features displayed by a majority (e.g., "Ducks have wings."),  characteristic features displayed by a minority (e.g., "Robins lay eggs."), features that are *striking* or *dangerous* (e.g. "Mosquitos carry malaria."),  noncharacteristic features displayed by a minority (e.g., "Robins are female."), and features that are totally absent (e.g. "Lions lay eggs.").
+We further craft sentences with the goal of eliciting the full range of acceptability judgments (intuitively: "true", "false", and "indeterminate") for generics with properties of low, medium, and high referent-prevalence (Expt. 1a).
 We examine generics about animal categories in order to reliably measure the prior belief distribution over the prevalence of features $P(p_{fk})$ (Expt. 1b).
 This elicitation procedure includes measurements of the referent-category feature-probabilities $p_{fk'}$  (e.g.,$P(x \text{ lays eggs} \mid x \text{ is a robin})$), allowing us to both generate predictions for the endorsement model (Eq. \ref{eq:S1}) as well as for simpler, alternative models. 
 
@@ -149,7 +149,7 @@ Eight property--columns in total appeared in the table.
 This whole procedure was repeated two times (two trials).
 In total, each participant generated ten animal names and reported on the prevalence of sixteen properties for twenty-two animals (their own ten and the experimentally-supplied twelve). 
 
-```{r generics-prior-task, fig.cap="Prior elicitation task. A: Participants first generated animal names after seeing six example categories. B: One feature at a time, participants estimated the percentage of the category with the feature, for each category.", fig.height = 3}
+```{r generics-prior-task, fig.cap="Prior elicitation task. A: Participants first generated animal names after seeing six example categories. B: One feature at a time, participants estimated the percentage of the category with the feature, for each category.", fig.height = 3, cache = F}
 fig.priors.expt.stage1 <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-stage1.jpeg", sep=""), scale = 1)
 fig.priors.expt.stage2 <- ggdraw() + draw_image(paste(project.path, "paper/figs/generics-prior-stage2.jpeg", sep=""), scale = 1)
 
@@ -191,7 +191,7 @@ A more complex model (i.e., one with three mixture components) is necessary to p
 
 
 
-```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prio and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line."}
+```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prio and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line.", cache = F}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
 
 gen.priors.densities <- ggplot(m.gen.endorse.priors.posteriorPredictive %>%
@@ -304,9 +304,18 @@ This includes generics that are judged true with relatively low referent prevale
 
 ##### Model specification
 
-Cue validity is linearly related to a point-estimate of the prevalence prior distribution (see Model section and Appendix A).
-It thus implicitly captures information about other categories, though cannot capture the structure that is present in the prevalence priors.
-To show that this structure is important, we explore a secondary baseline model based on prevalence and cue validity.
+Cue validity is a metric of how diagnostic the feature is of the kind, and is given formally by the probability of a kind given the feature $P(k \mid f)$.
+As discussed in the Computational Model section above, cue validity is linearly related to expected value of the prevalence prior distribution (see Appendix A for derivation).
+Cue validity can thus be seen as a *point estimate* of the prevalence prior distribution, a single metric that collapses across the full distribution. 
+
+To show that the full distribution over prevalence is important, we explore a secondary baseline model based on prevalence and cue validity.
+Though the cue validity of a particular category by a particular property can be derived from the prevalence prior distribution, previous empirical studies have estimated cue validity in various ways from empirical data about distinctiveness [@Cree2006; @Khemlani2012].
+In the empirical literature on generics, researchers often ask directly about the cue validity probability [e.g., "There is an animal that lays eggs. What is the probability that it is a robin?"; @Khemlani2012], though in the broader literature on semantic memory a *free production* paradigm is often employed [e.g., "X lays eggs. What do you think X is?"; @Cree2006]. 
+We found that these different ways of estimating cue validity diverge for a number of key cases, possibly due to an experimenter demand effect in the direct question paradigm.
+We thus used the data from the free production paradigm ($n = 100$) to estimate cue validity. 
+For a detailed analysis of the different cue validity measurements and comparison to *prevalence prior derived cue validity*, see Appendix B.
+
+<!-- It thus implicitly captures information about other categories, though cannot capture the structure that is present in the prevalence priors. -->
 
 <!-- Whereas prevalence encodes a prediction about whether or not an entity $x$ of a certain kind $k$ will have the property $f$, $P(x \in f \mid x \in k)$, *cue validity* represents the inverse prediction: that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not the entity is a robin, upon learning that it lays eggs). -->
 <!-- Previous studies have found cue validity to be correlated with generic endorsement [@Khemlani2012]. -->
@@ -326,11 +335,7 @@ To show that this structure is important, we explore a secondary baseline model 
 <!-- Empirically, cue validity is not a *necessary* criteron for generic endorsement (e.g., in the sentence:  -->
 <!-- In addition, if generics have to do with generalizations, which are formally described by the "forward probability", it is not obvious why the "inverse probability" (cue validity) would be part of the semantic content of generics. -->
 
-Though the cue validity of a particular (category, property) pair can be derived from the prevalence prior distribution, previous empirical studies of generic language have not done this.
-Instead, these studies estimate cue validity by asking a separate group of participants about the distinctiveness of features for given animals [e.g., @Khemlani2012], though different studies use different measurements. 
-Preliminary analysis of these different measurements revealed that a *free production* paradigm [@Cree2006] is preferred.
-Participants ($n = 100$) were supplied with a feature (e.g., "X lays eggs") and asked to generate a kind (e.g., "what do you think X is ?").
-For a detailed analysis of different cue validity measurements and comparison to *prevalence prior derived cue validity*, see Appendix B.
+
 
 ##### Results
 
@@ -567,10 +572,10 @@ We return to this point, and its implications for theory-building, in the genera
 
 <!-- The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the prevalence that the endorser had in mind. -->
 
-In explaining the variable endorsements of generics, we related the referent-category prevalence (e.g., the percentage of robins that lay eggs) to the endorsement of the generalization (e.g., "Robins lay eggs") via the prevalence priors (e.g., the percentage of different kinds of animals that lay eggs). 
+In explaining the variable endorsements of generics, we related the referent-category prevalence (e.g., the percentage of robins that lay eggs) to the endorsement of the generalization (e.g., "Robins lay eggs") via our communicative model with prior knowledge about the distribution of prevalence (e.g., the prevalence of laying eggs for different kinds of animals). 
 In doing so, we used generic statements about familiar animal categories, which has long been the cleanest domain for testing semantic theories of generics by providing minimal comparison like "Robins lay eggs" vs. "... are female". 
-To model statements about familiar categories, we were forced to *measure* the relevant quantities in the model (i.e., the referent prevalence and the prevalence priors), which people have access to via their mental representations of the category. 
-We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent prevalence (Case 2) and feature-probability priors (Case 3).
+However, modeling familiar category generics is a correlational analysis: The relevant quantities in the model were measured rather than manipulated.
+We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent prevalence (Case 2) and prevalence priors (Case 3).
 In addition, we take this opportunity to highlight the generality of the theory, by performing these additional empirical tests in different domains for generalization: events and causes. 
 
 <!-- With a tenable quantitative theory in hand,  -->

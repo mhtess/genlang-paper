@@ -347,7 +347,7 @@ Evidence statement & Your team gave fertilizer B to 100 different feps. Of those
 \end{table}
 
 
-```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. B: Prior elicitation task: Participants predict the results of the next 5 experiments. D: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10}
+```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. B: Prior elicitation task: Participants predict the results of the next 5 experiments. D: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10, cache=F}
 caus.exp.1 <- ggdraw() + draw_image("figs/causal-expt-1.jpeg", scale = 1) +
   theme(plot.margin = unit(c(2,0,0,0), "pt")) 
 caus.exp.2 <- ggdraw() + draw_image("figs/causal-expt-2.jpeg", scale = 1)+
@@ -859,7 +859,7 @@ mse.caus.rsa <- compute_mse(md.caus.endorse, "MAP_h", "MAP")
 
 
 
-```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = T}
+```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = F}
 figure.causals.endorsement <- bind_rows(
   m.cas.fullmodel.endorsement %>%
     mutate(src = "model"),
@@ -911,7 +911,7 @@ figure.causals.endorsement <- bind_rows(
   )
 ```
 
-```{r figure-causals, fig.width=9, fig.height=4, cache = T, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Vertical lines denote referent-prevalence levels for the causal endorsement task. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
+```{r figure-causals, fig.width=9, fig.height=4, cache = F, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Vertical lines denote referent-prevalence levels for the causal endorsement task. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
 
 prow <- plot_grid( 
   figure.causals.endorsement + theme(legend.position="none"),

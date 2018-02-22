@@ -209,7 +209,7 @@ In this paper, we propose such a semantic core for the language of generalizatio
 To do so, we look to probability, the universal currency of belief and a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
 Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
 However, it is not possible to develop a single cut-off for when the generalization should hold, due to examples like "Birds lay eggs" vs. "Birds are female".
-Instead, we posit that the cut-off is *underspecified* in the literal meaning of a generalization, and that listeners' background knowledge and the communicative context can be used to derive more precise interpretations in the moment. 
+Rather than throw-out the quantitative formalization of the threshold semantics, we posit that the threhsold is *underspecified* in the literal meaning of a generalization, and that listeners' background knowledge and the communicative context can be used to derive more precise interpretations in the moment. 
 <!-- To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the communicative function of a generalization by explicitly modeling the background knowledge a language interpreter would bring to bear when understanding generalizations. -->
 With these ideas, we create an endorsement model, providing the first formal theory that makes quantitative predictions about what makes generalizations in language true or false.
 The assumptions of the theory, and in turn, the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.

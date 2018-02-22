@@ -24,7 +24,7 @@ We then measure endorsements of habitual statements while manipulating the *refe
 By describing novel characters to participants, we are able to directly the manipulate the *referent-prevalence* (rate), which we were unable to do for generalizations about familiar categories.
 <!-- In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories. -->
 
-Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect a speaker's expectations, not merely her observations. 
+Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely their observations. 
 Our computational model predicts endorsement rates given a referent-prevalence $p_{fk}$. 
 Does prevalence represent the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past month) or the predictive probability of the event in the near future (e.g., how often we should expect Mary to smoke next week)?
 We extend our theory by measuring participants' predictions about future rates and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
@@ -794,15 +794,16 @@ In Expt. 2c, we investigate this question by teasing apart *past* from *predicti
 While past frequency is often a good indicator of future tendency, the future is under no obligation to mimic the past.
 Does habitual language communicate probabilities in terms of past frequency or future expectations?
 On one hand, speakers can only be certain about what has happened in the past.
-On the other hand, language has a communicative function, and it would be useful for speakers to convey their predictions of what will be the case in the future.
+On the other hand, it is important for speakers to be able to convey their predictions of what will be the case in the future.
 
 People can change their behavior abruptly due to a variety of decisions and outside events.
-We introduce these causal events into our minimal endorsement paradigm and measure their influence on endorsement.
+We introduce these causal events into our endorsement paradigm to measure their influence on endorsement.
 <!-- that either enable or prevent future actions. -->
-To provide the appropriate model-based analysis, participants in one condition make a prediction about what will be the case in the future (*predictive frequency*).
+To provide the appropriate model-based analysis, participants in one condition make a prediction about the future (*predictive frequency*).
 In another condition, participants decide whether or not to endorse the habitual sentence (as in Expt. 2b).
 <!-- In Expt. 2d, we examine endorsements of the habitual sentence (e.g., \emph{John smokes cigarettes.}; \emph{Susan eats peanut butter.}) in the presence of these causal modifiers. -->
-We then compare two uncertain-thresholds models to each other: one which uses participants' ratings of *predictive frequency* as the object of communication and one which uses the *past frequency* (as was done for Expt. 2b).
+We then compare two uncertain-thresholds models: one which uses participants' ratings of *predictive frequency* as the object of communication and one which uses the *past frequency* (as was done for Expt. 2b).
+In addition, we compare to baseline linear model that uses only the *predictive frequency* (no priors) to model endorsement. 
 
 ```{r loadCase2PredictiveData, cache =F}
 load("cached_results/case2_predictive_data.RData")
@@ -1258,8 +1259,8 @@ Habitual language conveys generalizations about events.
 Our model decides if a habitual sentence is a pragmatically useful way to describe the rate at which a person does an action, taking into account a naive interpreter's prior beliefs about the event (measured in Expt. 2a). 
 Our computational model endorses statements that communicate generalizations about events with the same sensitivity to context and frequency that people exhibit (Expt. 2b \& c).
 In Expt. 2b, we varied the type of event and the past frequency with which the person did the action, and found graded endorsements of the corresponding habitual sentences.
-By manipulating (rather than measuring) the referent frequency with which a person does an action, we showed how alternative models were insufficient to account for the gradience in endorsement.
-In particular, a fixed threshold model that has access to the same prior knowledge and uses the same information-theoretic decision rule as our uncertain-threshold model is unable to make different predictions for different frequencies.
+By manipulating (rather than measuring) the referent frequency, we showed how alternative models were unable to account for the gradience in endorsement.
+In particular, we show that prior knowledge in an information-theoretic, communicative model is not sufficient to produce gradience in endorsement: The fixed-threshold model, which has these components, does not make different predictions for different frequencies.
 Only our uncertain threshold model was able to precisely account for the wide range of endorsements.
 
 A regression model that takes into the frequency and the *distinctiveness* of the action does a reasonable job at explaining the variance in this data.
@@ -1270,7 +1271,7 @@ This is precisely what our information-theoretic models do (both fixed- and unce
 <!-- Naive baseline models could not explain these endorsements judgments and our communicative model provided the most parsimonious account of the data in comparison to non-Bayesian models.  -->
 <!-- In Experiment 3, we looked at interpretations of habitual statements about different events and again found substantial gradedness that our theory provided the most parsimonious account of. -->
 <!-- The theory defines a pair of interpretation and endorsement models and these models can simultaneously account for both data sets. -->
-In Expt. 2c, we further investigated the nature of the underlying prevalence scale by introducing causal information that enabled and preventative future occurrences of the action.
+In Expt. 2c, we further investigated the nature of the underlying prevalence scale by introducing causal information that enabled and prevented future occurrences of the action.
 We used the empirically-measured predicted future frequency as the object of communication for our endorsement model.
 We found that the endorsement model that seeks to communicate its predictions (rather than its observations) is a better model of habitual endorsements under these situations.
 Predicted prevalence thus captures the influence of top-down moderators (e.g., intervening causal forces) on endorsement.
