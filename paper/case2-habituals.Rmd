@@ -145,14 +145,14 @@ figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
   facet_wrap(~item, nrow = 4)+
   geom_rect(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
                filter(gender == 'male', measurement == "% people who have done action before"), 
-            aes(xmin = -5, xmax = -4.5, ymin = 0, ymax = MAP),
+            aes(xmin = -5, xmax = -4.5, ymin = 0, ymax = 1 - MAP),
               fill = "#268bd2", 
             color = 'black',
              inherit.aes = F)+
   geom_rect(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
                filter(gender == 'female', measurement == "% people who have done action before"), 
             aes(xmin = -4.25, xmax = -3.75,
-                                            ymin = 0, ymax = MAP),
+                                            ymin = 0, ymax = 1 - MAP),
             fill = "#cb4b16",
             color = 'black',
              inherit.aes = F)+
@@ -174,7 +174,7 @@ figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
   guides(color = F)
 ```
 
-```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, fig.cap="Prevalence priors for events (Expt. 2a). A: Mixture-model posterior predictions in comparison to the empirical mean responses for the two prior elicitation questions. Items cover the full spectrum of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (same as the \\emph{proportion of people who have done action before} scatter-plot), reflecting the (inverse) rarity of the event across people.", cache = F}
+```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, fig.cap="Prevalence priors for events (Expt. 2a). A: Mixture-model posterior predictions in comparison to the empirical mean responses for the two prior elicitation questions. Items cover the full spectrum of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (in terms of \\emph{proportion of people who have NEVER done action before} scatter-plot), reflecting the rarity of the event across people.", cache = F}
 cowplot::plot_grid(
   figure.habituals.priors.scatter + theme(plot.margin = unit(c(6,6,6,0), "pt")), 
   figure.habituals.priors.marginals + theme(plot.margin = unit(c(6,0,6,6), "pt")),
