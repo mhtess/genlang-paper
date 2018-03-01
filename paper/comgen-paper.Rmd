@@ -1220,8 +1220,7 @@ However, if states of the world (or, listener's beliefs about states of the worl
 This kind of extension to rational models of communication has already been used to account for a variety of phenomena in *polite language* use [@Yoon2016; @Yoon2017].
 We propose adopting such a value-based utility structure for states of the world for language about social categories: If the speaker found states of the world where the probability of the feature is high as undesirable (e.g., a world where many women were submissive), then a speaker who considered both the informational content of the utterance and the utility in the states of the world implied by that utterance would too find it reprehensible to make such a generalization.
 
-In sum, we've tried to argue that our information-theoretic communicative model couched in our general cognitive framework can be used to explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
-The precise implementation of these hypotheses we leave for future work.
+In sum, we've tried to argue that our information-theoretic communicative model couched in our general cognitive framework might well explain a number of interesting and heretofore puzzling phenomena in genericity as well as make novel predictions about a wider range of language.
 
 <!-- -- Books are paperbacks. (failure of the constrast class) -->
 <!-- -- Birds lay eggs and are female vs. Elephants live in Asia and Africa -->
@@ -1239,11 +1238,11 @@ To the contrary, underspecification can be efficient, given that context can be 
 In our work, context takes the form of shared beliefs between speakers and listeners. 
 By leveraging this common ground, the language of generalizations provide a powerful way to communicate and learn generalizations, which would otherwise be difficult or costly information to learn through direct experience.
 
-The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong impression to a naive listener.
-Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012].
-Disagreements are also predicted when interlocutors fail to share background assumptions, which could manifest as differences in the prior distributions on prevalence or what goes into the comparison class.
-Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?). 
-This is an important area for future research.
+<!-- The dark side of this flexibility is the potential for miscommunication or deceit: A speaker might assert a generalization that she herself would not accept, conveying a too-strong impression to a naive listener. -->
+<!-- Our model predicts this potential particularly for properties which, when present, are widespread in a category; biological properties are believed to have this distribution, but many properties of social categories may as well [@Cimpian2011a; @Cimpian2012b; @Rhodes2012]. -->
+<!-- Disagreements are also predicted when interlocutors fail to share background assumptions, which could manifest as differences in the prior distributions on prevalence or what goes into the comparison class. -->
+<!-- Core aspects of political disagreement then (e.g., as to whether "Humans cause global warming") could be derived from differences in the estimated causal responsibility of the category in question (e.g., what impacts humans are having), of *other forces* (e.g., plate tectonics), as well as the comparison class of other forces (e.g., what are the alternative causes?).  -->
+<!-- This is an important area for future research. -->
 
 Categories are inherently unobservable. 
 You cannot see the category \textsc{dog}, only some number of instances of it.
