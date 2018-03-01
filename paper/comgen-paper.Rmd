@@ -170,8 +170,8 @@ It is believed every language can express generalization [@Behrens2005; @Carlson
 <!-- Communicating about causality can also take the form of communicating a generalization about a causal event  -->
 <!-- What these statements have in common is that they convey generalizations, or exhibit *genericity* [@Carlson1977; @Carlson1995]. -->
 
-Despite its ubiquity and relative morphosyntactic simplicity, the language of generalization has been addressed by few formal models and none that have made precise, quantitative predictions that match human intuitions. 
-The major challenge in formalizing generalization in language is determining what makes the statements true or false.
+Despite its ubiquity and relative morphosyntactic simplicity, the language of generalization has been addressed by few formal models and none that have made precise, quantitative predictions that match human judgements. 
+The major challenge in formalizing generalization in language is determining what makes the statements seem true or false.
 When we hear "Dogs bark", it sounds like a universal statement, as in "All dogs bark".
 But the property does not apply to all dogs: Basenji dogs are barkless,
 <!-- ^[ -->
@@ -186,7 +186,7 @@ But weakening the generalization to mean *some* is too permissive: Some robins a
 Even more perplexing: Those very same female robins lay eggs, and "Robins lay eggs" is a perfectly fine thing to say.
 
 These observations have led some to conclude that the prevalence of the feature (or the probability of a member of the category having the property e.g.,  $P(x \text{ barks} \mid x \text{ is a dog})$) is not what makes generalization true or false.
-The predominantly studied generic statements are thought to refer to *kinds* [@Leslie2008] and thus may the linguistic manifestation of special, kind--property relations [@Prasada2000; @Prasada2012]. 
+Generic statements are instead thought to refer to *kinds* [@Leslie2008] and thus may be the linguistic manifestation of special, kind--property relations [@Prasada2000; @Prasada2012]. 
 <!-- Conceptual accounts of generics emphasize the structure of *generic knowledge* [@Prasada2000], and view generic utterances as the way of expressing special, mental relationships between kinds and properties [@Leslie2008; @Prasada2012].  -->
 "Bishops move diagonally" or "The Speaker of the House succeeds the Vice President" are true statements not because of a tendency on behalf of the category to uphold the property.
 Rather, the utterances are believed to point out the existence of a conceptual structure (e.g., that bishops have a certain role in the game of chess).
@@ -207,12 +207,15 @@ What we are left with is hybrid theories, which try to classify different kinds 
 But insofar as there is a single class of linguistic expressions that convey generalization, there should be something common to them all: a general, unified semantic core.
 In this paper, we propose such a semantic core for the language of generalization.
 To do so, we look to probability, the universal currency of belief and a useful representation for human generalization from observations [@Shepard1987; @Tenenbaum2001].
-Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication in the language of generalization. 
+Given that certain probabilities are the result of inductive generalization, it would make sense that these are the object of communication for the language of generalization.
+\ndg{cuttoff / threshold not mentioned before this, need to introduce...}
 However, it is not possible to develop a single cut-off for when the generalization should hold, due to examples like "Birds lay eggs" vs. "Birds are female".
 Rather than throw-out the quantitative formalization of the threshold semantics, we posit that the threhsold is *underspecified* in the literal meaning of a generalization, and that listeners' background knowledge and the communicative context can be used to derive more precise interpretations in the moment. 
 <!-- To formalize a model of endorsement (i.e., what makes the statements true or false), we consider the communicative function of a generalization by explicitly modeling the background knowledge a language interpreter would bring to bear when understanding generalizations. -->
-With these ideas, we create an endorsement model, providing the first formal theory that makes quantitative predictions about what makes generalizations in language true or false.
-The assumptions of the theory, and in turn, the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.
+With these ideas, we create an endorsement model, that describes what makes generalizations in language true or false.
+The assumptions of the theory and the conditions under which the theory may be meaningfully tested are made explicit by its instantiation in a formal model.
+Our model is the first to make quantitative predictions about human endorsements of generalizations in language.
+
 
 
 <!-- Specifically, we formalize an account where the core meaning of a generalization in language is a *simple but underspecfied* function of probability and where context helps resolve the underspecification. -->
@@ -222,11 +225,11 @@ The assumptions of the theory, and in turn, the conditions under which the theor
 <!-- We test this theory in three distinct case studies---generalizations about categories, events, and causes---by both measuring and manipulating prior knowledge, showing that it is strongly and causally related to the endorsement of generalizations in the ways predicted by our model. -->
 
 The paper is organized as follows. 
-In Section 1, we formalize the hypothesis that the core meaning of a generalization in language is a simple but underspecified threshold, articulate a theory of relevant background knowledge used to understand a generalization in context, and develop a computational model of endorsement around these components.
-The endorsement model's predictions depend upon the background knowledge and the prevalence communicated, which we demonstrate via simulation.
+In Section 1, we formalize the hypothesis that the core meaning of a generalization in language is a simple but underspecified threshold on a subjective probability, articulate a theory of relevant background knowledge used to understand a generalization in context, and use these components to develop a computational model of endorsement.
+The endorsement model's predictions depend upon relevant background knowledge and the prevalence communicated, which we demonstrate via simulation.
 Sections 2-4 present three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
-Across these three case studies, we both measure and manipulate background knowledge and the prevalence communicated, measuring their effects on endorsement. 
-While alternative models fall short, we find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements.
+Across these three case studies, we both measure and manipulate background knowledge and the prevalence communicated, measuring their effects on endorsement of generalization sentences. 
+We find a very strong agreement of our model's predictions to the full spectrum of human elicited endorsements, while alternative models fall short.
 This work opens the door to understanding generalizations in richer, pragmatic language contexts and building models that learn abstract knowledge from language.
 
 <!-- (cumulative $r^2(N) = 0.XX$). -->
