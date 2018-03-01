@@ -962,8 +962,9 @@ The acquisition of a threshold-based truth-functional meaning $\denote{u}(h, \th
 Upon acquiring the dimension and the polarity, a rational learner should represent uncertainty over possible thresholds $\theta$.
 Upon repeated cross-situational data, this prior could be updated towards acquiring a fixed meaning.
 However, for generalizations, no fixed threshold is required; the language of generalization is learned once aspects (1) and (2) are understood.
+Thus, under our framework, generalizations should not only be learned before, but also faciliate in learning, quantifiers.
 <!-- In our model, $\theta$ is left underspecified in the semantics and is inferred in context. -->
-This informal analysis predicts that a child would first acquire the language of generalizations, and from that, carve out more precise meanings for quantified language, consistent with the developmental data.
+<!-- This informal analysis predicts that a child would first acquire the language of generalizations, and from that, carve out more precise meanings for quantified language, consistent with the developmental data. -->
 
 There is a secondary argument for why our semantics presents an easy learning problem.
 <!-- The uniform prior over the threshold $\theta$ in the truth-functional semantics (as we have assumed in our model) provides a secondary argument for why acquiring our semantics for generics should be easy. -->
