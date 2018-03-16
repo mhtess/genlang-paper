@@ -247,14 +247,15 @@ var model = function(){
       prev_mean: "NA", // prev prior params
       prev_concentration: "NA"
     },
-    {
-      property: "param",
-      category: "NA",
-      label: "noiseParam",
-      val: noiseParam,
-      prev_mean: "NA", // prev prior params
-      prev_concentration: "NA"
-    }, allItemResults])
+    // {
+    //   property: "param",
+    //   category: "NA",
+    //   label: "noiseParam",
+    //   val: noiseParam,
+    //   prev_mean: "NA", // prev prior params
+    //   prev_concentration: "NA"
+    // },
+    allItemResults])
 
 }
 
