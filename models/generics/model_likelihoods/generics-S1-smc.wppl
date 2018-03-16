@@ -5,11 +5,12 @@ var chain = last(process.argv) // load index as last command line index
 // generic = uncertain threshold
 // some = fixed threshold at lowest threshold value
 var targetUtterance = process.argv[process.argv.length - 2]
+console.log(targetUtterance)
 // var annealingFactor = utils.parseInt(process.argv[process.argv.length - 3])
 // var particles = utils.parseInt(process.argv[process.argv.length - 2])
 
 var all_annealingFactors = [
-  5, 10, 25, 50, 75, 100, 200
+  10, 25, 50, 75, 100, 200
 ]
 
 var all_particles = [
@@ -85,9 +86,9 @@ var model = function(){
 	var speakerOptimality = {
 		s1: uniformDrift({a:0, b:10, width:1})
 	};
-  var noiseParam = uniformDrift({a:0, b:1, width:0.1})
+  // var noiseParam = uniformDrift({a:0, b:1, width:0.1})
 
-	foreach(properties, function(p){
+	var allItemResults = map(function(p){
     // display(p)
 		var propertyData = {
 			endorsement: _.filter(data.endorsement, {Property: p}),
@@ -116,6 +117,7 @@ var model = function(){
 		},  propertyData.prior))
 
     var factor_prior = function(){ factor(ll_prior / annealingFactor) }
+
     repeat(annealingFactor, factor_prior)
 
 		var statePrior = Infer({model: function(){
@@ -145,7 +147,7 @@ var model = function(){
 		// make sure subsetting works properly
 		assert.ok(categories.length > 0)
 
-		foreach(categories, function(k){
+		var categoryResults = map(function(k){
       // display(k)
 			var categoryData = {
 				endorsement: _.filter(propertyData.endorsement, {Category: k}),
@@ -198,12 +200,12 @@ var model = function(){
       // display(speakerBeliefs)
 
 			var s1prediction = speaker1(speakerBeliefs);
-      var s1withNoise = addGuessing(s1prediction, noiseParam);
+      // var s1withNoise = addGuessing(s1prediction, noiseParam);
 
 			var responseData = _.map(categoryData.endorsement, "binaryResponse")
 
 			var ll_endorsement = sum(map(function(d){
-				return s1withNoise.score(d)
+				return s1prediction.score(d)
 			}, responseData))
 
       // display(ll_endorsement)
@@ -212,16 +214,56 @@ var model = function(){
 
       repeat(annealingFactor, factor_endorsement)
 
-		})
+      return {
+          property: p,
+          category: k,
+          label: "endorsement",
+         value: Math.exp(s1prediction.score(1)),
+         prev_mean: withinParams.g, // referent prevalence
+         prev_concentration: withinParams.d,
+      }
 
-	})
+		}, categories)
+
+    var propertyResults = {
+      property: p,
+      category: "NA",
+      label: "prevPriorMixture",
+      val: theta,
+      prev_mean: betaParams.g, // prev prior params
+      prev_concentration: betaParams.d
+    }
+
+    return [propertyResults, categoryResults]
+
+	}, properties)
+
+  return _.flattenDeep([
+    {
+      property: "param",
+      category: "NA",
+      label: "speakerOptimality",
+      val: speakerOptimality.s1,
+      prev_mean: "NA", // prev prior params
+      prev_concentration: "NA"
+    },
+    {
+      property: "param",
+      category: "NA",
+      label: "noiseParam",
+      val: noiseParam,
+      prev_mean: "NA", // prev prior params
+      prev_concentration: "NA"
+    }, allItemResults])
 
 }
 
 var outfile = 'results/normalizationConstant-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-SMCp"+ particles+'_annealingFactor'+annealingFactor+'_chain'+chain+'.csv'
+var resultsOutFile = 'results/results-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-SMCp"+ particles+'_annealingFactor'+annealingFactor+'_chain'+chain+'.csv'
 
 var posterior = Infer({ model, particles, method: "SMC"})
 
 json.write(outfile, posterior.normalizationConstant)
+utils.writeLstOfObjectSupport(posterior, resultsOutFile, ["property","category","label","val","prev_mean","prev_concentration"])
 
 outfile + " written";
