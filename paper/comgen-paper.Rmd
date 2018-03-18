@@ -291,7 +291,7 @@ Yet the mathematical description of the inductive belief is always given by a pr
 <!-- How do we come to know things?  -->
 <!-- How does one acquire inductive beliefs? -->
 Probability is a useful representation for human generalization from observations [@Shepard1987].
-If you *observe* several wugs (a novel category) that have two legs, you might infer that all wugs have two legs.
+If you observe several *wugs* (a novel category) that have two legs, you might infer that all wugs have two legs.
 But not all properties have such strong projectibility.
 Seeing a wug with broken wings tells you comparatively less about other wugs having broken wings [@Nisbett1983].
 Abstract, potentially domain-specific, beliefs about the projectibility of different properties can be represented by a probability distribution over the prevalence $P(p)$ [@Kemp2008].
@@ -359,9 +359,6 @@ In semantics, belief updating generally passes through Boolean *truth values* [@
 The simplest way to derive a Boolean from a scalar quantity like probability is via a *threshold semantics*: The utterance is true if the relevant scalar value is above a threshold.
 Thus, the simplest semantics for a generalization is a threshold on the prevalence: $\denote{gen}(p, \theta) = \{p >\theta\}$.
 
-This formalism builds on a tradition in formal semantics to try to precisely define the conditions under which a sentence is true or false [@Montague1973].
-We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding this semantic hypothesis in a cognitive model in which relevant contextual knowledge can be formalized.
-By doing so, we thus provide an account of how context influences generic understanding and are able to make precise, quantitative predictions about human judgments. /ndg{this paragraph belongs later, after the model has been finished.}
 
 <!-- Attempts of this kind have been made before in formal semantics [e.g., by positing that $\theta = 0.5$; @Cohen1999], but heretofore no model has made precise, quantitative predictions about adult judgments.  -->
 <!-- In addition to articulating an explicit semantic hypothesis, we present a Bayesian cognitive model that uses this semantics in order to update its beliefs from language. -->
@@ -382,7 +379,7 @@ By doing so, we thus provide an account of how context influences generic unders
 The simplest semantics for a generalization is a threshold function: $\denote{gen}(p, \theta) = \{p >\theta\}$, but what threshold is appropriate?
 Quantifier statements can be described using particular values of $\theta$: $\denote{some}(p) = \{p > 0\}$; $\denote{all} = \{p = 1\}$.
 The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice. 
-Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like "tall" have contextually-determined thresholds [e.g., what counts as "tall" for a four-year-old is different than what counts as "tall" for an adult; @Kennedy2007; @Lassiter2013].
+Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013].
 
 <!-- So what threshold $\theta$? should be used for the generalizations?  -->
 <!-- Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$. -->
@@ -405,38 +402,66 @@ Formally, the truth-functional meaning is represented by the Kronecker delta fun
 \end{cases}\label{eq:delta}
 \end{eqnarray}
 
-
 ### Endorsement model
 
-Given the above model of literal interpretation, how do we decide when a statement conveying a generalization is intuitively true or not?
-We consider the notion of felicity or endorsement from the information-theoretic perspective: Would a generalization statement convey the appropriate information to a naive interpreter? 
-We formalize this by considering how well the generalization would convey the target prevalence $p$ to the $Lit$ model (Eq. \ref{eq:L0}).^[
+In this paper, we are interested in explaining truth judgments (e.g., "Robins lay eggs" is intuitively true; "Robins are female" is not).
+If the interpreter is a kind of simple listener model, then we can ask whether an agent would bother to produce the generalization to this listener.
+The endorsement model then acts as a kind of speaker, reasoning about how the interpreter model (the listener) would understand the utterance.
+This kind of model formalizes the basic aspects of communicative reasoning and is called a Rational Speech Act model [@Frank2012; @Goodman2016].
+
+We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives to the endorsement model: produce the generalization vs. some null alternative [@Franke2014cogsci; @Degen2014].
+For simplicity, we take the null alternative to be an information-less "silent" utterance: 
+$\denote{null}(x, \theta) = \text{True}$.^[
+  The null alternative can be realized in at least two other ways: the negation of the generalization (e.g., "It is not the case that Robins lay eggs") or the negative generalization (i.e., "Robins do not lay eggs").
+  All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
+]
+
+The utterance encoding a generalization updates the interpreter model's beliefs about the prevalence of a feature in the category being referred to, which we refer to as the *referent prevalence*. 
+The endorsement model has a particular referent prevalence in mind and decides whether the generalization  (vs. the null alternative) is a good way to convey that to the interpreter. ^[
   A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $p$ that it wants to communicate.
   Rather, the endorser may have a distribution over $p$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence. 
   In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorsement model's belief distribution:
   $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p\sim P_{k}} \ln{ \int_{\theta} Lit(p, \theta \mid u)} \diff \theta )}$
   For the empirical case studies described below, these two versions of the model make almost identical predictions.
 ]
-
-\begin{equation} 
-S(u \mid p) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Lit(p, \theta \mid u)  \diff \theta } )}
+This endorsement model (called $S$ for speaker) does this by reasoning about the interpreter model $Lit$: 
+\begin{equation}
+S(u \mid p) \propto (\int_{\theta} Lit(p, \theta \mid u)  \diff \theta)^\lambda
 \label{eq:S1}
 \end{equation}
-\ndg{this eqn isn't well motivated. if we never use cost in this paper, then get rid of exp and ln and just have Lit to a power of lambda. also say why it's called S earlier?}
 
-The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$: $Lit(p, \theta \mid u)$.
-$S$ does not know $\theta$ and integrates over the interpreter's posterior beliefs about $\theta$.
-Following Bayesian decision theory, we assume the decision to endorse is approximately rational, with degree of rationality given by $\lambda$. \ndg{this doesn't make a ton of sense in this context, since we haven't set up S as a decision maker....}
-The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances. 
-We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [@Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$.^[
-  This "null" alternative to the generalization can be realized in at least two other ways: the negation of the generalization (e.g., "It is not the case that Robins lay eggs") or the negative generalization (i.e., "Robins do not lay eggs").
-  The latter is different because it creates a new threshold (analogous to how "short" and "tall" are modeled with different thresholds).
-  All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
-]
+The informational content of the generalization is about the referent prevalence $p$.
+The semantic threshold $\theta$ is a nuisance parameter then; the endorsement model integrates over the interpreter's posterior beliefs about $\theta$.
+Finally, because the endorsement model must decide whether or not to endorse the generalization, we assume this model is an approximately rational decision-maker, with degree of rationality given by $\lambda$.
+This exponentiation step acts as a soft-max function on $S$'s posterior beliefs of which utterance is better.
+
+<!-- \ndg{this doesn't make a ton of sense in this context, since we haven't set up S as a decision maker....} -->
+
+<!-- We consider the notion of truth judgments or endorsement from the information-theoretic perspective: Would a generalization statement convey the appropriate information to a naive interpreter?  -->
+
+<!-- We formalize this by considering how well the generalization would convey the referent prevalence $p$ to the $Lit$ model (Eq. \ref{eq:L0}). -->
+
+<!-- \begin{equation}  -->
+<!-- S(u \mid p) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Lit(p, \theta \mid u)  \diff \theta } )} -->
+<!-- \label{eq:S1} -->
+<!-- \end{equation} -->
+<!-- \ndg{this eqn isn't well motivated. if we never use cost in this paper, then get rid of exp and ln and just have Lit to a power of lambda. also say why it's called S earlier?} -->
+
+<!-- The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$: $Lit(p, \theta \mid u)$. -->
+<!-- The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances.  -->
+<!-- We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [@Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$.^[ -->
+<!--   This "null" alternative to the generalization can be realized in at least two other ways: the negation of the generalization (e.g., "It is not the case that Robins lay eggs") or the negative generalization (i.e., "Robins do not lay eggs"). -->
+<!--   The latter is different because it creates a new threshold (analogous to how "short" and "tall" are modeled with different thresholds). -->
+<!--   All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity. -->
+<!-- ] -->
 
 Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from the prevalence in the category being referred to (i.e., how many robins lay eggs)---the *referent prevalence* $p$---to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u = u_{gen} \mid p)$. 
 The model assumes a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
-This model can be seen as a special case of a Rational Speech Act model [@Frank2012; @Goodman2016] with only a single level of recursion and the space of possible utterances maximally constrained; the endorsement model is a "speaker", while the interpretation model is a "listener", and we are interested in whether a reasonable speaker would bother to utter the generalization. \ndg{i wonder if the content of this paragrph should be earlier, to motivate the endorsement model?}
+This formalism builds on a tradition in formal semantics to try to precisely define the conditions under which a sentence is true or false [@Montague1973].
+We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding our semantic hypothesis (a simple but vague threshold) in a cognitive model in which relevant contextual knowledge can be formalized.
+In this simple model, the relevant contextual knowledge is given by a prior distribution over the prevalence $P(p)$.
+
+<!-- By doing so, we are able to describe how context influences generic understanding and are able to make precise, quantitative predictions about human judgments. -->
 
 ### Prevalence priors
 
