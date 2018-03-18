@@ -407,24 +407,24 @@ Formally, the truth-functional meaning is represented by the Kronecker delta fun
 In this paper, we are interested in explaining truth judgments (e.g., "Robins lay eggs" is intuitively true; "Robins are female" is not).
 If the interpreter is a kind of simple listener model, then we can ask whether an agent would bother to produce the generalization to this listener.
 The endorsement model then acts as a kind of speaker, reasoning about how the interpreter model (the listener) would understand the utterance.
-This kind of model formalizes the basic aspects of communicative reasoning and is called a Rational Speech Act model [@Frank2012; @Goodman2016].
+This kind of model formalizes the basic aspects of communicative reasoning and is the simplest instantiation of a Rational Speech Act model [@Frank2012; @Goodman2016].
 
-We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives to the endorsement model: produce the generalization vs. some null alternative [@Franke2014cogsci; @Degen2014].
-For simplicity, we take the null alternative to be an information-less "silent" utterance: 
+We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives to the endorsement model: produce the generalization vs. a null alternative [@Franke2014cogsci; @Degen2014].
+For simplicity, we take the null alternative to be an information-less "silent" utterance which is always true: 
 $\denote{null}(x, \theta) = \text{True}$.^[
   The null alternative can be realized in at least two other ways: the negation of the generalization (e.g., "It is not the case that Robins lay eggs") or the negative generalization (i.e., "Robins do not lay eggs").
   All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity.
 ]
 
-The utterance encoding a generalization updates the interpreter model's beliefs about the prevalence of a feature in the category being referred to, which we refer to as the *referent prevalence*. 
-The endorsement model has a particular referent prevalence in mind and decides whether the generalization  (vs. the null alternative) is a good way to convey that to the interpreter. ^[
+The utterance encoding a generalization updates the interpreter model's beliefs about the prevalence of a feature in the category being referred to, which we call the *referent prevalence*. 
+The endorsement model has a particular referent prevalence in mind and decides if the generalization or the null alternative is better at conveying that to the interpreter. ^[
   A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $p$ that it wants to communicate.
   Rather, the endorser may have a distribution over $p$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence. 
   In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorsement model's belief distribution:
   $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p\sim P_{k}} \ln{ \int_{\theta} Lit(p, \theta \mid u)} \diff \theta )}$
   For the empirical case studies described below, these two versions of the model make almost identical predictions.
 ]
-This endorsement model (called $S$ for speaker) does this by reasoning about the interpreter model $Lit$: 
+This endorsement model (called $S$ for speaker) does so by reasoning about the interpreter model $Lit$: 
 \begin{equation}
 S(u \mid p) \propto (\int_{\theta} Lit(p, \theta \mid u)  \diff \theta)^\lambda
 \label{eq:S1}
@@ -458,16 +458,49 @@ This exponentiation step acts as a soft-max function on $S$'s posterior beliefs 
 Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from the prevalence in the category being referred to (i.e., how many robins lay eggs)---the *referent prevalence* $p$---to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u = u_{gen} \mid p)$. 
 The model assumes a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
 This formalism builds on a tradition in formal semantics to try to precisely define the conditions under which a sentence is true or false [@Montague1973].
-We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding our semantic hypothesis (a simple but vague threshold) in a cognitive model in which relevant contextual knowledge can be formalized.
+We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding our semantic hypothesis (a simple but vague threshold) in a cognitive model $Lit$ in which relevant contextual knowledge can be formalized.
 In this simple model, the relevant contextual knowledge is given by a prior distribution over the prevalence $P(p)$.
 
 <!-- By doing so, we are able to describe how context influences generic understanding and are able to make precise, quantitative predictions about human judgments. -->
 
 ### Prevalence priors
 
-The uncertain, truth-conditional threshold $\theta$ is resolved by the literal interpretation model $Lit$ (Eq. \ref{eq:L0}) by integrating the model's prior beliefs about the feature in question---the *prevalence prior* $P(p)$---with the underspecified semantics.
-Because $P(\theta)$ is assumed to be a uniform distribution across all contexts, a generalization could in principle be felicitous with any referent-prevalence. 
-However, the interpretation model's prior beliefs $P(p)$ will be constrain the interpretation and thus the endorsement. 
+The literal interpretation of a generalization (Eq. \ref{eq:L0}) reflects a balance between an uncertain threshold and shared background knowledge about the feature in question.
+This background knowledge may be richly structured, reflecting intuitive theories about the underlying causes of different kinds of properties [cf., @Leslie2007].
+This model posits, however, that the only impact of structured knowledge on truth judgments is in their implications for beliefs about prevalence. 
+
+Prior distributions over prevalence can be revealed by considering the prevalence of the feature in alternative categories.
+Think about five of your favorite kinds of animal: What percentage of each of them *are female*? What percentage of each of them *lay eggs*?
+Figure\ \@ref(fig:simulations) (row 1) show hypothetical prevalence priors for six different properties.
+The *lay eggs* distribution has substantial probability mass near 0 (since many animal categories do not have egg-layers) with a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property.
+Conversely, the distribution over the prevalence of *being female* is unimodal and centered at 0.5, because almost all animals have female members in that proportion.
+
+By encoding knowledge about other categories, the prevalence prior distributions are deeply connected to the construct of *cue validity*, or the probability of the kind given the feature: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not an entity is a mosquito, upon learning that it carries malaria).
+Cue validity operationalizes an alternative hypothesis about the interpretation of generic statements that the reading of statements like "Mosquitos carry malaria" is as "It is mosquitos that carry malaria", and empirically-elicited cue validity has been shown to be highly correlated with endorsements of generics [@Khemlani2012].
+Cue validity is "inverse prevalence"; the two are related via Bayes' Rule:
+$P( k \mid  f) = \frac{P( f \mid  k) \cdot P( k)}{\sum\limits_{k' \in K} P( f \mid k') \cdot P( k')}$.
+Knowledge about other categories $k'$ enters in the denominator.
+Indeed this normalizing constant (the denominator) is the expected value (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p)]$.
+Thus cue validity comes from a point estimate of the prevalence prior distribution.
+For a more detailed derivation of this relationship between cue validity and prevalence priors, see Appendix A.
+For comparison to standard methods in the literature on generics [e.g., @Khemlani2012], we will construct alternative models based on empirically-elicited cue validity.
+
+<!-- The prevalence priors represent abstract beliefs about the properties -->
+<!-- To reason through those questions, you may rely upon your intuitive theories of reproduction (e.g., only females lay eggs).  -->
+<!-- Each property has a prevalence  -->
+
+
+<!-- For example, many different kinds of animals *do not bark* (more precisely: have close to 0 exemplars who bark); thus, the prevalence prior for the feature *barks* should have substantial probability mass near 0, because one would expect a randomly-sampled category to have 0 or close to 0 exemplars that bark. -->
+<!-- Furthermore, among the categories that do have individuals that bark (e.g., dogs, seals, ...), the probability is quite high that an exemplar will bark; thus, the corresponding prevalence prior would have some probability mass at relatively high prevalences, potentially with some uncertainty (Figure\ \@ref(fig:simulations); column 1). -->
+<!-- Abstract beliefs between different kinds of categories could manifest in these prevalence priors in the form of multi-modal distributions; for example, the prevalence prior for *lays eggs* should similarly have substantial probability mass near 0 (since many animal categories do not have egg-layers) but should have a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property (Figure\ \@ref(fig:simulations); column 4). -->
+
+
+<!-- The uncertain semantic threshold $\theta$ is resolved by the literal interpretation model $Lit$ (Eq. \ref{eq:L0}) the model's background knowledge about the feature in question---the *prevalence prior* $P(p)$---with the uncertain semantics. -->
+
+
+
+<!-- Because $P(\theta)$ is assumed to be a uniform distribution across all contexts, a generalization could in principle be felicitous with any referent-prevalence.  -->
+<!-- However, the interpretation model's prior beliefs $P(p)$ constrains possible interpretations of the statement, and thus the endorsement.  -->
 
 <!-- Our model makes context-sensitive predictions about endorsing generalizations based on two model components: The prevalence priors $P(p_fk)$ in Eq. \ref{eq:L0} and the referent-prevalence $p$ in Eqs. \ref{eq:S1} and \ref{eq:delta}. -->
 <!-- Referent-prevalence is the probability that an individual $x$ of the referent-category (e.g., *dogs*) will have the feature being predicated of the category (e.g., *barks*). -->
@@ -476,20 +509,8 @@ However, the interpretation model's prior beliefs $P(p)$ will be constrain the i
 <!-- Our hypothesis does not provide a complete mapping from the referent-prevalence directly to endorsement judgments, however, because $\theta$ is underspecified. -->
 <!-- These internal models may have domain-specific features but can be described by the domain-general currency of inductive belief: probability. -->
 
-\ndg{this paragraph should get moved elswhere. it is distracting here....}
-Beliefs about properties result from internal, conceptual models of the world. 
-We do not take up the task of formalizing particular conceptual models, but rather merely try to measure their implications on beliefs about prevalence. 
-Without appealing to domain specific knowledge, one can construct a prior distributions over prevalence by considering the prevalence of the feature among alternative categories.
-For example, many different kinds of animals *do not bark* (more precisely: have close to 0 exemplars who bark); thus, the prevalence prior for the feature *barks* should have substantial probability mass near 0, because one would expect a randomly-sampled category to have 0 or close to 0 exemplars that bark.
-Furthermore, among the categories that do have exemplars which bark (e.g., *dogs*, *seals*, ...), the probability is quite high that an exemplar will bark; thus, the corresponding prevalence prior would have some probability mass at relatively high prevalences, potentially with some uncertainty (Figure\ \@ref(fig:simulations); column 1).
-Abstract beliefs between different kinds of categories could manifest in these prevalence priors in the form of multi-modal distributions; for example, the prevalence prior for *lays eggs* should similarly have substantial probability mass near 0 (since many animal categories do not have egg-layers) but should have a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property (Figure\ \@ref(fig:simulations); column 4).
 
-By encoding knowledge about other categories, the prevalence prior distributions are deeply connected to the construct of *cue validity*, or the probability that an entity with a certain property $f$ is a member of kind $k$: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not an entity is a mosquito, upon learning that it carries malaria), shown to be highly correlated with endorsements of generics [@Khemlani2012].
-*Cue validity* implicitly encodes knowledge of other categories $k'$ by averaging over those categories via the denominator in Bayes' Rule:
-$P( k \mid  f) = \frac{P( f \mid  k) \cdot P( k)}{\sum\limits_{k' \in K} P( f \mid k') \cdot P( k')}$.
-Since cue validity is defined for a particular category--property pair, it can be seen as a point estimate of the prevalence prior distribution.
-In particular: The normalizing constant for calculating cue validity ($\sum_{k' \in K} p' \cdot P(p')$) is the expected value (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p)]$.
-For a more detailed derivation of this relationship, see Appendix A.
+
 
 
 <!-- Since *cue validity* implicitly encodes knowledge of other categories (by summing over $k'$) and the prevalence prior explicitly encodes knowledge of other categories, how are these two constructs related? -->
@@ -547,7 +568,7 @@ s1.simulations.relabeled.2 <- left_join(
 ```
 
 
-```{r uniformPriorSimulation, fig.cap = "Computational model behavior. A: Interpretation model posteriors assuming different fixed thresholds. High thresholds rule out more world-states (prevalence levels), leaving fewer world-states among which to distribute the full probability mass. B: Full interpretation model marginalizes over possible thresholds to return a posterior distribution that favors higher prevalence levels in a graded manner. C: Endorsement model predicts higher rates of endorsemens as prevalence levels increase. \ndg{say what P(p) is used here...}", fig.width = 13, fig.asp = 0.3, out.width = "100%", fig.align = "center", cache = F}
+```{r uniformPriorSimulation, fig.cap = "Computational model behavior assuming a uniform prior over prevalence. A: Interpretation model posteriors assuming different fixed thresholds. High thresholds rule out more world-states (prevalence levels), leaving fewer world-states among which to distribute the full probability mass. B: Full interpretation model marginalizes over possible thresholds to return a posterior distribution that favors higher prevalence levels in a graded manner. C: Endorsement model predicts higher rates of endorsemens as prevalence levels increase.", fig.width = 13, fig.asp = 0.3, out.width = "100%", fig.align = "center", cache = F}
 
 fig.l0.thresholds <- ggplot(rs.wp.l0 %>% 
                               mutate(theta = round(theta, 2)) %>%
