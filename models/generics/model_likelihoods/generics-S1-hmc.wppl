@@ -1,0 +1,283 @@
+// time webppl generics-S1-hmc.wppl --require ../node_modules/utils generic 1
+
+var chain = last(process.argv) // load index as last command line index
+// penultimate argument is the semantics
+// generic = uncertain threshold
+// some = fixed threshold at lowest threshold value
+var targetUtterance = process.argv[process.argv.length - 2]
+console.log(targetUtterance)
+// var annealingFactor = utils.parseInt(process.argv[process.argv.length - 3])
+// var particles = utils.parseInt(process.argv[process.argv.length - 2])
+
+var all_stepSizes = [
+  0.001, 0.0005, 0.0001, 0.00005
+]
+
+var all_steps = [
+  1, 2, 5, 10, 15
+]
+
+var stepSize = all_stepSizes[chain % all_stepSizes.length];
+var steps = all_steps[chain % all_steps.length];
+display("<---- chain = " + chain)
+display("stepSize = " + stepSize)
+display("steps = " + steps)
+
+var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
+
+var dataPath = "../../../data/generics/endorsement/"
+var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
+
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
+ 		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),
+		d_catch = dataFrame(utils.readCSV(endorsementCatchFile).data, ["pass"]);
+
+var data = {
+	prior: map(function(d){
+		extend(d, {
+			avoided_endval: avoidEnds(d.prevalence/100)
+		})
+	}, d_prior),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			extend(d, {
+				binaryResponse: responseDictionary[d.response]
+			})
+	}, d_endorsement))
+};
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(d_catch, "pass"))
+)
+
+var utterancePrior = Infer({model: function(){return uniformDraw([targetUtterance,"silence"])}});
+
+var meaning = function(utt,state, theta) {
+  return utt === "generic" ? state > theta :
+         utt === "generic is false" ? state<=theta :
+         utt === "silence" ? true :
+         utt === "some" ? state > _.min(thetaBins) :
+         utt === "most" ? state >= 0.5:
+         utt === "all" ? state >= 0.99:
+         true
+}
+
+var properties = levels(data.endorsement, "Property")
+
+// should be 21 properties
+assert.ok(
+  properties.length == 21
+)
+
+var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
+
+var addGuessing = function(dist, noise){
+  return Infer({model: function(){
+    return flip(noise) ? uniformDraw([0,1]) : sample(dist)
+  }})
+}
+
+var model = function(){
+
+	var speakerOptimality = {
+		s1: sample(Uniform({a:0, b:10}))
+	};
+  // var noiseParam = uniformDrift({a:0, b:1, width:0.1})
+
+	var allItemResults = map(function(p){
+    // display(p)
+		var propertyData = {
+			endorsement: _.filter(data.endorsement, {Property: p}),
+			prior: _.filter(data.prior, {Property: p})
+		}
+    // make sure there's data
+    assert.ok(
+      (propertyData.prior.length > 0) && (propertyData.endorsement.length > 0)
+    )
+
+		// prior parameters
+		var theta = sample(Uniform({a:0, b:1}))
+
+		var betaParams = {
+			g: sample(Uniform({a:0, b:1})),
+			d: sample(Uniform({a:0, b:100}))
+		}
+
+		var priorParams = betaShape(betaParams);
+    // display(theta)
+    mapData({data: propertyData.prior}, function(d){
+			// display(d.roundedPrevalence)
+			// display(Delta({v: 0}).score(d.roundedPrevalence))
+			// display(Beta(priorParams).score(d.roundedPrevalence))
+
+      var scr = Math.log(
+        theta * Math.exp(Beta(priorParams).score(d.avoided_endval)) +
+       (1-theta) * Math.exp(nullDistribution.score(d.avoided_endval))
+       	)
+			 factor(scr)
+		})
+
+    // display(theta)
+    // display(nullParams)
+
+		var statePrior = Infer({model: function(){
+			sample(flip(theta) ?
+      DiscretizedBeta({
+        a: priorParams.a.x,
+        b: priorParams.b.x
+      }) : DiscretizedBeta(nullParams))
+		}});
+
+		/// RSA model
+		var listener0 = cache(function(utterance) {
+		  Infer({model: function(){
+		    var state = sample(statePrior)
+				var theta = targetUtterance === "generic" ? sample(thetaPrior) : -99;
+		    var m = meaning(utterance, state, theta)
+		    condition(m)
+		    return state
+		 }})}, 10000)
+
+		var speaker1 = cache(function(speakerBeliefs) {
+			Infer({model: function(){
+		    var utterance = sample(utterancePrior);
+		    var L0 = listener0(utterance);
+				factor(speakerOptimality.s1 * L0.score(speakerBeliefs))
+		    return utterance === targetUtterance ? 1 : 0
+			}})}, 10000)
+
+		var categories = levels(propertyData.endorsement, "Category");
+
+		// make sure subsetting works properly
+		assert.ok(categories.length > 0)
+
+		var categoryResults = map(function(k){
+      // display(k)
+			var categoryData = {
+				endorsement: _.filter(propertyData.endorsement, {Category: k}),
+				prior: _.filter(propertyData.prior, {Category: k})
+			};
+
+      // make sure there is data
+      assert.ok(
+        (categoryData.prior.length > 0) && (categoryData.endorsement.length > 0)
+      )
+      // display(_.map(categoryData))
+			// var theta_target = uniformDrift({a: 0, b: 1, width:0.2})
+
+			var withinParams =  {
+  			g: sample(Uniform({a:0, b:1})),
+  			d: sample(Uniform({a:0, b:100}))
+  		}
+
+			var withinShape = betaShape(withinParams);
+			// var withinKind_params = {
+			// 	a: uniformDrift({a: 1, b: 100, width: 2}),
+			// 	b: uniformDrift({a: 1, b: 100, width: 2})
+			// };
+
+      mapData({data: categoryData.prior}, function(d){
+				observe(Beta(withinShape), d.avoided_endval)
+			})
+      // displa
+
+      // display("after prevalence factor")
+
+			// query.add(["targetPrevalence","mean", p, k], withinParams.g)
+			// query.add(["targetPrevalence","sampleSize", p, k], withinParams.d)
+
+			var speakerBeliefs = sample(DiscretizedBeta({
+        a: withinShape.a.x,
+        b: withinShape.b.x
+      }));
+      // var speakerBeliefs = DiscretizedBeta(withinShape).MAP().val;
+
+			// var speakerBeliefs = Infer({model: function(){
+			// 	return categorical({
+			// 			vs:bins,
+			// 			ps:map(function(b) {
+			// 				return probability(Binomial({n:100,
+			// 					p: withinKind_prev}), Math.round(b*100)) +
+      //     Number.EPSILON
+			// 				}, bins )
+			// 		})
+			// }});
+      // display(speakerBeliefs)
+
+			var s1prediction = speaker1(speakerBeliefs);
+      // var s1withNoise = addGuessing(s1prediction, noiseParam);
+
+			var responseData = _.map(categoryData.endorsement, "binaryResponse")
+
+      mapData({data: responseData}, function(d){
+				observe(s1prediction,d)
+			})
+
+      // display(ll_endorsement)
+
+      return {
+          property: p,
+          category: k,
+          label: "endorsement",
+         value: Math.exp(s1prediction.score(1)),
+         prev_mean: withinParams.g, // referent prevalence
+         prev_concentration: withinParams.d,
+      }
+
+		}, categories)
+
+    var propertyResults = {
+      property: p,
+      category: "NA",
+      label: "prevPriorMixture",
+      val: theta,
+      prev_mean: betaParams.g, // prev prior params
+      prev_concentration: betaParams.d
+    }
+
+    return [propertyResults, categoryResults]
+
+	}, properties)
+
+  return _.flattenDeep([
+    {
+      property: "param",
+      category: "NA",
+      label: "speakerOptimality",
+      val: speakerOptimality.s1,
+      prev_mean: "NA", // prev prior params
+      prev_concentration: "NA"
+    },
+    allItemResults])
+}
+
+
+// 15 minutes
+// var steps = 10
+// var stepSize= 0.00001
+
+// var steps = 5
+// var stepSize= 0.001
+var samples = 5000
+var burn = samples / 2;
+
+var resultsOutFile = 'results/results-generics-jointModel-S1-'+'smntcs_'+targetUtterance+"-HMC"+samples + "b" + burn+"_steps"+ steps+'_stepSize'+stepSize+'_chain'+chain+'.csv'
+
+var posterior = Infer({
+  method: 'MCMC',
+  samples, burn,
+  kernel: {HMC: {steps, stepSize}},
+  model, verbose: true
+})
+
+// posterior
+
+// json.write(outfile, posterior.normalizationConstant)
+utils.writeLstOfObjectSupport(posterior, resultsOutFile, ["property","category","label","val","prev_mean","prev_concentration"])
+
+resultsOutFile + " written";
