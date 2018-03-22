@@ -20,20 +20,23 @@ substrRight <- function(x, n){
 <!-- Add scatterplots of inferred parameters from prior or prevalence alone vs. joint inference model -->
 
 In our three case studies, we compare an information-theoretic, computational model of endorsement to human endorsements of generalizations in language. 
-The model has a single free parameter: the optimality parameter in Eq. \ref{eq:S1}.
-Other model parameters (governing the prevalence prior $P(p_{fk})$ and the referent-prevalence $P_{fk'}$) are estimated using additional behavioral data (e.g., prior elicitation tasks). 
-Througout the paper, we model all sources of data (prevalence prior data, endorsement data) using a single joint-inference Bayesian data analytic model.
+The model has a single free parameter: the optimality parameter $\lambda$ in Eq. \ref{eq:S1}.
+We analyze this model using a Bayesian data analytic approach, where we jointly infer this single model parameter $\lambda$ together with parameters that govern the prevalence priors $P(p)$ and referent prevalence $p$ for each item.
+To pin down the prevalence prior and referent prevalence parameters, we use additional data directly related to those parameters (e.g., prior elicitation data).
+Incorporating all data sources into a single Bayesian data analysis model is the appropriate way to track measurement uncertainty for all measurements.
+<!-- Other model parameters (governing the prevalence prior $P(p_{fk})$ and the referent-prevalence $P_{fk'}$) are estimated using additional behavioral data (e.g., prior elicitation tasks).  -->
+<!-- Througout the paper, we model all sources of data (prevalence prior data, endorsement data) using a single joint-inference Bayesian data analytic model. -->
 In this appendix, we describe this procedure in more detail for each case study.
 
 ## Modeling prevalence priors
 
-In Case Study 1: Generic Language (Expt. 1b), we elicited the prevalence prior by asking about individual about the prevalence of features for individual categories.
+In Case Study 1: Generic Language (Expt. 1b), we elicited the prevalence prior by asking about the prevalence of features for individual categories.
 We performed an analagous elicitation in Case Study 3: Causal Language (Expt. 3a).
 We describe the analysis using generics as our running example, but a parallel analysis was done for causals.
 
-Participants' responses can be thought of as *samples* from the prevalence prior distribution. 
+Participants' responses in the prior elicitation task can be thought of as *samples* from the prevalence prior distribution. 
 Formally, we assume the prior data (analyzed independently for each property) was generated from one of two distributions: a distribution corresponding to those kinds with a stable causal mechanism that *could* give rise to the property ($\mathcal{D}_{stable}$) and a "transient cause" distribution corresponding to those kinds without a stable mechanism ($\mathcal{D}_{transient}$).
-The "transient" distribution intuitively corresponds to accidental causes of the feature (e.g., a lion, who through some genetic mutation, reproduces by laying eggs).
+The "transient" distribution intuitively corresponds to categories that do not have the feature normally, but potentially could be caused by accidental forces (e.g., a lion, who through some genetic mutation, reproduces by laying eggs).
 We model this distribution as a Beta distribuition that heavily favors probabilities near 0: $\text{Beta}(\gamma = 0.01, \delta = 100)$.^[
   Note that we use the noncanonical mean $\gamma$ and concentration $\xi$ (or, inverse-variance) parameterization of the Beta distribution rather than the canonical shape (or pseudocount) parameterization for ease of posterior inference. The shape parameterization can be recovered using: $\alpha = \gamma \cdot \xi; \beta = (1 - \gamma) \cdot \xi$.
 ]
@@ -41,7 +44,7 @@ The "stable" distribution is modeled as a Beta distribution with unknown paramet
 Because the Beta distribution is not defined at the points 0 and 1, we add $\epsilon$ to the 0 responses and round 1 to 0.99.
 Similar results can be obtained by rounding 0 to 0.01. 
 Alternatively, the "transient" distribution could be defined as a Delta distribution at 0, and 0 responses could remain in their raw form.
-Adjusting 1 to $1- \epsilon$ leads to improper inferences for this model, as $1 - \epsilon$ is only likely under a highly right-skewed distribution; treating 1 as $1- \epsilon$ disproportionately influences the shape of $\mathcal{D}_{stable}$ relative to other responses.
+Adjusting 1 to $1- \epsilon$ leads to improper inferences for this simple 2-component model, as $1 - \epsilon$ is only likely under a highly right-skewed distribution; treating 1 as $1- \epsilon$ disproportionately influences the shape of $\mathcal{D}_{stable}$, forcing it to favor probabilities close to 1.
 This problem does not appear for 0 being adjusted to $\epsilon$ because the "transient" distribution already expects such low values.
 ]
 Finally, we assume that these two components combine with mixture weighting $\phi$ such that the data we observe is $$P(d) = \phi\cdot \text{Beta} (d \mid \gamma, \xi) + (1 -  \phi) \cdot \text{Beta}(d \mid \gamma = 0.01, \xi = 100) $$.
@@ -57,24 +60,25 @@ To learn about the credible values of the parameters, we ran separate MCMC chain
 To see how well the mixture model fits the prevalence prior data, we use the inferred parameters to generate new data.
 The data generated from the model's posterior is called the *posterior predictive distribution* and is an important step in model criticism. 
 If the model is a good representation of the data, the posterior predictive data will align with the observed experimental data. 
-We construct a posterior predictive distribution by "forward sampling" the model.^[
-This can be described by the following algorithm: First, flip a coin weighted by $\phi$.
+We construct a posterior predictive distribution by "forward sampling" the model (i.e., generating new data given the inferred parameter values).^[
+This forward sampling can be described by the following algorithm: First, flip a coin weighted by $\phi$.
 If it comes up heads, we then sample from the "stable" component: $\text{Beta}(\gamma, \xi)$.
 If it comes up tails, we sample from the "transient" component: $\text{Beta}(0.01, 100)$.
 We do this many times using the posterior distibution to generate a distribution over predicted prevalence ratings.
 ]
 
-In Case Study 2 (Expt. 2a), we asked participants about parameters of this mixture model (by having participants answer questions abouut *different kinds of people*) rather than having participants give samples (e.g., by listing their friends and rating how often their friends did certain actions).
-In pilot testing, we found these different methodologies to give similar results.
-We made the decision to ask more abstract information about the events to get at participants' abstract beliefs about the property rather than their knowledge of true frequencies. 
-As well, by querying about abstract characters, we were able to include items that participants might not otherwise feel comfortable reporting off (e.g., how often their friends smoke marijuana).
-The questions used to elicit information about the parameters are described in the main text. 
+In Case Study 2 (Expt. 2a), we asked participants about parameters of this mixture model (by having participants answer questions about different kinds of people) rather than having participants give samples (e.g., by listing their friends and family members, and rating how often they did certain actions).
+In pilot testing, we found these different methodologies to give comparable results and we opted to ask about hypothetical people to probing about potentially undesirable habits of participants' friends and familiy (e.g., how often they use cocaine).
+The questions used in this structured elicitation task are  described in the main text.
+
+<!-- We made the decision to ask more abstract information about the events to get at participants' abstract beliefs about the property rather than their knowledge of true frequencies.  -->
+<!-- As well, by querying about abstract characters, we were able to include items that participants might not otherwise feel comfortable reporting off (e.g., how often their friends smoke marijuana). -->
 
 ## Modeling referent-prevalence
 
 In Case Study 1, we used participants prevalence ratings for the category-of-interest in our generic sentences as the referent-prevalence that is used in the endorsement model (Eq. \ref{eq:S1}).
 For a given generic sentence (e.g., "Robins lay eggs"), we took the prevalence ratings for the referent-category (e.g., the percentage of robins that lay eggs) from the prior elicitation task (Expt. 1b) and assumed those were generated from a single Beta distribution.
-We used the same priors as we did for the *stable cause* component of the prevalence prior:
+We assumed the following priors on the parameters:
 \begin{eqnarray*}
 \gamma_i & \sim & \text{Uniform}(0, 1) \\
 \xi_i & \sim & \text{Uniform}(0, 100)
@@ -82,24 +86,38 @@ We used the same priors as we did for the *stable cause* component of the preval
 We took samples from the posterior predictive of this Beta distribution (i.e., reconstructed prevalence ratings) as the *referent-prevalence* used in the model.
 
 In Expt. 2b (Habitual endorsement), we used the frequency given to participants in the experimental prompt (e.g., 3 times in the past week) as the referent-prevalence.
-In Expt. 2c ("What is prevalence?"), we compared two endorsement models that differed in their representation of referent-prevalence. For one model (past frequency model), it was the frequency given to participants in the experimental prompt (same as in Expt. 2b); for the other model (predictive frequency model), we used the mean elicited frequency from the *predictive frequency* condition (see main text).
-In Case Study 3 (Causal endorsement), we used the proportion of successful causal events  given to participants in the experimental prompt (e.g., 70 out of 100 uses of Herb C made animals sleepy).
+In Expt. 2c ("What is prevalence?"), we compared two endorsement models that differed in their representation of referent-prevalence. For one model (past frequency model), the actual frequency given to participants in the experimental prompt was assumed to the referent prevalence (same as in Expt. 2b); for the other model (predictive frequency model), we used the mean elicited frequency from the *predictive frequency* condition (participants predictions about how often the person would do the action in the next time interval; see main text for details).
+In Case Study 3 (Causal endorsement), we used the proportion of successful causal events given to participants in the experimental prompt (e.g., 70 out of 100 uses of Herb C made animals sleepy).
 
 ## Jointly modeling referent-prevalence, prevalence priors, and generic endorsements
 
-To fit the generic endorsement models, we incorporate them into the Bayesian data analytic model of the prevalence prior data (described above) to create a single, joint-inference model where the optimality parameter $\lambda_1$ (Eq. \ref{eq:S1}) is inferred jointly with all the other latent parameters of the full model (the referent-prevalence $p{fk'}$ for each category $k'$ and property $f$ and the parameters of the prevalence priors $P_(p_{fk})$ for each property $f$) using data from Expt. 1a \& b (Figure \ref{fig:genericsModelDiagram}).
-For the parameters of the prevalence prior distributions, we use the same priors described in Expt. 1b; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda_1 \sim \text{Uniform}(0,5)$.
-We learn about the \emph{a posteriori} credible values of the joint inference models by collecting samples from 3 MCMC chains of 100,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. 
+To fit the generic endorsement models, we incorporate them into the Bayesian data analytic model of the prevalence prior data (described above) to create a single, joint-inference model where the optimality parameter $\lambda$ (Eq. \ref{eq:S1}) is inferred jointly with all the other latent parameters of the full model (the referent-prevalence $p$ for each category $k$ and property $f$ and the parameters of the prevalence priors $P_(p)$ for each property $f$) using data from Expt. 1a \& b (Figure \ref{fig:genericsModelDiagram}).
+For the parameters of the prevalence priors, we use the same priors described in Expt. 1b; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda \sim \text{Uniform}(0,5)$.
+We learn about the \emph{a posteriori} credible values of the joint inference models by collecting samples from 3 MCMC chains of 150,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. This algorithm is useful for models with many variables that only affect a subset of the model's predictions (e.g., in models with by-item or by-participant parameters, where those additional parameters only influence predictions for those items or participants).
 
-```{r genericsModelDiagram, fig.cap="Graphical model corresponding to the fully Bayesian data analysis of the RSA model. The prevalence prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-category prevalence $d^{pr}_{k,f}$ is generated from a latent prevalence $p_{fk}$. The fixed-threshold (control model) or uncertain-threshold model take the prevalence priors $P(p_{fk})$, the referent-prevalence $h$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that S corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; S cannot be represented by a graphical model because it has recursion. "}
+```{r genericsModelDiagram, fig.cap="Pseudo-graphical model corresponding to the fully Bayesian data analysis of the endorsement model. The prevalence prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-prevalence $d^{pr}_{k,f}$ is generated from a latent prevalence $p_{fk}$. The fixed-threshold (control model) or uncertain-threshold model take the prevalence priors $P(p_{f})$, the referent-prevalence $p_{fk}$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that S corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; S cannot be represented by a graphical model because it has recursion. "}
 knitr::include_graphics("figs/generics_bayesnetmodel.pdf", dpi = 108)
 ```
 
+## Supplementary model criticism
+
 In addition to examining the posterior predictive distribution on endorsement judgments (presented in main text), we examined the marginal posteriors on parameters of the prevalence priors and referent-prevalence.
 These marginal distributions are important to examine to confirm that they have not changed significantly from the parameters inferred from their private data sources in isolation.
-For example, when modeling the referent-prevalence data in isolation, the model infers that roughly 50\% of robins lay eggs, as that is what participants tend to say in the prevalence elicitation task.^[
-  Some participants do report that 100\% of robins lay eggs so the average prevalence rating is closer to 65\%..
-].
-The question for this joint inference model is whether or not it still believes that roughly 50\% of robins lay eggs.
+For example, when modeling the referent-prevalence data in isolation, the model infers that roughly 65\% of robins lay eggs, as that is what participants on average produce in the prevalence elicitation task.^[
+  Most participants report that 50\% of robins lay eggs, while a minority respond 100\%.
+]
+The question for this joint inference model is whether or not it still believes that roughly 50\% of robins lay eggs after being forced to jointly predict endorsements for "Robins lay eggs".
+For example, a linear regression model based on referent-prevalence (of the kind presented in the main text) incorporated into this Bayesian analysis model will end up predicting high endorsement for "Robins lay eggs", but only does so by distorting the referent-prevalence data (inferring that 100\% of robins lay eggs); thus, the linear model sacrifices its goodness-of-fit to the referent-prevalence data in order to increase its goodness-of-fit to the endorsement data. 
+Such a distortion would show manifest as a difference between the inferred parameters given only the referent-prevalence data and given the full joint model (all data sources modeled  simultaneously). 
+
+
+
+
+
+
+
+
+
+
 We found that the referent-prevalences and prevalence priors inferred under the joint model were almost indistinguishable from those inferred using only their data, suggesting that the modeling all three data sources together does not come at the cost of modeling any one of them accurately.
 
