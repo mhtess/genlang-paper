@@ -54,7 +54,7 @@ project.path <- "../"
 options("scipen"=10) 
 ```
 
-# Experiment 1:a: Generic endorsements
+# Experiment 1a: Generic endorsements
 
 ```{r eval = F}
 #d1 <- read.csv(paste(project.path, "data/generics/endorsement/",
@@ -134,24 +134,24 @@ d.gen.endorse.bayes.prev <- left_join(
   d.gen.endorse.bayes, 
   d.prev.summary %>% 
     rename(sentence = item, prev = mean, prev_low = ci_lower, prev_high = ci_upper) %>%
-    select(-n, -empirical_mean)
+    select(-n, -empirical_stat)
 ) %>%
   mutate(sentence = factor(sentence, levels = sentence[order(MAP_h)]))
 
-generics.endorsement.spectrum <- ggplot(
-    d.gen.endorse.bayes.prev, 
-    aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev)
-  )+
-  geom_bar(stat = 'identity', position = position_dodge(), color='black',  alpha = 1)+
-  geom_linerange(position = position_dodge(), size = 1)+
-  coord_flip()+
-  ylab("Human generic endorsement")+
-  xlab("")+
-  scale_fill_viridis(breaks = c(0, 1), limits = c(0, 1))+
-  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
-  guides(color = guide_colorbar(title = 'Prevalence',
-                               ticks = F))+
-  theme(legend.position = 'bottom')
+# generics.endorsement.spectrum <- ggplot(
+#     d.gen.endorse.bayes.prev, 
+#     aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev)
+#   )+
+#   geom_bar(stat = 'identity', position = position_dodge(), color='black',  alpha = 1)+
+#   geom_linerange(position = position_dodge(), size = 1)+
+#   coord_flip()+
+#   ylab("Human generic endorsement")+
+#   xlab("")+
+#   scale_fill_viridis(breaks = c(0, 1), limits = c(0, 1))+
+#   scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
+#   guides(color = guide_colorbar(title = 'Prevalence',
+#                                ticks = F))+
+#   theme(legend.position = 'bottom')
 ```
 
 
@@ -218,8 +218,8 @@ d.gen.endorse.manipulation.check.bayes <- left_join(
   mutate(truth_judgment = factor(truth_judgment, levels = truth_judgment[order(MAP_h)]))
 
 
-save(d.gen.endorse.bayes.prev, d.gen.endorse.manipulation.check.bayes,
-     file = "../paper/cached_results/case1_endorseSummary_byItem.RData")
+# save(d.gen.endorse.bayes.prev, d.gen.endorse.manipulation.check.bayes,
+#      file = "../paper/cached_results/case1_endorseSummary_byItem.RData")
 
 ```
 
@@ -512,7 +512,6 @@ roundedBF1 = round(mean(marginal.prior.likelihoods$logBF)/ 10000)*10000
 
 # Model comparisons
 
-
 ## Regression models
 
 ```{r generic-regression-models}
@@ -687,9 +686,10 @@ d.gen.endorse.regression <- bind_rows(
     mutate(src = "regression_Prev")
   )
 
-save(d.gen.endorse.regression.prevalence, 
-     d.gen.endorse.regression.prevalence.cuevalidity, 
-     d.gen.endorse.regression, file = "../paper/cached_results/case1_regressionResults.RData")
+# save(d.gen.endorse.regression.prevalence, 
+#      d.gen.endorse.regression.prevalence.cuevalidity, 
+#      d.gen.endorse.regression, file = "../paper/cached_results/case1_regressionResults.RData")
+load("../paper/cached_results/case1_regressionResults.RData")
 
 r2.gen.n <- length(d.gen.endorse.bayes$sentence)
 r2.gen.regression.prev <- round(with(d.gen.endorse.regression.prevalence, cor(MAP_h, prediction_mean))^2,2)
@@ -758,22 +758,22 @@ var meaning = function(utt,state, theta) {
 var mixture = data.prior.mix[0];
 var priorParams = data.prior.params[0];
 
-var statePrior = Infer({model: function(){
-  var component = flip(mixture);
-  return component ?
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta(priorParams), b) + Number.EPSILON
-      }, bins )
-    }) :
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
-      }, bins )
-    })
-}});
+// var statePrior = Infer({model: function(){
+//  var component = flip(mixture);
+//  return component ?
+//    categorical({
+//      vs: bins,
+//      ps: map(function(b) {
+//        return probability(Beta(priorParams), b) + Number.EPSILON
+//      }, bins )
+//    }) :
+//    categorical({
+//      vs: bins,
+//      ps: map(function(b) {
+//        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
+//      }, bins )
+//    })
+// }});
 '
 ```
 
@@ -783,7 +783,23 @@ var noUtteranceInterpreter = function() {
   Infer({model: function(){
    var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
     return { state }
- }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
+ }, method: "forward", samples: 20000, verbose: T})}
+'
+
+no.utterance.model.3comp <- '
+var componentParams = [
+  {a: 1, b:100},
+  {a: priorParams.a1, b:priorParams.b1},
+  {a: priorParams.a2, b:priorParams.b2}
+]
+display(data.prior.mix)
+var noUtteranceInterpreter = function() {
+  Infer({model: function(){
+   var state = beta(componentParams[discrete(data.prior.mix)])
+    return {
+      state: state, 
+  }
+  }, method: "forward", samples: 20000, verbose: T})}
 '
 
 fixed.threshold.model <- '
@@ -809,6 +825,29 @@ var uncertainThresholdInterpreter = function() {
   }
   }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
 '
+
+
+uncertain.threshold.model.3comp <- '
+var componentParams = [
+  {a: 1, b:100},
+  {a: priorParams.a1, b:priorParams.b1},
+  {a: priorParams.a2, b:priorParams.b2}
+]
+display(data.prior.mix)
+display(JSON.stringify(componentParams))
+var uncertainThresholdInterpreter = function() {
+  Infer({model: function(){
+  var component = discrete(data.prior.mix)
+  // display(component)
+  // display(JSON.stringify(componentParams[component]))
+   var state = beta(componentParams[component])
+    factor( Math.log(state) )
+    return {
+      state: state, 
+  }
+  }, method: "rejection", samples: 20000, verbose: T})}
+'
+
 
 ```
 
@@ -836,24 +875,25 @@ example.generics <- c("Tigers dont eat people",
                       "Robins are female",
                       "Leopards have spots")
 
-n_chains <- 3
-n_samples <- 100000
+n_chains <- 2
+n_samples <- 60000
 burn <- n_samples / 2
-lg <- 20
+lg <- 10
 
-model_prefix <- "results-generics-jointModel-S1-smntcs_"
+#model_prefix <- "results-generics-jointModel-S1-smntcs_"
 #fixed_model_prefix <- "results-generics-jointModel-wNoise-inferFixedThresholdCts-20bins-S1-smntcs_some-"
-# m.samp <- data.frame()
+model_prefix <- "results-generics-jointModel-S1-smntcs_generic-3compPriors-2compRef-"
+m.samp <- data.frame()
 #m.samp.fixed <- data.frame()
-#for (i in seq(1, n_chains)){
-  #mi.gen <- fread(paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-  #                  n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  #m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
+for (i in seq(1, n_chains)){
+  mi.gen <- read_csv(paste(project.path,  "models/generics/results/", model_prefix,
+                           n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
+  m.samp <- bind_rows(m.samp, mi.gen %>% mutate(chain = i))
 
 #   mi.fixed <- fread(paste(project.path,  "models/generics/results/", fixed_model_prefix,
 #                     n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
 #   m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
-# }
+}
 # 
 # save(m.samp,
 #      file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
@@ -867,11 +907,8 @@ model_prefix <- "results-generics-jointModel-S1-smntcs_"
     #                 n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
 
 
-load(file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
-                    n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
-
-# load(file = paste(project.path,  "models/generics/results/", model_prefix, "some-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_",n_chains , "chains.RData", sep = ""))
+## MODEL RESULTS
+load(file = paste(project.path,  "models/generics/results/", "results-generics-jointModel-S1-smntcs_generic-100000_burn50000_lag20_3chains.RData", sep = ""))
 
 # load(m.samp.fixed, 
 #      file = paste(project.path, "models/generics/results/results-generics-jointModel-S1-some-inferFixedThresholdDisc-noise-100000_burn50000_lag20_2chains.RData", sep = ""))
@@ -1002,14 +1039,18 @@ for (p in example.generics ) {
 m.samp.prev.params <- m.samp %>%
     filter(type == "targetPrevalence") %>%
     #filter(type == "withinKind") %>%
-    mutate(parameter = paste(param, property, category, sep = "_")) %>%
-    select(-param, -property, -category, -chain, -type) %>%
+    #mutate(parameter = paste(param, property, category, sep = "_")) %>%
+    mutate(parameter = paste(param, property, category, component, sep = "_")) %>%
+    select(-param, -property, -category, -chain, -type, -component) %>%
     #mutate(item = paste(parameter, property, sep = "_")) %>%
     group_by(parameter) %>%
     mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
     ungroup() %>%
-    separate(parameter, into = c("parameter", "property", "category"), sep= "_")
+    separate(parameter, into = c("parameter", "property", "category", "component"), sep= "_")
   
+
+
+
 m.samp.prevalence <- m.samp.prev.params %>%
     group_by(category, property, iteration) %>%
     spread(parameter, val) %>%
@@ -1020,6 +1061,27 @@ m.samp.prevalence <- m.samp.prev.params %>%
       prevalence = rbeta(n = 1, shape1 = a, shape2 = b)
       ) %>%
     ungroup()
+
+
+m.samp.prevalence <- m.samp.prev.params %>%
+    mutate(parameter = paste(parameter, component, sep = "_")) %>%
+    select(-component) %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate( 
+      component = rbinom(n = 1, size = 1, p = mix_1),
+      a = ifelse(component == 1, mean_1*sampleSize_1,mean_2*sampleSize_2),
+      b = ifelse(component == 1, (1-mean_1)*sampleSize_1, (1-mean_1)*sampleSize_2),
+      prevalence = rbeta(n = 1, shape1 = a, shape2 = b)
+      ) %>%
+    ungroup()
+
+m.samp.prevalence %>% filter(property %in% c("are female", "lay eggs"),
+                             category == "Robins") %>%
+  ggplot(., aes( x= prevalence))+
+  geom_histogram()+
+  facet_wrap(~property)
 ```
 
 ```{r}
@@ -1136,43 +1198,91 @@ generics.endorsement.models <- ggplot(d.gen.endorse.rsa.regression,
   facet_wrap(~src, nrow = 2)+
   #theme(legend.position = "bottom")+
   guides(fill = F)
+generics.endorsement.models
 ```
 
 ```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
 
 
+# m.gen.fullmodel.prior.parameters <- m.samp %>%
+#   filter(type == "prior", property %in% example.generics.properties) %>%
+#   group_by(param, property, category) %>%
+#   summarize(MAP = estimate_mode(val),
+#             cred_upper = hdi_upper(val),
+#             cred_lower = hdi_lower(val))
+
+
 m.gen.fullmodel.prior.parameters <- m.samp %>%
   filter(type == "prior", property %in% example.generics.properties) %>%
-  group_by(param, property, category) %>%
-  summarize(MAP = estimate_mode(val),
+  group_by(param, property, category, component) %>%
+  summarize(expval = mean(val),
+            MAP = estimate_mode(val),
             cred_upper = hdi_upper(val),
             cred_lower = hdi_lower(val))
 
 # use MAP estimates to generate L(h | generic) & L(h | silence) predictions
 
+# m.gen.fullmodel.prior.parameters.tidy <- m.gen.fullmodel.prior.parameters %>%
+#   ungroup() %>%
+#   select(param, property, category, MAP) %>%
+#   mutate(param = paste(param, category, sep = "_")) %>%
+#   select(-category) %>%
+#   spread(param, MAP) %>%
+#   rename(mix = mixture_NA, 
+#          stable_mean = stableFreq_mean, 
+#          stable_concentration = stableFreq_sampleSize) %>%
+#   mutate( a = stable_mean * stable_concentration, 
+#           b = (1 - stable_mean) * stable_concentration)
+
 m.gen.fullmodel.prior.parameters.tidy <- m.gen.fullmodel.prior.parameters %>%
   ungroup() %>%
-  select(param, property, category, MAP) %>%
+  mutate(param = paste(param, component, sep = "_")) %>%
+  select(param, property, category, expval) %>%
   mutate(param = paste(param, category, sep = "_")) %>%
   select(-category) %>%
-  spread(param, MAP) %>%
-  rename(mix = mixture_NA, 
-         stable_mean = stableFreq_mean, 
-         stable_concentration = stableFreq_sampleSize) %>%
-  mutate( a = stable_mean * stable_concentration, 
-          b = (1 - stable_mean) * stable_concentration)
+  spread(param, expval) %>%
+  rename(mixture_0 = mixture_0_NA, 
+         mixture_1 = mixture_1_NA, 
+         mixture_2 = mixture_2_NA, 
+         stable_mean_1 = stableFreq_1_mean, 
+         stable_concentration_1 = stableFreq_1_sampleSize,
+         stable_mean_2 = stableFreq_2_mean, 
+         stable_concentration_2 = stableFreq_2_sampleSize
+         ) %>%
+  mutate( 
+    a_1 = stable_mean_1 * stable_concentration_1, 
+    b_1 = (1 - stable_mean_1) * stable_concentration_1,
+    a_2 = stable_mean_2 * stable_concentration_2, 
+    b_2 = (1 - stable_mean_2) * stable_concentration_2
+    )
+
+
+
+
 
 gen.listener.predictions <- data.frame()
   
 # run interpreter model to generate "hypothetical intepretation" plots
 for (p in example.generics.properties){
  priorParams <- m.gen.fullmodel.prior.parameters.tidy %>% filter(property == p) 
- inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
-                                                   b = priorParams[["b"]]),
-                               mix = priorParams[["mix"]]), 
+ # inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
+ #                                                   b = priorParams[["b"]]),
+ #                               mix = priorParams[["mix"]]), 
+ #                  utt = "generic")
+  inputData = list(prior = list(params = data.frame(a1 = priorParams[["a_1"]],
+                                                   b1 = priorParams[["b_1"]],
+                                a2 = priorParams[["a_2"]],
+                                                   b2 = priorParams[["b_2"]]),
+                               mix = c(priorParams[["mixture_0"]],
+                                       priorParams[["mixture_1"]],
+                                       priorParams[["mixture_2"]])), 
                   utt = "generic")
- l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
- l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
+
+ l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model.3comp, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+ l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model.3comp, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
+
+# l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
+ #l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
  gen.listener.predictions <- bind_rows(
    gen.listener.predictions, 
    l0.rs.prior %>% select(value) %>% mutate(property = p, Parameter = "state_Prior"),
@@ -1242,14 +1352,14 @@ gen.inset.distributions.refactored <- gen.inset.distributions %>%
 
 
 
-save(d.gen.endorse.rsa.regression, gen.inset.distributions.refactored, 
-     generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt,
-     file = "../paper/cached_results/case1_modelPosteriors.RData")
+# save(d.gen.endorse.rsa.regression, gen.inset.distributions.refactored, 
+#      generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt,
+#      file = "../paper/cached_results/case1_modelPosteriors.RData")
 
 generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored, 
                                       aes( x = value, fill = Parameter, 
                  color = Parameter, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
   facet_wrap(~property, nrow = 1)+
   geom_label_repel(data = category.text.labels,
                   aes(label = category, x = x , y = y),
@@ -1266,7 +1376,44 @@ generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored,
     xlab("Prevalence") +
     ylab("Scaled probability density")+
     theme(legend.position = "bottom", legend.title = element_blank())
+
+generics.endorsement.insets
 ```
+
+```{r}
+for (p in example.generics.properties){
+gen.inset.distributions.refactored %>%
+    filter(property == p) %>%
+    
+    ggplot(. , aes( x = value, fill = Parameter, 
+                 color = Parameter, lty = Parameter, alpha = Parameter ))+
+  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
+  theme_black()+
+  facet_wrap(~property, nrow = 1)+
+  geom_label_repel(data = category.text.labels %>%
+                     filter(property ==p),
+                  aes(label = category, x = x , y = y),
+                  inherit.aes = F, color = "#b2df8a", fill='black')+
+    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    scale_fill_manual(values = c("white", "#fb9a99", "#b2df8a"))+
+    scale_color_manual(values = c("white", "#fb9a99", "#b2df8a"))+
+    scale_alpha_manual(values = c(0.8, 0.5, 0))+
+    #scale_linetype_manual(values = c(3, 4, 2, 1))+
+    scale_linetype_manual(values = c(3, 4, 1))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("Scaled density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+  ggsave(paste(
+    "~/Documents/research/talks/generics/mit-bcs-2018-03/figs/generics-insets-",
+    p, ".pdf", sep = ""), width = 2.5, height = 2.5)
+}
+
+```
+
+
 
 ```{r generics-endorsement-figure, fig.width = 11, fig.height=8.5, fig.cap="Endorsing generalizations about categories. Top left: Human elicited endorsements for thirty generic sentences reveal a continuuum of endorsements. Top right: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). Bottom: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
 
@@ -1482,19 +1629,51 @@ marginal.prior.likelihoods <- marginal.prior.likelihoods %>% mutate(logBF = stru
 
 ```
 
+
+```{r testingNewViz}
+
+d.prev.zeros <- d.prev %>%
+  mutate(nonZero = prevalence > 0) %>%
+  group_by(Property) %>%
+  tidyboot_mean(column = nonZero)
+
+d.prev.zeros %>% 
+  mutate(Property = factor(Property, levels = Property ))
+  ggplot(., aes( x = Property, y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_col()
+
+ggplot(d.prev %>%
+         filter(prevalence > 0), 
+           aes( x = prevalence))+
+           #aes( x = prevalence, color = src, lty = src))+
+    geom_density(aes(y = ..scaled..), adjust = 0.5, size = 1)+
+    #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #stat_ecdf(size = 1)+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    facet_wrap(~Property)+
+    #scale_linetype_manual(values = c(1, 4, 3))+
+    scale_x_continuous(breaks = c(0, 100), limits= c(0, 100))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #coord_fixed()+
+    xlab("") +
+    ylab("Normalized probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+```
+
 ```{r generic-endorsement-priors-model-run, eval = F}
 m.gen.endorse.priors.posteriorPredictive <- data.frame()
-n_samples <- 1000
+n_samples <- 20000
 lg = 0
-example.generics.prior.properties <- c(
-  "dont eat people", "have beautiful feathers",
-  "have wings", "are red",
-  "carry malaria", "lay eggs", 
-  "are female", "have spots"
-  )
+# example.generics.prior.properties <- c(
+#   "dont eat people", "have beautiful feathers",
+#   "have wings", "are red",
+#   "carry malaria", "lay eggs", 
+#   "are female", "have spots"
+#   )
 
 
-for (p in example.generics.prior.properties ) {
+for (p in levels(d.gen.endorse.priors$Property)) {
   priorData <- filter(d.gen.endorse.priors, Property == p)$prevalence
   
     m.gen.endorse.priors.structured <- webppl(
@@ -1509,25 +1688,25 @@ for (p in example.generics.prior.properties ) {
                                         burn = n_samples / 2,
                                         lag = lg,
                                         verbose = T))
-    
-    m.gen.endorse.priors.structured.predictive <- m.gen.endorse.priors.structured %>%
-      group_by(Iteration, Chain) %>%
-      spread(Parameter, value) %>%
-      rowwise() %>%
-      mutate(
-        a = g*d,
-        b = (1-g)*d,
-        isPresent = rbinom(1, 1, prob = phi),
-        prevalence = ifelse(isPresent == 1, 
-                           rbeta(n = 1, 
-                                 shape1 = a,
-                                 shape2 = b),
-                           rbeta(n = 1,
-                                 shape1 = 1,
-                                 shape2 = 100)),
-        Property = p, src = "Structured"
-      ) %>% ungroup()
-    
+
+        # m.gen.endorse.priors.structured.predictive <- m.gen.endorse.priors.structured %>%
+    #   group_by(Iteration, Chain) %>%
+    #   spread(Parameter, value) %>%
+    #   rowwise() %>%
+    #   mutate(
+    #     a = g*d,
+    #     b = (1-g)*d,
+    #     isPresent = rbinom(1, 1, prob = phi),
+    #     prevalence = ifelse(isPresent == 1, 
+    #                        rbeta(n = 1, 
+    #                              shape1 = a,
+    #                              shape2 = b),
+    #                        rbeta(n = 1,
+    #                              shape1 = 1,
+    #                              shape2 = 100)),
+    #     Property = p, src = "Structured"
+    #   ) %>% ungroup()
+    # 
     m.gen.endorse.priors.unstructured <- webppl(
       paste(genericEndorsementPriorModelHelpers, unstructuredPriorModel, sep = ""),
                                  data = priorData, data_var = "data",
@@ -1569,19 +1748,93 @@ for (p in example.generics.prior.properties ) {
     )
     
 }
-save(m.gen.endorse.priors.posteriorPredictive, file = '../analysis/generics-priors-posteriorPredictives.Rdata')
+# save(m.gen.endorse.priors.posteriorPredictive, file = '../analysis/generics-priors-posteriorPredictives.Rdata')
 
 ```
 
-```{r generic-endorsement-priors-figure2, eval = F}
-ggplot(m.gen.endorse.priors.summary %>% filter(Parameter == 'phi') %>%
-         mutate(Property = factor(Property, levels = Property[order(MAP)]) ),
-       aes( x = Property, y = MAP, ymin = cred_lower, ymax = cred_upper))+
-  geom_bar(stat = 'identity', position = position_dodge())+
-  geom_errorbar(position = position_dodge())+
-  coord_flip()+
-  ylab("MAP estimate and 95% HDI of Mixture parameter")
+## Appendix C: Comparison of prior parameters inferred using only prior data and in joint-inference model
+```{r generic-priors-parameters, eval = F}
+m.gen.endorse.priors.posteriorPredictive <- data.frame()
+n_samples <- 20000
+lg = 0
+# example.generics.prior.properties <- c(
+#   "dont eat people", "have beautiful feathers",
+#   "have wings", "are red",
+#   "carry malaria", "lay eggs", 
+#   "are female", "have spots"
+#   )
+
+m.gen.endorse.priors.parameters <- data.frame()
+for (p in levels(d.gen.endorse.priors$Property)) {
+  priorData <- filter(d.gen.endorse.priors, Property == p)$prevalence
+  
+    m.gen.endorse.priors.structured <- webppl(
+      paste(genericEndorsementPriorModelHelpers, structuredPriorModel, sep = ""),
+                                 data = priorData, data_var = "data",
+                                 model_var = "model",
+                                 chains = 2,
+                                 cores = 2,
+                                 inference_opts =
+                                   list(method = "MCMC",
+                                        samples = n_samples,
+                                        burn = n_samples / 2,
+                                        lag = lg,
+                                        verbose = T))
+m.gen.endorse.priors.structured.summary <- m.gen.endorse.priors.structured %>%
+  group_by(Parameter) %>%
+  summarize(MAP = estimate_mode(value),
+            cred_upper = hdi_upper(value),
+            cred_lower = hdi_lower(value))
+    
+    m.gen.endorse.priors.parameters <- bind_rows(
+      m.gen.endorse.priors.parameters,
+      m.gen.endorse.priors.structured.summary %>%
+        mutate(Property = p)
+      )
+}
+
+# save(m.gen.endorse.priors.parameters, file = '../analysis/generics-priors-posteriorParameters.Rdata')
 ```
 
 
+
+```{r}
+load(file = paste(project.path,  "models/generics/results/", "results-generics-jointModel-S1-smntcs_generic-100000_burn50000_lag20_3chains.RData", sep = ""))
+
+m.gen.endorse.joint.prior.parameters <- m.samp %>%
+  filter(type %in% c("prior", "targetPrevalence")) %>%
+  group_by(property, category, type, param) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+```
+
+```{r}
+left_join(
+  m.gen.endorse.priors.parameters,
+  m.gen.endorse.joint.prior.parameters %>%
+    filter(type == "prior") %>%
+    rowwise() %>%
+    mutate(Parameter = ifelse(param == "mixture", "phi",
+                              ifelse(category == "mean", "g", "d"))) %>%
+    ungroup() %>% 
+    select(property, Parameter, MAP, cred_upper, cred_lower) %>%
+    rename(Property = property,
+           MAP_joint = MAP,
+           cred_upper_joint = cred_upper,
+           cred_lower_joint = cred_lower)
+) %>%
+  mutate(Parameter = factor(Parameter,
+                            levels = c("phi", "g", "d"),
+                            labels = c(expression(paste("mixture parameter (", phi,")", sep = "")),
+                                       expression(paste("stable component: mean (", gamma,")", sep = "")),
+                                       expression(paste("stable component: concentration (", xi,")", sep = ""))))) %>%
+  ggplot(., aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                 y = MAP_joint, ymin = cred_lower_joint, ymax = cred_upper_joint ))+
+  geom_point()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  facet_wrap(~Parameter, scales = 'free', labeller = label_parsed)+
+  xlab("Inferred values with only prevalence data")+
+  ylab("Inferred values in joint-inference model")
+```
 
