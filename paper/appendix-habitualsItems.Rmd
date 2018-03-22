@@ -1,0 +1,87 @@
+# Appendix D: Habituals Items
+
+```{r}
+load("cached_results/case2_endorsement_regressionResults.RData") #d.hab.endorse.regression.freq.mix, d.hab.endorse.regression.freq, d.hab.endorse.regression
+
+d.hab.predictive <- read.csv(paste(
+  project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
+```
+
+```{r habitualItems, results="asis"}
+habituals.predictive.items <- left_join(
+  d.hab.predictive %>% 
+    distinct(item, past_interval, condition),
+  d.hab.predictive %>% 
+    distinct(item, past_interval, condition, extra_sentence) %>%
+    group_by(item, past_interval, condition) %>%
+    top_n(1, extra_sentence)
+) %>%
+  spread(condition, extra_sentence) %>%
+  select(-baseline)
+
+habituals.items <- left_join(
+  d.hab.endorse.regression %>%
+    distinct(habitual, time_period),
+  habituals.predictive.items %>% 
+    select(item, past_interval) %>%
+    rename(habitual = item, time_period = past_interval) %>%
+    mutate(predictive = T)
+  ) %>% 
+  #rowwise() %>%
+  mutate(predictive = ifelse(is.na(predictive), F, predictive),
+         time_period = ifelse(predictive, 
+                              paste(time_period , "*", sep = ""),
+                              time_period)) %>%
+  select(-predictive) %>%
+  group_by(habitual) %>%
+  summarize(`referent frequency` = paste(time_period, collapse = ", "))
+
+
+habituals.tab.items <- left_join(habituals.items, 
+          habituals.predictive.items %>%
+            rename(habitual = item) %>%
+            select(-past_interval)) %>% 
+  mutate(enabling = ifelse(is.na(enabling), "", as.character(enabling)),
+         preventative = ifelse(is.na(preventative), "",
+                               as.character(preventative)))
+
+
+# d.items <- d.items[with(d.items, order(positive)),] %>%
+#   rename("Positive adjective" = positive, "Morphological antonym" = morphant,
+#          "Lexical antonym" = lexant)
+
+tab1 <- xtable::xtable(habituals.tab.items, 
+                       #caption = "Items used in habituals experiments (Case Study 2)", 
+                       align=c('p{1in}',' |p{1in}|', 'p{1.2in}| ','p{1.75in}|','p{1.75in} |'))
+
+
+addtorow          <- list()
+addtorow$pos      <- list()
+addtorow$pos[[1]] <- c(0)
+addtorow$command  <- c(paste("\\hline \n",
+                             "\\endhead \n",
+                             "\\hline \n",
+                             "{\\footnotesize \\em{continued on next page}} \n",
+                             "\\endfoot \n",
+                             "\\endlastfoot \n",sep=""))
+
+large <- function(x){ paste0('{\\Large ', x, '}')
+}
+bold <- function(x){
+paste0('{\\bfseries ', x, '}') }
+
+print(tab1, type="latex", 
+      comment = F,
+       #table.placement = "h", 
+      tabular.environment = "longtable",
+      hline.after=-1:nrow(tab1),
+      size="\\fontsize{9pt}{10pt}\\selectfont", 
+      include.rownames=FALSE,
+      sanitize.colnames.function = bold
+      #add.to.row = addtorow
+      )
+```
+
+Items used in Case Study 2 (Habitual language). Referent frequency denotes the experimentally supplied time periods during which a person did an action 3 times (e.g., "In the past 5 years, John climbed mountains three times."; Expt. 2b). 
+Enabling and preventative columns provide the causal manipulation sentences used in Expt. 3c in order to enable or prevent future instances of the action (blank entries mean that the item was not used in Expt. 2c).
+Referent frequency with an asterisk denotes the time interval used in Expt. 2c.

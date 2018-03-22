@@ -1399,3 +1399,8 @@ The theory presented here provides the first computational perspective on how we
 
 ```{r child = 'appendix-bda.Rmd'}
 ```
+
+\newpage
+
+```{r child = 'appendix-habitualsItems.Rmd'}
+```
