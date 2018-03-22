@@ -55,7 +55,7 @@ We then use our model to test whether habitual endorsements are based on past fr
 
 In order to generate model predictions for corresponding habitual statement, we first elicit the prior distributions over rates for different events.
 For language about the behaviors of people, $P(p)$ represents a language user's background knowledge about the rates with which people do a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
-We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1 .
+We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1.
 In particular, we assume, to a first approximation, that the distribution over prevalence can be represented as a mixture of those who tend to do the action with a stable rate and those who do not.^[
   In the case of event knowledge about people, we expect there to be several more than just these two possibilities represented in the prior, corresponding to individuals with different traits or demographics.
   We assume here a simple structure so as to not make the specification of the prior overly complex.
@@ -248,9 +248,9 @@ With these assumptions, the prevalence distribution is given by:
 
 \begin{align}
 \phi & \sim \text{Beta}(\gamma_{Q1}, \xi_{Q1}) \nonumber \\ 
-\ln h & \sim \begin{cases}
+\ln p & \sim \begin{cases}
 		\text{Gaussian}(\mu_{Q2}, \sigma_{Q2}) &\mbox{if } \text{Bernoulli}(\phi) = \textsc{T} \label{eq:priorModel}  \\
-				\text{Delta}(h=0.01) &\mbox{if } \text{Bernoulli}(\phi) = \textsc{F} \\
+				\text{Delta}(p=0.01) &\mbox{if } \text{Bernoulli}(\phi) = \textsc{F} \\
 		\end{cases}
 \end{align}
 
