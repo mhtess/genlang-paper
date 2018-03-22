@@ -4,31 +4,31 @@
 <!-- Kelley, H. H. (1973). The processes of causal attribution. American psychologist, 28(2), 107-128. -->
 <!-- Orvis, B. R., Cunningham, J. D., & Kelley, H. H. (1975). A closer examination of causal inference: The roles of consensus, distinctiveness, and consistency information. Journal of Personality and Social Psychology, 32(4), 605-616. -->
 
-The event of Mary smoking at 2:30pm on January the 24th is an instance of a kind of event: *Mary smoking*. 
-Just as with categories, generalization can occur over events of a particular type.
-When expressed in language, these generalizations take the form of *habitual language*: "Mary smokes".
-
-Events are a broad class of entities. 
+As with categories, particular events like "Mary smoked yesterday" can be generalized into *habitual sentences*: "Mary smokes". 
+<!-- Events are a broad class of entities.  -->
 In our second case study, we focus on habituals about people's behaviors that take the form: \textsc{singular noun phrase} $+$ \textsc{present tense simple verb phrase} (e.g., "Mary smokes cigarettes"). 
 Learning about the behaviors of others is useful because they tell us about what that person is like more generally [e.g., @Repacholi1997; @Seiver2013].
 When children describe their lives to other, a surprisingly large amount of the language produced concerns the actions of people close to them [e.g., "My brother works part-time at the restaurant"; @McGuire1986].
 Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004].
 
-
 To test the generality of our theory, we use the same computational model and follow the same general experimental structure as in the first case study. 
-We take event analogue of prevalence to be the *rate* with which the event occurs (e.g., how often Mary smokes).
-For the generalization "Mary smokes", instances of the category being generalized are *instances of Mary* and if for the instance to have the feature, it means the instance of Mary is one in which she is smoking.
+We take event analogue of prevalence to be the *rate* with which the event occurs (e.g., how often Mary smokes).^[
+  Specifically, for the generalization "Mary smokes", the instances being generalized are *instances of Mary*, and for the instance to have the feature, it means the instance of Mary is one in which she is smoking.
+]
 We test this by first measuring the prevalence (rate) prior distribution for various actions (e.g., how often different people smoke cigarettes; Expt. 2a).
-We then measure endorsements of habitual statements while manipulating the *referent-prevalence*  (Expt. 2b), and use our computational model to predict habitual endorsements. 
+We then measure endorsements of habitual statements while manipulating the referent prevalence  (Expt. 2b), and use our computational model to predict habitual endorsements. 
 <!-- We estimate the priors using a novel data-analytic approach that takes advantage of the mixture-model validated in Expt. 1b. -->
-By describing novel characters to participants, we are able to directly the manipulate the *referent-prevalence* (rate), which we were unable to do for generalizations about familiar categories.
+By describing novel characters to participants, we are able to directly the manipulate the referent prevalence, which we were unable to do for generalizations about familiar categories.
 <!-- In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories. -->
 
-Finally, if habituals (and generics) are truly language for conveying generalizations, it would be useful for them to reflect speakers' expectations, not merely their observations. 
-Our computational model predicts endorsement rates given a referent-prevalence $p_{fk}$. 
-Does prevalence represent the actual, past frequency of the event (e.g., how often Mary has actually smoked in the past month) or the predictive probability of the event in the near future (e.g., how often we should expect Mary to smoke next week)?
-We extend our theory by measuring participants' predictions about future rates and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
+Finally, if habituals (and generics) are truly language for conveying generalizations, they should reflect speakers' expectations, not merely their observations. 
+Our computational model predicts endorsement rates given a referent prevalence $p$. 
+Does prevalence represent the actual, objective frequency in the world or the subjective, predictive belief in the head?
+We elucidate this aspect of our theory by measuring participants' predictions about future rates and endorsements of habituals when causal forces intervene on the world (Expt. 2c).
 We then use our model to test whether habitual endorsements are based on past frequencies or future expectations.
+
+
+<!-- (e.g., how often Mary has actually smoked in the past month) or the predictive probability of the event in the near future (e.g., how often we should expect Mary to smoke next week)? -->
 
 <!-- Young children can use actors' behaviors to make inferences about what the actors are like more generally [e.g., @Repacholi1997; @Seiver2013]. -->
 <!--  explored 5th to 12th graders' responses to open ended probes such as "Tell us about your school / family".  -->
@@ -54,7 +54,7 @@ We then use our model to test whether habitual endorsements are based on past fr
 ## Experiment 2a: Measuring the prevalence prior for events
 
 In order to generate model predictions for corresponding habitual statement, we first elicit the prior distributions over rates for different events.
-For language about the behaviors of people, $P(p_f)$ represents a language user's background knowledge about the rates with which people do a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
+For language about the behaviors of people, $P(p)$ represents a language user's background knowledge about the rates with which people do a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
 We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1 .
 In particular, we assume, to a first approximation, that the distribution over prevalence can be represented as a mixture of those who tend to do the action with a stable rate and those who do not.^[
   In the case of event knowledge about people, we expect there to be several more than just these two possibilities represented in the prior, corresponding to individuals with different traits or demographics.
@@ -107,8 +107,9 @@ example.habituals <- c(#"smokes marijuana",
                        "smokes cigarettes","drinks coffee",
                        "climbs mountains", "hikes", "runs", 
                        #"wears a suit", "wears a watch", "wears socks", 
-                       #"writes poems", 
-                       "goes to the movies"#, "plays the banjo"
+                       "writes poems", 
+                       "writes novels", 
+                       "goes to the movies", "plays the banjo"
                        )
 annualRates = list("5 years" = 1/5, "2 years" = 1/2,
                    "year" = 1, "6 months" = 2, "2 months" = 6,
@@ -120,21 +121,51 @@ load("cached_results/case2_priors_parametersPredictives.RData") #habituals.prior
 
 n.items.habituals.prior.modeling <- length(rs.habituals.bda.prior.summary.wide$item)
 
-figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.posterior.predictive.measurementSpace,
-       aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
-           y = empirical_mean, ymin = ci_lower, ymax = ci_upper, color = gender))+
-  facet_wrap(~measurement, scales = 'free', nrow = 2)+
+figure.habituals.priors.scatter <- 
+  rs.habituals.bda.posterior.predictive.measurementSpace %>%
+  select(-mean, -ci_lower, -ci_upper, -empirical_mean, -n, -cred_upper, -cred_lower) %>%
+  spread(measurement, MAP) %>%
+  ggplot(.,
+       aes(x = `% people who have done action before`, 
+           y = `Frequency of doing action (log scale)`, 
+           color = gender))+
   scale_color_solarized()+
   geom_point()+
-  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
-  geom_label_repel(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+  #geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  geom_label_repel(data = . %>%
                     filter(item %in% example.habituals, gender == "female"), 
-                  inherit.aes =F, segment.alpha = 0.1,label.size = 0.15,
-                  aes(x = MAP,y = empirical_mean, label = item), force = 15, size = 2)+
-  coord_fixed()+
-  xlab("Model posterior predictive")+
-  ylab("Empirical means")+
-  theme(legend.position = c(0.86, 0.09))
+                  inherit.aes =F, segment.alpha = 1,label.size = 0.25,
+                  segment.size = 5,
+                  aes(x = `% people who have done action before`, 
+           y = `Frequency of doing action (log scale)`, 
+           label = item), force = 1, size = 2)+
+  coord_fixed(1/7.5)+
+  #xlab("Model posterior predictive")+
+  #ylab("Empirical means")+
+  theme(legend.position = c(0.83, 0.16))+
+  scale_y_continuous(
+      limits = c(-1.5, 6),
+      breaks = c(0, 2.5, 4, 5.9),
+      labels = c( "annually", "monthly", "weekly", "daily")
+    )+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))
+
+
+# figure.habituals.priors.scatter <- ggplot(rs.habituals.bda.posterior.predictive.measurementSpace,
+#        aes(x = MAP, xmin = cred_lower, xmax = cred_upper,
+#            y = empirical_mean, ymin = ci_lower, ymax = ci_upper, color = gender))+
+#   facet_wrap(~measurement, scales = 'free', nrow = 2)+
+#   scale_color_solarized()+
+#   geom_point()+
+#   geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+#   geom_label_repel(data = rs.habituals.bda.posterior.predictive.measurementSpace %>%
+#                     filter(item %in% example.habituals, gender == "female"), 
+#                   inherit.aes =F, segment.alpha = 0.1,label.size = 0.15,
+#                   aes(x = MAP,y = empirical_mean, label = item), force = 15, size = 2)+
+#   coord_fixed()+
+#   xlab("Model posterior predictive")+
+#   ylab("Empirical means")+
+#   theme(legend.position = c(0.86, 0.09))
 
 
 figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
@@ -157,6 +188,7 @@ figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
             color = 'black',
              inherit.aes = F)+
   scale_color_solarized()+
+  scale_linetype_manual(values = c(2, 1))+
   xlab("Frequency")+
   ylab("Scaled probability density")+
   scale_y_continuous(limits = c(0,1), breaks = c(0, 1)) +
