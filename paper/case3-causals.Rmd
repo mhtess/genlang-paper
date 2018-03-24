@@ -318,33 +318,56 @@ The experiment took on average `r ave.minutes.cas` minutes and participants were
 
 #### Materials
 
-Participants were told a story of a scientific experiment testing different substances to produce an effect (either to make animals sleepy or plants grow tall). 
+Participants were told a story of a scientific experiment testing different substances to produce an effect (either to make animals sleepy or make plants grow tall). 
 Our cover stories were constructed so that the potential cause could have some plausible intuitive mechanism that could give rise to the property (e.g., a naturally occurring herb causing animals to be sleepy). 
-The two cover stories can be seen in Table 1.
+The two cover stories can be seen in Table 2.
 
-Participants were then shown "previous experimental results", which followed one of four distributions, shown in Figure \@ref(figure-causals)B. 
-In two of the conditions, participants saw results that came from the same underlying distribution.
-In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the "common strong" condition).
-In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the "common weak" condition).
+Participants were then shown "previous experimental results", which followed one of four distributions, shown in Figure 10B.
+In two of the conditions, participants saw results that came from a single underlying distribution.
+In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the *common strong* condition).
+In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the *common weak* condition).
 <!-- The results of the previous experiments were described verbally  -->
 <!-- These distributions had the feeling that either there was some background cause which gave rise to the effect (e.g., a simple base rate) or that all substances were equally as efficacious at producing the effect. -->
-The two other conditions used distributions in which some experiments resulted in either no or very few successes (i.e., produced 0s or 1s or 2s), and others that either had strong or weak effects as above. 
-These are the "rare strong" and "rare weak" conditions.
+The two other conditions used distributions in which some experiments resulted in either no or very few successes (i.e., produced 0, 1, or 2 successes), and others that either had strong or weak effects as above. 
+These are the *rare strong* and *rare weak* conditions.
 <!-- These distributions had the feeling that the effect was somewhat rare and that only certain substances produced any effect. -->
 
-\begin{table}[]
-\centering
-\label{tab:causalMaterials}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|p{3cm}|p{6.5cm}|p{6.5cm}|}
-\hline
-                   & Plants                                                                                                                                                                                                  & Animals                                                                                                                                                                                                                               \\ \hline
-Cover story        & On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers. & On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs. \\ \hline
-Evidence statement & Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall.                                                                                                              & Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.    \\   \hline                                                                                                                            
-\end{tabular}
-}
-\caption{Cover stories and evidence statements for the two sets of materials used in Expt. 3}
-\end{table}
+<!-- \begin{table}[] -->
+<!-- \centering -->
+<!-- \label{tab:causalMaterials} -->
+<!-- \resizebox{\textwidth}{!}{ -->
+<!-- \begin{tabular}{|p{3cm}|p{6.5cm}|p{6.5cm}|} -->
+<!-- \hline -->
+<!--                    & Plants                                                                                                                                                                                                  & Animals                                                                                                                                                                                                                               \\ \hline -->
+<!-- Cover story        & On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers. & On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs. \\ \hline -->
+<!-- Evidence statement & Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall.                                                                                                              & Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.    \\   \hline                                                                                                                             -->
+<!-- \end{tabular} -->
+<!-- } -->
+<!-- \caption{Cover stories and evidence statements for the two sets of materials used in Expt. 3} -->
+<!-- \end{table} -->
+
+
+```{r causalMaterials, results="asis"}
+causalMaterials <- xtable::xtable(data.frame(
+  "." = c("Cover story", "Evidence statement"),
+  Plants = c("On this planet, there is a plant called feps and your team wants to figure out how to make these plants grow tall. Your team runs experiments trying to make feps grow tall with different fertilizers.",
+               "Your team gave fertilizer B to 100 different feps. Of those 100 treated, 2 feps grew tall."),
+  Animals = c("On this planet, there are animals called cheebas and your team of scientists wants to figure out how to make these animals sleepy. Your team runs experiments trying to make cheebas sleepy with different naturally occurring herbs.",
+               "Your team gave herb C to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.")
+), align=c('p{1in}',' |p{1.75in}|', 'p{2in}|','p{2in} |'),
+  caption = "Cover stories and example evidence statements for the two sets of materials used in Expt. 3")
+bold <- function(x){
+paste0('{\\bfseries ', x, '}') }
+
+print(causalMaterials,
+    type="latex", 
+      comment = F,
+      hline.after=-1:nrow(causalMaterials),
+      size="\\fontsize{9pt}{10pt}\\selectfont", 
+      include.rownames=FALSE,
+      sanitize.colnames.function = bold
+      )
+```
 
 
 ```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. B: Prior elicitation task: Participants predict the results of the next 5 experiments. D: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10, cache=F}
@@ -368,7 +391,7 @@ plot_grid(
 
 #### Procedure
 
-Each participant saw only one cover story with one distribution of previous experiments (i.e., the experiment was a single trial).
+The experiment was a single trial: Each participant saw only one cover story with one distribution of previous experiments.
 <!-- In the first part of the trial, participants learned about different substances' ability to produce an effect ("previous experimental results"). -->
 <!-- Participants read a cover story and clicked a button to show the results of successive previous experiments. -->
 <!-- For each previous experiment, participants were presented with an *evidence statement* as well as a numerical representation of the results shown in a table above the text. -->
@@ -389,20 +412,19 @@ The results are shown below:
 \end{quotation}
 
 Participants then click a button to show the results of the experiments.
-Experiment results appear one at a time (upon a click), and are described in an *evidence statement* (e.g., "Your team gave herb A to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.") as well as displayed in a table showing the number of successes (e.g., "animals made sleepy") per number of attempts (always 100 per experiment). 
-We described the results of these individual experiments using *token-level* causal language (e.g., "98 cheebas were made sleepy") to suggest that actual causation occurred in these cases.
+Experiment results appear one at a time (upon a click), and are described in an *evidence statement* (e.g., "Your team gave herb A to 100 different cheebas. Of those 100 treated, 98 cheebas were made sleepy.") as well as displayed in a table showing the number of successes (e.g., "animals made sleepy") per number of attempts (always 100 per experiment; Figure \@ref(fig:causalExpt)A). 
+We described the results of these individual experiments using token-level causal language (e.g., "98 cheebas were made sleepy") to imply that actual causation occurred in these cases.
 
-Participants see the results of eleven "experiments", though they are told the results of one experiment were lost and a "?" was placed in the table (Figure \@ref(fig:causalExpt)B). 
+Participants see the results of eleven experiments, though they are told the results of one experiment were lost and a "?" was placed in the table (Figure \@ref(fig:causalExpt)B). 
 (These lost results would be found in the *causal endorsement* task, Expt. 3b).
-After participants viewed the results of the 10 "experiments" (and 1 missing experiment), they are told to review the results of the experiments before continuing. 
+After participants viewed the results of the 10 "experiments" (and 1 missing experiment), they are told to review the results of the experiments before continuing (Figure \@ref(fig:causalExpt)C).
 
 Upon clicking the continue button, the table of experiment results is removed and participants are told more experiments were conducted.
-Participants were asked to predict the results of the next 5 experiments.
-Participants were given 5 slider bars ranging from 0 - 100, and asked to predict the next five substances (e.g., herbs M, N, P, Q, and R).
+Participants were asked to predict the results of the next 5 experiments (Figure \@ref(fig:causalExpt)D).
+Participants were given five slider bars ranging from 0 - 100, and asked to predict the next five substances (e.g., herbs M, N, P, Q, and R).
 
 After responding, participants then completed an attention check survey where they were asked what the team of scientists were investigated (choosing a response from a drop-down menu with 12 options) and to input one of the numerical results they saw on the previous screen. 
-This attention check served to confirm that participants had encoded some part of both relevant aspects of the experiment (the domain and the frequencies). 
-
+This attention check served to confirm that participants had encoded both relevant aspects of the experiment (the domain and the frequencies). 
 
 ```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 3 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3, eval = F}
 sample.dists <- bind_rows(
@@ -465,7 +487,6 @@ figure.causals.priors <- bind_rows(
   guides(fill = F, color = F)+
   theme(legend.position = 'bottom', legend.direction = 'horizontal')
 ```
-
 
 ```{r s1-model}
 s1.model <- '
@@ -588,7 +609,7 @@ for (p in causal.priorParams$distribution){
 
 
 `r n.subj.cas.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas-n.subj.cas.failed` responses for analysis.
-The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure \ \@ref(fig:figure-causals).
+The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure\ \@ref(fig:figure-causals).
 These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
 We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
 
@@ -697,13 +718,12 @@ The experiment consisted of one trial and took on average `r ave.minutes.cas.end
 
 #### Procedure and materials
 
-The materials were the same as in Experiment 3a,
-The first part of the experimental trial was the same as in Expt. 3a (the table of "previous experiments"; Figure \@ref(fig:causalExpt)).
+The materials were the same as in Expt. 3a.
+The first part of the experimental trial was the same as in Expt. 3a (the table of "previous experiments"; Figure \@ref(fig:causalExpt)A-C).
 Upon continuing beyond the first part of the trial, the table of results and background story were removed from the screen and the participant is told that the results of the "lost experiment" were found. 
 The results are reported to the participant in terms of how many out of 100 of the attempts were successful. 
-Participants saw 1 of 2 reported frequencies: 20\% or 70\% (randomized between-subjects).
-Participants were then asked to judge the causal sentence (e.g., "Herb X makes the animals sleepy"). 
-Participants responded by either clicking "Yes" or "No". 
+Participants saw one of two reported frequencies: 20\% or 70\% (randomized between-subjects).
+Participants were then asked to judge the causal sentence (e.g., "Herb X makes the animals sleepy") by either clicking "Yes" or "No" (Figure \@ref(fig:causalExpt)E). 
 After responding, participants completed the same attention check as Expt. 3a.
 
 ```{r causals-endorsement-fig, fig.width = 4, fig.height = 3, eval = F}
@@ -939,10 +959,10 @@ prow
 
 `r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse-n.subj.cas.endorse.failed` responses for analysis.
 As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior. 
-These are shown for the different experimentally-manipulated priors and frequencies in Figure \@ref(fig:causals-endorsement).
+These are shown for the different experimentally-manipulated priors and frequencies in Figure\ \@ref(fig:figure-causals)A.
 
 As predicted by our model, endorsements for a causal statement were sensitive to the background distribution of other causes and the causal power of the target cause.
-When many other causes produced the effect very reliably (*common deterministic* condition), very few participants endorsed the causal statement for a cause with causal power of 0.2, and were at chance when the causal power was 0.7 (Figure \ref{fig:figure-causals-endorsement; top, blue).
+When many other causes produced the effect very reliably (*common strong* condition), very few participants endorsed the causal statement for a cause with causal power of 0.2, and were at chance when the causal power was 0.7 (Figure\ \@ref(fig:figure-causals)A).
 By contrast, when many other causes failed to produce the effect and those that did were not very reliable (*rare weak* condition; green in figure), at least half of participants endorsed the causal statement for a cause with causal power of 0.2, and were at ceiling when the causal power was 0.7.
 The other two conditions (*rare deterministic* and *common weak*) led to endorsements intermediate between these two conditions.
 Our model predicted these effects again with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
@@ -953,17 +973,17 @@ In our third case study, we applied our same model to generalizations about caus
 In this domain, we successfully manipulated participants' beliefs about the expected prevalence of a causal relationship in a domain (Expt. 3a).
 This was done using both unimodal (*common weak*, *common strong*) and bimodal (*rare weak*, *rare strong*) distributions. 
 In Expt. 3b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
-In addition to further demonstrating the generality of this theory, these experiments show that the *prevalence prior* $P(p_{fk})$ is causally related to endorsements of generalizations in language.
-To our knowledge, these are the first experiments to demonstrate how the probabilities of other categories having a feature can influence endorsing a generalization about a different category.
+In addition to further demonstrating the generality of this theory, these experiments show that the prevalence prior $P(p)$ is causally related to endorsements of generalizations in language.
+To our knowledge, these are the first experiments to demonstrate how the prevalence of a feature among other categories can influence endorsing a generalization about a referent category.
 
 In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall. 
-We chose these items because there was a plausible causal mechanism that could give rise to the property and these causal events could have ambiguous causal power associated with them (e.g., it's plausible that there are herbs that only weakly make animals sleepy and it's also plausible that there are herbs that almost deterministically make animals sleepy).
+We chose these items because there was a plausible causal mechanism that could give rise to the property and these causal events could have ambiguous causal power associated with them (e.g., it is plausible that there are herbs that only weakly make animals sleepy and it is also plausible that there are herbs that almost deterministically make animals sleepy).
 These two features of the domains make them particularly amenable to manipulation.
-That is, people's abstract theories about these domains are flexible enough to permit such manipulations.
+<!-- Inituive theories about these domains are flexible enough to permit such manipulations. -->
 
-It's likely that other domain knowledge would interact with the experimentally-supplied "experimental data" to form a hybrid belief distribution.^[
+It is likely that other domain knowledge would interact with the experimentally-supplied "experimental data" to form a hybrid belief distribution.^[
 If this were happening in our domains, we would expect this to show up in the results of Expt. 3a. Participants' predictions about the likely causal power of new causes would be expected to show a mixture of their abstract, intuitive theories and the experimentally supplied data.
 ]
-For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analogous to our "deterministic" priors conditions. 
-Causal systems that demonstrate surprising or *a priori* unlikely effects (e.g., liquids melting concrete) could induce rarity about the existence of a non-zero causal power, analogous to our "rare" prior conditions. 
-Our theory would predict in these cases that differences in endorsement would be attributable to differences in the prevalence prior distribution (here: the belief distribution over causal power). 
+For example, physical causal systems (e.g., billiard balls hitting each other) could strongly induce near-deterministic notions of causal power, analogous to our *strong* priors conditions. 
+Causal systems that demonstrate surprising or *a priori* unlikely effects (e.g., liquids melting concrete) could induce rarity about the existence of a non-zero causal power, analogous to our *rare* prior conditions. 
+Our theory would predict that differences in endorsement in these cases would be mediated by differences in the corresponding prevalence prior distributions. 
