@@ -173,7 +173,7 @@ In contrast to statements about concrete individuals (e.g., "Rufus has four legs
 Simple events (e.g., "John ran yesterday") can be generalized into habitual sentences (e.g., "John runs"), and even events of complex inferential types such as actual causal events (e.g., "My grandpa drank moonshine and it made him blind") can be described in generalization (e.g., "Drinking moonshine makes you go blind").
 
 Understanding the language of generalization is a project with far-reaching implications.
-The language of generalization is ubiquitous in everyday conversation and conveys rich meanings, impacting motivation [@Cimpian2007], transmitting stereotyped beliefs about social categories [@Rhodes2012], making meaning from experience [@Orvell2017].
+The language of generalization is ubiquitous in everyday conversation and conveys rich meanings, impacting motivation [@Cimpian2007], transmitting stereotyped beliefs about social categories [@Rhodes2012], and making meaning from experience [@Orvell2017].
 It is highly-prevalent in child-directed speech [@Gelman2008] and its ability to refer to abstractions beyond the present context suggests its centrality to the growth of conceptual knowledge [@Gelman2004].
 Finally, it is believed every language can express generalization [@Behrens2005; @Carlson1995].
 
@@ -803,6 +803,11 @@ This framework accounts for a number of philosophically puzzling generic stateme
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 <!-- In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below. -->
 
+We note that regressions model that takes into account the referent prevalence and the distinctiveness of the feature do reasonable jobs at explaining some of the variance in the endorsement data.
+This kind of model, however, is merely a re-description of the data and does not represent a bonafide theory of the semantics of a generalization. 
+<!-- \ndg{this point is unclear. maybe save it for general discussion?} -->
+A theory of the semantics of a generalization must formalize the conditions under which the generalization is true or false as well as how those truth-conditions relate to endorsement. 
+That is precisely what our information-theoretic model does.
 
 <!-- The theory we present here goes beyond previous accounts in a number of useful ways. -->
 <!-- The foremost contribution of our theory is that it is accompanied by a formal model, which makes precise quantitative predictions about endorsments. -->
