@@ -172,7 +172,7 @@ We approximate the prevalence distribution for each property (e.g., \textsc{lay 
   The Beta distribution is chosen because the support of this distribution is numerical values between 0 - 1, exactly the form of the response data in the prior elicitation task.
 ] 
 We specify one of these distributions *a priori* to represent kinds of animals who *do not have* a stable causal mechanism that could give rise to the property (e.g., \textsc{lions} and \textsc{lay eggs}), which results in prevalence or prevalence values close to or equal to 0.^[
-  This assumption is similar in spirit that employed by *Hurdle Models* of epidemiological data, where the observed count of zeros is often substantially greater than one would expect from standard models, such as the Poisson [e.g., when modeling adverse reactions to vaccines; @hurdleModels]
+  This assumption is similar in spirit to that employed by *Hurdle Models* of epidemiological data, where the observed count of zeros is often substantially greater than one would expect from standard models, such as the Poisson [e.g., when modeling adverse reactions to vaccines; @hurdleModels]
 ]
 This "null distribution" is potentially present for all features in exactly the same way (i.e., the lack of producing the feature).
 The second distribution represents kinds of animals who *do have* such a mechanism, and the two parameters of this distribution are not specified *a priori* and are not the same for all properties, but are inferred on a property-wise basis from participants' responses.
@@ -543,10 +543,25 @@ Our underspecified threshold model is the same as the fixed-threshold model, exc
 We use the same Bayesian data analysis approach; however, we are able to drop the additional parameters required for the fixed-threshold model (the fixed-threshold and noise parameters).
 Thus, this model has two fewer parameters than the fixed-threshold model above.
 
+
+```{r distortionEffect}
+load("cached_results/case1_prevParamDistortion.RData") #m.gen.endorse.priors.parameters, m.gen.endorse.refprev.parameters
+
+r2.prevprior.distortion <- compute_r2(
+  m.gen.endorse.priors.parameters, 
+  "MAP", "MAP_joint", sigfigs = 4
+)
+
+r2.refprev.distortion <- compute_r2(
+  m.gen.endorse.refprev.parameters, 
+  "MAP", "MAP_joint", sigfigs = 4
+)
+```
+
+
 We first examine the posterior predictive distribution on the prevalence prior and referent prevalence data to ensure that the joint-inference model does not distort these parameters at the service of predicting the endorsement data (e.g., such a distortion could manifest by the joint-inference model inferring that 100% of mosquitos carry malaria in order to predict that "Mosquitos carry malaria" is a good utterance).
 This is an important step in model validation because it tells us that our model's predictions are derived from reasonable values of the parameters (e.g., that not all mosquitos carry malaria).
-Importantly, the model recapitulates the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when the Bayesian data analysis model only included these data and their associated model (results section of Expt. 1b).
-\ndg{point to a figure or give some stat to back up thi claim?}
+Importantly, the model recapitulates the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when the Bayesian data analysis model only included these data and their associated model ($r_{\text{prevalence prior parameters}}^2(`r length(m.gen.endorse.refprev.parameters[,"Parameter"])`) = `r r2.refprev.distortion`$; $r_{\text{referent prevalence parameters}}^2(`r length(m.gen.endorse.priors.parameters[,"Parameter"])`) = `r r2.prevprior.distortion`$; see Appendix D, Figure 14).
 This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the prevalence distributions). 
 Finally, the inferred optimality parameter in the endorsement model (Eq. \ref{eq:S1}) is `r round(uncertain.threshold.s1opt[[1,"MAP"]], 2)` [`r round(uncertain.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(uncertain.threshold.s1opt[[1,"cred_upper"]], 2)`], a range consistent with the literature on similar models.
 

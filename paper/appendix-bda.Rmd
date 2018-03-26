@@ -95,29 +95,82 @@ To fit the generic endorsement models, we incorporate them into the Bayesian dat
 For the parameters of the prevalence priors, we use the same priors described in Expt. 1b; for the speaker optimality parameter, we use a prior with a range consistent with previous literature using the same model class: $\lambda \sim \text{Uniform}(0,5)$.
 We learn about the \emph{a posteriori} credible values of the joint inference models by collecting samples from 3 MCMC chains of 150,000 iterations removing the first 50,000 iterations for burn-in, using an incrementalized version of the Metropolis-Hastings algorithm [@Ritchie2016]. This algorithm is useful for models with many variables that only affect a subset of the model's predictions (e.g., in models with by-item or by-participant parameters, where those additional parameters only influence predictions for those items or participants).
 
-```{r genericsModelDiagram, fig.cap="Pseudo-graphical model corresponding to the fully Bayesian data analysis of the endorsement model. The prevalence prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-prevalence $d^{pr}_{k,f}$ is generated from a latent prevalence $p_{fk}$. The fixed-threshold (control model) or uncertain-threshold model take the prevalence priors $P(p_{f})$, the referent-prevalence $p_{fk}$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that S corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; S cannot be represented by a graphical model because it has recursion. "}
+```{r genericsModelDiagram, fig.cap="Quasi-graphical model corresponding to the fully Bayesian data analysis of the endorsement model. The prevalence prior data $d^{pr}_{f}$ is assumed to be generated from the mixture model validated in Expt. 1a. The referent-prevalence $d^{pr}_{k,f}$ is generated from a latent prevalence $p_{fk}$. The fixed-threshold (control model) or uncertain-threshold model take the prevalence priors $P(p_{f})$, the referent-prevalence $p_{fk}$, and a single speaker optimality parameter $\\lambda$ as input. This overall structured is repeated (except $\\lambda$) for each of the unique properties $f$ and categories $k$ that correspond to the generic sentences in our stimulus set. Note that S corresponds to a probabilistic *function* and not a *random variable* that is standard in graphical model notation; S cannot be represented by a graphical model because it has recursion. "}
 knitr::include_graphics("figs/generics_bayesnetmodel.pdf", dpi = 108)
 ```
 
 ## Supplementary model criticism
 
 In addition to examining the posterior predictive distribution on endorsement judgments (presented in main text), we examined the marginal posteriors on parameters of the prevalence priors and referent-prevalence.
-These marginal distributions are important to examine to confirm that they have not changed significantly from the parameters inferred from their private data sources in isolation.
+These marginal distributions are important to confirm that they have not changed substantially from the parameters inferred from their primary data sources in isolation.
 For example, when modeling the referent-prevalence data in isolation, the model infers that roughly 65\% of robins lay eggs, as that is what participants on average produce in the prevalence elicitation task.^[
   Most participants report that 50\% of robins lay eggs, while a minority respond 100\%.
 ]
-The question for this joint inference model is whether or not it still believes that roughly 50\% of robins lay eggs after being forced to jointly predict endorsements for "Robins lay eggs".
-For example, a linear regression model based on referent-prevalence (of the kind presented in the main text) incorporated into this Bayesian analysis model will end up predicting high endorsement for "Robins lay eggs", but only does so by distorting the referent-prevalence data (inferring that 100\% of robins lay eggs); thus, the linear model sacrifices its goodness-of-fit to the referent-prevalence data in order to increase its goodness-of-fit to the endorsement data. 
-Such a distortion would show manifest as a difference between the inferred parameters given only the referent-prevalence data and given the full joint model (all data sources modeled  simultaneously). 
+If the joint inference model (which models all data sources---referent prevalence, prevalence prior, and generic endorsement---simultaneously) infers something substantially different about referent-prevalence than a model of referent prevalence in isolation, that could into question the inferences we as scientists derive from the joint inference model.
+For example, incorporating a linear regression model (of the kinds presented as alterantive models in the main text) into this Bayesian joint-inference analysis model produces posterior predictions that match the generic endorsement data surprisingly well (e.g., that model predicts "Robins lay eggs" is true).
+Such a model is only able to do this by distorting the referent-prevalence data, inferring that 100\% of robins lay eggs; thus, the linear model in this joint-inference analysis framework sacrifices its goodness-of-fit to the referent-prevalence data in order to increase its goodness-of-fit to the endorsement data. ^[
+  This distortion effect is why we accout for measurement uncertainty in the linear models by bootstrapping the data that forms their predictors.
+]
+Such a distortion manifests as a difference between the inferred parameters given only the referent-prevalence data and given the full joint model (all data sources simultaneously). 
+
+```{r prevParamDistortion}
+load("cached_results/case1_prevParamDistortion.RData") #m.gen.endorse.priors.parameters, m.gen.endorse.refprev.parameters
+
+fig.distortion.prevpriors <- ggplot(
+  m.gen.endorse.priors.parameters %>%
+    mutate(Parameter = factor(Parameter,
+                            levels = c("phi", "g", "d"),
+                            labels = c(expression(paste("mixture parameter (", phi,")", sep = "")),
+                                       expression(atop("stable component",
+                                                  paste("mean (", gamma,")", sep = ""))),
+                                       expression(atop("stable component", 
+                                                  paste("concentration (", xi,")", sep = "")))))), 
+  aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                 y = MAP_joint, ymin = cred_lower_joint, ymax = cred_upper_joint ))+
+  geom_point()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  facet_wrap(~Parameter, scales = 'free', labeller = label_parsed)+
+  xlab("Prevalence prior model parameters")+
+  ylab("Joint-inference model parameters")
 
 
+fig.distortion.refprev <-ggplot(
+  m.gen.endorse.refprev.parameters %>%
+    mutate(Parameter = factor(Parameter,
+                            levels = c("g", "d"),
+                            labels = c(expression(atop("referent prevalence", 
+                                                       paste(" mean (", gamma,")", sep = ""))),
+                                       expression(atop("referent prevalence",
+                                                  paste("concentration (", xi,")", sep = "")))))), 
+  aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                 y = MAP_joint, ymin = cred_lower_joint, ymax = cred_upper_joint ))+
+  geom_point()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  facet_wrap(~Parameter, scales = 'free', labeller = label_parsed)+
+  xlab("Referent prevalence model parameters")+
+  ylab("Joint-inference model parameters")
+```
 
+```{r distortion, fig.width=10, fig.asp = 0.29, out.width = "100%", fig.align = "center", cache = F, fig.cap="No evidence for parameter distortion caused by a joint-inference model. X-axis denotes Maximum A-Posteriori (MAP) estimates inferred using only a single data source (A: Prevalence prior data. B: Referent prevalence data). Y-axis denotes MAP estimates inferred using the joint-inference model which models all data sources simultaneously. Distortions would manifest by systematic deviations from the y=x line."}
+prow <- plot_grid( 
+  fig.distortion.prevpriors + theme(plot.margin = unit(c(6,6,0,6), "pt")) #+ ggtitle("prevalence priors")
+,
+  fig.distortion.refprev + theme(axis.title.y = element_blank(),
+                                 plot.margin = unit(c(6,0,0,0), "pt")),# + theme(legend.position="none"),
+   align = 'h',
+   labels = c("A", "B"),
+   #hjust = -1,
+   nrow = 1,
+  rel_widths = c(1, 0.7),
+  rel_heights = c(1, 0.7)
+  )
 
+prow
+```
 
-
-
-
-
-
-We found that the referent-prevalences and prevalence priors inferred under the joint model were almost indistinguishable from those inferred using only their data, suggesting that the modeling all three data sources together does not come at the cost of modeling any one of them accurately.
+To investigate this distortion effect in the parameters, we compare the values inferred for the parameters governing the prevalence priors and referent prevalence variables before and after the joint-inference model sees the generic endorsement data.
+Specifically, we infer the parameters for prevalence priors and referent prevalence by constructing single models of these tasks and compare the inferred values to those that result from the joint-inference model. 
+The inferred parameters for these two models are shown in Figure\ \@ref(fig:distortion).
+We found that the referent-prevalences and prevalence priors inferred under the joint model were almost indistinguishable from those inferred using only the referent-prevalence and prevalence prior data, respectively.
+This results confirms that modeling all three data sources simultaneously does not distort some data sources (e.g., referent prevalence) in order to provide good fits for others (e.g., generic endorsement).
 

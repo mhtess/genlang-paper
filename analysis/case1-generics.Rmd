@@ -107,7 +107,7 @@ d.gen.endorse.bayes <- left_join(
   mutate(response = ifelse(response == "agree-key", 1, 0),
          sentence = gsub('&quotechar', '', sentence),
          sentence = gsub('lyme', 'Lyme', sentence)) %>%
-  group_by(sentence) %>%
+  group_by(sentence, Property, Category) %>%
   summarize(k = sum(response), n = n()) %>%
   ungroup() %>%
   mutate(a = 1 + k,
@@ -1753,16 +1753,13 @@ for (p in levels(d.gen.endorse.priors$Property)) {
 ```
 
 ## Appendix C: Comparison of prior parameters inferred using only prior data and in joint-inference model
+
+### Prevalence prior parameters
+
 ```{r generic-priors-parameters, eval = F}
 m.gen.endorse.priors.posteriorPredictive <- data.frame()
 n_samples <- 20000
 lg = 0
-# example.generics.prior.properties <- c(
-#   "dont eat people", "have beautiful feathers",
-#   "have wings", "are red",
-#   "carry malaria", "lay eggs", 
-#   "are female", "have spots"
-#   )
 
 m.gen.endorse.priors.parameters <- data.frame()
 for (p in levels(d.gen.endorse.priors$Property)) {
@@ -1810,7 +1807,8 @@ m.gen.endorse.joint.prior.parameters <- m.samp %>%
 ```
 
 ```{r}
-left_join(
+load( file = '../analysis/generics-priors-posteriorParameters.Rdata')
+m.gen.endorse.priors.parameters <- left_join(
   m.gen.endorse.priors.parameters,
   m.gen.endorse.joint.prior.parameters %>%
     filter(type == "prior") %>%
@@ -1823,18 +1821,97 @@ left_join(
            MAP_joint = MAP,
            cred_upper_joint = cred_upper,
            cred_lower_joint = cred_lower)
-) %>%
-  mutate(Parameter = factor(Parameter,
-                            levels = c("phi", "g", "d"),
-                            labels = c(expression(paste("mixture parameter (", phi,")", sep = "")),
-                                       expression(paste("stable component: mean (", gamma,")", sep = "")),
-                                       expression(paste("stable component: concentration (", xi,")", sep = ""))))) %>%
-  ggplot(., aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
+)
+
+ggplot(m.gen.endorse.priors.parameters, aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
                  y = MAP_joint, ymin = cred_lower_joint, ymax = cred_upper_joint ))+
   geom_point()+
   geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
   facet_wrap(~Parameter, scales = 'free', labeller = label_parsed)+
   xlab("Inferred values with only prevalence data")+
   ylab("Inferred values in joint-inference model")
+```
+
+### Referent prevalence parameters
+
+```{r generic-refprev-parameters, eval = F}
+m.gen.endorse.refprev.posteriorPredictive <- data.frame()
+n_samples <- 20000
+lg = 0
+
+m.gen.endorse.refprev.parameters <- data.frame()
+
+for (p in levels(d.gen.endorse.priors$Property)) {
+  categories <- d.gen.endorse.bayes %>% filter(Property == p) %>% distinct(Category)
+  
+  for (k in categories$Category) {
+
+    priorData <- filter(d.gen.endorse.priors, Property == p, Category == k)$prevalence
+  
+    m.gen.refprev <- webppl(
+      paste(genericEndorsementPriorModelHelpers, unstructuredPriorModel, sep = ""),
+                                 data = priorData, data_var = "data",
+                                 model_var = "model",
+                                 chains = 2,
+                                 cores = 2,
+                                 inference_opts =
+                                   list(method = "MCMC",
+                                        samples = n_samples,
+                                        burn = n_samples / 2,
+                                        lag = lg,
+                                        verbose = T))
+    
+    
+  m.gen.refprev.summary <- m.gen.refprev %>%
+    group_by(Parameter) %>%
+    summarize(MAP = estimate_mode(value),
+              cred_upper = hdi_upper(value),
+              cred_lower = hdi_lower(value))
+    
+    m.gen.endorse.refprev.parameters <- bind_rows(
+      m.gen.endorse.refprev.parameters,
+      m.gen.refprev.summary %>%
+        mutate(Property = p, Category = k)
+      )
+    print(k)
+  }
+  print(p)
+}
+
+ #save(m.gen.endorse.refprev.parameters, file = '../analysis/generics-refprev-posteriorParameters.Rdata')
+```
+
+
+```{r}
+load(file = '../analysis/generics-refprev-posteriorParameters.Rdata')
+
+m.gen.endorse.refprev.parameters <- left_join(
+  m.gen.endorse.refprev.parameters,
+  m.gen.endorse.joint.prior.parameters %>%
+    filter(type == "targetPrevalence") %>%
+    rowwise() %>%
+    mutate(Parameter = ifelse(param == "mean", "g", "d")) %>%
+    ungroup() %>% 
+    select(property, category, Parameter, MAP, cred_upper, cred_lower) %>%
+    rename(Property = property,
+           Category = category,
+           MAP_joint = MAP,
+           cred_upper_joint = cred_upper,
+           cred_lower_joint = cred_lower)
+) 
+
+ggplot(m.gen.endorse.refprev.parameters, aes( x = MAP, xmin = cred_lower, xmax = cred_upper,
+                 y = MAP_joint, ymin = cred_lower_joint, ymax = cred_upper_joint ))+
+  geom_point()+
+  geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
+  facet_wrap(~Parameter, scales = 'free', labeller = label_parsed)+
+  xlab("Inferred parameters using only prevalence data")+
+  ylab("Inferred parameters in joint-inference model")
+```
+
+
+```{r}
+save(m.gen.endorse.priors.parameters, m.gen.endorse.refprev.parameters,
+     file = "../paper/cached_results/case1_prevParamDistortion.RData")
 ```
 
