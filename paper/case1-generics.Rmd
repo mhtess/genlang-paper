@@ -183,13 +183,12 @@ For more details about model implementation and inference, see Appendix C.
 
 The prior distributions over prevalence are well modeled as a mixture of two Beta distributions and not as a single Beta distribution (Figure\  \@ref(fig:generic-endorsement-priors-figure)B; red vs. blue lines). 
 The *Single Beta* model provides a good fit for the *being female* distribution, but overly smooths the other distributions, washing out the latent structure in participants' responses.
-One prior that the *mixture of Betas* model does not perfectly capture is the prior distribution over the feature \textsc{lay eggs}.
-The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 100\%^[
-Similar phenomena have been observed in other prevalence elicitation tasks when the referent-category is fixed [e.g., estimating only the percentage of *robins* that *lay eggs*; @Prasada2013]
-]; a simple two-component mixture model has no way to account for such a tri-modal distribution. 
-A more complex model (i.e., one with three mixture components) would be necessary to perfectly account for this item. \ndg{but we don't use one because...?}
-
-
+One property that the *mixture of Betas* model does not perfectly capture is the prior distribution over the feature *lays eggs*.
+The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 100\%; a simple two-component mixture model has no way to account for such a tri-modal distribution.^[
+  The third mode at 100\% is not attributable to categories for which all members could be female (e.g., chickens). Instead, it appears that some participants are responding that 100\% of several different kinds of birds (e.g., robins) lay eggs. This may result from participants implicitly only considering female members of the category as relevant to answer a question about a reproductive capactiy like *lays eggs*; this restriction of what enters into the prevalence computation is known as *domain restriction* and has been observed in other prevalence elicitation tasks [e.g., @Prasada2013].
+];
+A more complex model (i.e., one with three mixture components) would be necessary to perfectly account for this item. 
+Using a three-component model for this distribution does not change the resulting model predictions and we maintain the simpler two-component mixture for uniformity.
 
 ```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prior and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line.", cache = F}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
