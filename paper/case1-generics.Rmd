@@ -512,7 +512,7 @@ mosquitos.attack.swimmers <- filter(fixed.threshold.model.examples, sentence == 
 ```
 
 We compare the fixed-threshold model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
-Figure\ \@ref(fig:generics-endorsement-figure) (top right; top left subplot) shows the fixed-threshold model's ability to predict the generic endorsement data ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.fixed`$; MSE = $`r mse.gen.rsa.fixed`$).
+Figure\ \@ref(fig:generics-endorsement-figure)B (top left subplot) shows the fixed-threshold model's ability to predict the generic endorsement data ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.fixed`$; MSE = $`r mse.gen.rsa.fixed`$).
 Though the model is able to capture a lot of the variance, it only makes three kinds of judgments: true, false, or neither. 
 It treats "Tigers eat people" (`r round(tigers.eat.people[[1,"prediction_mean"]],2)` [`r round(tigers.eat.people[[1,"prediction_ci_lower"]], 2)`,
 `r round(tigers.eat.people[[1,"prediction_ci_upper"]], 2)`]) as good a statement as "Peacocks have beautiful feathers" (`r round(peacocks.feathers[[1,"prediction_mean"]],2)` [`r round(peacocks.feathers[[1,"prediction_ci_lower"]], 2)`,
@@ -564,13 +564,20 @@ Importantly, the model recapitulates the prior elicitation data (e.g., the proba
 This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the prevalence distributions). 
 Finally, the inferred optimality parameter in the endorsement model (Eq. \ref{eq:S1}) is `r round(uncertain.threshold.s1opt[[1,"MAP"]], 2)` [`r round(uncertain.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(uncertain.threshold.s1opt[[1,"cred_upper"]], 2)`], a range consistent with the literature on similar models.
 
-As we see in Figure\ \@ref(fig:generics-endorsement-figure)(top right, top right subplot), the endorsement model that uses an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
-To gain some intuition for why the model makes the predictions that it does, we can examine the relevant model components that give rise to these predictions (Figure \ref{fig:generics-endorsement-figure} bottom row).
+As we see in Figure\ \@ref(fig:generics-endorsement-figure)B (top right subplot), the endorsement model that uses an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
+To gain some intuition for why the model makes the predictions that it does, we can examine the relevant model components that give rise to these predictions (Figure \ref{fig:generics-endorsement-figure}C).
 Recall that the prevalence prior (grey distribution) is also the interpreter model's posterior upon hearing the null, or silent, utterance, and that the endorsement model decides whether to produce the generic utterance or remain silent given some referent prevalence (blue distribution). 
 The interpreter model's prevalence posterior upon hearing the generic utterance (red distribution) differs depending on the property being predicated (facets). 
 
 The endorsement model decides if the generic utterance conveys information that would bring the interpreter's distribution more in line with the endorsement model's referent prevalence. 
-The model rates "Robins lay eggs" as a good utterance because the prevalence posterior implied by the generalization is similar to the referent prevalence. 
+The model rates "Robins lay eggs" as a good utterance because the prevalence posterior implied by the generalization is similar to the referent prevalence.^[
+  We again note that modeling the prevalence prior for *lays eggs* as a two-component mixture model, as we have assumed for all the prevalence priors, results in a distribution with a peak at 0\% and around 70\%. 
+  This 70\% peak is a result of smoothing the underlying bimodal distribution at 50\% and 100\%. 
+  The same smoothing occurs for the referent-prevalence, as participants report as often that either 50\% or 100\% of robins lay eggs.
+  If instead, the prevalence prior is modeled as a tri-modal distribution and the referent-prevalence modeled as bi-modal (mainintaing the structure at 50\% and 100\%), the resulting interpretation (i.e., prevalance posterior given generalization) is that either 50\% or 100\% lay eggs. 
+  This is precisely the bimodal referent-prevalence distribution for *robins lay eggs*, and so the endorsement model still predicts high endorsement. 
+  The fact that domain restriction enters in both the prevalence prior and the referent prevalence measurements, in effect, cancels one another out and has no effect on the resulting endorsement model predictions.
+]
 The prevalence posterior for "Robins are female" is almost indistinguishable from the prevalence prior, because the prevalence prior has such low variance (almost all animals have female members in exactly the same proportion); the endorsement model then has no basis to prefer silence or the generic statement and the prediction is that the utterance should be neither good nor bad, endorsement around 0.5.
 "Mosquitos carry malaria" is an interesting case because the prevalence prior has high variance (i.e., participants are highly uncertain about the prevalence of carrying malaria among categories).
 As a result, the prevalence posterior also has high variance; still, the prevalence posterior is more consistent with the referent prevalence than the prevalence prior, and the endorsement model predicts "Mosquitos carry malaria" is a good utterance.
