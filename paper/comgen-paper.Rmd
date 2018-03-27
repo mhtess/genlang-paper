@@ -790,8 +790,8 @@ We do this by both measuring and manipulating background knowledge and referent-
 It is remarkable that so much is learned from ideas expressed vaguely in words.
 Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
 We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalizing by probability.
-Being able to precisely articulate the conditions under which a sentence is true lets you describe how an agent should update its beliefs based on that sentence. 
-Thus, in addition to providing a quantitative understanding of the phenomena, formalizing the language of generalizations opens up the possibility of building models that learn abstract, generalizable knowledge from language.
+By precisely articulating the conditions under which generalizations are true or false, we are able to describe how an agent should update its beliefs based on that sentence. 
+Thus, in addition to providing a quantitative understanding of the phenomena of the language of generalization, formalizing this language opens up the possibility of building models that learn abstract, generalizable knowledge from language.
 
 
 As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types: "Robins lay eggs" (categories), "Sally smokes" (events), "Herb X makes animals sleepy" (causes).
@@ -803,8 +803,8 @@ This framework accounts for a number of philosophically puzzling generic stateme
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 <!-- In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below. -->
 
-We note that regressions model that takes into account the referent prevalence and the distinctiveness of the feature do reasonable jobs at explaining some of the variance in the endorsement data.
-This kind of model, however, is merely a re-description of the data and does not represent a bonafide theory of the semantics of a generalization. 
+We note that regressions model that take into account the referent prevalence and the distinctiveness of the feature (e.g., cue validity) do reasonable jobs at explaining some of the variance in the endorsement data.
+These kinds of model, however, do not represent bonafide theories of the semantics of generalizations; they are merely a re-description of the data.
 <!-- \ndg{this point is unclear. maybe save it for general discussion?} -->
 A theory of the semantics of a generalization must formalize the conditions under which the generalization is true or false as well as how those truth-conditions relate to endorsement. 
 That is precisely what our information-theoretic model does.
@@ -866,9 +866,10 @@ In the rest of this discussion, we elaborate how our model relates to other prob
 
 
 Our theory assumes that listeners and speakers share relevant background knowledge (at least in the form of a *prevalence prior*) against which generalizations are interpreted.
-Rather than have beliefs about prevalence *per se*, listeners are likely to have conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013] that gives rise to beliefs about prevalence.
-That is, the prevalence prior is a statistical layer that provides the glue between conceptual knowledge and natural language semantics.
-The truth conditions of generalizations depend only on prevalence. 
+Beliefs about prevalence are often the result of conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013].
+Such knowledge is not necessary, however: Relevant background knowledge may be merely correlational in nature.
+The prevalence prior is a common statistical layer that provides the glue between conceptual knowledge and natural language semantics.
+The truth conditions of generalizations depend only on prevalence, but prevalence depends upon conceptual knowledge.
 
 <!-- Given this minimal representation of background knowledge, language interfaces with conceptual knowledge via prevalence.  -->
 
@@ -876,8 +877,7 @@ The truth conditions of generalizations depend only on prevalence.
 <!-- Indeed, we see a core communicative function of generics as teaching properties of kinds to naive listeners. -->
 <!-- But we argue that the reason why particular generics are licensed in a context concerns the information conveyed to a listener relative to their background knowledge; to interface with a truth-functional semantics, such background knowledge must have a representation in the form of a prevalence prior. -->
 
-There is nothing in our theory that rules out shared background knowledge presupposing beliefs about natural kinds and richly structured relations between categories and the properties [a la @Prasada2013].
-Such knowledge is not necessary, however: Relevant background knowledge may be merely correlational in nature.
+<!-- There is nothing in our theory that rules out shared background knowledge presupposing beliefs about natural kinds and richly structured relations between categories and the properties [a la @Prasada2013]. -->
 Conceptual structure including higher-order abstractions can be formalized in probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
 We believe such probabilistic concept representations can be adopted as a formal analog to intuitive theories of natural kinds [@Gelman2003; @Keil1992].
 We do not assume a particular view of natural kinds in our model, but note that viewing natural kinds as richly structured categories with clusters of non-obvious properties is compatible with our information-theoretic communicative model. 
@@ -894,7 +894,7 @@ Future work should investigate formalizations of attested differences in backgro
 In our modeling work, we found that the empirical data which underlie the prevalence prior distributions are best modeled by a mixture-model with two mixture components.
 Such a prior distribution draws qualitative distinctions between different kinds of categories by virtue of the prevalence prior model representing multiple distinct components. 
 Actual conceptual knowledge against which generalizations are interpreted is most likely far-richer than simply a two-component mixture-model.
-We note, however, that a richer model of the prior is not necessary to account for the context-sensitive endorsement patterns we observe in our empirical data. 
+We note, however, that a richer model of the prior was not necessary, at this point, to account for the context-sensitive endorsement patterns we observe in our empirical data. 
 
 The rational model of communication that we have developed in this paper makes explicit a speaker's assumptions about the goals of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud]. 
 Our simple endorsement model assumes that the goal of communication is the prevalence (Eq.\ref{eq:S1}).
@@ -933,7 +933,7 @@ This observation is promising for the future goal of integrating communicative g
 ## Communicating predictive probabilities
 
 This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
-We distinguish this construct from other uses of *prevalence* in the literature, namely the usage as synonymous with frequency.
+We distinguish our construct from other uses of *prevalence* in the literature, often taken to be synonymous with observed frequency.
 <!-- the distinction that what is communicated is probability not frequency. -->
 <!-- In previous accounts, prevalence is treated as synonymous with the frequency of the feature in the category.  -->
 Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
@@ -1093,22 +1093,9 @@ We leave for future work the precise implementation of the acquisition model we 
 <!-- Ravens and toasters have no privileged relationship to each other and to assess if "Ravens are bigger than toasters", we should actually measure the distribution of sizes for ravens and toasters. -->
 <!-- An understanding of generalizations just in terms of conceptual relations must be supplemented with the proviso that, in some situations, the actual statistics of the feature matter for making generalizations true. -->
 
-<!-- <!-- Furthermore, how conceptual accounts of the language of generalizations should extend beyond category generalizations (i.e., generics) is less clear.  --> -->
 <!-- The alternative approach to generics is to try to rescue the notion the number of members of the category with the property (e.g., the number of robins that do indeed lay eggs). -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-To our knowledge, the present paper presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
+The present paper presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
 A number of other theories of genericity have been proposed in the formal semantics  literature.
 <!-- We now turn to situating our account with respect to these previous theories. -->
 <!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
@@ -1119,7 +1106,11 @@ The relation of our account to the conceptual accounts of @Leslie2008 and @Prasa
 We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
 Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
 For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
-We believe this provides a more unifying view of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
+We believe this separation provides a more unifying view of the phenomena of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
+
+In addition, our model provides a path towards unifying conceptual and statistical approaches to generics. 
+Our semantic representation is inherently statistical: Natural language semantics only gets to operate on prevalence. 
+At the same time, utterances are interpreted by listeners whose beliefs about prevalence result from internal models of how the world works. 
 
 
 <!-- ### Conceptual accounts -->
@@ -1210,7 +1201,7 @@ We believe this provides a more unifying view of generics, giving a single metri
 
 ### Relative and absolute generics
 
-Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999 's theory of generics as a frequency adverb (e.g., "generally").
+Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999's theory of generics as a frequency adverb (e.g., "generally").
 Cohen treats generics as comprising two qualitatively different types: *relative* and *absolute* generics.
 <!-- For Cohen, the statement "Birds lay eggs" means "Generally, birds lay eggs", and then he takes up the task of explaining what "generally" means. -->
 *Absolute generics* use a fixed, 50\% threshold on prevalence: $P(F\mid K)>0.5$. 
