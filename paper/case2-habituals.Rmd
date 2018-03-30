@@ -9,7 +9,7 @@ As with categories, particular events like "Mary smoked yesterday" can be genera
 In our second case study, we focus on habituals about people's behaviors that take the form: *singular noun phrase* $+$ *present tense simple verb phrase* (e.g., "Mary smokes cigarettes"). 
 Learning about the behaviors of others is useful because they tell us about what that person is like more generally [e.g., @Repacholi1997; @Seiver2013].
 When children describe their lives to others, a surprisingly large amount of the language produced concerns the actions of people close to them [e.g., "My brother works part-time at the restaurant"; @McGuire1986].
-Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004]. \ndg{save that last point for discussion?}
+<!-- Habitual language about people may be a more conservative form of *trait language* (e.g., "Mary is a smoker.") and convey that behaviors are relatively enduring [@Gelman1999; @Gelman2004]. \ndg{save that last point for discussion?} -->
 
 To test the generality of our theory, we use the same computational model and follow the same general experimental structure as in the first case study. 
 We take the event analogue of prevalence to be the *rate* with which the event occurs (e.g., how often Mary smokes).^[
