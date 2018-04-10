@@ -226,6 +226,7 @@ This attention check served to confirm that participants had encoded both releva
 
 
 `r n.subj.cas.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas-n.subj.cas.failed` responses for analysis.
+The empirically elicited distributions of responses were not appreciably different for our two cover stories (herbs making animals sleepy, fertilizer making plants grow tall) and thus we collapse the data across these two stories.
 The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure\ \@ref(fig:figure-causals)A.
 <!-- \ndg{its unclear in figure caption whether those are emprical, predicted, or bda priors.} -->
 As is visually apparent, the empirical prevalence distributions differ between conditions and nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
@@ -381,15 +382,15 @@ prow
 As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior. 
 These are shown for the different experimentally-manipulated priors and referent prevalences in Figure\ \@ref(fig:figure-causals)B.
 
-\ndg{i'm not sure 10A is the best way to show this data, since the lines highlight the differences between causal powers (within conditions), while we care most about differences between conditions.}
+<!-- \ndg{i'm not sure 10A is the best way to show this data, since the lines highlight the differences between causal powers (within conditions), while we care most about differences between conditions.} -->
 
 As predicted by our model, endorsements for a causal statement were sensitive to the causal power of the target cause and, critically, to the background distribution of other causes. 
 When many other causes produced the effect very reliably (*common strong* condition), very few participants endorsed the causal statement for a cause with causal power of 0.2, and were at chance when the causal power was 0.7 (Figure\ \@ref(fig:figure-causals)A).
 By contrast, when many other causes failed to produce the effect and those that did were not very reliable (*rare weak* condition; green in figure), at least half of participants endorsed the causal statement for a cause with causal power of 0.2, and were at ceiling when the causal power was 0.7.
 The other two conditions (*rare deterministic* and *common weak*) led to endorsements intermediate between these two conditions.
-Our model predicted these effects with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
+These effects were predicted by our model with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
 
-\ndg{is it worth saying anything about the fact that the effect is even a bit bigger than predicted by the model?}
+<!-- \ndg{is it worth saying anything about the fact that the effect is even a bit bigger than predicted by the model?} -->
 
 ## Discussion
 
@@ -398,10 +399,10 @@ In this domain, we successfully manipulated participants' beliefs about the expe
 This was done using both unimodal (*common weak*, *common strong*) and bimodal (*rare weak*, *rare strong*) distributions. 
 In Expt. 3b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
 In addition to further demonstrating the generality of this theory, these experiments show that the prevalence prior $P(p)$ is causally related to endorsements of generalizations in language.
-To our knowledge, these are the first experiments to demonstrate how the prevalence of a feature among other categories can influence endorsing a generalization about a referent category. \ndg{fix last sentence. is this about geeralization? didn't our last experiments show this? is it about causation? huh?}
+<!-- To our knowledge, these are the first experiments to demonstrate how the prevalence of a feature among other categories can influence endorsing a generalization about a referent category. \ndg{fix last sentence. is this about geeralization? didn't our last experiments show this? is it about causation? huh?} -->
 
 In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall.
-\ndg{which reminds me: need to say something above (3a) about (no) differences between the cover stories?}
+<!-- \ndg{which reminds me: need to say something above (3a) about (no) differences between the cover stories?} -->
 We chose these items because there was a plausible causal mechanism that could give rise to the property and these causal events could have ambiguous causal power associated with them (e.g., it is plausible that there are herbs that only weakly make animals sleepy and it is also plausible that there are herbs that almost deterministically make animals sleepy).
 These two features of the domains make them particularly amenable to manipulation.
 <!-- Inituive theories about these domains are flexible enough to permit such manipulations. -->
