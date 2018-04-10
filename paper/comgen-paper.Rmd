@@ -170,7 +170,7 @@ Generic language conveys generalizations about categories [e.g., "Dogs have four
   We use the more narrow-scoped terms (e.g., generics, habituals, and causals) to highlight the diversity of semantic types being predicated.
 ]
 In contrast to statements about concrete individuals (e.g., "Rufus has four legs"), generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dog}) and convey information that extends beyond the present context, a fact which children as young as 2 appreciate [@Cimpian2008].
-Simple events (e.g., "John ran yesterday") can be generalized into habitual sentences (e.g., "John runs"), and even events of complex inferential types such as actual causal events (e.g., "My grandpa drank moonshine and it made him blind") can be described in generalization (e.g., "Drinking moonshine makes you go blind").
+Simple events (e.g., "John ran yesterday") can be generalized into habitual sentences (e.g., "John runs"), and even events of complex inferential types such as actual causal events (e.g., "This fire caused that smoke") can be described in generalization (e.g., "Fire causes smoke").
 
 Understanding the language of generalization is a project with far-reaching implications.
 The language of generalization is ubiquitous in everyday conversation and conveys rich meanings, impacting motivation [@Cimpian2007], transmitting stereotyped beliefs about social categories [@Rhodes2012], and making meaning from experience [@Orvell2017].
@@ -787,14 +787,16 @@ We do this by both measuring and manipulating background knowledge and referent-
 
 # General Discussion
 
+\mht{let me know where, if anywhere, we should mention "double generalizations" (e.g., generics about habitual properties)}
+
 It is remarkable that so much is learned from ideas expressed vaguely in words.
-Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
+Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Fire causes smoke.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
 We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalizing by probability.
 By precisely articulating the conditions under which generalizations are true or false, we are able to describe how an agent should update its beliefs based on that sentence. 
 Thus, in addition to providing a quantitative understanding of the phenomena of the language of generalization, formalizing this language opens up the possibility of building models that learn abstract, generalizable knowledge from language.
 
 
-As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types: "Robins lay eggs" (categories), "Sally smokes" (events), "Herb X makes animals sleepy" (causes).
+As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types: "Robins lay eggs" (categories), "Sally smokes" (events), "This herb makes zorbs sleepy" (causes).
 Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
 We test this theory by exploring its implications for truth judgments, operationalized as a speaker's decision about whether or not to produce the generalization to naive listener. 
 Endorsement, we show, depends in systematic ways on the listener's prior beliefs about the prevalence.
