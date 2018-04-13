@@ -117,16 +117,16 @@
 
 We enclose the manuscript \emph{The Language of Generalization} to be considered for publication in \emph{Psychological Review}. 
 This paper explores the linguistic means by which generalizations are communicated.  
-We present a Bayesian model of endorsing generalizations and show that it predicts context-sensitive human judgments with high quantitative accuracy across diverse experimental contexts.
+We present a Bayesian model of understanding generalizations and show that it predicts context-sensitive human endorsement judgments with high quantitative accuracy across diverse experimental contexts.
 The theory suggests that the language of generalization can be understood in terms of a simple semantic theory that operates over beliefs, represented as probability.
 
 Understanding how the world works requires learning generalizations. 
-The kinds of observations that would facilitate such learning may be rare, however (e.g., figuring out that lightning strikes tall objects) or costly (e.g., learning that certain plants are poisonous).
+The kinds of observations that would facilitate such learning, however, may be rare (e.g., figuring out that lightning strikes tall objects) or costly (e.g., learning that certain plants are poisonous).
 We do not need to need taste every plant to figure out which ones are poisonous, however.
 Language lets us learn complex and abstract generalizations from each other.
 
 The language of generalization is most commonly studied in predications of categories (e.g.,~``Birds fly.''), otherwise known as \emph{generic language}.
-But generalization exists beyond classically-defined natural and artifact kinds: Events are described in generalization (e.g.,~``Mary swims after work.''; \emph{habitual language}) as well as causal relationships (e.g.,~``Staring at the sun makes you go blind''; \emph{causal language}).
+But generalization exists beyond classically-defined natural and artifact kinds: Events are described in generalization (e.g.,~``Mary swims after work.''; \emph{habitual language}) as well as causal relationships (e.g.,~``Fire causes smoke''; \emph{causal language}).
 Generalizations are ubiquitous in everyday conversation (``Movie theaters are cold.''), the speech of young children (``Slides aren't for grown ups!''), child-directed speech (``Dogs are friendly.''), political and scientific discourse (``Politicians make promises.'', ``Psychology experiments don't replicate.''), motivation (``Big girls eat broccoli!''), stereotypes (``Boys are good at math.''), and many other facets of experience.
 
 
@@ -137,37 +137,38 @@ Despite their ubiquity and morphosyntactic simplicity, the language of generaliz
 %The major issue in formalizing the language of generalizations is determining what makes such statements true or false.
 For example, true generic statements can describe properties contained by a majority of the category (e.g., ``Dogs bark.''), roughly half of the category (e.g., ``Robins lay eggs.'' is only true of adult, female, fertile robins), and even an outstanding minority (e.g., ``Mosquitos carry malaria.'' is true of less than 1\% of mosquitoes). 
 Habitual and causal language display similar context-sensitivities:
-``John smokes'' may be infelicitous if he does so only once a year, but ``Mary climbs mountains'' seemingly is fine with the same frequency.
-Both \emph{drinking moonshine}  and \emph{staring at the sun} will ``...make you go blind'', though the latter seems more dangerous than the former despite neither statement conveying precise risk information.
+``John smokes'' seems strange to say if he does so only once a year, but ``Mary climbs mountains'' seemingly is fine with the same frequency.
+Both \emph{drinking moonshine}  and \emph{staring at the sun} will ``...make you go blind'', but the latter seems more dangerous than the former despite neither statement conveying precise risk information.
 
 %Some have taken this evidence to suggest that generics cannot be understood in terms of how prevalent the property is, instead appealing to special mental relationships between certain kinds and certain properties.
 %There have been a few formal models proposed for generic language, but none that have made precise, quantitative predictions about human endorsement patterns.
 
 %The dominant view in psychology has been to focus on special conceptual relations that supposedly determine what makes the language the generalization true or false.
-In this paper, we take seriously the context-sensitivity of such language and investigate the hypothesis that the meaning at the core of the language of generalization is \emph{simple but underspecified}. 
-We formalize and embed this idea in a simple, rational model of communication and use it to address the fundamental outstanding question: What makes generalizations true or false?
-Our answer is that endorsement (a true or false judgment) is a speaker's decision about whether or not to say the \emph{simple but underspecified} generalization to a naive listener.
-Our model is the first formal model to make precise quantitative predictions about human understanding of generalizations in language.
+In this paper, we take seriously the idea that these statements convey generalization and look to \emph{probability}---the universal currency of belief---to formalize their meaning. 
+Rather than have a fixed-meaning (e.g., how the quantifier ``most'' always means \emph{more than half}), we hypothesize that the generalizations have an uncertain meaning that must be resolved in context.
+We formalize and embed this idea in a simple, rational model of communication and use it to address the fundamental outstanding question for the language of generalizations: What makes the sentences true or false?
+Our answer is that true or false judgments are speaker decisions about whether or not to produce the context-sensitive generalization to a naive listener.
+This is the first formal model to make precise quantitative predictions about human understanding of generalizations in language and we show how it is a sufficient general formulation to capture generalizations of diverse semantic types (categories, events, and causes).
 
 We have previously received peer-review of a related manuscript submitted to top-ranking journals including \emph{Psychological Review}.
 Those reviews raised a number of points regarding the presentation and generality of our work at the time, and highlighted the need for comparison to other models. 
-The current manuscript differs from previous submissions in a number of important ways.
+The current manuscript differs from previous submissions in a number of substantial ways.
 First, we have completely re-written the paper for clarity and focus, especially simplifying and streamlining the modeling sections.
-Second, we have extended from generalizations about categories (or \emph{generic language}) to investigate three case studies: generalizations about categories, events, and causes.
-We are able to explain endorsements across these three domains with minimal domain-specific assumptions. 
-Furthermore, each case study naturally lends methodological advantages to provide further tests of our hypothesis/model (e.g., with causal generalizations, we are able to manipulate---rather than merely measure---prior knowledge).
+Second, we have extended the work substantially from concerning only generalizations about categories (\emph{generic language}) to addressing two other semantic types: generalizations events and causes.
+Across these three domains, we are able to explain endorsements with little-to-no domain-specific assumptions. 
+Furthermore, each case study naturally lends methodological advantages to provide strictiers tests of our hypothesis/model (e.g., with causal generalizations, we are able to manipulate---rather than merely measure---prior knowledge).
 %The empirical and much of the philosophical literatures have focused on generalizations about categories, or generic language.
 %Our previous manuscript also focused on categories; in this paper, however, we investigate three case studies: generalizations about categories, events, and causes. 
 %Immediately we see the generality of our formal model: We are able to explain context-sensitive endorsements across these three domains without adopting domain-specific assumptions.
 %Furthermore, each case study naturally lends methodological advantages to provide further tests of our model.
 %With event generalizations, we are able to interrogate the underlying semantic scale, and find that speakers' subjective beliefs about what is likely to be the case in the future, and not the objective truth about what has been the case in the past, is what drives endorsements. 
 %With causal generalizations, we are able to \emph{manipulate} (rather than merely measure) prior knowledge, and show it is in fact causally related to endorsement. 
-Finally, we develop three alternative models: two linear models based on empirically-elicited statistical knowledge and one rich, cognitive model which lacks the \emph{underspecification of meaning} at the core of our hypothesis. 
+Finally, we develop three alternative models: two linear models based on empirically-elicited statistical knowledge and one rich, cognitive model which lacks the uncertain meaning at the core of our hypothesis. 
 These alternative models fail to account for key aspects of the context-sensitivity that is observed in the data and that our full model predicts.
 %These alternative models and the empirical paradigms used provide strong tests of the theoretical contribution of our paper. 
 %This novel approach for generalizations in language opens up a number of interesting questions about the nature of conceptual structure and its linguistic traces, which we discuss at the end of the paper.
 Overall we feel that this paper represents a much improved, generalized and streamlined investigation of generalization in language, and a major breakthrough in computational modeling of language understanding.
-(We would be happy to provide detailed responses to previous reviewers; presently, we feel this would be of limited use given the major changes in content and presentation.)
+(We would be happy to provide detailed responses to previous reviewers, if it would be useful; presently, we feel this would be of limited use given the major changes in content and presentation.)
 
 
 
