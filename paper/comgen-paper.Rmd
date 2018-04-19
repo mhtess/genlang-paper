@@ -170,7 +170,7 @@ Generic language conveys generalizations about categories [e.g., "Dogs have four
   We use the more narrow-scoped terms (e.g., generics, habituals, and causals) to highlight the diversity of semantic types being predicated.
 ]
 In contrast to statements about concrete individuals (e.g., "Rufus has four legs"), generic statements refer to inherently unobservable categories (e.g., the category of \textsc{dog}) and convey information that extends beyond the present context, a fact which children as young as 2 appreciate [@Cimpian2008].
-Simple events (e.g., "John ran yesterday") can be generalized into habitual sentences (e.g., "John runs"), and even events of complex inferential types such as actual causal events (e.g., "My grandpa drank moonshine and it made him blind") can be described in generalization (e.g., "Drinking moonshine makes you go blind").
+Simple events (e.g., "John ran yesterday") can be generalized into habitual sentences (e.g., "John runs"), and even events of complex inferential types such as actual causal events (e.g., "This fire caused that smoke") can be described in generalization (e.g., "Fire causes smoke").
 
 Understanding the language of generalization is a project with far-reaching implications.
 The language of generalization is ubiquitous in everyday conversation and conveys rich meanings, impacting motivation [@Cimpian2007], transmitting stereotyped beliefs about social categories [@Rhodes2012], and making meaning from experience [@Orvell2017].
@@ -794,6 +794,7 @@ Critically, deploying this simple semantics within a formal framework for pragma
 <!--
 formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
 As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types, illustrated here with categories, events, and causes.
+
 Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
 -->
 We tested this theory by exploring its implications for truth judgments, operationalized as a speaker's decision about whether it would be useful to utter the generalization. 
@@ -805,6 +806,8 @@ In each case our model provided strong quantitative fit to human judgements.
 In the rest of this discussion, we elaborate how our model relates to language understanding more generally, sketch its application to several philosophical puzzles in genericity, and situate our theory with respect to extant theories of generic language.
 
 
+
+\mht{let me know where, if anywhere, we should mention "double generalizations" (e.g., generics about habitual properties)}
 
 \ndg{
 [these paragraphs were out of place here. perhaps incorporate later...]
@@ -862,84 +865,10 @@ Such a quantitative model makes further predictions about domain-general learnin
 <!-- Recent work suggests that utterances that fail to refer to specific entities or events could pragmatically imply generic meaning [@Crone2016cogsci]. -->
 <!-- Incorporating these insights about generic identification into an information-theoretic, communicative perspective is a natural extension of this work. -->
 
-
-
-## Prevalence priors and conceptual knowledge
-
-<!-- Though conceptual structure of kind discussed of the sort discussed by Leslie and Prasada are not explicitly formalized in our model, our general cognitive modeling framework provides natural avenues for future integration. -->
-
-
-Our theory assumes that listeners and speakers share relevant background knowledge (at least in the form of a *prevalence prior*) against which generalizations are interpreted.
-Beliefs about prevalence are often the result of conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013].
-Such knowledge is not necessary, however: Relevant background knowledge may be merely correlational in nature.
-The prevalence prior is a common statistical layer that provides the glue between conceptual knowledge and natural language semantics.
-The truth conditions of generalizations depend only on prevalence, but prevalence depends upon conceptual knowledge.
-
-<!-- Given this minimal representation of background knowledge, language interfaces with conceptual knowledge via prevalence.  -->
-
-<!-- Previous psychological and philosophical work on generics has looked beyond prevalence and focused on kinds and their conceptual relations to properties  -->
-<!-- Indeed, we see a core communicative function of generics as teaching properties of kinds to naive listeners. -->
-<!-- But we argue that the reason why particular generics are licensed in a context concerns the information conveyed to a listener relative to their background knowledge; to interface with a truth-functional semantics, such background knowledge must have a representation in the form of a prevalence prior. -->
-
-<!-- There is nothing in our theory that rules out shared background knowledge presupposing beliefs about natural kinds and richly structured relations between categories and the properties [a la @Prasada2013]. -->
-Conceptual structure including higher-order abstractions can be formalized in probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
-We believe such probabilistic concept representations can be adopted as a formal analog to intuitive theories of natural kinds [@Gelman2003; @Keil1992].
-We do not assume a particular view of natural kinds in our model, but note that viewing natural kinds as richly structured categories with clusters of non-obvious properties is compatible with our information-theoretic communicative model. 
-The important commonality among different domain-specific background theories is that they each have a statistical layer to them (i.e., they each give rise to beliefs about *prevalence*), which language interfaces with via the tools of truth-functional semantics.
-Thus, our theory provides a separation between conceptual knowledge and the semantics of generalizations; the interface between the two is predictive probability or *prevalence*. 
-Future work should investigate formalizations of attested differences in background knowledge about properties [e.g., @Prasada2013's *principled*, *statistical*, and *causal* connections] and their corresponding influence on generic endorsement via prevalence priors. 
-
-<!-- Our approach makes the strong claim that predictive probabilities are the connective tissue between conceptual knowledge and the semantics of generalizations. -->
-<!-- That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding speaker beliefs or listener prevalence distributions, which can occur for multiple reasons (e.g., by changing the comparison class). -->
-<!-- We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to quantitatively different prevalence priors, even while keeping the comparison class fixed.  -->
-<!-- In Expt. 3 we showed that these prevalence distributions are causally related to endorsement. -->
-
-
-In our modeling work, we found that the empirical data which underlie the prevalence prior distributions are best modeled by a mixture-model with two mixture components.
-Such a prior distribution draws qualitative distinctions between different kinds of categories by virtue of the prevalence prior model representing multiple distinct components. 
-Actual conceptual knowledge against which generalizations are interpreted is most likely far-richer than simply a two-component mixture-model.
-We note, however, that a richer model of the prior was not necessary, at this point, to account for the context-sensitive endorsement patterns we observe in our empirical data. 
-
-The rational model of communication that we have developed in this paper makes explicit a speaker's assumptions about the goals of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud]. 
-Our simple endorsement model assumes that the goal of communication is the prevalence (Eq.\ref{eq:S1}).
-In other words, the endorsement decision is computed with respect to the prevalence information conveyed to the listener.
-Richer communicative contexts will surely need to elaborate the QUD to fit more appropriately with the informational goals of the context in which generalizations are produced.
-We note, however, that the endorsement model makes almost identical predictions for the data presented in this paper if the QUD is assumed to be about the abstract parameters of the background knowledge (e.g., which mixture component the referent is part of) as opposed to the prevalence itself.
-This observation is promising for the future goal of integrating communicative goals about kinds or conceptual structure into the information-theoretic communicative framework presented here.
-
-<!-- Primarily investigated through generic language (category generalizations), this perspective holds that generics are the linguistic outlet of the mind's default mode of representing kinds [@Leslie2007] and "...an adequate account of the meanings of generic sentences requires an understanding of the ways in which we represent connections between kinds and properties [p.406; @Prasada2013]." -->
-<!-- @Prasada2006 and later @Prasada2013 distinguish properties that have *principled connections* to kinds, *statistical connections*, and *causal connections*.  -->
-
-
-<!-- Leslie suggests information that is striking (e.g., "Tigers eat people") is ecologically useful and thus permitted to be a generalization, even if the property is not widespread. -->
-<!-- Prasada has argued that *characteristic* properties (e.g., "Diapers are absorbent") and *statistical* properties (e.g., "Diapers are white") are  -->
-<!-- Gelman outlines how generics tend to express *essential* qualities that are relatively timeless and enduring.  -->
-<!-- Where in the probability-based semantics could such conceptual distinctions come into play? -->
-
-<!-- Inferential role semantics -->
-<!-- We take the view the causal relations only does anything because it implies statistical regularities, and these statistical regularities are what our linguistic model depends on. -->
-
-<!-- - what are habituals like under Leslie? -->
-
-<!-- probabilistic treatment of kinds vs. of causality -->
-<!-- conceptual representation vs. causal structure -->
-
-<!-- rational rules: concepts are relatively definitional (with some probabilistic structure on those definitions) -->
-<!-- - leslie: my kinds are your probabilistic concept representations -->
-<!-- - the reason why particular generics are licensed. not that there are kinds and that generics communicate about them. -->
-  <!-- - fundamentally communicative element to what the prevalence is and why a generic would sound good in a praticular case (information relative to the prevalence prior) -->
-  
-<!-- - Ellen: causality implies a mechanism, not just a statistical relation. -->
-<!-- - are there parts of the  -->
-<!-- - essentialism: different generative models that imply the same statistics with different causal relations (but orthogonal) -->
-
-
 ## Communicating predictive probabilities
 
 This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
-We distinguish our construct from other uses of *prevalence* in the literature, often taken to be synonymous with observed frequency.
-<!-- the distinction that what is communicated is probability not frequency. -->
-<!-- In previous accounts, prevalence is treated as synonymous with the frequency of the feature in the category.  -->
+These predictive probabilities are fundementally mental representations, as opposed to observed frequency, which is often taken to be the object of statistical approaches to genericity.
 Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
 Predictions about the presence of a feature can be the result of beliefs about internal causes of the feature [e.g., in an essentialist view of natural kinds; @Gelman2003] or merely correlational happenstance.
 What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability or *prevalence*.
@@ -947,11 +876,11 @@ What matters for their influence on generic endorsement, however, is their influ
 <!-- Expts. 2c \& 2d that showed using participants' *predictions* about the future as the object of communication in our formal model perfectly tracked habitual endorsement, when the present frequency would make the wrong prediction. -->
 
 Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
-Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding the language used to convey explicit probabilities [cf., @Levinson1995]. 
-Rather than conveying *explicit probabilities*, generalizations we argue convey *implicit probabilities*.
+Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding the numerical language used to convey explicit probabilities [cf., @Levinson1995]. 
+Rather than conveying probabilities *explicitly*, generalizations we argue convey them *implicitly*.
 In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to utterance "John is tall".
 The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
-Indeed, young children are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the actual language of probability [@Xu2008; @xu2009statistical].
+Indeed, young children are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the (historically quite recent) numerical language of probability [@Xu2008; @xu2009statistical].
 
 <!-- One might also question the feature of our computational model that the speaker is explicitly trying to communicate $h$, her subjective probability.  -->
 <!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the referent-category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
@@ -985,6 +914,75 @@ Indeed, young children are actually quite good with reasoning about probabilitie
 
 
 
+
+## Prevalence priors and conceptual knowledge
+
+\ndg{this section is pretty critical, and needs work. or posisbly much of it belongs in the discussion of others sematic theoris?}
+
+Our theory assumes that listeners and speakers share relevant background knowledge (at least in the form of a *prevalence prior*) against which generalizations are interpreted.
+In our modeling work, we found that prevalence prior distributions were well-modeled by a mixture-model with two mixture components.
+Such a prior distribution implies a qualitative distinctions between different kinds of categories, perhaps by virtue of having (or lacking) certain causal mechanisms that can brings about the target feature.
+Actual conceptual knowledge against which generalizations are interpreted is most likely richer than this.
+
+Conceptual structure, including higher-order abstractions, can be formalized in probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
+We believe such probabilistic concept representations can be adopted as a formal analog to intuitive theories of natural kinds [@Gelman2003; @Keil1992].
+We do not assume a particular view of natural kinds in our model, but note that viewing natural kinds as richly structured categories with clusters of non-obvious properties is compatible with our information-theoretic communicative model. 
+The important commonality among different domain-specific background theories is that they each have a statistical layer to them (i.e., they each give rise to beliefs about *prevalence*), which language interfaces with via the tools of truth-functional semantics.
+Thus, our theory provides a separation between conceptual knowledge and the semantics of generalizations; the interface between the two is predictive probability or *prevalence*. 
+Future work should investigate formalizations of attested differences in background knowledge about properties [e.g., @Prasada2013's *principled*, *statistical*, and *causal* connections] and their corresponding influence on generic endorsement via prevalence priors. 
+
+Beliefs about prevalence will often be the result of conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013].
+Such knowledge is not necessary, however: Relevant background knowledge may be merely correlational in nature.
+The prevalence prior is a common representation that provides the glue between conceptual and statistical knowledge and natural language semantics.
+The truth conditions of generalizations depend only on prevalence, but prevalence depends upon knowledge.
+
+
+<!-- Our approach makes the strong claim that predictive probabilities are the connective tissue between conceptual knowledge and the semantics of generalizations. -->
+<!-- That is, the effect of conceptually meaningful differences on generic language is predicted to be mediated by differences in corresponding speaker beliefs or listener prevalence distributions, which can occur for multiple reasons (e.g., by changing the comparison class). -->
+<!-- We found in Expts. 1 \& 2 that conceptually different kinds of properties and events gave rise to quantitatively different prevalence priors, even while keeping the comparison class fixed.  -->
+<!-- In Expt. 3 we showed that these prevalence distributions are causally related to endorsement. -->
+
+
+
+
+\ndg{ [why is this par here. and what does it mean??]
+The rational model of communication that we have developed in this paper makes explicit a speaker's assumptions about the goals of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud]. 
+Our simple endorsement model assumes that the goal of communication is the prevalence (Eq.\ref{eq:S1}).
+In other words, the endorsement decision is computed with respect to the prevalence information conveyed to the listener.
+Richer communicative contexts will surely need to elaborate the QUD to fit more appropriately with the informational goals of the context in which generalizations are produced.
+We note, however, that the endorsement model makes almost identical predictions for the data presented in this paper if the QUD is assumed to be about the abstract parameters of the background knowledge (e.g., which mixture component the referent is part of) as opposed to the prevalence itself.
+This observation is promising for the future goal of integrating communicative goals about kinds or conceptual structure into the information-theoretic communicative framework presented here.
+}
+
+<!-- Primarily investigated through generic language (category generalizations), this perspective holds that generics are the linguistic outlet of the mind's default mode of representing kinds [@Leslie2007] and "...an adequate account of the meanings of generic sentences requires an understanding of the ways in which we represent connections between kinds and properties [p.406; @Prasada2013]." -->
+<!-- @Prasada2006 and later @Prasada2013 distinguish properties that have *principled connections* to kinds, *statistical connections*, and *causal connections*.  -->
+
+
+<!-- Leslie suggests information that is striking (e.g., "Tigers eat people") is ecologically useful and thus permitted to be a generalization, even if the property is not widespread. -->
+<!-- Prasada has argued that *characteristic* properties (e.g., "Diapers are absorbent") and *statistical* properties (e.g., "Diapers are white") are  -->
+<!-- Gelman outlines how generics tend to express *essential* qualities that are relatively timeless and enduring.  -->
+<!-- Where in the probability-based semantics could such conceptual distinctions come into play? -->
+
+<!-- Inferential role semantics -->
+<!-- We take the view the causal relations only does anything because it implies statistical regularities, and these statistical regularities are what our linguistic model depends on. -->
+
+<!-- - what are habituals like under Leslie? -->
+
+<!-- probabilistic treatment of kinds vs. of causality -->
+<!-- conceptual representation vs. causal structure -->
+
+<!-- rational rules: concepts are relatively definitional (with some probabilistic structure on those definitions) -->
+<!-- - leslie: my kinds are your probabilistic concept representations -->
+<!-- - the reason why particular generics are licensed. not that there are kinds and that generics communicate about them. -->
+  <!-- - fundamentally communicative element to what the prevalence is and why a generic would sound good in a praticular case (information relative to the prevalence prior) -->
+  
+<!-- - Ellen: causality implies a mechanism, not just a statistical relation. -->
+<!-- - are there parts of the  -->
+<!-- - essentialism: different generative models that imply the same statistics with different causal relations (but orthogonal) -->
+
+
+
+
 ## The comparison class
 
 The probabilistic communicative model we introduce in this paper assumes shared background 
@@ -998,18 +996,23 @@ Thus, the prevalence prior $P(p)$ is actually a conditional distribution constru
 The existence of comparison classes is uncontroversial in the study of *vague* or *underspecified* language [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
 Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity of the language of generalizations explored in this paper.
 An important problem for comparison classes for both gradable adjectives and generalizations is that the comparison class often goes unsaid (e.g., "John is tall for a person" is often produced as just "John is tall").
+\ndg{say something about how the comparison class might be set, cite your cogsci paper, say why this paper is ok without this: we made comparison class clear to Pp in order to study remaining issues with generics.}
 
+<!--
+[NDG: i cut this because it is unecassary speculation.]
 Uncertainty about the comparison class adds yet more opportunity to the language of generalization for disagreement, miscommunication, or deceit.
 Even if interlocutors roughly coordinate on a particular comparison class (e.g., agreeing that they are talking *relative to other animals*), they may fail to coordinate on the prevalences for other categories in the comparison class.
 That is, our model makes the prediction that the acceptance or rejection of controversial statements (e.g., "Muslims are terrorists") depends upon a speaker's beliefs about how often other categories exhibit the property (e.g., neo-nazis committing acts of terrorism).
 Understanding the contextual influence on the construction of comparison classes should provide insight into failures of communication.
 \mht{ellen: TRUE,  I AGREE WITH YOU AND THIS IS PROBABLY OKAY.  BUT IT THINK IT WOULD BE BETTER TO SAY SOMETHING SUBSTANTIVE;  FOCUSSING ON HOW KNOWLEDGE OF THE COMPARISION CLASS SHOULD PROVIDE INSIGHTS INTO FAILURES TO COMMUNICATE SUCCESSFULLY.}
+-->
 
-Finally, interlocutors may not only fail to coordinate on what categories are in the comparison class, the prevalences that may be assumed for the constituent categories of the comparison class, but the very nature of *how* the comparison class should be constructed.
-The comparison classes used in our case studies were with always respect to the *category* (*other animals*, *other people*, *other possible causes*); thus, our model addresses the implicit QUD of "*what* has feature?".
+Finally, the comparison classes used in our case studies were with always respect to the *category* (*other animals*, *other people*, *other possible causes*); thus, our model addresses the implicit QUD of "*what* has feature?".
+\ndg{Note QUD might not have been introduced, depending on where we move above floating paragraph..}
 Were the QUD to be reversed (e.g., "what features does the category have?"), the comparison classes would be constructed with respect to the *feature* (e.g., *other features*, *other actions*, *other effects*).
 It's long been noted that the same generalization can be used to address multiple QUDs [@KrifkaGenericBookFocus], and we posit that differences in interpretation are the result of multiple distinct comparison classes competing for influence.
 The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law."; imagine in a pedagogical context) or a feature-wise comparison class (i.e., "Lawyers care about the law *(as opposed to justice, doing what's morally right, ...)*" e.g., when said sardonically).
+\ndg{mention that prosodic focus easily switches between these.}
 In this work, we focused on category-wise comparison classes purely for methodological convenience.
 Future work should investigate the factors that give rise to feature-wise interpretations of generalizations, and how the relevant comparison classes are constructed. 
 
@@ -1092,8 +1095,8 @@ We leave for future work the precise implementation of the acquisition model we 
 <!-- The study of what makes generalizations true or false then reduces to a study of concepts [@carlson2009concepts] and kind--property relations [@Prasada2013]. -->
 
 <!-- Yet, purely arbitrary relationships can also result in true generalizations [@Nickel2008; @Nickel2016; @Sterken2015]. -->
-<!-- <!-- "Cars have tape decks" is a generalization that was true about thirty years ago, but  --> -->
-<!-- <!-- Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false. --> -->
+<!-- <!-- "Cars have tape decks" is a generalization that was true about thirty years ago, but  -->
+<!-- <!-- Barns are red" because barn-owners tend to paint their barns red; were barn-owners to decide tomorrow to switch to blue, then "Barns are red" would be false. --> 
 <!-- Ravens and toasters have no privileged relationship to each other and to assess if "Ravens are bigger than toasters", we should actually measure the distribution of sizes for ravens and toasters. -->
 <!-- An understanding of generalizations just in terms of conceptual relations must be supplemented with the proviso that, in some situations, the actual statistics of the feature matter for making generalizations true. -->
 

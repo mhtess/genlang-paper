@@ -1,6 +1,21 @@
 # Case Study 3: Causal Language
 
 
+```{r load_causals_results}
+load(file = "cached_results/case3_endorsementDataModel.RData")
+#md.cas.fullmodel.endorsement,
+#      md.caus.endorse, 
+#      n.subj.cas.endorse, 
+#      ave.minutes.cas.endorse,
+#      n.subj.cas.endorse.failed, 
+
+load(file = "cached_results/case3_priorRatings.RData")
+# d.cas.priors, 
+   #  n.subj.cas,
+  #   n.subj.cas.failed,
+ #    ave.minutes.cas,
+```
+
 <!-- delta_p = presence-absence -->
 <!-- cp = delta_p / normalization ... subset of relevant cases -->
 <!-- caus_supp ~ structure induction problem. -->
@@ -10,8 +25,8 @@
 <!-- caus_strength = "This virus causes the disease." -->
 
 Language about causal relationships manifests in generalization.
-The utterance "Drinking moonshine makes you go blind" relates to "My grandpa's drinking moonshine made him go blind" in a way analogous to how "John smokes" relates to  "John smoked yesterday". 
-\ndg{"my grandpa's..." is itself a generic... is there a simple example to start with? e.g. "fire causes smoke" generalizes "this fire caused this smoke"? Also, somewhere (probably GD) we should discuss how many sentences have two ore more "dimensions of generalization".}
+The utterance "Fire causes smoke" relates to "This fire caused this smoke" in a way analogous to how "John runs" relates to  "John ran yesterday". 
+<!-- \ndg{"my grandpa's..." is itself a generic... is there a simple example to start with? e.g. "fire causes smoke" generalizes "this fire caused this smoke"? Also, somewhere (probably GD) we should discuss how many sentences have two ore more "dimensions of generalization".} -->
 We explore this hypothesis in our third case study: causal language or *causals* (e.g., "A causes B").
 
 The problem of *causal induction*---knowing that one thing causes another---has been studied extensively in human psychology  [@Cheng1992; @Cheng1997; @Griffiths2005; @Griffiths2009].
@@ -70,241 +85,9 @@ Experiment 3b (*causal endorsement*) will then use a very similar experimental p
 <!-- In other domains, probabilistic causes are plausible: Giving a sick animal a certain medication may sometimes make it better and other times it won't.  -->
 <!-- Finally, some events could have multiple possible causes: Testing whether or not a drug makes an animal *blink* might be difficult because animals will tend to *blink* even without intervention.  -->
 
-```{r}
-genericEndorsementPriorModelHelpers <- '
-var eps = 0.01;//Number.EPSILON;
-var log = function(x){ return Math.log(x) }
-var exp = function(x){ return Math.exp(x) }
-
-var avoidEndPoints = function(x){
-  x == 0 ? eps : 
-  x == 1 ? 1 - eps : 
-  x
-}
-
-var betaShape = function(params){
-  return {
-      a: params.g * params.d,
-      b : (1-params.g) * params.d
-  }
-}
-
-var preprocessedResponses = map(function(d){
-  return avoidEndPoints(d / 100)
-}, data)
-'
-
-
-structuredPriorModel <- '
-var model = function(){
-  var phi = uniformDrift({a:0, b: 1, width:0.2});
-  var g = uniformDrift({a:0, b: 1, width:0.2});
-  var d = uniformDrift({a:0, b: 100, width:5});
-  var stableParams = betaShape({g, d})
-  var stableComponent = Beta(stableParams)
-  var transientComponent = Beta({a:1, b:100})
-  mapData({data: preprocessedResponses}, function(d){
-    factor( log(
-      phi * exp(stableComponent.score(d)) +
-      (1 - phi) * exp(transientComponent.score(d))
-    ))
-  })
-  return {g, d, phi}
-}
-'
-
-unstructuredPriorModel <- '
-var model = function(){
-  var g = uniformDrift({a:0, b: 1, width:0.2});
-  var d = uniformDrift({a:0, b: 100, width:5});
-  var stableParams = betaShape({g, d})
-  var stableComponent = Beta(stableParams)
-  mapData({data: preprocessedResponses}, function(d){
-    factor(stableComponent.score(d))
-  })
-  return {g, d}
-}
-'
-genericEndorsementPriorModel <- paste(genericEndorsementPriorModelHelpers, structuredPriorModel, sep = "\n")
-```
-
-```{r rsaHelpers}
-rsaHelpers <- '
-var probability = function(Dist, x) {
-    return Math.exp(Dist.score(x));
-}
-var targetUtterance = "generic";
-
-var round = function(x){
-  return Math.round(x*1000)/1000
-}
-var utterancePrior = Infer({model: function(){
-  return uniformDraw([targetUtterance,"silence"])
-}});
-
-var thetaBins = map(round, _.range(0.01, 0.98, 0.01))
-// var thetaBins = [
-//    0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-//    0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
- // ]
-var thetaPrior = Infer({model: function(){
- return uniformDraw(thetaBins)
-}});
-
-var bins = map(round, _.range(0.01, 0.99, 0.01))
-
-// var bins = [
-  // 0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-  // 0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
-// ];
-
-var meaning = function(utt,state, theta) {
-  return utt=="generic"? state > theta :
-         utt=="generic is false"? state<=theta :
-         utt=="silence"? true :
-         utt=="some"? state>0.01:
-         utt=="most"? state> 0.5:
-         utt=="all"? state >= 0.99:
-         true
-}
-
-var mixture = data.prior.mix[0];
-var priorParams = data.prior.params[0];
-
-var statePrior = Infer({model: function(){
-  var component = flip(mixture);
-  return component ?
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta(priorParams), b) + Number.EPSILON
-      }, bins )
-    }) :
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta({a:1,b:50}), b) + Number.EPSILON
-      }, bins )
-    })
-}});
-'
-```
-
-```{r rsaInterpretationModels}
-no.utterance.model <- '
-var noUtteranceInterpreter = function() {
-  Infer({model: function(){
-   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-    return { state }
- }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-'
-
-fixed.threshold.model <- '
-var fixedThresholdInterpreter = function(threshold) {
-  Infer({model: function(){
-  // var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-  var state = sample(statePrior)
-  condition( state > threshold)
-    return {
-      state: state
-  }
- // }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
- }, method: "enumerate"})}
-'
-
-uncertain.threshold.model <- '
-var uncertainThresholdInterpreter = function() {
-  Infer({model: function(){
-   var state = sample(Beta( flip(mixture) ? priorParams : {a:1,b:100}))
-    factor( Math.log(state) )
-    return {
-      state: state, 
-  }
-  }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-'
-
-```
-
-```{r simulationCalls}
-fixed.threshold.calls <- '
-_.fromPairs(map(function(t){return [t, fixedThresholdInterpreter(t)]}, [0.1, 0.3, 0.5, 0.7, 0.9]))
-'
-no.utterance.call <- ' 
-  noUtteranceInterpreter()
-'
-uncertain.threshold.call <- '
-  uncertainThresholdInterpreter()
-'
-```
-
-
 
 
 ### Method
-
-```{r causal-priors-data}
-d.cas.priors <- read.csv(paste(project.path,
-                           "data/causals/priors/causals-8-prior-trials.csv",
-                           sep= ""))
-
-d.cas.priors.catch <- read.csv(paste(project.path,
-                           "data/causals/priors/causals-8-prior-catch_trials.csv",
-                           sep= ""))
-
-# some participants were mischaracterized as failing the catch trial because they put something of the form "0/100" or "herb F: 19" 
-mischaracterized <- c( 24, 48, 62, 94, 106, 110, 111, 112, 113, 116, 125, 132, 145, 155, 158)
-
-d.cas.priors <- left_join(d.cas.priors, d.cas.priors.catch) %>%
-  mutate(pass_numeric = ifelse(workerid %in% mischaracterized, 1, pass_numeric),
-         passBoth = ifelse(pass_numeric + pass_story == 2, 1, 0))
-
-n.subj.cas <- length(unique(d.cas.priors$workerid))
-
-n.subj.cas.failed <- length(unique(filter(d.cas.priors, passBoth == 0)$workerid))
-
-d.cas.priors <- d.cas.priors %>% filter(passBoth == 1)
-
-ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60, 1)
-```
-
-
-```{r causal-priors-runModel, cache = T}
-causal.distributions <- levels(factor(d.cas.priors$distribution))
-p <- causal.distributions[1]
-m.cas.marginal.prevalence <- data.frame()
-m.cas.endorse.priors.summary <- data.frame()
-
-for (p in causal.distributions){
-  priorData <- 100*filter(d.cas.priors, distribution == p)$response
-  
-  m.cas.endorse.priors <- webppl(genericEndorsementPriorModel, data = priorData, data_var = "data",
-         model_var = "model", inference_opts = list(method = "MCMC", samples = 5000, burn = 2500, verbose = T))
-  
-  m.cas.marginal.prevalence <- bind_rows(m.cas.marginal.prevalence, m.cas.endorse.priors %>% 
-    spread(Parameter, value) %>%
-    rowwise() %>%
-    mutate(
-      a = g * d,
-      b = (1 - g) * d,
-      stable = rbinom(n = 1, size = 1, prob = phi),
-      prevalence = ifelse(stable == 1, 
-                             rbeta(n = 1, shape1 = a, shape2 = b),
-                             rbeta(n = 1, shape1 = 1, shape2 = 100)),
-      distribution = p
-    )
-  )
-  
-  m.cas.endorse.priors.summary <- bind_rows(m.cas.endorse.priors.summary,
-                                            m.cas.endorse.priors %>% 
-                                              mutate(distribution = p) %>%
-                                              group_by(distribution, Parameter) %>%
-                                              summarize(MAP = estimate_mode(value),
-                                                        cred_upper = hdi_upper(value),
-                                                        cred_lower = hdi_lower(value))
-                                              )
-}
-
-```
 
 
 
@@ -324,8 +107,8 @@ Participants were told a story of a scientific experiment testing different subs
 Our cover stories were constructed so that the potential cause could have some plausible intuitive mechanism that could give rise to the property (e.g., a naturally occurring herb causing animals to be sleepy). 
 The two cover stories can be seen in Table 2.
 
-Participants were then shown "previous experimental results", which followed one of four distributions, shown in Figure 10B.
-In two of the conditions, participants saw results that came from a single underlying distribution.
+Participants were then shown "previous experimental results", which followed one of four distributions.
+In two of the conditions, participants saw results that came from a single underlying distribution (*common* conditions).
 In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the *common strong* condition).
 In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the *common weak* condition).
 <!-- The results of the previous experiments were described verbally  -->
@@ -428,174 +211,6 @@ Participants were given five slider bars ranging from 0 - 100, and asked to pred
 After responding, participants then completed an attention check survey where they were asked what the team of scientists were investigating (choosing a response from a drop-down menu with 12 options) and to input one of the numerical results they saw on the previous screen. 
 This attention check served to confirm that participants had encoded both relevant aspects of the experiment (the domain and the frequencies). 
 
-```{r figure-causals-priors, fig.caption = "Four background distributions participants were exposed to in Expt. 3 (stimuli) and priors reconstructed from participants' responses (model). ", fig.width = 8, fig.height = 3, eval = F}
-sample.dists <- bind_rows(
-  data.frame(
-    dist = "rare weak",
-    x = c(rbeta(n = 3000, shape1 = 2, shape2 = 10),
-          rbeta(n = 7000, shape1 = 2, shape2 = 50)
-          )
-  ),
-  data.frame(
-    dist = "common weak",
-    x = rbeta(n = 10000, shape1 = 2, shape2 = 10)
-  ),
-  data.frame(
-    dist = "rare deterministic",
-    x = c(rbeta(n = 3000, shape1 = 50, shape2 = 2),
-          rbeta(n = 7000, shape1 = 2, shape2 = 50)
-          )
-  ),
-  data.frame(
-    dist = "common deterministic",
-    x = rbeta(n = 10000, shape1 = 50, shape2 = 2)
-  )
-) %>%
-    mutate(Distribution = factor(dist, 
-                               levels = c("common deterministic", "rare deterministic", "common weak", "rare weak"),
-         labels = c("Common Deterministic", "Rare Deterministic",
-                    "Common Weak", "Rare Weak")))
-  
-figure.causals.priors <- bind_rows(
-  sample.dists %>%
-    mutate(src = "stimuli") %>%
-    select(-dist),
-  m.cas.marginal.prevalence %>%
-    filter(distribution %in% c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak")) %>%
-    mutate(Distribution = factor(distribution, 
-                                 levels = c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
-           labels = c("Common Deterministic", "Rare Deterministic",
-                      "Common Weak", "Rare Weak"))) %>%
-    select(Distribution, prevalence) %>%
-    mutate(src = 'model') %>%
-    rename(x = prevalence)
-) %>%
-  mutate(src = factor(src, levels = c("stimuli", "model"))) %>%
-  ggplot(., aes(x = x, fill = Distribution, color = Distribution, alpha = src, lty = src
-                ))+ 
-  geom_density( adjust = 1.3, 
-               size = 1.2,
-               aes( y = ..scaled..))+ #
-  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
-  #scale_fill_manual(values = c("#636363", "#d7191c"))+#, "#2b83ba"))+
-  scale_fill_solarized()+scale_color_solarized()+
-  #scale_color_manual(values = c("#636363", "#d7191c"))+
-  scale_alpha_manual(values = c(0.1, 0.4))+
-  scale_linetype_manual(values = c(2, 1))+
-  ylab("Scaled Prior Probability")+
-  xlab("Target probability")+
-  facet_wrap(~Distribution, scales = 'free', nrow = 1)+
-  guides(fill = F, color = F)+
-  theme(legend.position = 'bottom', legend.direction = 'horizontal')
-```
-
-```{r s1-model}
-s1.model <- '
-var probability = function(Dist, x) {
-    return Math.exp(Dist.score(x));
-}
-var targetUtterance = "generic";
-
-var utterancePrior = Infer({model: function(){
-  return uniformDraw([targetUtterance,"silence"])
-}});
-
-var betaShape = function(params){
-  return {
-      a: params.g * params.d,
-      b : (1-params.g) * params.d
-  }
-}
-
-var thetaPrior = Infer({model: function(){
- return uniformDraw([
-   0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-   0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95
- ])}
-});
-
-var bins = [
-  0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
-  0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
-];
-
-var meaning = function(utt,state, theta) {
-  return utt=="generic"? state > theta :
-         utt=="generic is false"? state<=theta :
-         utt=="silence"? true :
-         utt=="some"? state>0.01:
-         utt=="most"? state> 0.5:
-         utt=="all"? state >= 0.99:
-         true
-}
-var alpha = 2;
-var mixture = data.prior[0].phi;
-var priorParams = betaShape(data.prior[0]);
-
-var statePrior = Infer({model: function(){
-  var component = flip(mixture);
-  return component ?
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta(priorParams), b) + Number.EPSILON
-      }, bins )
-    }) :
-    categorical({
-      vs: bins,
-      ps: map(function(b) {
-        return probability(Beta({a:1,b:100}), b) + Number.EPSILON
-      }, bins )
-    })
-}});
-
-var listener0 = cache(function(utterance) {
-  Infer({model: function(){
-    var state = sample(statePrior)
-    var theta = utterance == "generic" ? sample(thetaPrior) : -99
-    condition(meaning(utterance, state, theta))
-    return state
- }})}, 10000)
-
-var speaker1 = function(state) {
-  Infer({model: function(){
-    var utterance = sample(utterancePrior);
-    var listener_posterior = listener0(utterance);
-    factor(alpha * listener_posterior.score(state))
-    return utterance
-  }})
-}
-
-probability(speaker1(data.state[0]), "generic")
-'
-```
-
-```{r causal-endorsement-predictions, cache = T, eval = F}
-causal.priorParams <- m.cas.endorse.priors.summary %>%
-    filter(distribution %in% c("common_deterministic", "rare_deterministic", "common_weak", "rare_weak"),
-           Parameter != 'marginalPrevalence') %>%
-  select(distribution, Parameter, MAP) %>%
-  spread(Parameter, MAP)
-experimental.frequencies <- c(0.2, 0.7)
-causal.endorsement.predictions <- data.frame()
-for (p in causal.priorParams$distribution){
-  for (s in experimental.frequencies){
-    
-    inputData = list(prior = filter(causal.priorParams, distribution == p), 
-                     state = s)
-    
-    s1.rs <- webppl(s1.model, data = inputData, data_var = "data")
-
-    causal.endorsement.predictions <- bind_rows(
-      causal.endorsement.predictions,
-      data.frame(state = s, distribution = p, prob = s1.rs)
-    )
-  }
-  print(p)
-}
-```
-
 
 <!-- #### Materials  -->
 
@@ -611,32 +226,14 @@ for (p in causal.priorParams$distribution){
 
 
 `r n.subj.cas.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas-n.subj.cas.failed` responses for analysis.
-The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure\ \@ref(fig:figure-causals).
-\ndg{its unclear in figure caption whether those are emprical, predicted, or bda priors.}
-These distributions nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
-\ndg{it'd be good to have some kid of stats here. maybe just show that empirical prealence distributions differ between conditions. also say how this matters: as before geeralization model predicts differences in endorsement for same target prevalence depending on priors.}
-We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected.
+The empirically elicited distributions of responses were not appreciably different for our two cover stories (herbs making animals sleepy, fertilizer making plants grow tall) and thus we collapse the data across these two stories.
+The distributions that resulted from participants predicting the causal efficacy of the new substances are shown in Figure\ \@ref(fig:figure-causals)A.
+<!-- \ndg{its unclear in figure caption whether those are emprical, predicted, or bda priors.} -->
+As is visually apparent, the empirical prevalence distributions differ between conditions and nicely recapitulate the distributions supplied in the different experimental conditions, suggesting that the manipulation does indeed change participants' representations of what probabilities are likely to occur in each experimental condition. 
+This diversity is important because the model of generalizations predicts differences in endorsement---for the same referent prevalence---depending on these priors.
+<!-- \ndg{it'd be good to have some kid of stats here. maybe just show that empirical prealence distributions differ between conditions. also say how this matters: as before geeralization model predicts differences in endorsement for same target prevalence depending on priors.} -->
+<!-- We hypothesize that with the distributions altered, endorsements of generalizations will similarly be affected. -->
 
-```{r empirical-causal-prior-densities, eval = F, fig.width = 5, fig.height = 3, fig.caption="Empirical densities from the prediction task in the prior manipulation experiment (Expt. 3a)."}
-d.cas.priors %>%
-  filter(distribution %in% c("common_weak", "rare_deterministic", "rare_weak")) %>%
-      mutate(Distribution = factor(distribution, 
-                               levels = c("rare_deterministic", "common_weak", "rare_weak"),
-         labels = c("Rare Deterministic",
-                    "Common Weak", "Rare Weak"))) %>% 
-ggplot(., aes(x = response, fill = Distribution, color = Distribution))+ 
-  geom_density( adjust = 0.8, alpha =0.8, 
-               size = 1.2,
-               aes( y = ..scaled..))+
-  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
-  scale_fill_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
-  scale_color_manual(values = c("#d01c8b", "#f1b6da", "#4dac26", "#b8e186"))+
-  ylab("Scaled Prior Probability")+
-  xlab("Target probability")+
-  facet_wrap(~Distribution, scales = 'free')+
-  guides(fill = F, color = F)
-```
 
 
 ## Experiment 3b: Causal Endorsements
@@ -646,71 +243,6 @@ Most of the experimental design was identical to that of Experiment 3a.
 
 ### Method
 
-```{r causal-endorsement-data}
-d.caus.endorse.catch.20 <- read.csv(paste(project.path, 
-                                       "data/causals/endorsement/",
-                                       "causals-8-20-catch_trials.csv", sep = ""))
-
-d.caus.endorse.catch.70 <- read.csv(paste(project.path, 
-                                       "data/causals/endorsement/",
-                                       "causals-8-70-catch_trials.csv", sep = "")) %>%
-  mutate(workerid = workerid + 1 +  max(d.caus.endorse.catch.20$workerid) )
-
-d.caus.endorse.catch <- bind_rows(d.caus.endorse.catch.20, d.caus.endorse.catch.70)
-
-d.caus.endorse.catch <- d.caus.endorse.catch %>% 
-  mutate(passBoth = ifelse(pass_numeric + pass_story == 2, 1, 0))
-
-d.caus.endorse.20 <- read.csv(paste(project.path, 
-                                "data/causals/endorsement/",
-                                "causals-8-20-trials.csv", sep = ""))
-
-d.caus.endorse.70 <- read.csv(paste(project.path, 
-                                "data/causals/endorsement/",
-                                "causals-8-70-trials.csv", sep = "")) %>%
-  mutate(workerid = workerid + 1 + max(d.caus.endorse.20$workerid))
-
-d.caus.endorse <- bind_rows(d.caus.endorse.20, d.caus.endorse.70)
-
-
-n.subj.cas.endorse <- length(unique(d.caus.endorse$workerid))
-ave.minutes.cas.endorse <- round(mean(unique(d.caus.endorse %>% select(workerid, rt))$rt) / 1000 / 60, 1)
-
-n.subj.cas.endorse.failed <- length(filter(d.caus.endorse.catch, passBoth == 0)$workerid)
-
-
-d.caus.endorse.summary <- left_join(
-  d.caus.endorse, 
-  d.caus.endorse.catch %>% select(workerid, passBoth)
-  ) %>%
-  filter(passBoth == 1) %>%
-  group_by(distribution, frequency) %>%
-  summarize(k = sum(response), n = n()) %>%
-  ungroup() %>%
-  mutate(a = 1 + k,
-         b = 1 + n - k,
-         low  = qbeta(.025, a, b),
-         high = qbeta(.975, a, b),
-         MAP_h = (a-1)/(a+b-2),
-         mean = a / (a + b))
-```
-
-
-```{r tests?}
-d.caus.endorse.passed <- left_join(
-  d.caus.endorse, 
-  d.caus.endorse.catch %>% select(workerid, passBoth)
-  ) %>%
-  filter(passBoth == 1)
-
-# str(d.caus.endorse.passed)
-# 
-# summary(glmer(response ~ frequency* across * within + (1 | story), family = 'binomial', data = d.caus.endorse.passed %>%
-#   separate(distribution, into =c("across", "within") ) %>%
-#     mutate(frequency = factor(frequency))))
-
-#str(d.caus.endorse.passed)  
-```
 
 
 #### Participants
@@ -731,150 +263,7 @@ Participants were then asked to judge the causal sentence (e.g., "Herb X makes t
 This allows us to test whether endorsement of a causal sentence for a given actual frequency is affected by the causal priors induced by our manipulation.
 After responding, participants completed the same attention check as Expt. 3a.
 
-```{r causals-endorsement-fig, fig.width = 4, fig.height = 3, eval = F}
-
-ggplot(d.caus.endorse.summary, aes( x = factor(frequency), y = MAP_h, ymin = low, ymax = high, fill = distribution,
-                        group = distribution))+
-  geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
-  geom_errorbar(width = 0.2, position = position_dodge(0.3), color = 'black')+
-  theme(axis.text.x = element_text(angle = 0))+
-  geom_hline(yintercept = 0.5, lty = 3, color = 'black')+
-  scale_y_continuous(limits = c(0, 1), breaks = c(0,0.5, 1))+
-  scale_fill_solarized()+
-  xlab("Target frequency")+
-  ylab("Proportion Causal Endorsement")
-```
-
-
-```{r causals-fullmodel}
-n_chains <- 2
-n_samples <- 100000
-burn <- n_samples / 2
-lg <- 5
-i <- 1
-
-model_prefix <- "pilot-results-causals-jointModel-S1-"
-
-m.cas.samp <- data.frame()
-for (i in seq(1, n_chains)){
-  mi <- read_csv(paste(project.path,  "models/causals/results/", 
-                    model_prefix, "smntcs_causal-",
-                    n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-  m.cas.samp <- bind_rows(m.cas.samp, mi %>% mutate(chain = i))
-}
-
-# n_chains <- 1
-# n_samples <- 1000
-# burn <- n_samples
-# lg <- 5
-# i <- 1
-# m.hab.fixed.samp <- data.frame()
-# for (i in seq(1, n_chains)){
-#   mi <- fread(paste(project.path,  "models/habituals/results/", 
-#                     model_prefix, "smtncs_some-",
-#                     n_samples, "_burn", burn, "_lag", lg, "_chain", i, ".csv", sep = ""))
-#   m.samp.i <- mi %>% mutate(chain = i)
-#   m.hab.fixed.samp <- bind_rows(m.hab.fixed.samp, m.samp.i)
-# }
-
-# m.hab.somemodel.endorsement <- m.hab.fixed.samp %>%
-#   filter(type == 'predictive') %>%
-#   rename(habitual = B, time_period = D, binned_freq = E) %>%
-#   group_by(habitual, time_period, binned_freq) %>%
-#   summarize(MAP = estimate_mode(val),
-#             cred_upper = hdi_upper(val),
-#             cred_lower = hdi_lower(val))
-
-m.cas.fullmodel.endorsement <- m.cas.samp %>%
-  filter(type == 'predictive') %>%
-  group_by(dist, frequency) %>%
-  summarize(MAP = estimate_mode(val),
-            cred_upper = hdi_upper(val),
-            cred_lower = hdi_lower(val))
-```
-
-
-```{r causal-model-insets, fig.width = 4, fig.height = 3.5, cache = T}
-m.cas.fullmodel.prior.parameters <- m.cas.samp %>%
-  filter(type == "prior") %>%
-  rename(variable = item, parameter = roundedFreq) %>%
-  group_by(dist, variable, parameter) %>%
-  summarize(MAP = estimate_mode(val),
-            cred_upper = hdi_upper(val),
-            cred_lower = hdi_lower(val))
-
-# use MAP estimates to generate L(h | causal) & L(h | silence) predictions
-
-m.cas.fullmodel.prior.parameters.tidy <- m.cas.fullmodel.prior.parameters %>%
-  ungroup() %>%
-  select(dist, variable, parameter, MAP) %>%
-  mutate(param = paste(variable, parameter, sep = "_")) %>%
-  select(-variable, -parameter) %>%
-  spread(param, MAP) %>%
-  rename(mix = mixture_NA, 
-         stable_mean = stableFreq_mean, 
-         stable_concentration = stableFreq_sampleSize) %>%
-  mutate( a = stable_mean * stable_concentration, 
-          b = (1 - stable_mean) * stable_concentration)
-
-cas.listener.predictions <- data.frame()
-  
-for (p in m.cas.fullmodel.prior.parameters.tidy$dist){
- priorParams <- m.cas.fullmodel.prior.parameters.tidy %>% filter(dist == p) 
- inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
-                                                   b = priorParams[["b"]]),
-                               mix = priorParams[["mix"]]), 
-                  utt = "generic")
- l0.rs <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
-  l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
- l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
- cas.listener.predictions <- bind_rows(
-   cas.listener.predictions, 
-      l0.rs.prior %>% select(value) %>% mutate(distribution = p, Parameter = "state_Prior"),
-    l0.rs.posterior %>% select(value) %>% mutate(distribution = p, Parameter = "state_Posterior")
-   )
-}
-
-#inset.color.order <- c( "#268bd2", "#dc322f","#d33682","#859900")
-inset.color.order <- c("#859900","#d33682","#dc322f", "#268bd2")
-
-causals.endorsement.insets <- cas.listener.predictions %>% 
-    mutate(Parameter = factor(Parameter, 
-                              levels = c("state_Prior","state_Posterior"),
-                            labels = c("Prevalence prior (Expt. 3a)",
-                                       "Interpreter model posterior")),
-    Distribution = factor(distribution, 
-                               levels = c("rare_weak",  "common_weak", "rare_deterministic", "common_deterministic"),
-         labels = c("Weak, Rare", "Weak, Common", "Strong, Rare", "Strong, Common"))) %>%
-  ggplot(., aes( x = value, fill = Distribution, color = Distribution, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
-  facet_wrap(~Distribution, nrow = 2)+
-  scale_fill_manual(values =inset.color.order )+
-  scale_color_manual(values = inset.color.order)+
-  geom_vline(xintercept = 0.2, lty = 3)+
-  geom_vline(xintercept = 0.7, lty = 3)+
-  scale_alpha_manual(values = c(0.8, 0.1))+
-  scale_linetype_manual(values = c(1, 2))+
-  scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-  scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
-  xlab("Prevalence") +
-  ylab("Scaled probability density")+
-  theme(legend.position = "bottom", 
-        legend.direction = 'vertical',
-        legend.title = element_blank(),
-        plot.margin = unit(c(16,6,6,6), "pt"))+
-  guides(fill = F, color = F, alpha = F)
-
-#causals.endorsement.insets
-```
-
 ```{r}
-md.caus.endorse <- left_join(
-  m.cas.fullmodel.endorsement,
-    d.caus.endorse.summary %>%
-    select(distribution, frequency, MAP_h, low, high) %>%
-    rename(dist = distribution)
-)
 
 n.caus.endorse <- length(md.caus.endorse$MAP_h)
 r2.caus.rsa <- compute_r2(md.caus.endorse, "MAP_h", "MAP")
@@ -884,69 +273,96 @@ mse.caus.rsa <- compute_mse(md.caus.endorse, "MAP_h", "MAP")
 
 
 
+```{r figure-causals-priors}
+
+fig.causals.priors.data <- d.cas.priors %>%
+    select(distribution, response) %>%
+    rename(prevalence = response) %>%
+    mutate(distribution = factor(distribution, 
+           levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
+           labels = c("Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common"))) %>%
+ggplot(.,
+       aes( x = prevalence , fill = distribution))+
+  geom_histogram(aes(
+    y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]
+    ),
+    bins = 20, color = 'black') + 
+    scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
+
+  #geom_bar(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..])) + 
+  #geom_density(size = 0.4, aes( y = ..scaled.. ))+
+  #scale_fill_solarized()+
+  #scale_linetype_manual(values = c(2, 1))+
+  facet_wrap(~distribution, scales = 'free', nrow = 2)+
+  #scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  guides(fill = F)+
+  ylab("Proportion of responses")+
+  xlab("Prevalence rating")
+```
+
+
 ```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = F}
-figure.causals.endorsement <- bind_rows(
-  m.cas.fullmodel.endorsement %>%
-    mutate(src = "model"),
-  d.caus.endorse.summary %>%
-    select(distribution, frequency, MAP_h, low, high) %>%
-    rename(dist = distribution, MAP = MAP_h, cred_lower = low, cred_upper = high) %>%
-    mutate(src = 'data')
-) %>%
-  ungroup() %>%
+figure.causals.endorsement <- md.cas.fullmodel.endorsement %>%
   mutate(
     src = factor(src, levels = c( "model", "data")),
     dist = factor(dist, 
            levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
            labels = c(
-                       "Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common"))
-    ) %>%
-  ggplot(., aes( x = frequency, y = MAP, ymin = cred_lower, ymax = cred_upper, 
-                 color = dist, #linetype = dist, 
-                 shape = dist,
-                        group = dist#, 
+                       "Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common")),
+    frequency = factor(frequency, 
+                       levels = c(20, 70),
+                       labels = c("Referent prevalence = 0.2",
+                                  "Referent prevalence = 0.7")
+    )) %>%
+  ggplot(., aes( x = src, y = MAP, ymin = cred_lower, ymax = cred_upper, 
+                 fill = dist #linetype = dist, 
+                 #shape = dist,
+                #        group = dist#, 
                  #alpha = src
                  ))+
-  #geom_bar(stat='identity', position = position_dodge(), width = 0.3, color = 'black')+
-  geom_linerange(position = position_dodge(8), alpha = 1, alpha=0.8)+
-  geom_line(position = position_dodge(8), alpha = 0.8, linetype = 3)+
-  geom_point(position = position_dodge(8), size = 2.25)+
+  geom_bar(stat='identity', position = position_dodge(0.9), width = 0.9, color = 'black')+
+  geom_errorbar(position = position_dodge(0.9), width = 0.3,alpha = 0.8)+
+  #geom_linerange(position = position_dodge(), alpha=0.8)+
+  #geom_line(position = position_dodge(8), alpha = 0.8, linetype = 3)+
+  #geom_point(position = position_dodge(8), size = 2.25)+
   #theme(axis.text.x = element_text(angle = 90))+
   #geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
   scale_alpha_manual(values = c(1, 0.3))+
-  scale_x_continuous(limits = c(10, 90), breaks = c(20, 70))+
+  #scale_x_continuous(limits = c(10, 90), breaks = c(20, 70))+
   #scale_fill_solarized()+
-  scale_color_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
-  xlab("Referent prevalence")+
+  scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
+  xlab("")+
   ylab("Causal Endorsement")+
-  facet_grid(.~src)+
+  facet_grid(.~frequency)+
   #coord_flip()+
-  coord_fixed(ratio = 90)+
+  #coord_fixed(ratio = 90)+
   #guides(fill = F)+
   guides(
-    shape=guide_legend(title="Background distribution"),
-    color=guide_legend(title="Background distribution")
+    #shape=guide_legend(title="Background distribution"),
+    fill=guide_legend(title="Background distribution")
     )+
   theme(
-    plot.margin = unit(c(0,6,0,6), "pt")
+    #plot.margin = unit(c(0,6,0,6), "pt")
     #legend.position = 'bottom', 
     # legend.direction = 'horizontal', 
     # legend.title = element_blank()
   )
 ```
 
-```{r figure-causals, fig.width=9, fig.height=4, cache = F, fig.cap="Endorsing generalizations about causes. A: Endorsement model predictions (left) and human elicited endorsements (right) for four background distributions and two observed frequencies. B: Prevalence prior distributions and interpreter model posteriors upon hearing a causal generalization, for the experimentally manipulated priors. Vertical lines denote referent-prevalence levels for the causal endorsement task. Endorsement mode predictions, interpreter model posteriors, and prevalence priors are inferred using both Expt. 3a and 3b data, following the same Bayesian data analytic approach outlined in Appendix C."}
 
+
+```{r figure-causals, fig.width=9, cache = F, fig.asp = 0.4, fig.cap="Endorsing generalizations about causes. A: Empirical prevalence prior distributions elicited following prior manipulation cover story (Expt. 3a). B: Endorsement model predictions (left) and human elicited endorsements (right) for four manipulated prevalence prior distributions and two referent prevalence levels."}
 prow <- plot_grid( 
+  fig.causals.priors.data,# + theme(legend.position="none"),
   figure.causals.endorsement + theme(legend.position="none"),
-  causals.endorsement.insets,# + theme(legend.position="none"),
-   align = 'h',
+   align = 'v',
    labels = c("A", "B"),
    #hjust = -1,
    nrow = 1,
-  rel_widths = c(1, 0.7),
-  rel_heights = c(1, 0.7)
+  rel_widths = c(0.8, 1)
+  #rel_heights = c(1, 1)
   )
 #legend <- get_legend(causals.endorsement.insets)
 
@@ -964,17 +380,17 @@ prow
 
 `r n.subj.cas.endorse.failed` participants were excluded from the analysis for failing to answer both of the attention check questions correctly, leaving a total of `r n.subj.cas.endorse-n.subj.cas.endorse.failed` responses for analysis.
 As in our other analyses of endorsement responses, we computed the Bayesian Maximum A-Posteriori (MAP) estimate and 95\% highest probability density interval of the true population probability of endorsing the statement, assuming a uniform prior. 
-These are shown for the different experimentally-manipulated priors and frequencies in Figure\ \@ref(fig:figure-causals)A.
+These are shown for the different experimentally-manipulated priors and referent prevalences in Figure\ \@ref(fig:figure-causals)B.
 
-\ndg{i'm not sure 10A is the best way to show this data, since the lines highlight the differences between causal powers (within conditions), while we care most about differences between conditions.}
+<!-- \ndg{i'm not sure 10A is the best way to show this data, since the lines highlight the differences between causal powers (within conditions), while we care most about differences between conditions.} -->
 
 As predicted by our model, endorsements for a causal statement were sensitive to the causal power of the target cause and, critically, to the background distribution of other causes. 
 When many other causes produced the effect very reliably (*common strong* condition), very few participants endorsed the causal statement for a cause with causal power of 0.2, and were at chance when the causal power was 0.7 (Figure\ \@ref(fig:figure-causals)A).
 By contrast, when many other causes failed to produce the effect and those that did were not very reliable (*rare weak* condition; green in figure), at least half of participants endorsed the causal statement for a cause with causal power of 0.2, and were at ceiling when the causal power was 0.7.
 The other two conditions (*rare deterministic* and *common weak*) led to endorsements intermediate between these two conditions.
-Our model predicted these effects with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
+These effects were predicted by our model with strong quantitative accuracy ($r^2(`r n.caus.endorse`) = `r r2.caus.rsa`$; MSE = $`r mse.caus.rsa`$).
 
-\ndg{is it worth saying anything about the fact that the effect is even a bit bigger than predicted by the model?}
+<!-- \ndg{is it worth saying anything about the fact that the effect is even a bit bigger than predicted by the model?} -->
 
 ## Discussion
 
@@ -983,10 +399,10 @@ In this domain, we successfully manipulated participants' beliefs about the expe
 This was done using both unimodal (*common weak*, *common strong*) and bimodal (*rare weak*, *rare strong*) distributions. 
 In Expt. 3b, we showed that these manipulated priors influenced endorsements of the corresponding causal statements.
 In addition to further demonstrating the generality of this theory, these experiments show that the prevalence prior $P(p)$ is causally related to endorsements of generalizations in language.
-To our knowledge, these are the first experiments to demonstrate how the prevalence of a feature among other categories can influence endorsing a generalization about a referent category. \ndg{fix last sentence. is this about geeralization? didn't our last experiments show this? is it about causation? huh?}
+<!-- To our knowledge, these are the first experiments to demonstrate how the prevalence of a feature among other categories can influence endorsing a generalization about a referent category. \ndg{fix last sentence. is this about geeralization? didn't our last experiments show this? is it about causation? huh?} -->
 
 In these experiments, we used two cover stories that described plausible causal events: herbs making animals sleepy and fertilizers making plants grow tall.
-\ndg{which reminds me: need to say something above (3a) about (no) differences between the cover stories?}
+<!-- \ndg{which reminds me: need to say something above (3a) about (no) differences between the cover stories?} -->
 We chose these items because there was a plausible causal mechanism that could give rise to the property and these causal events could have ambiguous causal power associated with them (e.g., it is plausible that there are herbs that only weakly make animals sleepy and it is also plausible that there are herbs that almost deterministically make animals sleepy).
 These two features of the domains make them particularly amenable to manipulation.
 <!-- Inituive theories about these domains are flexible enough to permit such manipulations. -->
