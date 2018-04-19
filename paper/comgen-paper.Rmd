@@ -787,38 +787,42 @@ We do this by both measuring and manipulating background knowledge and referent-
 
 # General Discussion
 
-It is remarkable that so much is learned from ideas expressed vaguely in words.
-Generalizations in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can display complex sensitivities to context.
-We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalizing by probability.
-By precisely articulating the conditions under which generalizations are true or false, we are able to describe how an agent should update its beliefs based on that sentence. 
-Thus, in addition to providing a quantitative understanding of the phenomena of the language of generalization, formalizing this language opens up the possibility of building models that learn abstract, generalizable knowledge from language.
-
-
-As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types: "Robins lay eggs" (categories), "Sally smokes" (events), "Herb X makes animals sleepy" (causes).
+The human species is remarkable not only because we can extract useful generalizations from observations of the world, but because we can convey these generalizations to eachother succinctly in language.
+Generalizations expressed in language (e.g., "John runs.", "Dogs are friendly.", "Staring at the sun makes you go blind.") are a premier example of how simple statements---statements understood by even the youngest language users---can convey subtle meanings and display complex sensitivities to context.
+We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalized in terms of predictive probability.
+Critically, deploying this simple semantics within a formal framework for pragmatic language understanding leads to complex interactions with background knowledge.
+<!--
+formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
+As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types, illustrated here with categories, events, and causes.
 Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
-We test this theory by exploring its implications for truth judgments, operationalized as a speaker's decision about whether or not to produce the generalization to naive listener. 
-Endorsement, we show, depends in systematic ways on the listener's prior beliefs about the prevalence.
-<!-- What these expressions have in common is not surface features but generalization (also referred to as *genericity*). -->
+-->
+We tested this theory by exploring its implications for truth judgments, operationalized as a speaker's decision about whether it would be useful to utter the generalization. 
+Endorsement, we have shown, depends in systematic ways on the listener's prior beliefs about prevalence.
 This framework accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
-<!-- In addition to unifying seemingly disparate parts of language, this paper provides a theoretical framework for asking further questions about genericity, which we outline below. -->
+In each case our model provided strong quantitative fit to human judgements.
 
+In the rest of this discussion, we elaborate how our model relates to language understanding more generally, sketch its application to several philosophical puzzles in genericity, and situate our theory with respect to extant theories of generic language.
+
+
+
+\ndg{
+[these paragraphs were out of place here. perhaps incorporate later...]
+By precisely articulating the conditions under which generalizations are true or false, we are able to describe how an agent should update its beliefs based on that sentence. 
+Thus, in addition to providing a quantitative understanding of the phenomena of the language of generalization, formalizing this language opens up the possibility of building models that learn abstract, generalizable knowledge from language.
+xx
 We note that regressions model that take into account the referent prevalence and the distinctiveness of the feature (e.g., cue validity) do reasonable jobs at explaining some of the variance in the endorsement data.
 These kinds of model, however, do not represent bonafide theories of the semantics of generalizations; they are merely a re-description of the data.
 <!-- \ndg{this point is unclear. maybe save it for general discussion?} -->
 A theory of the semantics of a generalization must formalize the conditions under which the generalization is true or false as well as how those truth-conditions relate to endorsement. 
 That is precisely what our information-theoretic model does.
-
-<!-- The theory we present here goes beyond previous accounts in a number of useful ways. -->
-<!-- The foremost contribution of our theory is that it is accompanied by a formal model, which makes precise quantitative predictions about endorsments. -->
+xx
 The formal Bayesian model we articulate provides a clean separation of the semantics of a generalization from world knowledge.
 This formal separation is a key advancement beyond previous theoretical accounts, which have either aimed to account for context-sensitivity by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics, described below; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
 That is, we provide a route for precise quantitative influence of world knowledge on generic language by way of shared background knowledge between speakers and listeners, which at its base takes the form of a prevalence prior.
 Our communicative framework also includes a model of a listener who interprets generalization.
 Such a quantitative model makes further predictions about domain-general learning from the language of generalization, which we leave for future work. 
-In the rest of this discussion, we elaborate how our model relates to other problems in language understanding, sketch out arguments for other known philosophical puzzles in genericity, and situate our theory with respect to extant theories of genericity.
-
-
+}
 <!-- Our model formalizes a simple meaning for generalizations and investigates the structure of world knowledge that could give rise to the context-sensitivities observed in the data. -->
 
 
