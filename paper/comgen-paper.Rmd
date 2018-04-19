@@ -1110,6 +1110,7 @@ These theories fall into two broad camps: Those that appeal to the statistics of
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
 The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 has been described above.
+\ndg{actually, i think it's better to have a specific section for these conceptual theories here. can leave a but of high-level discussion of prevalence priors in relation to bayesian intuitive theories above, and then talk about details of leslie and prasada here...}
 We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
 Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
 For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
