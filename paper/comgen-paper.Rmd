@@ -979,18 +979,18 @@ This behavior is promising for constructing models of generalizations that teach
 
 ## The comparison class
 
-The probabilistic communicative model we introduce in this paper assumes shared background 
-<!-- Our model of an interpreter, or naive listener, has access to implicit  -->
-statistics of the event or property in question, represented by the prior belief distribution over the prevalence $P(p)$.
+The probabilistic communicative model we introduce in this paper assumes shared background about the statistics of an event or property in question, represented by the prior belief distribution over the prevalence $P(p)$.
 We constructed prevalence priors for a property, event, or cause by considering *other possible* categories having the property, people doing the action, or causes producing the effect.
 In Expt. 3, we empirically demonstrated the influence of other categories on endorsement of generalizations.
 Collectively, these other kinds, people, or causes form *comparison classes* against which the referent-category is evaluated.
 Thus, the prevalence prior $P(p)$ is actually a conditional distribution constructed with respect some comparison class $C$: $P(p \mid C)$.
 
 The existence of comparison classes is uncontroversial in the study of *vague* or *underspecified* language [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
-Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity of the language of generalizations explored in this paper.
+Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity of the language of generalizations highlighted in this paper.
 An important problem for comparison classes for both gradable adjectives and generalizations is that the comparison class often goes unsaid (e.g., "John is tall for a person" is often produced as just "John is tall").
-\ndg{say something about how the comparison class might be set, cite your cogsci paper, say why this paper is ok without this: we made comparison class clear to Pp in order to study remaining issues with generics.}
+Recent empirical and computational modeling work suggests that pragmatic reasoning combined with world knowledge can flexibly adjust the comparison class to appropriately suit the context [@Tessler2017].
+In this paper, we do not include such a mechanism in our model, instead we made the comparison class clear to participants when possible in order to study the remaning context-sensitivity with generics.
+<!-- \ndg{say something about how the comparison class might be set, cite your cogsci paper, say why this paper is ok without this: we made comparison class clear to Pp in order to study remaining issues with generics.} -->
 
 <!--
 [NDG: i cut this because it is unecassary speculation.]
@@ -1001,14 +1001,15 @@ Understanding the contextual influence on the construction of comparison classes
 \mht{ellen: TRUE,  I AGREE WITH YOU AND THIS IS PROBABLY OKAY.  BUT IT THINK IT WOULD BE BETTER TO SAY SOMETHING SUBSTANTIVE;  FOCUSSING ON HOW KNOWLEDGE OF THE COMPARISION CLASS SHOULD PROVIDE INSIGHTS INTO FAILURES TO COMMUNICATE SUCCESSFULLY.}
 -->
 
-Finally, the comparison classes used in our case studies were with always respect to the *category* (*other animals*, *other people*, *other possible causes*); thus, our model addresses the implicit QUD of "*what* has feature?".
-\ndg{Note QUD might not have been introduced, depending on where we move above floating paragraph..}
-Were the QUD to be reversed (e.g., "what features does the category have?"), the comparison classes would be constructed with respect to the *feature* (e.g., *other features*, *other actions*, *other effects*).
-It's long been noted that the same generalization can be used to address multiple QUDs [@KrifkaGenericBookFocus], and we posit that differences in interpretation are the result of multiple distinct comparison classes competing for influence.
-The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law."; imagine in a pedagogical context) or a feature-wise comparison class (i.e., "Lawyers care about the law *(as opposed to justice, doing what's morally right, ...)*" e.g., when said sardonically).
+Finally, the comparison classes used in our case studies were with always respect to the category (*other animals*, *other people*, *other possible causes*).
+Thus, our endorsement model assumes the goal of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud], was to address the question of "*what* has feature?".
+Were the QUD to be reversed (e.g., "what features does the category have?"), the comparison classes would be constructed with respect to the feature (e.g., *other features*, *other actions*, *other effects*).
+It has long been noted that the same generalization can be used to address multiple QUDs [@KrifkaGenericBookFocus], and we posit that differences in interpretation are the result of multiple distinct comparison classes competing for influence.
+The statement "Lawyers care about the law." can be interpreted with a category-wise comparison class (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law."; imagine a pedagogical context) or a feature-wise comparison class (i.e., "Lawyers care about the law *(as opposed to justice, doing what is morally right, ...)*" e.g., when said sardonically).
+Prosodic focus easily gates between these interpretations (e.g., "[Lawyers] care about the law" vs. "Lawyers care about [the law]").
 \ndg{mention that prosodic focus easily switches between these.}
 In this work, we focused on category-wise comparison classes purely for methodological convenience.
-Future work should investigate the factors that give rise to feature-wise interpretations of generalizations, and how the relevant comparison classes are constructed. 
+Future work should investigate the factors that give rise to feature-wise interpretations of generalizations and how the relevant comparison classes are constructed.
 
 
 
@@ -1057,29 +1058,29 @@ Future work should investigate the factors that give rise to feature-wise interp
 Perhaps the most surprising aspect of the language of generalization is how difficult it is to formalize, given how common it is in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004].
 <!-- from a formal perspective is that generic language is far from trivial to characterize.  -->
 <!-- Generalizations are common in child-directed and child-produced speech [@Gelman1998; @GelmanEtAl2004] and are believed to be central to the growth of conceptual knowledge [@Gelman2004], -->
-Generalizations are often contrasted with quantifier language (e.g., "some", "most", "all", ...), which is in fact *easier* to formalize, but more difficult for young children to acquire [@Brandone2014; @Gelman2015].
+Generalizations are often contrasted with quantifier language (e.g., "some", "most", "all", ...), which is, in fact, easier to formalize but more difficult for young children to acquire [@Brandone2014; @Gelman2015].
 <!-- If generics convey something about the probabilty of a feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...). -->
 <!-- The extreme flexibility of generic meaning (e.g., "Birds lay eggs" vs. "Birds are female") stands in stark contrast to its early emergence in development. -->
 <!-- In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge *later* in development [@Brandone2014; @Gelman2015], and are often confused for generic statements [@Leslie2012a]. -->
-This asymmetry between the simplicity of the formal theory and the age of acquisition has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) is inappropriate for generalizations  [@Leslie2008].
+This asymmetry between the simplicity of the formal theory and the age of acquisition has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) are inappropriate for generalizations [@Leslie2008].
 
 Rejecting the tools of truth-functional semantics for generalizations would be throwing the baby out with the bathwater.
-The acquisition of a threshold-based truth-functional meaning $\denote{u}(h, \theta) = \{h :h > \theta\}$ requires learning at least three distinct aspects of meaning: 
-(1) the *dimension* being described (i.e., probability $h$),
+With some reasonable assumptions about the hypothesis space of semantic meanings, the acquisition of a threshold-based truth-functional meaning $\denote{u}(p, \theta) = \{p :p > \theta\}$ requires learning at least three distinct aspects of meaning: 
+(1) the *dimension* being described (i.e., probability $p$),
 (2) the *polarity* of the relation (i.e., $>$ vs. $<$), and 
-(3) the value of the threshold (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
+(3) the value of the *threshold* (e.g., $\theta = 0$ for "some", $\theta = 0.5$ for "most").
 Upon acquiring the dimension and the polarity, a rational learner should represent uncertainty over possible thresholds $\theta$.
-Upon repeated cross-situational data, this prior could be updated towards acquiring a fixed meaning.
+Upon repeated cross-situational data with quantifiers, this prior could be updated towards acquiring a fixed meaning.
 However, for generalizations, no fixed threshold is required; the language of generalization is learned once aspects (1) and (2) are understood.
-Thus, under our framework, generalizations should not only be learned before, but also faciliate in learning, quantifiers.
+Thus, under our framework, generalizations should not only be learned before quantifiers but also faciliate the acquisition of quantifiers.
 <!-- In our model, $\theta$ is left underspecified in the semantics and is inferred in context. -->
 <!-- This informal analysis predicts that a child would first acquire the language of generalizations, and from that, carve out more precise meanings for quantified language, consistent with the developmental data. -->
 
 There is a secondary argument for why our semantics presents an easy learning problem.
 <!-- The uniform prior over the threshold $\theta$ in the truth-functional semantics (as we have assumed in our model) provides a secondary argument for why acquiring our semantics for generics should be easy. -->
-Uniform uncertainty over values in the unit interval $[0, 1]$ for threshold $\theta$ in a threshold-function (as we have assumed in our model) is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the degree itself, in this case prevalence $h$: $\int_{0}^{1} \delta_{h > \theta} \diff \theta =  h$
+Uniform uncertainty over values in the unit interval $[0, 1]$ for threshold $\theta$ in a threshold-function (as we have assumed in our model) is mathematically equivalent to a *soft semantics* wherein the degree to which the utterance is true is proportional to the degree itself, in this case prevalence $p$: $\int_{0}^{1} \delta_{p > \theta} \diff \theta = p$
 This *soft semantics* (corresponding intuitively to a meaning like "the higher the probability, the better", or simply "more is better") is perhaps the simplest quantitative semantics one could posit.
-The difficulty in acquiring the meaning of quantifiers is then a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
+The difficulty in acquiring the meaning of quantifiers, then, is a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
 We leave for future work the precise implementation of the acquisition model we sketch out here.
 
 
