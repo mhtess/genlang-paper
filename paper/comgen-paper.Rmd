@@ -1097,14 +1097,54 @@ We leave for future work the precise implementation of the acquisition model we 
 
 <!-- The alternative approach to generics is to try to rescue the notion the number of members of the category with the property (e.g., the number of robins that do indeed lay eggs). -->
 
-The present paper presents the first formal theory of genericity in language that makes accurate and precise quantitative predictions about human behavioral data. 
-A number of other theories of genericity have been proposed in the formal semantics  literature.
-<!-- We now turn to situating our account with respect to these previous theories. -->
-<!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
-These theories fall into two broad camps: Those that appeal to the statistics of the world (e.g., how many Ks have F) and those that appeal to conceptual representations (e.g., *there is something about being K which causes it to F*).
+The present paper presents the first formal theory of genericity in language that generates quantitative predictions about human behavioral data. 
+A number of other theories of genericity have been proposed in formal semantics and in psychology, which  posit different constructs or psychological mechanisms to account for the flexible truth conditions of generics.
+Thse accounts fall into two broad camps: Those that appeal to the quantification or the statistics of the world (e.g., how many Ks have F) and those that appeal to conceptual representations or abstract beliefs (e.g., *there is something about being K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
+\mht{unsure about this paragraph...}
+<!-- Not all theories are created equal, however.  -->
+Even the most influential of extant theories generally makes one or a few predictions about "different kinds" of generics, and further leave it to intuition to decide for a particular generic statement, what kind of generic it is.
+In this paper alone, our theory has made hundreds of predictions about the endorsement of individual generic statements, with high accuracy, derived from a general theory that we posit applies to all generic statements.
+In addition, previous accounts are rarely general enough to include generalizations of different semantic types (e.g., *habituals*) and deal only with generics.
+For these reasons alone, our account is novel. 
+As we describe below, it relates to extant theories in meaningful ways. 
+
+<!-- By contrast, our theory has made hundreds of predictions about individual generic statements, derived from a general theory that we posit applies to all generic statements. -->
+<!-- We now turn to situating our account with respect to these previous theories. -->
+<!-- By and large, these theories are concerned with explaining *generics* or generalizations about categories, so in keeping with the spirit of these authors, we will refer to the object of explanation, without loss of generality, as *generics*. -->
+
+
 ### Conceptual accounts
+
+Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
+
+The most influential account in psychology comes from @Leslie2008. 
+Leslie starts from the same point as our account: Generics express generalization. 
+She then turns her attention to the psychological literature on infant generalization to argue that generics tap into an innate, default mechanism that signals the child or adult to generalize the property to the kind.^[
+  Because the mechanism for understanding generics is innate, in her account, the learning puzzle (vis a vis quantifiers) immediately goes away.
+]
+Leslie describes the default generalization mechanism as having three components: the ability to (i) identify whether or not F is a *characteristic* property of K (e.g., one characteristic property for an animal would pertain to the mode of locomotion for the animal) (ii) segment *counterinstances* (Ks which do not have F) into positive and negative counterinstances (i.e., Ks which have some alternative positive property *alt F* and Ks which simply lack F, respectively)^[
+  This is a rather technical consideration used to account for the difference between "Birds lay eggs" and "Birds are female". For the latter, counterinstances (male birds) are positive because they have an alternative property (being male). For the former, counterinstances are negative because they simply lack the property (i.e., male birds do not reproduce by some other method).
+], and (iii) identify whether or not F is *striking* (e.g., can kill you; "Mosquitos carry the West Nile Virus"). 
+On this account, generics are true if only some of Ks have F if all counterinstances are negative and the property is either characteristic or striking. 
+If the property is neither characteristic or striking, then almost all Ks must have F for the generic to be true (e.g., "Barns are red").
+
+The evolutionary argument for accepting striking generics is straightforward: These are relevant properties to know about if you want to survive. 
+But there are two other factors that are confounded with striking properties that make it difficult to make a claim about strikingness *per se* leading to generic endorsement.
+The first is that striking properties are rare in the environment: Most animals do not maul children, eat swimmers, or carry malaria.
+Thus, the prevalence prior distributions of these features are hard to distinguish from properties that are just generally rare and distinctiveness (e.g., having extraordinarily beautiful feathers). 
+@Cimpian2010 (Expt. 4) can be seen as evidence for this point: In that experiment, participants show a willingness to endorse both generics about striking properties (e.g., "Lorches have dangerous feathers") and distinctive properties (e.g., "Lorches have distinctive feathers") about equally as often each other and more so than neutral properties (e.g., "Lorches have purple feathers"). 
+This increase in endorsement for striking and distinctive properties suggests that the prevalence prior $P(p)$  distributions for the two are similar. 
+Those experiments did not measure the prevalence prior distribution, but we have found in pilot work that the prior distribution over the prevalence changes to resemble that of a distinctive property when supplied information about the dangerousness of the feature.
+
+The second factor confounded with striking properties, which Leslie herself uses as motivation for their distinction, is that striking properties are projected more strongly (i.e., generalized to more instances of the category) than neutral properties.
+Interesting, this enhanced projectibility holds for both dangerous properties (e.g., people doing criminal actions) as well as neutral, statistically low-probability properties [e.g., people taller than 6'5"; @Rothbart1978, Expts. 2 & 3].
+This provides evidence for the influence of strikingness on *predictive prevalence*, which we posit is the second intermediate representation between conceptual knowledge and generic endorsements.
+
+The notion of *characteristic* properties is the same as @Prasada2006's notion of a *k-property*, which is a property that bears a *principled connection* to the kind. 
+Both @Prasada2006 and @Leslie2008 surmise that a property may qualify as characteristic if there exists an overhypothesis about that property for a relavant superordinate category [e.g., each kind of animal has a means for self locomotion; @Goodman1955; @Shipley1993].
+
 
 \mht{from above:
 Beliefs about prevalence will often be the result of conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013].
@@ -1116,7 +1156,7 @@ The truth conditions of generalizations depend only on prevalence, but prevalenc
 The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 has been described above.
 \ndg{actually, i think it's better to have a specific section for these conceptual theories here. can leave a but of high-level discussion of prevalence priors in relation to bayesian intuitive theories above, and then talk about details of leslie and prasada here...}
 We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
-Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
+
 For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
 We believe this separation provides a more unifying view of the phenomena of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
 
@@ -1189,8 +1229,6 @@ At the same time, utterances are interpreted by listeners whose beliefs about pr
 
 <!-- -- "default generalization" -- very close, the listener is doing a generalization, but not generalization based on evidence, but by reasoning about the threshold -->
 
-
-
 <!-- Generic language is the simple and ubiquitous way by which generalizations are conveyed between people. -->
 <!-- Yet the dramatic flexibility of generic language has confounded psychologists, linguists and philosophers who have tried to articulate what exactly generic statements mean.  -->
 <!-- We evaluated a theory of generic language derived from general principles of language understanding using a simple, but uncertain, basic meaning---a threshold on property prevalence. -->
@@ -1209,9 +1247,9 @@ At the same time, utterances are interpreted by listeners whose beliefs about pr
 <!-- Further, since prevalence is a probability, our model can take information conveyed with a generic and be naturally extended to make predictions about entities in the world or support explanations of events or behavior. -->
 
 
-<!-- ### Statistical accounts -->
+### Statistical accounts
 
-### Relative and absolute generics
+#### Relative and absolute generics
 
 Our underspecified threshold model has clear antecedents in other statistical accounts, most notably @Cohen1999's theory of generics as a frequency adverb (e.g., "generally").
 Cohen treats generics as comprising two qualitatively different types: *relative* and *absolute* generics.
@@ -1244,7 +1282,7 @@ Thus, there may exist a refactorization of the uncertain threshold model to a fi
 
 <!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
 
-### Generic as indexical
+#### Generic as indexical
 
 @Sterken2015 has proposed analyzing generic statements as inherently context-sensitive, analogous to *indexicals* (e.g., "this" or "I").
 Variability of endorsements is attributed by @Sterken2015 to context-sensitive "quantificational force" as well as domain-restriction [of the kind used by @Cohen1999, and many others].
@@ -1252,7 +1290,7 @@ Our uncertain-threshold semantics can be seen be a particular formalization of @
 We have not had need for employing domain restriction on the categories, though as noted above, it is a potential avenue for future development.
 <!-- Finally, how the context-sensitivity of an indexical differs from the kind of context-sensitivity with an uncertain-threshold is an important question for future research. -->
 
-### "Normal" accounts
+#### "Normal" accounts
 
 A popular alternative view under the statistical banner draws on the intuition that generics express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008]. 
 For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
@@ -1262,7 +1300,7 @@ Our theory does not directly formalize "what is normal", though we argue that a 
 <!-- We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.  -->
 <!-- Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future.  -->
 
-### Underquantification
+#### Underquantification
 
 A proposal similar to our account concerning underspecification of generics has been made in the computational linguistics literature [so-called *underquantification*; @Herbelot2011].
 In their model, generics express an explicit quantified relation, specifically either "Some", "Most", or "All".
