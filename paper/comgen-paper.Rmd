@@ -294,7 +294,7 @@ Probability is a useful representation for human generalization from observation
 If you observe several *wugs* (a novel category) that have two legs, you might infer that all wugs have two legs.
 But not all properties have such strong projectibility.
 Seeing a wug with broken wings tells you comparatively less about other wugs having broken wings [@Nisbett1983].
-Abstract, potentially domain-specific, beliefs about the projectibility of different properties can be represented by a probability distribution over the prevalence $P(p)$ [@Kemp2008].
+Abstract, potentially domain-specific, beliefs about the projectibility of different properties can be represented by a probability distribution over the prevalence $P(p)$ [@Kemp2007a].
 Bayes Rule provides the way to update one's prior beliefs with some obesrvational data $d$: $P(p \mid d) \propto P(d \mid p) \cdot P(p)$, assuming some generative process that resulted in the observed data---summarized in the likelihood $P(d \mid p)$ [@Tenenbaum2001].
 
 <!-- To do so, we look to probability, the universal currency of belief and  -->
@@ -1102,6 +1102,11 @@ A number of other theories of genericity have been proposed in formal semantics 
 Thse accounts fall into two broad camps: Those that appeal to the quantification or the statistics of the world (e.g., how many Ks have F) and those that appeal to conceptual representations or abstract beliefs (e.g., *there is something about being K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of the truth conditions of generic statements [@Carlson1995essay].^[We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.]
 
+In our account, the core meaning of generics concerns probability (the currency of belief), which in many cases may be the byproduct of rich conceptual structure. 
+We believe this separation between conceptual structure (which exists in the head) and prevalence (a quantitative metric for natural language semantics) provides a more unifying view of the phenomena of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
+By formalizing how background knowledge influences generic understanding, our model provides a path towards unifying conceptual approaches to generics with inherently statistical natural language semantics.
+<!-- At the same time, utterances are interpreted by listeners whose beliefs about prevalence result from internal models of how the world works.  -->
+
 \mht{unsure about this paragraph...}
 <!-- Not all theories are created equal, however.  -->
 Even the most influential of extant theories generally makes one or a few predictions about "different kinds" of generics, and further leave it to intuition to decide for a particular generic statement, what kind of generic it is.
@@ -1118,51 +1123,67 @@ As we describe below, it relates to extant theories in meaningful ways.
 ### Conceptual accounts
 
 Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
-
 The most influential account in psychology comes from @Leslie2008. 
-Leslie starts from the same point as our account: Generics express generalization. 
+Leslie takes the same starting point as our account: Generics express generalization. 
 She then turns her attention to the psychological literature on infant generalization to argue that generics tap into an innate, default mechanism that signals the child or adult to generalize the property to the kind.^[
   Because the mechanism for understanding generics is innate, in her account, the learning puzzle (vis a vis quantifiers) immediately goes away.
 ]
-Leslie describes the default generalization mechanism as having three components: the ability to (i) identify whether or not F is a *characteristic* property of K (e.g., one characteristic property for an animal would pertain to the mode of locomotion for the animal) (ii) segment *counterinstances* (Ks which do not have F) into positive and negative counterinstances (i.e., Ks which have some alternative positive property *alt F* and Ks which simply lack F, respectively)^[
-  This is a rather technical consideration used to account for the difference between "Birds lay eggs" and "Birds are female". For the latter, counterinstances (male birds) are positive because they have an alternative property (being male). For the former, counterinstances are negative because they simply lack the property (i.e., male birds do not reproduce by some other method).
-], and (iii) identify whether or not F is *striking* (e.g., can kill you; "Mosquitos carry the West Nile Virus"). 
-On this account, generics are true if only some of Ks have F if all counterinstances are negative and the property is either characteristic or striking. 
+Leslie describes the default generalization mechanism as having three components: the ability to (i) identify whether or not F is a *characteristic* property of K (e.g., one characteristic property for an animal would pertain to the mode of locomotion for the animal), (ii) identify whether or not F is *striking* (e.g., can kill you; "Mosquitos carry the West Nile Virus"), and (iii) segment *counterinstances* (Ks which do not have F) into positive and negative counterinstances (i.e., Ks which have some alternative positive property *alt F* and Ks which simply lack F, respectively).^[
+  This positive vs. negative counterinstance distinction is a rather technical consideration [though not without psychological foundation, see @Leslie2009 p.36] used to account for the difference between "Birds lay eggs" and "Birds are female". 
+  For the latter, counterinstances (male birds) are positive because they have an alternative property (being male). 
+  For the former, counterinstances are negative because they simply lack the property (i.e., male birds do not reproduce by some other method).
+  We will not discuss this consideration any further other than to note that we explain the difference between "Birds lay eggs" and "Birds are female" by a different mechanism but that the notion of alternative features may come into play with feature-wise comparison classes (described above).
+]
+On this account, generics are true if only some Ks have F if all counterinstances are negative and the property is either characteristic or striking. 
 If the property is neither characteristic or striking, then almost all Ks must have F for the generic to be true (e.g., "Barns are red").
 
+#### Striking generics
+
 The evolutionary argument for accepting striking generics is straightforward: These are relevant properties to know about if you want to survive. 
-But there are two other factors that are confounded with striking properties that make it difficult to make a claim about strikingness *per se* leading to generic endorsement.
+But there are two other factors that are confounded with striking properties that make it difficult to make a claim about strikingness *per se* (as opposed to beliefs about prevalence) leading to generic endorsement.
 The first is that striking properties are rare in the environment: Most animals do not maul children, eat swimmers, or carry malaria.
-Thus, the prevalence prior distributions of these features are hard to distinguish from properties that are just generally rare and distinctiveness (e.g., having extraordinarily beautiful feathers). 
+Thus, the prevalence prior distributions of these features are hard to distinguish from properties that are just generally rare and distinctiveness (e.g., having extraordinarily beautiful feathers; see also our Expt. 2a, e.g., the distributions for *steals cars* vs. *climbs mountains*). 
 @Cimpian2010 (Expt. 4) can be seen as evidence for this point: In that experiment, participants show a willingness to endorse both generics about striking properties (e.g., "Lorches have dangerous feathers") and distinctive properties (e.g., "Lorches have distinctive feathers") about equally as often each other and more so than neutral properties (e.g., "Lorches have purple feathers"). 
-This increase in endorsement for striking and distinctive properties suggests that the prevalence prior $P(p)$  distributions for the two are similar. 
-Those experiments did not measure the prevalence prior distribution, but we have found in pilot work that the prior distribution over the prevalence changes to resemble that of a distinctive property when supplied information about the dangerousness of the feature.
+This similar increase in endorsement for striking and distinctive properties suggests that the prevalence prior $P(p)$  distributions for the two are similar.
+Those experiments did not measure the prevalence prior distribution, but we have found in pilot work that the prior distribution over the prevalence changes to resemble that of a distinctive property when participants are supplied information about the dangerousness of a property.
 
-The second factor confounded with striking properties, which Leslie herself uses as motivation for their distinction, is that striking properties are projected more strongly (i.e., generalized to more instances of the category) than neutral properties.
-Interesting, this enhanced projectibility holds for both dangerous properties (e.g., people doing criminal actions) as well as neutral, statistically low-probability properties [e.g., people taller than 6'5"; @Rothbart1978, Expts. 2 & 3].
+The second factor confounded with striking properties Leslie herself cites as motivation for their distinction.
+This factor is that striking properties are projected more strongly (i.e., generalized to more instances of the category) than neutral properties.
+Interesting, this enhanced projectibility holds for both dangerous properties (e.g., people doing criminal actions) as well as neutral but distinctive properties [e.g., people taller than 6'5"; @Rothbart1978, Expts. 2 & 3].
 This provides evidence for the influence of strikingness on *predictive prevalence*, which we posit is the second intermediate representation between conceptual knowledge and generic endorsements.
+Thus, strikingness may influence endorsement by either (i) altering the prevalence priors or (ii) influencing speaker's predictions about future prevalence; we do not know of any evidence that shows an effect of strikingness above and beyond these mediating factors.
 
-The notion of *characteristic* properties is the same as @Prasada2006's notion of a *k-property*, which is a property that bears a *principled connection* to the kind. 
-Both @Prasada2006 and @Leslie2008 surmise that a property may qualify as characteristic if there exists an overhypothesis about that property for a relavant superordinate category [e.g., each kind of animal has a means for self locomotion; @Goodman1955; @Shipley1993].
+#### Principled and statistical connections
+
+@Leslie2008's notion of *characteristic* properties is similar to @Prasada2006's notion of a *k-property* (*k* for kind), which is a property that bears a *principled connection* to the kind. 
+A property bears a principled connection to the kind if a generic sentence of the following form is endorsed:
+"Ks, by virtue of being the kind of things that they are, F" (e.g., "Dogs, by virture of being the kind of things that they are, are four-legged"); if such a sentence is not endorsed (e.g., "Barns, by virture of being the kind of things that they are, are red") while the simple bare plural is endorsed (e.g., "Barns are red"), then the property is thought to bear a *statistical connection* to the kind (a so-called *t-property*, for emphasizing that it is the *tokens* having the property which matters for generic endorsement).
+@Prasada2013 showed that different kinds of generic statements (e.g., characteristic properties displayed by a minority of the kind, striking properties, etc., see our Expt. 1) support different kinds of inferences (e.g., *by virtue of*, *normative*: "Dogs are supposed to have four legs", *aspect*: "Having four legs is one aspect of being a dog"), and there is some evidence that the impact of principled connections on interpretations is separate from their influence on beliefs about prevalence [@Prasada2006]. 
+
+Where do principled connections come from? 
+Both @Prasada2006 and @Leslie2008 surmise that a property may qualify as characteristic (or having a principled connection) if there exists an overhypothesis about that property for a relavant superordinate category [e.g., each kind of animal has a means for self locomotion; @Goodman1955; @Shipley1993].
+Overhypotheses are naturally formalized as hierarchical Bayesian models, wherein a learner acquires knowledge at multiple levels of abstraction [e.g., learning from the same event about a particular dog, dogs in general, and animals in general; @Kemp2007a].
+Incorporating a hierarchical model of kinds and properties into our model of generic language is an intruiging direction towards understanding the computational underpinnings of principled connections. 
+Furthermore, we find it an exciting possibility that different conceptual structures give rise to roughly the same distributions on prevalence, while nonetheless listeners draw different inferences from generic statements [a la the differences observed for "prevalence-matched items" in @Prasada2006].
+Such a result would not contradict our model, but which does require further elaboration of how those different conceptual structures relate to beliefs about prevalence. 
 
 
-\mht{from above:
-Beliefs about prevalence will often be the result of conceptual knowledge about kinds and properties [@Leslie2007; @Leslie2008; @Prasada2013].
-Such knowledge is not necessary, however: Relevant background knowledge may be merely correlational in nature.
-The prevalence prior is a common representation that provides the glue between conceptual and statistical knowledge and natural language semantics.
-The truth conditions of generalizations depend only on prevalence, but prevalence depends upon knowledge.
-}
+<!-- , and thus, even though the generic can imply the same prevalence, listeners have overall different inferences (e.g., about the *virtue of* sentence). -->
 
-The relation of our account to the conceptual accounts of @Leslie2008 and @Prasada2012 has been described above.
-\ndg{actually, i think it's better to have a specific section for these conceptual theories here. can leave a but of high-level discussion of prevalence priors in relation to bayesian intuitive theories above, and then talk about details of leslie and prasada here...}
-We reiterate that the key point of divergence between the conceptual accounts and our view concerns the core, semantic meaning of the language of generalization.
 
-For us, the semantics concerns a probability, which is the byproduct of a conceptual structure, but it is not the conceptual structure itself. 
-We believe this separation provides a more unifying view of the phenomena of generics, giving a single metric as the basic currency for the language of generalizations: the metric of probability. 
+<!-- The focus of this other empirical work is about highlighting the differences among generics, while our focus is to highlight what is common. -->
 
-In addition, our model provides a path towards unifying conceptual and statistical approaches to generics. 
-Our semantic representation is inherently statistical: Natural language semantics only gets to operate on prevalence. 
-At the same time, utterances are interpreted by listeners whose beliefs about prevalence result from internal models of how the world works. 
+
+<!-- Rich, structural mental representations can be formalized in probabilistic models, which can be used to derive quantitative predictions about inferences derived from that knowledge [@Tenenbaum2011].  -->
+<!-- For example, @Kemp2008 introduced a model for learning different kinds of structural relationships between objects and properties (e.g., taxonomies, social cliques, dominance relations). -->
+<!-- @Goodmanconcepts argue that concepts and intuitive theories can be constructed from elementary random primitives using insights from *probabilistic programmming*.  -->
+
+<!-- our account is really about what is common among generics, and this is about what is differnet -->
+<!-- this is an interesting, albeit crude, result. if true, then this is really about different conceptual structures giving rise to roughly the same distributions on prevalence. even though the generic can imply the same prevalence, you have overall different inferences. our account is really about what is common among generics, and this is about what is differnet. -->
+
+
+
+
 
 
 <!-- ### Conceptual accounts -->
