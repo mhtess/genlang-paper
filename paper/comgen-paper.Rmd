@@ -823,7 +823,7 @@ In the rest of this discussion, we elaborate how our model relates to language u
 
 <!-- We note that regressions model that take into account the referent prevalence and the distinctiveness of the feature (e.g., cue validity) do reasonable jobs at explaining some of the variance in the endorsement data. -->
 <!-- These kinds of model, however, do not represent bonafide theories of the semantics of generalizations; they are merely a re-description of the data. -->
-<!-- <!-- \ndg{this point is unclear. maybe save it for general discussion?} --> -->
+<!-- <!-- \ndg{this point is unclear. maybe save it for general discussion?} -->
 <!-- A theory of the semantics of a generalization must formalize the conditions under which the generalization is true or false as well as how those truth-conditions relate to endorsement.  -->
 <!-- That is precisely what our information-theoretic model does. -->
 <!-- xx -->
