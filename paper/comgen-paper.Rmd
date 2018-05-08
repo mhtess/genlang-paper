@@ -787,9 +787,9 @@ We do this by both measuring and manipulating background knowledge and referent-
 
 # General Discussion
 
-The human species is remarkable not only because we can extract useful generalizations from observations of the world, but because we can convey these generalizations to each other succinctly in language.
+The human species is remarkable not only because we can extract useful generalizations from observations of the world, but because we can convey these generalizations to eachother succinctly using language.
 Generalizations expressed in language (e.g., "John runs.", "Dogs are friendly.", "Fire causes smoke.") are a premier example of how simple statements---statements understood by even the youngest language users---can convey subtle meanings and display complex sensitivities to context.
-We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalized in terms of predictive probability.
+We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalized in terms of predictive probability or \emph{prevalence}.
 Critically, deploying this simple semantics within a formal framework for pragmatic language understanding leads to complex interactions with background knowledge.
 <!--
 formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
@@ -797,23 +797,41 @@ As a formal theory of the language of generalization, our framework unifies larg
 
 Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
 -->
-We tested this theory by exploring its implications for truth judgments, operationalized as a speaker's decision about whether it would be useful to utter the generalization. 
+We tested this theory by exploring its implications for truth judgments, modeled as a speaker's decision about whether it would be useful to utter the generalization. 
 Endorsement, we have shown, depends in systematic ways on the listener's prior beliefs about prevalence.
 This framework accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
-In each case, our model provided strong quantitative fit to human judgements while other models fall short.
+In each case, our model provided a strong quantitative fit to human judgements while other models fall short.
 
 Ours is a psychological model that leverages the insights of truth-functional semantics to articulate how an agent should update their beliefs based on a generic sentence. 
 The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold-function) from world knowledge (represented by the prevalence prior).
 Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics, described below; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
 Here, we demonstrate how the context-sensitivity of generics can emerges via the interplay of a stable (but vague) semantics and diverse background knowledge. 
 
+<!--
+NDG: i cut this from below...
+This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
+These predictive probabilities are not observable frequencies, the object of other statistical approaches to generics, but mental representations.
+Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
+Predictions about the presence of a feature can be the result of beliefs about internal causes of the feature [e.g., in an essentialist view of natural kinds; @Gelman2003], generative kind representations [@Prasada2009], or merely correlational happenstance.
+What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability or *prevalence*.
+-->
+
+Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
+Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding explicit probabilities expressed using *numerical language*, a historically quite recent innovation [cf., @Levinson1995]. 
+Rather than conveying probabilities explicitly, generalizations convey them implicitly.
+In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to utterance "John is tall".
+The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
+Indeed, young children are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the numerical language of probability [@Xu2008; @xu2009statistical].
+
+<!--
 \mht{unsure about this paragraph... a version of it may be better for the cover letter (if at all)}
-<!-- Not all theories are created equal, however.  -->
+\ndg{yeah, this is unecessarily inflamatory. ax it.}
 Even the most influential of extant theories generally makes one or a few predictions about "different kinds" of generics, and leave it to intuition to decide for a particular generic statement, what kind of generic it is.
 In this paper alone, our theory has made hundreds of predictions about the endorsement of individual generic statements, with high accuracy, derived from a general theory that we posit applies to all generic statements.
 In addition, previous accounts are rarely general enough to include generalizations of different semantic types (e.g., *habituals*) and deal only with generics.
 For these reasons alone, our account is novel. 
+-->
 
 In the rest of this discussion, we elaborate how our model relates to language understanding more generally, sketch its application to several philosophical puzzles in genericity, and situate our theory with respect to extant theories of generic language.
 
@@ -879,22 +897,11 @@ In the rest of this discussion, we elaborate how our model relates to language u
 <!-- Recent work suggests that utterances that fail to refer to specific entities or events could pragmatically imply generic meaning [@Crone2016cogsci]. -->
 <!-- Incorporating these insights about generic identification into an information-theoretic, communicative perspective is a natural extension of this work. -->
 
-## Communicating predictive probabilities
 
-This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
-These predictive probabilities are not observable frequencies, the object of other statistical approaches to generics, but mental representations.
-Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
-Predictions about the presence of a feature can be the result of beliefs about internal causes of the feature [e.g., in an essentialist view of natural kinds; @Gelman2003], generative kind representations [@Prasada2009], or merely correlational happenstance.
-What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability or *prevalence*.
+
 
 <!-- Expts. 2c \& 2d that showed using participants' *predictions* about the future as the object of communication in our formal model perfectly tracked habitual endorsement, when the present frequency would make the wrong prediction. -->
 
-Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
-Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding explicit probabilities expressed using *numerical language*, a historically quite recent innovation [cf., @Levinson1995]. 
-Rather than conveying probabilities explicitly, generalizations convey them implicitly.
-In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to utterance "John is tall".
-The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
-Indeed, young children are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the numerical language of probability [@Xu2008; @xu2009statistical].
 
 <!-- One might also question the feature of our computational model that the speaker is explicitly trying to communicate $h$, her subjective probability.  -->
 <!-- We note that if the prevalence prior is structured, as we have argued throughout, then the Question Under Discussion that our speaker model is addressing can also be formalized to be "What component of the prior does the referent-category belong?". This model with a modified QUD makes almost identical quantitative predictions as the simple model without this abstract QUD.  -->
@@ -931,17 +938,15 @@ Indeed, young children are actually quite good with reasoning about probabilitie
 
 ## Prevalence priors and conceptual knowledge
 
-<!-- \ndg{this section is pretty critical, and needs work. or posisbly much of it belongs in the discussion of others sematic theoris?} -->
-
 Our theory assumes that listeners and speakers share relevant background knowledge (at least in the form of a *prevalence prior*) against which generalizations are interpreted.
 In our modeling work, we found that prevalence prior distributions were well-modeled by a mixture-model with two mixture components.
 Such a prior distribution implies categorical distinctions between different kinds of categories, perhaps by virtue of having (or lacking) certain causal mechanisms that can bring about the target feature.
-Actual conceptual knowledge against which generalizations are interpreted is most likely richer than our simple two-component prevalence distributions.
+Actual conceptual knowledge, needed to interpret generalizations, is most likely richer than our simple two-component prevalence distributions.
 
 Conceptual structure, including higher-order abstractions, can be formalized in probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts].
 We believe such probabilistic concept representations can be adopted as a formal analog to intuitive theories of natural kinds [@Gelman2003; @Keil1992].
 We do not assume a particular view of natural kinds in our model, but note that viewing natural kinds as richly structured categories with clusters of non-obvious properties is compatible with our information-theoretic communicative model. 
-The important commonality among different domain-specific background theories is that they each have a statistical layer to them (i.e., they each support prediction via beliefs about prevalence), which language interfaces with via the tools of truth-functional semantics.
+The important commonality among different domain-specific background theories is that they each have a statistical aspect (supporting prediction via beliefs about prevalence), which language can interface with.
 Thus, our theory provides a separation between conceptual knowledge and the semantics of generalizations; the interface between the two is predictive probability or *prevalence*. 
 
 The fact that conceptual knowledge is not a part of our formal semantics does not imply that such knowledge is peripheral to communicating with generalizations.
@@ -949,7 +954,7 @@ Not only does conceptual knowledge influence interpretation via prevalence prior
 Like other probabilistic pragmatic models, our model distinguishes the semantic contribution of an utterance (what enters into the truth-functional semantics) from a speaker's utility in producing that utterance. 
 For simplicity, the model presented here assumes these two are the same: the speaker's utility comes from conveying prevalence. 
 However, the model makes nearly identical predictions if the speaker's utility comes from communicating the abstract parameters of the prevalence distributions [e.g., if the speaker intends to convey that "K is the kind of thing that Fs"; cf., @Prasada2006].
-This result is promising for constructing models of speakers with the goal of teaching about the abstract relations between kinds and properties.
+This observation may prove useful for constructing models of teachers, whose goals include conveying abstract relations between kinds and properties.
 
 <!-- The model, however, has the flexibility to address richer communicative goals [also known as the *Question Under Discussion* or QUD; @roberts1996qud]. -->
 
@@ -1001,11 +1006,10 @@ Collectively, these other kinds, people, or causes form *comparison classes* aga
 Thus, the prevalence prior $P(p)$ is actually a conditional distribution constructed with respect some comparison class $C$: $P(p \mid C)$.
 
 The existence of comparison classes is uncontroversial in the study of *vague* or *underspecified* language [e.g., gradable adjectives like *tall* and vague quantifiers like *many*; @Bale2011; @Solt2009].
-Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity of the language of generalizations highlighted in this paper.
+Adult judgments of the felicity of gradable adjectives like *tall* or *dark* depend upon fine-grained details of the statistics of the comparison class [@Qing2014; @Schmidt2009; @Solt2012] in ways directly analogous to the context-sensitivity highlighted here for the language of generalizations.
 An important problem for comparison classes for both gradable adjectives and generalizations is that the comparison class often goes unsaid (e.g., "John is tall for a person" is often produced as just "John is tall"; "Robins lay eggs relative to other animals" is just "Robins lay eggs").
-Recent empirical and computational modeling work suggests that pragmatic reasoning combined with world knowledge can flexibly adjust the comparison class to appropriately suit the utterance in context [@Tessler2017].
-In this paper, we do not include such a mechanism in our model; instead, when possible, we make the comparison class clear to participants in order to study the remaning context-sensitivity with generics.
-<!-- \ndg{say something about how the comparison class might be set, cite your cogsci paper, say why this paper is ok without this: we made comparison class clear to Pp in order to study remaining issues with generics.} -->
+Recent empirical and computational modeling work suggests that pragmatic reasoning combined with world knowledge can flexibly adjust the comparison class to appropriately suit the context [@Tessler2017].
+In this paper, we do not include such a mechanism in our model; instead made the comparison class clear to participants in order to study the remaning context-sensitivity of generics.
 
 <!--
 [NDG: i cut this because it is unecassary speculation.]
@@ -1016,14 +1020,15 @@ Understanding the contextual influence on the construction of comparison classes
 \mht{ellen: TRUE,  I AGREE WITH YOU AND THIS IS PROBABLY OKAY.  BUT IT THINK IT WOULD BE BETTER TO SAY SOMETHING SUBSTANTIVE;  FOCUSSING ON HOW KNOWLEDGE OF THE COMPARISION CLASS SHOULD PROVIDE INSIGHTS INTO FAILURES TO COMMUNICATE SUCCESSFULLY.}
 -->
 
-Finally, the comparison classes used in our case studies were constructed with respect to the category (*other animals*, *other people*, *other possible causes*).
-Thus, our endorsement model assumes the goal of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud], was to address the question of "*what* has feature?".
+The comparison classes used in our case studies were constructed with respect to the category (*other animals*, *other people*, *other possible causes*).
+Thus, our endorsement model assumes that the goal of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud], was to address the question of "*what* has this feature?".
 Were the QUD to be reversed (e.g., "what features does the category have?"), the comparison classes would be constructed with respect to the feature (e.g., *other features*, *other actions*, *other effects*).
 It has long been noted that the same generalization can be used to address multiple QUDs [@KrifkaGenericBookFocus], and we posit that differences in interpretation are the result of multiple distinct comparison classes competing for influence.
-Prosodic focus can gate between different interpretations: "*Lawyers* care about the law." suggests a category-wise comparison class perhaps in a pedagogical context (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law.") while "Lawyers care about *the law*" suggests a feature-wise comparison class perhaps produced by a sardonic speaker (i.e., "Lawyers care about the law *(as opposed to justice, doing what is morally right, ...)*").
-Pragmatic reasoning is likely useful as well [cf., @Declerck1986; @Tessler2017].
+Prosodic focus can change the interpretation: "*Lawyers* care about the law." suggests a category-wise comparison class perhaps in a pedagogical context (i.e., "Lawyers *(as opposed to doctors, firefighters, ...)* care about the law.") while "Lawyers care about *the law*" suggests a feature-wise comparison class perhaps produced by a sardonic speaker (i.e., "Lawyers care about the law *(as opposed to justice, doing what is morally right, ...)*").
+Pragmatic reasoning is likely relevant here as well [cf., @Declerck1986; @Tessler2017].
 In this work, we focused on category-wise comparison classes purely for methodological convenience.
-Future work should investigate the factors that give rise to feature-wise interpretations of generalizations and how the relevant comparison classes are constructed.
+Future work should investigate the factors that give rise to feature-wise interpretations of generalizations, how the relevant comparison classes are constructed, and how these inferences interact with threshold inference.
+
 
 <!-- Thus, we conclude generic, habitual, and causal language can be seen as a special case of *vague language*.  -->
 <!-- The construction of a comparison class adds another layer of flexibility into the use of generalizations in language. -->
@@ -1073,7 +1078,7 @@ Generics are often contrasted with quantifier language (e.g., "some", "most", "a
 <!-- If generics convey something about the probabilty of a feature, we would expect them to be in some way comparable to quantifier statments (e.g., "some", "most", "all", ...). -->
 <!-- The extreme flexibility of generic meaning (e.g., "Birds lay eggs" vs. "Birds are female") stands in stark contrast to its early emergence in development. -->
 <!-- In fact, quantified statements, whose formal meaning is much more straight-forward (e.g., "Some" means more than zero), emerge *later* in development [@Brandone2014; @Gelman2015], and are often confused for generic statements [@Leslie2012a]. -->
-This asymmetry between the simplicity of the formal theory and the age of acquisition has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., a truth-functional threshold) are inappropriate for generics [@Leslie2008].
+This asymmetry between the simplicity of the formal theory and the age of acquisition has led some to conclude that the normal tools for describing the semantics of quantified utterances (i.e., truth-functional notions) are inappropriate for generics [@Leslie2008].
 
 Rejecting the tools of truth-functional semantics for generalizations would be throwing the baby out with the bathwater.
 With some reasonable assumptions about the hypothesis space of semantic meanings, the acquisition of a threshold-based truth-functional meaning $\denote{u}(p, \theta) = \{p :p > \theta\}$ requires learning three distinct aspects of meaning: 
@@ -1093,7 +1098,7 @@ We have assumed the truth functional threshold $\theta$ comes from a uniform dis
 The model for generic interpretation (Eq. \ref{eq:L0}) then becomes: $Lit(p \mid u) \propto p \cdot P(p)$
 This *soft semantics* (corresponding intuitively to a meaning like "the higher the probability, the better", or simply "more is better") is perhaps the simplest quantitative semantics one could posit.
 The difficulty in acquiring the meaning of quantifiers, then, is a difficulty in recognizing a fixed-threshold semantics as a special case of this *more is better* semantics.
-We leave for future work the precise implementation of the acquisition model sketched out here.
+We leave for future work the precise implementation of such an acquisition model.
 
 ## Relationship to other semantic theories
 
