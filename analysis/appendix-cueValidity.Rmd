@@ -1,0 +1,482 @@
+---
+title: "Analysis for cue validity appendix"
+output: html_notebook
+---
+
+```{r echo = F}
+library(tidyboot)
+library(tidyverse)
+library(ggthemes)
+library(jsonlite)
+library(rwebppl)
+theme_set(theme_few())
+project.path <- "../"
+data.path <- "data/generics/endorsement/"
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+```
+
+
+```{r directQuestion, echo = F}
+d.cv.dq <- read.csv(paste(project.path, data.path, "cue-validity-1-trials.csv", sep = ""))
+
+diagnostic.props <- data.frame(
+  item = c("kangaroo has a pouch", "lion has a mane", 
+           "mosquito carries malaria", "tick carries Lyme disease"),
+  type = "diagnostic"
+)
+
+undiagnostic.props <- data.frame(
+  item = c("kangaroo is juvenile", "lion is male", "robin is female", "leopard is full-grown"),
+  type = "undiagnostic"
+)
+
+false.props <- data.frame(
+  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
+  type = "false"
+)
+
+target.items <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
+
+d.cv.targets <- left_join(
+  d.cv.dq %>%
+    mutate(property = gsub("&quotechar", "'", property), 
+         item = paste(category, property)),
+  target.items) %>%
+  filter(!is.na(type)) %>%
+  mutate(type = factor(type, levels = c("diagnostic", "undiagnostic", "false")))
+
+d.cv.summary <- d.cv.targets %>%
+  group_by(item, type) %>%
+  tidyboot_mean(column = response)
+
+
+# ggplot(d.cv.summary, aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
+#   geom_bar(stat = 'identity', position = position_dodge())+
+#   geom_errorbar(position = position_dodge())+
+#   facet_wrap(~type, scales = 'free')+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   theme(axis.text.x = element_text(angle = 90))+
+#   xlab("")+
+#   ylab("Probability rating of cue validity")+
+#   ggtitle("Direct question paradigm")
+
+```
+
+```{r freeProduction, echo = F}
+d.cv.fp <- read.csv(paste(project.path, 
+                          data.path, "cue-validity-2-freeProduction-trials-n100.csv", sep = ""))
+
+mosquito.mispellings <- c("mosqu", "mesqu", "misqu", "mosiq")
+
+d.cv.fp <- left_join(
+  d.cv.fp %>%
+ # rename(property = category) %>%
+  mutate(response = tolower(response),
+         response = gsub(" ", "", response),
+         response = ifelse(substr(response, 1, 5) %in% mosquito.mispellings, "mosquito", response),
+         response = ifelse(response == "deertick", "tick", response),
+         response = ifelse(substrRight(response, 1) == "s",
+                           substr(response, 1, nchar(response)-1), response),
+         property = gsub("&quotechar", "'", property),
+         item = paste(response, property)),
+    target.items)
+
+d.cv.fp.summary <- left_join(
+  target.items,
+  d.cv.fp %>%
+    rename(category = response) %>%
+    group_by(property) %>%
+    mutate(n = n()) %>%
+    filter(!(is.na(type))) %>%
+    group_by(category, property, item) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials)
+  ) %>%
+  mutate(prop = ifelse(is.na(prop), 0.01, prop)) %>%
+  mutate(type = factor(type, levels = c("diagnostic", "undiagnostic", "false")))
+
+
+
+d.cv.bootstrapped <- data.frame()
+resample_n <- length(levels(factor(d.cv.fp$workerid)))
+for (i in 1:1000){
+  
+  d.cv.bsample <-left_join(
+    target.items,
+    d.cv.fp %>% 
+    select(workerid, property, response) %>% 
+    spread(property, response) %>% 
+    sample_n(resample_n, replace = TRUE) %>%
+    gather(property, category, -workerid) %>% 
+    group_by(property) %>%
+    mutate(n = n(),
+           item = paste(category, property))
+    ) %>%
+    group_by(category, property, item, type) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials,
+              prop = ifelse(is.na(prop), 0.01, prop),
+              iteration = i)
+  
+  d.cv.bootstrapped <- bind_rows(d.cv.bootstrapped, d.cv.bsample)
+}
+
+empiricalLower = function(dist){
+  xi <- quantile(dist, 0.025)
+  return (xi[["2.5%"]])
+}
+empiricalUpper = function(dist){
+  xi <- quantile(dist, 0.975)
+  return (xi[["97.5%"]])
+}
+empiricalMean = function(dist){
+  xi <- quantile(dist, 0.5)
+  return (xi[["50%"]])
+}
+
+
+d.cv.fp.summary <- d.cv.bootstrapped %>%
+      group_by(item, type) %>%
+      summarize(mean = empiricalMean(prop),
+                ci_lower = empiricalLower(prop),
+                ci_upper = empiricalUpper(prop)) %>%
+  mutate(
+    ci_lower = ifelse(is.na(mean), 0.01, ci_lower),
+    ci_upper = ifelse(is.na(mean), 0.01, ci_upper),
+    mean = ifelse(is.na(mean), 0.01, mean)
+  )
+
+d.cv.bothtasks <- bind_rows(
+  d.cv.summary %>% mutate(task = 'direct question'),
+  d.cv.fp.summary %>% mutate(task = 'free production')
+)
+
+theoretical.cv <- data.frame(
+  type = c( "false", "undiagnostic","diagnostic"),
+  cv = c(0.05, 0.05, 0.95)
+)
+
+```
+
+```{r}
+cv.bothquestions.bars <- d.cv.bothtasks %>%
+  ungroup() %>%
+  mutate(type = factor(type, levels = c( "false", "undiagnostic","diagnostic"))) %>%
+  ggplot(., aes ( x = item, y = mean, ymin = ci_lower, ymax = ci_upper))+
+  geom_bar(stat = 'identity', position = position_dodge(0.5),
+           width = 0.5, color = 'black', fill = 'white')+
+  geom_errorbar(position = position_dodge(0.5), width = 0.3)+
+  facet_grid(task~type, scales = 'free')+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  geom_hline(data = theoretical.cv, aes(yintercept = cv), lty = 2)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        strip.text.y = element_text(angle = 0))+
+  xlab("")+
+  ylab("Cue validity")+
+  guides(color = F)
+```
+
+```{r dq.histogram}
+dq.histograms <- ggplot(d.cv.targets %>%
+         filter(item %in% undiagnostic.props$item), aes( x = response ))+
+  geom_histogram() + 
+  facet_wrap(~item, nrow = 2) + 
+  scale_x_continuous(breaks = c(0, 1))+
+  scale_y_continuous(breaks = c(0, 10))+
+  xlab("Direct question response")+
+  ylab("Number of responses")
+```
+
+```{r}
+diagnostic.props <- data.frame(
+  item = c("kangaroo has a pouch", "lion has a mane", 
+           "mosquito carries malaria", "tick carries Lyme disease"),
+  type = "diagnostic"
+)
+
+undiagnostic.props <- data.frame(
+  item = c("leopard is juvenile", "lion is male", "robin is female", "swan is full-grown"),
+  type = "undiagnostic"
+)
+
+false.props <- data.frame(
+  item = c("leopard has wings", "kangaroo has spots", "tiger has a pouch", "shark has a mane"),
+  type = "false"
+)
+
+target.items2 <- bind_rows(diagnostic.props, undiagnostic.props, false.props)
+```
+
+```{r cv-fp-data-analyzeAll, cache = T}
+d.target.items <- fromJSON(paste(project.path, "data/generics/endorsement/", "originalStims.json", sep = "")) %>%
+  mutate(
+    property = gsub("'", "", property),
+    Property = gsub("'", "", Property),
+    sentence = paste(Category, Property),
+    item = paste(category, property))
+
+d.cv.bootstrapped.all <- data.frame()
+resample_n <- length(levels(factor(d.cv.fp$workerid)))
+for (i in 1:1000){
+  
+  d.cv.bsample <- d.cv.fp %>% 
+    select(workerid, property, response) %>% 
+    spread(property, response) %>% 
+    sample_n(resample_n, replace = TRUE) %>%
+    gather(property, category, -workerid) %>% 
+        group_by(property) %>%
+    mutate(n = n(),
+           item = paste(category, property)) %>%
+    filter(item %in% d.target.items$item) %>%
+    group_by(category, property) %>%
+    summarize(mentions = n(),
+              trials = mean(n), # mean(n) == n, because it's just the number of subjects
+              prop = mentions / trials,
+              prop = ifelse(is.na(prop), 0.01, prop),
+              iteration = i)
+  
+  d.cv.bootstrapped.all <- bind_rows(d.cv.bootstrapped.all, d.cv.bsample)
+}
+
+d.gen.cv.all.summary <- left_join(
+    d.target.items %>% select(-sentence),
+    d.cv.bootstrapped.all %>%
+      group_by(category, property) %>%
+      summarize(cv_mean = empiricalMean(prop),
+                cv_ci_lower = empiricalLower(prop),
+                cv_ci_upper = empiricalUpper(prop))
+) %>%
+  mutate(
+    cv_ci_lower = ifelse(is.na(cv_mean), 0.01, cv_ci_lower),
+    cv_ci_upper = ifelse(is.na(cv_mean), 0.01, cv_ci_upper),
+    cv_mean = ifelse(is.na(cv_mean), 0.01, cv_mean)
+  )
+
+```
+
+```{r cuevalidity-model-pk}
+wp.pkg.path <- paste(project.path, "models/generics/node_modules/utils/", sep = "")
+
+
+cueValidityModel1 <- '
+var cueValidity = function(){
+  var kind = uniformDraw(data.prior);
+  observe(Bernoulli({p: kind.prevalence/100}), true)
+  return kind.Category == data.kind[0]
+}
+
+expectation(Infer({model: cueValidity}))
+'
+
+
+d.prev <- read.csv(paste(project.path, "data/generics/endorsement/",
+                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+
+
+d.gen.endorse.priors <- read.csv(paste(project.path, 
+                                       "data/generics/endorsement/",
+                                       "naturalGenerics-prior-trials-n57.csv", sep = ""))
+gen.endorse.properties <- levels(d.gen.endorse.priors$Property)
+
+
+wp.cueValidity <- data.frame()
+for (p in gen.endorse.properties){
+  categories <- levels(factor(filter(d.gen.cv.all.summary, Property == p)$Category))
+  prevPriorData = d.gen.endorse.priors %>% filter(Property == p)
+  
+  for (catg in categories){
+
+    dataToPass <- list(
+      prior = prevPriorData,
+      kind = catg
+    )
+    
+    wp.rs <- webppl(cueValidityModel1, 
+       data_var = "data",
+       data = dataToPass)
+    
+    wp.cueValidity <- bind_rows(wp.cueValidity, 
+                                data.frame(Category = catg,
+                                           Property = p,
+                                           cv = wp.rs))
+    
+  }
+  #print(p)
+}
+# save(wp.cueValidity, file =
+#        paste(project.path, model.path,
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+# load(file = 
+#        paste(project.path, model.path, 
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+```
+
+```{r}
+md.fp <- left_join(left_join(
+  d.gen.cv.all.summary,
+  wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
+  #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
+), target.items2) %>%
+  mutate(type = ifelse(is.na(type), "other", type),
+           type = factor(type, levels = c("diagnostic", "undiagnostic", "false", "other"),
+                       labels = c("diagnostic", "undiagnostic", "false", "other")))
+
+fill.colors <- RColorBrewer::brewer.pal(3, "Set1")
+
+# ggplot(md.fp, aes (x = prev_prior_derived_cv, y = cv_mean, ymin = cv_ci_lower, ymax = cv_ci_upper,
+#                    color = type))+
+#   #scale_alpha_manual(values = c(1,1,1,0.5))+
+#   geom_errorbar(alpha = 0.4)+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   geom_point(data = md.fp %>% filter(type == "other"), size = 2)+
+#   geom_point(data = md.fp %>% filter(!(type == "other")), size = 2)+
+#   coord_fixed()+
+#   #scale_color_solarized()+
+#   scale_color_manual(values = c(fill.colors, "grey8"))+
+#   xlab("Prevalence Prior Derived Cue Validity")+
+#   ylab("Free Production Measured Cue Validity")+
+#   theme(legend.title = element_blank())
+
+r2.fp <- compute_r2(md.fp, "cv_mean", "prev_prior_derived_cv")
+mse.fp <- compute_mse(md.fp, "cv_mean", "prev_prior_derived_cv")
+n.fp <- length(md.fp$item)
+
+
+md.fp.desid <- md.fp %>%
+  filter(item %in% target.items2$item)
+
+r2.fp.desid <- compute_r2(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+mse.fp.desid <- compute_mse(md.fp.desid, "cv_mean", "prev_prior_derived_cv")
+n.fp.desid <- length(md.fp.desid$item)
+```
+
+```{r}
+d.cv.dq.all <- d.cv.dq %>%
+  mutate(property = gsub("&quotechar", "", property), 
+         item = paste(category, property)) %>%
+  group_by(category, property) %>%
+  tidyboot_mean(column = response)
+
+md.dq <-  left_join( left_join(
+    left_join(
+    d.gen.cv.all.summary %>% select(Category, Property, category, property, item),
+    d.cv.dq.all),
+    #wp.cueValidity.uniform %>% rename(prev_prior_derived_cv = cv)
+    wp.cueValidity %>% rename(prev_prior_derived_cv = cv)
+  ), target.items2) %>%
+  mutate(type = ifelse(is.na(type), "other", type),
+           type = factor(type, levels = c("diagnostic", "undiagnostic", "false", "other"),
+                       labels = c("diagnostic", "undiagnostic", "false", "other")))
+
+
+# ggplot(md.dq, aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
+#                      color = type))+
+#   geom_errorbar(alpha = 0.4)+
+#   scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+#   geom_point(data = md.dq %>% filter(type == "other"), size = 2)+
+#   geom_point(data = md.dq %>% filter(!(type == "other")), size = 2)+
+#   coord_fixed()+
+#   #scale_color_solarized()+
+#   scale_color_manual(values = c(fill.colors, "grey8"))+
+#   xlab("Prevalence Prior Derived Cue Validity")+
+#   ylab("Direct Question Measured Cue Validity")+
+#   theme(legend.title = element_blank())
+# 
+#   
+r2.dq <- compute_r2(md.dq, "mean", "prev_prior_derived_cv")
+mse.dq <- compute_mse(md.dq, "mean", "prev_prior_derived_cv")
+n.dq <- length(md.dq$item)
+
+md.dq.desid <- md.dq %>%
+  filter(item %in% target.items2$item)
+
+r2.dq.desid <- compute_r2(md.dq.desid, "mean", "prev_prior_derived_cv")
+mse.dq.desid <- compute_mse(md.dq.desid, "mean", "prev_prior_derived_cv")
+n.dq.desid <- length(md.dq.desid$item)
+
+prevprior.cv.scatters <- bind_rows(
+  md.fp %>%
+    rename(mean = cv_mean, ci_lower = cv_ci_lower, ci_upper = cv_ci_upper) %>%
+    mutate(src = "Free production"),
+  md.dq %>%
+    mutate(src = "Direct question")
+) %>%
+  ggplot(., aes (x = prev_prior_derived_cv, y = mean, ymin = ci_lower, ymax = ci_upper,
+                     color = type))+
+  geom_errorbar(alpha = 0.4)+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  geom_point(data = . %>% filter(type == "other"), size = 2)+
+  geom_point(data = . %>% filter(!(type == "other")), size = 2)+
+  coord_fixed()+
+  #scale_color_solarized()+
+  scale_color_manual(values = c(fill.colors, "grey8"))+
+  xlab("Prevalence Prior Derived Cue Validity")+
+  ylab("Measured Cue Validity")+
+  theme(legend.title = element_blank(),
+        legend.position = 'bottom',
+        legend.direction = 'horizontal')+
+  facet_wrap(~src)
+```
+
+
+```{r}
+# save(d.cv.bothtasks, d.cv.targets, md.fp, md.dq,
+#      file = "../paper/cached_results/appendix_cueValidity_results.RData")
+```
+
+
+
+```{r cvModel-uniformPrior, eval = F}
+cueValidityModel2 <- '
+var cueValidity = function(){
+  var kind = uniformDraw(data.allKinds);
+  var responses = _.filter(data.prior, {Category: kind});
+  var response = _.isEmpty(responses) ? {prevalence: 0} : uniformDraw(responses);
+  observe(Bernoulli({p: response.prevalence/100}), true)
+  return kind == data.kind[0]
+}
+
+expectation(Infer({model: cueValidity}))
+'
+
+allKinds = levels(factor(d.gen.endorse.priors$Category))
+
+wp.cueValidity.uniform <- data.frame()
+for (p in gen.endorse.properties){
+  categories <- levels(factor(filter(d.gen.cv.all.summary, Property == p)$Category))
+  prevPriorData = d.gen.endorse.priors %>% filter(Property == p)
+  
+  for (catg in categories){
+
+    dataToPass <- list(
+      prior = prevPriorData,
+      kind = filter(prevPriorData, Category == catg)[1, "Category"],
+      allKinds = allKinds
+    )
+    
+    wp.rs <- webppl(cueValidityModel2, data_var = "data", data = dataToPass)
+    
+    wp.cueValidity.uniform <- bind_rows(wp.cueValidity.uniform, 
+                                data.frame(Category = catg,
+                                           Property = p,
+                                           cv = wp.rs))
+    
+  }
+  print(p)
+}
+# save(wp.cueValidity, file = 
+#        paste(project.path, model.path, 
+#              "results/prevPriorDerivedCueValidity.Rdata", sep = ""))
+# dataToPass %>% toJSON(.)
+# 
+# wp.rs
+
+```
