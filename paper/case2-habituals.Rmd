@@ -895,7 +895,7 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary %>%
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
   facet_wrap(~src)+
   guides(fill=F, shape=F)+
-  scale_fill_viridis(discrete = T)+
+  scale_fill_brewer(type = "seq", palette = 2)+
   xlab("Past frequency")+
   ylab("Predicted frequency")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
@@ -1092,26 +1092,42 @@ habituals.predictive.predictive.model <- m.hab.predictive.endorse.rsa %>%
 pred.items.of.interest <- c("climbs mountains","steals cars", "steals chewing gum",
                             "writes novels", "hikes","plays the banjo",
                             "smokes marijuana","runs","watches space launches",
-                            "smokes cigarettes","drinks coffee")
+                            "smokes cigarettes","drinks coffee", "writes poems")
 
 habituals.endorsement.pred.bars <- m.hab.predictive.endorse.allModels %>%
   mutate(condition = factor(condition, levels = c("preventative", "baseline", "enabling")),
-         src =factor(src , levels = c("human data","predictive_model", "regression_pastfreq",
-                                      "regression_futurefreq","past_model"),
-                     labels= c("Human data", "Uncertain semantics  \n(Predictive frequency)", "regression_pastfreq",
-                               "Regression              \n(Predictive frequency)", "Uncertain semantics\n(Past frequency)      ")),
+         # src =factor(src , 
+         #             levels = c("human data","predictive_model", "regression_pastfreq",
+         #                              "regression_futurefreq","past_model"),
+         #             labels= c("Human data", "Uncertain semantics  \n(Predictive frequency)", "regression_pastfreq",
+         #                       "Regression              \n(Predictive frequency)", "Uncertain semantics\n(Past frequency)      ")),
+         src =factor(src , 
+                     levels = c("regression_pastfreq",
+                                "regression_futurefreq",
+                                "past_model", 
+                                "predictive_model","human data"),
+                     labels= c(
+                               "Past frequency",
+                                "Predictive frequency",
+                                "Uncertain semantics\n(Past frequency)",
+                               "Uncertain semantics \n(Predictive frequency)", 
+                               "Human data")),
          hab_time = gsub("-","\n(", hab_time),
          hab_time = paste(hab_time, ")", sep = ""),
          hab_time = factor(hab_time, 
-                           levels = c("climbs mountains\n(5 years)","steals cars\n(5 years)", "steals chewing gum\n(5 years)",
-                            "writes novels\n(5 years)", "watches space launches\n(2 years)", "hikes\n(year)","plays the banjo\n(year)",
-                            "smokes marijuana\n(year)","runs\n(2 months)","drinks coffee\n(month)",
-                            "smokes cigarettes\n(month)"))) %>%
-  filter(src != "regression_pastfreq",
-         item %in% pred.items.of.interest) %>%
+                           levels = c("climbs mountains\n(5 years)","hikes\n(year)","runs\n(2 months)",
+                            "watches space launches\n(2 years)", 
+                                      "steals cars\n(5 years)",
+                                      "steals chewing gum\n(5 years)",
+                            "writes novels\n(5 years)", 
+                            "writes poems\n(year)","plays the banjo\n(year)",
+                            "smokes marijuana\n(year)",
+                            "smokes cigarettes\n(month)",
+                            "drinks coffee\n(month)"))) %>%
+  filter(item %in% pred.items.of.interest) %>%
 ggplot(., 
        aes (y = MAP, ymin = cred_lower, ymax = cred_upper, 
-            x = hab_time, fill = condition))+
+            x = src, fill = condition))+
   #geom_abline(intercept = 0, slope = 1, lty = 3)+
   #geom_linerange(alpha = 0.15)+
   geom_col(position = position_dodge(0.7), color = 'black', width = 0.7)+
@@ -1119,12 +1135,13 @@ ggplot(.,
   #geom_point(shape = 21, size = 3)+
   #scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
-  scale_fill_viridis(discrete = T)+
+  scale_fill_brewer(type = "seq", palette = 2)+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
   #coord_fixed()+
   ylab("Habitual endorsement")+
-  xlab("Item (past frequency: 3 times per interval)")+
-  facet_grid(src~., scales = 'free')+
+  xlab("Model")+
+  #facet_grid(src~., scales = 'free')+
+  facet_wrap(~hab_time, nrow = 3)+
   theme(strip.text.y = element_text(hjust = 0, angle = 0),#, vjust = 1),
         axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45,
                                    lineheight = 0.7),
@@ -1138,7 +1155,7 @@ habituals.endorsement.pred.scatters <- m.hab.predictive.endorse.allModels %>%
                                      "past_model", "regression_futurefreq",
                                       "predictive_model"),
                      labels= c("Human data","regression_pastfreq", 
-                                "Uncertain semantics (Past)", "Linear model (Predictive frequency)","Uncertain semantics (Predictive)"))) %>%
+                                "Uncertain semantics\n(Past)", "Linear model\n(Predictive frequency)","Uncertain semantics\n(Predictive)"))) %>%
   filter(!(src %in% c("Human data", "regression_pastfreq"))) %>%
 ggplot(., 
        aes (x = MAP, xmin = cred_lower, xmax = cred_upper, 
@@ -1153,17 +1170,17 @@ ggplot(.,
   scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
   scale_shape_manual(values=c(21,22,23))+
   scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
-  scale_fill_viridis(discrete = T)+
+  scale_fill_brewer(type = "seq", palette = 2)+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
   coord_fixed()+
   ylab("Habitual endorsement")+
   xlab("Model prediction")+
-  facet_grid(.~src, scales = 'free')+
+  facet_grid(.~src)+
   theme(legend.position = "right")
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="Top left: Predicted frequency of event (log-scale) as a function of (log) past frequency and condition manipulation (enabling, preventative, and baseline). Top right: Human endorsement of habitual sentences as a function of log predicted frequency and condition manipulation. Bottom row: Endorsement models based on past frequency (left) and measured predictive frequency (row).", fig.width = 14,  fig.asp = 0.6, cache=F}
+```{r habituals-predictive-figure, fig.cap="A: Example empirical and predicted endorsements for habituals in three conditions. B: Predicted frequency as a function of past frequency and condition manipulation (enabling, preventative, and baseline). C: Model fits for the uncertain threshold model using past frequency, linear model based on future frequency, and uncertain threshold model using future frequency.", fig.width = 12,  fig.asp = 0.7, cache=F}
 plot_grid(
   habituals.endorsement.pred.bars +
     theme(plot.margin = unit(c(6,6,6,6), "pt"), legend.position="none",
@@ -1174,12 +1191,11 @@ plot_grid(
            axis.text = element_text(size = 8),
            axis.title = element_text(size = 9)),
     habituals.endorsement.pred.scatters +
-      theme(plot.margin = unit(c(0,0,12,12), "pt"),
-            legend.position = c(1.1,1.1)),
+      theme(plot.margin = unit(c(0,0,12,12), "pt")),
     labels = c("B", "C"),
-    nrow = 1,  axis = 'tblr', rel_widths = c(1, 1.8)), 
+    nrow = 1,  axis = 'tblr', rel_widths = c(1, 2.3)), 
   labels = c("A", ""), 
-  nrow = 2, align = 'v', axis = 'lr', rel_heights = c(3.1, 1.5))
+  nrow = 2, align = 'v', axis = 'lr', rel_heights = c(3.1, 2))
 ```
 
 
