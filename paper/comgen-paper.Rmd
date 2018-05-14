@@ -561,7 +561,7 @@ s1.simulations.relabeled.2 <- left_join(
 ```
 
 
-```{r uniformPriorSimulation, fig.cap = "Computational model behavior assuming a uniform prior over prevalence. A: Interpretation model posteriors assuming different fixed thresholds. High thresholds rule out more world-states (prevalence levels), leaving fewer world-states among which to distribute the full probability mass. B: Full interpretation model marginalizes over possible thresholds to return a posterior distribution that favors higher prevalence levels in a graded manner. C: Endorsement model predicts higher rates of endorsemens as prevalence levels increase.", fig.width = 13, fig.asp = 0.3, out.width = "100%", fig.align = "center", cache = F}
+```{r uniformPriorSimulation, fig.cap = "Computational model behavior assuming a uniform prior over prevalence. A: Interpretation model posteriors assuming different fixed thresholds (facets). High thresholds rule out more world-states (prevalence levels), leaving fewer world-states among which to distribute the full probability mass. B: Generic interpretation model averages over all thresholds to return a posterior distribution that favors higher prevalence levels in a graded manner. C: Endorsement model predicts higher rates of endorsemens as prevalence levels increase.", fig.width = 13, fig.asp = 0.3, out.width = "100%", fig.align = "center", cache = F}
 
 fig.l0.thresholds <- ggplot(rs.wp.l0 %>% 
                               mutate(theta = round(theta, 2)) %>%
@@ -621,7 +621,7 @@ cowplot::plot_grid(
 ```
 
 
-```{r simulations, fig.cap = "Model simulations assuming different prevalence priors. Top: Prior distributions over the prevalence of a feature for 6 example features. Shapes of the priors were chosen to intuitively correspond to the properties labeling the distributions. Arrows show intuitive referent-category prevalence for a target category. Bottom: The interpreter model posterior distributions over prevalence upon hearing a generalization about a novel category. Numbers at bottom correspond to endorsement model predictions for endorsing the generalization for  the referent-category whose prevalence is shown in the top facets (e.g., \"Mosquitos carry malaria\").", fig.width = 9, fig.asp = 0.37, out.width = "100%", fig.align = "center", cache=F}
+```{r simulations, fig.cap = "Model simulations assuming different prevalence priors. Top: Prevalence priors for six example features. Shapes of the priors were chosen to intuitively correspond to the properties labeling the distributions. Arrows show referent-prevalence for a target category. Bottom: Interpretation model posterior distributions over prevalence upon hearing a generalization about a novel category. Numbers at bottom correspond to endorsement model predictions for endorsing the generalization for  the referent-category whose prevalence is shown in the top facets (e.g., \"Mosquitos carry malaria\").", fig.width = 9, fig.asp = 0.37, out.width = "100%", fig.align = "center", cache=F}
 
 fig.sims.priors <- ggplot(
   bind_rows(sims.priors %>% 
