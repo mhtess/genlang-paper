@@ -1,0 +1,864 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Preamble
+
+```{r libraries, cache = F}
+library(papaja)
+library(formatR)
+library(rwebppl)
+library(xtable)
+library(tidyverse)
+library(forcats)
+library(langcog)
+library(coda)
+library(ggthemes)
+library(ggrepel)
+library(jsonlite)
+library(gridExtra)
+library(lme4)
+library(knitr)
+library(kableExtra)
+library(cowplot)
+library(magick)
+library(viridis)
+fig.path <- "~/Documents/research/talks/defense/figs/"
+
+theme_black <- function (base_size = 12, base_family = "") 
+{
+  rebase <- rebase <- ggthemes_data$solarized$base[c(paste0("base0", 3:0),
+                                             paste0("base", 0:3))]
+  names(rebase) <- paste0("rebase", c(paste0("0", 3:0), 0:3))
+  theme_foundation(base_size = base_size, base_family = base_family) + 
+     theme(text = element_text(color = 'white'), 
+           title = element_text(color = 'white'), 
+           line = element_line(color = rebase["rebase01"]), 
+           rect = element_rect(fill = 'black', color = NA), 
+           axis.ticks = element_line(color = 'white'), 
+           axis.line = element_line(color = rebase["rebase01"],
+                                    linetype = 1), axis.title.y = element_text(angle = 90), 
+           legend.background = element_rect(fill = NULL, color = NA), 
+           legend.key = element_rect(fill = NULL, colour = NULL, 
+                                     linetype = 0), 
+           panel.background = element_rect(fill = 'black', 
+            colour = NA), 
+           panel.grid = element_line(color = rebase["rebase03"]), 
+           panel.grid.major = element_blank(), 
+           panel.grid.minor = element_blank(),
+           panel.border = element_rect(color = rebase["rebase01"]), 
+           plot.background = element_rect(fill = NULL, 
+            colour = NULL, linetype = 0))
+}
+theme_set(theme_black())
+
+
+estimate_mode <- function(s) {
+  d <- density(s)
+  return(d$x[which.max(d$y)])
+}
+hdi_upper<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","upper"])
+}
+hdi_lower<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","lower"])
+}
+```
+
+
+```{r opts}
+theme_set(theme_black())
+estimate_mode <- function(s) {
+  d <- density(s)
+  return(d$x[which.max(d$y)])
+}
+hdi_upper<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","upper"])
+}
+hdi_lower<- function(s){
+  m <- HPDinterval(mcmc(s))
+  return(m["var1","lower"])
+}
+logmeanexp <- function(x){
+  x.num <- as.numeric(x)
+  xstar = max(x.num)
+  return(xstar + log(mean(exp(x.num - xstar))))
+}
+
+compute_r2 <- function(df,v1, v2, sigfigs = 3){
+  return(format(cor(df[[v1]], df[[v2]])^2, digits = sigfigs))
+}
+
+compute_mse <- function(df, v1, v2, sigfigs = 3){
+  return(format(mean( (df[[v1]]-df[[v2]])^2), digits = sigfigs))
+}
+
+project.path <- "../"
+options("scipen"=10) 
+```
+
+```{r}
+fig.path <- "~/Documents/research/talks/generics/mit-bcs-2018-03/figs/"
+```
+
+
+# Generics
+
+### Endorsement data
+
+```{r}
+load("../paper/cached_results/case1_endorseSummary_byItem.RData") # d.gen.endorse.bayes.prev, d.gen.endorse.manipulation.check.bayes
+ggplot(
+    d.gen.endorse.bayes.prev %>%
+      filter(!(sentence %in% c("Leopards have spots.", "Ducks have wings.",
+                               "Tigers have pouches.","Kangaroos have spots.",
+                               "Sharks have manes.", "Peacocks have beautiful feathers."))), 
+    aes(x = sentence, y = MAP_h - 0.5, ymin = low - 0.5, ymax = high - 0.5, fill = prev)
+  )+
+  geom_bar(stat = 'identity', position = position_dodge(), color='white',  alpha = 1)+
+  geom_linerange(position = position_dodge(), size = 1, color = 'white')+
+  coord_flip()+
+  ylab("Human endorsement")+
+  xlab("")+
+  scale_fill_viridis(breaks = c(0, 1), limits = c(0, 1), option = "plasma")+
+  scale_y_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, 0, 0.5), labels = c(0, 0.5, 1))+
+  guides(fill = guide_colorbar(title = 'Referent Prevalence',
+                               ticks = F))+
+  theme(legend.position = 'bottom')
+
+ggsave(paste(fig.path, "generic-endorsement.pdf", sep = ""), 
+       width = 7, height = 5)
+```
+
+### Priors
+
+```{r}
+load('../analysis/generics-priors-posteriorPredictives.Rdata')
+
+ggplot(m.gen.endorse.priors.posteriorPredictive %>%
+         filter(src == 'Data'), 
+           aes( x = prevalence))+
+           #aes( x = prevalence, color = src, lty = src))+
+    geom_density(aes(y = ..scaled..), adjust = 0.5, size = 1, color = 'white')+
+    #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #stat_ecdf(size = 1)+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    facet_wrap(~Property, nrow = 2)+
+    #scale_linetype_manual(values = c(1, 4, 3))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #coord_fixed()+
+    xlab("Human prevalence rating") +
+    ylab("Normalized probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+
+ggsave(paste(fig.path, "generic-priors.pdf", sep = ""), 
+       width = 6, height = 3.5)
+```
+
+Filtered out 0 responses
+
+
+```{r}
+ggplot(m.gen.endorse.priors.posteriorPredictive %>%
+         filter(src == 'Data', prevalence > 0), 
+           aes( x = prevalence))+
+           #aes( x = prevalence, color = src, lty = src))+
+    geom_density(aes(y = ..scaled..), adjust = 0.5, size = 1, color = 'white')+
+    #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #stat_ecdf(size = 1)+
+    #scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    #scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    facet_wrap(~Property, nrow = 2)+
+    #scale_linetype_manual(values = c(1, 4, 3))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #coord_fixed()+
+    xlab("") +
+    ylab("Normalized probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+
+ggsave(paste(fig.path, "generic-priors-nonZero.pdf", sep = ""), 
+       width = 7, height = 4)
+```
+
+## Models
+
+```{r}
+load("../paper/cached_results/case1_regressionResults.RData") # d.gen.endorse.regression.prevalence, d.gen.endorse.regression.prevalence.cuevalidity, d.gen.endorse.regression,
+r2.gen.n <- length(d.gen.endorse.bayes.prev$sentence)
+r2.gen.regression.prev <- round(with(d.gen.endorse.regression.prevalence, cor(MAP_h, prediction_mean))^2,2)
+mse.gen.regression.prev <-  round(mean(d.gen.endorse.regression.prevalence$sqErr), 3)
+
+r2.gen.regression.prev.cv <- round(with(d.gen.endorse.regression.prevalence.cuevalidity, cor(MAP_h, prediction_mean))^2, 3)
+mse.gen.regression.prev.cv <- round(mean(d.gen.endorse.regression.prevalence.cuevalidity$sqErr), 3)
+
+intermediate.prev.quantiles <-  quantile(d.gen.endorse.regression.prevalence$prev_mean, c(0.25, 0.76))
+
+
+d.gen.endorse.regression.prevalence.intermediateprev <- d.gen.endorse.regression.prevalence %>%
+  filter(
+    (prev_mean > intermediate.prev.quantiles[["25%"]]) &
+    (prev_mean < intermediate.prev.quantiles[["76%"]])
+)
+r2.gen.n.intermedprev <- length(d.gen.endorse.regression.prevalence.intermediateprev$sentence)
+
+r2.gen.regression.prev.intermedprev <- round(with(d.gen.endorse.regression.prevalence.intermediateprev, cor(MAP_h, prediction_mean))^2,2)
+mse.gen.regression.prev.intermedprev <-  round(mean(d.gen.endorse.regression.prevalence.intermediateprev$sqErr), 3)
+```
+
+
+```{r generic-model-scatters, cache = F}
+load("../paper/cached_results/case1_modelPosteriors.RData")
+#d.gen.endorse.rsa.regression, gen.inset.distributions.refactored, generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt 
+
+r2.gen.rsa.generics <- compute_r2(
+  d.gen.endorse.rsa.regression %>% filter(src == "Uncertain semantics model"), 
+  "prediction_mean", "MAP_h", sigfigs = 4
+)
+  
+r2.gen.rsa.fixed <- compute_r2(
+  d.gen.endorse.rsa.regression %>% filter(src == "Fixed semantics model"),  
+  "prediction_mean", "MAP_h", sigfigs = 4
+)
+
+mse.gen.rsa.generics <- compute_mse(
+  d.gen.endorse.rsa.regression %>% filter(src == "Uncertain semantics model"), 
+  "prediction_mean", "MAP_h", sigfigs = 5
+)
+
+mse.gen.rsa.fixed <- compute_mse(
+  d.gen.endorse.rsa.regression %>% filter(src == "Fixed semantics model"),  
+  "prediction_mean", "MAP_h", sigfigs = 5
+)
+
+for (s in levels(d.gen.endorse.rsa.regression$src)){
+  ggplot(d.gen.endorse.rsa.regression %>% 
+           filter(src == s), 
+         aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
+  geom_abline(intercept = 0, slope = 1, lty = 3)+
+  geom_linerange(alpha = 0.4, color = 'grey90')+
+  geom_errorbarh(alpha = 0.4, color = 'grey90')+
+  geom_point(shape = 21, size = 3, color = 'grey90')+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  scale_fill_viridis(option = "plasma")+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human generic endorsement")+
+  guides(fill = F)
+  
+  ggsave(paste(fig.path, "generic-scatters", s, ".pdf", sep = ""), 
+       width = 3, height = 3)
+  
+}
+
+```
+
+```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
+
+
+category.text.labels <- data.frame(property = c("dont eat people", 
+                      "carry malaria", "lay eggs",  "are female", "have spots"),
+             category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
+             x = c(0.3, 0.3, 0.47, 0.05, 0.6),
+            y = c(0.45, 0.5, 0.45, 0.5, 0.26))
+
+
+generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored, 
+                                      aes( x = value, fill = Parameter, 
+                 color = Parameter, lty = Parameter, alpha = Parameter ))+
+  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+  facet_wrap(~property, nrow = 1)+
+  geom_label_repel(data = category.text.labels,
+                  aes(label = category, x = x , y = y),
+                  inherit.aes = F, color = "#2b83ba")+
+    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    #scale_linetype_manual(values = c(3, 4, 2, 1))+
+    scale_linetype_manual(values = c(3, 4, 1))+
+    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("Scaled probability density")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+```
+
+# Habituals
+
+### Priors
+
+
+```{r}
+load("~/Documents/research/habituals/writing/_cogsci2016/rdata/expt1-prior-stats.RData")
+
+ggplot(prior.stats, aes(x = eMAP, y = fMAP, shape = Gender))+
+  #geom_errorbar(aes(ymin = fcredLow, ymax = fcredHigh), alpha=0.5)+
+  #geom_errorbarh(aes(xmin = ecredLow, xmax = ecredHigh),alpha=0.5)+
+  geom_point(size=4, alpha = 0.9, color = 'white')+
+  xlab("% done it before")+
+  ylab("frequency (log scale)")+
+  scale_shape_manual(values=c(21,22))+
+  #theme_paper()+
+  #scale_color_solarized()
+  #scale_fill_brewer(palette='Set3')+
+  coord_fixed(ratio = 1/8)+
+  theme(legend.title = element_text(hjust=0))+
+  scale_x_continuous(limits = c (0, 1), breaks = c(0, 0.5, 1))+
+  scale_y_continuous(
+      limits = c(0, 8),
+      breaks = c(1.6, 4.1, 5.5, 7.5),
+      labels = c("annually", "monthly", "weekly", "daily")
+      )
+
+  ggsave(paste(fig.path, "habituals-priors-scatter-legend2.pdf", sep = ""), 
+       width = 4.5, height = 4.5)
+  
+```
+
+
+```{r habituals-endorsement-gender-exploration}
+load("../paper/cached_results/case2_endorsement_genderItemAnalysis.RData") #d.hab.bayes.gendered.wide, d.hab.bayes.gendered.subset.wide
+load("../paper/cached_results/case2_endorsement_regressionResults.RData") #d.hab.endorse.regression.freq.mix, d.hab.endorse.regression.freq, d.hab.endorse.regression
+load("../paper/cached_results/case2_endorsement_rsaModelResults.RData") #m.hab.endorse.rsa, hab.uncertain.threshold.s1opt, fixed.hab.params.posterior, md.hab.long, md.hab, hab.listener.predictions
+
+
+
+gendered.items <- c("does cocaine", "drinks beer", "drinks coffee",
+                    "wears a bra", "wears a watch", "wears a suit")
+
+r2.habituals.gendered <- compute_r2(d.hab.bayes.gendered.wide, "map_female", "map_male")
+n.habituals.gendered.analysis <- length(d.hab.bayes.gendered.wide$habitual)
+r.habituals.gendered.analysis <- round(with(d.hab.bayes.gendered.wide, cor(map_female, map_male)), 3)
+
+n.habituals.gendered.subset.analysis <- length(d.hab.bayes.gendered.subset.wide$habitual)
+r.habituals.gendered.subset.analysis <- round(with(d.hab.bayes.gendered.subset.wide, 
+                                                   cor(map_female, map_male)), 3)
+```
+
+```{r habituals-regression-models}
+
+r2.hab.n <- length(d.hab.endorse.regression.freq$MAP_h)
+
+r2.habituls.regression.freq <- compute_r2(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq <- compute_mse(d.hab.endorse.regression.freq,
+                                          "MAP_h", "prediction")
+
+r2.habituls.regression.infrequent.freq <- d.hab.endorse.regression.freq %>%
+  filter(logAnnualRate < 1.1)
+
+r2.hab.infrequent.n <- length(r2.habituls.regression.infrequent.freq$MAP_h)
+
+r2.habituls.infrequent.regression.freq <- compute_r2(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+mse.habituls.infrequent.regression.freq <- compute_mse(r2.habituls.regression.infrequent.freq,
+                                          "MAP_h", "prediction")
+
+     
+r2.habituls.regression.freq.distinct <- compute_r2(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+mse.habituls.regression.freq.distinct <- compute_mse(d.hab.endorse.regression.freq.mix,
+                                          "MAP_h", "prediction")
+
+```
+
+```{r habituals-rsamodels}
+
+
+## model parameters
+fixed.threshold.hab.posterior <- filter(fixed.hab.params.posterior, B == "fixedThreshold")
+fixed.noise.hab.posterior <- filter(fixed.hab.params.posterior, B == "noise")
+hab.fixed.threshold.s1opt <- filter(fixed.hab.params.posterior, B == "speakerOptimality")
+
+
+r2.habituals.rsa.fixed <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.fixed <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "some_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.uncertain <- compute_r2(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain <- compute_mse(
+  m.hab.endorse.rsa %>% filter(src == "habituals_model"),
+                                          "MAP_h", "MAP")
+
+
+habituals.rsa.uncertain.infrequent <- m.hab.endorse.rsa %>% filter(src == "habituals_model", logAnnualRate < 1.1)
+
+r2.hab.rsa.infrequent.n <- length(habituals.rsa.uncertain.infrequent$MAP_h)
+
+r2.habituals.rsa.uncertain.infrequent<- compute_r2(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.uncertain.infrequent <- compute_mse(habituals.rsa.uncertain.infrequent,
+                                          "MAP_h", "MAP")
+
+example.habituals <- c( 
+                       #"wears a watch", "wears socks", 
+                       "writes poems", "writes novels",
+                      "goes to the movies", "watches space launches",
+                      "smokes cigarettes","drinks coffee",
+                       "climbs mountains","hikes", "runs"
+                       )
+```
+
+
+```{r}
+for (s in levels(factor(md.hab$src))){
+
+
+md.hab %>% 
+    filter(src == s) %>%
+ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper,
+                  y = MAP_h, ymin = low, ymax = high, fill = logAnnualRate))+
+  geom_abline(intercept = 0, slope = 1, lty = 2, color = 'grey60')+
+  geom_linerange(alpha = 0.15, color = 'grey60')+
+  geom_errorbarh(alpha = 0.15, color = 'grey60')+
+  geom_point(shape = 21, size = 3, color = 'white')+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  #scale_fill_viridis(option = 'plasma')+
+  coord_fixed()+
+  xlab("Model prediction")+
+  ylab("Human endorsement")+
+  guides(fill = guide_colorbar(title = 'log annual rate',
+                               ticks = F,
+                               title.position="top"))+ 
+  theme(strip.text.y = element_blank(),# element_text(angle = 0, hjust= 0),
+        legend.direction = 'horizontal',
+        #legend.position = c(0.025,0.975),
+        #legend.position =c(1,1),
+        legend.justification = c(1,1)
+        )+
+    guides(fill = F)
+  
+    ggsave(paste(fig.path, "habitual-scatters", s, ".pdf", sep = ""), 
+       width = 3, height = 3)
+  
+}
+
+```
+
+## Predictive habituals
+
+
+```{r loadCase2PredictiveData, cache =F}
+load("../paper/cached_results/case2_predictive_data.RData")
+#d.hab.predictive.endorsment.summary, d.hab.predictive.summary, n.subj.hab.pred.endorse, ave.seconds.hab.pred.endorse,n.subj.hab.pred, ave.seconds.hab.pred, d.hab.predictive.endorsment.condition.summary, lmer.rs.hab.predictive.summary
+```
+
+
+```{r, cache = F}
+r.hab.pred.past.baseline.freq <- round(with(d.hab.predictive.summary %>% filter(condition == "baseline"), cor(logAnnualPastRate, mean)), 3)
+n.hab.pred.past.baseline.freq <- length(filter(d.hab.predictive.summary, condition == "baseline")$mean)
+
+
+r2.habituals.predictiveFreq <- compute_r2(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+mse.habituals.predictiveFreq <- compute_mse(d.hab.predictive.endorsment.summary,
+                                          "logAnnualFutureRate", "MAP_h")
+
+d.hab.predictive.endorsment.baseline.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'baseline')
+
+d.hab.predictive.endorsment.preventative.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'preventative')
+
+d.hab.predictive.endorsment.enabling.summary <- d.hab.predictive.endorsment.condition.summary %>%
+  filter(condition == 'enabling')
+```
+
+
+```{r fighabfreq_predictive_vs_past, cache = F}
+fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary %>%
+                                            ungroup() %>%
+                                            mutate(condition = factor(condition,
+                                                                      levels = c("preventative", "baseline", "enabling"))) %>%
+                                            mutate(src = 'Manipulation check'),
+       aes(x=logAnnualPastRate,
+                              y = mean,
+                              ymin = ci_lower, ymax = ci_upper,
+                              fill = condition, shape=condition))+
+  geom_jitter(position = position_jitter(width = .13), size = 4,
+              color = 'white')+
+  scale_shape_manual(values=c(21,22,23))+
+  geom_abline(intercept = 0, slope = 1, lty =3, color = 'white')+
+  # #geom_errorbar(width=0.1)+
+  scale_x_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(-3,6),
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+  coord_fixed()+
+  facet_wrap(~src)+
+  guides(fill=guide_legend(reverse = T), shape=guide_legend(reverse = T))+
+  scale_fill_brewer(type = "seq", palette = 2)+
+  xlab("Past frequency")+
+  ylab("Predicted frequency")+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        axis.title.x = element_text(vjust = 1),
+        axis.title.y = element_text(vjust = 1))
+
+fig.hab.freq.predictive.vs.past
+
+ggsave(fig.hab.freq.predictive.vs.past, 
+       file = paste(fig.path, "habituals_predictives_manipCheck.pdf", sep =""),
+       width = 6, height = 4)
+```
+
+
+```{r habituals-predictive-endorsement, cache = F, eval = F}
+
+fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
+  ggplot(., aes(x=logAnnualFutureRate, y=MAP_h, 
+                 fill=condition, shape=condition,
+                 xmin = future_lower, xmax=future_upper,
+                 ymin=low, ymax = high))+
+  geom_errorbar(alpha=0.8)+
+  geom_errorbarh(alpha=0.8)+
+  scale_shape_manual(values=c(21,22,23,24))+
+  geom_point(alpha = 1, size = 4, color = 'white')+
+  xlab("Predicted frequency (log scale)")+
+  ylab("Human endorsement")+
+  scale_x_continuous(limits = c(-4.2,7.2), 
+                     breaks = c(-3, 0, 2.5, 4, 5.9),
+                     labels = c("almost never", "annually", "monthly", "weekly", "daily"))+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  coord_fixed(ratio=11.4)+
+  scale_fill_brewer(type = "seq", palette = 2)+
+  guides(fill = F, shape = F)+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position="bottom",
+    legend.direction="horizontal"
+    )
+
+fig.hab.endorse.vs.predfreq
+
+ggsave(fig.hab.freq.predictive.vs.past, 
+       file = paste(fig.path, "habituals_predictives_prevEndorse.pdf", sep =""),
+       width = 5, height = 3)
+```
+
+```{r habituals-predictive-rsa, cache = T, eval=T}
+n_chains <- 3
+# n_samples <- 500000
+# burn <- n_samples / 2
+# lg <- 150
+model_prefix <- "results-habituals-predictive-jointModel-S1-smtncs_habitual-"
+model_prefix <- "results-habituals-predictive-meanPredictive-min-5-jointModel-S1-smtncs_habitual-"
+n_samples <- 100000
+burn <- n_samples / 2
+lg <- 50
+
+
+m.hab.pred.samp <- data.frame()
+m.hab.past.samp <- data.frame()
+
+project.path <- "../"
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-predictive-100000_burn50000_lag50_3chains.RData", sep = ""))
+
+
+load(file = paste(project.path,  "models/habituals/results/results-habituals-predictive-jointModel-S1-smtncs_habitual-past-100000_burn50000_lag20_3chains.RData", sep = ""))
+
+
+
+m.hab.pastmodel.endorsement <- m.hab.past.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorsement <- m.hab.pred.samp %>%
+  filter(type == 'predictive', C == "endorsement") %>%
+  rename(item = B, condition = D, binned_freq = E) %>%
+  group_by(item, condition) %>%
+  summarize(MAP = estimate_mode(val),
+            cred_upper = hdi_upper(val),
+            cred_lower = hdi_lower(val))
+
+m.hab.predictive.endorse.rsa <- bind_rows(
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.predictive.endorsement
+  ) %>%
+    mutate(src = "predictive_model"),
+  left_join(
+    d.hab.predictive.endorsment.summary,
+    m.hab.pastmodel.endorsement
+  ) %>%
+    mutate(src = "past_model")
+)
+
+r2.habituals.rsa.past <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.past <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "past_model"),
+                                          "MAP_h", "MAP")
+
+
+r2.habituals.rsa.predictive <- compute_r2(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+mse.habituals.rsa.predictive <- compute_mse(
+  m.hab.predictive.endorse.rsa %>% filter(src == "predictive_model"),
+                                          "MAP_h", "MAP")
+
+r2.hab.rsa.predictive.n <- length(d.hab.predictive.endorsment.summary$MAP_h)
+```
+```{r}
+View(m.hab.predictive.endorse.allModels)
+```
+
+```{r habituals-predictive-endorsement-bars}
+pred.items.of.interest <- c("climbs mountains","steals cars", "steals chewing gum",
+                            "writes novels", "hikes","plays the banjo",
+                            "smokes marijuana","runs","watches space launches",
+                            "smokes cigarettes","drinks coffee", "writes poems")
+
+habituals.endorsement.pred.bars <- m.hab.predictive.endorse.allModels %>%
+  mutate(condition = factor(condition, levels = c("preventative", "baseline", "enabling")),
+         # src =factor(src , 
+         #             levels = c("human data","predictive_model", "regression_pastfreq",
+         #                              "regression_futurefreq","past_model"),
+         #             labels= c("Human data", "Uncertain semantics  \n(Predictive frequency)", "regression_pastfreq",
+         #                       "Regression              \n(Predictive frequency)", "Uncertain semantics\n(Past frequency)      ")),
+         src =factor(src , 
+                     levels = c("regression_pastfreq",
+                                "regression_futurefreq",
+                                "past_model", 
+                                "predictive_model","human data"),
+                     labels= c(
+                               "Past frequency",
+                                "Predictive frequency",
+                                "Uncertain semantics\n(Past frequency)",
+                               "Uncertain semantics \n(Predictive frequency)", 
+                               "Human data")),
+         hab_time = gsub("-","\n(", hab_time),
+         hab_time = paste(hab_time, ")", sep = "")) %>%
+         # hab_time = factor(hab_time, 
+         #                   levels = c("climbs mountains\n(5 years)","hikes\n(year)","runs\n(2 months)",
+         #                    "watches space launches\n(2 years)", 
+         #                              "steals cars\n(5 years)",
+         #                              "steals chewing gum\n(5 years)",
+         #                    "writes novels\n(5 years)", 
+         #                    "writes poems\n(year)","plays the banjo\n(year)",
+         #                    "smokes marijuana\n(year)",
+         #                    "smokes cigarettes\n(month)",
+         #                    "drinks coffee\n(month)"))) %>%
+  # filter(#src != "regression_pastfreq",
+  #        item %in% pred.items.of.interest) %>%
+ggplot(., 
+       aes (y = MAP, ymin = cred_lower, ymax = cred_upper, 
+            x = src, fill = condition))+
+  #geom_abline(intercept = 0, slope = 1, lty = 3)+
+  #geom_linerange(alpha = 0.15)+
+  geom_col(position = position_dodge(0.7), color = 'white', width = 0.7)+
+  geom_linerange(alpha = 0.8, size = 1, position = position_dodge(0.7),
+                 color = 'white')+
+  #geom_point(shape = 21, size = 3)+
+  #scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  #scale_fill_viridis(discrete = T)+
+  scale_fill_brewer(type = "seq", palette = 2)+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  #coord_fixed()+
+  ylab("Habitual endorsement")+
+  xlab("Model")+
+  #facet_grid(src~., scales = 'free')+
+  facet_wrap(~hab_time)+
+  theme(strip.text.y = element_text(hjust = 0, angle = 0),#, vjust = 1),
+        axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45,
+                                   lineheight = 0.7),
+        legend.position = "bottom")
+
+habituals.endorsement.pred.bars
+# 
+ggsave(habituals.endorsement.pred.bars,
+      file = paste(fig.path, "habituals_predictives_bars2_all.pdf", sep =""),
+      width = 16, height = 12)
+```
+
+```{r habituals-predictive-endorsement-scatters, cache = F}
+habituals.endorsement.pred.scatters <- m.hab.predictive.endorse.allModels %>%
+  mutate(condition = factor(condition, levels = c("preventative", "baseline", "enabling")),
+         src =factor(src , levels = c("human data", "regression_pastfreq",
+                                     "past_model", "regression_futurefreq",
+                                      "predictive_model"),
+                     labels= c("Human data","regression_pastfreq", 
+                                "Uncertain semantics (Past)", "Linear model (Predictive frequency)","Uncertain semantics (Predictive)"))) %>%
+  filter(!(src %in% c("Human data", "regression_pastfreq"))) %>%
+ggplot(., 
+       aes (x = MAP, xmin = cred_lower, xmax = cred_upper, 
+            y = MAP_h, ymin= low, ymax = high, fill = condition,
+            shape = condition))+
+  geom_abline(intercept = 0, slope = 1, lty = 3, color = 'white')+
+  #geom_linerange(alpha = 0.15)+
+  #geom_col(position = position_dodge(0.7), color = 'black', width = 0.7)+
+  geom_linerange(alpha = 0.5, size = 1, color = 'white')+
+  geom_errorbarh(color = 'white', alpha = 0.5)+
+  geom_point(size = 3, color ='white')+
+  scale_x_continuous(limits = c(-0.01, 1.01), breaks = c(0,  1))+
+  scale_shape_manual(values=c(21,22,23))+
+  scale_y_continuous(limits = c(-0.01, 1.01), breaks = c(0, 1))+
+  scale_fill_brewer(type = "seq", palette = 2)+
+  #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
+  coord_fixed()+
+  ylab("Habitual endorsement")+
+  xlab("Model prediction")+
+  facet_grid(.~src)+
+  theme(legend.position = "right")
+
+
+
+ggsave(habituals.endorsement.pred.scatters, 
+       file = paste(fig.path, "habituals_predictive_modelScatters.pdf", sep =""),
+       width = 10, height = 5)
+```
+
+
+# Causals
+
+```{r load_causals_results}
+load(file = "../paper/cached_results/case3_endorsementDataModel.RData")
+#md.cas.fullmodel.endorsement,
+#      md.caus.endorse, 
+#      n.subj.cas.endorse, 
+#      ave.minutes.cas.endorse,
+#      n.subj.cas.endorse.failed, 
+
+load(file = "../paper/cached_results/case3_priorRatings.RData")
+# d.cas.priors, 
+   #  n.subj.cas,
+  #   n.subj.cas.failed,
+ #    ave.minutes.cas,
+```
+
+```{r}
+
+n.caus.endorse <- length(md.caus.endorse$MAP_h)
+r2.caus.rsa <- compute_r2(md.caus.endorse, "MAP_h", "MAP")
+mse.caus.rsa <- compute_mse(md.caus.endorse, "MAP_h", "MAP")
+
+```
+
+
+
+```{r figure-causals-priors}
+
+fig.causals.priors.data <- d.cas.priors %>%
+    select(distribution, response) %>%
+    rename(prevalence = response) %>%
+    mutate(distribution = factor(distribution, 
+           levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
+           labels = c("Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common"))) %>%
+ggplot(.,
+       aes( x = prevalence , fill = distribution))+
+  geom_histogram(aes(
+    y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..]
+    ),
+    bins = 20, color = 'white') + 
+    scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
+
+  #geom_bar(aes(y=(..count..)/tapply(..count..,..PANEL..,sum)[..PANEL..])) + 
+  #geom_density(size = 0.4, aes( y = ..scaled.. ))+
+  #scale_fill_solarized()+
+  #scale_linetype_manual(values = c(2, 1))+
+  facet_wrap(~distribution, scales = 'free', nrow = 2)+
+  #scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  scale_x_continuous(limits = c(-0.05, 1.05), breaks = c(0, 0.5, 1))+
+  guides(fill = F)+
+  ylab("Proportion of responses")+
+  xlab("Prevalence rating")
+
+fig.causals.priors.data
+
+
+
+ggsave(fig.causals.priors.data,
+         file = paste(fig.path, "causals-priors.pdf", sep = ""), 
+       width =6, height = 4.5)
+
+```
+
+
+```{r figure-causals-endorsement, fig.width=7, fig.height=3.5, cache = F}
+figure.causals.endorsement <- md.cas.fullmodel.endorsement %>%
+  mutate(
+    src = factor(src, levels = c( "model", "data")),
+    dist = factor(dist, 
+           levels = c("rare_weak", "common_weak", "rare_deterministic","common_deterministic"),
+           labels = c(
+                       "Weak, Rare", "Weak, Common","Strong, Rare","Strong, Common")),
+    frequency = factor(frequency, 
+                       levels = c(20, 70),
+                       labels = c("Referent prevalence = 0.2",
+                                  "Referent prevalence = 0.7")
+    )) %>%
+  ggplot(., aes( x = src, y = MAP, ymin = cred_lower, ymax = cred_upper, 
+                 fill = dist #linetype = dist, 
+                 #shape = dist,
+                #        group = dist#, 
+                 #alpha = src
+                 ))+
+  geom_bar(stat='identity', position = position_dodge(0.9), width = 0.9, color = 'white')+
+  geom_errorbar(position = position_dodge(0.9), width = 0.3,alpha = 0.8, color = 'white')+
+  #geom_linerange(position = position_dodge(), alpha=0.8)+
+  #geom_line(position = position_dodge(8), alpha = 0.8, linetype = 3)+
+  #geom_point(position = position_dodge(8), size = 2.25)+
+  #theme(axis.text.x = element_text(angle = 90))+
+  #geom_hline(yintercept = 0.5, lty = 2, color = 'black', alpha = 0.4)+
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_alpha_manual(values = c(1, 0.3))+
+  #scale_x_continuous(limits = c(10, 90), breaks = c(20, 70))+
+  #scale_fill_solarized()+
+  scale_fill_manual(values = c("#859900","#d33682","#dc322f", "#268bd2"))+
+  xlab("")+
+  ylab("Causal Endorsement")+
+  facet_grid(.~frequency)+
+  #coord_flip()+
+  #coord_fixed(ratio = 90)+
+  #guides(fill = F)+
+  guides(
+    #shape=guide_legend(title="Background distribution"),
+    fill=guide_legend(title="Background distribution")
+    )+
+  theme(
+    #plot.margin = unit(c(0,6,0,6), "pt")
+    #legend.position = 'bottom', 
+    # legend.direction = 'horizontal', 
+    # legend.title = element_blank()
+  )
+
+
+ggsave(figure.causals.endorsement,
+         file = paste(fig.path, "causals-endorsements.pdf", sep = ""), 
+       width =8, height = 4)
+```
+
