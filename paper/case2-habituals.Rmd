@@ -5,6 +5,7 @@
 <!-- Orvis, B. R., Cunningham, J. D., & Kelley, H. H. (1975). A closer examination of causal inference: The roles of consensus, distinctiveness, and consistency information. Journal of Personality and Social Psychology, 32(4), 605-616. -->
 
 As with categories, particular events like "Mary smoked yesterday" can be generalized into *habitual sentences*: "Mary smokes". 
+It is believed that an analysis of generics should lend itself naturally to be extended to an analysis of habituals [e.g., @Carlson2005; @Leslie2008].
 <!-- Events are a broad class of entities.  -->
 In our second case study, we focus on habituals about people's behaviors that take the form: *singular noun phrase* $+$ *present tense simple verb phrase* (e.g., "Mary smokes cigarettes"). 
 Learning about the behaviors of others is useful because they tell us about what that person is like more generally [e.g., @Repacholi1997; @Seiver2013].
@@ -22,12 +23,15 @@ By describing novel characters to participants, we are able to directly the mani
 <!-- In addition to directly manipulating the referent feature-probability, these experiments provide the first test of the generality of our theory: It can apply to generalizations about events as well as categories. -->
 
 Finally, if habituals (and generics) are truly language for conveying generalizations, they should reflect speakers' expectations, not merely their observations. 
+This intuition is sometimes expressed as an intensional meaning component of generics [@Dahl1975].
+For example, imagine a very small town where by total coincidence, all residents chew sugarless gum. 
+Endorsing the sentence "Residents of this town chew sugarless gum" seems to commit the speaker to believing that it is not sheer happenstance, but that there is some underlying cause that supports the counterfactual implication that were a new person to become a resident of the town, they too would likely chew sugarless gum.
+
 Our computational model predicts endorsement rates given a referent prevalence $p$. 
 Does prevalence represent the actual, objective frequency in the world (e.g., the rate at which a person has smoked cigarettes in the past) or a subjective, predictive belief in the head (e.g., the rate at which a person is expected to smoke in the future)?
-Such a distinction could explain why "Supreme Court Justices have even social security numbers" sounds strange even if nine out of the nine current justices have even social security numbers [@Cohen1999]: Our predictions about the evenness of the *next* justice's social security number are driven by strong prior beliefs that selection for the Supreme Court is uncorrelated from the numerical properties of one's social security number; the current observations are not enough in this case to sway those beliefs.
-<!-- not swayed by these observations due to -->
-We elucidate this aspect of our theory by measuring participants' predictions about future rates and endorsements of habituals when causal forces intervene on the world (e.g., the person buys a pack of cigarettes; Expt. 2c).
-We then use our model to test whether habitual endorsements are based on past frequencies or future expectations.
+Such a distinction would support the intuitions about sugarless gum residents and could explain why "Supreme Court Justices have even social security numbers" sounds strange even if nine out of the nine current justices have even social security numbers [@Cohen1999]: Our predictions about the evenness of the *next* justice's social security number are driven by strong prior beliefs that selection for the Supreme Court is uncorrelated from the numerical properties of one's social security number; the current observations are not enough in this case to sway those beliefs.
+We examine this aspect of the theory by measuring endorsements of habituals when causal forces intervene on the world (e.g., the person buys a pack of cigarettes; Expt. 2c) as well as participants' predictions about the likely frequency of the event in the future.
+We then construct generic endorsement models based on speakers aiming to convey the objective, past frequency or their subjective, future expectation to try to predict the habitual endorsement patterns.
 
 <!-- (e.g., how often Mary has actually smoked in the past month) or the predictive probability of the event in the near future (e.g., how often we should expect Mary to smoke next week)? -->
 
