@@ -214,8 +214,11 @@ This conceptual view of generics has been influential in psychology, because it 
 <!-- Still, the theory is not sufficiently precise to make any quantitative predictions. -->
 
 Insofar as there is a single class of linguistic expressions that convey generalization, there should be something common to them all: a literal meaning that unifies generic, habitual, and causal language.
-In this paper, we propose such a semantic core.
-To do so, we draw upon the tools of Bayesian models of cognition [@Tenenbaum2011] and truth-functional semantics [@Montague1973; @Cohen1999] to formalize the context-dependent aspects of language interpretation [@Frank2012] jointly with the core semantic hypothesis: The meaning of an utterance conveying generalization is a vague description of subjective, predictive probabilities.
+In this paper, we propose such a semantic core based on probability and formalized using the standard tools of truth-functional semantics [@Montague1973; @Cohen1999] .
+A semantics based on probability is not enough, however.
+We propose that the meaning of generalizations is underspecified or *vague* and that listeners derive a more precise interpretation in context.
+The fact that generics are vague, however, does not preclude them from being treated with formal models.
+We draw upon the tools of Bayesian models of cognition [@Tenenbaum2011] to formalize the vagueness and context-dependence of generic language [@Frank2012; @GoodmanLassiter].
 By its instantiation in a formal model, this hypothesis has meaningful conditions under which it can be tested.
 It is also the first theory to make quantitative predictions about human understanding of generalization in language.
 <!-- With these ideas, we create an endorsement model, that describes what makes generalizations in language true or false. -->
@@ -223,7 +226,8 @@ It is also the first theory to make quantitative predictions about human underst
 
 
 The paper is organized as follows. 
-In Section 1, we describe the computational model, which formalizes the hypothesis that the core meaning of a generalization in language is a vague probability and articulates it in a model of language understanding in which relevant background knowledge is formally described.
+In Section 1, we describe the computational model of interpreting generalizations which has three components: Probability, vagueness, and context. 
+<!-- formalizes the hypothesis that the core meaning of a generalization in language is a vague probability and articulates it in a model of language understanding in which relevant background knowledge is formally described. -->
 Having defined a model of interpretation, we then describe an information-theoretic, communicative linking function from interpretation to judgments about the truth or acceptibility of a sentence.
 The model as articulated predicts fine-grained, quantitative effects of background knowledge, which we both measure and manipulate across our three empirical case studies (Sections 2-4): generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
 We compare our model to two previously articulated quantitative models of generics as well as a lesioned-version of our model.
@@ -345,46 +349,29 @@ Psychologists, linguists, and philosophers have long studied the language of gen
   Our analysis thus begins once a sentence has been disambiguated as conveying a generalization. 
 ]
 
-If generalization from observations can be described by a probability $p$, it is natural to posit that same construct will be at the heart of a semantic theory of the language of generalization.
+If generalization from observations can be described by a probability $p$, it is natural to posit that same construct will be at the heart of a semantic theory of the language of generalization (Ingredient 1: Probability).
 In semantics, belief updating generally passes through Boolean *truth values* [@Montague1973].
 The simplest way to derive a Boolean from a scalar quantity like probability is via a *threshold semantics*: The utterance is true if the relevant scalar value is above a threshold.
-Thus, the simplest semantics for a generalization is a threshold on the prevalence: $\denote{gen}(p, \theta) = \{p >\theta\}$.
+For example, the sentence "Some dogs have four legs" is believed to be literally true if the chances that an individual dog will have four legs is more than 0%: $\denote{some}(p) = \{p > 0\}$.
+"Most dogs have four legs" can also be described as a threshold on prevalence (e.g., the chances that a dog will have four legs is greater than 50%): $\denote{most}(p) = \{p > 0.5\}$.
+Thus, the simplest semantics for a generalization would also be a threshold on the prevalence: $\denote{gen}(p, \theta) = \{p >\theta\}$.
 
+The obvious next question for such a representation concerns $\theta$: What threshold is appropriate?
+It has been argued that generic language is more fundamental than quantified language [e.g., "some", "most"; @Leslie2007; @Gelman2009], which can be described using particular values of $\theta$: $\denote{some}(p) = \{p > 0\}$; $\denote{most} = \{p > 0.5\}$.
+In a probabilistic representation, states of uncertainty are more fundamental than states of certainty (e.g., it is a special case when an agent with probabilistic beliefs is certain about something; the more typical case is that they are uncertain). 
+Thus, if quantifiers have *certain* thresholds ("some": greater than 0; "most" greater than 0.5), then perhaps generics have *uncertain* thresholds.
+We formalize this underspecification of meaning (Ingredient 2: Vagueness) by putting a probability distribution over $\theta$: $P(\theta)$ [@Lassiter2013; @Lassiter2015; cf., @Qing2014].
 
-<!-- Attempts of this kind have been made before in formal semantics [e.g., by positing that $\theta = 0.5$; @Cohen1999], but heretofore no model has made precise, quantitative predictions about adult judgments.  -->
-<!-- In addition to articulating an explicit semantic hypothesis, we present a Bayesian cognitive model that uses this semantics in order to update its beliefs from language. -->
-<!-- We then ask: When would a rational speaker choose to produce a generalization (vs. staying silent) to update the Bayesian model's state of knowledge? -->
+Finally, the meanings of linguistic expressions manifest in their capacity to convey information from speaker to hearer [@Grice1975; @Clark1996; @Levinson1995].
+Thus, the final ingredient to our model is *context* (Ingredient 3), which must be minimally formalized as a listener's prior knowledge about the property $P(p)$ and which we describe in more detail below.
 
-<!-- We distinguish our proposal from previous ones by emphasizing the predictive nature of $p$, as well as the formalization into a model that makes precise, quantitative predictions about human endorsements. -->
-<!-- $p$ describes a latent belief and should not be confused with *frequency*, which can inform a belief but is not itself the belief. -->
-
-<!-- We emphasize that this account is based on a probability $h$. -->
-<!-- The literature on generic language has often focused on *prevalence*---either the actual or believed proportion of members of a category with the property---which we distinguish from the prevalence $h$.^[ -->
-<!--   There has also been substantial discussion of *cue validity* , which we come back to below. -->
-<!-- ] -->
-<!-- Prevalence, an ostensibly observable quantity, can inform a person's beliefs (e.g., via Bayesian belief updating) but it is not the belief itself.  -->
-<!-- Probability is a measure of belief.  -->
-
-### Literal interpretation model
-
-The simplest semantics for a generalization is a threshold function: $\denote{gen}(p, \theta) = \{p >\theta\}$, but what threshold is appropriate?
-Quantifier statements can be described using particular values of $\theta$: $\denote{some}(p) = \{p > 0\}$; $\denote{all} = \{p = 1\}$.
-The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice. 
-Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013].
-
-<!-- So what threshold $\theta$? should be used for the generalizations?  -->
-<!-- Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$. -->
-
-We formalize this underspecified, or vague, semantics in a Bayesian cognitive model, where the threshold $\theta$ is sampled from a uniform prior distribution over possible thresholds $P(\theta)$ [@Lassiter2013;   @Lassiter2015; cf., @Qing2014].^[
-  Following @Lassiter2015, we defined $P(\theta)$ to be a uniform distribution over the support of $P(p)$.
-]
-The model also has prior knowledge about the property $P(p)$ (described in more detail below) and literal interpretation is given by updating these prior beliefs according the truth-functional meaning of the utterance $\delta_{\denote{u}(p, \theta)}$:
+Putting these three ingredients (probability, vagueness, and context) together, we get the following model of generic interpretation: 
 
 \begin{eqnarray}
-L(p, \theta \mid u) &\propto& {\delta_{\denote{u}(p, \theta)} \cdot P(p) \cdot P(\theta)} \label{eq:L0}
+L(p, \theta \mid u) &\propto& {\delta_{\denote{u}(p, \theta)}  \cdot P(\theta) \cdot P(p)} \label{eq:L0}
 \end{eqnarray}
 
-We denote this interpretation model by $L$ to indicate that it is modeling a listener, updating their beliefs according to the truth-functional meaning of an utterance.
+We denote this probabilistic generic interpretation model by $L$ to indicate that it is modeling a listener updating their beliefs according to the truth-functional meaning of an utterance.
 Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(p, \theta)}$ that returns probabilities proportional to $1$ when the utterance is true (i.e., when $p > \theta$) and $0$ otherwise.
 
 \begin{eqnarray}
@@ -393,6 +380,17 @@ Formally, the truth-functional meaning is represented by the Kronecker delta fun
 0 & \text{otherwise}
 \end{cases}\label{eq:delta}
 \end{eqnarray}
+
+Following @Lassiter2015, we formalize the vagueness in the meaning of generics $P(\theta)$ as a uniform distribution over the support of $P(p)$.
+
+<!-- The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice.  -->
+<!-- Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013]. -->
+
+<!-- So what threshold $\theta$? should be used for the generalizations?  -->
+<!-- Unlike quantified language which have fixed-thresholds, we posit that the language of generalizations is *underspecfied* with respect to the actual truth-functional threshold $\theta$. -->
+
+
+
 
 ### Endorsement model
 
@@ -780,9 +778,9 @@ We do this by both measuring and manipulating background knowledge and referent-
 
 # General Discussion
 
-The human species is remarkable not only because we can extract useful generalizations from observations of the world, but because we can convey these generalizations to eachother succinctly using language.
+The human species is remarkable not only because we can extract useful generalizations from observations of the world, but because we can convey these generalizations to each other succinctly using language.
 Generalizations expressed in language (e.g., "John runs.", "Dogs are friendly.", "Fire causes smoke.") are a premier example of how simple statements---statements understood by even the youngest language users---can convey subtle meanings and display complex sensitivities to context.
-We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalized in terms of predictive probability or \emph{prevalence}.
+We have argued that the core meaning of such linguistic expressions can be understood by a vague threshold function that operates over a speaker's inductive beliefs, formalized in terms of predictive probability or *prevalence*.
 Critically, deploying this simple semantics within a formal framework for pragmatic language understanding leads to complex interactions with background knowledge.
 <!--
 formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
@@ -796,10 +794,10 @@ This framework accounts for a number of philosophically puzzling generic stateme
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 In each case, our model provided a strong quantitative fit to human judgements while other models fall short.
 
-Ours is a psychological model that leverages the insights of truth-functional semantics to articulate how an agent should update their beliefs based on a generic sentence. 
+Our model leverages the insights of truth-functional semantics and computational cognitive modeling to articulate how an agent should update their beliefs based on a generic sentence. 
 The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold-function) from world knowledge (represented by the prevalence prior).
 Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics, described below; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
-Here, we demonstrate how the context-sensitivity of generics can emerges via the interplay of a stable (but vague) semantics and diverse background knowledge. 
+Here, we demonstrate how the context-sensitivity of generics can emerge via the interplay of a stable (but vague) semantics and diverse background knowledge. 
 
 <!--
 NDG: i cut this from below...
@@ -925,7 +923,6 @@ In the rest of this discussion, we elaborate how our model relates to language u
 <!-- Let's first introduce some notation: -->
 
 <!-- ### Conceptual Accounts of Generics -->
-
 
 
 
@@ -1143,6 +1140,14 @@ Leslie describes the *default generalization* mechanism as having three componen
 On this account, generics are true if *some* Ks have F when all counterinstances are negative and the property is either characteristic or striking. 
 If the property is neither characteristic or striking, then almost all Ks must have F for the generic to be true (e.g., "Barns are red").
 We believe that many of the key factors in this conceptual approach are compatible with our predictive probability approach: what is required is that the distinctions made by conceptual accounts influence predictive probability, which then mediates linguistic effects.
+
+#### Default generalizations
+
+Some might object at this point and argue it is not desirable to define generics in terms of quantifiers, because generics are in many ways *more fundamental* than quantifiers [@Leslie2008; @Gelman2009].
+For example, young children learn that meaning of generics far earlier than they know what quantified language means [@Gelman2015].
+Similiarly, if you tell adults novel information about categories using quantified language (e.g., "Most spiders shed their skin") and later ask them to recall that information, they will tend to recall the information using generics [e.g., "Spiders shed their skin"; @Leslie2012], but not visa versa.
+Rather than the contradictory to the idea that prevalence is at core of 
+
 
 #### Striking generics
 

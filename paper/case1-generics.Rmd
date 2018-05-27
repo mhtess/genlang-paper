@@ -371,9 +371,10 @@ A simple metric like cue validity is too blunt to capture these subtleties.
 ### Communicative endorsement models
 
 Our underspecified-threshold model considers how well the generalization would bring a naive interpreter's prior distribution on prevalence $P(p)$ (Eq. \ref{eq:L0}; e.g., the prevalence of laying eggs among other animals) in line with the referent prevalence ($p$ in Eq. \ref{eq:S1}; e.g, the prevalence of laying eggs among robins).
-There are several substantive components to this hypothesis: (a) the prior distribution $P(p)$ is relevant, (b) endorsement is a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) the core semantics of a generalization is an uncertain threshold.
-As a control model, we assign a fixed semantics to the generalization (i.e., analogous to the quantified statements) but keep the prior and the decision-theoretic architecture in place. 
-This provides a strict test of the uncertain-threshold hypothesis (c).
+There are several substantive components to this hypothesis: (a) context in the form of a prior distribution over prevalence $P(p)$, (b) endorsement as a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) vagueness in the semantics of a generalization.
+We construct an alternative, lesioned model by removing the vagueness in meaning, assigning a fixed semantics to the generalization (i.e., analogous to the quantified statements) but keeping the prior and the decision-theoretic architecture in place. 
+There are no correspondingly simple ways to lesion the other two components (context or speaker decision) while still producing a model that makes quantitative, context-sensitive predictions. 
+
 
 <!-- The model we propose for endorsing generalizations is a model of an agent that decides whether or not to say the generalization to a naive interpreter. -->
 For each of these communicative endorsement models, we build a joint Bayesian data analysis model of the referent prevalence $p$, prevalence priors $P(p)$ (both from Expt. 1b data), and the endorsement data (Expt. 1a). 
@@ -386,11 +387,11 @@ To learn about the credible values of the parameters of the joint-inference mode
 <!-- The number of parameters of this full data-analytic model is relatively large, and thus there is a concern that the parameters themselves (as opposed to the exact structure of our model) are doing the work.  -->
 <!-- To address this concern, we construct a strong, alternative model that uses the same data analytic strategy and only differs in the uncertain semantic threshold $\theta$ is replaced with a fixed-threshold. -->
 
-#### Fixed-threshold with noise model
+#### Lesioned model (no vagueness)
 
 For a strong alternative model, we lesion our uncertain threshold model so that it has a fixed threshold $\theta$.
-In addition, we make this fixed-threshold a parameter of the data-analysis model, to search for the best possible fixed-threshold. 
-Finally, a fixed-threshold model will have to accommodate responses that are literally inconsistent with the threshold (i.e., a participant endorsing a generic when the referent prevalence is less than $\theta$); we thus outfit this model with an additional noise parameter, to allow for random guessing. 
+We make this the strongest, possible fixed-threshold model by searching for the best possible single, threshold that fits the data.
+Finally, a fixed-threshold model will have to accommodate responses that are literally inconsistent with the threshold (i.e., a participant endorsing a generic when the referent prevalence is less than $\theta$); we thus outfit this model with an additional extrinsic noise parameter, to allow for random guessing. 
 Thus, our fixed-threshold alternative model says that participants make an information-theoretic decision, taking into account the interpreter's prior distribution $P(p)$, using a fixed-threshold semantics, where deviations from a pure information-theoretic decision are accounted for by noise.
 This alternative model has 2 additional parameters to our uncertain threshold model (the fixed-threshold and the proportion of noise responses).
 <!-- We examine the predictions of this alternative model first. -->
@@ -419,7 +420,20 @@ mse.gen.rsa.fixed <- compute_mse(
   "prediction_mean", "MAP_h", sigfigs = 5
 )
 
-generics.endorsement.models <- ggplot(d.gen.endorse.rsa.regression, 
+generics.endorsement.models <- d.gen.endorse.rsa.regression %>%
+  mutate(src = factor(src,
+                       levels = c("Prevalence",
+                                 "Uncertain semantics model",
+                                 "Cue validity + Prevalence",
+                                 "Fixed semantics model"
+                                 ),
+                       labels = c("Prevalence",
+                                 "Generic Endorsement model",
+                                 "Cue validity + Prevalence",
+                                  "Lesioned endorsement model\n(no vagueness)"
+                                 )
+                      )) %>%
+  ggplot(., 
          aes ( x = prediction_mean, xmin = prediction_ci_lower, xmax = prediction_ci_upper,
                   y = MAP_h, ymin = low, ymax = high, fill = prev_mean ))+
   geom_abline(intercept = 0, slope = 1, lty = 3)+

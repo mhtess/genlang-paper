@@ -25,7 +25,7 @@ load(file = "cached_results/case3_priorRatings.RData")
 <!-- caus_strength = "This virus causes the disease." -->
 
 Language about causal relationships manifests in generalization.
-The utterance "Fire causes smoke" relates to "This fire caused this smoke" in a way analogous to how "John runs" relates to  "John ran yesterday". 
+The utterance "Fire causes smoke" seemingly relates to "This fire caused this smoke" in a way analogous to how "John runs" relates to  "John ran yesterday". 
 <!-- \ndg{"my grandpa's..." is itself a generic... is there a simple example to start with? e.g. "fire causes smoke" generalizes "this fire caused this smoke"? Also, somewhere (probably GD) we should discuss how many sentences have two ore more "dimensions of generalization".} -->
 We explore this hypothesis in our third case study: causal language or *causals* (e.g., "A causes B").
 
@@ -73,8 +73,8 @@ In this last set of experiments, we explicitly test the relationship between the
 
 ## Experiment 3a: Manipulating prevalence priors
 
-In this experiment, we manipulate participants' background knowledge, measuring these beliefs in order to check whether the manipulation was successful. 
-Experiment 3b (*causal endorsement*) will then use a very similar experimental procedure in exploring causal generalization language.
+In this experiment, we manipulate participants' background knowledge, and measure these beliefs in order to check whether the manipulation was successful. 
+Experiment 3b (*causal endorsement*) uses a very similar experimental procedure in exploring causal generalization language.
 
 <!-- examine causal domains that vary as to whether or not probabilistic causes are plausible and whether or not a background cause of the event is intuitively present. -->
 <!-- We introduce participants to the results of several experiments about each domain and see how different experimental results update participants' beliefs about causal power in these domains. -->
@@ -107,10 +107,10 @@ Participants were told a story of a scientific experiment testing different subs
 Our cover stories were constructed so that the potential cause could have some plausible intuitive mechanism that could give rise to the property (e.g., a naturally occurring herb causing animals to be sleepy). 
 The two cover stories can be seen in Table 2.
 
-Participants were then shown "previous experimental results", which followed one of four distributions.
+Participants were then shown *previous experimental results*, which followed one of four distributions.
 In two of the conditions, participants saw results that came from a single underlying distribution (*common* conditions).
-In one of these conditions, all causes produced a strong effect (average efficacy approximately 98\%; the *common strong* condition).
-In the second of these conditions, all causes produced a weak effect (average efficacy approximately 20\%; the *common weak* condition).
+In one of these conditions, all causes produced a strong effect (*common strong* condition; average efficacy approximately 98\%).
+In the second of these conditions, all causes produced a weak effect (*common weak* condition; average efficacy approximately 20\%).
 <!-- The results of the previous experiments were described verbally  -->
 <!-- These distributions had the feeling that either there was some background cause which gave rise to the effect (e.g., a simple base rate) or that all substances were equally as efficacious at producing the effect. -->
 The two other conditions used distributions in which some experiments resulted in either no or very few successes (i.e., produced 0, 1, or 2 successes), and others that either had strong or weak effects as above. 
@@ -155,7 +155,7 @@ print(causalMaterials,
 ```
 
 
-```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. B: Prior elicitation task: Participants predict the results of the next 5 experiments. D: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10, cache=F}
+```{r causalExpt, fig.cap="Overview of Experiment 3. A-C: Results of previous experiments are shown one at a time, described in text and displayed in a table. One of the results was lost. Participants are asked to review previous results once all displayed. D: Prior elicitation task: Participants predict the results of the next 5 experiments. E: Causal endorsement task: Results of previously lost experiment are found and participants are asked to evaluate the causal generalization.", fig.width = 10, cache=F}
 caus.exp.1 <- ggdraw() + draw_image("figs/causal-expt-1.jpeg", scale = 1) +
   theme(plot.margin = unit(c(2,0,0,0), "pt")) 
 caus.exp.2 <- ggdraw() + draw_image("figs/causal-expt-2.jpeg", scale = 1)+
@@ -187,7 +187,7 @@ The experiment was a single trial: Each participant saw only one cover story wit
 <!-- Once participants clicked the "continue" button, they were brought to a new screen where they would make predictions about new substances that have yet to be tested (Figure \@ref(fig:causalExpt)). -->
 <!-- Participants saw a list of new substances and slider bars that ranged from 0 to 100.  -->
 <!-- The second phase serves as a measurement of participants' feature-probability priors. -->
-Participants were told that they were an astronaut-scientist on a distant planet trying to figure out how some system works (i.e., how to make a certain kind of animal sleepy with different herbs or how to make a plant grow tall with different fertilizers). The story for the "sleepy animals" condition read:
+Participants were told that they were an astronaut-scientist on a distant planet trying to figure out how some system works (i.e., how to make a certain kind of animal sleepy with different herbs or how to make a plant grow tall with different fertilizers). The story for the *sleepy animals* condition read:
 
 \begin{quotation}
 You are an astronaut-scientist exploring a distant planet. 
@@ -206,9 +206,9 @@ After participants viewed the results of the 10 "experiments" (and 1 missing exp
 
 Upon clicking the continue button, the table of experiment results is removed and participants are told more experiments were conducted.
 Participants were asked to predict the results of the next 5 experiments (Figure \@ref(fig:causalExpt)D).
-Participants were given five slider bars ranging from 0 - 100, and asked to predict the next five substances (e.g., herbs M, N, P, Q, and R).
+Participants were given five slider bars ranging from 0 - 100, and asked to predict the outcomes for the next five substances (e.g., herbs M, N, P, Q, and R).
 
-After responding, participants then completed an attention check survey where they were asked what the team of scientists were investigating (choosing a response from a drop-down menu with 12 options) and to input one of the numerical results they saw on the previous screen. 
+After responding, participants then completed an attention check survey where they were asked the topic the team of scientists was investigating (choosing a response from a drop-down menu with 12 options) and to input one of the numerical results they saw on the previous screen. 
 This attention check served to confirm that participants had encoded both relevant aspects of the experiment (the domain and the frequencies). 
 
 
@@ -295,7 +295,7 @@ ggplot(.,
   #scale_linetype_manual(values = c(2, 1))+
   facet_wrap(~distribution, scales = 'free', nrow = 2)+
   #scale_y_continuous(limits = c(0, 1), breaks = c(0, 1))+
-  scale_x_continuous(limits = c(0, 1), breaks = c(0, 0.5, 1))+
+  scale_x_continuous(limits = c(-0.05, 1.05), breaks = c(0, 0.5, 1))+
   guides(fill = F)+
   ylab("Proportion of responses")+
   xlab("Prevalence rating")
