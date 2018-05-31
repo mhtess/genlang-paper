@@ -59,9 +59,9 @@ We then construct generic endorsement models based on speakers aiming to convey 
 ## Experiment 2a: Measuring the prevalence prior for events
 
 In order to generate model predictions for habitual endorsements, we first elicit the prior distributions over rates for different events.
-For language about the behaviors of people, $P(p)$ represents a language user's background knowledge about the rates with which people do a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
+For language about the behaviors of people, $P(p)$ represents a language user's background knowledge about the rates with which people perform a behavior; this prior can be constructed as a distribution over *different people*, each of whom do the behavior with a different rate.
 We designed our elicitation task to take advantage of the mixture-model representation of the prevalence prior used in Expt. 1.
-In particular, we assume, to a first approximation, that the distribution over prevalence can be represented as a mixture of those who tend to do the action with a stable rate and those who do not do the action.^[
+In particular, we assume, to a first approximation, that the distribution over prevalence can be represented as a mixture of those who tend to perform the action with a stable rate and those who do not perform the action.^[
   It is likely that more than just these two possibilities are represented in people's intuitive theories, corresponding to individuals with additional traits or demographics.
   We assume here a simple two-component structure so as to not make the specification of the prior overly complex.
 ]
@@ -214,7 +214,7 @@ figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
   guides(color = F)
 ```
 
-```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, fig.cap="Prevalence priors for events (Expt. 2a). A: Parameters of prevalence priors for the 31 items in Expt. 2. Items cover much of the range of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (in terms of \\emph{proportion of people who have never done action before}), reflecting the (inverse) popularity of the event across people.", cache = F}
+```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Prevalence priors for events (Expt. 2a). A: Parameters of prevalence priors for the 31 items in Expt. 2. Items cover much of the range of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (in terms of \\emph{proportion of people who have never done action before}), reflecting the (inverse) popularity of the event across people.", cache = F}
 cowplot::plot_grid(
   figure.habituals.priors.scatter + theme(plot.margin = unit(c(6,6,6,0), "pt")), 
   figure.habituals.priors.marginals + theme(plot.margin = unit(c(6,0,6,6), "pt")),
@@ -517,7 +517,7 @@ habituals.endorsement.bars <- ggplot(md.hab.long %>%
       labels = c("5 years", "year", "month", "week")
   )+
   #scale_fill_continuous(low = "#2b83ba", high = "#d7191c")+
-  coord_fixed()+
+  #coord_fixed()+
   ylab("Habitual endorsement")+
   xlab("")+
   #facet_grid(src~habitual, scales = 'free')+
@@ -560,10 +560,11 @@ ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper
   ylab("Human endorsement")+
   facet_wrap(~src, ncol = 2, strip.position = "top")+
   guides(fill = guide_colorbar(ticks = F, title = "Time interval"))+
-  theme(strip.text.y = element_blank()#,# element_text(angle = 0, hjust= 0),
+  theme(strip.text.y = element_blank(),# element_text(angle = 0, hjust= 0),
         #legend.direction = 'horizontal',
         #legend.position = c(0.025,0.975),
-        #legend.position =c(1,1),
+        legend.position ='bottom',
+        legend.text = element_text(angle = 45)
         #legend.justification = c(1,1)
         )
 ```
@@ -575,13 +576,18 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
                                                   ),
                             labels = c("Prevalence Prior",
                                        "Posterior given Habitual")),
-         action = factor(action, levels = example.habituals)
+         action = factor(action, levels = c( 
+                       "climbs mountains","hikes", "runs",
+                      "smokes cigarettes","drinks coffee",
+                      "goes to the movies", "watches space launches",
+                       "writes poems", "writes novels"
+                       ))
                                 #"climbs mountains", "hikes", "runs",
                               #"goes to the movies", "smokes cigarettes"
                               ) %>%
   ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
   geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
-  facet_wrap(~action, nrow = 1)+
+  facet_wrap(~action, nrow = 2)+
   # geom_text_repel(data = category.text.labels,
   #                 aes(label = category, x = x , y = y),
   #                 inherit.aes = F, color = "#2b83ba")+
@@ -596,37 +602,35 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
   scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
   xlab("Frequency (log scale)") +
   ylab("Scaled probability density")+
-  theme(#legend.position = "bottom", 
+  theme(legend.position = c(0.9, 0), 
         legend.title = element_blank(),
-        axis.text.x = element_text(angle = 90, vjust = 1),
-        axis.title.y = element_text(hjust = 1))+
-      scale_x_continuous(limits = c(-5, 8), 
+        axis.text.x = element_text(angle = 90, vjust = 1))+
+        #axis.title.y = element_text(hjust = 1))+
+  scale_x_continuous(limits = c(-5, 8), 
                      breaks = c(-5, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))
 ```
 
-```{r habituals-endorsement-figure, fig.width = 15, fig.asp=0.5, fig.cap="Endorsing generalizations about events. A: Endorsements for nine events given different frequencies of action by human participants and four models. B: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for all ninety-three habitual sentences by each model. C: Nine example frequency priors and posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a & 2b.", cache = F}
+```{r habituals-endorsement-figure, fig.width = 13, fig.asp=0.7, fig.cap="Endorsing generalizations about events. A: Endorsements for nine events given different frequencies of action by human participants and four models. B: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for all ninety-three habitual sentences by each model. C: Nine example frequency priors and posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a and 2b.", out.width = "\\textwidth", fig.pos = "!h", cache = F}
 
 #hab.legend <- get_legend(habituals.endorsement.models)
 fig.hab.endorse.bars <- habituals.endorsement.bars +
-  theme(plot.margin = unit(c(16,6,6,6), "pt")) #+ ggtitle("prevalence priors")
+  theme(plot.margin = unit(c(6,6,6,6), "pt")) #+ ggtitle("prevalence priors")
 fig.hab.endorse.scatters <- habituals.endorsement.models +
-  theme(plot.margin = unit(c(0,6,6,6), "pt")) # + theme(legend.position="none") #+ ylab("")
+  theme(plot.margin = unit(c(6,6,6,6), "pt")) # + theme(legend.position="none") #+ ylab("")
 fig.hab.endorse.priors <- habituals.endorsement.insets +
-  theme(plot.margin = unit(c(0,0,6,0), "pt"))
+  theme(plot.margin = unit(c(16,36,16,36), "pt"))
 
-  plot_grid(
+plot_grid(
     plot_grid(fig.hab.endorse.bars, fig.hab.endorse.scatters, nrow = 1, labels = c("A", "B"),
               rel_widths = c(2, 1)),
-                            # plot_grid(fig.hab.endorse.scatters,hab.legend, nrow = 1, rel_widths = c(0.6,4),
-                            #                                 axis = 't', align = 'h'),
-                            fig.hab.endorse.priors,
-                            labels = c("", "", "C"), nrow = 2,
+            fig.hab.endorse.priors,
+                            labels = c("", "C"), nrow = 2,
                             #axis = 'lr', 
                         #align = 'v', 
-                            rel_heights = c(2, 1))
+                            rel_heights = c(1.7, 1))
 
-
+#fig.hab.endorse.priors
 ```
 
 
@@ -1178,7 +1182,7 @@ ggplot(.,
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="A: Example empirical and predicted endorsements for habituals in three conditions. B: Predicted frequency as a function of past frequency and condition manipulation (enabling, preventative, and baseline). C: Model fits for the uncertain threshold model using past frequency, linear model based on future frequency, and uncertain threshold model using future frequency.", fig.width = 12,  fig.asp = 0.7, cache=F}
+```{r habituals-predictive-figure, fig.cap="A: Example empirical and predicted endorsements for habituals in three conditions. B: Predicted frequency as a function of past frequency and condition manipulation (enabling, preventative, and baseline). C: Model fits for the uncertain threshold model using past frequency, linear model based on future frequency, and uncertain threshold model using future frequency.", fig.width = 12,  fig.asp = 0.7,out.width = "\\textwidth", fig.pos = "!h", cache=F}
 plot_grid(
   habituals.endorsement.pred.bars +
     theme(plot.margin = unit(c(6,6,6,6), "pt"), legend.position="none",

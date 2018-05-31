@@ -1,10 +1,10 @@
 # Case Study 1: Generic Language
 
-Generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") are of substantial interest in psychology for their role in concept and theory formation [e.g., @Gelman2004], stereotype propagation [@Rhodes2012], motivation [@Cimpian2007], and many other facets of everyday reasoning.
+Learning from generalizations about categories (i.e., *generic language*; e.g., "Dogs bark.") is believed to play a central role in concept and theory formation [e.g., @Gelman2004], stereotype propagation [@Rhodes2012], motivation [@Cimpian2007], and many other facets of everyday reasoning.
 In addition, generics have been the case study of choice for the semantics of the language of generalization because of their tantalizing similarity to quantified statements (e.g., "Most dogs bark").
 However, intuitions and empirical data argue that generics simply do not reduce to quantified statements in a simple way [e.g., @Khemlani2012; @Prasada2013; @Cimpian2010].
 
-We first investgate how the *underspecified threshold* endorsement model predicts actual human endorsements of generic statements.
+We first investigate how the *underspecified threshold* endorsement model predicts actual human endorsements of generic statements.
 We measure endorsement for thirty generic sentences that cover a range of conceptual distinctions previously discussed in the empirical literature on generics [@Prasada2013]: characteristic features displayed by a majority (e.g., "Ducks have wings."),  characteristic features displayed by a minority (e.g., "Robins lay eggs."), features that are *striking* or *dangerous* (e.g. "Mosquitos carry malaria."),  noncharacteristic features displayed by a minority (e.g., "Robins are female."), and features that are totally absent (e.g. "Lions lay eggs.").
 We further craft sentences with the goal of eliciting the full range of acceptability judgments (intuitively: "true", "false", and "indeterminate") for generics with properties of low, medium, and high referent-prevalence (Expt. 1a).
 We examine generics about animal categories in order to reliably measure the prior belief distribution over the prevalence of features $P(p)$.
@@ -46,8 +46,8 @@ The experiment took about 3 minutes and participants were compensated \$0.35.
 #### Procedure and materials
 
 Participants were shown thirty generic sentences in a randomized order.
-They were asked to press one of two buttons (randomized between-participants) to signify whether they agreed or disagreed with the sentence (see Figure\ \@ref(fig:generics-endorsement-figure)A for the full list). 
-The thirty sentences were presented in a random order between participants and covered a range of conceptual categories described above.
+They were asked to press one of two buttons (*P* or *Q*; randomized between-participants) to indicate whether they agreed or disagreed with the sentence (see Figure\ \@ref(fig:generics-endorsement-figure)A for the full list). 
+The thirty sentences covered a range of conceptual categories described above.
 Approximately ten true, ten false, and ten uncertain truth-value generics were selected.
 As an attention check, participants were asked at the end of the trials which button corresponded to "Agree".
 Four participants were excluded for failing this trial.
@@ -103,7 +103,7 @@ uncertain_high <- filter(d.gen.endorse.manipulation.check.bayes, truth_judgment 
 
 As a manipulation check, the first author assigned an \emph{a priori} truth-judgment (true/false/indeterminate) to each stimulus item.
 As one would expect, there were substantial differences in empirical endorsements: true generics were almost universally endorsed (Maximum A-Posteriori estimate and 95\% credible interval of endorsement probability: $`r true_MAP`$ $[`r true_low`, `r true_high`]$);
-indeterminate generics were agreed at a rate \emph{less} likely than chance ($`r uncertain_MAP`$ $[`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP`$ $[`r false_low`, `r false_high`])$).
+indeterminate generics were endorsed at a rate \emph{less} likely than chance ($`r uncertain_MAP`$ $[`r uncertain_low`, `r uncertain_high`])$) but substantially more than false generics  ($`r false_MAP`$ $[`r false_low`, `r false_high`])$).
 
 In addition to these categorical differences between our thirty generic statements, we find a continuum of endorsement values (Figure\ \@ref(fig:generics-endorsement-figure)A).
 Such a continuum of judgments is already evidence against any theory that only predicts categorically whether a generic statement is true or false.
@@ -189,7 +189,7 @@ The empirical distribution is tri-modal, with reliable modes at 0\%, 50\%, and 1
 A more complex model (i.e., one with three mixture components) would be necessary to perfectly account for this item. 
 Using a three-component model for this distribution does not change the resulting model predictions and we maintain the simpler two-component mixture for uniformity.
 
-```{r generic-endorsement-priors-figure, fig.width = 7, fig.height = 6, fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prior and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line.", cache = F}
+```{r generic-endorsement-priors-figure, fig.width = 7, fig.asp = 0.9, out.width = "\\textwidth", fig.pos = "!h", fig.cap="A: Empirically elicited prior distributions over prevalence for eight properties. B: Cumulative density plots reveal that a model of a mixture of two Beta distributions does substantially better at capturing the structure of the priors than a single Beta distribution. Distributions are the posterior predictive distributions for the models of the prior and the raw empirical distribution. A completely uniform distribution would be represented as the y = x line.", cache = F}
 load('../analysis/generics-priors-posteriorPredictives.Rdata')
 
 gen.priors.densities <- ggplot(m.gen.endorse.priors.posteriorPredictive %>%
@@ -309,8 +309,10 @@ Cue validity thus is similar to a *point estimate* of the prevalence prior distr
 <!-- To show that the full distribution over prevalence is important, we explore a secondary baseline model based on prevalence and cue validity. -->
 Though the cue validity of a property for a category can be derived from the prevalence prior distribution, previous empirical studies have estimated cue validity from different empirical sources [@Cree2006; @Khemlani2012].
 In the empirical literature on generics, researchers often ask directly about the cue validity probability [e.g., "There is an animal that lays eggs. What is the probability that it is a robin?"; @Khemlani2012], though in the broader literature on semantic memory a *free production* paradigm is often employed [e.g., "X lays eggs. What do you think X is?"; @Cree2006]. 
-We found that these different ways of estimating cue validity diverge for a number of key cases, possibly due to an experimenter demand effect in the direct question paradigm.
-We thus used the data from the free production paradigm ($n = 100$) to estimate cue validity. 
+We found that these two ways of estimating cue validity diverge for a number of key cases (Appendix B).
+Most notably, undiagnostic features (e.g., *is female*), which in theory have a cue validity close to zero, were rated as having intermediate cue validity in the *direct question* paradigm. 
+In response to a direct question such as "There is an animal that is female. What is probability that it is a robin?", participants could be responding "I don't know" rather than reporting their intuitive base rate that a random animal would be a robin. 
+The free production paradigm did not produce artifacts such as this one, and we chose to use it as the more veridical estimate of cue validity. 
 For a detailed analysis of the different cue validity measurements and comparison to cue validity derived from the prevalence prior, see Appendix B.
 
 <!-- It thus implicitly captures information about other categories, though cannot capture the structure that is present in the prevalence priors. -->
@@ -482,7 +484,7 @@ generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored,
     theme(legend.position = "bottom", legend.title = element_blank())
 ```
 
-```{r generics-endorsement-figure, fig.width = 11, fig.height=8.5, fig.cap="Endorsing generalizations about categories. A: Human elicited endorsements for thirty generic sentences reveal a continuum of endorsements. B: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). C: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
+```{r generics-endorsement-figure, fig.width = 11, fig.asp = 0.8, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Endorsing generalizations about categories. A: Human elicited endorsements for thirty generic sentences reveal a continuum of endorsements. B: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). C: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
 
 fig.gen.endorse.data <- generics.endorsement.spectrum +
   theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ggtitle("prevalence priors")
@@ -573,7 +575,7 @@ r2.refprev.distortion <- compute_r2(
 
 We first examine the posterior predictive distribution on the prevalence prior and referent prevalence data to ensure that the joint-inference model does not distort these parameters at the service of predicting the endorsement data (e.g., such a distortion could manifest by the joint-inference model inferring that 100% of mosquitos carry malaria in order to predict that "Mosquitos carry malaria" is a good utterance).
 This is an important step in model validation because it tells us that our model's predictions are derived from reasonable values of the parameters (e.g., that not all mosquitos carry malaria).
-Importantly, the model recapitulates the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when the Bayesian data analysis model only included these data and their associated model ($r_{\text{prevalence prior parameters}}^2(`r length(m.gen.endorse.refprev.parameters[,"Parameter"])`) = `r r2.refprev.distortion`$; $r_{\text{referent prevalence parameters}}^2(`r length(m.gen.endorse.priors.parameters[,"Parameter"])`) = `r r2.prevprior.distortion`$; see Appendix D, Figure 14).
+Importantly, the model captures the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when the Bayesian data analysis model only included these data and their associated model ($r_{\text{prevalence prior parameters}}^2(`r length(m.gen.endorse.refprev.parameters[,"Parameter"])`) = `r r2.refprev.distortion`$; $r_{\text{referent prevalence parameters}}^2(`r length(m.gen.endorse.priors.parameters[,"Parameter"])`) = `r r2.prevprior.distortion`$; see Appendix D, Figure 14).
 This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the prevalence distributions). 
 Finally, the inferred optimality parameter in the endorsement model (Eq. \ref{eq:S1}) is `r round(uncertain.threshold.s1opt[[1,"MAP"]], 2)` [`r round(uncertain.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(uncertain.threshold.s1opt[[1,"cred_upper"]], 2)`], a range consistent with the literature on similar models.
 
@@ -605,7 +607,7 @@ Finally, an utterance with high referent prevalence, such as "Tigers don't eat p
 
 Generic language is the premier case study for generalizations in language. 
 Generics have been studied extensively in the cognitive and developmental psychological literatures and have deep implications for wide ranging phenomena from stereotype propagation [@Rhodes2012] to motivation [@Cimpian2007].
-Heretofore, no formal model has been able to pass the most basic truth-functional tests of the semantics of generics: knowing when they are true and false.
+Heretofore, no formal model has been able to pass the most basic empirical test for generics: knowing when they are true and false.
 <!-- Determining the truth conditions is the first step towards articulating a formal theory of how the language updates beliefs. -->
 This empirical case study demonstrates that a semantics based on the prevalence of the feature is tenable despite of alleged counterexamples (e.g., "Robins lay eggs" vs. "Robins are female").
 The key theoretical insight is that the truth-functional semantics is underspecified, or vague, and resolved in context by a process of probabilistic inference.

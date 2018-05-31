@@ -159,7 +159,7 @@ For example, in response to the question "There is a thing that is female. What 
 Participants may cope with the awkwardness of the question by placing the slider bar in the middle of the scale. 
 
 
-```{r cv-bothquestions-barplots, fig.height = 8, fig.width = 8, fig.cap="Top: Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals. Bottom left: Raw empirical distributions for direct question task. Bottom right: Correspondence between measured cue validity and prevalence prior derived cue validity."}
+```{r cv-bothquestions-barplots, fig.height = 8, fig.width = 8, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Top: Empirically measured cue validity for two different tasks. Items are grouped by whether the property is never present in the category (false), the property is always present in the category and every other category (undiagnostic), or present in the category and absent from most other categories (diagnostic). Dotted lines denote theoretical cue validity representing the desiderata (see text). Error bars denote bootstrapped 95% confidence intervals. Bottom left: Raw empirical distributions for direct question task. Bottom right: Correspondence between measured cue validity and prevalence prior derived cue validity."}
 load("cached_results/appendix_cueValidity_results.RData")
 # d.cv.bothtasks, d.cv.targets, undiagnostic.props
 # md.fp, md.dq 
