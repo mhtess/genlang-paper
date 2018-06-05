@@ -357,10 +357,8 @@ For example, the sentence "Some dogs have four legs" is believed to be literally
 "Most dogs have four legs" can also be described as a threshold on prevalence (e.g., the chances that a dog will have four legs is greater than 50%): $\denote{most}(p) := p > 0.5$.
 Thus, the simplest semantics for a generalization would also be a threshold on the prevalence: $\denote{gen}(p, \theta) := p >\theta$.
 
-The obvious next question for such a representation concerns $\theta$: What threshold is appropriate?
-It has been argued that generic language is more fundamental than quantified language [e.g., "some", "most"; @Leslie2007; @Gelman2009], which can be described using particular values of $\theta$: $\denote{some}(p) := p > 0$; $\denote{most} := p > 0.5$.
-In a probabilistic representation, states of uncertainty are more fundamental than states of certainty (e.g., it is a special case when an agent with probabilistic beliefs is certain about something; the more typical case is that they are uncertain). 
-Thus, if quantifiers have *certain* thresholds ("some": greater than 0; "most" greater than 0.5), then perhaps generics have *uncertain* thresholds.
+The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice. 
+Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013].
 We formalize this underspecification of meaning (Ingredient 2: Vagueness) by putting a probability distribution over $\theta$: $P(\theta)$ [@Lassiter2013; @Lassiter2015; cf., @Qing2014].
 
 Finally, the meanings of linguistic expressions manifest in their capacity to convey information from speaker to hearer [@Grice1975; @Clark1996; @Levinson1995].
@@ -1382,7 +1380,7 @@ Truth conditions are unified criteria that all generics must satisfy in order to
 *Genericity*, on the other hand, is thought to be a non-linguistic, psychological phenomenon previously explored either in terms of pragmatics [@Declerck1991] or meta-semantics [@Leslie2007; @Liebesman2011; @Sterken2015; @Nickel2016].
 A full account of generic language must include both a theory of generics (i.e., truth conditions) and a complementary theory of genericity [@Nickel2016]. 
 
-In our account, the truth conditions of generics concern the currency of belief, probability, and the relevant probabilities may be informed by rich conceptual structure.
+In our account, the truth conditions of generics are a function of beliefs formalized with probability, and the relevant probabilities may be informed by rich conceptual structure.
 The separation between conceptual structure (which exists in the mind) and prevalence (a quantitative metric for natural language semantics) provides a unified view for the phenomenology of generics.
 We chart-out a single answer to the semantic question "what do generics mean?", while also formalizing how background knowledge influences generic understanding.
 That is, our approach provides both a theory of generics and genericity, and their interaction.

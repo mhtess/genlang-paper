@@ -83,5 +83,5 @@ print(tab1, type="latex",
 ```
 
 Items used in Case Study 2 (Habitual language). Referent frequency denotes the experimentally supplied time periods during which a person did an action 3 times (e.g., "In the past 5 years, John climbed mountains three times."; Expt. 2b). 
-Enabling and preventative columns provide the causal manipulation sentences used in Expt. 3c in order to enable or prevent future instances of the action (blank entries mean that the item was not used in Expt. 2c).
+Enabling and preventative columns provide the causal manipulation sentences used in Expt. 2c in order to enable or prevent future instances of the action (blank entries indicate that the item was not used in Expt. 2c).
 Referent frequency with an asterisk denotes the time interval used in Expt. 2c.
