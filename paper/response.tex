@@ -1,0 +1,159 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+ 
+\documentclass[11pt,letterpaper]{letter} % Specify the font size (10pt, 11pt and 12pt) and paper size (letterpaper, a4paper, etc)
+%\usepackage[urw-garamond]{mathdesign}
+\usepackage{graphicx} % Required for including pictures
+\usepackage{microtype} % Improves typography
+%\usepackage{gfsdidot} % Use the GFS Didot font: http://www.tug.dk/FontCatalogue/gfsdidot/
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{url}
+% Create a new command for the horizontal rule in the document which allows thickness specification
+\makeatletter
+\def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
+\makeatother
+ 
+%----------------------------------------------------------------------------------------
+%	DOCUMENT MARGINS
+%----------------------------------------------------------------------------------------
+
+\textwidth 7in
+\textheight 9.5in
+\oddsidemargin -.25in
+\evensidemargin -.25in
+\topmargin -1in
+\longindentation 0.50\textwidth
+\parindent 0.4in
+ 
+%----------------------------------------------------------------------------------------
+%	SENDER INFORMATION
+%----------------------------------------------------------------------------------------
+
+\def\Who{} % Your name
+\def\What{} % Your title
+\def\Autha{Michael Henry Tessler} % Your name
+\def\Authb{Noah D. Goodman} % Your name
+\def\Where{Department of Psychology} % Your department/institution
+\def\Address{450 Serra Mall, Bldg 420} % Your address
+\def\CityZip{Stanford, CA 94305} % Your city, zip code, country, etc
+\def\Email{E-mail: mtessler@stanford.edu} % Your email address
+\def\TEL{Phone: (757) 561-7971} % Your phone number
+
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER AND FROM ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\address{
+\includegraphics[width=0.8in]{logo-simple.pdf} % Include the logo of your institution
+\hspace{5.1in} % Position of the institution logo, increase to move left, decrease to move right
+\vskip -0.85in~\\ % Position of the text in relation to the institution logo, increase to move down, decrease to move up
+\Large\hspace{1.5in}STANFORD UNIVERSITY \hfill %~\\[0.05in] % First line of institution name, adjust hspace if your logo is wide
+%\hspace{1.5in}University 
+\hfill 
+\normalsize % Second line of institution name, adjust hspace if your logo is wide
+\makebox[0ex][r]{\bf \Who \What }\hspace{0.08in} % Print your name and title with a little whitespace to the right
+~\\[-0.11in] % Reduce the whitespace above the horizontal rule
+\hspace{1.5in}\vhrulefill{1pt} \\ % Horizontal rule, adjust hspace if your logo is wide and \vhrulefill for the thickness of the rule
+\hspace{\fill}\parbox[t]{2.85in}{ % Create a box for your details underneath the horizontal rule on the right
+%\flushright 
+\footnotesize % Use a smaller font size for the details
+\flushright
+%\Who \\  % Your name, all text after this will be italicized
+\Autha\\
+\Authb\\
+\Where\\ % Your department
+\Address\\ % Your address
+\CityZip\\ % Your city and zip code
+%\TEL\\ % Your phone number
+%\Email\\ % Your email address
+%\URL % Your URL
+}
+\hspace{0in} % Horizontal position of this block, increase to move left, decrease to move right
+\vspace{-1in} % Move the letter content up for a more compact look
+}
+
+%----------------------------------------------------------------------------------------
+%	TO ADDRESS STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\def\opening#1{\thispagestyle{empty}
+{\centering\fromaddress \vspace{0.6in} \\ % Print the header and from address here, add whitespace to move date down
+\hspace*{\longindentation}\hspace*{\fill}\par} % Print today's date, remove \today to not display it
+%{\raggedright \toname \\ \toaddress \par} % Print the to name and address
+\vspace{0.4in} % White space after the to address
+\noindent #1 % Print the opening line
+% Uncomment the 4 lines below to print a footnote with custom text
+%\def\thefootnote{}
+%\def\footnoterule{\hrule}
+%\footnotetext{\hspace*{\fill}{\footnotesize\em Footnote text}}
+%\def\thefootnote{\arabic{footnote}}
+}
+
+%----------------------------------------------------------------------------------------
+%	SIGNATURE STRUCTURE
+%----------------------------------------------------------------------------------------
+
+\signature{\Autha \\ \Authb \What} % The signature is a combination of your name and title
+
+\long\def\closing#1{
+\vspace{0.1in} % Some whitespace after the letter content and before the signature
+\noindent % Stop paragraph indentation
+\hspace*{\longindentation} % Move the signature right
+\parbox{\indentedwidth}{\raggedright
+#1 % Print the signature text
+\vskip 0.1in % Whitespace between the signature text and your name
+\fromsig}} % Print your name and title
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{letter}
+
+\opening{Dear Professor Saxe,}
+
+Thank you for soliciting peer reviews for our manuscript \emph{The Language of Generalization}. We appreciate the time both you and the reviewers have devoted to commenting and critiquing our manuscript. We are grateful for the opportunity to resubmit a revised version to be considered for publication in \emph{Psychological Review}.
+We have made a number of substantive changes in this version of the manuscript that we think will improve the readability of the paper.
+
+We have taken Reviewers 1 and 3's suggestion of reconfiguring some of the general discussion material so now a comparison to other theories appears before the experiments.
+We hope this addresses R3's uncertainty about the relationship of our theories to extant theories. 
+Our theory is, in R3's option-space, (e) an outright alternative to prior theories. 
+Not explicitly the goal of this paper, however,  we also posit that our theory is (d), a more precise specification of (at least some aspects of) prior theories, namely Cohen (1999)'s domain-restriction theory and Leslie (2007)'s cognitively-based context sensitivity. 
+Finally, we include an additional subsection in the ``alternative theories'' section describing the various alternative quantitative models we will use for model comparison (in the hope of addressing R3's 2nd comment). 
+The importance of these quantitative comparisons is slightly orthogonal to the comparisons to Leslie, Cohen, and other linguistic theories: These quantitative comparisons provide assurance that our  model is not overparameterized and that the prior in our model is not doing all of the work. 
+This also allows us to clarify the sense in which our model is unique (R3's 3rd comment): It is the first model of generics that makes quantitative predictions about human endorsements (and it does so by connecting with a truth-conditional semantic theory in a particular way). 
+
+We have taken inspiration of Reviewer 1's comments concerning the presentation of the various puzzles in a more accessible form. 
+We have moved the General Discussion subsection ``Other philosophical puzzles'' to appear before the experiments and merged with the exposition about the model where we provide worked examples (e.g., \emph{birds lay eggs vs. are female}, \emph{mosquitos carry malaria}).
+By moving these other philosophical puzzles to appear before the experiments, we are able to foreshadow the relevance of \emph{predictive probability} as central to our account (and motivate Expts. 2c \& d).
+We have also added a table per R1's suggestion summarizing these linguistic examples we believe a theory of generics should be able to handle, including a high-level verbal description of how our model treats these examples. 
+
+We tremendously appreciate Reviewer 2's thoughtful exposition on our account and have incorporated a number of their insights and suggestions into the General Discussion.
+We have added a discussion about how accepting a generic sentence adds to the common ground information about cue validity, which suggests other empirical tests of the accounts.
+We have noted as R2 does that there have been no empirical tests of the analogy between habituality and genericity, and that our formal machinery shows the way in which the two can be thought of as the same kind of linguistic phenomena.
+We have taken a few paragraphs to clarify the kind of vagueness we have in mind for generics, namely what R2 had in mind: vagueness and genericity are analogous linguistic phenomena insofar as they can both be thought of as the result of a listener being uncertainty as to the exact truth conditions. 
+We note that this sort of ``lexical uncertainty`` is kind of \emph{parameter learning} problem (e.g., the listener knows the form of the truth conditions, but not the values of some variables) which can be formally distinguished from other sorts of uncertain truth conditions better modeled as a \emph{structure learning} problem (e.g., lexical ambiguity). 
+We additionally now discuss one interpretation of the uncertain threshold, drawing a connection explicitly to Williamson's (1994) empiricist view.
+
+In addition to these broad theoretical points, we have clarified a number of smaller points brought up by Reviewer 1.
+We have clarified our contrasts of generics from quantifiers as being from a purely semantic perspective, not taking into account pragmatic interpretations of quantifiers. 
+We are now explicit about our argument from analogy about how states of uncertainty are more fundamental than states of certainty motivates an uncertain threshold (for generics) as being more fundamental a certain, exact threshold (for quantifiers).
+
+
+things i'm not sure about:
+\begin{enumerate}
+\item property theories of meaning (R1)
+\item acquisition story and evidence of how difficulty with quantifiers comes from pragmatic considerations (Musolino \& Lidz, 2006)
+\end{enumerate}
+
+Finally we have gone through the manuscript and tried to make small changes to improve clarity and citations.
+
+\closing{Sincerely yours,}
+
+\end{letter}
+
+\end{document}
+
