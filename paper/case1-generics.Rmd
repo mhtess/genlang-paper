@@ -374,16 +374,16 @@ Such a model makes the wrong prediction for non-distinctive properties with high
 ### Communicative endorsement models
 
 Our underspecified-threshold model considers how well the generalization would bring a naive interpreter's prior distribution on prevalence $P(p)$ (Eq. \ref{eq:L0}; e.g., the prevalence of laying eggs among other animals) in line with the speaker's belief about the referent prevalence ($p$ in Eq. \ref{eq:S1}; e.g, the prevalence of laying eggs among robins).
-There are several substantive components to this hypothesis: (a) context in the form of a prior distribution over prevalence $P(p)$, (b) endorsement as a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) vagueness in the semantics of a generalization.
+As described in the *Intermediate Summary*, there are several substantive components to this hypothesis: (a) property knowledge in the form of a prior distribution over prevalence $P(p)$, (b) endorsement as a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) vagueness in the semantics of a generalization.
 We construct an alternative, lesioned model by removing the vagueness in meaning, assigning a fixed semantics to the generalization (i.e., analogous to the quantified statements) but keeping the prior and the decision-theoretic architecture in place. 
 There are no correspondingly simple ways to lesion the other two components (context or speaker decision) while still producing a model that makes quantitative, context-sensitive predictions. 
 
 <!-- The model we propose for endorsing generalizations is a model of an agent that decides whether or not to say the generalization to a naive interpreter. -->
 For both the fixed-threshold and full uncertain-threshold endorsement models, we build a joint Bayesian data analysis model of the referent prevalence $p$, prevalence priors $P(p)$ (both from Expt. 1b data), and the endorsement data (Expt. 1a). 
+Predicting the data from both Expt. 1a and 1b by a single, joint-inference model makes our assumptions explicit about how these data were generated and is the proper way to represent the uncertainty in our measurement of the prior elicitation data (see Appendix C and Figure\ \@ref(fig:genericsModelDiagram) for further model specification details).
 Empirically elicited referent prevalence and prevalence prior data (Expt. 1b) directly constrain the parameters that generate those quantities in the model ($p$ in Eq. \ref{eq:S1} and $P(p)$ in Eq. \ref{eq:L0}, respectively). 
 The prevalence prior $P(p)$ is modeled as a mixture of Betas while referent prevalence is modeled by a single Beta distribution.
 The endorsement data (Expt. 1a) is model by our endorsement model (Eq. \ref{eq:S1}), which has one free parameter $\lambda$.
-Predicting the data from both Expt. 1a and 1b by a single, joint-inference model simultaneously makes explicit our assumptions about how these data were generated and is the proper way to represent the uncertainty in our measurement of the prior elicitation data (see Appendix C and Figure\ \@ref(fig:genericsModelDiagram) for further model specification details).
 To learn about the credible values of the parameters of the joint-inference model and resulting model predictions, we ran an incrementalized version of MCMC [@Ritchie2016] for 3 chains of 150,000 iterations, discarding the first 50,000 for burn-in.
 
 <!-- The number of parameters of this full data-analytic model is relatively large, and thus there is a concern that the parameters themselves (as opposed to the exact structure of our model) are doing the work.  -->
@@ -391,10 +391,10 @@ To learn about the credible values of the parameters of the joint-inference mode
 
 #### Lesioned model (no vagueness)
 
-For a strong alternative model, we lesion our uncertain threshold model so that it has a fixed threshold $\theta$.
+For a strong alternative model, we lesion the uncertain threshold model so that it has a fixed threshold $\theta$.
 We make this the strongest, possible fixed-threshold model by searching for the best possible single threshold that fits the data.
 However, a fixed-threshold model will have to accommodate responses that are literally inconsistent with the threshold (i.e., a participant endorsing a generic when the referent prevalence is less than $\theta$); we thus outfit this model with an additional extrinsic noise parameter, to allow for random guessing. 
-Thus, our fixed-threshold alternative model claims that participants make an information-theoretic decision, taking into account the interpreter's prior distribution on prevalence $P(p)$, using a fixed-threshold semantics, where deviations from a pure information-theoretic decision are accounted for by noise.
+Thus, the fixed-threshold alternative model claims that participants make an information-theoretic decision, taking into account the interpreter's prior distribution on prevalence $P(p)$, using a fixed-threshold semantics, where deviations from a pure information-theoretic decision are accounted for by noise.
 This alternative model has 2 additional parameters to our uncertain threshold model (the fixed-threshold and the proportion of noise responses).
 <!-- We examine the predictions of this alternative model first. -->
 
@@ -509,12 +509,6 @@ plot_grid(fig.gen.endorse.toprow,
           )
 ```
 
-To evaluate the fixed-threshold model, we examine model predictions as well as the posterior distribution over latent parameters of the model (referent prevalence, prevalence priors, the optimality, fixed-threshold, and noise parameters) given the observed data.
-The Maximum A-Posteriori value and 95\% highest probability density interval for the inferred (fixed) threshold and noise parameters are `r round(fixed.threshold.posterior[[1,"MAP"]], 2)` [`r round(fixed.threshold.posterior[[1,"cred_lower"]], 2)`,
-`r round(fixed.threshold.posterior[[1,"cred_upper"]], 2)`] and `r round(generics.fixed.noise.posterior[[1,"MAP"]], 2)` [`r round(generics.fixed.noise.posterior[[1,"cred_lower"]], 2)`,
-`r round(generics.fixed.noise.posterior[[1,"cred_upper"]], 2)`], respectively.
-The inferred optimality parameter in Eq. \ref{eq:S1} is `r round(fixed.threshold.s1opt[[1,"MAP"]], 2)` [`r round(fixed.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(fixed.threshold.s1opt[[1,"cred_upper"]], 2)`].
-
 ```{r fixed-threshold-examples}
 fixed.threshold.generics.examples <- c("Tigers eat people.", "Peacocks have beautiful feathers.", "Lions lay eggs.", "Mosquitos attack swimmers.")
 fixed.threshold.model.examples <- d.gen.endorse.rsa.regression %>% 
@@ -526,12 +520,16 @@ lions.lay.eggs <- filter(fixed.threshold.model.examples, sentence == "Lions lay 
 mosquitos.attack.swimmers <- filter(fixed.threshold.model.examples, sentence == "Mosquitos attack swimmers.")
 ```
 
-We compare the fixed-threshold model's posterior predictive distribution of generic endorsement to the empirical truth judgments.
+To evaluate the fixed-threshold model, we examine model predictions as well as the posterior distribution over latent parameters of the model (referent prevalence, prevalence priors, the optimality, fixed-threshold, and noise parameters) given the observed data.
+The Maximum A-Posteriori value and 95\% highest probability density interval for the inferred (fixed) threshold and noise parameters are `r round(fixed.threshold.posterior[[1,"MAP"]], 2)` [`r round(fixed.threshold.posterior[[1,"cred_lower"]], 2)`,
+`r round(fixed.threshold.posterior[[1,"cred_upper"]], 2)`] and `r round(generics.fixed.noise.posterior[[1,"MAP"]], 2)` [`r round(generics.fixed.noise.posterior[[1,"cred_lower"]], 2)`,
+`r round(generics.fixed.noise.posterior[[1,"cred_upper"]], 2)`], respectively.
+The inferred optimality parameter in Eq. \ref{eq:S1} is `r round(fixed.threshold.s1opt[[1,"MAP"]], 2)` [`r round(fixed.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(fixed.threshold.s1opt[[1,"cred_upper"]], 2)`].
 Figure\ \@ref(fig:generics-endorsement-figure)B (top left subplot) shows the fixed-threshold model's ability to predict the generic endorsement data ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.fixed`$; MSE = $`r mse.gen.rsa.fixed`$).
 Though the model is able to capture a lot of the variance, it only makes three kinds of judgments: true, false, or neither. 
 It treats "Tigers eat people" (`r round(tigers.eat.people[[1,"prediction_mean"]],2)` [`r round(tigers.eat.people[[1,"prediction_ci_lower"]], 2)`,
 `r round(tigers.eat.people[[1,"prediction_ci_upper"]], 2)`]) as good a statement as "Peacocks have beautiful feathers" (`r round(peacocks.feathers[[1,"prediction_mean"]],2)` [`r round(peacocks.feathers[[1,"prediction_ci_lower"]], 2)`,
-`r round(peacocks.feathers[[1,"prediction_ci_upper"]], 2)`]), though participants seem to give a substantially weaker endorsement of the former ("Tigers eat people" = `r round(tigers.eat.people[[1,"MAP_h"]],2)` [`r round(tigers.eat.people[[1,"low"]], 2)`,
+`r round(peacocks.feathers[[1,"prediction_ci_upper"]], 2)`]), though participants give a substantially weaker endorsement of the former ("Tigers eat people" = `r round(tigers.eat.people[[1,"MAP_h"]],2)` [`r round(tigers.eat.people[[1,"low"]], 2)`,
 `r round(tigers.eat.people[[1,"high"]], 2)`]; "Peacocks have beautiful feathers" = `r round(peacocks.feathers[[1,"MAP_h"]],2)` [`r round(peacocks.feathers[[1,"low"]], 2)`,
 `r round(peacocks.feathers[[1,"high"]], 2)`]).
 Similarly, "Lions lay eggs" is judged to be just as bad as "Mosquitos attack swimmers"(`r round(lions.lay.eggs[[1,"prediction_mean"]],2)` [`r round(lions.lay.eggs[[1,"prediction_ci_lower"]], 2)`,
@@ -539,7 +537,7 @@ Similarly, "Lions lay eggs" is judged to be just as bad as "Mosquitos attack swi
 `r round(mosquitos.attack.swimmers[[1,"prediction_ci_upper"]], 2)`], respectively), though participants rate the former as completely false (`r round(lions.lay.eggs[[1,"MAP_h"]],2)` [`r round(lions.lay.eggs[[1,"low"]], 2)`,
 `r round(lions.lay.eggs[[1,"high"]], 2)`]) while the latter is kind of true (`r round(mosquitos.attack.swimmers[[1,"MAP_h"]],2)` [`r round(mosquitos.attack.swimmers[[1,"low"]], 2)`,
 `r round(mosquitos.attack.swimmers[[1,"high"]], 2)`]).
-This alternative model is unable to make these fine-grained distinctions because it must use the same semantic threshold in all contexts. 
+The fixed-threshold alternative model is unable to make these fine-grained distinctions because it uses the same semantic threshold in all contexts. 
 
 <!-- The model fails to distinguish any of the generic sentences because they are all somewhat true.  -->
 <!-- All items get endorsed by at least some participants; the model then infers that the referent prevalence $h'$ must be greater than 0\%; but, if the referent prevalence is greater than 0\%, the statement is 100\% true given the fixed-threshold semantics. -->
@@ -554,7 +552,7 @@ This alternative model is unable to make these fine-grained distinctions because
 #### Uncertain threshold model
 
 Our underspecified threshold model is the same as the fixed-threshold model, except that rather than having a fixed $\theta$ for all contexts, the model infers property-specific $\theta$'s.
-We use the same Bayesian data analysis approach; however, we are able to drop the additional parameters required for the fixed-threshold model (the fixed-threshold and noise parameters).
+We use the same Bayesian data analysis approach, dropping the additional parameters required for the fixed-threshold model (the fixed-threshold and noise parameters).
 Thus, this model has two fewer parameters than the fixed-threshold model above.
 
 ```{r distortionEffect}
@@ -572,17 +570,15 @@ r2.refprev.distortion <- compute_r2(
 ```
 
 We first examine the posterior predictive distribution on the prevalence prior and referent prevalence data to ensure that the joint-inference model does not distort these parameters at the service of predicting the endorsement data (e.g., such a distortion could manifest by the joint-inference model inferring that 100% of mosquitos carry malaria in order to predict that "Mosquitos carry malaria" is a good utterance).
-This is an important step in model validation because it tells us that our model's predictions are derived from reasonable values of the parameters (e.g., that not all mosquitos carry malaria).
-Importantly, the model captures the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when the Bayesian data analysis model only included these data and their associated model ($r_{\text{prevalence prior parameters}}^2(`r length(m.gen.endorse.refprev.parameters[,"Parameter"])`) = `r r2.refprev.distortion`$; $r_{\text{referent prevalence parameters}}^2(`r length(m.gen.endorse.priors.parameters[,"Parameter"])`) = `r r2.prevprior.distortion`$; see Appendix D, Figure 14).
+This is an important step in model validation because it tells whether the model's predictions are derived from intuitively plausible values of the parameters (e.g., that not all mosquitos carry malaria).
+Importantly, the joint-inference model captures the prior elicitation data (e.g., the probability of carry malaria among various species) and the referent prevalence data (e.g., the prevalence of carrying malaria among mosquitos) as well as it did when we analyzed these data in isolation (without conditioning on the endorsement data) ($r_{\text{prevalence prior parameters}}^2(`r length(m.gen.endorse.refprev.parameters[,"Parameter"])`) = `r r2.refprev.distortion`$; $r_{\text{referent prevalence parameters}}^2(`r length(m.gen.endorse.priors.parameters[,"Parameter"])`) = `r r2.prevprior.distortion`$; see Appendix D, Figure 14).
 This result confirms that the theoretically-interesting predictions of this model --- predictions of generic endorsement --- are based on intuitively meaningful model components (i.e., the shapes of the prevalence distributions). 
 Finally, the inferred optimality parameter in the endorsement model (Eq. \ref{eq:S1}) is `r round(uncertain.threshold.s1opt[[1,"MAP"]], 2)` [`r round(uncertain.threshold.s1opt[[1,"cred_lower"]], 2)`, `r round(uncertain.threshold.s1opt[[1,"cred_upper"]], 2)`], a range consistent with the literature on similar models.
 
-As we see in Figure\ \@ref(fig:generics-endorsement-figure)B (top right subplot), the endorsement model that uses an uncertain-threshold semantics explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
-To gain some intuition for why the model makes the predictions that it does, we can examine the relevant model components that give rise to these predictions (Figure \ref{fig:generics-endorsement-figure}C).
-Recall that the prevalence prior (grey distribution) is also the interpreter model's posterior upon hearing the null, or silent, utterance, and that the endorsement model decides whether to produce the generic utterance or remain silent given some referent prevalence (blue distribution). 
-The interpreter model's prevalence posterior upon hearing the generic utterance (red distribution) differs depending on the property being predicated (facets). 
-
-The endorsement model decides if the generic utterance conveys information that would bring the interpreter's distribution more in line with the endorsement model's referent prevalence. 
+As we see in Figure\ \@ref(fig:generics-endorsement-figure)B (top right subplot), the uncertain threshold endorsement model explains nearly all of the variance in human endorsements ($r^2(`r r2.gen.n`) = `r r2.gen.rsa.generics`$; MSE = $`r mse.gen.rsa.generics`$).
+Examining the relevant model components that give rise to these predictions further reveals the intuition for why the model makes the predictions that it does (Figure \ref{fig:generics-endorsement-figure}C).
+Because the endorsement model's alternative utterance is a null or silent utterance, the prevalence prior distributions is exactly what the interpreter model would believe if the speaker does not produce the generic. 
+The endorsement model then decides whether maintaining the listener's prior or updating it with the uncertain threshold semantics would better get the listener to guess the correct prevalence for the category (correct in the mind of the speaker).
 The model rates "Robins lay eggs" as a good utterance because the prevalence posterior implied by the generalization is similar to the referent prevalence.^[
   We again note that modeling the prevalence prior for *lays eggs* as a two-component mixture model, as we have assumed for all the prevalence priors, results in a distribution with a peak at 0\% and around 70\%. 
   This 70\% peak is a result of smoothing the underlying bimodal distribution at 50\% and 100\%. 
@@ -591,7 +587,7 @@ The model rates "Robins lay eggs" as a good utterance because the prevalence pos
   This is precisely the bimodal referent-prevalence distribution for *robins lay eggs*, and so the endorsement model still predicts high endorsement. 
   The fact that domain restriction enters in both the prevalence prior and the referent prevalence measurements, in effect, cancels one another out and has no effect on the resulting endorsement model predictions.
 ]
-The prevalence posterior for "Robins are female" is almost indistinguishable from the prevalence prior, because the prevalence prior has such low variance (almost all animals have female members in exactly the same proportion); the endorsement model then has no basis to prefer silence or the generic statement and the prediction is that the utterance should be neither good nor bad, endorsement around 0.5.
+The prevalence posterior for "Robins are female" is almost indistinguishable from the prevalence prior, because the prevalence prior has such low variance (almost all animals have female members in exactly the same proportion); the endorsement model then has no basis to prefer silence or the generic statement and the prediction is that the utterance should be neither good nor bad, endorsement around 0.5, which is what is approximately the proportion of participants who endorse the statement.
 "Mosquitos carry malaria" is an interesting case because the prevalence prior has high variance (i.e., participants are highly uncertain about the prevalence of carrying malaria among categories).
 As a result, the prevalence posterior also has high variance; still, the prevalence posterior is more consistent with the referent prevalence than the prevalence prior, and the endorsement model predicts "Mosquitos carry malaria" is a good utterance.
 Finally, an utterance with high referent prevalence, such as "Tigers don't eat people", is predicted to have low endorsement because the generic would be misleading; even if most tigers don't eat people, saying "Tigers don't eat people" implies that all don't eat people, which is too strong.
@@ -605,7 +601,7 @@ Finally, an utterance with high referent prevalence, such as "Tigers don't eat p
 
 Generic language is the premier case study for generalizations in language. 
 Generics have been studied extensively in the cognitive and developmental psychological literatures and have deep implications for wide ranging phenomena from stereotype propagation [@Rhodes2012] to motivation [@Cimpian2007].
-Heretofore, no formal model has been able to pass the most basic empirical test for generics: knowing when they are true and false.
+Heretofore, no models have been articulated with enough precision to make quantitative predictions about endorsement decisions, deciding whether a statement is true or false.
 <!-- Determining the truth conditions is the first step towards articulating a formal theory of how the language updates beliefs. -->
 This empirical case study demonstrates that a semantics based on the prevalence of the feature is tenable despite of alleged counterexamples (e.g., "Robins lay eggs" vs. "Robins are female").
 The key theoretical insight is that the truth-functional semantics is underspecified, or vague, and resolved in context by a process of probabilistic inference.
@@ -614,7 +610,7 @@ We return to this point, and its implications for theory-building, in the genera
 
 <!-- The decision of whether or not to endorse the generic comes down to whether or not the generic would make the interpretation belief distribution more in line with the prevalence that the endorser had in mind. -->
 
-In explaining the variable endorsements of generics, we related the referent prevalence (e.g., the percentage of robins that lay eggs) and the prevalence prior (e.g., the prevalence of laying eggs for different kinds of animals)  to the endorsement of the generalization (e.g., "Robins lay eggs") via an information-theoretic communicative model where the meaning of a generic is simple but underspecified.
+In explaining the variable endorsements of generics, we related the referent prevalence (e.g., the percentage of robins that lay eggs) and the prevalence prior (e.g., the prevalence of laying eggs for different kinds of animals) to the endorsement of the generalization (e.g., "Robins lay eggs") via an information-theoretic communicative model where the meaning of a generic is simple but underspecified.
 In this case study, we used generic statements about familiar animal categories, which has long been the cleanest domain for testing semantic theories of generics by providing minimal comparison like "Robins lay eggs" vs. "Robins are female". 
 However, modeling familiar category generics is a correlational analysis: The relevant quantities in the model were measured rather than manipulated.
 We now seek to demonstrate how these quantities are causally related to endorsement, by manipulating referent prevalence (Case Study 2) and prevalence priors (Case Study 3).
