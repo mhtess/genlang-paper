@@ -1,0 +1,248 @@
+// time ~/webppl-fork/webppl generics-S1-3componentPrior.wppl --require utils generic 1
+
+var chain = last(process.argv) // load index as last command line index
+// penultimate argument is the semantics
+// generic = uncertain threshold
+// some = fixed threshold at lowest threshold value
+var targetUtterance = process.argv[process.argv.length - 2]
+
+var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
+
+var dataPath = "../../data/generics/endorsement/"
+var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
+
+var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
+ 		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),
+		d_catch = dataFrame(utils.readCSV(endorsementCatchFile).data, ["pass"]);
+
+var data = {
+	prior: map(function(d){
+		extend(d, {
+			avoided_endval: avoidEnds(d.prevalence/100)
+		})
+	}, d_prior),
+	endorsement: filter(function(di){
+		var catchData = _.filter(d_catch, {workerid: di.workerid});
+		return catchData[0].pass == 1;
+	}, map(function(d){
+			extend(d, {
+				binaryResponse: responseDictionary[d.response]
+			})
+	}, d_endorsement))
+};
+
+// test that removing Ss who failed catch trial works properly
+assert.ok(
+	levels(data.endorsement, "workerid").length == sum(_.map(d_catch, "pass"))
+)
+
+var utterancePrior = Infer({model: function(){return uniformDraw([targetUtterance,"silence"])}});
+
+var meaning = function(utt,state, theta) {
+  return utt === "generic" ? state > theta :
+         utt === "generic is false" ? state<=theta :
+         utt === "silence" ? true :
+         utt === "some" ? state > _.min(thetaBins) :
+         utt === "most" ? state >= 0.5:
+         utt === "all" ? state >= 0.99:
+         true
+}
+
+var properties = levels(data.endorsement, "Property")
+
+// should be 21 properties
+assert.ok(
+  properties.length == 21
+)
+
+var nullParams = {a:1, b:100}, nullDistribution = Beta(nullParams);
+
+var model = function(){
+
+	var speakerOptimality = {
+		s1: uniformDrift({a:0, b:10, width:1})
+	};
+
+	foreach(properties, function(p){
+
+		var propertyData = {
+			endorsement: _.filter(data.endorsement, {Property: p}),
+			prior: _.filter(data.prior, {Property: p})
+		}
+    // make sure there's data
+    assert.ok(
+      (propertyData.prior.length > 0) && (propertyData.endorsement.length > 0)
+    )
+
+		// prior parameters
+		var thetas = normalize([
+      uniformDrift({a: 0, b: 1, width:0.2}),
+      uniformDrift({a: 0, b: 1, width:0.2}),
+      uniformDrift({a: 0, b: 1, width:0.2})
+    ])
+
+		var betaParams = [
+      { g: 0.01, d: 100 },
+      { g: uniformDrift({a: 0, b: 1, width: 0.2}),
+  			d: uniformDrift({a: 0, b: 100, width: 20}) },
+      { g: uniformDrift({a: 0, b: 1, width: 0.2}),
+    		d: uniformDrift({a: 0, b: 100, width: 20}) }
+    ]
+
+		var priorParams = _.zip(thetas, map(betaShape, betaParams));
+    // display("before prevalence prior factor")
+		// observe structured prior data
+		mapData({data: propertyData.prior}, function(d){
+			// display(d.roundedPrevalence)
+			// display(Delta({v: 0}).score(d.roundedPrevalence))
+			// display(Beta(priorParams).score(d.roundedPrevalence))
+      var scrs = map(function(ps){
+        Math.log(ps[0]) + Beta(ps[1]).score(d.avoided_endval)
+      }, priorParams)
+  		factor(util.logsumexp(scrs))
+		})
+    // display("after prevalence prior factor")
+
+		query.add(["prior","mixture", p, "NA", 0], thetas[0])
+    query.add(["prior","mixture", p, "NA", 1], thetas[1])
+    query.add(["prior","mixture", p, "NA", 2], thetas[2])
+
+		query.add(["prior","stableFreq", p, "mean",1], betaParams[1].g)
+		query.add(["prior","stableFreq", p, "sampleSize",1], betaParams[1].d)
+    query.add(["prior","stableFreq", p, "mean",2], betaParams[2].g)
+		query.add(["prior","stableFreq", p, "sampleSize",2], betaParams[2].d)
+
+		var statePrior = Infer({model: function(){
+			sample(DiscretizedBeta(priorParams[discrete(thetas)][1]))
+		}});
+
+		/// RSA model
+		var listener0 = cache(function(utterance) {
+		  Infer({model: function(){
+		    var state = sample(statePrior)
+				var theta = targetUtterance === "generic" ? sample(thetaPrior) : -99;
+		    var m = meaning(utterance, state, theta)
+		    condition(m)
+		    return state
+		 }})}, 10000)
+
+		var speaker1 = cache(function(speakerBeliefs) {
+			Infer({model: function(){
+		    var utterance = sample(utterancePrior);
+		    var L0 = listener0(utterance);
+				factor(speakerOptimality.s1 * L0.score(speakerBeliefs))
+		    return utterance === targetUtterance ? 1 : 0
+			}})}, 10000)
+
+		var categories = levels(propertyData.endorsement, "Category");
+
+		// make sure subsetting works properly
+		assert.ok(categories.length > 0)
+
+		foreach(categories, function(k){
+
+			var categoryData = {
+				endorsement: _.filter(propertyData.endorsement, {Category: k}),
+				prior: _.filter(propertyData.prior, {Category: k})
+			};
+
+      // make sure there is data
+      assert.ok(
+        (categoryData.prior.length > 0) && (categoryData.endorsement.length > 0)
+      )
+
+			var theta_target = uniformDrift({a: 0, b: 1, width:0.2})
+			var withinParams = [{
+				g: uniformDrift({a: 0, b: 1, width: 0.2}),
+				d: uniformDrift({a: 0, b: 100, width: 20})
+			},
+      {
+				g: uniformDrift({a: 0, b: 1, width: 0.2}),
+				d: uniformDrift({a: 0, b: 100, width: 20})
+			}
+      ]
+      var withinShape = map(betaShape, withinParams);
+
+      // var withinParams = {
+			// 	g: uniformDrift({a: 0, b: 1, width: 0.2}),
+			// 	d: uniformDrift({a: 0, b: 100, width: 20})
+			// }
+      // var withinShape = betaShape(withinParams);
+
+			mapData({data: categoryData.prior}, function(d){
+				// display(p+k+ "d = " + d.avoided_endval + " " + Beta(withinShape).score(d.avoided_endval))
+		//		observe(Beta(withinShape), d.avoided_endval)
+        var scr = [
+          Math.log(theta_target) + Beta(withinShape[0]).score(d.avoided_endval),
+          Math.log(1 - theta_target) + Beta(withinShape[1]).score(d.avoided_endval)
+        ]
+    		factor(util.logsumexp(scr))
+			})
+      // display("after prevalence factor")
+
+      // query.add(["targetPrevalence","mean", p, k, 1], withinParams.g)
+			// query.add(["targetPrevalence","sampleSize", p, k, 1], withinParams.d)
+
+      query.add(["targetPrevalence","mix", p, k, 1], theta_target)
+			query.add(["targetPrevalence","mean", p, k, 1], withinParams[0].g)
+			query.add(["targetPrevalence","sampleSize", p, k, 1], withinParams[0].d)
+      query.add(["targetPrevalence","mean", p, k, 2], withinParams[1].g)
+			query.add(["targetPrevalence","sampleSize", p, k, 2], withinParams[1].d)
+
+			var speakerBeliefs = sample(DiscretizedBeta( flip(theta_target) ?  withinShape[0] : withinShape[1])) ;
+      // var speakerBeliefs = sample(DiscretizedBeta(  withinShape )) ;
+
+			// var speakerBeliefs = Infer({model: function(){
+			// 	return categorical({
+			// 			vs:bins,
+			// 			ps:map(function(b) {
+			// 				return probability(Binomial({n:100,
+			// 					p: withinKind_prev}), Math.round(b*100)) +
+      //     Number.EPSILON
+			// 				}, bins )
+			// 		})
+			// }});
+      // display(speakerBeliefs)
+			var s1prediction = speaker1(speakerBeliefs);
+
+			var responseData = _.map(categoryData.endorsement, "binaryResponse")
+
+			mapData({data:responseData}, function(d){
+				// var scr = s1prediction.score(d)
+        // display(scr)
+				// scr == -Infinity ? display(p + " " + k + " " + speakerBeliefs + " "  + d) : null
+				observe(s1prediction, d)
+			})
+
+			query.add(["endorsement", targetUtterance, p, k, "NA"], expectation(s1prediction) )
+
+		})
+
+	})
+
+	query.add(["param","speakerOptimality","s1","NA", "NA"], speakerOptimality.s1)
+
+	return query
+}
+
+// 1500 iterations / min (including burn-in)
+var totalIterations = 100000, lag = 20;
+var mhiter = totalIterations/lag, burn = totalIterations / 2;
+
+var outfile = 'results-generics-jointModel-S1-smntcs_'+targetUtterance+"-3compPriors-2compRef-"+ totalIterations+'_burn'+burn+'_lag'+lag+'_chain'+chain+'.csv'
+
+var posterior = Infer({
+  model: model,
+	method: "incrementalMH",
+  samples: mhiter, burn: burn, lag: lag,
+  verbose: T,
+  verboseLag: mhiter / 20,
+	stream: {
+		path: "results/" + outfile,
+		header: ["type", "param", "property", "category", "component", "val"]
+	}
+})
+
+"written to " + outfile;
