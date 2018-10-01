@@ -221,11 +221,11 @@ ggplot(.,
            aes( x = prevalence, color = src, lty = src))+
     #geom_density(aes(y = ..scaled..), adjust = 1.3, size = 1)+
     #scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    stat_ecdf(size = 1.3)+
-    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    stat_ecdf(size = 0.7)+
+    scale_color_manual(values = c("black", "#d7191c", "#2b83ba"))+
+    scale_alpha_manual(values = c(1, 0.4, 0))+
     facet_wrap(~Property, nrow = 2)+
-    scale_linetype_manual(values = c(1, 2, 3))+
+    scale_linetype_manual(values = c(2, 1, 3))+
     scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
     scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     #coord_fixed()+
@@ -259,7 +259,7 @@ plot_grid(
 We can now compute the predictions of our endorsement model. 
 We describe first the behavior of a set of alternatives: models that have been previously proposed in the literature, an alternative form of our proposed endorsement model, before proceeding to the results of the uncertain threshold endorsement model.
 
-```{r}
+```{r regresion results}
 load("cached_results/case1_regressionResults.RData") # d.gen.endorse.regression.prevalence, d.gen.endorse.regression.prevalence.cuevalidity, d.gen.endorse.regression,
 r2.gen.n <- length(d.gen.endorse.bayes.prev$sentence)
 r2.gen.regression.prev <- round(with(d.gen.endorse.regression.prevalence, cor(MAP_h, prediction_mean))^2,2)
@@ -400,6 +400,7 @@ This alternative model has 2 additional parameters to our uncertain threshold mo
 
 ```{r generic-model-scatters, cache = F}
 load("cached_results/case1_modelPosteriors.RData")
+#load("cached_results/case1_modelPosteriors_moreFlexiblePrior.RData")
 #d.gen.endorse.rsa.regression, gen.inset.distributions.refactored, generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt 
 
 r2.gen.rsa.generics <- compute_r2(
@@ -452,40 +453,44 @@ generics.endorsement.models <- d.gen.endorse.rsa.regression %>%
   guides(fill = F)
 ```
 
-```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
+```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5, cache=F}
 
 
 category.text.labels <- data.frame(property = c("dont eat people", 
                       "carry malaria", "lay eggs",  "are female", "have spots"),
              category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
-             x = c(0.3, 0.3, 0.47, 0.05, 0.6),
-            y = c(0.45, 0.5, 0.45, 0.5, 0.26))
+             x = c(0, 0.3, 0, 0, 0.3),
+            y = c(3.8, 4, 4, 4, 4))
 
 
-generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored, 
-                                      aes( x = value, fill = Parameter, 
-                 color = Parameter, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 4, size = 1)+
+generics.endorsement.insets <- ggplot( gen.inset.distributions.refactored %>%
+         mutate(Parameter = factor(Parameter, levels = c("state_Prior", "state_Posterior", "speakerBeliefs"),
+                                   labels = c("Null interpretation\n(Prevalence prior)", "Generic interpretation\n(model)", 
+                                              "Referent prevalence")),
+                property = factor(property, levels = c("have spots", "lay eggs", "are female", "carry malaria", "dont eat people"))),
+       aes(x = state, y = Parameter, group = Parameter ))+
+  scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 1), breaks = c(0, 1))  +    # for both axes to remove unneeded padding
   facet_wrap(~property, nrow = 1)+
-  geom_label_repel(data = category.text.labels,
+  geom_text_repel(data = category.text.labels,
                   aes(label = category, x = x , y = y),
-                  inherit.aes = F, color = "#2b83ba")+
+                  inherit.aes = F)+
     #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
     #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
-    scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+  ggridges::geom_density_ridges(scale = 1, alpha = 0.3, adjust = 1) +
+  scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
     scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
     scale_alpha_manual(values = c(0.6, 0.4, 0))+
     #scale_linetype_manual(values = c(3, 4, 2, 1))+
     scale_linetype_manual(values = c(3, 4, 1))+
-    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     xlab("Prevalence") +
-    ylab("Scaled probability density")+
+    ylab("")+
     theme(legend.position = "bottom", legend.title = element_blank())
 ```
 
 ```{r generics-endorsement-figure, fig.width = 11, fig.asp = 0.8, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Endorsing generalizations about categories. A: Human elicited endorsements for thirty generic sentences reveal a continuum of endorsements. B: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). C: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
-
 fig.gen.endorse.data <- generics.endorsement.spectrum +
   theme(plot.margin = unit(c(6,2,0,0), "pt")) #+ ggtitle("prevalence priors")
 fig.gen.endorse.models <- generics.endorsement.models +
@@ -493,7 +498,6 @@ fig.gen.endorse.models <- generics.endorsement.models +
 fig.gen.endorse.priors <- generics.endorsement.insets +
   theme(plot.margin = unit(c(26,10,0,10), "pt"))
 
-  
 fig.gen.endorse.toprow <- plot_grid(fig.gen.endorse.data,
                                      fig.gen.endorse.models, 
                                     # align = 'v',

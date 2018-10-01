@@ -145,13 +145,14 @@ figure.habituals.priors.scatter <- ggplot(
                y = `Frequency of doing action (log scale)`, color = gender))+
   geom_point()+
   geom_label_repel(segment.alpha = 1,label.size = 0.25,
-                   force = 10, size = 2, color = 'black')+
+                   force = 10, size = 4, color = 'black')+
 
   #geom_errorbar(alpha = 0.3)+geom_errorbarh(alpha = 0.3)+
   coord_fixed(1/7.5)+
   #xlab("Model posterior predictive")+
   #ylab("Empirical means")+
-  theme(legend.position = c(0.83, 0.16))+
+  theme(legend.position = c(0.83, 0.16),
+        legend.text=element_text(size=16))+
   scale_y_continuous(
       limits = c(-1.5, 6),
       breaks = c(0, 2.5, 4, 5.9),
@@ -214,13 +215,13 @@ figure.habituals.priors.marginals <- ggplot(habituals.priors.marginals %>%
   guides(color = F)
 ```
 
-```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.37, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Prevalence priors for events (Expt. 2a). A: Parameters of prevalence priors for the 31 items in Expt. 2. Items cover much of the range of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (in terms of \\emph{proportion of people who have never done action before}), reflecting the (inverse) popularity of the event across people.", cache = F}
-cowplot::plot_grid(
+```{r habituals-prior-figure, fig.width = 15,fig.asp = 0.7, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Prevalence priors for events (Expt. 2a). A: Parameters of prevalence priors for the 31 items in Expt. 2. Items cover much of the range of possible parameter values. B: Reconstructed prevalence priors. In order to show frequencies for events that are very rare across people (e.g., \"writes novels\"), extremely low frequencies (\\emph{almost never}) are omitted. Instead, height of the bars on left denote the Maximum A-Posteriori values of the mixture component (in terms of \\emph{proportion of people who have never done action before}), reflecting the (inverse) popularity of the event across people.", cache=F}
+plot_grid(
   figure.habituals.priors.scatter + theme(plot.margin = unit(c(6,6,6,0), "pt")), 
   figure.habituals.priors.marginals + theme(plot.margin = unit(c(6,0,6,6), "pt")),
-  labels = c("A", "B"), #nrow = 1,
+  labels = c("A", "B"), nrow = 2,
   align = 'h',
-  rel_widths = c(1, 3)
+  rel_heights = c(1, 1)
   )
 ```
 
@@ -487,7 +488,7 @@ Finally, we observe that none of our items receive less than 25\% endorsement (i
 ### Endorsement model comparison
 
 
-```{r habituals-endorsement-bars, fig.width = 8}
+```{r habituals-endorsement-bars, fig.width = 8,cache=F}
 habituals.endorsement.bars <- ggplot(md.hab.long %>%
                                        mutate(src = factor(src, levels = c(
                                           "Referent frequency",
@@ -524,13 +525,13 @@ habituals.endorsement.bars <- ggplot(md.hab.long %>%
   facet_wrap(~habitual)+
   guides(fill = F)+#guide_colorbar(ticks = F, title = "Time interval"))+
   theme(strip.text.y = element_text(hjust = 0, angle = 0),#, vjust = 1),
-        axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45),
+        axis.text.x = element_text(vjust = 1, hjust = 1, angle = 45, size = 10),
         legend.position = "right")
 
 #md.hab.long %>% distinct(logAnnualRate, time_period)
 ```
 
-```{r habitual-endorsment-scatters}
+```{r habitual-endorsment-scatters, cache=F}
 habituals.endorsement.models <- md.hab %>% mutate(src = factor(src, levels = c(
                                       "regression_freq", 
                                       "habituals_model",
@@ -559,23 +560,24 @@ ggplot(., aes ( x = prediction, xmin = prediction_lower, xmax = prediction_upper
   xlab("Model prediction")+
   ylab("Human endorsement")+
   facet_wrap(~src, ncol = 2, strip.position = "top")+
-  guides(fill = guide_colorbar(ticks = F, title = "Time interval"))+
+  guides(fill = guide_colorbar(ticks = T, title = "Time interval"))+
   theme(strip.text.y = element_blank(),# element_text(angle = 0, hjust= 0),
-        #legend.direction = 'horizontal',
+        legend.direction = 'horizontal',
         #legend.position = c(0.025,0.975),
         legend.position ='bottom',
-        legend.text = element_text(angle = 45)
+        legend.text = element_text(angle = 45, hjust = 0.5, vjust = 0.5)
         #legend.justification = c(1,1)
         )
 ```
 
-```{r habituals-model-insets, fig.width = 8, cache = T}
+```{r habituals-model-insets, fig.width = 8, cache=F}
 habituals.endorsement.insets <- hab.listener.predictions %>% 
-    mutate(Parameter = factor(Parameter, levels = c("state_Prior",
-                                                  "state_Posterior"
+    mutate(Parameter = factor(Parameter, levels = c(                                                  "state_Posterior",
+"state_Prior"
                                                   ),
-                            labels = c("Prevalence Prior",
-                                       "Posterior given Habitual")),
+                            labels = c(
+                                       "Habitual Interpretation",
+                                       "Prevalence Prior")),
          action = factor(action, levels = c( 
                        "climbs mountains","hikes", "runs",
                       "smokes cigarettes","drinks coffee",
@@ -585,9 +587,10 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
                                 #"climbs mountains", "hikes", "runs",
                               #"goes to the movies", "smokes cigarettes"
                               ) %>%
-  ggplot(., aes( x = value, fill = Parameter, color = Parameter, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
-  facet_wrap(~action, nrow = 2)+
+  ggplot(., aes( x = value, group = Parameter, y = Parameter ))+
+  #geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
+  ggridges::geom_density_ridges(scale = 1, alpha = 0.3, adjust = 1) +
+  facet_wrap(~action, nrow = 1)+
   # geom_text_repel(data = category.text.labels,
   #                 aes(label = category, x = x , y = y),
   #                 inherit.aes = F, color = "#2b83ba")+
@@ -599,40 +602,41 @@ habituals.endorsement.insets <- hab.listener.predictions %>%
   #scale_linetype_manual(values = c(3, 4, 2, 1))+
   #scale_linetype_manual(values = c(3, 4, 1))+
   #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-  scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+  #scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
   xlab("Frequency (log scale)") +
-  ylab("Scaled probability density")+
+  ylab("")+
   theme(legend.position = c(0.9, 0), 
         legend.title = element_blank(),
-        axis.text.x = element_text(angle = 90, vjust = 1))+
+        axis.text.x = element_text(angle = 90, vjust = 1),
+        axis.title.y =  element_blank())+
         #axis.title.y = element_text(hjust = 1))+
   scale_x_continuous(limits = c(-5, 8), 
                      breaks = c(-5, 0, 2.5, 4, 5.9),
                      labels = c("almost never", "annually", "monthly", "weekly", "daily"))
 ```
 
-```{r habituals-endorsement-figure, fig.width = 13, fig.asp=0.7, fig.cap="Endorsing generalizations about events. A: Endorsements for nine events given different frequencies of action by human participants and four models. B: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for all ninety-three habitual sentences by each model. C: Nine example frequency priors and posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a and 2b.", out.width = "\\textwidth", fig.pos = "!h", cache = F}
-
+```{r habituals-endorsement-figure, fig.width = 16, fig.asp=0.65, fig.cap="Endorsing generalizations about events. A: Endorsements for nine events given different frequencies of action by human participants and four models. B: Human elicited endorsements for ninety-three habitual sentences as a function of the referent (log) frequency of action. Top right: Model fits for all ninety-three habitual sentences by each model. C: Nine example frequency priors and posteriors upon hearing the generalization. These distributions are inferred using both data sources from Expts. 2a and 2b.", out.width = "\\textwidth", fig.pos = "!h", cache=F}
 #hab.legend <- get_legend(habituals.endorsement.models)
 fig.hab.endorse.bars <- habituals.endorsement.bars +
-  theme(plot.margin = unit(c(6,6,6,6), "pt")) #+ ggtitle("prevalence priors")
+  theme(plot.margin = unit(c(6,0,6,12), "pt")) #+ ggtitle("prevalence priors")
 fig.hab.endorse.scatters <- habituals.endorsement.models +
-  theme(plot.margin = unit(c(6,6,6,6), "pt")) # + theme(legend.position="none") #+ ylab("")
+  theme(plot.margin = unit(c(6,0,6,0), "pt")) # + theme(legend.position="none") #+ ylab("")
 fig.hab.endorse.priors <- habituals.endorsement.insets +
-  theme(plot.margin = unit(c(16,36,16,36), "pt"))
+  theme(plot.margin = unit(c(16,0,0,0), "pt"))
 
 plot_grid(
-    plot_grid(fig.hab.endorse.bars, fig.hab.endorse.scatters, nrow = 1, labels = c("A", "B"),
+    plot_grid(fig.hab.endorse.bars, fig.hab.endorse.scatters, nrow = 1,
+              labels = c("A", "B"),
               rel_widths = c(2, 1)),
             fig.hab.endorse.priors,
                             labels = c("", "C"), nrow = 2,
-                            #axis = 'lr', 
-                        #align = 'v', 
-                            rel_heights = c(1.7, 1))
+                            #axis = 'lr',
+                        #align = 'v',
+                            rel_heights = c(1.6, 1))
 
 #fig.hab.endorse.priors
 ```
-
+ 
 
 In an exploratory analysis, we find no differences between endorsements of the habitual of characters with male and female names, and overall, the mean endorsements by gender are strongly correlated $r(`r n.habituals.gendered.analysis`) = `r r.habituals.gendered.analysis`$.
 Endorsements are even more highly correlated for the six events we anticipated differences by referent-gender:  $r(`r n.habituals.gendered.subset.analysis`) = `r r.habituals.gendered.subset.analysis`$.
@@ -933,7 +937,7 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
     )
 ```
 
-```{r habituals-predictive-rsa, cache = T, eval=T}
+```{r habituals-predictive-rsa, eval=T}
 n_chains <- 3
 # n_samples <- 500000
 # burn <- n_samples / 2
@@ -1157,7 +1161,7 @@ habituals.endorsement.pred.scatters <- m.hab.predictive.endorse.allModels %>%
                                      "past_model", "regression_futurefreq",
                                       "predictive_model"),
                      labels= c("Human data","regression_pastfreq", 
-                                "Uncertain semantics\n(Past)", "Linear model\n(Predictive frequency)","Uncertain semantics\n(Predictive)"))) %>%
+                                "Uncertain semantics\n(Past frequency)", "Linear model\n(Predictive frequency)","Uncertain semantics\n(Predictive frequency)"))) %>%
   filter(!(src %in% c("Human data", "regression_pastfreq"))) %>%
 ggplot(., 
        aes (x = MAP, xmin = cred_lower, xmax = cred_upper, 
@@ -1178,28 +1182,27 @@ ggplot(.,
   ylab("Habitual endorsement")+
   xlab("Model prediction")+
   facet_grid(.~src)+
-  theme(legend.position = "right")
+  theme(legend.position = "top")
 ```
 
 
-```{r habituals-predictive-figure, fig.cap="A: Example empirical and predicted endorsements for habituals in three conditions. B: Predicted frequency as a function of past frequency and condition manipulation (enabling, preventative, and baseline). C: Model fits for the uncertain threshold model using past frequency, linear model based on future frequency, and uncertain threshold model using future frequency.", fig.width = 12,  fig.asp = 0.7,out.width = "\\textwidth", fig.pos = "!h", cache=F}
+```{r habituals-predictive-figure, fig.cap="A: Example empirical and predicted endorsements for habituals in three conditions. B: Predicted frequency as a function of past frequency and condition manipulation (enabling, preventative, and baseline). C: Model fits for the uncertain threshold model using past frequency, linear model based on future frequency, and uncertain threshold model using future frequency.", fig.width = 12,  fig.asp = 0.7, out.width = "\\textwidth", fig.pos = "!h", cache=F}
 plot_grid(
-  habituals.endorsement.pred.bars +
-    theme(plot.margin = unit(c(6,6,6,6), "pt"), legend.position="none",
-          axis.title.x = element_blank()),
-  plot_grid(
-    fig.hab.freq.predictive.vs.past + 
-     theme(plot.margin = unit(c(0,6,0,0), "pt"), legend.position="none",
-           axis.text = element_text(size = 8),
-           axis.title = element_text(size = 9)),
-    habituals.endorsement.pred.scatters +
-      theme(plot.margin = unit(c(0,0,12,12), "pt")),
-    labels = c("B", "C"),
-    nrow = 1,  axis = 'tblr', rel_widths = c(1, 2.3)), 
-  labels = c("A", ""), 
-  nrow = 2, align = 'v', axis = 'lr', rel_heights = c(3.1, 2))
+   habituals.endorsement.pred.bars +
+     theme(plot.margin = unit(c(6,6,6,6), "pt"), legend.position="none",
+           axis.title.x = element_blank()),
+   plot_grid(
+     fig.hab.freq.predictive.vs.past +
+      theme(plot.margin = unit(c(0,6,0,0), "pt"), legend.position="none",
+            axis.text = element_text(size = 8),
+            axis.title = element_text(size = 9)),
+habituals.endorsement.pred.scatters +
+       theme(plot.margin = unit(c(0,0,0,0), "pt")),
+     labels = c("B", "C"),
+     nrow = 1,  axis = 'tblr', rel_widths = c(1, 2.3)),
+   labels = c("A", ""),
+   nrow = 2, align = 'v', axis = 'lr', rel_heights = c(3.1, 2))
 ```
-
 
 ### Method
 

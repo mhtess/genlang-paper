@@ -65,11 +65,10 @@ output            : papaja::apa6_pdf
 rm(list=ls())
 knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
                       echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
-
 ```
 
 
-```{r libraries, cache = F}
+```{r libraries, cache=F}
 library(papaja)
 library(formatR)
 library(rwebppl)
@@ -681,7 +680,7 @@ Conversely, the distribution over the prevalence of *being female* is unimodal a
 
 ```{r workedExamples, results="asis"}
 worked.examples <- data.frame(
-  example = c("1. Dogs bark",
+  Example = c("1. Dogs bark",
               "2. Kangaroos have spots",
               "3. Sharks don't eat people",
               "4. Robins lay eggs",
@@ -690,7 +689,7 @@ worked.examples <- data.frame(
               "7. Mary handles the mail from Antarcita",
               "8. Supreme Court Justices have even social security numbers",
               "9. Elephants live in Africa and Asia"),
-  `referent prevalence` = c("95%", "5%", "85%", "50%", "50%", "5%", "0 times", "100%", "~50%/50%"),
+  `referent prevalence` = c("95%", "5%", "85%", "50%", "50%", "5%", "0 times", "100%", "50%/50%"),
   `intuitive truth value` = c(
     "T", "F", "F", "T", "U",
     "T", "T", "F", "T" 
@@ -699,18 +698,21 @@ worked.examples <- data.frame(
     "Not all dogs bark",
     "Some kangaroos could have spots",
     "Most sharks don't eat people",
-    "Only female (50%) of robins lay eggs",
-    "Roughly same number of robins that lay eggs are female",
+    "True, even though only female robins (50%) lay eggs",
+    "Not true, but same number that lay eggs (50%)",
     "Very few mosquitos actually carry malaria",
-    "Hypothetically, there has never been any mail from Antarcita",
-    "Even if 100% have even social security numbers",
+    "True even if there has never been any mail from Antarcita",
+    "False even if 100% have even social security numbers",
     "Impossible for most to live in Africa and most to live in Asia"
   )
-)
+) %>%
+  rename("Referent prevalence" = referent.prevalence,
+         "Intuitive truth value" = intuitive.truth.value,
+         "Issue" = potential.issue)
 
-examples <- xtable::xtable(worked.examples, 
+worked.examples.tab <- xtable::xtable(worked.examples, 
                        caption = "Example generalizations that a theory of generics should correctly predict.", 
-                       align=c('p{1.5in}', 'p{1.2in}| ',' |p{1in}|','p{1in}|','p{2in} |'))
+                       align=c('p{1.5in}', 'p{2in}| ',' |p{1.25in}|','p{0.75in}|','p{2in} |'))
 
 
 
@@ -727,12 +729,12 @@ addtorow$command  <- c(paste("\\hline \n",
 large <- function(x){ paste0('{\\Large ', x, '}') }
 bold <- function(x){ paste0('{\\bfseries ', x, '}') }
 
-print(examples, 
+print(worked.examples.tab, 
       type="latex", 
       comment = F,
        #table.placement = "h", 
-      tabular.environment = "longtable",
-      hline.after=-1:nrow(examples),
+      #tabular.environment = "longtable",
+      hline.after=-1:nrow(worked.examples.tab),
       size="\\fontsize{9pt}{10pt}\\selectfont", 
       include.rownames=FALSE,
       sanitize.colnames.function = bold
