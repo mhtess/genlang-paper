@@ -459,16 +459,18 @@ generics.endorsement.models <- d.gen.endorse.rsa.regression %>%
 category.text.labels <- data.frame(property = c("dont eat people", 
                       "carry malaria", "lay eggs",  "are female", "have spots"),
              category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
-             x = c(0, 0.3, 0, 0, 0.3),
-            y = c(3.8, 4, 4, 4, 4))
+             x = c(0.5, 0.3, 0, 0, 0.3),
+            y = c(1.5, 1.5, 1.5, 1.5, 1.5))
 
 
 generics.endorsement.insets <- ggplot( gen.inset.distributions.refactored %>%
-         mutate(Parameter = factor(Parameter, levels = c("state_Prior", "state_Posterior", "speakerBeliefs"),
-                                   labels = c("Null interpretation\n(Prevalence prior)", "Generic interpretation\n(model)", 
-                                              "Referent prevalence")),
+         mutate(Parameter = factor(Parameter, levels = c("speakerBeliefs", "state_Posterior", "state_Prior"),
+                                   labels = c(
+                                              "Referent prevalence\n(Endorsement model input)",
+                                             "Generic interpretation\n(Interpretation model output)", 
+                                             "Prevalence prior\n(Null interpretation)")),
                 property = factor(property, levels = c("have spots", "lay eggs", "are female", "carry malaria", "dont eat people"))),
-       aes(x = state, y = Parameter, group = Parameter ))+
+       aes(x = state, y = Parameter, group = Parameter, color = Parameter))+
   scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1), breaks = c(0, 1))  +    # for both axes to remove unneeded padding
   facet_wrap(~property, nrow = 1)+
@@ -479,7 +481,7 @@ generics.endorsement.insets <- ggplot( gen.inset.distributions.refactored %>%
     #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
   ggridges::geom_density_ridges(scale = 1, alpha = 0.3, adjust = 1) +
   scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
-    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_color_manual(values = c("#2b83ba", "#636363","#636363"))+
     scale_alpha_manual(values = c(0.6, 0.4, 0))+
     #scale_linetype_manual(values = c(3, 4, 2, 1))+
     scale_linetype_manual(values = c(3, 4, 1))+
@@ -487,7 +489,8 @@ generics.endorsement.insets <- ggplot( gen.inset.distributions.refactored %>%
     #scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     xlab("Prevalence") +
     ylab("")+
-    theme(legend.position = "bottom", legend.title = element_blank())
+    theme(legend.position = "bottom", legend.title = element_blank())+
+  guides(color = F)
 ```
 
 ```{r generics-endorsement-figure, fig.width = 11, fig.asp = 0.8, out.width = "\\textwidth", fig.pos = "!h", fig.cap="Endorsing generalizations about categories. A: Human elicited endorsements for thirty generic sentences reveal a continuum of endorsements. B: Model fits for the uncertain semantics speaker model (upper right), a fixed semantics speaker model (upper left), and regression models based on referent prevalence alone (lower left) and prevalence + cue validity (lower right). C: Five example prevalence priors, listener posteriors upon hearing the generalization, and speaker belief distributions about the referent prevalence. These distributions are inferred using all three data sources from Expt. 1 (see Figure \\ref{fig:genericsModelDiagram} for an overview of the Bayesian data analytic approach).", cache = F}
