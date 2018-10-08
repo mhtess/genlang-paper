@@ -241,7 +241,7 @@ n.subj.cas.failed <- length(unique(filter(d.cas.priors, passBoth == 0)$workerid)
 
 d.cas.priors <- d.cas.priors %>% filter(passBoth == 1)
 
-ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60, 1)
+ave.minutes.cas <- round(mean(unique(d.cas.priors %>% select(workerid, rt))$rt) / 1000 / 60)
 ```
 
 

@@ -1249,6 +1249,7 @@ print(., type = "latex",
 
 ## Experiment 2c: What is prevalence?
 
+
 ```{r habituals-predictive-elicitation}
 d.hab.predictive <- read.csv(paste(
   project.path, "data/habituals/predictive/", "predictive-1-trials.csv", sep = ""))
@@ -1263,7 +1264,7 @@ ave.seconds.hab.pred <-  d.hab.predictive %>% select(workerid, rt) %>%
 d.hab.predictive[
   (d.hab.predictive$workerid==44 & 
      d.hab.predictive$item=="smokes cigarettes"),"response"] <- 5
-d.hab.predictive <- d.hab.predictive %>% mutate(response = as.numeric(as.character((response))))
+d.hab.predictive <- d.hab.predictive %>% mutate(response = as.numeric(as.character(response)))
 
 
 d.hab.predictive<- d.hab.predictive %>%
@@ -1308,9 +1309,6 @@ fig.hab.freq.predictive.vs.past <- ggplot(d.hab.predictive.summary,
   xlab("Past frequency (log scale)")+
   ylab("Predicted frequency (log scale)")+
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))
-
-
-d.hab.predictive.summary
 ```
 
 ```{r habituals-predictive-model}
@@ -1459,20 +1457,20 @@ d.hab.predictive.endorsment <- read.csv(paste(
   project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives.csv", sep = ""))
 d.hab.predictive.endorsment.catch <- read.csv(paste(
   project.path, "data/habituals/endorsement/", "habituals-endorsement-predictives-catch_trials.csv", sep = ""))
-
+d.hab.predictive.endorsement.filtered <- left_join(
+  d.hab.predictive.endorsment, 
+  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
+  by = "workerid"
+  ) %>% filter(pass==1)  %>%
+  mutate(response = ifelse(response=="agree-key", 1, 0)) %>%
+  rename(item = habitual) 
 
 n.subj.hab.pred.endorse <- length(unique(d.hab.predictive.endorsment$workerid))
 ave.seconds.hab.pred.endorse <-  d.hab.predictive.endorsment %>% select(workerid, rt) %>%
       group_by(workerid) %>% summarize(totalSec= sum(rt) / 1000) %>% ungroup() %>% 
       summarize(total = mean(totalSec))
 
-d.hab.predictive.endorsment.condition.summary <- left_join(
-  d.hab.predictive.endorsment, 
-  d.hab.predictive.endorsment.catch %>% select(workerid, pass),
-  by = "workerid"
-  ) %>% filter(pass==1) %>%
-  mutate(response = ifelse(response=="agree-key", 1, 0)) %>%
-  rename(item = habitual) %>%
+d.hab.predictive.endorsment.condition.summary <- d.hab.predictive.endorsement.filtered %>%
   group_by(condition) %>%
   summarize(k = sum(response), n = n()) %>%
   ungroup() %>%
@@ -1567,11 +1565,6 @@ fig.hab.endorse.vs.predfreq <- d.hab.predictive.endorsment.summary %>%
 
 
 ```
-
-
-
-
-
 
 
 ```{r habituals-predictive-rsa}
@@ -1761,9 +1754,6 @@ left_join(m.hab.predictive.endorse.rsa %>%
   filter(src == "Endorsement model (predictive frequency)"), m.hab.predfreq.summary %>% rename(item = B, condition = D, freqmean = mean)) %>% View()
 ```
 
-
-
-
 ```{r habituals-predictive-elicitation-predictions}
 lmer.rs.hab.predictive <- lmer(data = d.hab.predictive, 
      logAnnualPredictiveRate ~ logAnnualPastRate + condition + 
@@ -1773,10 +1763,92 @@ lmer.rs.hab.predictive <- lmer(data = d.hab.predictive,
 lmer.rs.hab.predictive.summary <- summary(lmer.rs.hab.predictive)
 ```
 
+
+```{r}
+
+ m.hab.predictive.endorse.summarized <- m.hab.predictive.endorse.rsa %>%
+      select(-MAP, -cred_upper, -cred_lower, -src) %>% 
+      unique()
+
+
+d.hab.predictive.endorsement.filtered.logAnnualRates <- left_join(
+  d.hab.predictive.endorsement.filtered %>% 
+    select(-freqLevel, -past_logfreq, -future_logfreq),
+  m.hab.predictive.endorse.summarized %>%
+    select(item, condition, logAnnualPastRate, logAnnualFutureRate, future_lower, future_upper) 
+)
+
+
+```
+
+```{r}
+
+glm.hab.pred.endorse.pastfreq <- glm(response ~ logAnnualPastRate, 
+              data = d.hab.predictive.endorsement.filtered.logAnnualRates, family = 'binomial')
+
+glm.hab.pred.endorse.predfreq <- glm(response ~ logAnnualFutureRate, 
+              data = d.hab.predictive.endorsement.filtered.logAnnualRates, family = 'binomial')
+
+
+d.hab.predictive.endorsement.filtered.logAnnualRates.uniq <- unique(select(
+    d.hab.predictive.endorsement.filtered.logAnnualRates, item, logAnnualPastRate, logAnnualFutureRate, future_lower, future_upper, condition
+  ))
+
+
+m.hab.predictive.endorse.regPastFreq <- left_join(
+    m.hab.predictive.endorse.summarized,
+    m.hab.predictive.endorse.summarized %>%
+    mutate(
+      MAP = predict(glm.hab.pred.endorse.pastfreq, ., type = "response"), 
+      cred_upper = MAP,
+      cred_lower = MAP,
+      src = "regression_pastfreq"
+      )
+)
+
+m.hab.predictive.endorse.summarized.lower <- m.hab.predictive.endorse.summarized %>%
+  select(-logAnnualFutureRate) %>%
+  rename(logAnnualFutureRate = future_lower)
+
+
+m.hab.predictive.endorse.summarized.upper <- m.hab.predictive.endorse.summarized %>%
+  select(-logAnnualFutureRate) %>%
+  rename(logAnnualFutureRate = future_upper)
+
+
+m.hab.predictive.endorse.regPredFreq <- left_join(
+    m.hab.predictive.endorse.summarized,
+    m.hab.predictive.endorse.summarized %>%
+    mutate(
+      MAP = predict(glm.hab.pred.endorse.predfreq, ., type = "response"), 
+      cred_lower = predict(glm.hab.pred.endorse.predfreq, m.hab.predictive.endorse.summarized.lower, type = "response"),
+      cred_upper = predict(glm.hab.pred.endorse.predfreq, m.hab.predictive.endorse.summarized.upper, type = "response"),
+      src = "regression_futurefreq"
+      )
+)
+
+
+
+m.hab.predictive.endorse.allModels <- bind_rows(
+  m.hab.predictive.endorse.rsa,
+  m.hab.predictive.endorse.regPredFreq,
+  m.hab.predictive.endorse.regPastFreq,
+  m.hab.predictive.endorse.rsa %>%
+    select(-MAP, -cred_upper, -cred_lower, -src) %>%
+    unique() %>%
+    mutate(MAP = MAP_h, cred_lower = low,
+         cred_upper = high, src = "human data")
+)
+
+```
+
+
 ```{r}
 save(d.hab.predictive.endorsment.summary, d.hab.predictive.summary, 
      n.subj.hab.pred.endorse, ave.seconds.hab.pred.endorse, 
      n.subj.hab.pred, ave.seconds.hab.pred, d.hab.predictive.endorsment.condition.summary, 
-     lmer.rs.hab.predictive.summary,
+     lmer.rs.hab.predictive.summary, m.hab.predictive.endorse.allModels,
      file = "../paper/cached_results/case2_predictive_data.RData")
+
+#m.hab.predictive.endorse.allModels
 ```

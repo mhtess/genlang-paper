@@ -154,7 +154,7 @@ fig.distortion.refprev <-ggplot(
 ```
 
 ```{r distortion, fig.width=10, fig.asp = 0.29, out.width = "100%", fig.align = "center", cache = F, fig.cap="No evidence for parameter distortion caused by a joint-inference model. X-axis denotes Maximum A-Posteriori (MAP) estimates inferred using only a single data source (A: Prevalence prior data. B: Referent prevalence data). Y-axis denotes MAP estimates inferred using the joint-inference model which models all data sources simultaneously. Distortions would manifest by systematic deviations from the y=x line."}
-prow <- plot_grid( 
+prow <- plot_grid(
   fig.distortion.prevpriors + theme(plot.margin = unit(c(6,6,0,6), "pt")) #+ ggtitle("prevalence priors")
 ,
   fig.distortion.refprev + theme(axis.title.y = element_blank(),

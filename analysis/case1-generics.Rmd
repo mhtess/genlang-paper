@@ -294,7 +294,6 @@ genericEndorsementPriorModel <- paste(genericEndorsementPriorModelHelpers, struc
 
 ```{r generic-endorsement-priors-unbounded, eval = F}
 # this data set already excludes the 2nd attempt of 3 participants who completed the experiment a second time
-
 d.gen.endorse.priors <- read.csv(paste(project.path, 
                                        "data/generics/endorsement/",
                                        "naturalGenerics-prior-trials-n57.csv", sep = ""))
@@ -371,10 +370,11 @@ example.generics.prior.properties <- c(
   "carry malaria", "lay eggs", 
   "are female", "have spots"
   )
+
 priorData <- filter(d.gen.endorse.priors, Property == "lay eggs")$prevalence
-  n_samples <- 10000
+n_samples <- 10000
 lg = 0
-  m.gen.endorse.priors.unbounded <- webppl(unboundedModel,
+m.gen.endorse.priors.unbounded <- webppl(unboundedModel,
                                  data = priorData, data_var = "data",
                                  model_var = "model",
                                  chains = 1,
@@ -507,7 +507,6 @@ marginal.prior.likelihoods <- marginal.prior.likelihoods %>%
 
 roundedBF1 = round(mean(marginal.prior.likelihoods$logBF)/ 10000)*10000
 ```
-
 
 
 # Model comparisons
@@ -824,8 +823,8 @@ var uncertainThresholdInterpreter = function() {
       state: state, 
   }
   }, method: "rejection", samples: 20000, burn:5000, verbose: T})}
-'
 
+'
 
 uncertain.threshold.model.3comp <- '
 var componentParams = [
@@ -847,8 +846,6 @@ var uncertainThresholdInterpreter = function() {
   }
   }, method: "rejection", samples: 20000, verbose: T})}
 '
-
-
 ```
 
 ```{r simulationCalls}
@@ -875,10 +872,10 @@ example.generics <- c("Tigers dont eat people",
                       "Robins are female",
                       "Leopards have spots")
 
-n_chains <- 2
-n_samples <- 60000
+n_chains <- 4
+n_samples <- 100000
 burn <- n_samples / 2
-lg <- 10
+lg <- 20
 
 #model_prefix <- "results-generics-jointModel-S1-smntcs_"
 #fixed_model_prefix <- "results-generics-jointModel-wNoise-inferFixedThresholdCts-20bins-S1-smntcs_some-"
@@ -893,7 +890,9 @@ for (i in seq(1, n_chains)){
 #   mi.fixed <- fread(paste(project.path,  "models/generics/results/", fixed_model_prefix,
 #                     n_samples, "_burn", burn, "_lag", lg ,"_chain", i, ".csv", sep = ""))
 #   m.samp.fixed <- bind_rows(m.samp.fixed, mi.fixed %>% mutate(chain = i))
+  
 }
+
 # 
 # save(m.samp,
 #      file = paste(project.path,  "models/generics/results/", model_prefix, "generic-",
@@ -908,7 +907,7 @@ for (i in seq(1, n_chains)){
 
 
 ## MODEL RESULTS
-load(file = paste(project.path,  "models/generics/results/", "results-generics-jointModel-S1-smntcs_generic-100000_burn50000_lag20_3chains.RData", sep = ""))
+#load(file = paste(project.path,  "models/generics/results/", "results-generics-jointModel-S1-smntcs_generic-100000_burn50000_lag20_3chains.RData", sep = ""))
 
 # load(m.samp.fixed, 
 #      file = paste(project.path, "models/generics/results/results-generics-jointModel-S1-some-inferFixedThresholdDisc-noise-100000_burn50000_lag20_2chains.RData", sep = ""))
@@ -1030,8 +1029,8 @@ for (p in example.generics ) {
     
 }
 #save(m.gen.endorse.priors.posteriorPredictive, file = '../analysis/generics-priors-posteriorPredictives.Rdata')
-#head(prevData)
-#n_samples
+
+load("../analysis/generics-priors-posteriorPredictives.Rdata")
 ```
 
 ```{r gen-prev-forward, eval=F}
@@ -1084,14 +1083,13 @@ m.samp.prevalence %>% filter(property %in% c("are female", "lay eggs"),
   facet_wrap(~property)
 ```
 
-```{r}
+```{r example generics}
 example.generics.properties <- c("dont eat people", 
                       "carry malaria", 
                       "lay eggs", 
                       "are female",
                       "have spots")
 ```
-
 
 ```{r gen-prev-dists, eval=F}
 gen.prev.dists <- bind_rows(
@@ -1120,6 +1118,7 @@ ggplot(gen.prev.dists, aes( x = prevalence, color = src))+
   scale_x_continuous(limits = c(-0.05,1.05), breaks = c(0, 0.5, 1)) +
   scale_y_continuous(limits = c(-0.01,1.01), breaks = c(0, 0.5, 1)) +
   theme(strip.text.y = element_text(angle = 0))
+
 ```
 
 ```{r generic-model-scatters, cache = F}
@@ -1201,16 +1200,203 @@ generics.endorsement.models <- ggplot(d.gen.endorse.rsa.regression,
 generics.endorsement.models
 ```
 
+
+```{r generic-model-insets2, fig.width = 4.75, fig.height = 1.5}
+load('../analysis/generics-priors-posteriorPredictives.Rdata')
+lower_bins <-seq(0, 0.975, 0.025)
+upper_bins <- seq(0.025, 1, 0.025)
+mid_bins <- (upper_bins - lower_bins)/2 + lower_bins
+
+round_to_bin <- function(x){
+  index <- if (x==0){ 1 } else if (x ==1){ length(mid_bins)} else{
+    x <= upper_bins & x > lower_bins
+  }
+  #if (sum(index) > 1) { print (x) }
+  return (mid_bins[index])
+}
+
+m.gen.endorse.priors.binned.i <- m.gen.endorse.priors.posteriorPredictive %>% 
+  filter(src == "Data") %>%
+  #group_by(property) %>%
+  #sample_n(28, replace = TRUE) %>%
+  #gather(category, response, -workerid, -property) %>%
+  rowwise() %>%
+  mutate(binned_response = round_to_bin(prevalence)) %>%
+  group_by(Property, binned_response) %>%
+  count() %>%
+  ungroup() %>%
+  spread(binned_response, n)
+
+m.gen.endorse.priors.binned.i[is.na(m.gen.endorse.priors.binned.i)] <- 0
+
+m.gen.endorse.priors.binned <- m.gen.endorse.priors.binned.i %>%
+  gather(state, n, -Property) %>%
+  group_by(Property) %>%
+  mutate(prop = (n+1) / sum(n + 1),
+       prop = round(prop, 5))
+
+rsaHelpers2 <- '
+
+var roundTo3 = function(x){
+  return Math.round(x * 10000) / 10000
+}
+
+var probability = function(Dist, x) {
+    return Math.exp(Dist.score(x));
+}
+var targetUtterance = "generic";
+
+var round = function(x){
+  return Math.round(x*1000)/1000
+}
+var utterancePrior = Infer({model: function(){
+  return uniformDraw([targetUtterance,"silence"])
+}});
+
+var meaning = function(utt,state, theta) {
+  return utt=="generic"? state > theta :
+         utt=="generic is false"? state<=theta :
+         utt=="silence"? true :
+         utt=="some"? state>0.01:
+         utt=="most"? state> 0.5:
+         utt=="all"? state >= 0.99:
+         true
+}
+
+var bins = _.map(data.prior, "state");
+
+var thetaBins = map2(function(b1, b2){
+  return roundTo3((b2-b1)/2 + b1);
+}, bins.slice(0, bins.length-1), bins.slice(1))
+
+var priorProbs =  _.map(data.prior, "prop");
+
+var thetaPrior = Infer({model: function(){
+ return uniformDraw(thetaBins)
+}});
+
+var uncertainThresholdInterpreter = Infer({model: function(){
+   var state = categorical({vs: bins, ps: priorProbs})
+   factor( Math.log(state) )
+    return {
+      state: state, 
+  }
+  }, method: "enumerate"})
+
+var prior = Infer({model: function(){
+   var state = categorical({vs: bins, ps: priorProbs})
+    return {
+      state: state, 
+  }
+  }, method: "enumerate"})
+
+var returnVal = {uncertainThresholdInterpreter, prior}
+returnVal
+'
+
+properties <- unique(m.gen.endorse.priors.binned$Property)
+gen.listener.predictions <- data.frame()
+for (p in unique(m.gen.endorse.priors.binned$Property)){
+  
+  priorProbs = m.gen.endorse.priors.binned %>% 
+    filter(Property == p) %>%
+    ungroup() %>%
+    select(state, prop) %>%
+    mutate(state = as.numeric(state))
+  
+  wp.rs <- webppl(
+    program_code = rsaHelpers2, 
+    data = list(prior = priorProbs, 
+                utt = "generic") ,
+    data_var = "data"
+    )
+  wp.rs.generic <- get_samples(data.frame(wp.rs$uncertainThresholdInterpreter) %>%
+                                 rename(prob = probs), 10000)
+  wp.rs.prior <- get_samples(data.frame(wp.rs$prior) %>%
+                                 rename(prob = probs), 10000)
+  
+  
+  gen.listener.predictions <- bind_rows(
+   gen.listener.predictions, 
+    wp.rs.prior  %>% mutate(property = p, Parameter = "state_Prior"),
+    wp.rs.generic  %>% mutate(property = p, Parameter = "state_Posterior")
+   )
+}
+
+
+
+example.generics.properties
+
+
+example.generics <- c("Tigers dont eat people", 
+                      "Mosquitos carry malaria", 
+                      "Robins lay eggs", 
+                      "Robins are female",
+                      "Leopards have spots")
+
+
+
+gen.inset.distributions <- bind_rows(
+  gen.listener.predictions %>%
+    mutate(category = NA),
+  d.gen.endorse.priors %>% 
+    mutate(Sentence = paste(Category, Property)) %>%
+    filter(Sentence %in% example.generics) %>%
+    select(prevalence, Property, Category) %>%
+    rename(state = prevalence, property = Property, category = Category) %>%
+    mutate(Parameter = "speakerBeliefs",
+           state = state / 100)
+)
+
+
+category.text.labels <- data.frame(property = c("dont eat people", 
+                      "carry malaria", "lay eggs",  "are female", "have spots"),
+             category = c("Tigers", "Mosquitos", "Robins", "Robins", "Leopards"),
+             x = c(0, 0.3, 0, 0, 0.3),
+            y = c(3.8, 4, 4, 4, 4))
+
+library(ggridges)
+gen.inset.distributions.refactored <- gen.inset.distributions %>% filter(property %in% category.text.labels$property)
+  
+#save(gen.inset.distributions.refactored)
+ggplot( gen.inset.distributions.refactored %>%
+         mutate(Parameter = factor(Parameter, levels = c("state_Prior", "state_Posterior", "speakerBeliefs"),
+                                   labels = c("Null interpretation\n(Prevalence prior)", "Generic interpretation\n(model)", 
+                                              "Referent prevalence")),
+                property = factor(property, levels = c("have spots", "lay eggs", "are female", "carry malaria", "dont eat people"))),
+       aes(x = state, y = Parameter, group = Parameter ))+
+  scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 1), breaks = c(0, 1))  +    # for both axes to remove unneeded padding
+  facet_wrap(~property, nrow = 1)+
+  geom_text_repel(data = category.text.labels,
+                  aes(label = category, x = x , y = y),
+                  inherit.aes = F)+
+    #scale_fill_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+    #scale_color_manual(values = c("#636363", "#abdda4", "#2b83ba", "#d7191c"))+
+  geom_density_ridges(scale = 1, alpha = 0.3, adjust = 1) +
+  scale_fill_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_color_manual(values = c("#636363", "#d7191c", "#2b83ba"))+
+    scale_alpha_manual(values = c(0.6, 0.4, 0))+
+    #scale_linetype_manual(values = c(3, 4, 2, 1))+
+    scale_linetype_manual(values = c(3, 4, 1))+
+    #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    xlab("Prevalence") +
+    ylab("")+
+    theme(legend.position = "bottom", legend.title = element_blank())
+
+
+```
+
+
+
 ```{r generic-model-insets, fig.width = 4.75, fig.height = 1.5}
-
-
 # m.gen.fullmodel.prior.parameters <- m.samp %>%
 #   filter(type == "prior", property %in% example.generics.properties) %>%
 #   group_by(param, property, category) %>%
 #   summarize(MAP = estimate_mode(val),
 #             cred_upper = hdi_upper(val),
 #             cred_lower = hdi_lower(val))
-
 
 m.gen.fullmodel.prior.parameters <- m.samp %>%
   filter(type == "prior", property %in% example.generics.properties) %>%
@@ -1264,7 +1450,7 @@ gen.listener.predictions <- data.frame()
   
 # run interpreter model to generate "hypothetical intepretation" plots
 for (p in example.generics.properties){
- priorParams <- m.gen.fullmodel.prior.parameters.tidy %>% filter(property == p) 
+ priorParams <- m.gen.fullmodel.prior.parameters.tidy %>% filter(property == p)
  # inputData = list(prior = list(params = data.frame(a = priorParams[["a"]],
  #                                                   b = priorParams[["b"]]),
  #                               mix = priorParams[["mix"]]), 
@@ -1278,8 +1464,15 @@ for (p in example.generics.properties){
                                        priorParams[["mixture_2"]])), 
                   utt = "generic")
 
- l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model.3comp, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
- l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model.3comp, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
+ l0.rs.posterior <- webppl(paste(rsaHelpers, 
+                                 uncertain.threshold.model.3comp, 
+                                 uncertain.threshold.call, sep = '\n'), 
+                           data = inputData, data_var = "data")
+ 
+ l0.rs.prior <- webppl(paste(rsaHelpers, 
+                             no.utterance.model.3comp, 
+                             no.utterance.call, sep = '\n'), 
+                       data = inputData, data_var = "data")
 
 # l0.rs.posterior <- webppl(paste(rsaHelpers, uncertain.threshold.model, uncertain.threshold.call, sep = '\n'), data = inputData, data_var = "data")
  #l0.rs.prior <- webppl(paste(rsaHelpers, no.utterance.model, no.utterance.call, sep = '\n'), data = inputData, data_var = "data")
@@ -1290,45 +1483,59 @@ for (p in example.generics.properties){
    )
 }
 
-m.gen.fullmodel.target.prevalence <- m.samp %>%
-  filter(type == "targetPrevalence") %>%
-  group_by(param, property, category) %>%
-  summarize(MAP = estimate_mode(val),
-            cred_upper = hdi_upper(val),
-            cred_lower = hdi_lower(val))
+# m.gen.fullmodel.target.prevalence <- m.samp %>%
+#   filter(type == "targetPrevalence") %>%
+#   group_by(param, property, category) %>%
+#   summarize(MAP = estimate_mode(val),
+#             cred_upper = hdi_upper(val),
+#             cred_lower = hdi_lower(val))
 
-m.gen.speakerBeliefs <- m.samp %>%
-  filter(type == "targetPrevalence") %>%
-  mutate(Sentence = paste(category, property)) %>%
-  filter(Sentence %in% example.generics) %>%
-  mutate(property = factor(property))
+# m.gen.speakerBeliefs <- m.samp %>%
+#   filter(type == "targetPrevalence") %>%
+#   mutate(Sentence = paste(category, property)) %>%
+#   filter(Sentence %in% example.generics) %>%
+#   mutate(property = factor(property))
 
-# m.samp.prev.params <- m.samp %>%
-#     filter(type == "targetPrevalence") %>%
-#     mutate(Sentence = paste(category, property)) %>%
-#     filter(Sentence %in% example.generics) %>%
-#     mutate(parameter = paste(param, property, category, sep = "_")) %>%
-#     select(-param, -property, -category, -chain, -type) %>%
-#     group_by(parameter) %>%
-#     mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
-#     ungroup() %>%
-#     separate(parameter, into = c("parameter", "property", "category"), sep= "_") %>%
-#     group_by(category, property, iteration) %>%
-#     spread(parameter, val) %>%
-#     rowwise() %>%
-#     mutate(
-#       a = mean*sampleSize,
-#       b = (1-mean)*sampleSize,
-#       val = rbeta(n = 1, shape1 = a, shape2 = b)
-#       ) %>%
-#     ungroup()
+  
+m.samp.i <- m.samp %>%
+    filter(type == "targetPrevalence") %>%
+    mutate(Sentence = paste(category, property)) %>%
+    filter(Sentence %in% example.generics) %>%
+    mutate(parameter = paste(param, property, category, component, sep = "_")) %>%
+    select(-param, -property, -category, -component, -chain, -type) %>%
+    group_by(parameter) %>%
+    mutate(iteration = ave(parameter==parameter, parameter, FUN=cumsum)) %>%
+    ungroup() %>%
+    separate(parameter, into = c("parameter", "property", "category", "component"), sep= "_") %>%
+    group_by(category, property, iteration) %>%
+    spread(parameter, val) %>%
+    rowwise() %>%
+    mutate(
+      a = mean*sampleSize,
+      b = (1-mean)*sampleSize,
+      val = rbeta(n = 1, shape1 = a, shape2 = b)
+      )
+
+m.samp.i.mixture <- m.samp.i %>% 
+    filter(component == 1) %>%
+    rowwise() %>%
+    mutate(c = rbinom(size = 1, n = 1, prob = mix))
+
+m.samp.ij <- left_join(
+  m.samp.i %>%
+    select(Sentence, property, category, iteration, component, val) %>%
+    spread(component, val),
+  m.samp.i.mixture %>% select(Sentence, property, category, iteration, c)
+) %>% rowwise() %>%
+  mutate(prev = ifelse(c == 1, `1`, `2`))
+
 
 gen.inset.distributions <- bind_rows(
   gen.listener.predictions %>%
     mutate(category = NA),
-  m.gen.speakerBeliefs %>%
-    select(property, val) %>%
-    rename(value = val) %>%
+  m.samp.ij %>%
+    select(property, prev) %>%
+    rename(value = prev) %>%
     mutate(Parameter = "speakerBeliefs")
 )
 
@@ -1349,17 +1556,25 @@ gen.inset.distributions.refactored <- gen.inset.distributions %>%
          property = fct_relevel(property,
                                 "have spots", "lay eggs","carry malaria", 
                                 "are female", "dont eat people") )
+```
 
+```{r vizualize insets, fig.width = 8, fig.height =4}
+load("../paper/cached_results/case1_modelPosteriors.RData")
 
-
-# save(d.gen.endorse.rsa.regression, gen.inset.distributions.refactored, 
+# save(d.gen.endorse.rsa.regression, gen.inset.distributions.refactored,
 #      generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt,
-#      file = "../paper/cached_results/case1_modelPosteriors.RData")
+#      file = "../paper/cached_results/case1_modelPosteriors_moreFlexiblePrior.RData")
+
+save(d.gen.endorse.rsa.regression, gen.inset.distributions.refactored,
+     generics.fixed.noise.posterior, fixed.threshold.posterior,fixed.threshold.s1opt,uncertain.threshold.s1opt,
+     file = "../paper/cached_results/case1_modelPosteriors.RData")
+
+#load("../paper/cached_results/case1_modelPosteriors.RData")
 
 generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored, 
                                       aes( x = value, fill = Parameter, 
                  color = Parameter, lty = Parameter, alpha = Parameter ))+
-  geom_density(aes(y = ..scaled..), adjust = 1, size = 1)+
+  geom_density(aes(y = ..scaled..), adjust = 1.5, size = 1)+
   facet_wrap(~property, nrow = 1)+
   geom_label_repel(data = category.text.labels,
                   aes(label = category, x = x , y = y),
@@ -1371,8 +1586,8 @@ generics.endorsement.insets <- ggplot(gen.inset.distributions.refactored,
     scale_alpha_manual(values = c(0.6, 0.4, 0))+
     #scale_linetype_manual(values = c(3, 4, 2, 1))+
     scale_linetype_manual(values = c(3, 4, 1))+
-    scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
-    scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #scale_x_continuous(breaks = c(0, 1), limits= c(0, 1))+
+    #scale_y_continuous(breaks = c(0, 1), limits= c(0, 1))+
     xlab("Prevalence") +
     ylab("Scaled probability density")+
     theme(legend.position = "bottom", legend.title = element_blank())
