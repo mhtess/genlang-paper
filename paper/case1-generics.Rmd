@@ -470,7 +470,7 @@ generics.endorsement.insets <- ggplot( gen.inset.distributions.refactored %>%
                                              "Generic interpretation\n(Interpretation model output)", 
                                              "Prevalence prior\n(Null interpretation)")),
                 property = factor(property, levels = c("have spots", "lay eggs", "are female", "carry malaria", "dont eat people"))),
-       aes(x = state, y = Parameter, group = Parameter, color = Parameter))+
+       aes(x = value, y = Parameter, group = Parameter, color = Parameter))+
   scale_y_discrete(expand = c(0.01, 0)) +   # will generally have to set the `expand` option
   scale_x_continuous(expand = c(0, 0), limits = c(0, 1), breaks = c(0, 1))  +    # for both axes to remove unneeded padding
   facet_wrap(~property, nrow = 1)+
@@ -510,7 +510,7 @@ fig.gen.endorse.toprow <- plot_grid(fig.gen.endorse.data,
 
 
 
-plot_grid(fig.gen.endorse.toprow,
+cowplot::plot_grid(fig.gen.endorse.toprow,
           fig.gen.endorse.priors,
           labels = c("", "C"), nrow = 2, rel_heights = c(1.1, 0.6)
           )
