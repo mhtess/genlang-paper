@@ -27,6 +27,7 @@ header-includes:
   - \usepackage{longtable}
   - \usepackage{array}
   - \usepackage{multirow}
+  - \usepackage{xcolor}
   
 author_note: >
   This paper is currently under review. Comments or suggestions are appreciated and should be directed to MHT.
@@ -64,7 +65,7 @@ output            : papaja::apa6_pdf
 ```{r global_options, include=FALSE}
 rm(list=ls())
 knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
-                      echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
+                      echo=FALSE, warning=FALSE, cache=F, message=FALSE, sanitize = T)
 ```
 
 
