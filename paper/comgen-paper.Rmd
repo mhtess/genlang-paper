@@ -340,23 +340,24 @@ Fortunately, language provides simple ways of communicating generalizations.
 
 ## Communicating generalizations
 
-The language of generalization is easy to spot when a property, that could apply to an individual, is predicated of a category (e.g., "Dogs have four legs"; *has four legs* could apply to an individual as in "This dog has four legs").
+The language of generalization is easy to spot when a property, that could apply to an individual, is predicated of a category (e.g., "Dogs have four legs": *has four legs* could apply to an individual as in "This dog has four legs").
 In the semantics literature on generics, bare plural sentences of this kind are sometimes described as *characterizing sentences* in contrast with *kind-denoting* sentences where the property can only meaningfully apply to the category as a whole (e.g., "Dinosaurs are extinct"; *extinct* cannot apply to an individual dinosaur).
 <!-- Dinosaurs are exctinct ~ John is a smoker? -->
-Generalization can also manifest when describing instances of an individual [*habitual language*; e.g., "John smokes"; @Carlson1977; @Carlson2005].
+Generalization can also manifest when describing instances of an individual [*habitual language*; e.g., "John smokes"; @Carlson1977; @Carlson2005]; in this case, the particular instance being generalized is an instance of an individual (e.g., John at a particular moment in time), which also permits predication (e.g., "John smoked yesterday after dinner").
 Verbs like *causes* or *makes* also seem to convey generalization, in this case, about an instance of an actual causal event (*causal language*; e.g., "Staring at the sun makes you go blind"). 
 Psychologists, linguists, and philosophers have long studied the language of generalization, as it appears very simple (e.g., syntactically) yet its meaning is difficult to formalize.^[
   We further distinguish the problem of formalizing a *meaning* for the language of generalization as opposed to the problem of *identifying* generalizations. 
   Syntax alone is neither necessary nor sufficient for a listener to know that the sentence conveys a generalization  (e.g., indefinite singulars can encode generalizations: "A dog has four legs" and bare plurals may not: "Dogs are on my front lawn").
   Our analysis thus begins once a sentence has been disambiguated as conveying a generalization. 
 ]
+We first describe a model for generics, before noting how the basic ideas generalize to habituals and causals.
 
 If generalization from observations can be described by a probability $p$, it is natural to posit that same construct will be at the heart of a semantic theory of the language of generalization (Ingredient 1: Probability).
 In semantics, belief updating generally passes through Boolean *truth values* [@Montague1973].
 The simplest way to derive a Boolean from a scalar quantity like probability is via a *threshold semantics*: The utterance is true if the relevant scalar value is above a threshold.
-For example, the sentence "Some dogs have four legs" is believed to be literally true if the chances that an individual dog will have four legs is greater than zero: $\denote{some}(p) := p > 0$.
+For example, the literal meaning of the sentence "Some dogs have four legs" is that there is a non-zero chance that an individual dog will have four legs: $\denote{some}(p) := p > 0$.
 "Most dogs have four legs" can also be described as a threshold on prevalence (e.g., the chance that a dog will have four legs is greater than 50%): $\denote{most}(p) := p > 0.5$.^[
-  We note that we are describing the standard semantic truth conditions of quantifiers, not their pragmatic interpretations (e.g., that "some" often implies "not all").
+  We are describing the standard semantic truth conditions of quantifiers, not their pragmatic interpretations (e.g., that "some" often implies "not all").
 ]
 Thus, the simplest semantics for a generalization would also be a threshold on the prevalence: $\denote{gen}(p, \theta) := p >\theta$.
 
@@ -367,13 +368,13 @@ We formalize this underspecification of meaning (Ingredient 2: Vagueness) by put
 Finally, the meanings of linguistic expressions manifest in their capacity to convey information from speaker to hearer [@Grice1975; @Clark1996; @Levinson1995].
 Thus, the final ingredient to our model is *context* (Ingredient 3), which must be minimally formalized as a listener's prior knowledge about the property $P(p)$ and which we describe in the *Worked Examples* section below.
 
-Putting these three ingredients (probability, vagueness, and context) together, we get the following model of generic interpretation: 
+Putting these three ingredients (probability, vagueness, and context) together, we get the following model of interpreting generalizations in language: 
 
 \begin{eqnarray}
 L(p, \theta \mid u) &\propto& {\delta_{\denote{u}(p, \theta)}  \cdot P(\theta) \cdot P(p)} \label{eq:L0}
 \end{eqnarray}
 
-We denote this probabilistic generic interpretation model by $L$ to indicate that it is modeling a listener updating their beliefs according to the truth-functional meaning of an utterance $u$.
+We denote this probabilistic interpretation model by $L$ to indicate that it is modeling a listener updating their beliefs according to the truth-functional meaning of an utterance $u$.
 Formally, the truth-functional meaning is represented by the Kronecker delta function  $\delta_{\denote{u}(p, \theta)}$ that returns $1$ when the utterance is true (i.e., when $p > \theta$) and $0$ otherwise.
 
 \begin{eqnarray}
@@ -385,13 +386,17 @@ Formally, the truth-functional meaning is represented by the Kronecker delta fun
 
 Following @Lassiter2015, we formalize the vagueness in the meaning of generics $P(\theta)$ as a uniform distribution over the support of $P(p)$.
 
-
 With these ingredients, the literal interpretation model (Eq. \ref{eq:L0}) computes a posterior interpretation distribution on prevalence by considering different possible thresholds $\theta$.
 Figure\ \@ref(fig:uniformPriorSimulation) shows the model behavior assuming a uniform prevalence prior $P(p)$, perhaps representing a purely abstract property for which an interpreter has no substantive prior knowledge.
 If the threshold were to be very high (e.g., $\theta = 0.75$), only the highest prevalence levels would be consistent with the utterance.
-As the threshold decreases, more and more prevalence levels become be compatible with the threshold (Figure\ \@ref(fig:uniformPriorSimulation)A).
+As the threshold decreases, more and more prevalence levels become compatible with the threshold (Figure\ \@ref(fig:uniformPriorSimulation)A).
 The interpretation model weights the different thresholds by the probability that each is true, resulting in a posterior interpretation distribution on prevalence that favors higher prevalence levels (Figure\ \@ref(fig:uniformPriorSimulation)B).
 This interpretation distribution captures the intuition that generalizations imply high prevalence, though with substantial uncertainty about the precise prevalence.
+
+The model in Eq \ref{eq:L0} describes a general mechanism of belief-updating via an uncertain threshold semantics and, thus, naturally extends to generalizations of different semantic types.
+For example, if we take underlying semantic scale (formally, the support of $P(p)$) to be that of the temporal frequency of an event (e.g., how often we expect an event to occur), then Eq. \ref{eq:L0} describes a model of habitual interpretation (e.g., "John smokes").
+In this case, $p$ is naturally thought of as a rate (e.g., the frequency of an event within a certain time window).
+
 
 <!-- The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice.  -->
 <!-- Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013]. -->
@@ -429,43 +434,20 @@ The goal of the endorsement model is to align the listener's beliefs about preva
   $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p\sim P_{k}} \ln{ \int_{\theta} L(p, \theta \mid u)} \diff \theta )}$
   For the empirical case studies described below, these two versions of the model make almost identical predictions.
 ]
+Given that the speaker only has two options (i.e., produce the generalization utterance or stay silent), the endorsement decision comes down to whether or not the referent prevalence is more likely under the prevalence prior distribution $P(p)$ (i.e., the listener's posterior upon hearing silence) or the listener generic interpretation distribution given by Eq. \ref{eq:L0} (Figure\ \@ref(fig:uniformPriorSimulation)C).
 Thus, the communication-relevant content of the generalization is the prevalence in the referent category $p$.
-The semantic threshold $\theta$ is necessary for establishing the precise truth conditions (used in Eq. \ref{eq:L0}) but is otherwise a nuisance parameter, which the endorsement model integrates out.
-Finally, Eq. \ref{eq:S1} models an information-theoretic speaker's decision, which we assume is approximately rational, with degree of rationality given by $\lambda$.
-This exponentiation step acts as a soft-max function on $S$'s posterior beliefs of which utterance is better.
-
-
-<!-- \ndg{this doesn't make a ton of sense in this context, since we haven't set up S as a decision maker....} -->
-
-<!-- We consider the notion of truth judgments or endorsement from the information-theoretic perspective: Would a generalization statement convey the appropriate information to a naive interpreter?  -->
-
-<!-- We formalize this by considering how well the generalization would convey the referent prevalence $p$ to the $Lit$ model (Eq. \ref{eq:L0}). -->
-
-<!-- \begin{equation}  -->
-<!-- S(u \mid p) \propto \exp{(\lambda \cdot \ln{ \int_{\theta} Lit(p, \theta \mid u)  \diff \theta } )} -->
-<!-- \label{eq:S1} -->
-<!-- \end{equation} -->
-<!-- \ndg{this eqn isn't well motivated. if we never use cost in this paper, then get rid of exp and ln and just have Lit to a power of lambda. also say why it's called S earlier?} -->
-
-<!-- The endorsement model simulates what the interpretation model would believe upon hearing an utterance $u$: $Lit(p, \theta \mid u)$. -->
-<!-- The proportionality in Eq. \ref{eq:S1} implies normalization over a set of alternative utterances.  -->
-<!-- We interpret the endorsement task (e.g., "true" vs "false"; "agree" vs. "disagree") as supplying two alternatives: *endorse* or *not*, where *not* we take to be a silent utterance that conveys no information content [@Franke2014cogsci; @Degen2014]: $\denote{null}(x, \theta) = \text{True}$.^[ -->
-<!--   This "null" alternative to the generalization can be realized in at least two other ways: the negation of the generalization (e.g., "It is not the case that Robins lay eggs") or the negative generalization (i.e., "Robins do not lay eggs"). -->
-<!--   The latter is different because it creates a new threshold (analogous to how "short" and "tall" are modeled with different thresholds). -->
-<!--   All results reported are similar for these two alternatives, and we use the alternative of the "silent" utterance for simplicity. -->
-<!-- ] -->
-
-Given that the speaker only has two options (i.e., produce the generalization utterance or stay silent), the endorsement decision comes down to whether or not the *referent prevalence* is more likely under the prevalence prior distribution $P(p)$ or the listener interpretation distribution given by Eq. \ref{eq:L0} (Figure\ \@ref(fig:uniformPriorSimulation)C).
-Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from the prevalence in the category being referred to (i.e., how many robins lay eggs)---the *referent prevalence* $p$---to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u \mid p)$. 
-The model assumes a threshold semantics based on probability (prevalence) but does not require specifying the threshold *a priori* (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
-This formalism builds on a tradition in formal semantics to try to precisely define the conditions under which a sentence is true or false [@Montague1973].
-We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding our semantic hypothesis (a simple but vague threshold) in a cognitive model in which relevant contextual knowledge can be formalized.
-In this simple model, the relevant contextual knowledge is given by a prior distribution over the prevalence $P(p)$.
+The semantic threshold $\theta$ is necessary for establishing the precise truth conditions (used in Eq. \ref{eq:L0}) but is otherwise a nuisance parameter, which the endorsement model integrates out (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
+Finally, because Eq. \ref{eq:S1} models an information-theoretic speaker's decision, $S_1$ computes a belief distribution and then produces utterances which are approximately rational according to that belief distribution, via a soft-max function with degree of rationality $\lambda$.
+\mht{better?}
 In the next section, we work through different examples from the linguistics literature, describing the prevalence prior and other relevant model components for each.
 
+<!-- Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from the prevalence in the category being referred to (i.e., how many robins lay eggs)---the *referent prevalence* $p$---to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u \mid p)$. -->
+<!-- This formalism builds on a tradition in formal semantics to try to precisely define the conditions under which a sentence is true or false [@Montague1973]. -->
+<!-- We go beyond previous semantic models of generics [e.g., @Cohen1999] by embedding our semantic hypothesis (a simple but vague threshold) in a cognitive model in which relevant contextual knowledge can be formalized. -->
+<!-- In this simple model, the relevant contextual knowledge is given by a prior distribution over the prevalence $P(p)$. -->
+
+
 <!-- By doing so, we are able to describe how context influences generic understanding and are able to make precise, quantitative predictions about human judgments. -->
-
-
 
 <!-- The prevalence priors represent abstract beliefs about the properties -->
 <!-- To reason through those questions, you may rely upon your intuitive theories of reproduction (e.g., only females lay eggs).  -->
@@ -655,26 +637,24 @@ ggdraw(fig.sims.priors) +
   draw_label("Endorsement Prediction", 0.885, 0.12, size = 10)
 ```
 
-### Worked examples
+# Worked examples
 
-The endorsement model defined in the previous section predicts that the variability in endorsements for generic statements and other sorts of generalizations in language can be attributed to two factors: (i) the referent prevalence in the category under discussion $p$ in Eq. \ref{eq:S1} (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) and (ii) the background knowledge about prevalences---the prevalence prior---$P(p)$ (Eq. \ref{eq:L0}).
-We explore the predictions of this model by varying each of these factors in the context of a few worked examples.
-These examples are taken from the linguistics literature on generics and are statements that any theory of generics should be able to correctly predict are either true, false, or somehow indeterminate. 
+<!-- The endorsement model defined in the previous section predicts that the variability in endorsements for generic statements and other sorts of generalizations in language can be attributed to two factors: (i) the referent prevalence in the category under discussion $p$ in Eq. \ref{eq:S1} (e.g., $P(x \text{ lays eggs} \mid x \text{ is a robin})$) and (ii) the background knowledge about prevalences---the prevalence prior---$P(p)$ (Eq. \ref{eq:L0}). -->
+We explore the predictions of the endorsement model in the context of a few worked examples.
+These examples are taken from the linguistics literature on generics and are statements that have been historically challenging for prevalence-based approaches (see Table 1).
 We implemented these and all subsequent Bayesian models in the probabilistic programming language WebPPL [@dippl].
 All models, analyses, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
 
-The uncertain threshold model's interpretations are highly sensitive to background knowledge, formalized in simplest terms in terms of a *prevalence prior*.
-Prior distributions over prevalence can be revealed by considering the prevalence of the feature in alternative categories (Figure\ \@ref(fig:simulations)).
-For example, think about five of your favorite kinds of animal: What percentage of each of them *are female*? What percentage of each of them *lay eggs*?
-Figure\ \@ref(fig:simulations) (row 1) show hypothetical prevalence priors for six different properties, formalized as Beta distributions or mixtures of Beta distributions.^[
-  The Beta distribution is a distribution over numbers between 0 and 1. 
-  In other words, it is a probability distribution over probabilities or prevalences.
-]
-The *lay eggs* distribution has substantial probability mass near 0 (since many animal categories do not have egg-layers) with a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property.
-Conversely, the distribution over the prevalence of *being female* is unimodal and centered at 0.5, because almost all animals have female members in that proportion.
+Model predictions depend upon the uncertain threshold model's interpretations, which are highly sensitive to background knowledge.
 Background knowledge may be richly structured, reflecting intuitive theories about the underlying causes of different kinds of properties [cf., @Leslie2007].
-This model posits, however, that the only impact of structured knowledge on truth judgments is in their implications for beliefs about prevalence. 
-We explore the model's ability to account for intuitive truth judgments for different examples that have been historically challenging for prevalence-based approaches.
+This model posits, however, that the only impact of structured knowledge on truth judgments is in their implications for beliefs about prevalence, formalized in terms of a prevalence prior $P(p)$. 
+\ndg{i’d save this for expt sections, and here just say that we posit intuitive priors for illustrations and introduce a method to actually elicit them below}
+\mht{without this, we don't have an explanation for what the prevalence prior is, which is important for understanding the examples... i removed stuff about Betas, but check this again...}
+The prevalence prior can be thought of a distribution over the prevalence of a feature among alternative categories (Figure\ \@ref(fig:simulations)).
+<!-- For example, think about five of your favorite kinds of animal: What percentage of each of them *are female*? What percentage of each of them *lay eggs*? -->
+Figure\ \@ref(fig:simulations) (row 1) shows intuitive prevalence priors for six different properties (we introduce methods for empirically eliciting these priors in the experimental section).
+The *lay eggs* distribution is bimodal, with substantial probability mass near 0 (since many animal categories do not have egg-layers) and a secondary component peaked around 0.5, because among the animals with egg-layers, only the female members of the category have the property.
+Conversely, the distribution over the prevalence of *being female* is unimodal and centered at 0.5, because almost all animals have female members in that proportion.
 
 <!-- We simulate how the prevalence priors change the literal interpretation and how they and the referent prevalence impact endorsement using schematic parameter values based on intuition from a few examples in the literature on generic language. -->
 
@@ -717,8 +697,8 @@ worked.examples <- data.frame(
          "Issue" = potential.issue)
 
 worked.examples.tab <- xtable::xtable(worked.examples, 
-                       caption = "Example generalizations that a theory of generics should correctly predict.", 
-                       align=c('p{1.5in}', 'p{2in}| ',' |p{1.25in}|','p{0.75in}|','p{2in} |'))
+                       caption = "Example generalizations that a theory of generics should correctly predict. See details of each example in corresponding section.", 
+                       align=c('| p{1.5in}', 'p{2in}| ',' |p{1.25in}|','p{0.75in}|','p{2in} |'))
 
 
 
@@ -752,11 +732,11 @@ print(worked.examples.tab,
 
 **1. Dogs bark.**
 
-Often the first observation with generics is that they appear to behave like *universal* quantifiers (e.g., "All") that permit exceptions.
-That is, not all dogs bark, but still *Dogs bark* is true.
+Often the first observation with generics is that they appear to behave like universal quantifiers (e.g., "All") that permit exceptions.
+That is, not all dogs bark, but still "Dogs bark" is true.
 The uncertain threshold account immediately accomodates this example because there is no single, fixed threshold beyond which the generalization becomes true.
-Rather, listeners have uncertainty about the threshold *a priori* which leads to graded interpretations (e.g., *Dogs bark* meaning *almost all* dogs bark; Figure\ \@ref(fig:simulations); column 1, row 2).
-The endorsement model then predicts this is a rather good generic sentence (Figure\ \@ref(fig:simulations), bottom row) even though not all dogs bark (*referent prevalence* of barking among dogs shown with arrow in Figure\ \@ref(fig:simulations) row 2).
+Rather, listeners have uncertainty about the threshold *a priori* which leads to graded interpretations (e.g., "Dogs bark" meaning *almost all* dogs bark; Figure\ \@ref(fig:simulations); column 1, row 2).
+The endorsement model then predicts this is a rather good generic sentence (Figure\ \@ref(fig:simulations), bottom row) even though not all dogs bark (referent prevalence of barking among dogs shown with arrow in Figure\ \@ref(fig:simulations) row 2).
 
 **2. Kangaroos have spots.**
 
