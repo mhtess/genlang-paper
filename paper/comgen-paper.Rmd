@@ -1370,21 +1370,23 @@ Truth judgments are the standard measurement for semantic theories, but are ofte
 In this paper, we measured the truth judgments of naive language users, revealing whole continua of gradience. 
 These fine-grained, quantitative measurements pose real challenges for a complete theory of generics and other generalizations in language. 
 The framework we propose is sufficiently precise to predict such gradience, and we showed that the gradience in truth judgments depends in systematic ways on the listener's prior beliefs about prevalence.
-
- already exhibit complex sensitivities to context for the language of generalizations.
-Rather than leave truth judgments to the i, we measured these empirically, revealing large amounts of gradience.
-
-The uncertain threshold semantics accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
-
-We measured and modeled truth judgments in order to 
-We modeled truth judgments as a speaker's decision about whether it would be useful to utter the generalization. 
-Endorsement, we have shown, 
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 In each case, our model provided a strong quantitative fit to human judgements while other models fall short.
+In addition, the model accounts for standard linguistic intuitions about a number of philosophically puzzling generic statements (Worked Examples).
 
+The fact that our model applies equally as well to generic and habitual language sheds light on a long-attested analogy.
 The analogy of habituality (e.g., "John runs") and genericity (e.g., "Dogs have four legs") has typically been assumed in the literature after the original suggestion by @Carlson1977.
 The relationship has been never been empirically tested nor formally described.
 This paper presents the first empirical evidence that the reasoning involved in understanding generic and habitual sentences are similar: The same uncertain threshold mechanism explains judgments of both kinds of statements (Expts. 1 & 2).
+
+
+
+The uncertain threshold semantics accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
+
+<!-- We measured and modeled truth judgments in order to  -->
+<!-- We modeled truth judgments as a speaker's decision about whether it would be useful to utter the generalization.  -->
+<!-- Endorsement, we have shown,  -->
+
 
 
 
