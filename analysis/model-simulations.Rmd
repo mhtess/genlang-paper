@@ -486,6 +486,139 @@ save(rs.wp.l0, rs.listener.wp.tidy.samples, rs.tidy,
      file = "../paper/cached_results/modelSims-uniform_fixedT_uncertainT_speaker.RData")
 ```
 
+## Elephants live in africa and asia 
+
+```{r}
+elephants <- '
+var probability = function(Dist, x) {
+  return Math.exp(Dist.score(x));
+}
+
+var bins = [
+  0.01,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+  0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,0.99
+];
+
+var theta = 1;
+var params75 = {a:45, b: 15};
+var params50 = {a:30, b: 30};
+var params25 = {a:15, b: 45};
+var params100 = {a:50, b: 1};
+
+var allComponents = [params25, params50, params75, params100]
+var nullParams = {a:1,b:2000};
+
+var makeComponent = function(params){
+  return Categorical({
+  vs: bins,
+  ps: map(function(b) {
+    probability(Beta(params), b) + Number.EPSILON
+  }, bins )
+})
+}
+
+var statePrior = Infer({model: function(){
+  var mainPlace = categorical({
+    ps:[1, 1, 1, 1],
+    vs:[
+      {asia: true, africa: false}, {asia: false, africa: true},
+      {asia: false, africa: false}, {asia: true, africa: true}
+    ]
+  });
+  return {
+    asia: sample(makeComponent(mainPlace.asia ? uniformDraw(allComponents) : nullParams)),
+    africa: sample(makeComponent(mainPlace.africa ? uniformDraw(allComponents) : nullParams))
+  }
+}})
+
+var thetaPrior = Infer({model: function(){
+  return {
+    asia: uniformDraw(
+      [0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+       0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95]
+    ),
+    africa: uniformDraw(
+      [0.01, 0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,
+       0.5, 0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95]
+    )
+  }
+}});
+
+var meaning = function(utt, state, theta) {
+  state[utt] > theta[utt]
+}
+
+var listener0 = function(utterance, worldPriors, thresholdPriors) {
+  Infer({model: function(){
+    var state = sample(worldPriors)
+    var theta = sample(thresholdPriors)
+    var m = meaning(utterance, state, theta)
+    condition(m)
+    condition(state.africa + state.asia <= 1)
+    return {state, theta}
+  }})
+}
+
+var elephantsLiveInAsia = listener0("asia", statePrior, thetaPrior);
+var asiaStatePosterior = marginalize(elephantsLiveInAsia,"state");
+var asiaThresholdPosterior =  marginalize(elephantsLiveInAsia, "theta");
+
+var elephantsLiveinAfricaAndAsia = listener0("africa", asiaStatePosterior, asiaThresholdPosterior)
+
+var AfricaAndAsiaStatePosterior = marginalize(elephantsLiveinAfricaAndAsia, "state");
+
+var AfricaAndAsiaThresholdPosterior =  marginalize(elephantsLiveinAfricaAndAsia, "theta");
+
+var x = {asiaStatePosterior, AfricaAndAsiaStatePosterior}
+x
+'
+```
+
+
+```{r}
+rs.eleph <- webppl(elephants)
+
+rs.asia <- as.data.frame(rs.eleph$asiaStatePosterior)
+rs.asiaafrica <- as.data.frame(rs.eleph$AfricaAndAsiaStatePosterior)
+
+rs.asia.marignals <- bind_rows(
+  rs.asia %>%
+    rename(state = support.asia) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "asia"),
+  rs.asia %>%
+    rename(state = support.africa) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "africa")
+)
+
+ggplot(rs.asia.marignals, aes(x = state, y = prob))+
+  geom_col(position = position_dodge())+
+  facet_wrap(~marginal)
+```
+```{r}
+rs.asiaafrica.marignals <- bind_rows(
+  rs.asiaafrica %>%
+    rename(state = support.asia) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "asia"),
+  rs.asiaafrica %>%
+    rename(state = support.africa) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "africa")
+)
+
+ggplot(rs.asiaafrica.marignals, aes(x = state, y = prob))+
+  geom_col(position = position_dodge())+
+  facet_wrap(~marginal)
+```
+
+
+
 # Misc extra
 
 old scatter plot version of endorsements
