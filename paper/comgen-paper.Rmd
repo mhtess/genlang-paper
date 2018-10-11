@@ -948,12 +948,11 @@ The uncertain threshold model formalizes default generalization as Bayesian beli
 
 The evolutionary argument for accepting striking generics (e.g., "Tigers eat people") is straightforward: These are relevant properties to know about if you want to survive. 
 Our theory posits two mechanisms by which striking properties could influence generic endorsement.
-<!-- But there are two other factors that are confounded with striking properties that make it difficult to evaluate a claim about strikingness *per se* (as opposed to beliefs about prevalence) leading to generic endorsement. -->
 The first is the prevalence prior.
 Striking properties are rare in the environment: Most animals do not maul children, eat swimmers, or carry malaria.
 Thus, the prevalence prior distributions of these features may be hard to distinguish from properties that are just generally rare and distinctive (e.g., *having extraordinarily beautiful feathers*).
 <!-- ; see also our Expt. 2a, e.g., the distributions for *steals cars* vs. *climbs mountains* for an example with habituals).  -->
-@Cimpian2010 (Expt. 4) found participants willing to endorse generics about both striking properties (e.g., "Lorches have dangerous feathers") and distinctive properties (e.g., "Lorches have distinctive feathers") about equally as often each other and more so than neutral properties (e.g., "Lorches have purple feathers"). 
+@Cimpian2010 (Expt. 4) found participants willing to endorse generics about both striking properties (e.g., "Lorches have dangerous feathers") and explicitly distinctive properties (e.g., "Lorches have distinctive feathers") about equally as often each other and more so than neutral properties (e.g., "Lorches have purple feathers"). 
 This similar increase in endorsement for striking and distinctive properties could be explained by the prevalence prior $P(p)$ distributions for the two being similar, and distinct from that of the neutral properties.
 @Cimpian2010's experiments did not measure the prevalence prior distribution, but we have found in pilot work that the prevalence prior distribution changes to resemble that of a distinctive property when participants are supplied information about the dangerousness of a property.
 
@@ -1358,75 +1357,73 @@ We have argued that the core meaning of such linguistic expressions can be under
 That generics are vague does not preclude them from being treated by formal models. 
 A vague threshold meaning operating over a speaker's inductive beliefs, formalized by predictive probability, leads to complex, quantitative interactions with background knowledge.
 
-<!--
-formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
-As a formal theory of the language of generalization, our framework unifies large swaths of language about distinct semantic types, illustrated here with categories, events, and causes.
-
-Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
--->
-
-We tested this theory by exploring its implications for the simplest judgments a person can make about a sentence: endorsements or truth judgments.
-Truth judgments are the standard measurement for semantic theories, but are often limited to the intuitions of a single or a small handful of trained theorists, which often produced binary or ternary judgments: true, false, and possibly indeterminate.
-In this paper, we measured the truth judgments of naive language users, revealing whole continua of gradience. 
-These fine-grained, quantitative measurements pose real challenges for a complete theory of generics and other generalizations in language. 
-The framework we propose is sufficiently precise to predict such gradience, and we showed that the gradience in truth judgments depends in systematic ways on the listener's prior beliefs about prevalence.
+We tested this theory by exploring its implications for the simplest judgments a person can make about a sentence: an endorsement or truth judgment.
+Truth judgments are the standard measurement for semantic theories, but are often limited to the intuitions of a single or a small handful of trained theorists, often producing only binary or ternary judgments (i.e., true, false, and possibly indeterminate).
+In this work, we measured the truth judgments of naive language users, revealing whole continua of gradience. 
+These fine-grained, quantitative measurements pose real challenges for verbal theories of generics, which can only predict qualitative differences.
+The framework we propose is sufficiently precise to predict quantitative gradience, and we showed that the gradience in truth judgments depends in systematic ways on an interpreter's prior beliefs about prevalence.
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 In each case, our model provided a strong quantitative fit to human judgements while other models fall short.
 In addition, the model accounts for standard linguistic intuitions about a number of philosophically puzzling generic statements (Worked Examples).
 
-The fact that our model applies equally as well to generic and habitual language sheds light on a long-attested analogy.
-The analogy of habituality (e.g., "John runs") and genericity (e.g., "Dogs have four legs") has typically been assumed in the literature after the original suggestion by @Carlson1977.
-The relationship has been never been empirically tested nor formally described.
+The fact that our model applies equally as well to generic and habitual language sheds light on a long-attested relationship.
+The analogy of habituality (e.g., "John runs") and genericity (e.g., "Dogs have four legs") has typically been assumed in the literature following the original suggestion by @Carlson1977.
+The relationship, however, has been never been empirically tested nor formally described.
 This paper presents the first empirical evidence that the reasoning involved in understanding generic and habitual sentences are similar: The same uncertain threshold mechanism explains judgments of both kinds of statements (Expts. 1 & 2).
 
+In our model, a generic statement or other generalization updates a listener's *a priori* beliefs about the prevalence of the property for that category. 
+Since the prevalence prior includes the information necessary to compute cue validity (see Appendix A), the cue validity of the feature for the new category is added to the common ground between interlocutors.
+Thus, given the knowledge represented in a prevalence prior, generics communicate information both about the prevalence of the feature in the new category (via the literal semantics) as well as the cue validity of the feature for the new category.
+For example, if a listener hears "Alligators grow to be 10-feet long", they will update their personal beliefs both about the prevalence of 10-footedness among alligators as well as the probability that an animal is an alligator given that it is 10 feet long. 
+To our knowledge, this is the first theory of generics that describes how the informational contribution of a generic relates to cue validity.^[
+  We are grateful to an anonymous reviewer for drawing our attention to this. 
+]
+This also means that our computational framework makes predictions about the cue validity implied by different generalizations, without any further assumptions.
 
+We propose that the language of generalization conveys predictive probabilities.
+Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
+Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding explicit probabilities expressed using *numerical language*, a historically quite recent innovation [cf., @Levinson1995]. 
+Rather than conveying probabilities explicitly, the language of generalization conveys them implicitly.
+In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to the utterance "John is tall".
+The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
+Indeed, even infants are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the numerical language of probability [@Xu2008; @xu2009statistical].
 
-The uncertain threshold semantics accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
+In the rest of this discussion, we further discuss the contribution of our modeling framework to empirical and theoretical work on the language of generalization, elaborate further on the role of conceptual knowledge in our modeling framework, describe how our model relates to language understanding more generally including theories of vagueness, and sketch an argument for how our formal representation of the language of generalization could provide a relatively simple acquisition problem for a language learner.
 
 <!-- We measured and modeled truth judgments in order to  -->
 <!-- We modeled truth judgments as a speaker's decision about whether it would be useful to utter the generalization.  -->
 <!-- Endorsement, we have shown,  -->
 
 
-
-
-
 <!--
 NDG: i cut this from below...
 This paper puts forth the theory that the language of generalization communicates predictive probabilities from speaker to hearer.
-These predictive probabilities are not observable frequencies, the object of other statistical approaches to generics, but mental representations.
-Probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
+Prevalence in our model is not an observable frequency---the object of other statistical approaches to generics---but a mental representation.
+These probabilities encode predictions about the future and are subject to top-down moderation (e.g., by way of intuitive theories).
 Predictions about the presence of a feature can be the result of beliefs about internal causes of the feature [e.g., in an essentialist view of natural kinds; @Gelman2003], generative kind representations [@Prasada2009], or merely correlational happenstance.
-What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability or *prevalence*.
+What matters for their influence on generic endorsement, however, is their influence on subjective, predictive probability.
 -->
 
-Communicating probabilities might seem contrary to the long attested failures in reasoning about probability [@Tversky1974].
-Our theory suggests that the problems with understanding probabilities observed in classic, cognitive psychology paradigms are a problem in understanding explicit probabilities expressed using *numerical language*, a historically quite recent innovation [cf., @Levinson1995]. 
-Rather than conveying probabilities explicitly, generalizations convey them implicitly.
-In other words, we argue that the utterance "70% of birds fly" is a precise statement about how many birds fly in the way that "John is 6'3"" is a precise statement about the height of John, whereas "Birds fly" is a vague statement more akin to the utterance "John is tall".
-The latter statements are easier to process, understood at an earlier age, and may be more useful for human reasoning. 
-Indeed, even infants are actually quite good with reasoning about probabilities, but in ways that are not explicit or tied to the numerical language of probability [@Xu2008; @xu2009statistical].
-
-
-In the rest of this discussion, we further discuss our model in relation to other constructs and theoretical positions, describe how our model relates to language understanding more generally including theories of vagueness, and sketch an argument for how our formal representation of the language of generalization could provide a relatively simple acquisition problem for a language learner.
 
 ## A unified model
 
-The statistical vs. conceptual distinction for theories of generics is roughly co-extensive with the distinction between theories of the truth conditions of generics and the mental phenomenon of *genericity*, respectively [@Nickel2016].
+The statistical vs. conceptual distinction for theories of generics, described earlier in this paper, is roughly co-extensive with the distinction between theories of the truth conditions of generics and the mental phenomenon of *genericity*, respectively [@Nickel2016].
 Truth conditions are unified criteria that all generics must satisfy in order to be true.
-*Genericity*, on the other hand, is thought to be a non-linguistic, psychological phenomenon previously explored either in terms of pragmatics [@Declerck1991] or meta-semantics [@Leslie2007; @Liebesman2011; @Sterken2015; @Nickel2016].
+*Genericity*, on the other hand, is thought to be a non-linguistic, psychological phenomenon previously explained either in terms of pragmatics [@Declerck1991] or meta-semantics [@Leslie2007; @Liebesman2011; @Sterken2015; @Nickel2016].
 A full account of generic language must include both a theory of generics (i.e., truth conditions) and a complementary theory of genericity [@Nickel2016]. 
 
-In our account, the truth conditions of generics are a function of beliefs formalized with probability, and the relevant probabilities may be informed by rich conceptual structure.
-The separation between conceptual structure (which exists in the mind) and prevalence (a quantitative metric for natural language semantics) provides a unified view for the phenomenology of generics.
-We chart-out a single answer to the semantic question "what do generics mean?", while also formalizing how background knowledge influences generic understanding.
-That is, our approach provides both a theory of generics and genericity, and their interaction.
+Our model leverages the insights of formal semantics and computational cognitive modeling to articulate how an agent should update their beliefs based on a generic sentence. 
+The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold function) from world knowledge (represented by the prevalence prior).
+We, thus, chart-out a single answer to the semantic question "what do generics mean?", while also formalizing how background knowledge influences generic understanding (a question about genericity).
+Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
+The modeling approach we take here demonstrates how the context-sensitivity of generics can emerge via the interplay of a stable (but vague) semantics and diverse background knowledge.
+<!-- That is, our framework provides both a theory of generics and genericity, and their interaction. -->
 This model is thus the first step towards unifying conceptual approaches to generics with an inherently quantitative natural language semantics.
 
-Our model leverages the insights of formal semantics and computational cognitive modeling to articulate how an agent should update their beliefs based on a generic sentence. 
-The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold-function) from world knowledge (represented by the prevalence prior).
-Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
-Here, we demonstrate how the context-sensitivity of generics can emerge via the interplay of a stable (but vague) semantics and diverse background knowledge. 
+
+
+<!-- That is, the truth conditions of generics are a function of beliefs formalized with probability, and the relevant probabilities may be informed by rich conceptual structure. -->
+<!-- The separation between conceptual structure (which exists in the mind) and prevalence (a quantitative metric for natural language semantics) provides a unified view for the phenomenology of generics. -->
 
 <!--
 \mht{unsure about this paragraph... a version of it may be better for the cover letter (if at all)}
@@ -1537,17 +1534,18 @@ For these reasons alone, our account is novel.
 <!-- ### Conceptual Accounts of Generics -->
 
 
-## Prevalence priors, conceptual knowledge, and cue validity
+## The role of conceptual knowledge
 
 Our theory assumes that listeners and speakers employ real-world knowledge of objects and events in order to use and interpret generalizations.
-It is this real-world knowledge (presently formalized in terms of a *prevalence prior*) where issues about domain specific knowledge, interpretation of properties [@Prasada2006], over-hypotheses [@Leslie2008], and essentialism [@Gelman2003] can all play a role.
+It is this real-world knowledge (presently formalized in terms of a prevalence prior) where issues about domain specific knowledge, interpretation of properties [@Prasada2006], over-hypotheses [@Leslie2008], and essentialism [@Gelman2003] can all play a role.
 <!-- It was not our present goal to model this aspect of interlocutors' conceptual knowledge. -->
 <!-- Instead,  -->
-We hypothesize that all of this knowledge feeds into participants' predictions, or judgments about prevalence.
+We hypothesize that all of this knowledge feeds into participants' predictions, measured through judgments about prevalence.
 <!-- which we model in a precise, quantitative manner. -->
-This framework, thus, brings precision and clarity to the *output* of these cognitive processes and conceptual understanding: participants' intuitions about prevalence.
+This framework, thus, brings precision and clarity to the *output* of these cognitive processes and conceptual understanding: intuitions about prevalence.
 Applying the same precision and clarity to the more abstract aspects of conceptual knowledge including property knowledge, essentialism, etc. is an important next step for this line of work. 
 Probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts] are obvious starting places to look for such a formalism for conceptual structure and higher-order abstractions.
+
 
  <!-- You bring precision and clarity to the judgments by capturing the output of the cognitive processes that generate prevalence.    But you tend to downplay or at least not emphasize that importance and sometime sounds as if you think you have an alternative view that argues against some of the other perspectives.    I think this is worth clarifying. -->
 
@@ -1567,29 +1565,26 @@ The fact that conceptual knowledge is not a part of our formal semantics does no
 In fact, we saw in Expt. 2c that it was participants predictions about the future that matter for the prevalence computation involved in endorsement.
 Intuitive theories guide these predictions, and might provide new insight into classic puzzles of generics.
 We described in the Worked Examples how our model treats "Supreme Court Justices have even social security numbers" as infelicitous even when 100% of justices have even SSNs, because a speaker's subjective probability that the *next justice* would have an even SSN is likely 50%.
-However, were we to learn much more surprising information---for instance, if every Supreme Court Justice in U.S. history had a social security number which was a *prime number* (a much lower probability outcome)---the shear suspiciousness could compel an observer to revise their theory of the domain (appealing perhaps to a conspiracy), update their subjective probability of future instances, and then endorse the generic. 
+However, were we to learn much more surprising information---for instance, if every Supreme Court Justice in U.S. history had a social security number which was a *prime number* (a much lower probability outcome)---the shear suspiciousness could compell an observer to revise their theory of the domain (appealing perhaps to a conspiracy), update their subjective probability of future instances, and endorse such a generic. 
 
-Not only does conceptual knowledge influence interpretation via beliefs about prevalence, but conceptual knowledge may very well be what the speaker intends to communicate.
-Like other models in the probabilistic pragmatic tradition, our model distinguishes the relevant variables for the truth-functional semantics from those that impact the speaker's utility in producing the utterance. 
+
+Not only does conceptual knowledge influence interpretation via beliefs about prevalence, but conceptual knowledge may very well be what a speaker intends to communicate.
+Like other models in the probabilistic pragmatics tradition, our model distinguishes the relevant variables for the truth-functional semantics (e.g., a threshold and a prevalence) from those that impact the speaker's utility in producing the utterance. 
 A speaker's utility comes from addressing an implicit goal of communication, sometimes referred to as the *Question Under Discussion* or QUD [@roberts1996qud].
 The separation of the QUD from the literal, truth-functional denotation of the utterance is an important theoretical distinction made explicit in our formal modeling approach [@Goodman2016]. 
 For simplicity, the model presented here assumes the QUD is about prevalence.
-However, the model makes nearly identical predictions if the QUD concerns the abstract parameters of the prevalence distributions [e.g., if the speaker intends to convey that "K is the kind of thing that Fs"; cf., @Prasada2006], something much closer to communicating conceptual understanding.
-This observation may prove useful for constructing models of teachers, whose goals include conveying abstract relations between kinds and properties.
-
-In our model, a generic statement or generalization updates a listener's *a priori* beliefs about the prevalence of the property for that category. 
-Since the prevalence prior includes the information necessary to compute *cue validity* (Appendix A), the cue validity of the feature for the new category is added to the common ground between interlocutors.
-Thus, given the knowledge represented in a prevalence prior, generics communicate information both about the prevalence of the feature in the new category (via the literal semantics) as well as the cue validity of the feature for the new category.
-To our knowledge, this is the first theory of generics that describes how the informational contribution of a generic relates to cue validity.^[
-  We are grateful to an anonymous reviewer for drawing our attention to this. 
-]
-This also means that our computational framework makes predictions about the cue validity implied by different generalizations, without any further assumptions.
+However, the model makes nearly identical predictions if the QUD concerns abstract parameters of the prevalence distributions [e.g., if the speaker intends to convey that "K is the kind of thing that Fs"; cf., @Prasada2006], something much closer to communicating conceptual understanding.
+This observation may prove useful for constructing models of speakers whose goals are to convey abstract relations between kinds and properties.
 
 
-### Strikingness
+Conceptual knowledge concerning the strikingness or dangerousness of properties and their relation to generic language has been of particular interest to psychologists and philosophers since @Leslie2007.
+We described before that the strikingness of certain properties plausibly influences prevalence priors or a speaker's predictions about future prevalence.
+We have pilot data suggested these constructs are indeed altered as a result of introducing information about the dangerousness of features to participants [e.g., as in @Cimpian2010].
+More empirical work is needed to understand the conditions under which strikingness influences generic understanding above and beyond the probabilistic constructs we have posited in our theory.
+<!-- If such effects exist, our modeling framework could be elaborated with a non-informational speaker utility [see e.g., @Yoon2016; @Yoon2017]. -->
 
-Thus, strikingness may influence endorsement by either (i) altering the prevalence priors or (ii) influencing speaker's predictions about future prevalence; we do not know of any evidence that shows an effect of strikingness while controlling for these mediating factors.
-If there are none, then the effects of strikingness would be accounted for by our prevalence-mediated theory.
+
+
 
 
 
@@ -1719,10 +1714,10 @@ However, vague predicates like "tall" exhibit a number of additional phenomena t
 For example, vague predicates admit borderline cases (e.g., a person who is neither tall nor not tall). 
 It is *a priori* unclear whether one could construct borderline cases with generics or habituals without sounding like a contradiction (e.g., "John both runs and doesn't run").
 Additionally, Sorites paradoxes can be constructed out of arguments using vague predicates, and it is not clear that generics or habituals could be used to construct such arguments.
-We note that no experimental data yet bears on these ideas and could be useful for understanding how far the relationship between generalizations and vague predicates goes.
+No experimental data yet bears on these ideas, but would be useful for further understanding the relationship between generalizations and vague predicates.
 
 For now, we understand both genericity and vagueness as analogous linguistic phenomena insofar as they can both be thought of as the result of a listener being uncertainty as to the exact truth conditions (e.g., an uncertain threshold).
-We note that this sort of "lexical uncertainty" is kind of *parameter learning* problem (e.g., the listener knows the form of the truth conditions, but not the values of some variables) which can be formally distinguished from other sorts of uncertain truth conditions better modeled as a *structure learning* problem (e.g., lexical ambiguity).
+We note that this sort of "lexical uncertainty" is a kind of *parameter learning* problem (e.g., the listener knows the form of the truth conditions, but not the values of some variables) which can be formally distinguished from other sorts of uncertain truth conditions better modeled as a *structure learning* problem (e.g., lexical ambiguity).
 Further work should be done to better understand the kinds of context-sensitive linguistic phenomena that are modeled as parameter vs. structure learning problems.
 
 Our view of understanding generalizations involving reasoning about an uncertain threshold is reminiscent of @Williamson1992's epistemicist view on vagueness.
@@ -1730,11 +1725,9 @@ This view holds that when a speaker utters a vague statement, there exists an ob
 Vagueness emerges from uncertainty about the details of those objective criteria (e.g., the precise value of a threshold). 
 This uncertainty in turn could be the result of a population of speakers using slightly different criteria, thus shifting the criteria or threshold.
 Listeners then will not know exactly what kind of speaker they are dealing with *a priori* and normatively should maintain uncertainty about the truth conditions. 
-In our model, world knowledge and general communicative principles help a listener resolve the value of threshold.
+In our model, world knowledge and general communicative principles help a listener resolve the value of threshold [see @Lassiter2015 for an extended discussion of resolving the value of a free semantic variable in context].
 
 ## Acquiring the language of generalization
-
-\mht{added a footnote and tweaked paragraphs 1 and 2}
 
 <!-- The linguistic outlet for generalizations about categories---so called, *generic language*---has received tremendous attention from psychologists, linguists, and philosophers. -->
 <!-- Generic language is one of the earliest emerging forms of complex, compositional language. -->
