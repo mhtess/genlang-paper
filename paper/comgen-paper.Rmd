@@ -1356,7 +1356,7 @@ The human species is remarkable not only because we can extract useful generaliz
 Generalizations expressed in language (e.g., "John runs.", "Dogs are friendly.", "Fire causes smoke.") are a premier example of how simple statements---statements understood by even the youngest language users---can convey rich meanings and display complex sensitivities to context.
 We have argued that the core meaning of such linguistic expressions can be understood by three ingredients: Probability, vagueness, and context. 
 That generics are vague does not preclude them from being treated by formal models. 
-A vague threshold meaning operating over a speaker's inductive beliefs, formalized by predictive probability or *prevalence*, leads to complex, quantitative interactions with background knowledge.
+A vague threshold meaning operating over a speaker's inductive beliefs, formalized by predictive probability, leads to complex, quantitative interactions with background knowledge.
 
 <!--
 formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
@@ -1365,10 +1365,20 @@ As a formal theory of the language of generalization, our framework unifies larg
 Generalization underlies each of these, and we formalize their meaning by appealing to prevalence, which we define as a predictive probability (as opposed to frequency).
 -->
 
-We tested this theory by exploring its implications for the simplest judgments a person could make regarding a sentence: truth judgments.
+We tested this theory by exploring its implications for the simplest judgments a person can make about a sentence: endorsements or truth judgments.
+Truth judgments are the standard measurement for semantic theories, but are often limited to the intuitions of a single or a small handful of trained theorists, which often produced binary or ternary judgments: true, false, and possibly indeterminate.
+In this paper, we measured the truth judgments of naive language users, revealing whole continua of gradience. 
+These fine-grained, quantitative measurements pose real challenges for a complete theory of generics and other generalizations in language. 
+The framework we propose is sufficiently precise to predict such gradience, and we showed that the gradience in truth judgments depends in systematic ways on the listener's prior beliefs about prevalence.
+
+ already exhibit complex sensitivities to context for the language of generalizations.
+Rather than leave truth judgments to the i, we measured these empirically, revealing large amounts of gradience.
+
+The uncertain threshold semantics accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
+
+We measured and modeled truth judgments in order to 
 We modeled truth judgments as a speaker's decision about whether it would be useful to utter the generalization. 
-Endorsement, we have shown, depends in systematic ways on the listener's prior beliefs about prevalence.
-This framework accounts for a number of philosophically puzzling generic statements (Expt. 1), naturally extends to other domains of generalizations (habituals and causals; Expts. 2 \& 3), and provides an avenue for top-down moderators on language use by way of predictive probability (Expt. 2c).
+Endorsement, we have shown, 
 We have provided strict tests of our formal model by both measuring and manipulating listeners' background knowledge as well as comparing our model to a number of alternatives.
 In each case, our model provided a strong quantitative fit to human judgements while other models fall short.
 
