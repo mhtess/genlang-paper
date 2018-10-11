@@ -65,7 +65,7 @@ output            : papaja::apa6_pdf
 ```{r global_options, include=FALSE}
 rm(list=ls())
 knitr::opts_chunk$set(fig.width=6, fig.height=5, fig.crop = F, fig.path='figs/',
-                      echo=FALSE, warning=FALSE, cache=F, message=FALSE, sanitize = T)
+                      echo=FALSE, warning=FALSE, cache=T, message=FALSE, sanitize = T)
 ```
 
 
@@ -580,7 +580,7 @@ cowplot::plot_grid(
 ```
 
 
-```{r simulations, fig.cap = "Model simulations assuming different prevalence priors. Top: Prevalence priors for six example features. Shapes of the priors were chosen to intuitively correspond to the properties labeling the distributions. Arrows show referent-prevalence for a target category. Bottom: Interpretation model posterior distributions over prevalence upon hearing a generalization about a novel category. Numbers at bottom correspond to endorsement model predictions for endorsing the generalization for  the referent-category whose prevalence is shown in the top facets (e.g., \"Mosquitos carry malaria\").", fig.width = 9, fig.asp = 0.37, out.width = "100%", fig.align = "center", cache=F}
+```{r simulations, fig.cap = "Model simulations assuming different prevalence priors. Top: Prevalence priors for six example features. Shapes of the priors were chosen to intuitively correspond to the properties labeling the distributions. Arrows show referent-prevalence for a target category. Bottom: Interpretation model posterior distributions over prevalence upon hearing a generalization about a novel category. Numbers at bottom correspond to endorsement model predictions for endorsing the generalization for the referent-category whose prevalence is shown in the top facets (e.g., \"Mosquitos carry malaria\").", fig.width = 9, fig.asp = 0.37, out.width = "100%", fig.align = "center", cache=F}
 
 fig.sims.priors <- ggplot(
   bind_rows(sims.priors %>% 
@@ -840,31 +840,76 @@ Statistical accounts of generics have trouble with this kind of conjunction beca
 It cannot be the case that most (more than half of) elephants live in Africa and *most* (more than half of) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which are intuitively implausible.
 <!-- However, this is the only interpretation available if the generalization is given a fixed, majority-based quantificational semantics, as posited in most statistical views of generics [e.g., if the generic means *most*; @Cohen1999]. -->
 Our theory does not provide a fixed semantics for generics, but an uncertain one which can be updated as more information comes in.
-In fact, with prior knowledge suggesting against the existence of international elephants, our model interprets "Elephants live in Africa and Asia" as meaning that some elephants live in Africa and that different ones live in Asia.^[
-  An implementation of this example can be found: [http://forestdb.org/models/generics-conjunction.html](http://forestdb.org/models/generics-conjunction.html).
-]
-Interestingly, an incremental parsing of the sentence  (i.e., upon hearing only the first part of the sentence that "Elephants live in Africa") leads our model to believe that *most* elephants live in Africa.
-When the sentence is completed ("...and Asia"), the model non-monotonically updates its beliefs to something weaker: *some* elephants live in Africa and others in Asia (but few in other places).
+In fact, with prior knowledge suggesting against the existence of international elephants (Figure\ \@ref(fig:elephants)A), our model interprets "Elephants live in Africa and Asia" as meaning that some elephants live in Africa and that different ones live in Asia (Figure\ \@ref(fig:elephants)C).
+Interestingly, an incremental parsing of the sentence  (i.e., upon hearing only that "Elephants live in Africa") leads our model to believe that *most* elephants live in Africa (Figure\ \@ref(fig:elephants)B).
+When the sentence is completed ("...and Asia"), the model non-monotonically updates its beliefs to something weaker: *some* elephants live in Africa and others in Asia (Figure\ \@ref(fig:elephants)C).
 The flexibility of our model accommodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise meaning of the utterance.
 We leave for future work the testing of quantitative predictions for this kind of example.
 
+```{r elephants, fig.cap="Model interpretation of a conjunctive generic (\"Elephants live in Africa and Asia\"). A: Intuitive priors for marginal distributions of prevalence for living in Africa and living in Africa. B: Partial interpretation upon hearing utternace (\"Elephants live in Africa...\"). C: Full interpretation upon hearing the end of the sentence (\"Elephants live in Africa and Asia\"). Uncertainty about the threshold for generic sentences allows the listener to non-monotonoically update its beliefs about the prevalence of the feature in categories.", fig.width = 8, fig.asp = 0.6, out.width = "100%", fig.align = "center", cache=F}
+load("cached_results/modelSims-elephants.RData")
+
+fig.eleph.0 <- get_samples(rs.asiaafrica.priors, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 2, fill = 'grey', alpha = 0.3, size = 1.5)+
+  facet_wrap(~marginal, ncol = 1)+
+  ggtitle('Prevalence priors')+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("")+
+  ylab("Probability density")+
+  theme(plot.title = element_text(size = 10, hjust = 0.5))
+
+fig.eleph.1 <- get_samples(rs.asia.marignals, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 4, fill = 'grey', alpha = 0.3, size = 1.5)+
+  facet_wrap(~marginal, ncol = 1)+
+  ggtitle('"Elephants live in Africa..."')+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("Prevalence")+
+  ylab("Probability density")+
+  theme(axis.title.y = element_blank(),
+        plot.title = element_text(size = 10, hjust = 0.5))
+
+fig.eleph.2 <- get_samples(rs.asiaafrica.marignals, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 4, fill = 'grey', alpha = 0.3, size = 1.5)+
+  facet_wrap(~marginal, ncol = 1)+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("")+
+  ggtitle('"...and Asia"')+
+  ylab("Probability density")+
+  theme(axis.title.y = element_blank(),
+        plot.title = element_text(size = 10, hjust = 0.5))
+
+cowplot::plot_grid(
+  fig.eleph.0,
+  fig.eleph.1,
+  fig.eleph.2,
+  nrow = 1,
+  rel_widths =c(1,1, 1),
+  labels = c("A", "B","C")
+)
+```
+
+
 ## Relationship to other semantic theories
 
-The present paper presents the first formal theory of the language of generalization that generates quantitative predictions about human behavioral data. 
-Our work builds on and relates to a number of extant theories of generics in both the formal semantics and psychological literatures.
-The main set of approaches from formal semantics try to describe unified, objective criteria by which to establish if a generic and other generalizations are true or false (i.e., generic *truth conditions*).
+<!-- We presents the first formal theory of the language of generalization that generates quantitative predictions about human behavioral data.  -->
+Our formal theory builds on and relates to a number of extant theories of generics in both the formal semantics and psychological literatures.
+The main approaches from formal semantics try to describe unified, objective criteria by which to establish if a generic and other generalizations are true or false (i.e., generic *truth conditions*).
 These views are typically *statistical* in nature in that they appeal to quantification or the statistics of the world (e.g., how many Ks have F) to define those unified, objective criteria.
-Many of these theories rely upon mechanisms outside of the truth conditions to make sense of the extreme flexibility exhibited by generics; unfortunately, these extra-semantic mechanisms are rarely described in any detail and never to the extent to make precise predictions.
-Other theorists, primarily in philosophy and psychology, have taken the extreme flexibility of generics to argue against a quantitative theory based on prevalence, instead arguing that abstract, mental representations are directly tied to semantics of generics (e.g., *there is something about being a K which causes it to F*).
+Many of these theories rely upon mechanisms outside of the truth conditions to make sense of the extreme flexibility exhibited by generics; unfortunately, these extra-semantic mechanisms are not described in any detail to make precise, quantitative predictions.
+Other theorists, primarily in philosophy and psychology, have taken the extreme flexibility of generics to argue against a quantitative theory based on statistics, instead arguing that abstract, mental representations are directly tied to semantics of generics (e.g., *there is something about being a K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of generic language [@Carlson1995essay].^[
   We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.
 ]
 
+
 ### Conceptual accounts
 
 Conceptual accounts try to identify the core meaning of a generalization directly with aspects of conceptual structure.
-The most influential account in psychology comes from @Leslie2008, which has same starting point as our analysis: Generics express generalization. 
-This analysis draws upon insights from the psychological literature on infant generalization to argue that generics tap into an innate, default mechanism that signals the child (or adult) to generalize the property to the kind.
+The most influential account in psychology comes from @Leslie2008, which uses the same starting point as our analysis: Generics express generalization. 
+@Leslie2008's analysis draws upon insights from the psychological literature on infant generalization to argue that generics tap into an innate, default mechanism that signals the child (or adult) to generalize the property to the kind.
 <!-- ^[ -->
 <!--   Because the mechanism for understanding generics is innate, in this account, the learning puzzle (vis a vis quantifiers) immediately goes away. -->
 <!-- ] -->
@@ -874,7 +919,7 @@ The *default generalization* mechanism has three components: the ability to (i) 
   For the latter, male birds are positive counterinstances because they have an alternative property (being male). 
   For the former, male birds are negative counterinstances because they simply lack the property (i.e., male birds do not reproduce by some other method).
   We will not discuss this consideration any further other than to note that that the difference between "Birds lay eggs" and "Birds are female" can be explained by a different mechanism (e.g., informativity with respect to a prevalence prior).
-  The notion that alternative features may come into play in generic interpretation may also be addressed with feature-wise comparison classes (described above).
+  The notion that alternative features may come into play in generic interpretation may also be addressed with feature-wise comparison classes (described in the General Discussion).
 ]
 On this account, generics are true if *some* Ks have F when all counterinstances are negative and the property is either characteristic or striking. 
 If the property is neither characteristic nor striking, then almost all Ks must have F for the generic to be true (e.g., "Barns are red").
@@ -883,12 +928,12 @@ Indeed, one version of this mechanism is already suggested by @Leslie2008, citin
 
 #### Default generalizations
 
-The conceptual view of generics argues it is not desirable to define generics in the same terms as quantifiers (e.g., a truth-functional threshold on prevalence), because generics are more fundamental than quantifiers [@Leslie2008; @Gelman2009].
-For example, young children have a nearly adult-like understanding of generics far earlier than they do with quantified language [@Gelman2015].
+The conceptual view of generics argues that it is not desirable to define generics in the same terms as quantifiers (e.g., a truth-functional threshold on prevalence), because generics are more basic or more fundamental than quantifiers [@Leslie2008; @Gelman2009].
+For example, according to certain measurements, young children have a nearly adult-like understanding of generics far earlier than they do with quantified language [@Gelman2015].
 Similarly, adults who are told novel information about categories using quantified language (e.g., "Most spiders shed their skin") and later asked to recall that same information will tend to recall quantified information as generics [e.g., "Spiders shed their skin"; @Leslie2012], but not visa versa.
-As a result, generics are thought of as conveying *default generalizations*, whereas quantified language expresses more sophisticated and specific generalizations.
-The uncertain threshold model can be viewed as a way of formalizing what constitutes a default generalization.
-For this model, the default generalization is a Bayesian belief updating mechanism via a threshold function whose threshold value is uncertain. 
+As a result, generics are thought of as conveying default generalizations, whereas quantified language expresses more sophisticated and specific generalizations.
+Our formalism provides a way of quantitatively testing potential alternative formulations of such a default generalization mechanism.
+The uncertain threshold model formalizes default generalization as Bayesian belief updating via a threshold function whose threshold value is uncertain and contextually-informed via prior knowledge about properties. 
 
 <!-- Rather than be contradictory to a prevalence-based truth-functional semantics, these observations independently motivate our treatment of the semantics as *underspecified*. -->
 <!-- From a probabilistic learning perspective, a child learning the semantics of generics (and quantifiers) need learn  -->
@@ -909,34 +954,34 @@ Striking properties are rare in the environment: Most animals do not maul childr
 Thus, the prevalence prior distributions of these features may be hard to distinguish from properties that are just generally rare and distinctive (e.g., *having extraordinarily beautiful feathers*).
 <!-- ; see also our Expt. 2a, e.g., the distributions for *steals cars* vs. *climbs mountains* for an example with habituals).  -->
 @Cimpian2010 (Expt. 4) found participants willing to endorse generics about both striking properties (e.g., "Lorches have dangerous feathers") and distinctive properties (e.g., "Lorches have distinctive feathers") about equally as often each other and more so than neutral properties (e.g., "Lorches have purple feathers"). 
-This similar increase in endorsement for striking and distinctive properties suggests that the prevalence prior $P(p)$ distributions for the two are similar, and distinct from that of the neutral properties.
+This similar increase in endorsement for striking and distinctive properties could be explained by the prevalence prior $P(p)$ distributions for the two being similar, and distinct from that of the neutral properties.
 @Cimpian2010's experiments did not measure the prevalence prior distribution, but we have found in pilot work that the prevalence prior distribution changes to resemble that of a distinctive property when participants are supplied information about the dangerousness of a property.
 
-The second mechanism by which strikingness could influence generic enodrsement is that striking properties may be projected more strongly (i.e., generalized to more instances of the category) than neutral properties.^[
+The second mechanism by which strikingness could influence generic endorsement is that striking properties may be projected more strongly (i.e., higher predictive probability that future instances will have the property) than neutral properties.^[
   This observation is also made by @Leslie2008 (p.42), who uses it as motivation for elevating striking properties to their special status in her theory.
 ]
-Interestingly, this enhanced projectibility holds for both dangerous properties (e.g., people doing criminal actions) as well as neutral but distinctive properties [e.g., people taller than 6'5"; @Rothbart1978, Expts. 2 & 3].
-Thus, there is evidence for the influence of strikingness on *predictive prevalence*, which we posit is an intermediate representation between conceptual knowledge and generic endorsements.
-Thus, strikingness may influence endorsement by either (i) altering the prevalence priors or (ii) influencing speaker's predictions about future prevalence; we do not know of any evidence that shows an effect of strikingness while controlling for these mediating factors.
-If there are none, then the effects of strikingness would be accounted for by our prevalence-mediated theory.
+Interestingly, evidence suggests this enhanced projectibility holds for both dangerous properties (e.g., people doing criminal actions) as well as neutral but distinctive properties [e.g., people taller than 6'5", @Rothbart1978 Expts. 2 & 3].
+Thus, there is evidence for the influence of strikingness on predictive probability, which we posit is an intermediate representation between conceptual knowledge and generic endorsements.
+
+<!-- Thus, strikingness may influence endorsement by either (i) altering the prevalence priors or (ii) influencing speaker's predictions about future prevalence; we do not know of any evidence that shows an effect of strikingness while controlling for these mediating factors. -->
+<!-- If there are none, then the effects of strikingness would be accounted for by our prevalence-mediated theory. -->
 
 #### Principled and statistical connections
 
-@Leslie2008's notion of *characteristic* properties is similar to @Prasada2006's notion of a *k-property* (*k* for kind), a property that bears a *principled connection* to the kind. 
+@Leslie2008's notion of characteristic properties is similar to @Prasada2006's notion of a *k-property* (*k* for kind), a property that bears a *principled connection* to the kind. 
 A property bears a principled connection to the kind if a generic sentence of the following form is endorsed:
 "Ks, by virtue of being the kind of things that they are, F" (e.g., "Dogs, by virtue of being the kind of things that they are, are four-legged"); if such a sentence is not endorsed (e.g., "Barns, by virtue of being the kind of things that they are, are red") while the simple bare plural is endorsed (e.g., "Barns are red"), then the property is thought to bear a *statistical connection* to the kind (a so-called *t-property*, for emphasizing that it is the *tokens* having the property which matters for generic endorsement).
-@Prasada2013 showed that different kinds of generic statements (e.g., characteristic properties with low prevalence, striking properties, etc., see our Expt. 1) support different kinds of inferences (e.g., *by virtue of*, *normative*: "Dogs are supposed to have four legs", *aspect*: "Having four legs is one aspect of being a dog").
+@Prasada2013 showed that different kinds of generic statements (e.g., characteristic properties with low prevalence, striking properties) support different kinds of inferences (e.g., *by virtue of*, *normative*: "Dogs are supposed to have four legs", *aspect*: "Having four legs is one aspect of being a dog").
 Additionally, there is some evidence that the impact of principled connections on interpretations is separate from their influence on beliefs about prevalence [@Prasada2006]. 
 
-Where do principled connections come from? 
-Both @Prasada2006 and @Leslie2008 surmise that a property may qualify as characteristic (or having a principled connection) if there exists an overhypothesis about that property for a relavant superordinate category [e.g., each kind of animal has a means for self locomotion; @Goodman1955; @Shipley1993].
+<!-- Where do principled connections come from?  -->
+Both @Prasada2006 and @Leslie2008 surmise that a property may qualify as characteristic (or having a principled connection) if there exists an overhypothesis about that property for a relavant superordinate category [e.g., each kind of animal has a means for self-locomotion; @Goodman1955; @Shipley1993].
 Overhypotheses are naturally formalized as hierarchical Bayesian models, wherein a learner acquires knowledge at multiple levels of abstraction [e.g., learning from the same event about a particular dog, dogs in general, and animals in general; @Kemp2007].
-These heirarchical models yield differences in predictive probability that are particularly robust.
-Integrating a hierarchical model of kinds and properties with our model of generic language is a natural future direction towards understanding the computational underpinnings of principled connections. 
+These Bayesian heirarchical models yield differences in predictive probability that are particularly robust.
+Integrating a hierarchical model of kinds and properties with our model of generic language is a natural direction to understanding the computational underpinnings of conceptual relations and generics. 
 Different conceptual structures may give rise to roughly the same distributions on prevalence and thus have similar endorsement profiles according to our model. 
 Yet the inferences that can be drawn from hearing these generics may differ, depending on their interactions with the putative hierarchical knowledge people bring to bear [a la the differences observed for "prevalence-matched items" in @Prasada2006]. 
-This is an intruiguing direction for future work.
-
+Building hierarchical models of kinds and properties is a major undertaking in its own regard, but our formalism provides a way of connecting such a model with generic language.
 
 <!-- , and thus, even though the generic can imply the same prevalence, listeners have overall different inferences (e.g., about the *virtue of* sentence). -->
 
@@ -1060,34 +1105,32 @@ In contrast, we posit an uncertain threshold which is resolved in context throug
 <!-- Second, Cohen draws an *a priori* distinction between *Absolute* and *Relative* generics, and provides different mechanisms for each each. -->
 <!-- We used examples of both in our stimuli (Expt. 1) and found that our single model handles both without any addition assumptions, casting doubt on the *a priori* distinction between "absolute" and "relative". -->
 
-Cohen's and other statistical theories employ upon an additional mechanism (not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of laying eggs among robins?).
-This mechanism is called *domain restriction* and is a common feature in many theories of generics. 
-@Cohen1999 posits that prevalence is calculated by only considering entities that *could have some feature* in a contextually-specified alternative set of features (so called $Alt(F)$).
-For example, the property "lays eggs" induces a set of alternatives that are associated with modes of reproduction (e.g., "gives birth to live young", "undergoes mitosis", ...).
-"Robins lay eggs" is evaluated as an *absolute generic* as only individuals that are female members of kinds are under consideration, because only the female members can plausibly satisfy one of the other alternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
-The inferential machinery of domain restriction (i.e., what comprises $Alt(F)$) relies upon conceptual information, but the details remain obscure [@Carlson1995essay].^[
+Cohen's and other statistical theories employ a *domain restriction* mechanism (not currently required in our account) to explain the context-sensitivity of generics: contextually restricting the entities that go into the computation of prevalence (i.e., which robins do we look at to compute the probability of laying eggs among robins?).
+@Cohen1999 posits that prevalence is calculated by only considering entities that *could have some feature* in a contextually-specified alternative set of features $Alt(F)$.
+For example, the property *lays eggs* induces a set of alternatives that are associated with modes of reproduction (e.g., *gives birth to live young*, *undergoes mitosis*, ...).
+"Robins lay eggs" (an absolute generic for @Cohen1999) is evaluated by only considering female members of kinds, because only female members can plausibly satisfy one of the other alternatives having to do with reproduction (i.e., the alternative features in $Alt(F)$).
+The inferential machinery of domain restriction (i.e., what comprises $Alt(F)$) relies upon conceptual knowledge, but the details remain obscure [@Carlson1995essay].^[
   However, see @Cohen2004 for a discussion of how his semantic constraints relate to different kinds of generics and different kinds of conceptual representational frameworks used in cognitive science.
 ]
-The mechanism of domain restriction may be implicit in our own theory: The prior distribution over the prevalence of *lays eggs* relies upon aspects of an intuitive theory of reproduction (i.e., that only females lay eggs).
+The uncertain threshold model can be seen as one particular mechanism by which the domain may be restricted: The structure of the prior distribution over the prevalence of *lays eggs* is a reflection of an intuitive theory of reproduction (i.e., that only females lay eggs) and the uncertain threshold model uses that background knowledge to derive a property-specific interpretation.
 There may exist a refactorization of the uncertain threshold model to a fixed threshold where the listener has uncertainty about the relevant domain of restriction.
 
 <!-- Of course, the inferential machinery behind this sort of domain restriction (i.e., what is $Alt(F)$?) requires further theorizing to explain.  -->
 
 #### Generic as indexical
 
-@Sterken2015 takes a novel starting point for her analysis: Generics are inherently context-sensitive.
-To understand the properties of generics, this analysis draws analogy to other, inherently context-sensitive linguistic expressions: *indexicals* (e.g., "this" or "I").
+@Sterken2015 develops a novel analysis taking the context-sensitivity of generics as primary.
+This analysis draws analogy to other, inherently context-sensitive linguistic expressions: *indexicals* (e.g., "this" or "I").
 @Sterken2015 uses this to motivate a context-sensitive *quantificational force* as well as mechanism of domain-restriction [of the kind used by @Cohen1999 and others].
-Our uncertain-threshold semantics can be seen be a particular formalization of @Sterken2015's context-sensitive quantificational force. 
+Our uncertain threshold semantics can be seen be a particular formalization of @Sterken2015's context-sensitive quantificational force. 
 We have not had need for employing domain restriction on the categories, though as noted above, it is a potential avenue for future development.
 <!-- Finally, how the context-sensitivity of an indexical differs from the kind of context-sensitivity with an uncertain-threshold is an important question for future research. -->
 
 #### "Normal" accounts
 
 A popular alternative view under the statistical banner draws on the intuition that generics often express something normative in the world [@Asher1995; @Pelletier1997; @Nickel2008; @Nickel2016]. 
-For example, "Dogs have four legs" is a good generalization even though, regrettably, not all dogs have four legs. 
-However, were the world to function *normally* (e.g., dogs would not be involved in freak-tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
-The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generalizations (e.g., "Supreme Court justices have even social security numbers") and resisting stereotyped language (e.g., "Boys are good at math”).
+"Dogs have four legs" is then a good generic not because all dogs have four legs (regrettably, all do not) but were the world to function *normally* (e.g., dogs would not be involved in freak tractor accidents or be born with strange genetic mutations), then *all* dogs would have four legs. 
+The idea that our beliefs about what is normal in the world influences our judgments about generalizations has intuitive appeal for rejecting accidentally true generics (e.g., "Supreme Court justices have even social security numbers") and resisting stereotyped language (e.g., "Boys are good at math”).
 Our theory does not directly formalize "what is normal", though we argue that a speaker's beliefs about what is *probable* [which may relate to what is *normal*; see @Icard2017] plays a role in endorsing and interpreting generalizations. 
 <!-- We showed in Expt. 2c that a speaker's beliefs about what is likely to be the case in the near future matters above and beyond what is currently true in the world for endorsing generalizations.  -->
 <!-- Our notion of prevalence is as a predictive probability, which incorporates background knowledge in order to make predictions about the future.  -->
@@ -1105,8 +1148,8 @@ Additionally, by using an underspecified threshold, our formulation naturally ex
 #### Cue validity
 
 By encoding knowledge about other categories, the prevalence prior distributions in the uncertain threshold model are deeply connected to the construct of *cue validity*, or the probability of the kind given the feature: $P(x \in k \mid x \in f)$ (e.g., one's predictions about whether or not an entity is a mosquito, upon learning that it carries malaria).
-Cue validity is believed to play a role in understanding generic language [@Leslie2007; @Khemlani2012; @Prasada2013], but the details remain obscure.
-The strongest view of cue validity is that it operationalizes an alternative hypothesis about the interpretation of generic statements: "Mosquitos carry malaria" means "It is mosquitos that carry malaria". 
+Cue validity is believed to play a role in understanding generic language [@Leslie2007; @Khemlani2012; @Prasada2013], but the details remain underspecified.
+The strongest view of cue validity is that it operationalizes an alternative hypothesis about the meaning of generic statements: "Mosquitos carry malaria" means "It is mosquitos that carry malaria". 
 Indeed, empirically-elicited cue validity has been shown to be highly correlated with endorsements of generics [@Khemlani2012].
 
 Cue validity is "inverse prevalence"; the two are related via Bayes' Rule:
@@ -1114,23 +1157,23 @@ $P( k \mid  f) = \frac{P( f \mid  k) \cdot P( k)}{\sum\limits_{k' \in K} P( f \m
 Knowledge about other categories $k'$ enters in the denominator.
 Indeed this normalizing constant (the denominator) is equal to the expected value (i.e., the mean) of the prevalence prior distribution: $\mathbb{E}[P(p)]$.
 Thus cue validity comes from a point estimate of the prevalence prior distribution.
-For a more detailed derivation of this relationship between cue validity and prevalence priors, see Appendix A.
+For a more detailed derivation of the relationship between cue validity and prevalence priors, see Appendix A.
 We discuss the implications of this relationship in the General Discussion.
-For comparison to standard methods in the literature on generics [e.g., @Khemlani2012], we construct alternative quantitative models based on empirically-elicited cue validity.
+
+
+### Baseline models for quantitative comparisons
+
+There are several theoretically-substantive components to our model: (a) property knowledge in the form of a prior distribution over prevalence $P(p)$, (b) endorsement as a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) vagueness in the semantics of a generalization.
+In our empirical studies, we compare the uncertain threshold model to an alternative, lesioned model which lacks the vagueness in meaning, assigning a fixed semantics to the generalization (i.e., analogous to a quantified statement) but which has the same prevalence prior and the decision-theoretic architecture. 
+There are no correspondingly simple ways to lesion the other two components (property knowledge or speaker decision) that still produces quantitative, context-sensitive predictions. 
+Furthermore, for comparison to standard methods in the psychological literature on generics [e.g., @Khemlani2012], we construct alternative regression models based on empirically-elicited quantities (referent prevalence and *cue validity*, described below).
+In addition to serving as alternatives, these baseline regression models help us understand the statistical properties of our experimental materials. 
+These three alternative models do not represent any of the extant theories of generics described above; no extant theory is sufficiently precise to yield quantitative predictions. 
+
+
+<!-- For comparison to standard methods in the literature on generics [e.g., @Khemlani2012], we construct alternative quantitative models based on empirically-elicited cue validity. -->
+
 <!-- These control models improved the quantitative fit to the endorsement data, but did not match the explanatory power of the uncertain threshold model. -->
-
-### A unified view
-
-The statistical vs. conceptual distinction for theories of generics is roughly co-extensive with the distinction between theories of the truth conditions of generics and the mental phenomenon of *genericity*, respectively [@Nickel2016].
-Truth conditions are unified criteria that all generics must satisfy in order to be true.
-*Genericity*, on the other hand, is thought to be a non-linguistic, psychological phenomenon previously explored either in terms of pragmatics [@Declerck1991] or meta-semantics [@Leslie2007; @Liebesman2011; @Sterken2015; @Nickel2016].
-A full account of generic language must include both a theory of generics (i.e., truth conditions) and a complementary theory of genericity [@Nickel2016]. 
-
-In our account, the truth conditions of generics are a function of beliefs formalized with probability, and the relevant probabilities may be informed by rich conceptual structure.
-The separation between conceptual structure (which exists in the mind) and prevalence (a quantitative metric for natural language semantics) provides a unified view for the phenomenology of generics.
-We chart-out a single answer to the semantic question "what do generics mean?", while also formalizing how background knowledge influences generic understanding.
-That is, our approach provides both a theory of generics and genericity, and their interaction.
-This model is thus the first step towards unifying conceptual approaches to generics with an inherently quantitative natural language semantics.
 
 ### Intermediate summary
 
@@ -1140,12 +1183,8 @@ For each of these we chose schematic values for the parameters of the model (i.e
 In what follows, we test this theory empirically for a wide range of generalizations, including generalizations of different types (categories, events, and causes).
 We do this by both measuring and manipulating background knowledge and referent prevalence and predicting human endorsements of generalizations.
 
-There are several theoretically-substantive components to our model: (a) property knowledge in the form of a prior distribution over prevalence $P(p)$, (b) endorsement as a decision-theoretic process of uttering the generalization vs. not uttering it, and (c) vagueness in the semantics of a generalization.
-Throughout our experiments, we compare the uncertain threshold model to an alternative, lesioned model which lacks the vagueness in meaning, assigning a fixed semantics to the generalization (i.e., analogous to a quantified statement) but which has the same prevalence prior and the decision-theoretic architecture. 
-There are no correspondingly simple ways to lesion the other two components (property knowledge or speaker decision) while still producing a model that makes quantitative, context-sensitive predictions. 
-Furthermore, for comparison to standard methods in the psychological literature on generics [e.g., @Khemlani2012], we construct alternative regression models based on empirically-elicited quantities (referent prevalence and *cue validity*, described below).
-In addition to serving as alternatives, these baseline regression models help us understand the statistical properties of our experimental materials. 
-These three alternative models do not represent any of the extant theories of generics described above; no extant theory is sufficiently precise to yield quantitative predictions. 
+
+
 
 <!-- Other theorists have focused on the diversity among generic statements and looked beyond the semantics to explain the variability between different kinds of generics. -->
 <!-- We take the distinction between generics and genericity as roughly coextensive with what has also been described as a statistical vs. conceptual distinction [@Carlson1995essay].^[ -->
@@ -1337,11 +1376,6 @@ The analogy of habituality (e.g., "John runs") and genericity (e.g., "Dogs have 
 The relationship has been never been empirically tested nor formally described.
 This paper presents the first empirical evidence that the reasoning involved in understanding generic and habitual sentences are similar: The same uncertain threshold mechanism explains judgments of both kinds of statements (Expts. 1 & 2).
 
-\mht{should this be moved to the intro before other theories?}
-Our model leverages the insights of formal semantics and computational cognitive modeling to articulate how an agent should update their beliefs based on a generic sentence. 
-The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold-function) from world knowledge (represented by the prevalence prior).
-Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
-Here, we demonstrate how the context-sensitivity of generics can emerge via the interplay of a stable (but vague) semantics and diverse background knowledge. 
 
 
 
@@ -1363,6 +1397,24 @@ Indeed, even infants are actually quite good with reasoning about probabilities,
 
 
 In the rest of this discussion, we further discuss our model in relation to other constructs and theoretical positions, describe how our model relates to language understanding more generally including theories of vagueness, and sketch an argument for how our formal representation of the language of generalization could provide a relatively simple acquisition problem for a language learner.
+
+## A unified model
+
+The statistical vs. conceptual distinction for theories of generics is roughly co-extensive with the distinction between theories of the truth conditions of generics and the mental phenomenon of *genericity*, respectively [@Nickel2016].
+Truth conditions are unified criteria that all generics must satisfy in order to be true.
+*Genericity*, on the other hand, is thought to be a non-linguistic, psychological phenomenon previously explored either in terms of pragmatics [@Declerck1991] or meta-semantics [@Leslie2007; @Liebesman2011; @Sterken2015; @Nickel2016].
+A full account of generic language must include both a theory of generics (i.e., truth conditions) and a complementary theory of genericity [@Nickel2016]. 
+
+In our account, the truth conditions of generics are a function of beliefs formalized with probability, and the relevant probabilities may be informed by rich conceptual structure.
+The separation between conceptual structure (which exists in the mind) and prevalence (a quantitative metric for natural language semantics) provides a unified view for the phenomenology of generics.
+We chart-out a single answer to the semantic question "what do generics mean?", while also formalizing how background knowledge influences generic understanding.
+That is, our approach provides both a theory of generics and genericity, and their interaction.
+This model is thus the first step towards unifying conceptual approaches to generics with an inherently quantitative natural language semantics.
+
+Our model leverages the insights of formal semantics and computational cognitive modeling to articulate how an agent should update their beliefs based on a generic sentence. 
+The Bayesian model provides a clean separation of the semantics of a generalization (represented formally by a threshold-function) from world knowledge (represented by the prevalence prior).
+Previous theoretical accounts have either aimed to account for the context-sensitivity of generics by positing distinct semantic constructs [e.g., *relative* vs *absolute* generics; @Cohen1999] or positing a semantics that cannot be separated from world knowledge [@Leslie2008].
+Here, we demonstrate how the context-sensitivity of generics can emerge via the interplay of a stable (but vague) semantics and diverse background knowledge. 
 
 <!--
 \mht{unsure about this paragraph... a version of it may be better for the cover letter (if at all)}
@@ -1473,8 +1525,6 @@ For these reasons alone, our account is novel.
 <!-- ### Conceptual Accounts of Generics -->
 
 
-
-
 ## Prevalence priors, conceptual knowledge, and cue validity
 
 Our theory assumes that listeners and speakers employ real-world knowledge of objects and events in order to use and interpret generalizations.
@@ -1522,6 +1572,14 @@ To our knowledge, this is the first theory of generics that describes how the in
   We are grateful to an anonymous reviewer for drawing our attention to this. 
 ]
 This also means that our computational framework makes predictions about the cue validity implied by different generalizations, without any further assumptions.
+
+
+### Strikingness
+
+Thus, strikingness may influence endorsement by either (i) altering the prevalence priors or (ii) influencing speaker's predictions about future prevalence; we do not know of any evidence that shows an effect of strikingness while controlling for these mediating factors.
+If there are none, then the effects of strikingness would be accounted for by our prevalence-mediated theory.
+
+
 
 <!-- The model, however, has the flexibility to address richer communicative goals [also known as the *Question Under Discussion* or QUD; @roberts1996qud]. -->
 

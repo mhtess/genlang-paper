@@ -569,7 +569,7 @@ var AfricaAndAsiaStatePosterior = marginalize(elephantsLiveinAfricaAndAsia, "sta
 
 var AfricaAndAsiaThresholdPosterior =  marginalize(elephantsLiveinAfricaAndAsia, "theta");
 
-var x = {asiaStatePosterior, AfricaAndAsiaStatePosterior}
+var x = {asiaStatePosterior, AfricaAndAsiaStatePosterior, statePrior}
 x
 '
 ```
@@ -580,25 +580,28 @@ rs.eleph <- webppl(elephants)
 
 rs.asia <- as.data.frame(rs.eleph$asiaStatePosterior)
 rs.asiaafrica <- as.data.frame(rs.eleph$AfricaAndAsiaStatePosterior)
+rs.asiaafrica.prior <- as.data.frame(rs.eleph$statePrior)
 
 rs.asia.marignals <- bind_rows(
   rs.asia %>%
     rename(state = support.asia) %>%
     group_by(state) %>%
     summarize(prob = sum(probs)) %>%
-    mutate(marginal = "asia"),
+    mutate(marginal = "africa"),
   rs.asia %>%
     rename(state = support.africa) %>%
     group_by(state) %>%
     summarize(prob = sum(probs)) %>%
-    mutate(marginal = "africa")
+    mutate(marginal = "asia")
 )
+
+
+
 
 ggplot(rs.asia.marignals, aes(x = state, y = prob))+
   geom_col(position = position_dodge())+
   facet_wrap(~marginal)
-```
-```{r}
+
 rs.asiaafrica.marignals <- bind_rows(
   rs.asiaafrica %>%
     rename(state = support.asia) %>%
@@ -615,6 +618,66 @@ rs.asiaafrica.marignals <- bind_rows(
 ggplot(rs.asiaafrica.marignals, aes(x = state, y = prob))+
   geom_col(position = position_dodge())+
   facet_wrap(~marginal)
+
+
+rs.asiaafrica.priors <- bind_rows(
+  rs.asiaafrica.prior %>%
+    rename(state = support.asia) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "asia"),
+  rs.asiaafrica.prior %>%
+    rename(state = support.africa) %>%
+    group_by(state) %>%
+    summarize(prob = sum(probs)) %>%
+    mutate(marginal = "africa")
+)
+```
+
+```{r}
+
+save(rs.asia.marignals, rs.asiaafrica.marignals,rs.asiaafrica.priors,
+     file = "../paper/cached_results/modelSims-elephants.RData")
+
+
+
+fig.eleph.0 <- get_samples(rs.asiaafrica.priors, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 2, fill = 'grey', alpha = 0.3)+
+  facet_wrap(~marginal, ncol = 1)+
+  ggtitle('prevalence priors')+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("")+
+  ylab("Probability density")
+
+fig.eleph.1 <- get_samples(rs.asia.marignals, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 4, fill = 'grey', alpha = 0.3)+
+  facet_wrap(~marginal, ncol = 1)+
+  ggtitle('"Elephants live in Africa..."')+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("Prevalence")+
+  ylab("Probability density")+
+  theme(axis.title.y = element_blank())
+
+fig.eleph.2 <- get_samples(rs.asiaafrica.marignals, 10000) %>%
+  ggplot(., aes(x = state))+
+  geom_density(adjust = 4, fill = 'grey', alpha = 0.3)+
+  facet_wrap(~marginal, ncol = 1)+
+  scale_x_continuous(limits = c(0, 1), breaks = c(0, 1))+
+  xlab("")+
+  ggtitle('"...and Asia"')+
+  ylab("Probability density")+
+  theme(axis.title.y = element_blank())
+
+cowplot::plot_grid(
+  fig.eleph.0,
+  fig.eleph.1,
+  fig.eleph.2,
+  nrow = 1,
+  rel_widths =c(1,1, 1),
+  labels = c("A", "B","C")
+)
 ```
 
 
