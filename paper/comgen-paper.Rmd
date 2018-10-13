@@ -658,10 +658,12 @@ Background knowledge may be richly structured, reflecting intuitive theories abo
 This model posits, however, that the only impact of structured knowledge on truth judgments is in their implications for beliefs about prevalence, formalized in terms of a prevalence prior $P(p)$. 
 \ndg{i’d save this for expt sections, and here just say that we posit intuitive priors for illustrations and introduce a method to actually elicit them below}
 \mht{without this, we don't have an explanation for what the prevalence prior is, which is important for understanding the examples... i removed stuff about Betas, but check this again...}
-The prevalence prior reflects a listener's beliefs about the prevalence of the feature in an unknown or unfamiliar category and be conceptualized as a distribution over the prevalence among alternative categories (Figure\ \@ref(fig:simulations)).
+The prevalence prior reflects a listener's beliefs about the prevalence of the feature in an unknown or unfamiliar category and be conceptualized in a theory-neutral way as a distribution over the prevalence among alternative categories (Figure\ \@ref(fig:simulations)).^[
+  Alternatively, the prevalence prior can be conceptualized as one aspect of an intuitive theory of a domain. 
+]
 <!-- For example, think about five of your favorite kinds of animal: What percentage of each of them *are female*? What percentage of each of them *lay eggs*? -->
-For example, the *lay eggs* prevalence prior should be bimodal, with substantial probability mass near 0 (since many animal categories do not have egg-layers) and a secondary component peaked around 0.5 (because among the animals with egg-layers, only the female members of the category have the property).
-Conversely, the distribution over the prevalence of *being female* is unimodal and centered at 0.5, because almost all animals have female members in that proportion.
+For example, the *lay eggs* prevalence prior should be bimodal, with substantial probability mass near 0-prevalence (since many animal categories do not have egg-layers) and a secondary component peaked around 0.5 (because among the animals with egg-layers, only the female members of the category have the property).
+Conversely, the distribution over the prevalence of *being female* is unimodal and centered at 50%-prevalence, because almost all animals have female members in that proportion.
 Figure\ \@ref(fig:simulations) (row 1) shows these and other intuitive prevalence priors for different properties (we introduce methods for empirically eliciting these priors in the experimental section).
 We now turn our attention to the endorsement model's predictions.
 
@@ -686,8 +688,8 @@ worked.examples <- data.frame(
               "9. Elephants live in Africa and Asia"),
   `referent prevalence` = c("95%", "5%",  "50%", "50%", "5%", "85%", "0 times", "100%", "50%/50%"),
   `intuitive truth value` = c(
-    "T", "F",  "T", "U",
-    "T", "F","T", "F", "T" 
+    "True", "False",  "True", "False",
+    "True", "False","True", "False", "True" 
   ),
   `potential issue` = c(
     "Not all dogs bark",
@@ -706,7 +708,7 @@ worked.examples <- data.frame(
          "Issue" = potential.issue)
 
 worked.examples.tab <- xtable::xtable(worked.examples, 
-                       caption = "Example generalizations that a theory of generics should correctly predict. See details of each example in corresponding section.", 
+                       caption = "Example sentences that a theory of generalizations should correctly predict. See details of each example in corresponding section.", 
                        align=c('| p{1.5in}', 'p{2in}| ',' |p{1.25in}|','p{0.75in}|','p{2in} |'))
 
 
@@ -752,7 +754,7 @@ A second observation regarding generics is that their truth conditions cannot be
 Indeed, it's intuitively plausible that some kangaroos do have spots but a rational language user might feel awkward to assert the generic "Kangaroos have spots".
 The model exhibits this same restraint, predicting a very low endorsement probability for this generic sentence (Figure\ \@ref(fig:simulations); column 2).
 The reason is that, given the interpretation model's background knowledge about the property, the statement "Kangaroos have spots" will be interpreted like "Dogs bark": it would mean *almost all* kangaroos have spots. 
-The endorsement model, which believes that very few kangaroos have spots, then would rather not endorse the statement because it is too strong a statement and would mislead the listener.
+The endorsement model, which believes that very few kangaroos have spots, then would rather not endorse the statement because it would lead to a too-strong interpretation and mislead the listener.
 
 **3. and 4. Robins lay eggs vs. Robins are female**
 
@@ -763,15 +765,15 @@ Why is "Robins lay eggs" a reasonable utterance while "Robins are female" is not
 
 The prior distributions over the prevalence of both features are shown in Figure\ \@ref(fig:simulations) (columns 5 and 6).
 As described above, the priors are different: Many animals have zero egg-layers (0% prevalence), while the vast majority of animal categories have female members in exactly the same proportion (50%).
-Given this background knowledge, the generic interpretation model returns roughly the same interpretation distribution for each hypothetical utterance: In each case, the model believes 50% have the property.
-However, only in the case of "Robins lay eggs" does the endorsement model actually assert the generic; it does so because the listener interpretation would be more aligned with the referent prevalence than if the endorsement model produced the null utterance, which would instead return the prior.
-In contrast, "Robins are female" does not carry any information (the listener posterior is not different from the prior); here, the generic would not be misleading but uninformative, and hence the model predicts an endorsement probability of 0.5 (i.e., *neither true nor false*).
-Indeed, previous studies on generic endorsements have found "Robins are female" to receive an intermediate endorsement level [@Prasada2013].
+Given this background knowledge, the generic interpretation model returns roughly the same interpretation distribution for each hypothetical utterance: In each case, the model believes roughly 50% have the property.
+However, only in the case of "Robins lay eggs" does the endorsement model actually assert the generic; it does so because the listener interpretation would be more aligned with the referent prevalence in comparison to the interpretation of the null utterance, which is the prevalence prior.
+In contrast, the hypothetical generic interpretation of "Robins are female" is not different from the prevalence prior and hence the generic conveys no new information; here, the generic would not be misleading but uninformative, and hence the model predicts an endorsement probability of 0.5.
+Indeed, previous studies on generic endorsements have found "Robins are female" to not be rated as completely false but rather receive an intermediate endorsement level [i.e., *neither true nor false*; @Prasada2013].
 
 **5. Mosquitos carry malaria.**
 
-Finally, the statement "Mosquitos carry malaria" is intuitively true in spite of the fact that the vast majority of mosquitos are actually malaria-free.
-The prevalence prior for "carries malaria" is highly skewed towards low prevalence levels: many animals do not have malaria-carriers among them and even for those that do, the prevalence is expected to be quite low.
+The statement "Mosquitos carry malaria" is intuitively true in spite of the fact that the vast majority of mosquitos are actually malaria-free.
+The prevalence prior for *carries malaria* is highly skewed towards low prevalence levels: many animals do not have malaria-carriers among them and even for those that do, the prevalence is expected to be quite low.
 Then, carrying malaria is significantly more true of mosquitos than other animals, an intuition that is often arrived at with this example.
 This kind of behavior is related to the construct of *cue validity*---the probability of the feature given the category e.g., $P({is a mosquito} \mid \text{carries malaria})$---which we return to in the next section.
 The uncertain-threshold model displays a critical behavior: It can endorse generics when the referent prevalence is very low.
@@ -785,14 +787,14 @@ The uncertain-threshold model displays a critical behavior: It can endorse gener
 
 **6. Sharks don't eat people.**
 
-When the prevalence of the feature is very high, it is also not necessary for the model to endorse the generic.
+When the prevalence of the feature is very high, it is not necessary for the model to endorse the generic.
 "Sharks don't eat people" is predicted to be a somewhat strange utterance, despite the fact that the vast majority of sharks do not eat people.^[
- We create this example as the converse of the classic example "Sharks eat people", predicted to be *true* despite low prevalence [@Leslie2007]. We reverse this example to show how the model deals with a high-prevalence feature that is predicted to be false or infelicitous.  
+ We create this example as the converse of the classic example "Sharks eat people", predicted to be *true* despite low prevalence [@Leslie2007]. We reverse this example to show how the model deals with a high-prevalence feature for which the generic is predicted to be false or infelicitous.  
 ] 
 <!-- Yet, intuitively, the generic would be misleading (similar in intuition to "Kangaroos have spots"). -->
-Because for almost all animal categories, the prevalence of *not eating people* is almost 100% (very few things eat people), interpreting the statement "Sharks don't eat people" would lead one to believe that no sharks eat people, which is too strong.
+Because for almost all animal categories, the prevalence of *not eating people* is almost 100% (very few things eat people), interpreting the statement "Sharks don't eat people" would lead one to believe that *no* sharks eat people (i.e., 100% don't eat people), which is too strong.
 It is interesting to note that because of the high referent prevalence, the model is less certain of its decision, predicting an endorsement probability around 40% (i.e., somewhat false).
-We will test this quantitative prediction in Case Study 1 on generics.
+We will test this quantitative prediction in Experiment 1 on generic language.
 
 <!-- Hearing "Ks bark" tells the literal interpreter that *almost all* Ks bark, though there is a good deal of uncertainty in the precise quantity. -->
 <!-- "Ks lay eggs" has a strikingly different interpretation: It means "Half of Ks lay eggs" (column 4). -->
@@ -810,32 +812,30 @@ We will test this quantitative prediction in Case Study 1 on generics.
 <!-- In this paper, we aim to balance two competing goals in our experiments: (1) drawing upon familiar, philosophically interesting examples that have been discussed in the vast literature on generic language and (2) introducing novel stimuli that provide targeted quantitative tests of our model vis-a-vis alternative models. -->
 <!-- We close by discussing how three previously-discussed, philosophically interesting examples could be addressed in our communicative framework. -->
 
-\mht{do we want an example of a habitual or a minimal pair of habituals (e.g., sally hikes vs. climbs mountains)?}
-
 **7. Mary handles the mail from Antarctica (*yet has never had the opportunity*).**
 
 Imagine there is a job in the local bureaucrat's office to handle the mail from Antarctica and this job is assigned to Mary; to date, however, nobody has ever sent mail to the office from Antarctica [@Cohen1999]. 
 In other words, the statement "Mary has handled mail from Antarctica" is false.
-"Mary handles the mail from Antarctica" is still thought to be intuitively true despite zero actual instances of the event.
-This highlights an important ambiguity in the theoretical commitments of the uncertain threshold model: The endorsement model aims to communicate some referent prevalence $p$, but does the prevalence represent the actual, objective frequency in the world (e.g., the number of times Mary has handled mail in the past) or a subjective, predictive degree of belief in the head (e.g., our prediction that were the appropriate situation to arise, Mary would be handling the mail from Antarctica)?
+"Mary handles the mail from Antarctica", however, is still thought to be intuitively true despite zero actual instances of the event.
+This highlights an important ambiguity in the theoretical commitments of the uncertain threshold model: The endorsement model aims to communicate some referent prevalence $p$, but does the prevalence represent the actual, objective frequency in the world (e.g., the number of times in the past that Mary has handled mail from Antarctica) or a subjective, predictive degree of belief in the head (e.g., our prediction that were the appropriate situation to arise, Mary would be handling the mail from Antarctica)?
 
 We posit that Mary the Antarctic mail handler is an extreme case of generalizations expressing *predictive* degrees of belief.
 We expect this context sets up the expectation that any future mail coming from Antarctica will be handled by Mary. 
 <!-- In Expt. 2c., we experimentally dissociated predictive probability from past frequency, finding that generalization endorsement tracked predictive probability, but not frequency. -->
 <!-- We expect the same to be true with Mary: Any future mail coming from Antarctica will be handled by Mary.  -->
-Thus the predictive probability that Mary will handle Antarctican mail, if there is any, is high.
+Thus the predictive probability that Mary will handle Antarctican mail, should there be some, is high.
 Predictive probabilities often track past frequency or actual prevalence in the world, but people's internal models of how the world works can lead them to diverge. 
 In this case our understanding of Mary's job leads to a strong predictive probability in the absence of past frequency evidence.
-We explore this question experimentally in Case Study 2 on habituals. 
+We explore this question experimentally in Exerpiment 2 on habituals. 
 
 **8. Supreme Court Justices have even social security numbers.**
 
-Imagine that every current and past Supreme Court Justice has had a social security number which was an *even number*. 
+Imagine that all current Supreme Court Justice has a social security number which was an *even number*. 
 "Supreme Court Justices have even social security numbers" is still considered false, even though the property holds for exactly 100\% of the category [@Cohen1999].
 We predict the rejection of even social security numbered Justices is the result of our intuitive theories guiding our subjective predictive probabilities, which feed into the endorsement model.
-That is, we predict observers strongly believe there is no causal relation between the evenness of one's social security number and selection for the Supreme Court, and thus would assign a roughly 50\% subjective probability that the *next* justice would have an even social security number.
+That is, we predict observers strongly believe there is no causal relation between the evenness of one's social security number and selection for the Supreme Court, and thus would assign a roughly 50\% subjective probability to the *next* justice having an even social security number.
 Then, "Supreme Court Justices have even social security numbers" would be rated by our model as similar to "Birds are female", because all professions have roughly the same probability of having employees with even social security numbers.
-This example is thus the conceptual opposite of Mary the Antarctic mail handler, where our internal model of the world led us to a strong degree of belief in the property holding in the future; with the Supreme Court Justices, our internal models lead to to weak degree of belief in the property holding in the future.
+This example is thus the conceptual opposite of Mary the Antarctic mail handler, where our internal model of the world led us to a strong degree of belief in the property holding in the future; with the Supreme Court Justices, our internal models lead to a relatively weak degree of belief in the property holding in the future.
 
 
 **9. Elephants live in Africa and Asia.**
@@ -843,16 +843,16 @@ This example is thus the conceptual opposite of Mary the Antarctic mail handler,
 <!-- \mht{both this and the "surprisng prediction" above are intutiions/examples we are not going to test empirically (however, here we at least give a model for it)... should these appear elsewhere, or somehow be marked upfront?} -->
 
 Understanding how a semantic representation *composes* is another important test for a theory of generalizations in language.
-@Nickel2008 suggests that "Elephants live in Africa and Asia" is semantically equivalent to: "Elephants live in Africa and elephants live in Asia".
-Statistical accounts of generics have trouble with this kind of conjunction because they historically have appealed to fixed, truth-conditional cutoffs for generics [e.g., generic means *more than half*; @Cohen1999].
+@Nickel2008 suggests that "Elephants live in Africa and Asia" is troubling for prevalence-based accounts [in particular, majority-quantificational accouts where the generic means *more than half*; @Cohen1999] because the statement should be semantically equivalent to "Elephants live in Africa and elephants live in Asia".
 It cannot be the case that most (more than half of) elephants live in Africa and *most* (more than half of) elephants live in Asia, unless we are to posit *international elephants* (i.e., individual elephants who live part-time in Africa and part-time in Asia), which are intuitively implausible.
 <!-- However, this is the only interpretation available if the generalization is given a fixed, majority-based quantificational semantics, as posited in most statistical views of generics [e.g., if the generic means *most*; @Cohen1999]. -->
+
 Our theory does not provide a fixed semantics for generics, but an uncertain one which can be updated as more information comes in.
 In fact, with prior knowledge suggesting against the existence of international elephants (Figure\ \@ref(fig:elephants)A), our model interprets "Elephants live in Africa and Asia" as meaning that some elephants live in Africa and that different ones live in Asia (Figure\ \@ref(fig:elephants)C).
-Interestingly, an incremental parsing of the sentence  (i.e., upon hearing only that "Elephants live in Africa") leads our model to believe that *most* elephants live in Africa (Figure\ \@ref(fig:elephants)B).
+Interestingly, an incremental parsing of the sentence  (i.e., upon hearing only that "Elephants live in Africa") leads our model to believe that *most*, possibly all, elephants live in Africa (Figure\ \@ref(fig:elephants)B).
 When the sentence is completed ("...and Asia"), the model non-monotonically updates its beliefs to something weaker: *some* elephants live in Africa and others in Asia (Figure\ \@ref(fig:elephants)C).
 The flexibility of our model accommodates new evidence that might otherwise contradict previous utterances because it maintains uncertainty about the precise meaning of the utterance.
-We leave for future work the testing of quantitative predictions for this kind of example.
+From a compositional perspective, this is highly desirable behavior but we leave the testing of quantitative predictions of this kind for future work.
 
 ```{r elephants, fig.cap="Model interpretation of a conjunctive generic (\"Elephants live in Africa and Asia\"). A: Intuitive priors for marginal distributions of prevalence for living in Africa and living in Africa. B: Partial interpretation upon hearing utternace (\"Elephants live in Africa...\"). C: Full interpretation upon hearing the end of the sentence (\"Elephants live in Africa and Asia\"). Uncertainty about the threshold for generic sentences allows the listener to non-monotonoically update its beliefs about the prevalence of the feature in categories.", fig.width = 8, fig.asp = 0.6, out.width = "100%", fig.align = "center", cache=F}
 load("cached_results/modelSims-elephants.RData")
