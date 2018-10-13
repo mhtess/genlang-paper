@@ -402,7 +402,7 @@ The interpretation model weights the different thresholds by the probability tha
 This interpretation distribution captures the intuition that generalizations imply high prevalence, though with substantial uncertainty about the precise prevalence.
 
 The model in Eq \ref{eq:L0} describes a general mechanism of belief-updating via an uncertain threshold semantics.
-The prevalence prior $P(p)$ is a distribution over probabilities $p$, which is be the output of a generative model of particular domain.
+The prevalence prior $P(p)$ is a distribution over probabilities $p$, which represents the output of a generative model of particular domain.
 For properties of objects, the generative model is naturally a Bernoulli model (e.g., flipping a coin) and thus the support of $P(p)$ is $[0, 1]$.
 For events, the implicit generative model is a Poisson model in which events occur randomly in time.
 The probability density of an event occurring at a particular time is governed by the rate parameter for the Poisson model. 
@@ -437,18 +437,16 @@ S(u \mid p) \propto (\int_{\theta} L(p, \theta \mid u)  \diff \theta)^\lambda
 \label{eq:S1}
 \end{equation}
 
-The goal of the endorsement model is to align the listener's beliefs about prevalence (given by the *prevalence prior*) with the speaker's beliefs about the prevalence of the feature in the category being referred to, which we call the *referent prevalence* ($p$; e.g., that 50% of robins lay eggs). ^[
-  A more general version of this model can relax the assumption that the endorsement model has access to a specific prevalence $p$ that it wants to communicate.
-  Rather, the endorser may have a distribution over $p$ for the category $k$, corresponding to the endorser's uncertain beliefs about the prevalence of the property for the referent category. 
+The goal of the endorsement model is to align the listener's *a priori* beliefs about prevalence (given by the prevalence prior) with the speaker's beliefs about the prevalence of the feature in the referent category $p$, the *referent prevalence* (e.g., that 50% of robins lay eggs). ^[
+  A more general version of this model can relax the assumption that the endorser / speaker has access to a specific prevalence $p$ that it wants to communicate.
+  Rather, the endorser may have probabilistic beliefs about the prevalence of the property for the referent category $k$, which would be represented by a distribution over $p$: $P(p \mid k)$. 
   In this situation, we would define the endorsement model decision to be with respect to the expected value of the informativity, which integrates over the endorsement model's belief distribution:
-  $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p\sim P_{k}} \ln{ \int_{\theta} L(p, \theta \mid u)} \diff \theta )}$
+  $S(u \mid k) \propto \exp{(\lambda \cdot {\mathbb E}_{p\sim P_{k}} \ln{ \int_{\theta} L(p, \theta \mid u)} \diff \theta )}$.
   For the empirical case studies described below, these two versions of the model make almost identical predictions.
 ]
-Given that the speaker only has two options (i.e., produce the generalization utterance or stay silent), the endorsement decision comes down to whether or not the referent prevalence is more likely under the prevalence prior distribution $P(p)$ (i.e., the listener's posterior upon hearing silence) or the listener generic interpretation distribution given by Eq. \ref{eq:L0} (Figure\ \@ref(fig:uniformPriorSimulation)C).
-Thus, the communication-relevant content of the generalization is the prevalence in the referent category $p$.
-The semantic threshold $\theta$ is necessary for establishing the precise truth conditions (used in Eq. \ref{eq:L0}) but is otherwise a nuisance parameter, which the endorsement model integrates out (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
-Finally, because Eq. \ref{eq:S1} models an information-theoretic speaker's decision, $S_1$ computes a belief distribution and then produces utterances which are approximately rational according to that belief distribution, via a soft-max function with degree of rationality $\lambda$.
-\mht{better?}
+The endorsement model makes an approximately rational (with degree of rationality $\lambda$), information-theoretic decision based on its beliefs about which utterance would best achieve the goal of conveying the referent prevalence $p$.
+The semantic threshold $\theta$ is necessary for establishing the truth conditions and deriving an interpretation (used in Eq. \ref{eq:L0}) but is otherwise a nuisance parameter, which the endorsement model integrates out (note that there is no $\theta$ in the left-hand side of Eq. \ref{eq:S1}).
+Given that the speaker only has two options (i.e., produce the generalization utterance or stay silent), the endorsement decision comes down to whether or not the referent prevalence is more likely under the prevalence prior distribution $P(p)$ (i.e., the listener's posterior upon hearing silence) or the listener generic interpretation distribution $L(p \mid u)$ given by Eq. \ref{eq:L0} (Figure\ \@ref(fig:uniformPriorSimulation)C).
 In the next section, we work through different examples from the linguistics literature, describing the prevalence prior and other relevant model components for each.
 
 <!-- Our endorsement model (Eq. \ref{eq:S1}) provides a mapping from the prevalence in the category being referred to (i.e., how many robins lay eggs)---the *referent prevalence* $p$---to an endorsement probability for the corresponding generalization (e.g., "Robins lay eggs"): $S(u \mid p)$. -->
