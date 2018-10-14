@@ -904,10 +904,10 @@ cowplot::plot_grid(
 
 <!-- We presents the first formal theory of the language of generalization that generates quantitative predictions about human behavioral data.  -->
 Our formal theory builds on and relates to a number of extant theories of generics in both the formal semantics and psychological literatures.
-The main approaches from formal semantics try to describe unified, objective criteria by which to establish if a generic and other generalizations are true or false (i.e., generic *truth conditions*).
-These views are typically *statistical* in nature in that they appeal to quantification or the statistics of the world (e.g., how many Ks have F) to define those unified, objective criteria.
-Many of these theories rely upon mechanisms outside of the truth conditions to make sense of the extreme flexibility exhibited by generics; unfortunately, these extra-semantic mechanisms are not described in any detail to make precise, quantitative predictions.
-Other theorists, primarily in philosophy and psychology, have taken the extreme flexibility of generics to argue against a quantitative theory based on statistics, instead arguing that abstract, mental representations are directly tied to semantics of generics (e.g., *there is something about being a K which causes it to F*).
+The dominant approaches from formal semantics try to describe unified, objective criteria by which to establish if a generic and other generalizations are true or false (i.e., generic *truth conditions*).
+These views are typically *statistical* in nature in that they appeal to quantification or the statistics of the world (e.g., how many of the kind have the property) to define those unified, objective criteria.
+Many of these theories rely upon mechanisms outside of the truth conditions to make sense of the extreme flexibility exhibited by generics; unfortunately, these extra-semantic mechanisms are not described in sufficient detail to generate precise, quantitative predictions.
+Other theorists, primarily in philosophy and psychology, have taken the extreme flexibility of generics to argue against a quantitative theory based on statistics, instead suggesting that abstract, mental representations are directly tied to semantics of generics (e.g., *there is something about being a K which causes it to F*).
 Statistical and conceptual theories express the major contrasting views of generic language [@Carlson1995essay].^[
   We use the terms statistical and conceptual to refer to what @Carlson1995essay referred to as "inductive" and "rules and regulations" views, respectively.
 ]
@@ -922,15 +922,15 @@ The most influential account in psychology comes from @Leslie2008, which uses th
 <!--   Because the mechanism for understanding generics is innate, in this account, the learning puzzle (vis a vis quantifiers) immediately goes away. -->
 <!-- ] -->
 
-The *default generalization* mechanism has three components: the ability to (i) identify whether or not F is a *characteristic* property of K (e.g., one characteristic property for an animal would pertain to the mode of locomotion for the animal), (ii) identify whether or not F is *striking* (e.g., can kill you; "Mosquitos carry the West Nile Virus"), and (iii) segment *counterinstances* (Ks which do not have F) into positive and negative counterinstances (i.e., Ks which have some alternative positive property *alt F* and Ks which simply lack F, respectively).^[
-  This positive vs. negative counterinstance distinction is a rather technical consideration [though not without psychological foundation, see @Leslie2008, p.36] used to account for the difference between examples like "Birds lay eggs" vs. "Birds are female". 
-  For the latter, male birds are positive counterinstances because they have an alternative property (being male). 
-  For the former, male birds are negative counterinstances because they simply lack the property (i.e., male birds do not reproduce by some other method).
-  We will not discuss this consideration any further other than to note that that the difference between "Birds lay eggs" and "Birds are female" can be explained by a different mechanism (e.g., informativity with respect to a prevalence prior).
-  The notion that alternative features may come into play in generic interpretation may also be addressed with feature-wise comparison classes (described in the General Discussion).
+The *default generalization* mechanism has three components: the ability to (i) identify whether or not a feature is a *characteristic* property of a kind (e.g., one characteristic property for an animal would pertain to the mode of locomotion for the animal), (ii) identify whether or not a feature is *striking* (e.g., can kill you; "Mosquitos carry the West Nile Virus"), and (iii) segment *counterinstances* (instances of the kind which do not have the feature) into positive and negative counterinstances (i.e., instances of the kind which have some relevant alternative feature and instances of the kind which simply lack the feature, respectively).^[
+  This positive vs. negative counterinstance distinction is a rather technical consideration [though not without psychological foundation, see @Leslie2008, p.36] used to account for the difference between examples like "Robins lay eggs" vs. "Robins are female". 
+  For "Robins are female", male robins are positive counterinstances because they have an alternative property (being male). 
+  For "Robins lay eggs", male robins are negative counterinstances because they simply lack the property (i.e., male robins do not reproduce by some other method).
+  We will not discuss this consideration any further other than to note that that the difference between "Robins lay eggs" and "Robins are female" can be explained by a different mechanism (e.g., informativity with respect to a prevalence prior).
+  The notion that alternative features may come into play in generic interpretation may also be addressed with prevalence priors constructed with respect to the feature (described in the General Discussion).
 ]
-On this account, generics are true if *some* Ks have F when all counterinstances are negative and the property is either characteristic or striking. 
-If the property is neither characteristic nor striking, then almost all Ks must have F for the generic to be true (e.g., "Barns are red").
+On this account, generics are true if *some* instances of the kind have the feature when all counterinstances are negative counterinstances and the property is either characteristic or striking. 
+If the property is neither characteristic nor striking, then *almost all* instances of the kind must have the feature for the generic to be true (e.g., "Barns are red").
 Many of the key factors in this conceptual approach are compatible with our view of prevalence as a predictive probability: What is required is that the distinctions made by conceptual accounts influence predictive probability, which mediates linguistic effects.
 Indeed, one version of this mechanism is already suggested by @Leslie2008, citing findings by @Rothbart1978, that a speaker’s perception of the prevalence of the feature can be altered by virtue of its dangerousness or distinctiveness.
 
@@ -940,8 +940,8 @@ The conceptual view of generics argues that it is not desirable to define generi
 For example, according to certain measurements, young children have a nearly adult-like understanding of generics far earlier than they do with quantified language [@Gelman2015].
 Similarly, adults who are told novel information about categories using quantified language (e.g., "Most spiders shed their skin") and later asked to recall that same information will tend to recall quantified information as generics [e.g., "Spiders shed their skin"; @Leslie2012], but not visa versa.
 As a result, generics are thought of as conveying default generalizations, whereas quantified language expresses more sophisticated and specific generalizations.
-Our formalism provides a way of quantitatively testing potential alternative formulations of such a default generalization mechanism.
-The uncertain threshold model formalizes default generalization as Bayesian belief updating via a threshold function whose threshold value is uncertain and contextually-informed via prior knowledge about properties. 
+Rather than be contradictory, our model can be seen as formalizing a default generalization as Bayesian belief updating via a threshold function whose threshold value is uncertain and contextually-informed via prior knowledge about properties. 
+Alternative formulations of such a default generalization mechanism could be proposed and quantitatively tested against our account.
 
 <!-- Rather than be contradictory to a prevalence-based truth-functional semantics, these observations independently motivate our treatment of the semantics as *underspecified*. -->
 <!-- From a probabilistic learning perspective, a child learning the semantics of generics (and quantifiers) need learn  -->
