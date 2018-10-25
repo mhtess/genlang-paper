@@ -7,7 +7,7 @@ author:
     affiliation   : "1"
     corresponding : yes    # Define only one corresponding author
     address       : "450 Serra Mall, Bldg. 420, Rm. 316, Stanford, CA 94305"
-    email         : "mhtessler@stanford.edu"
+    email         : "tessler@mit.edu"
   - name          : "Noah D. Goodman"
     affiliation   : "1"
 
@@ -36,7 +36,7 @@ abstract: >
     Language provides simple ways of communicating generalizable knowledge to each other (e.g., "Birds fly", "John hikes", "Fire makes smoke"). Though found in every language and emerging early in development, the language of generalization is philosphically puzzling and has resisted precise formalization. Here, we propose the first formal account of generalizations conveyed with language that makes quantitative predictions about human understanding. We test our model in three diverse domains: generalizations about categories (generic language), events (habitual language), and causes (causal language). The model explains the gradience in human endorsement through the interplay between a simple truth-conditional semantic theory and diverse beliefs about properties, formalized in a probabilistic model of language understanding. This work opens the door to understanding precisely how abstract knowledge is learned from language. 
   
 keywords          : "genericity, generalization, generics, pragmatics, semantics, Bayesian modeling"
-wordcount         : "25000"
+wordcount         : "27578"
 
 bibliography      : ["generics.bib"]
 
@@ -45,7 +45,6 @@ figurelist        : no
 tablelist         : no
 footnotelist      : no
 lineno            : no
-toc               : no
 
 lang              : "english"
 class             : "man"
@@ -228,7 +227,7 @@ The paper is organized as follows.
 In the next section, we describe our computational framework for interpreting generalizations and our precise model for endorsing such statements (i.e., a model of truth judgments).
 To illustrate how the model works, we then work through a number of standard examples from the linguistics literature that any model of generics should be able to accomodate.
 The third section discusses the relationship of our model to previous accounts of generics from the linguistics and philosophical literatures. 
-These introductory sections are followed by three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
+These theoretical sections are followed by three empirical case studies: generalizations about categories (*generic language*), events (*habitual language*), and causes (*causal language*). 
 In the case study of generics, we use measure relevant background knowledge and prevalence to predict endorsements of familiar generic statements (e.g., "Robins lay eggs").
 In the study of habituals, we measure background knowledge but manipulate the prevalence or frequency of the event to predict endorsements of habitual statements about novel agents (e.g., "John runs" given that he's run a certain number of times in the past).
 In this case study, we also further examine the nature of the relevant probabilities for endorsing generalizations, asking whether it matters how often John has run in the past (past frequency) or how often a speaker expects him to run in the future (predictive probability).
@@ -358,7 +357,14 @@ Psychologists, linguists, and philosophers have long studied the language of gen
   Syntax alone is neither necessary nor sufficient for a listener to know that the sentence conveys a generalization  (e.g., indefinite singulars can encode generalizations: "A dog has four legs" and bare plurals may not: "Dogs are on my front lawn").
   Our analysis thus begins once a sentence has been disambiguated as conveying a generalization. 
 ]
-We first describe a model for generics, before noting how the basic ideas generalize to habituals and causals.
+
+The basic intuition behind our account is that before a listener hears a novel generalization such as "Alligators grow to be 10-feet long", they do not know how widely distributed the property to be in the category, including whether or not it is present at all.
+The utterance provides a vague sense of how strongly the generalization applies (e.g., how many alligators grow to be 10-feet long), which the listener derives from their knowledge of how the property (*growing to be 10-feet long*) is distributed among other categories (e.g., other animals).
+The decision of whether or not to endorse the generalization is that of a speaker reasoning about how well the utterance would align their interlocutor's beliefs about the prevalence of the feature in the category with those of their own.
+We formalize this intuition in a truth-conditional semantics incorporated into a Bayesian model of belief updating.
+<!-- We now the lay out the formal specification of this account along with theoretical justification. -->
+
+### Interpretation model
 
 If generalization from observations can be described by a probability $p$, it is natural to posit that same construct will be at the heart of a semantic theory of the language of generalization (Ingredient 1: Probability).
 In semantics, belief updating generally passes through Boolean *truth values* [@Montague1973].
@@ -402,11 +408,23 @@ The interpretation model weights the different thresholds by the probability tha
 This interpretation distribution captures the intuition that generalizations imply high prevalence, though with substantial uncertainty about the precise prevalence.
 
 The model in Eq \ref{eq:L0} describes a general mechanism of belief-updating via an uncertain threshold semantics.
-The prevalence prior $P(p)$ is a distribution over probabilities $p$, which represents the output of a generative model of particular domain.
-For properties of objects, the generative model is naturally a Bernoulli model (e.g., flipping a coin) and thus the support of $P(p)$ is $[0, 1]$.
-For events, the implicit generative model is a Poisson model in which events occur randomly in time.
-The probability density of an event occurring at a particular time is governed by the rate parameter for the Poisson model. 
-Thus, Eq. \ref{eq:L0} becomes a model of habitual interpretation (e.g., "John runs") if we take the underlying semantic scale to be that of the temporal frequency of an event (e.g., how often we expect an event to occur); the support of $P(p)$ is this case would be $[0, \infty]$.
+The semantic scale is determined by the prevalence prior $P(p)$.
+For generalizations about categories (i.e., generic statements), $P(p)$ ranges over $[0, 1]$; $p$ denotes the chance that an instance of a category has a Boolean property.
+To apply this same model to generalizations about events (i.e., habituals like “John runs”), we use a different, but related, scale: the frequency within a given time window (e.g., number of times John went for a run in the past week).^[
+  This measure is closely related to the instantaneous probability density of the event, as the time window gets infinitesimally small.
+]
+For events then, $p$ is a rate and $P(p)$ ranges over $[0, \infty)$.
+
+<!-- We thus define the scale for habituals to be over the probability density, or temporal frequency, of the event; the support of $P(p)$ would this case would be -->
+<!-- must compute a probability distribution from the occurrence of events (e.g., a person going for a run). -->
+<!-- One straightforward way is to compute the rate of the event with respect a certain time window (e.g., a day).  -->
+<!-- The probability density of the event occurring in the window is proportional to the rate of the event occurring (e.g., number of times per week).^[ -->
+<!-- For example, if John drinks tea on average four times a week and coffee seven times a week, the relative probability densities of him completing the actions on any given day is $\frac{4}{7}$ and 1, respectively. -->
+<!-- ] -->
+
+<!-- For events, the implicit generative model is a Poisson model in which events occur randomly in time. -->
+<!-- The probability density of an event occurring at a particular time is governed by the rate parameter for the Poisson model.  -->
+<!-- Thus, Eq. \ref{eq:L0} becomes a model of habitual interpretation (e.g., "John runs") if we take the underlying semantic scale to be that of the temporal frequency of an event (e.g., how often we expect an event to occur); the support of $P(p)$ is this case would be $[0, \infty]$. -->
 
 <!-- The extreme flexibility of generalizations (e.g., "Mosquitos carry malaria"; "Birds lay eggs" vs. "Birds are female") suggests that no fixed threshold would suffice.  -->
 <!-- Rather than throw out the threshold-semantics, we posit that the threshold is *underspecified* in the literal meaning and is contextually-determined in a way analogous to how gradable adjectives like *tall* have contextually-determined thresholds [e.g., what counts as tall for a four-year-old is different than what counts as tall for an adult; @Kennedy2007; @Lassiter2013]. -->
@@ -651,15 +669,15 @@ ggdraw(fig.sims.priors) +
 We explore the predictions of the endorsement model in the context of a few worked examples.
 These examples are taken from the linguistics literature on generics and are statements that have been historically challenging for prevalence-based approaches (see Table 1).
 We implemented these and all subsequent Bayesian models in the probabilistic programming language WebPPL [@dippl].
-All models, analyses, data and links to experiments used in this paper can be found at \url{https://mhtess.github.io}.
+All models, analyses, data and links to experiments used in this paper can be found at \url{https://github.com/mhtess/genlang-paper}.
 
 Endorsement predictions depend upon the uncertain threshold model's interpretations, which are highly sensitive to background knowledge.
 Background knowledge may be richly structured, reflecting intuitive theories about the underlying causes of different kinds of properties [cf., @Leslie2007].
 This model posits, however, that the only impact of structured knowledge on truth judgments is in their implications for beliefs about prevalence, formalized in terms of a prevalence prior $P(p)$. 
-\ndg{i’d save this for expt sections, and here just say that we posit intuitive priors for illustrations and introduce a method to actually elicit them below}
-\mht{without this, we don't have an explanation for what the prevalence prior is, which is important for understanding the examples... i removed stuff about Betas, but check this again...}
+<!-- \ndg{i’d save this for expt sections, and here just say that we posit intuitive priors for illustrations and introduce a method to actually elicit them below} -->
+<!-- \mht{without this, we don't have an explanation for what the prevalence prior is, which is important for understanding the examples... i removed stuff about Betas, but check this again...} -->
 The prevalence prior reflects a listener's beliefs about the prevalence of the feature in an unknown or unfamiliar category and be conceptualized in a theory-neutral way as a distribution over the prevalence among alternative categories (Figure\ \@ref(fig:simulations)).^[
-  Alternatively, the prevalence prior can be conceptualized as one aspect of an intuitive theory of a domain. 
+  Alternatively, the prevalence prior can be conceptualized as a marginal distribution on prevalence derived from an intuitive theory formalized in a probabilistic language of thought [e.g., @Goodmanconcepts]. 
 ]
 <!-- For example, think about five of your favorite kinds of animal: What percentage of each of them *are female*? What percentage of each of them *lay eggs*? -->
 For example, the *lay eggs* prevalence prior should be bimodal, with substantial probability mass near 0-prevalence (since many animal categories do not have egg-layers) and a secondary component peaked around 0.5 (because among the animals with egg-layers, only the female members of the category have the property).
@@ -700,15 +718,15 @@ worked.examples <- data.frame(
     "Most sharks don't eat people",
     "Consider there has never been any mail from Antarcita",
     "Consider 100% have even social security numbers",
-    "Impossible for most to live in Africa and most to live in Asia"
+    "Impossible for most to live in Africa and most to live in Asia, and no individual elephant lives in both Africa and Asia"
   )
 ) %>%
-  rename("Referent prevalence" = referent.prevalence,
+  rename("Intuitive referent prevalence" = referent.prevalence,
          "Intuitive truth value" = intuitive.truth.value,
          "Issue" = potential.issue)
 
 worked.examples.tab <- xtable::xtable(worked.examples, 
-                       caption = "Example sentences that a theory of generalizations should correctly predict. See details of each example in corresponding section.", 
+                       caption = "Example sentences that a theory of the language of generalizations should correctly predict. See details of each example in corresponding section.", 
                        align=c('| p{1.5in}', 'p{2in}| ',' |p{1.25in}|','p{0.75in}|','p{2in} |'))
 
 
@@ -1569,16 +1587,18 @@ For these reasons alone, our account is novel.
 <!-- ### Conceptual Accounts of Generics -->
 
 
-## The role of conceptual knowledge
+## Relation to intuitive theories
 
 Our theory assumes that listeners and speakers employ real-world knowledge of objects and events in order to use and interpret generalizations.
-It is this real-world knowledge (presently formalized in terms of a prevalence prior) where issues about domain specific knowledge, interpretation of properties [@Prasada2006], over-hypotheses [@Leslie2008], and essentialism [@Gelman2003] can all play a role.
+It is this real-world knowledge (presently formalized in terms of a prevalence prior) where issues about domain specific beliefs, interpretation of properties [@Prasada2006], over-hypotheses [@Leslie2008], and essentialism [@Gelman2003] can all play a role.
 <!-- It was not our present goal to model this aspect of interlocutors' conceptual knowledge. -->
 <!-- Instead,  -->
 We hypothesize that all of this knowledge feeds into participants' predictions, measured through judgments about prevalence.
+That is, even though our underlying semantics is defined in terms prevalence of individual properties, this does not imply that the concepts involved in generic language understanding are defined merely by their properties. 
+Instead, complex intuitive theories [that may reflect, for example conceptual role, see @Goodmanconcepts] give rise to prevalence priors, which then yield generic judgements.
 <!-- which we model in a precise, quantitative manner. -->
 This framework, thus, brings precision and clarity to the *output* of these cognitive processes and conceptual understanding: intuitions about prevalence.
-Applying the same precision and clarity to the more abstract aspects of conceptual knowledge including property knowledge, essentialism, etc. is an important next step for this line of work. 
+Applying the same precision and clarity to the more abstract aspects of conceptual knowledge including property knowledge, essentialism, etc. is an important next step for this line of work.
 Probabilistic causal models [@pearl1988probabilistic; @Gopnik2003theory] and their generalization in probabilistic programs [@Goodmanconcepts] are obvious starting places to look for such a formalism for conceptual structure and higher-order abstractions.
 
 
@@ -1614,7 +1634,7 @@ This observation may prove useful for constructing models of speakers whose goal
 
 Conceptual knowledge concerning the strikingness or dangerousness of properties and their relation to generic language has been of particular interest to psychologists and philosophers since @Leslie2007.
 We described before that the strikingness of certain properties plausibly influences prevalence priors or a speaker's predictions about future prevalence.
-We have pilot data suggested these constructs are indeed altered as a result of introducing information about the dangerousness of features to participants [e.g., as in @Cimpian2010].
+We have collected pilot data suggesting these constructs are indeed altered as a result of introducing information about the dangerousness of features to participants [e.g., as in @Cimpian2010].
 More empirical work is needed to understand whether and how strikingness influences generic understanding above and beyond the probabilistic constructs we have posited in our theory.
 <!-- If such effects exist, our modeling framework could be elaborated with a non-informational speaker utility [see e.g., @Yoon2016; @Yoon2017]. -->
 
