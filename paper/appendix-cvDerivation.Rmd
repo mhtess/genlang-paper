@@ -1,11 +1,10 @@
 # Appendix A: The Relationship between the Prevalence Prior and Cue Validity
 
-Cue validity is defined for a particular category--property pair (e.g., *mosquitos* and *carry malaria*), and relates to referent-prevalence (e.g., how many mosquitos carry malaria) via the prevalence of *carrying malaria* in other categories $k'$ by Bayes' Rule:
+Cue validity is defined for a particular category--property pair (e.g., *mosquitos* and *carry malaria*), and relates to the referent prevalence (e.g., how many mosquitos carry malaria) via Bayes' Rule:
 $$ P(k \mid f) = \frac{P(f \mid k) \cdot P(k)}{Z} $$
-where $Z =  \sum_{k' \in K} P( f \mid k') \cdot P( k')$
+where $Z =  \sum_{k' \in K} P( f \mid k') \cdot P( k')$, the average or marginal prevalence of the feature (e.g., *carrying malaria*) in other categories $k'$.
 
-
-The prevalence prior $P(p)$ (Eq. \ref{eq:L0}) is a probability distribution over prevalence for different categories $k'$.
+The prevalence prior $P(p)$ using the generic interpretation model (Eq. \ref{eq:L0}) is a probability distribution over prevalence for different categories $k'$.
 <!-- For ease of exposition, let $x = p = P(f \mid k)$; that is, $P(x) = P(p)$. -->
 
 \underline{Claim:} The normalizing constant for computing cue validity is equal to the expected value of the prevalence prior distribution: $\mathbb{E}[P(p)] = Z$
