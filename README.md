@@ -1,9 +1,7 @@
-# comgen-paper
+#### Tessler, M. H. & Goodman, N. D. (under review). The language of generalization.
 
 
 ## Compiling paper
-
-Note that several models are written in the RMarkdown document using [RWebPPL](https://github.com/mhtess/rwebppl). To compile this document, your system must be ready to install RWebPPL (see RWebPPL system requirements).
 
 1. Clone repo
 2. Open Rstudio
@@ -37,3 +35,8 @@ Error in ensurePackageSymlink(source, target) :
   Target '/path/to/repo/packrat/lib-R/boot' already exists and is not a symlink
 ```
 in which case you should delete all folders inside `packrat/lib-R/` and re-try.
+
+### Running models
+
+Note that several models are written in the RMarkdown document using [RWebPPL](https://github.com/mhtess/rwebppl). To compile this document, your system must be ready to install RWebPPL (see RWebPPL system requirements).
+
