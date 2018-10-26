@@ -7,7 +7,7 @@ paper/figs/
 *_cache
 .Rprofile
 .Rproj.user
-comgen-paper.Rproj
+*.Rproj
 paper/generics-paper.pdf
 paper/library.bib
 packrat/lib*/
@@ -26,3 +26,5 @@ paper/coverletter.synctex.gz
 *.out
 *.blg
 *.synctex.gz
+*.DS_Store
+*.nb.html
