@@ -1,12 +1,6 @@
 #### Tessler, M. H. & Goodman, N. D. (in press). The Language of Generalization. *Psychological Review*
 
-Links to experiments can be found [here](https://mhtess.github.io/projects/genlang_index.html).
-
-### Compiling paper
-
-The paper is written in RMarkdown using the package [papaja](https://github.com/crsh/papaja). The code in the paper has a number of other dependencies (e.g., tidyverse, cowplot) that a user will need installed to knit the file. Most of heavy computations are cached and results will be read from saved output files.
-
-### Data
+Links to experiments that you can click through can be found [here](https://mhtess.github.io/projects/genlang_index.html).
 
 All data can be found in the `data` folder
 
@@ -21,3 +15,7 @@ The `analysis` folder contains main analysis scripts: one for each case study, o
 ### Browser-runnable model
 
 To play around with the generics model in the browser, go [here](http://forestdb.org/models/generics.html).
+
+### Compiling paper
+
+The paper is written in RMarkdown using the package [papaja](https://github.com/crsh/papaja). The code in the paper has a number of other dependencies (e.g., tidyverse, cowplot) that a user will need installed to knit the file. Most of heavy computations are cached and results will be read from saved output files.
