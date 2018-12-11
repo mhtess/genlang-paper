@@ -28,3 +28,8 @@ paper/coverletter.synctex.gz
 *.synctex.gz
 *.DS_Store
 *.nb.html
+paper/reviews/
+paper/lang-gen_files*
+paper/figs_png/
+paper/figs__
+paper/_lang-gen_files.zip

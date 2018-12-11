@@ -1,0 +1,347 @@
+<html>
+
+<head>
+    <title>Language study</title>
+
+    <!--JS-->
+    <!-- external general utilities -->
+    <script src="../../_shared/js/jquery-1.11.1.min.js "></script>
+    <script src="../../_shared/full-projects/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../_shared/js/underscore-min.js"></script>
+    <!-- if you want to draw stuff: -->
+    <!-- <script src="../_shared/js/raphael-min.js"></script> -->
+
+    <!-- cocolab experiment logic -->
+    <script src="../../_shared/js/exp-V2.js"></script>
+    <script src="../../_shared/js/stream-V2.js"></script>
+
+    <!-- cocolab general utilities -->
+    <script src="../../_shared/js/mmturkey.js "></script>
+    <script src="../../_shared/js/browserCheck.js"></script>
+    <script src="../../_shared/js/utils.js"></script>
+    <!-- if you want to draw cute creatures (depends on raphael): -->
+    <!-- <script src="../_shared/js/ecosystem.js"></script> -->
+
+    <!-- experiment specific helper functions -->
+    <!-- <script src="js/local-utils.js"></script> -->
+
+    <!--CSS-->
+    <link href="../../_shared/full-projects/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../_shared/css/cocolab-style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/local-style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- experiment file -->
+    <script src="js/prior-2.js"></script>
+  </head>
+
+<body onload="init();">
+  <noscript>This task requires JavaScript.</noscript>
+
+  <div class="slide" id="i0" >
+    <img src="../../_shared/images/cocologo.png" alt="Stanford CoCoLab" id="cocologo"></img>
+    <p id="cocolab">Stanford CoCoLab</p>
+    <p id="instruct-text">You will be asked to list animal names and answer some questions about them. The HIT should take approximately 7-10 minutes. Please pay attention, thanks!</p>
+    <button id="start_button" type="button">Start Experiment</button>
+    <p id="legal">Legal information: By answering the following questions, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact M.H. Tessler at <a href="mailto://mhtessler@stanford.edu">mhtessler@stanford.edu</a> or Noah Goodman, at ngoodman@stanford.edu. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>
+  </div>
+
+  <div class="slide" id="instructions">
+    <h3>Instructions </h3>
+    <p>In this study, we are interested in how prevalent certain properties are for different kinds of animals.
+      We will give you examples of the kinds of animals we have in mind and ask you to list a few of your own. </p>
+      <p>Then, you will estimate the <em>percentage of the individual members</em> of the animal species that have the property.
+    </p>
+    <p>On each trial, you will rate 8 properties. The properties will be revealed to you one at a time. Essentially, you will be filling out a big table. You are allowed to go back and revise your answers, if you think there is a more realistic estimate you could give. You will do this 2 times (2 big tables). Press Continue to begin.</p>
+
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+
+    <div class="slide" id="instructions2">
+    <h3>Instructions: 2 of 3</h3>
+
+    <p>Please keep in mind, we are interested in the <em>percentage of individuals</em> that have the properties; not the <em>percentage of subtypes</em>. To illustrate the difference between "subtypes" and "individuals", let's pretend you're asked abouth humans (you won't be asked about humans in this experiment):<br> "What percentage of humans do you think crawl?"</p>
+    <p>One answer would be 100% since all <em>cultures</em> have babies that crawl. This would be considering the "subtypes" of humans and not the individuals. <strong>This is not the type of answer we are looking for.</strong> </p>
+    <p>Instead, we'd want to you to say something like 10%, since only babies crawl. </p>
+
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+
+  <div class="slide" id="instructions3">
+    <h3>Instructions: 2 of 2</h3>
+
+    <p>There will be 8 properties in total. The properties will be revealed to you one at a time. You are allowed to go back and revise your answers, if you think there is a more realistic estimate you could give. Press Continue to begin.</p>
+    <button onclick="_s.button()">Continue</button>
+  </div>
+
+
+  <div class="slide" id="priors">
+    <br>
+    <br>
+    <p class="evidence"></p>
+    <p class='instruct'></p>
+
+    <p class="query"></p>
+
+    <table>
+
+        <tr>
+          <td></td>
+          <td class='propA' id='headA'></td>
+          <td class='propB' id='headB'></td>
+          <td class='propC' id='headC'></td>
+          <td class='propD' id='headD'></td>
+          <td class='propE' id='headE'></td>
+          <td class='propF' id='headF'></td>
+          <td class='propG' id='headG'></td>
+          <td class='propH' id='headH'></td>
+        </tr>
+
+
+        <tr>
+          <td align='center'><input type="text" id="text_response0" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response0a" tabindex="1" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response0b" tabindex="11" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response0c" tabindex="21" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response0d" tabindex="31" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response0e" tabindex="41" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propF'><input type="text" id="text_response0f" tabindex="51" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response0g" tabindex="61" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response0h" tabindex="71" maxlength="3" size="3">%</input></td>
+
+
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response1" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response1a" tabindex="2" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response1b" tabindex="12" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response1c" tabindex="22" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response1d" tabindex="32" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response1e" tabindex="42" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response1f" tabindex="52" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response1g" tabindex="62" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response1h" tabindex="72" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center' ><input type="text" id="text_response2" maxlength="14" size="10"></input></td>
+
+          <td align='center' class='propA'><input type="text" id="text_response2a" tabindex="3" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response2b" tabindex="13" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response2c" tabindex="23" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response2d" tabindex="33" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response2e" tabindex="43" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response2f" tabindex="53" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response2g" tabindex="63" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response2h" tabindex="73" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response3" maxlength="14" size="10"></input></td>
+
+          <td align='center' class='propA'><input type="text" id="text_response3a" tabindex="4" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response3b" tabindex="14" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response3c" tabindex="24" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response3d" tabindex="34" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response3e" tabindex="44" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response3f" tabindex="54" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response3g" tabindex="64" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response3h" tabindex="74" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+
+        <tr>
+          <td align='center'><input type="text" id="text_response4" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response4a" tabindex="5" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response4b" tabindex="15" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response4c" tabindex="25" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response4d" tabindex="35" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response4e" tabindex="45" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response4f" tabindex="55" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response4g" tabindex="65" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response4h" tabindex="75" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response5" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response5a" tabindex="6" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response5b" tabindex="16" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response5c" tabindex="26" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response5d" tabindex="36" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response5e" tabindex="46" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response5f" tabindex="56" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response5g" tabindex="66" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response5h" tabindex="76" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center' ><input type="text" id="text_response6" maxlength="14" size="10"></input></td>
+
+          <td align='center' class='propA'><input type="text" id="text_response6a" tabindex="7" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response6b" tabindex="17" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response6c" tabindex="27" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response6d" tabindex="37" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response6e" tabindex="47" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response6f" tabindex="57" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response6g" tabindex="67" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response6h" tabindex="77" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response7" maxlength="14" size="10"></input></td>
+
+          <td align='center' class='propA'><input type="text" id="text_response7a" tabindex="8" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response7b" tabindex="18" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response7c" tabindex="28" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response7d" tabindex="38" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response7e" tabindex="48" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response7f" tabindex="58" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response7g" tabindex="68" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response7h" tabindex="78" maxlength="3" size="3">%</input></td>
+
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response8" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response8a" tabindex="9" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response8b" tabindex="19" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response8c" tabindex="29" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response8d" tabindex="39" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response8e" tabindex="49" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response8f" tabindex="59" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response8g" tabindex="69" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response8h" tabindex="79" maxlength="3" size="3">%</input></td>
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response9" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response9a" tabindex="10" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response9b" tabindex="20" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response9c" tabindex="30" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response9d" tabindex="40" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response9e" tabindex="50" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response9f" tabindex="60" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response9g" tabindex="70" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response9h" tabindex="80" maxlength="3" size="3">%</input></td>
+        </tr>
+
+        <tr>
+          <td align='center'><input type="text" id="text_response10" maxlength="14" size="10"></input> </td>
+
+          <td align='center' class='propA'><input type="text" id="text_response10a" tabindex="10" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propB'><input type="text" id="text_response10b" tabindex="20" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propC'><input type="text" id="text_response10c" tabindex="30" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propD'><input type="text" id="text_response10d" tabindex="40" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propE'><input type="text" id="text_response10e" tabindex="50" maxlength="3" size="3">%</input></td>
+
+          <td align='center' class='propF'><input type="text" id="text_response10f" tabindex="60" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propG'><input type="text" id="text_response10g" tabindex="70" maxlength="3" size="3">%</input></td>
+          <td align='center' class='propH'><input type="text" id="text_response10h" tabindex="80" maxlength="3" size="3">%</input></td>
+        </tr>
+
+    </table>
+
+
+    <button onclick="_s.button()">Continue</button>
+    <p class="err" id = 'err1'>Please fill out all of the rows.</p>
+    <p class="err" id = 'err2'>Please enter whole numbers between 0-100.</p>
+  </div>
+
+  <div class="slide"  id="subj_info">
+    <div class="long_form">
+      <div class="subj_info_title">Additional information</div>
+
+
+      <p class="info">Answering these questions is optional, but will help us understand your answers.</p>
+
+
+      <p>Did you read the instructions and do you think you did the HIT correctly?</p>
+      <label><input type="radio"  name="assess" value="No"/>No</label>
+      <label><input type="radio"  name="assess" value="Yes"/>Yes</label>
+      <label><input type="radio"  name="assess" value="Confused"/>I was confused</label>
+
+      <p>Were there any problems or bugs in the experiment?</p>
+      <textarea id="problems" rows="2" cols="50"></textarea>
+
+
+      <p>What do you think is a fair price for the work you did?</p>
+      <textarea id="fairprice" rows="1" cols="10"></textarea>
+
+      <p>Did you enjoy the hit?</p>
+      <select id="enjoyment">
+        <label><option value="99"></option></label>
+        <label><option value="-1">Worse than the Average HIT</option></label>
+        <label><option value="0" >An Average HIT</option></label>
+        <label><option value="1">Better than average HIT</option></label>
+      </select>
+
+      <p>Gender:
+        <select id="gender">
+          <label><option value=""/></label>
+          <label><option value="Male"/>Male</label>
+          <label><option value="Female"/>Female</label>
+          <label><option value="Other"/>Other</label>
+        </select>
+      </p>
+
+      <p>Age: <input type="text" id="age"/></p>
+
+      <p>Level Of Education:
+        <select id="education">
+          <label><option value="-1"/></label>
+          <label><option value="0"/>Some High School</label>
+          <label><option value="1"/>Graduated High School</label>
+          <label><option value="2"/>Some College</label>
+          <label><option value="3"/>Graduated College</label>
+          <label><option value="4"/>Hold a higher degree</label>
+        </select>
+      </p>
+
+      <p>Native Language: <input type="text" id="language"/></p>
+      <label>(the language(s) spoken at home when you were a child)</label>
+
+      <p>Any additional comments about this experiment:</p>
+      <textarea id="comments" rows="3" cols="50"></textarea>
+
+      <br/>
+      <button onclick="_s.submit()">Submit</button>
+    </div>
+  </div>
+
+  <div id="thanks" class="slide js" >
+    <p  class="big">Thanks for your Time!</p>
+  </div>
+
+  <div class="progress">
+    <span>Progress:</span>
+    <div class="bar-wrapper">
+      <div class="bar" width="0%">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
