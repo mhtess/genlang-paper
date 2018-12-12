@@ -33,3 +33,11 @@ paper/lang-gen_files*
 paper/figs_png/
 paper/figs__
 paper/_lang-gen_files.zip
+paper/appendix-alternativeRSAmodels.Rmd
+paper/appendix-fullModelPosteriors.Rmd
+paper/appendix-prevalencePrior.Rmd
+paper/coverletter.tex
+paper/gelman2007expt.Rmd
+paper/listener-tasks.Rmd
+paper/outline.Rmd
+paper/response.tex

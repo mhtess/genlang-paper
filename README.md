@@ -1,20 +1,18 @@
-#### Tessler, M. H. & Goodman, N. D. (in press). The Language of Generalization. *Psychological Review*
-
-Links to experiments that you can click through can be found [here](https://mhtess.github.io/projects/genlang_index.html).
+#### Tessler, M. H. & Goodman, N. D. (in press). The Language of Generalization. *Psychological Review*.
 
 All data can be found in the `data` folder
+
+### Experiments
+
+To click through experiments in your web-browser, go [here](https://mhtess.github.io/projects/genlang_index.html). HTML / JS / CSS code for experiments in the `experiments` folder.
+
+### Models
+
+To play around with the generics model in the browser, go [here](http://forestdb.org/models/generics.html). `models` folder contains computational models written in the probabilistic programming language [WebPPL](http://webppl.org)
 
 ### Analysis
 
 The `analysis` folder contains main analysis scripts: one for each case study, one for the appendix on cue validity, and one which contains model simulations.
-
-### Computational models
-
-`models` folder contains computational models written in the probabilistic programming langauge [WebPPL](http://webppl.org)
-
-### Browser-runnable model
-
-To play around with the generics model in the browser, go [here](http://forestdb.org/models/generics.html).
 
 ### Compiling paper
 
