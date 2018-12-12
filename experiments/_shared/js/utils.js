@@ -1,13 +1,67 @@
 var utils = {
 
-	fillArray: function(value, len) {
-		var arr = [];
-		for (var i = 0; i < len; i++) {
-			arr.push(value);
-		}
-		return arr;
+	intermediatePath: function(from, to, pos) {
+	    var fromCurve = Raphael.path2curve(from);
+	    var toCurve = Raphael.path2curve(to);
+	    var diff = [];
+	    var attr = "path";
+	    //compute difference between paths and store in diff
+	    for (i = 0, ii = fromCurve.length; i < ii; i++) {
+	      diff[i] = [0];
+	      for (var j = 1, jj = fromCurve[i].length; j < jj; j++) {
+	        diff[i][j] = (toCurve[i][j] - fromCurve[i][j]);
+	      }
+	    }
+	    var S = " ";
+	    now = [];
+	    //compute new path string for intermediate image
+	    for (var i = 0, ii = fromCurve.length; i < ii; i++) {
+	      now[i] = [fromCurve[i][0]];
+	      for (var j = 1, jj = fromCurve[i].length; j < jj; j++) {
+	        now[i][j] = +fromCurve[i][j] + pos * diff[i][j];
+	      }
+	      now[i] = now[i].join(S);
+	    }
+	    return now.join(S);
+	},
+
+ 	intermediate2dPath: function(ends, pathlabel, prop1, prop2) {
+        //interpolate the proper amount along one dimension:
+        var dim2as0 = Ecosystem.intermediate(ends["00"][pathlabel], ends["10"][pathlabel], prop1);
+        var dim2as1 = Ecosystem.intermediate(ends["01"][pathlabel], ends["11"][pathlabel], prop1);
+        //interpolate the proper amount along the other dimension:
+        return Ecosystem.intermediate(dim2as0, dim2as1, prop2);
+    },
+
+	upperCaseFirst: function(str){
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	},
+
+	isNumeric: function(val){
+		var intRegex = /^\d+$/;
+		var floatRegex = /^((\d+(\.\d *)?)|((\d*\.)?\d+))$/;
+		return (intRegex.test(val) || floatRegex.test(val))
 	},
 	
+	fillArray: function(value, len) {
+	  var arr = [];
+	  for (var i = 0; i < len; i++) {
+	    arr.push(value);
+	  }
+	  return arr;
+	},
+
+	flatten: function(array) {
+	  var result = [], self = arguments.callee;
+	  array.forEach(function(item) {
+	    Array.prototype.push.apply(
+	      result,
+	      Array.isArray(item) ? self(item) : [item]
+	    );
+	  });
+	  return result;
+	},
+
 	showSlide: function(slidename) {
 			$(".slide").hide();
 			$(".fullslide").hide();
@@ -60,19 +114,24 @@ var utils = {
 		});
 	},
 
-	make_slider: function(label, response_callback, orientation) {
+	make_slider: function(label, response_callback, orientation, step, sliderSize) {
 		var orientation = (orientation == null) ? "horizontal" : orientation;
+		var step = (step == null) ? 0.01 : step;
+		var sliderSize = (sliderSize == null) ? 400 : sliderSize;
 		$(label).empty();
 		$(label).slider({
 			range : "min",
 			min : 0,
 			max : 1,
-			step: 0.01,
+			step: step,
 			value : 0.5,
 			slide : response_callback,
 			change : response_callback,
 			orientation : orientation
 		});
+		orientation == "horizontal" ? 
+			$(label).css({"width":sliderSize}) :
+			$(label).css({"height":sliderSize});
 		$(label + ' .ui-slider-handle').hide();
 		$(label).mousedown(function(){
 			$(label + ' .ui-slider-handle').show();
@@ -84,6 +143,8 @@ var utils = {
 		});
 		$(label).css({"background":"#eee"});
 	}
+
+
 }
 /*
 		var keys = getUnique.apply(list_keys);

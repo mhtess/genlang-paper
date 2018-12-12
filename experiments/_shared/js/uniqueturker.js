@@ -1,14 +1,14 @@
 // Source: https://s3.amazonaws.com/mturk-public/externalHIT_v1.js
-function turkGetParam( name, defaultValue ) {
-    var regexS = "[\?&]"+name+"=([^&#]*)";
-    var regex = new RegExp( regexS );
-    var tmpURL = window.location.href;
-    var results = regex.exec( tmpURL );
-    if( results == null ) {
-        return defaultValue;
-    } else {
-        return results[1];
-    }
+function turkGetParam( name, defaultValue ) { 
+    var regexS = "[\?&]"+name+"=([^&#]*)"; 
+    var regex = new RegExp( regexS ); 
+    var tmpURL = window.location.href; 
+    var results = regex.exec( tmpURL ); 
+    if( results == null ) { 
+        return defaultValue; 
+    } else { 
+        return results[1];    
+    } 
 }
 
 function UTWorkerLimitReached(ut_id, workerId, assignmentId) {

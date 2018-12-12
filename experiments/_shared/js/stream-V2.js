@@ -20,6 +20,7 @@ var _stream = function() {
   if (exp.nQs) {
     //if number of total questions is defined, then show progress bar
     $('.bar').css('width', ( (exp.phase / exp.nQs)*100 + "%"));
+    // $('.bar-text').html((exp.phase + "/"+ exp.nQs));
   } else {
     $(".progress").hide();
   }
@@ -31,8 +32,10 @@ var _stream = function() {
 
     if (presented_stims.length === 0) {
       //done with slide
-      if (this.end) {this.end();};
+      //debugger;
+      if (this.end) {this.end();}; // try if else
       this.callback();
+      //this.end ? this.end() : this.callback();
     } else if (this.present_handle) {
       exp.phase++;
       var stim = presented_stims.shift();

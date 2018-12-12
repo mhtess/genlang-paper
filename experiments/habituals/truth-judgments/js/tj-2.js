@@ -5,7 +5,7 @@ function make_slides(f) {
      name : "i0",
      start: function() {
       exp.startT = Date.now();
-      $(".total-num").html(exp.numTrials);  
+      $(".total-num").html(exp.numTrials);
      }
   });
 
@@ -15,7 +15,7 @@ function make_slides(f) {
       _.mapObject(exp.judgeButtons, function(val,key){
         $("#"+key).html(val);
       });
-      $(".total-num").html(exp.numTrials);  
+      $(".total-num").html(exp.numTrials);
     },
     button : function() {
       exp.go(); //use exp.go() if and only if there is no "present" data.
@@ -31,7 +31,7 @@ function make_slides(f) {
       // console.log(stim)
       this.startTime = Date.now();
 
-      this.stim = stim 
+      this.stim = stim
       // var habit = this.stim[0]
       // var charName = this.stim[1]
       // debugger;
@@ -196,10 +196,10 @@ function init() {
     return utils.fillArray(c, stimuli.length/timeConditions.length)
   }))
 
-  var bothGenders = ["drinks beer","drinks coffee", 
+  var bothGenders = ["drinks beer","drinks coffee",
                       "wears socks","wears a bra",
                       "wears a suit", "does cocaine"]
-                      
+
   // debugger;
   var nBothGender = _.filter(stimuli, function(s){return _.contains(bothGenders,s.habitual)}).length
 
@@ -213,9 +213,9 @@ function init() {
 
   var stimsWNames =  _.flatten(_.map(stimuli, function(s){
     var newObj = jQuery.extend(true, {}, s);
-    return !(_.contains(bothGenders,s.habitual)) ? 
+    return !(_.contains(bothGenders,s.habitual)) ?
     _.extend(s, {character: allGenders.pop()}) :
-      [_.extendOwn(s, {character: someMen.pop()}), 
+      [_.extendOwn(s, {character: someMen.pop()}),
       _.extendOwn(newObj, {character: someWomen.pop()})]
   }), true)
 
@@ -224,12 +224,12 @@ function init() {
   // var conditionsBothGenders = [conditions, conditions]
 
   // var stimsUnpacked1 = _.shuffle(_.map(
-  //   _.zip(stimuli, _.shuffle(conditions)), 
+  //   _.zip(stimuli, _.shuffle(conditions)),
   //   function(s){return _.extend(s[0], {"condition": s[1]})})
   // )
   // // debugger;
   // var stimsUnpacked2 = _.shuffle(_.map(
-  //   _.zip(stimuli, _.shuffle(conditions)), 
+  //   _.zip(stimuli, _.shuffle(conditions)),
   //   function(s){return _.extend(s[0], {"condition": s[1]})})
   // )
 
@@ -259,7 +259,7 @@ function init() {
     };
   //blocks of the experiment:
    exp.structure=["i0", "instructions", "truthJudge","check",'subj_info', 'thanks'];
- 
+
   exp.data_trials = [];
   //make corresponding slides:
   exp.slides = make_slides(exp);

@@ -133,6 +133,18 @@ var Ecosystem = {
         var tar1 = properties["tar1"]==null ? Ecosystem.randBoul() : properties["tar1"];
         var tar2 = properties["tar2"]==null ? Ecosystem.randBoul() : properties["tar2"];
 
+        var drawOnly = properties["drawOnly"]==null ? [] : properties["drawOnly"];
+
+        // if we say "draw only tar1" and tar2 is not also in drawOnly, tar2 is false
+        if ( (drawOnly.indexOf("tar1") > -1) & (drawOnly.indexOf("tar2") == -1) ) {
+            tar2 = false;
+        }
+        // and vice versa
+        if ( (drawOnly.indexOf("tar2") > -1) & (drawOnly.indexOf("tar1") == -1) ) {
+            tar1 = false;
+        }
+
+
         if (paperlabel != null) {
 
             //for rescaling
@@ -150,11 +162,20 @@ var Ecosystem = {
 
             var pathlabels = Object.keys(ends["00"]);
 
+            // figure out which paths to draw
+            // debugger;
+            var drawBody = ((drawOnly.indexOf("tar1") == -1) &
+                             (drawOnly.indexOf("tar2") == -1))
+            var drawTar1 = (drawOnly.indexOf("tar1") > -1) | tar1;
+            var drawTar2 = (drawOnly.indexOf("tar2") > -1) | tar2;
+
+            // for each path, figure out if it should be drawn and if so draw it
             for (var i=0; i<pathlabels.length; i++) {
                 var pathlabel = pathlabels[i];
-                if ( (pathlabel != "target1" && pathlabel != "target2") ||
-                        (pathlabel == "target1" && tar1) ||
-                        (pathlabel == "target2" && tar2)) {
+                var isTar1 = pathlabel == "target1";
+                var isTar2 = pathlabel == "target2";
+                var isBody = (pathlabel != "target1" && pathlabel != "target2");
+                if ( (isTar1 & drawTar1) | (isTar2 & drawTar2) | (isBody & drawBody) ) {
                     var pathstring = Ecosystem.intermediate2d(ends, pathlabel, prop1, prop2);
                     var path = paper.path(pathstring);
                     Ecosystem.stroke(path, ends["colors"][pathlabel]);
@@ -385,9 +406,12 @@ var Ecosystem = {
 	                			this.propsAndParams[property]["var"]
 	                		);
 	                		break;
+                        case "drawOnl":
+                            tokenProperties[property] = this.propsAndParams[property];
+                            break;
 	                	default:
 	                        console.log(
-	                        	"error 109: property parameters input to genus should be 'tar' for 'target', 'col' for 'color', or 'prop' for 'proportion'. you gave me this: " +
+	                        	"warning 109: property parameters input to genus should be 'tar' for 'target', 'col' for 'color', or 'prop' for 'proportion'. you gave me this: " +
 	                        	property + ", which i shortened to " + type +
 	                        	"."
 	                        );
