@@ -8,10 +8,10 @@ var targetUtterance = process.argv[process.argv.length - 2]
 
 var responseDictionary = { "agree-key": 1, "disagree-key": 0 };
 
-var dataPath = "../../data/generics/endorsement/"
-var priorFile = dataPath + "naturalGenerics-prior-trials-n57.csv",
- 		endorsementFile = dataPath + "truth-judgments-n100.csv",
-		endorsementCatchFile = dataPath + "truth-judgments_catch-trials.csv"
+var dataPath = "../../data/generics/"
+var priorFile = dataPath + "1b-priors/generics-prior-trials-n57.csv",
+ 		endorsementFile = dataPath + "1a-endorsement/truth-judgments-n100.csv",
+		endorsementCatchFile = dataPath + "1a-endorsement/truth-judgments_catch-trials.csv"
 
 var d_prior = dataFrame(utils.readCSV(priorFile).data, ["prevalence"]),
  		d_endorsement = dataFrame(utils.readCSV(endorsementFile).data),

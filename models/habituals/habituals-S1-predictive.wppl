@@ -27,10 +27,10 @@ var annualRates = {
 
 var dataPath = "../../data/habituals/"
 
-var prior_file = dataPath + "priors/habituals-priors.csv",
-    endorsement_file = dataPath+"endorsement/habituals-endorsement-predictives.csv",
-    endorsement_catch_file = dataPath+"endorsement/habituals-endorsement-predictives-catch_trials.csv",
-    predictive_file = dataPath + "predictive/predictive-1-trials.csv";
+var prior_file = dataPath + "2a-priors/habituals-priors.csv",
+    endorsement_file = dataPath+"2c-predictive/endorsement-predictives-trials.csv",
+    endorsement_catch_file = dataPath+"2c-predictive/endorsement-predictives-catch_trials.csv",
+    predictive_file = dataPath + "2c-predictive/predictive-elicitation-trials.csv";
 
 var d_prior = dataFrame(
   	utils.readCSV(prior_file).data,[

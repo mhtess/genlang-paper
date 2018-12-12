@@ -24,9 +24,9 @@ var annualRates = {
 
 var dataPath = "../../data/habituals/"
 
-var prior_file = dataPath + "priors/habituals-priors.csv",
-    endorsement_file = dataPath+"endorsement/habituals-endorsement.csv",
-    endorsement_catch_file = dataPath+"endorsement/habituals-endorsement-catch_trials.csv";
+var prior_file = dataPath + "2a-priors/habituals-priors.csv",
+    endorsement_file = dataPath+"2b-endorsement/habituals-endorsement.csv",
+    endorsement_catch_file = dataPath+"2b-endorsement/habituals-endorsement-catch_trials.csv";
 
 var d_prior = dataFrame(
   	utils.readCSV(prior_file).data,[

@@ -8,12 +8,12 @@ var chain = last(process.argv) // load index as last command line index
 var targetUtterance = process.argv[process.argv.length - 2]
 
 var dataPath = "../../data/causals/",
- 		priorFile = dataPath + "priors/causals-8-prior-trials.csv",
-    priorCatchFile = dataPath + "priors/causals-8-prior-catch_trials.csv",
- 	  endorsementFile1 = dataPath + "endorsement/causals-8-20-trials.csv",
-    endorsementFile2 = dataPath + "endorsement/causals-8-70-trials.csv",
-    endorsementCatchFile1 = dataPath + "endorsement/causals-8-20-catch_trials.csv",
-    endorsementCatchFile2 = dataPath + "endorsement/causals-8-70-catch_trials.csv";
+ 		priorFile = dataPath + "3a-priors/causals-8-prior-trials.csv",
+    priorCatchFile = dataPath + "3a-priors/causals-8-prior-catch_trials.csv",
+ 	  endorsementFile1 = dataPath + "3b-endorsement/causals-8-20-trials.csv",
+    endorsementFile2 = dataPath + "3b-endorsement/causals-8-70-trials.csv",
+    endorsementCatchFile1 = dataPath + "3b-endorsement/causals-8-20-catch_trials.csv",
+    endorsementCatchFile2 = dataPath + "3b-endorsement/causals-8-70-catch_trials.csv";
 
 var d_prior = dataFrame(utils.readCSV(priorFile).data, ["workerid","response"]),
     d_prior_catch = dataFrame(utils.readCSV(priorCatchFile).data, ["workerid", "pass_numeric", "pass_story"]),
