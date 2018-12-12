@@ -4,7 +4,7 @@ All data can be found in the `data` folder
 
 ### Experiments
 
-To click through experiments in your web-browser, go [here](https://mhtess.github.io/projects/genlang_index.html). HTML / JS / CSS code for experiments in the `experiments` folder.
+To click through experiments in your web-browser, go [here](https://mhtess.github.io/projects/genlang_index.html). `experiments` folder contains HTML / JS / CSS code necessary to recreate experiments locally.
 
 ### Models
 
