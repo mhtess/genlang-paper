@@ -10,6 +10,8 @@ To click through experiments in your web-browser, go [here](https://mhtess.githu
 
 To play around with the generics model in the browser, go [here](http://forestdb.org/models/generics.html). `models` folder contains computational models written in the probabilistic programming language [WebPPL](http://webppl.org)
 
+An implementation of the conjunctive generic "Elephants live in Africa and Asia" can be found [here](http://forestdb.org/models/generics-conjunction.html).
+
 ### Analysis
 
 The `analysis` folder contains main analysis scripts: one for each case study, one for the appendix on cue validity, and one which contains model simulations.
